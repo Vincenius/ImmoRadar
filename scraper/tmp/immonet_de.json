@@ -1,0 +1,4367 @@
+{
+  "24J8NN2U6631": {
+    "brand": "immonet",
+    "id": "24J8NN2U6631",
+    "status": "Published",
+    "metadata": {
+      "id": "24J8NN2U6631",
+      "legacyId": "54d2a6c8-1882-4923-a7b1-97ecc1f81b58",
+      "creationDate": "2024-06-21T05:46:30.357Z",
+      "updateDate": "2024-06-21T05:46:38.188Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Quedlinburg",
+        "zipCode": "06484",
+        "street": "Steinholzstr. 6",
+        "district": "Quedlinburg"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "65,3 m²",
+        "2. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "65,3 m²",
+          "splitValue": "65,3",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "2. Geschoss",
+          "splitValue": "2.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "340 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "340 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "6c12c6c7-7dd3-4924-897f-0dd342511a3a",
+          "url": "https://mms.immonet.de/6/c/1/2/6c12c6c7-7dd3-4924-897f-0dd342511a3a.jpg?ci_seal=60246dcbdbd7fb2328e8d082c82c16986113f53b",
+          "description": "Zimmer 2.jpg",
+          "alt": "Wohnung zur Miete 340 € 2 Zimmer 65,3 m² 2. Geschoss Steinholzstr. 6 Quedlinburg Quedlinburg 06484",
+          "title": "Zimmer 2.jpg",
+          "ariaLabel": "Zimmer 2.jpg"
+        },
+        {
+          "key": "3028cbea-33ad-4abd-bd53-558ddf7f4973",
+          "url": "https://mms.immonet.de/3/0/2/8/3028cbea-33ad-4abd-bd53-558ddf7f4973.jpg?ci_seal=e1147ce795e305f118ea8b432ed6103ac9a10409",
+          "description": "Zimmer 2 (2).jpg",
+          "title": "Zimmer 2 (2).jpg",
+          "ariaLabel": "Zimmer 2 (2).jpg"
+        },
+        {
+          "key": "246b87a9-43a4-4fbc-9965-94bc1ca04405",
+          "url": "https://mms.immonet.de/2/4/6/b/246b87a9-43a4-4fbc-9965-94bc1ca04405.jpg?ci_seal=245681f88df3b4ff62a61bdac315c14fd29e981c",
+          "description": "Zimmer 1.jpg",
+          "title": "Zimmer 1.jpg",
+          "ariaLabel": "Zimmer 1.jpg"
+        },
+        {
+          "key": "a6dae3f2-f139-4d4a-9497-782050375690",
+          "url": "https://mms.immonet.de/a/6/d/a/a6dae3f2-f139-4d4a-9497-782050375690.jpg?ci_seal=75d8a65e3c7b6a29764a16c30f46b88b580229e0",
+          "description": "Zimmer 1 (3).jpg",
+          "title": "Zimmer 1 (3).jpg",
+          "ariaLabel": "Zimmer 1 (3).jpg"
+        },
+        {
+          "key": "019dc145-92a2-440c-88a3-eef7bf0c919a",
+          "url": "https://mms.immonet.de/0/1/9/d/019dc145-92a2-440c-88a3-eef7bf0c919a.jpg?ci_seal=39680ea79e59741367061ff3f82079af764464a6",
+          "description": "Zimmer 1 (2).jpg",
+          "title": "Zimmer 1 (2).jpg",
+          "ariaLabel": "Zimmer 1 (2).jpg"
+        },
+        {
+          "key": "1520e823-3b81-4519-ad3f-c4fdde20f569",
+          "url": "https://mms.immonet.de/1/5/2/0/1520e823-3b81-4519-ad3f-c4fdde20f569.jpg?ci_seal=81b5ebb173f5f29ce6d34a7e3e087b335e557fdf",
+          "description": "Küche (3).jpg",
+          "title": "Küche (3).jpg",
+          "ariaLabel": "Küche (3).jpg"
+        },
+        {
+          "key": "4a7e5c3a-57d9-4401-9a93-f9998d1fcf1e",
+          "url": "https://mms.immonet.de/4/a/7/e/4a7e5c3a-57d9-4401-9a93-f9998d1fcf1e.jpg?ci_seal=9ac852eb3168ea5117e2e5b9cfd5127d495b857f",
+          "description": "Küche.jpg",
+          "title": "Küche.jpg",
+          "ariaLabel": "Küche.jpg"
+        },
+        {
+          "key": "13cff5ec-c6f2-4508-bc45-45f650b9ccb5",
+          "url": "https://mms.immonet.de/1/3/c/f/13cff5ec-c6f2-4508-bc45-45f650b9ccb5.jpg?ci_seal=19e3b8a7ad00d7484573550e5ecd692b7c7e5819",
+          "description": "Küche (2).jpg",
+          "title": "Küche (2).jpg",
+          "ariaLabel": "Küche (2).jpg"
+        },
+        {
+          "key": "37037e16-d075-4a26-b195-1e7c6be63bfa",
+          "url": "https://mms.immonet.de/3/7/0/3/37037e16-d075-4a26-b195-1e7c6be63bfa.jpg?ci_seal=74190254142ac706bc9801bff6f1f7e275c676a6",
+          "description": "Bad (2).jpg",
+          "title": "Bad (2).jpg",
+          "ariaLabel": "Bad (2).jpg"
+        },
+        {
+          "key": "adc1bd77-4fc6-48b5-ba13-c96757c3b260",
+          "url": "https://mms.immonet.de/a/d/c/1/adc1bd77-4fc6-48b5-ba13-c96757c3b260.jpg?ci_seal=cb86ff5e1f45eb71035dee1fb394680bfc6f7a23",
+          "description": "Bad Wanne.jpg",
+          "title": "Bad Wanne.jpg",
+          "ariaLabel": "Bad Wanne.jpg"
+        },
+        {
+          "key": "7771fa23-1a6d-466e-91ac-6fffc8864b9b",
+          "url": "https://mms.immonet.de/7/7/7/1/7771fa23-1a6d-466e-91ac-6fffc8864b9b.jpg?ci_seal=c28b9a25daa6ac61628e7e5e256d8723ff2f5fec",
+          "description": "Bad.jpg",
+          "title": "Bad.jpg",
+          "ariaLabel": "Bad.jpg"
+        },
+        {
+          "key": "8fd42dcd-2b69-4586-ae57-2235d6a102b1",
+          "url": "https://mms.immonet.de/8/f/d/4/8fd42dcd-2b69-4586-ae57-2235d6a102b1.jpg?ci_seal=177f0486203baeb52b21152a68dc011abd4572cb",
+          "description": "Abstellraum.jpg",
+          "title": "Abstellraum.jpg",
+          "ariaLabel": "Abstellraum.jpg"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24J8NN2U6631",
+      "price": 340,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Quedlinburg",
+      "currency": "EUR",
+      "zip_code": "06484",
+      "building_state": "FULLY_RENOVATED",
+      "legacy_id": "54d2a6c8-1882-4923-a7b1-97ecc1f81b58",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "IBS Franke GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_dc578c6835b64e25bc21fe7a7e27cb77.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/765183"
+      },
+      "contactCard": {
+        "title": "Frau Katrin Labahn",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.ibs-immobilien.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/765183",
+      "imprintUrl": "https://www.immonet.de/anbieter/765183#impressum",
+      "phoneNumbers": [
+        "03944/90230"
+      ],
+      "rating": {
+        "rating": 4.2,
+        "reviews": 4,
+        "link": "https://www.immonet.de/anbieter/765183#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "headline": "2- Raumwohnung in Quedlinburg"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/54d2a6c8-1882-4923-a7b1-97ecc1f81b58"
+  },
+  "24NYWCPLRNZT": {
+    "brand": "immonet",
+    "id": "24NYWCPLRNZT",
+    "status": "Published",
+    "metadata": {
+      "id": "24NYWCPLRNZT",
+      "legacyId": "cae59cd6-eab2-4409-9d0e-05068ea9cf2f",
+      "creationDate": "2024-06-21T05:35:12.707Z",
+      "updateDate": "2024-06-21T05:45:36.425Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Köln",
+        "zipCode": "50935",
+        "street": "Rautenstrauchstr. 95",
+        "district": "Lindenthal"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "116 m²"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "116 m²",
+          "splitValue": "116",
+          "label": "m²"
+        }
+      ],
+      "price": {
+        "value": "800 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "800 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "50f280b2-601c-4400-a6cb-7c2092d982be",
+          "url": "https://mms.immonet.de/5/0/f/2/50f280b2-601c-4400-a6cb-7c2092d982be.png?ci_seal=6ef2434e7aad9ac4019bd680acb6f5988150f3c6",
+          "description": "IMG_20240618_261.png",
+          "alt": "Wohnung zur Miete 800 € 3 Zimmer 116 m² Rautenstrauchstr. 95 Lindenthal Köln 50935",
+          "title": "IMG_20240618_261.png",
+          "ariaLabel": "IMG_20240618_261.png"
+        },
+        {
+          "key": "a114e7d5-3d7c-4c80-a3dc-7b6c17f6b992",
+          "url": "https://mms.immonet.de/a/1/1/4/a114e7d5-3d7c-4c80-a3dc-7b6c17f6b992.png?ci_seal=a8175494b1d556399c21b10fba2caddb6c8bd439",
+          "description": "IMG_20240618_264.png",
+          "title": "IMG_20240618_264.png",
+          "ariaLabel": "IMG_20240618_264.png"
+        },
+        {
+          "key": "c64335d8-5d08-4790-b92b-ae2dafaf02ec",
+          "url": "https://mms.immonet.de/c/6/4/3/c64335d8-5d08-4790-b92b-ae2dafaf02ec.png?ci_seal=8d3f087a0841b250beceabc207446b6bd7ade604",
+          "description": "IMG_20240618_267.png",
+          "title": "IMG_20240618_267.png",
+          "ariaLabel": "IMG_20240618_267.png"
+        },
+        {
+          "key": "4fc976ce-4e64-41aa-a876-2425f328c5f4",
+          "url": "https://mms.immonet.de/4/f/c/9/4fc976ce-4e64-41aa-a876-2425f328c5f4.png?ci_seal=b8afd6130d5c435edea37813142e5036ec44c627",
+          "description": "IMG_20240618_269.png",
+          "title": "IMG_20240618_269.png",
+          "ariaLabel": "IMG_20240618_269.png"
+        },
+        {
+          "key": "9d4fc5dd-5d7e-4462-a3ca-dfde524fda3e",
+          "url": "https://mms.immonet.de/9/d/4/f/9d4fc5dd-5d7e-4462-a3ca-dfde524fda3e.png?ci_seal=ba5cb7dfb5091f4d56031b3021d89c40c557206b",
+          "description": "IMG_20240618_271.png",
+          "title": "IMG_20240618_271.png",
+          "ariaLabel": "IMG_20240618_271.png"
+        },
+        {
+          "key": "c47efe36-092c-4ff5-96bb-41795fbdf46a",
+          "url": "https://mms.immonet.de/c/4/7/e/c47efe36-092c-4ff5-96bb-41795fbdf46a.png?ci_seal=59fd7e1090c0c78f4e0badc810eed443dce757d2",
+          "description": "IMG_20240618_276.png",
+          "title": "IMG_20240618_276.png",
+          "ariaLabel": "IMG_20240618_276.png"
+        },
+        {
+          "key": "bb64a154-3e12-4f2b-b0c3-36ad24845c7e",
+          "url": "https://mms.immonet.de/b/b/6/4/bb64a154-3e12-4f2b-b0c3-36ad24845c7e.png?ci_seal=2d8a6ab60c390f98ade5aec409d7220212fb04e7",
+          "description": "IMG_20240618_279.png",
+          "title": "IMG_20240618_279.png",
+          "ariaLabel": "IMG_20240618_279.png"
+        },
+        {
+          "key": "b1edee1b-b7d3-4cb7-ab53-6d4bd0cc94f4",
+          "url": "https://mms.immonet.de/b/1/e/d/b1edee1b-b7d3-4cb7-ab53-6d4bd0cc94f4.png?ci_seal=5a9934a425a35224ee63acaac176c03b20c3bc07",
+          "description": "IMG_20240618_281.png",
+          "title": "IMG_20240618_281.png",
+          "ariaLabel": "IMG_20240618_281.png"
+        },
+        {
+          "key": "43624f9f-e80b-46c7-9865-43d7a674e3ff",
+          "url": "https://mms.immonet.de/4/3/6/2/43624f9f-e80b-46c7-9865-43d7a674e3ff.png?ci_seal=056516e6e9e67208a3eaef3cabdaf5362a004d6b",
+          "description": "IMG_20240618_284.png",
+          "title": "IMG_20240618_284.png",
+          "ariaLabel": "IMG_20240618_284.png"
+        },
+        {
+          "key": "3e545594-d82d-48e1-9406-be2f82e48e41",
+          "url": "https://mms.immonet.de/3/e/5/4/3e545594-d82d-48e1-9406-be2f82e48e41.png?ci_seal=8857da2a701661bf23ecc045f41dfa52c73546cf",
+          "description": "IMG_20240618_287.png",
+          "title": "IMG_20240618_287.png",
+          "ariaLabel": "IMG_20240618_287.png"
+        },
+        {
+          "key": "0423d047-fdf3-4d87-a71f-4b3044d0a945",
+          "url": "https://mms.immonet.de/0/4/2/3/0423d047-fdf3-4d87-a71f-4b3044d0a945.png?ci_seal=2e643c84f447c639f15cb78809b13f44599a611c",
+          "description": "IMG_20240618_289.png",
+          "title": "IMG_20240618_289.png",
+          "ariaLabel": "IMG_20240618_289.png"
+        },
+        {
+          "key": "a529dea4-3eb9-4f6d-8a25-0d9cb48d6eeb",
+          "url": "https://mms.immonet.de/a/5/2/9/a529dea4-3eb9-4f6d-8a25-0d9cb48d6eeb.png?ci_seal=fb11cd300cc32750ad3aa2e7d5e63df7f35cccce",
+          "description": "IMG_20240618_292.png",
+          "title": "IMG_20240618_292.png",
+          "ariaLabel": "IMG_20240618_292.png"
+        },
+        {
+          "key": "5546dc30-450d-4f5a-b719-f31bd73347c4",
+          "url": "https://mms.immonet.de/5/5/4/6/5546dc30-450d-4f5a-b719-f31bd73347c4.png?ci_seal=0ff310451d075232be62586d149709f2e33cdb33",
+          "description": "IMG_20240618_295.png",
+          "title": "IMG_20240618_295.png",
+          "ariaLabel": "IMG_20240618_295.png"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24NYWCPLRNZT",
+      "price": 800,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Cologne",
+      "currency": "EUR",
+      "zip_code": "50935",
+      "building_state": "FULLY_RENOVATED",
+      "legacy_id": "cae59cd6-eab2-4409-9d0e-05068ea9cf2f",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "display": false,
+        "title": "",
+        "subtitle": ""
+      },
+      "contactCard": {
+        "title": "Privater Anbieter",
+        "subtitle": null,
+        "display": true,
+        "logoUrl": null
+      },
+      "isPrivateOwner": true,
+      "profileUrl": "https://www.immonet.de/anbieter/10138569",
+      "imprintUrl": "https://www.immonet.de/anbieter/10138569#impressum",
+      "phoneNumbers": [],
+      "displayLinks": false
+    },
+    "mainDescription": {
+      "description": "Ideal für 2 Personen,<br>Großer Wohnbereich/Essbereich mit Terrasse und Garten Nutzung<br>Geräumige Diele, gut ausgestattete Küche (Kühlschrank, Kochfeld, Spühlmaschine, Gefriertruhe ...),<br>Großes separates Badezimmer mit Dusche und WC, Gäste WC, zwei Schlafzimmer/Arbeitszimmer.<br>Garage kann für 50€ monatlich gemietet werden.<br>Die Wohnung kann auf unbestimmte Zeit gemietet werden.",
+      "headline": "Drei zimmer Wohnung im EG auf 116m² - Direkt am Stadtwald"
+    },
+    "type": "PRIVATE",
+    "url": "/expose/cae59cd6-eab2-4409-9d0e-05068ea9cf2f"
+  },
+  "24ASSVUXXJY1": {
+    "brand": "immonet",
+    "id": "24ASSVUXXJY1",
+    "status": "Published",
+    "metadata": {
+      "id": "24ASSVUXXJY1",
+      "legacyId": "2186a536-47e6-4764-b25c-381aa226468c",
+      "creationDate": "2024-06-21T02:31:22.103Z",
+      "updateDate": "2024-06-21T02:31:44.958Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Görlitz",
+        "zipCode": "02828",
+        "street": "Ostring 39",
+        "district": "Königshufen"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "70,4 m²",
+        "2. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "70,4 m²",
+          "splitValue": "70,4",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "2. Geschoss",
+          "splitValue": "2.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "400 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "400 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "b19cce55-8ba4-4741-804f-ef48bf1f2f8d",
+          "url": "https://mms.immonet.de/b/1/9/c/b19cce55-8ba4-4741-804f-ef48bf1f2f8d.jpg?ci_seal=a49a665d2844d15af0967feec481758cfc61189f",
+          "description": "Bild 1",
+          "alt": "Wohnung zur Miete 400 € 3 Zimmer 70,4 m² 2. Geschoss Ostring 39 Königshufen Görlitz 02828",
+          "title": "Bild 1",
+          "ariaLabel": "Bild 1"
+        },
+        {
+          "key": "09413df4-a7bb-4199-bc64-06aee7d6d540",
+          "url": "https://mms.immonet.de/0/9/4/1/09413df4-a7bb-4199-bc64-06aee7d6d540.jpg?ci_seal=3390abccc000794d4d7a4a5899641906f65171eb",
+          "description": "Bild 2",
+          "title": "Bild 2",
+          "ariaLabel": "Bild 2"
+        },
+        {
+          "key": "a95de30d-e27f-4024-9da4-1b3e3043b454",
+          "url": "https://mms.immonet.de/a/9/5/d/a95de30d-e27f-4024-9da4-1b3e3043b454.jpg?ci_seal=807a56e504631f4c1a00cda5099b37c6be6357c1",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        },
+        {
+          "key": "0cd4c5cd-366f-44d5-b973-85b47ce9bae6",
+          "url": "https://mms.immonet.de/0/c/d/4/0cd4c5cd-366f-44d5-b973-85b47ce9bae6.gif?ci_seal=f5da8dc62602850a0ae4095c8d92efab7879d249",
+          "description": "Energiebedarfswerte",
+          "title": "Energiebedarfswerte",
+          "ariaLabel": "Energiebedarfswerte"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24ASSVUXXJY1",
+      "price": 400,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Görlitz",
+      "currency": "EUR",
+      "zip_code": "02828",
+      "building_state": "FULLY_RENOVATED",
+      "legacy_id": "2186a536-47e6-4764-b25c-381aa226468c",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "GENOS - Die Wohnungsgenossenschaft Görlitz eG",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_721142a0676a4f13b43fbcf9fde7966a.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/5997758"
+      },
+      "contactCard": {
+        "title": "Firma Vermietungsteam Görlitz",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/ProfilBilder/150_2d2f802942824fcdb8a0bf064cd091be.jpg"
+      },
+      "website": "http://www.genos-gr.de/de/wohnungen-goerlitz.php",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/5997758",
+      "imprintUrl": "https://www.immonet.de/anbieter/5997758#impressum",
+      "phoneNumbers": [
+        "03581 4803 0"
+      ],
+      "rating": {
+        "rating": 3.8,
+        "reviews": 7,
+        "link": "https://www.immonet.de/anbieter/5997758#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Business Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/business-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Im Norden von Görlitz befindet sich der immer grüner werdende Stadtteil Königshufen. Von Einwohnern umgangssprachlich \"Nord\" genannt. Dieser junge und moderne Stadtteil erfreut sich immer größer werdender Beliebtheit aufgrund der optimalen Infrastruktur. <br>Ein weiterer Pluspunkt: Direkt in der Umgebung sind zahlreiche kostenlose öffentliche Parkplätze vorhanden.",
+      "headline": "Schöne 3-Raum-Wohnung mit offener Küche!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/2186a536-47e6-4764-b25c-381aa226468c"
+  },
+  "24FQ9NWKB42I": {
+    "brand": "immonet",
+    "id": "24FQ9NWKB42I",
+    "status": "Published",
+    "metadata": {
+      "id": "24FQ9NWKB42I",
+      "legacyId": "c5ecb4bf-ba9d-4ade-832c-26de7633317f",
+      "creationDate": "2024-06-21T02:10:40.827Z",
+      "updateDate": "2024-06-21T02:11:43.326Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Berlin",
+        "zipCode": "12099",
+        "street": "Borussiastraße 51",
+        "district": "Tempelhof"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "58 m²",
+        "3. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "58 m²",
+          "splitValue": "58",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "3. Geschoss",
+          "splitValue": "3.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "376,04 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "376.04 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "95ac7a5b-fb2b-40e1-8606-dfafce0d037a",
+          "url": "https://mms.immonet.de/9/5/a/c/95ac7a5b-fb2b-40e1-8606-dfafce0d037a.jpg?ci_seal=b73ba22cfb3d90956139ef458580b6e48fbcbea7",
+          "description": "Vorschau",
+          "alt": "Wohnung zur Miete 376,04 € 2 Zimmer 58 m² 3. Geschoss Borussiastraße 51 Tempelhof Berlin 12099",
+          "title": "Vorschau",
+          "ariaLabel": "Vorschau"
+        },
+        {
+          "key": "2cb4d27f-4ab2-48b9-8ad3-b7b26a4a262a",
+          "url": "https://mms.immonet.de/2/c/b/4/2cb4d27f-4ab2-48b9-8ad3-b7b26a4a262a.jpg?ci_seal=62d5a6ded714f6dce702dd32aee828a5f8e42cea",
+          "description": "Bild 1",
+          "title": "Bild 1",
+          "ariaLabel": "Bild 1"
+        },
+        {
+          "key": "cdb480f3-0faf-48ba-b5ce-3d7592a5f864",
+          "url": "https://mms.immonet.de/c/d/b/4/cdb480f3-0faf-48ba-b5ce-3d7592a5f864.jpg?ci_seal=bae79c7f4713095c521a5148c80b1a1a93a99ff8",
+          "description": "Bild 2",
+          "title": "Bild 2",
+          "ariaLabel": "Bild 2"
+        },
+        {
+          "key": "908a51dd-3e78-4e53-8b2c-240f2411d7a7",
+          "url": "https://mms.immonet.de/9/0/8/a/908a51dd-3e78-4e53-8b2c-240f2411d7a7.jpg?ci_seal=8c3ca43b782181265dbacd96cc673d2069840871",
+          "description": "Bild 3",
+          "title": "Bild 3",
+          "ariaLabel": "Bild 3"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24FQ9NWKB42I",
+      "price": 376.04,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Berlin",
+      "currency": "EUR",
+      "zip_code": "12099",
+      "building_state": "NEED_OF_RENOVATION",
+      "legacy_id": "c5ecb4bf-ba9d-4ade-832c-26de7633317f",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "CAPERA Immobilien Service GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_fd907031685543f1acbaba555f6bd72b.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/50818"
+      },
+      "contactCard": {
+        "title": "Valentino Gheorghinca",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.capera-immobilien.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/50818",
+      "imprintUrl": "https://www.immonet.de/anbieter/50818#impressum",
+      "phoneNumbers": [],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 292,
+        "link": "https://www.immonet.de/anbieter/50818#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Nur mit WBS-Schein 100 ab 2 Personen!!! <br><br>Stark renovierungsbedürftige Wohnung in der nähe des Tempelhofer Feldes",
+      "headline": "Nur mit WBS-Schein 100 ab 2 Personen!!! Unrenovierte 2 Zimmer Wohnung mit Balkon"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/c5ecb4bf-ba9d-4ade-832c-26de7633317f"
+  },
+  "241EG1GK6MFU": {
+    "brand": "immonet",
+    "id": "241EG1GK6MFU",
+    "status": "Published",
+    "metadata": {
+      "id": "241EG1GK6MFU",
+      "legacyId": "a9e82ad2-3015-4e39-a639-62a8977b6511",
+      "creationDate": "2024-06-21T02:10:38.31Z",
+      "updateDate": "2024-06-21T02:11:49.328Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Schönefeld",
+        "zipCode": "12529",
+        "street": "Angerstraße 7",
+        "district": "Schönefeld"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "1,5 Zimmer",
+        "39 m²"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "1,5 Zimmer",
+          "splitValue": "1,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "39 m²",
+          "splitValue": "39",
+          "label": "m²"
+        }
+      ],
+      "price": {
+        "value": "681,28 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "681.28 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "7051b417-5d7b-4e3f-a303-eaf21774b808",
+          "url": "https://mms.immonet.de/7/0/5/1/7051b417-5d7b-4e3f-a303-eaf21774b808.jpg?ci_seal=cf8f4f5ece51f5e64235baf6c60de44c1529491f",
+          "description": "Vorschau",
+          "alt": "Wohnung zur Miete 681,28 € 1,5 Zimmer 39 m² Angerstraße 7 Schönefeld Schönefeld 12529",
+          "title": "Vorschau",
+          "ariaLabel": "Vorschau"
+        },
+        {
+          "key": "ca45701c-aaa9-44fd-b210-c758eb93d369",
+          "url": "https://mms.immonet.de/c/a/4/5/ca45701c-aaa9-44fd-b210-c758eb93d369.jpg?ci_seal=1cccbcbc8d650becb4eab66f13e93c090a2e5b9d",
+          "description": "Bild 1",
+          "title": "Bild 1",
+          "ariaLabel": "Bild 1"
+        },
+        {
+          "key": "75ab7a0d-d951-4c3e-84d9-e02ee3cc930b",
+          "url": "https://mms.immonet.de/7/5/a/b/75ab7a0d-d951-4c3e-84d9-e02ee3cc930b.jpg?ci_seal=bbeef543ff8471221eb982a7074138e65588101b",
+          "description": "Bild 2",
+          "title": "Bild 2",
+          "ariaLabel": "Bild 2"
+        },
+        {
+          "key": "d94a1a60-9f13-4633-a908-a33974e71474",
+          "url": "https://mms.immonet.de/d/9/4/a/d94a1a60-9f13-4633-a908-a33974e71474.jpg?ci_seal=c3bbf041bc510673cd308cb35353a8b2e6f7beab",
+          "description": "Bild 3",
+          "title": "Bild 3",
+          "ariaLabel": "Bild 3"
+        },
+        {
+          "key": "a9f4f656-b524-4de1-821f-0da33e4099a1",
+          "url": "https://mms.immonet.de/a/9/f/4/a9f4f656-b524-4de1-821f-0da33e4099a1.jpg?ci_seal=26fb9552cbbd5e7b03583a85921e169b36b5109c",
+          "description": "Bild 4",
+          "title": "Bild 4",
+          "ariaLabel": "Bild 4"
+        },
+        {
+          "key": "f2b18559-d600-4d48-94ce-2b0804946b01",
+          "url": "https://mms.immonet.de/f/2/b/1/f2b18559-d600-4d48-94ce-2b0804946b01.jpg?ci_seal=cb28e089c919aff6419c64265ec1d9522a33f7af",
+          "description": "Bild 5",
+          "title": "Bild 5",
+          "ariaLabel": "Bild 5"
+        },
+        {
+          "key": "a3d8b845-3953-46b5-8234-8df6c36f3e29",
+          "url": "https://mms.immonet.de/a/3/d/8/a3d8b845-3953-46b5-8234-8df6c36f3e29.jpg?ci_seal=f50f8365aec7ad00b5b1b4720fbc91dafe9798be",
+          "description": "Bild 6",
+          "title": "Bild 6",
+          "ariaLabel": "Bild 6"
+        },
+        {
+          "key": "9a68caee-fdeb-46c2-b3f9-06ecf860c0f0",
+          "url": "https://mms.immonet.de/9/a/6/8/9a68caee-fdeb-46c2-b3f9-06ecf860c0f0.jpg?ci_seal=c0497d5231155c1e82d3819be444682a7f97c9f5",
+          "description": "Bild 7",
+          "title": "Bild 7",
+          "ariaLabel": "Bild 7"
+        },
+        {
+          "key": "a3383d5e-fd59-4a95-861e-0e186dffefbc",
+          "url": "https://mms.immonet.de/a/3/3/8/a3383d5e-fd59-4a95-861e-0e186dffefbc.jpg?ci_seal=886b23b683e761f1496619d559e89327a57239e7",
+          "description": "Bild 8",
+          "title": "Bild 8",
+          "ariaLabel": "Bild 8"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "241EG1GK6MFU",
+      "price": 681.28,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Schönefeld",
+      "currency": "EUR",
+      "zip_code": "12529",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "a9e82ad2-3015-4e39-a639-62a8977b6511",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "CAPERA Immobilien Service GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_fd907031685543f1acbaba555f6bd72b.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/50818"
+      },
+      "contactCard": {
+        "title": "Lars Ulitzsch",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.capera-immobilien.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/50818",
+      "imprintUrl": "https://www.immonet.de/anbieter/50818#impressum",
+      "phoneNumbers": [],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 292,
+        "link": "https://www.immonet.de/anbieter/50818#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "B",
+    "mainDescription": {
+      "description": "Die Wohnanlage befindet sich im Ortsteil Schönefeld, südlich von Berlin und wurde im Jahre 2021 errichtet.<br>Die Wohnung verfügt über 1,5-Zimmer, welche nach modernen Maßstäben ausgestattet wurde. <br>So befinden sich nebst 2 Terrassen in unterschiedlicher Ausrichtung, auch 1 modernes Bad in der Wohnung.<br>Gänzlich verfügt die Wohnung über Insgesamt ca. 39 m².<br>",
+      "headline": "1,5-Zimmer Wohnung im Grünen in Schönefeld"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/a9e82ad2-3015-4e39-a639-62a8977b6511"
+  },
+  "24NW2Y26V8S6": {
+    "brand": "immonet",
+    "id": "24NW2Y26V8S6",
+    "status": "Published",
+    "metadata": {
+      "id": "24NW2Y26V8S6",
+      "legacyId": "bfe21582-902e-4428-a50f-25d4c1e11167",
+      "creationDate": "2024-06-21T02:10:33.877Z",
+      "updateDate": "2024-06-21T02:10:49.131Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Strausberg",
+        "zipCode": "15344",
+        "street": "Fritz-Reuter-Str. 9/9A",
+        "district": "Strausberg"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "4 Zimmer",
+        "89 m²",
+        "2. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "4 Zimmer",
+          "splitValue": "4",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "89 m²",
+          "splitValue": "89",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "2. Geschoss",
+          "splitValue": "2.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "1.108,37 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "1108.37 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "30a42152-e4ac-443e-8eb1-1d6d621bb611",
+          "url": "https://mms.immonet.de/3/0/a/4/30a42152-e4ac-443e-8eb1-1d6d621bb611.jpg?ci_seal=cb08c038dfed6a68eba2182bcfd9a8bebdde05aa",
+          "description": "Vorschau",
+          "alt": "Wohnung zur Miete 1.108,37 € 4 Zimmer 89 m² 2. Geschoss Fritz-Reuter-Str. 9/9A Strausberg Strausberg 15344",
+          "title": "Vorschau",
+          "ariaLabel": "Vorschau"
+        },
+        {
+          "key": "8f6fdc79-857e-4aeb-b0db-c40858e5c9b0",
+          "url": "https://mms.immonet.de/8/f/6/f/8f6fdc79-857e-4aeb-b0db-c40858e5c9b0.jpg?ci_seal=e9ab8f0032674ee0ffecd51c83f2e15b3a93ba41",
+          "description": "Bild 1",
+          "title": "Bild 1",
+          "ariaLabel": "Bild 1"
+        },
+        {
+          "key": "e9471803-7d92-416c-bdee-b4942832a812",
+          "url": "https://mms.immonet.de/e/9/4/7/e9471803-7d92-416c-bdee-b4942832a812.jpg?ci_seal=e5be0a322f226ff30bb8ab66e85ff3c93849a529",
+          "description": "Bild 2",
+          "title": "Bild 2",
+          "ariaLabel": "Bild 2"
+        },
+        {
+          "key": "2f074b2d-0e21-4d58-ba54-d087a7af94d3",
+          "url": "https://mms.immonet.de/2/f/0/7/2f074b2d-0e21-4d58-ba54-d087a7af94d3.jpg?ci_seal=93c965825ccad6b044da2ecc60b423abd789c59f",
+          "description": "Bild 3",
+          "title": "Bild 3",
+          "ariaLabel": "Bild 3"
+        },
+        {
+          "key": "8bc5b6ae-d9b8-41a0-ad78-3fccfd9b098f",
+          "url": "https://mms.immonet.de/8/b/c/5/8bc5b6ae-d9b8-41a0-ad78-3fccfd9b098f.jpg?ci_seal=ce651ab7d6160a6e41508f36f56155ee52972e25",
+          "description": "Bild 4",
+          "title": "Bild 4",
+          "ariaLabel": "Bild 4"
+        },
+        {
+          "key": "47ee76a3-516d-415c-bf44-66798126fccc",
+          "url": "https://mms.immonet.de/4/7/e/e/47ee76a3-516d-415c-bf44-66798126fccc.jpg?ci_seal=9f0721c8784177a71871d17459b96babea4d234b",
+          "description": "Bild 5",
+          "title": "Bild 5",
+          "ariaLabel": "Bild 5"
+        },
+        {
+          "key": "b3ae71b5-b914-4f83-b7bc-537e93e86a70",
+          "url": "https://mms.immonet.de/b/3/a/e/b3ae71b5-b914-4f83-b7bc-537e93e86a70.jpg?ci_seal=86b932163fe9d07c96e4f45aa2c84dfa45188979",
+          "description": "Bild 6",
+          "title": "Bild 6",
+          "ariaLabel": "Bild 6"
+        },
+        {
+          "key": "029091c7-f4ea-4adc-89c6-44bb51a574f6",
+          "url": "https://mms.immonet.de/0/2/9/0/029091c7-f4ea-4adc-89c6-44bb51a574f6.jpg?ci_seal=1d5ed32a935b83ea80a1773636962f5b5e65d4fd",
+          "description": "Bild 7",
+          "title": "Bild 7",
+          "ariaLabel": "Bild 7"
+        },
+        {
+          "key": "4a9fcccc-3289-435d-af97-b30eb62b9145",
+          "url": "https://mms.immonet.de/4/a/9/f/4a9fcccc-3289-435d-af97-b30eb62b9145.jpg?ci_seal=40f0be002a6c2859de377cd7c70e606ea030750b",
+          "description": "Bild 8",
+          "title": "Bild 8",
+          "ariaLabel": "Bild 8"
+        },
+        {
+          "key": "4ed0dc44-54a2-4b8f-bb18-56b37f082949",
+          "url": "https://mms.immonet.de/4/e/d/0/4ed0dc44-54a2-4b8f-bb18-56b37f082949.jpg?ci_seal=019500ca8c10fcce793be725df82998e6209cfe2",
+          "description": "Bild 9",
+          "title": "Bild 9",
+          "ariaLabel": "Bild 9"
+        },
+        {
+          "key": "947aaa53-9c11-4c30-ad11-381903a32ed4",
+          "url": "https://mms.immonet.de/9/4/7/a/947aaa53-9c11-4c30-ad11-381903a32ed4.jpg?ci_seal=fb7fc4c004b7c84346eaf47c69a64560b8378a53",
+          "description": "Bild 10",
+          "title": "Bild 10",
+          "ariaLabel": "Bild 10"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24NW2Y26V8S6",
+      "price": 1108.37,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Strausberg",
+      "currency": "EUR",
+      "zip_code": "15344",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "bfe21582-902e-4428-a50f-25d4c1e11167",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "CAPERA Immobilien Service GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_fd907031685543f1acbaba555f6bd72b.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/50818"
+      },
+      "contactCard": {
+        "title": "Lars Ulitzsch",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.capera-immobilien.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/50818",
+      "imprintUrl": "https://www.immonet.de/anbieter/50818#impressum",
+      "phoneNumbers": [],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 292,
+        "link": "https://www.immonet.de/anbieter/50818#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "C",
+    "mainDescription": {
+      "description": "Das Objekt (2019) in Strausberg und die freundlich gestaltete Außenanlage, inklusive Spielplatz, laden zum Wohlfühlen ein. <br><br>Die helle 4-Zimmer Wohnung mit Balkon lädt zum Entspannen ein. Sie hat große Fensterfronten, ein modernes Duschbad sowie eine geräumige Wohnküche.<br><br>Aktuell wird die Wohnung noch bewohnt, wäre jedoch ab 15.07 bezugsfertig.<br><br>",
+      "headline": "4-Zimmerwohnung in Neubau mit Balkon in Strausberg"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/bfe21582-902e-4428-a50f-25d4c1e11167"
+  },
+  "23ERGE441E33": {
+    "brand": "immonet",
+    "id": "23ERGE441E33",
+    "status": "Published",
+    "metadata": {
+      "id": "23ERGE441E33",
+      "legacyId": "5f9e3567-3b74-4ee2-94d9-2c61138b8d4a",
+      "creationDate": "2024-06-21T02:09:45.18Z",
+      "updateDate": "2024-06-21T02:10:46.606Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Frankfurt am Main",
+        "zipCode": "60314",
+        "street": "Gref-Völsing-Straße 13",
+        "district": "Ostend"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "1 Zimmer",
+        "28 m²"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "1 Zimmer",
+          "splitValue": "1",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "28 m²",
+          "splitValue": "28",
+          "label": "m²"
+        }
+      ],
+      "price": {
+        "value": "761 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "761 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "12a544f6-9fdf-473e-add2-6729666c92d3",
+          "url": "https://mms.immonet.de/1/2/a/5/12a544f6-9fdf-473e-add2-6729666c92d3.jpg?ci_seal=a9c5703b94af550e13a3491c877239652991e03f",
+          "description": "Wohn-/ Schlafbereich",
+          "alt": "Wohnung zur Miete 761 € 1 Zimmer 28 m² Gref-Völsing-Straße 13 Ostend Frankfurt am Main 60314",
+          "title": "Wohn-/ Schlafbereich",
+          "ariaLabel": "Wohn-/ Schlafbereich"
+        },
+        {
+          "key": "99215985-a9a7-47a6-a300-81c52779669f",
+          "url": "https://mms.immonet.de/9/9/2/1/99215985-a9a7-47a6-a300-81c52779669f.jpg?ci_seal=9ca3e51e39339c4d04ebb2c2043d6bf5998c6554",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "945eeec2-815d-486b-b294-c3e3dd08fa5f",
+          "url": "https://mms.immonet.de/9/4/5/e/945eeec2-815d-486b-b294-c3e3dd08fa5f.jpg?ci_seal=365e6b0daff19b5e5f32e54c4f262a5e316d41bc",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "a396387e-660c-471b-8d66-0c95dbabcaee",
+          "url": "https://mms.immonet.de/a/3/9/6/a396387e-660c-471b-8d66-0c95dbabcaee.jpg?ci_seal=f0fdf17d4ba2db5a7c5a68fdc9e566fdef299b99",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "23d005f8-ef40-41f0-a67d-4a80842ddb4c",
+          "url": "https://mms.immonet.de/2/3/d/0/23d005f8-ef40-41f0-a67d-4a80842ddb4c.jpg?ci_seal=4e53d46503e96c124961cc7769d058508d57bc17",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "23ERGE441E33",
+      "price": 761,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Frankfurt",
+      "currency": "EUR",
+      "zip_code": "60314",
+      "building_state": "MINT_CONDITION",
+      "legacy_id": "5f9e3567-3b74-4ee2-94d9-2c61138b8d4a",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "CAPERA Immobilien Service GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_fd907031685543f1acbaba555f6bd72b.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/50818"
+      },
+      "contactCard": {
+        "title": "Melani Alagic",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.capera-immobilien.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/50818",
+      "imprintUrl": "https://www.immonet.de/anbieter/50818#impressum",
+      "phoneNumbers": [],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 292,
+        "link": "https://www.immonet.de/anbieter/50818#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "C",
+    "mainDescription": {
+      "description": "Mitten im Ostend befindet sich die von uns angebotene 1-Zimmer-Wohnung im 1. OG. Sie erwartet ein offener Wohn- und Schlafbereich inkl. offenem Küchenraum mit einer modernen Einbauküche. Der Balkon bietet Ihnen genügend Platz zum Verweilen. Das elegante Bad ist mit Dusche und WC ausgestattet. Hinzu verfügt die Wohnung über eine Fußbodenheizung, Eichen-Parkettboden und dreifach verglasten Isolierfenstern. Ein professionelles Hausmeisterunternehmen übernimmt die reibungslose Pflege und Instandhaltung des Objektes.<br><br>Auf Wunsch kann selbstverständlich auch ein Tiefgaragenplatz angemietet werden.",
+      "headline": "Stilvolle 1 Zimmer Wohnung mit Balkon im Ostend"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/5f9e3567-3b74-4ee2-94d9-2c61138b8d4a"
+  },
+  "243ZGN1BWUEE": {
+    "brand": "immonet",
+    "id": "243ZGN1BWUEE",
+    "status": "Published",
+    "metadata": {
+      "id": "243ZGN1BWUEE",
+      "legacyId": "8c62c3e2-41d6-43a0-b9c9-8ca40d1990cd",
+      "creationDate": "2024-06-21T02:01:02.1Z",
+      "updateDate": "2024-06-21T02:01:41.545Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Düsseldorf",
+        "zipCode": "40213",
+        "district": "Altstadt"
+      },
+      "isAddressPublished": false
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "64 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "64 m²",
+          "splitValue": "64",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "1.500 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "1500 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "11594089-b55a-4d0e-84e4-6c0b53b7ad9e",
+          "url": "https://mms.immonet.de/1/1/5/9/11594089-b55a-4d0e-84e4-6c0b53b7ad9e.jpg?ci_seal=28a04323b2b59638aa0941fe05db866fda43c64b",
+          "description": "Wohnzimmer",
+          "alt": "Wohnung zur Miete 1.500 € 2 Zimmer 64 m² 1. Geschoss Altstadt Düsseldorf 40213",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "1d515d41-a7cd-4fc2-9988-ff1d7f65300e",
+          "url": "https://mms.immonet.de/1/d/5/1/1d515d41-a7cd-4fc2-9988-ff1d7f65300e.jpg?ci_seal=33f7d61b87261280fa4e1a95d61d8ed24469da67",
+          "description": "Lageplan",
+          "title": "Lageplan",
+          "ariaLabel": "Lageplan"
+        },
+        {
+          "key": "c28e23a0-d63a-4fc2-89b2-fb64a9043551",
+          "url": "https://mms.immonet.de/c/2/8/e/c28e23a0-d63a-4fc2-89b2-fb64a9043551.jpg?ci_seal=e272f05d861b2535d0e4f9259e18fcafac409cc4",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "fdb5f836-5c79-40f8-95e6-8400d275fa9b",
+          "url": "https://mms.immonet.de/f/d/b/5/fdb5f836-5c79-40f8-95e6-8400d275fa9b.jpg?ci_seal=3c19e6eed207deec57ef65df7e1059fde79a86f9",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "103e9907-c283-4dba-b1b5-a19999622082",
+          "url": "https://mms.immonet.de/1/0/3/e/103e9907-c283-4dba-b1b5-a19999622082.jpg?ci_seal=0196498aae1e7677abbc847bbb2435dfcc299ea9",
+          "description": "Wohn-/Essbereich",
+          "title": "Wohn-/Essbereich",
+          "ariaLabel": "Wohn-/Essbereich"
+        },
+        {
+          "key": "c90779ae-ff70-47cb-89d7-d928fe91a2fd",
+          "url": "https://mms.immonet.de/c/9/0/7/c90779ae-ff70-47cb-89d7-d928fe91a2fd.jpg?ci_seal=2e21649b2e9d631b97b5fe72819da1a5c67ed05e",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "d467db55-9e1d-4b7e-98af-7d248a3566e9",
+          "url": "https://mms.immonet.de/d/4/6/7/d467db55-9e1d-4b7e-98af-7d248a3566e9.jpg?ci_seal=f7c9ba798268a4226fba0d61006e70a4b632ad26",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "ff14dedf-e60d-4baa-b7df-e707d22808c4",
+          "url": "https://mms.immonet.de/f/f/1/4/ff14dedf-e60d-4baa-b7df-e707d22808c4.jpg?ci_seal=fce731491a0541670201d5f0b53a3a625aac0094",
+          "description": "Einbauküche",
+          "title": "Einbauküche",
+          "ariaLabel": "Einbauküche"
+        },
+        {
+          "key": "5c53ed10-1046-4f6a-932a-1030a422c940",
+          "url": "https://mms.immonet.de/5/c/5/3/5c53ed10-1046-4f6a-932a-1030a422c940.jpg?ci_seal=45bfe031d3532264a378570f7b10a170f47e0e7a",
+          "description": "Diele",
+          "title": "Diele",
+          "ariaLabel": "Diele"
+        },
+        {
+          "key": "f9c0889f-3a94-442f-a0c6-d57706065646",
+          "url": "https://mms.immonet.de/f/9/c/0/f9c0889f-3a94-442f-a0c6-d57706065646.jpg?ci_seal=778e40418ba2843883012cf7cef014ebfcd8a7a9",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "513da729-5610-4395-a78b-5d1e22fe1ef7",
+          "url": "https://mms.immonet.de/5/1/3/d/513da729-5610-4395-a78b-5d1e22fe1ef7.jpg?ci_seal=6e4e5e7d27b0cfbd62964cfbf10a8eccfc51303e",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "1cddf8c4-e068-4fc4-910d-8f6059d91617",
+          "url": "https://mms.immonet.de/1/c/d/d/1cddf8c4-e068-4fc4-910d-8f6059d91617.jpg?ci_seal=a87273a1dc6dcc691e08348cbd89d42d73d834fd",
+          "description": "Bad",
+          "title": "Bad",
+          "ariaLabel": "Bad"
+        },
+        {
+          "key": "3862dbbe-52ad-4b72-862b-84dcdee28e69",
+          "url": "https://mms.immonet.de/3/8/6/2/3862dbbe-52ad-4b72-862b-84dcdee28e69.jpg?ci_seal=1934ca8a625b49ba2b99c64f13a13412a5f569b5",
+          "description": "Diele",
+          "title": "Diele",
+          "ariaLabel": "Diele"
+        },
+        {
+          "key": "f0f99198-3e40-48b3-87af-c0c64415f2ab",
+          "url": "https://mms.immonet.de/f/0/f/9/f0f99198-3e40-48b3-87af-c0c64415f2ab.jpg?ci_seal=6c78b88d328bac7213a8bc9abc0291524f2bde4c",
+          "description": "Eingang",
+          "title": "Eingang",
+          "ariaLabel": "Eingang"
+        },
+        {
+          "key": "d759d644-60a3-49a2-9ea3-f5aac6703dab",
+          "url": "https://mms.immonet.de/d/7/5/9/d759d644-60a3-49a2-9ea3-f5aac6703dab.jpg?ci_seal=6e4cdd52d4d8dc475a4a6403db9f331baf862ccd",
+          "description": "Hauswirtschaftsraum",
+          "title": "Hauswirtschaftsraum",
+          "ariaLabel": "Hauswirtschaftsraum"
+        },
+        {
+          "key": "b8f27a8c-0b3d-4d24-b3c9-a72f2c1528a9",
+          "url": "https://mms.immonet.de/b/8/f/2/b8f27a8c-0b3d-4d24-b3c9-a72f2c1528a9.jpg?ci_seal=b07ff31121dcb4eb5bb6267eaafe9fcbfb8225d9",
+          "description": "Innenhof",
+          "title": "Innenhof",
+          "ariaLabel": "Innenhof"
+        },
+        {
+          "key": "5cf3f899-184a-4523-a5e1-93f86b8a4371",
+          "url": "https://mms.immonet.de/5/c/f/3/5cf3f899-184a-4523-a5e1-93f86b8a4371.jpg?ci_seal=fb2446218177478f2ff07d9942693c85e2043b3a",
+          "description": "Innenhof",
+          "title": "Innenhof",
+          "ariaLabel": "Innenhof"
+        },
+        {
+          "key": "4e0fed20-2d63-431f-86c9-ff3b3db6b3fb",
+          "url": "https://mms.immonet.de/4/e/0/f/4e0fed20-2d63-431f-86c9-ff3b3db6b3fb.jpg?ci_seal=18c9f7ba5c2e1474807a4bddf583b716fd8490a7",
+          "description": "Haupteingang in das Andreas Quartier",
+          "title": "Haupteingang in das Andreas Quartier",
+          "ariaLabel": "Haupteingang in das Andreas Quartier"
+        },
+        {
+          "key": "4ff00746-acc8-433f-bd22-b3ce2e50901e",
+          "url": "https://mms.immonet.de/4/f/f/0/4ff00746-acc8-433f-bd22-b3ce2e50901e.jpg?ci_seal=4a9c035be6b52e8f3032e097fb99bd1144800432",
+          "description": "Einfahrt Tiefgarage",
+          "title": "Einfahrt Tiefgarage",
+          "ariaLabel": "Einfahrt Tiefgarage"
+        },
+        {
+          "key": "1386c440-aa71-468d-a2b3-d1d39ec4e300",
+          "url": "https://mms.immonet.de/1/3/8/6/1386c440-aa71-468d-a2b3-d1d39ec4e300.jpg?ci_seal=b7d8311b8da750a090a31adea0b0a4a9d6773c16",
+          "description": "AQ 5_WE 29_Grundriss",
+          "title": "AQ 5_WE 29_Grundriss",
+          "ariaLabel": "AQ 5_WE 29_Grundriss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "243ZGN1BWUEE",
+      "price": 1500,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Düsseldorf",
+      "currency": "EUR",
+      "zip_code": "40213",
+      "building_state": "MINT_CONDITION",
+      "legacy_id": "8c62c3e2-41d6-43a0-b9c9-8ca40d1990cd",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "Performance Immobilien GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_0483da771748491eaa554debc8f2edd2.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/5248082"
+      },
+      "contactCard": {
+        "title": null,
+        "subtitle": "Dein Kontakt",
+        "display": false,
+        "logoUrl": null
+      },
+      "website": "http://www.performance-immobilien.de.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/5248082",
+      "imprintUrl": "https://www.immonet.de/anbieter/5248082#impressum",
+      "phoneNumbers": [
+        "+49 211 97263450"
+      ],
+      "displayLinks": true,
+      "badge": {
+        "title": "Business Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/business-partner-duo.svg"
+      }
+    },
+    "energyClass": "B",
+    "mainDescription": {
+      "description": "Das Andreas Quartier befindet sich mitten in der Düsseldorfer Altstadt - zwischen Hofgarten und Rheinufer-Promenade gelegen.<br>Hier wird das denkmalgeschützte Gebäude des ehemaligen Königlichen Amtsgerichts sorgfältig neu konzipiert und mit einem stilvollen Neubau-Ensemble ergänzt.<br>Die Wohnung zeichnet sich durch Ihre einzigartige Lage in unmittelbarer Räume verfügen über bodentiefe Fenster mit einem elektrischen Sonnenschutz.<br>Der parkähnliche Innenbereich bietet den Bewohnern eine Ruheoase innerhalb des Quartiers. Betreten Sie Ihr neues Zuhause durch die denkmalgeschützte Eingangshalle des ehemaligen Königlichen Amtsgerichts. Vorbei am Concierge, der für die Bewohner rund um die Uhr an 365 Tagen im Jahr verfügbar ist, gelangen Sie in den liebevoll gestalteten und gepflegten Innenhof über den Sie Zugang zu Ihrer Wohnung haben.<br>In mehreren Gebäudeteilen des Andreas Quartiers, sorgen verschiedene Gastronomiekonzepte für das Wohlbefinden der Bewohner und ihrer Gäste. Sie werden gern gesehene Gäste in der 20 Grad Restobar, dem Restaurant Frank`s oder auch dem Mutter Ey-Cafe sein. <br><br>Hochwertig gestaltete Außenanlagen, ein liebevoll gestalteter Innenhof mit einem länglichen Wasserbassin und zwei Lichthöfe schenken dem Stadtquartier im Herzen Düsseldorfs viel Raum für Ruhe und Erholung.",
+      "headline": "Leben heißt Genießen Charmante 2 Zi-Wohnung mit EBK und TG in gehobenem Ambiente nahe Rhein und KÖ"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/8c62c3e2-41d6-43a0-b9c9-8ca40d1990cd"
+  },
+  "24ZSFWJVQXTC": {
+    "brand": "immonet",
+    "id": "24ZSFWJVQXTC",
+    "status": "Published",
+    "metadata": {
+      "id": "24ZSFWJVQXTC",
+      "legacyId": "28a20a8b-6379-4113-ab5b-0dd1c8c926eb",
+      "creationDate": "2024-06-21T01:33:05.903Z",
+      "updateDate": "2024-06-21T01:33:39.201Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Gelsenkirchen",
+        "zipCode": "45889",
+        "street": "Hagemannshof 24",
+        "district": "Bismarck"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3,5 Zimmer",
+        "70 m²",
+        "3. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3,5 Zimmer",
+          "splitValue": "3,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "70 m²",
+          "splitValue": "70",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "3. Geschoss",
+          "splitValue": "3.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "413 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "413 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "c133db03-c701-4f1e-bf77-19c5d102fcb3",
+          "url": "https://mms.immonet.de/c/1/3/3/c133db03-c701-4f1e-bf77-19c5d102fcb3.jpg?ci_seal=2dd9624614a75260aacdcecfd97bcf2ad1e932b1",
+          "description": "Vorderansicht",
+          "alt": "Wohnung zur Miete 413 € 3,5 Zimmer 70 m² 3. Geschoss Hagemannshof 24 Bismarck Gelsenkirchen 45889",
+          "title": "Vorderansicht",
+          "ariaLabel": "Vorderansicht"
+        },
+        {
+          "key": "63c3bb92-4fa1-437e-921c-a96837fffb8f",
+          "url": "https://mms.immonet.de/6/3/c/3/63c3bb92-4fa1-437e-921c-a96837fffb8f.jpg?ci_seal=0bceb9614856e14342727b8faa51eb6c4a6f7ef8",
+          "description": "Glasfaser",
+          "title": "Glasfaser",
+          "ariaLabel": "Glasfaser"
+        },
+        {
+          "key": "97014f73-20a7-4ee4-90e9-b30cef7bd508",
+          "url": "https://mms.immonet.de/9/7/0/1/97014f73-20a7-4ee4-90e9-b30cef7bd508.jpg?ci_seal=f2285edc75b654217cdc8177ad01a358ceb1ad82",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "e48dd5a9-8300-457e-9757-39f8d3efc894",
+          "url": "https://mms.immonet.de/e/4/8/d/e48dd5a9-8300-457e-9757-39f8d3efc894.jpg?ci_seal=610e37b06974867e7d6cda5cbd23c58ecc1ad22e",
+          "description": "Vorderansicht",
+          "title": "Vorderansicht",
+          "ariaLabel": "Vorderansicht"
+        },
+        {
+          "key": "19dfd198-ae66-462c-9a98-9b678bcb1276",
+          "url": "https://mms.immonet.de/1/9/d/f/19dfd198-ae66-462c-9a98-9b678bcb1276.jpg?ci_seal=881fe39c0c7b6ca84c2b9c16020bb19379cac757",
+          "description": "Hinweis Imagefilm",
+          "title": "Hinweis Imagefilm",
+          "ariaLabel": "Hinweis Imagefilm"
+        },
+        {
+          "key": "6dc9e773-6a92-4574-806a-878bc939321c",
+          "url": "https://mms.immonet.de/6/d/c/9/6dc9e773-6a92-4574-806a-878bc939321c.jpg?ci_seal=fa4d9003b0a783ffb3df5818874431a40a1a981f",
+          "description": "Bad 24",
+          "title": "Bad 24",
+          "ariaLabel": "Bad 24"
+        },
+        {
+          "key": "4ff19bbb-4ce8-45c7-8b97-b2e5d20d97ff",
+          "url": "https://mms.immonet.de/4/f/f/1/4ff19bbb-4ce8-45c7-8b97-b2e5d20d97ff.jpg?ci_seal=597765f08e39cff0ea85ca8e2c33562c159ecaf4",
+          "description": "Balkon 24",
+          "title": "Balkon 24",
+          "ariaLabel": "Balkon 24"
+        },
+        {
+          "key": "5dfd329e-cda0-4d6f-8f8e-e9da4885d4ae",
+          "url": "https://mms.immonet.de/5/d/f/d/5dfd329e-cda0-4d6f-8f8e-e9da4885d4ae.jpg?ci_seal=c5d3f8238c807bcb11fa9cffe26d5bd6144a7ae8",
+          "description": "Ausblick",
+          "title": "Ausblick",
+          "ariaLabel": "Ausblick"
+        },
+        {
+          "key": "b18ca31f-b0a0-4759-ba85-06bf3b72c877",
+          "url": "https://mms.immonet.de/b/1/8/c/b18ca31f-b0a0-4759-ba85-06bf3b72c877.jpg?ci_seal=f9ce7da599f990e07bbb90fd74237fec112894b7",
+          "description": "Diele 24",
+          "title": "Diele 24",
+          "ariaLabel": "Diele 24"
+        },
+        {
+          "key": "28d83024-48a0-4d8f-9609-023dd9deedfc",
+          "url": "https://mms.immonet.de/2/8/d/8/28d83024-48a0-4d8f-9609-023dd9deedfc.jpg?ci_seal=d6385e1e3b8b4d6878763d413fb36c04a05e32aa",
+          "description": "Kinderzimmer 24",
+          "title": "Kinderzimmer 24",
+          "ariaLabel": "Kinderzimmer 24"
+        },
+        {
+          "key": "fe0ca5a7-c3be-4f05-95f3-b9068f5160bd",
+          "url": "https://mms.immonet.de/f/e/0/c/fe0ca5a7-c3be-4f05-95f3-b9068f5160bd.jpg?ci_seal=888770a09534f9b409982b6960ab53ac2788055a",
+          "description": "Küche 24",
+          "title": "Küche 24",
+          "ariaLabel": "Küche 24"
+        },
+        {
+          "key": "76df0304-25b8-447d-ac44-09bc646d60b0",
+          "url": "https://mms.immonet.de/7/6/d/f/76df0304-25b8-447d-ac44-09bc646d60b0.jpg?ci_seal=1fff32dda734c326e6a65c0b8b6b9cffe39377f1",
+          "description": "Schlafzimmer 24",
+          "title": "Schlafzimmer 24",
+          "ariaLabel": "Schlafzimmer 24"
+        },
+        {
+          "key": "fb2bc8a4-f62c-47e4-8789-42754ea4af2a",
+          "url": "https://mms.immonet.de/f/b/2/b/fb2bc8a4-f62c-47e4-8789-42754ea4af2a.jpg?ci_seal=6d8739fae3f35b9682c20097974b3ff92b267b40",
+          "description": "Wohnzimmer 24",
+          "title": "Wohnzimmer 24",
+          "ariaLabel": "Wohnzimmer 24"
+        },
+        {
+          "key": "f94d64c3-7a3d-4276-886c-3fdd2d1034ae",
+          "url": "https://mms.immonet.de/f/9/4/d/f94d64c3-7a3d-4276-886c-3fdd2d1034ae.jpg?ci_seal=e03bce227ebccd25ad272909d1fd3c8da33097e8",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24ZSFWJVQXTC",
+      "price": 413,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Gelsenkirchen",
+      "currency": "EUR",
+      "zip_code": "45889",
+      "legacy_id": "28a20a8b-6379-4113-ab5b-0dd1c8c926eb",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "ggw mbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_d4d2e10bdf1545b4b338ab0d22eed6d3.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/40719"
+      },
+      "contactCard": {
+        "title": "Frau Vera Korsch",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.ggw-gelsenkirchen.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/40719",
+      "imprintUrl": "https://www.immonet.de/anbieter/40719#impressum",
+      "phoneNumbers": [
+        "0209 / 706- 1034"
+      ],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 17,
+        "link": "https://www.immonet.de/anbieter/40719#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Platin Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/platin-partner-duo.svg"
+      }
+    },
+    "energyClass": "D",
+    "mainDescription": {
+      "description": "Ihre Wohnung befindet sich in einem Mehrfamilienhaus mit acht Mietparteien. Das Haus wurde 1963 erbaut und ist nachträglich mit <br>- einer wärmegedämmten Fassade, <br>- isolierverglasten Fenstern, <br>- einer Kellerdeckendämmung und <br>- neuer Dachisolierung versehen worden.<br>Ihre Möbel finden Platz in<br>- einem Wohnzimmer mit Zugang zum <br>- Balkon,<br>- einem Schlafzimmer,<br>- einem Kinderzimmer, <br>- einer Küche, <br>- einem hell gefliestes Bad mit Wanne und<br>- eine Diele. Auch auf <br>- eine Abstellkammer und<br>- einen Kellerraum brauchen Sie nicht zu verzichten.",
+      "headline": "Grünflächen für ein Kind gesucht? ... Gefunden!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/28a20a8b-6379-4113-ab5b-0dd1c8c926eb"
+  },
+  "247MET2EV5DG": {
+    "brand": "immonet",
+    "id": "247MET2EV5DG",
+    "status": "Published",
+    "metadata": {
+      "id": "247MET2EV5DG",
+      "legacyId": "3631066d-28bc-4765-b677-286c89f681a1",
+      "creationDate": "2024-06-21T01:33:04.22Z",
+      "updateDate": "2024-06-21T01:33:38.432Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Gelsenkirchen",
+        "zipCode": "45899",
+        "street": "Wallstr. 17",
+        "district": "Horst"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2,5 Zimmer",
+        "48,9 m²",
+        "2. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2,5 Zimmer",
+          "splitValue": "2,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "48,9 m²",
+          "splitValue": "48,9",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "2. Geschoss",
+          "splitValue": "2.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "283 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "283 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "ed7fd585-e661-4a03-adaa-daf74a9ace98",
+          "url": "https://mms.immonet.de/e/d/7/f/ed7fd585-e661-4a03-adaa-daf74a9ace98.jpg?ci_seal=eb739f58819223738b24b0a7b8f8166ff1974511",
+          "description": "Straßenansicht",
+          "alt": "Wohnung zur Miete 283 € 2,5 Zimmer 48,9 m² 2. Geschoss Wallstr. 17 Horst Gelsenkirchen 45899",
+          "title": "Straßenansicht",
+          "ariaLabel": "Straßenansicht"
+        },
+        {
+          "key": "bcde1c8d-6ea1-4634-b295-883b4c606aac",
+          "url": "https://mms.immonet.de/b/c/d/e/bcde1c8d-6ea1-4634-b295-883b4c606aac.jpg?ci_seal=e21645e617fa615f5ef553fc9d74340a6154d322",
+          "description": "Glasfaser",
+          "title": "Glasfaser",
+          "ariaLabel": "Glasfaser"
+        },
+        {
+          "key": "53ec84e3-5d52-4471-844b-008686297d5d",
+          "url": "https://mms.immonet.de/5/3/e/c/53ec84e3-5d52-4471-844b-008686297d5d.jpg?ci_seal=69b30d82633bd21c31ad30581ab6ce7f23502735",
+          "description": "Außenansicht",
+          "title": "Außenansicht",
+          "ariaLabel": "Außenansicht"
+        },
+        {
+          "key": "5dc668f8-eb5d-4c9d-813f-693737bdb378",
+          "url": "https://mms.immonet.de/5/d/c/6/5dc668f8-eb5d-4c9d-813f-693737bdb378.jpg?ci_seal=a95d3a286323f710949c6946d6c23873d4ec8df1",
+          "description": "Hinweis Imagefilm",
+          "title": "Hinweis Imagefilm",
+          "ariaLabel": "Hinweis Imagefilm"
+        },
+        {
+          "key": "7f147df5-e302-412f-8fad-c23065ee8d15",
+          "url": "https://mms.immonet.de/7/f/1/4/7f147df5-e302-412f-8fad-c23065ee8d15.jpg?ci_seal=14a965332c53d0c432e204ecbcb6669d4ad37a30",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "a3b6e043-26aa-4010-af4f-0673b86a6de5",
+          "url": "https://mms.immonet.de/a/3/b/6/a3b6e043-26aa-4010-af4f-0673b86a6de5.jpg?ci_seal=85d3103380841c07243330f9d30eca9a688ef662",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "d4baa317-3792-4065-b1ad-ca7a1ea9a618",
+          "url": "https://mms.immonet.de/d/4/b/a/d4baa317-3792-4065-b1ad-ca7a1ea9a618.jpg?ci_seal=7f539a5a9e3a9431e237b958d3222ef25247b4f8",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "a69e9062-fcad-4f2f-9849-c20d6c244952",
+          "url": "https://mms.immonet.de/a/6/9/e/a69e9062-fcad-4f2f-9849-c20d6c244952.jpg?ci_seal=89bb7e5a78259f7452df1c0d84c11761777ed2bc",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "61ad3c34-c75f-4b31-b83f-ae8ddc45ade4",
+          "url": "https://mms.immonet.de/6/1/a/d/61ad3c34-c75f-4b31-b83f-ae8ddc45ade4.jpg?ci_seal=a4a48be7ffaf6611d92f7c00199ed3a2e8058f2a",
+          "description": "Fotos",
+          "title": "Fotos",
+          "ariaLabel": "Fotos"
+        },
+        {
+          "key": "bd39c96d-9491-4c80-98e3-97e1d6421172",
+          "url": "https://mms.immonet.de/b/d/3/9/bd39c96d-9491-4c80-98e3-97e1d6421172.jpg?ci_seal=0a1059a442cba218fc0b6cb397feefc2e6c490c1",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "247MET2EV5DG",
+      "price": 283,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Gelsenkirchen",
+      "currency": "EUR",
+      "zip_code": "45899",
+      "legacy_id": "3631066d-28bc-4765-b677-286c89f681a1",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "ggw mbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_d4d2e10bdf1545b4b338ab0d22eed6d3.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/40719"
+      },
+      "contactCard": {
+        "title": "Frau Vera Korsch",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.ggw-gelsenkirchen.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/40719",
+      "imprintUrl": "https://www.immonet.de/anbieter/40719#impressum",
+      "phoneNumbers": [
+        "0209 / 706- 1034"
+      ],
+      "rating": {
+        "rating": 3.6,
+        "reviews": 17,
+        "link": "https://www.immonet.de/anbieter/40719#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Platin Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/platin-partner-duo.svg"
+      }
+    },
+    "energyClass": "D",
+    "mainDescription": {
+      "description": "Das komplett sanierte Haus befindet sich in einer unter Denkmalschutz stehenden ehemaligen Bergarbeitersiedlung, die 1995 sehr aufwendig saniert wurde, ohne den ursprünglichen Siedlungscharakter zu verlieren. Die Fassaden aus roten Backsteinen und die grünen Fensterläden verleihen der gesamten Siedlung ein gewisses Flair. Damit ist nicht nur das äußere Erscheinungsbild und die nahe Umgebung ansprechender gestaltet worden, sondern die Heizungsanlagen und sanitären Einrichtungen wurden komplett erneuert, auch die Fenster wurden durch energieeinsparende Elemente ersetzt, neue Türen wurden eingebaut und die Grundrisse umfangreich dem heutigen Standard angepasst.<br>Obwohl die gesamte Elektroanlage im Rahmen der Modernisierung erneuert wurde, sind alle Kabel und Anschlüsse erneut überprüft und zu Ihrem eigenen Schutz Rauchmelder installiert worden.<br>Das Mehrfamilienhaus verfügt über zwei separate Hauseingänge, die von insgesamt fünf Mietparteien genutzt werden.<br>ACHTUNG: Der Mietvertrag wird vorerst befristet bis Mitte 2028 geschlossen!<br>Ihre Möbel finden Platz in <br>- einem Wohnzimmer<br>- einem Schlafzimmer,<br>- einer sehr geräumigen Küche,<br>- einem weiß gefliesten tagesbelichteten Wannenbad mit<br>- Abstellkammer.<br>Die gesamte Wohnung ist tapeziert und gestrichen.",
+      "headline": "Wohnen am Nordsternpark! nur noch Boden rein und fertig"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/3631066d-28bc-4765-b677-286c89f681a1"
+  },
+  "24394VICWYRX": {
+    "brand": "immonet",
+    "id": "24394VICWYRX",
+    "status": "Published",
+    "metadata": {
+      "id": "24394VICWYRX",
+      "legacyId": "9d11656a-c38b-454f-9e92-02f26db9c299",
+      "creationDate": "2024-06-21T00:51:28.463Z",
+      "updateDate": "2024-06-21T01:10:31.015Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Mannheim",
+        "zipCode": "68165",
+        "street": "Carl-Reiß-Platz 4",
+        "district": "Oststadt - Süd"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "71,7 m²",
+        "7. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "71,7 m²",
+          "splitValue": "71,7",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "7. Geschoss",
+          "splitValue": "7.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "1.160 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "1160 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "13c3c602-38d9-4cc9-bc23-b8041d40d7e3",
+          "url": "https://mms.immonet.de/1/3/c/3/13c3c602-38d9-4cc9-bc23-b8041d40d7e3.jpg?ci_seal=909d45f42ce290a2c4f6b9a9a999a51c99c5bbd9",
+          "description": "Carl-Reiß_Platz_2Zi_09",
+          "alt": "Wohnung zur Miete 1.160 € 2 Zimmer 71,7 m² 7. Geschoss Carl-Reiß-Platz 4 Oststadt - Süd Mannheim 68165",
+          "title": "Carl-Reiß_Platz_2Zi_09",
+          "ariaLabel": "Carl-Reiß_Platz_2Zi_09"
+        },
+        {
+          "key": "774b7bdf-0e09-4977-800f-59561002f701",
+          "url": "https://mms.immonet.de/7/7/4/b/774b7bdf-0e09-4977-800f-59561002f701.jpg?ci_seal=c4558f23883b0f721ec08a75d7f7e719e7e84cd2",
+          "description": "tempImagegFF9nb",
+          "title": "tempImagegFF9nb",
+          "ariaLabel": "tempImagegFF9nb"
+        },
+        {
+          "key": "7fb97412-5375-4a52-a1af-a9476a1488d0",
+          "url": "https://mms.immonet.de/7/f/b/9/7fb97412-5375-4a52-a1af-a9476a1488d0.jpg?ci_seal=357281fc45e57ee4ff4894c3caf62f1f5b43f14c",
+          "description": "tempImage39abdB",
+          "title": "tempImage39abdB",
+          "ariaLabel": "tempImage39abdB"
+        },
+        {
+          "key": "ab5703ae-ae1f-4947-a809-81a911c95ce4",
+          "url": "https://mms.immonet.de/a/b/5/7/ab5703ae-ae1f-4947-a809-81a911c95ce4.jpg?ci_seal=3fb4209adb15ca5c671a7f3db5045c00f55657be",
+          "description": "tempImageXbWb6w",
+          "title": "tempImageXbWb6w",
+          "ariaLabel": "tempImageXbWb6w"
+        },
+        {
+          "key": "be8de300-0255-4c76-8854-26b6c5796723",
+          "url": "https://mms.immonet.de/b/e/8/d/be8de300-0255-4c76-8854-26b6c5796723.jpg?ci_seal=e674ae19153480e2e157cc37205c94c16ddca654",
+          "description": "tempImageAoj4fH",
+          "title": "tempImageAoj4fH",
+          "ariaLabel": "tempImageAoj4fH"
+        },
+        {
+          "key": "c630a612-1315-40bd-94a5-aedf81e27356",
+          "url": "https://mms.immonet.de/c/6/3/0/c630a612-1315-40bd-94a5-aedf81e27356.jpg?ci_seal=406142ca542908c72271bd63f4e78421faf19e26",
+          "description": "Carl-Reiß_Platz_2Zi_04",
+          "title": "Carl-Reiß_Platz_2Zi_04",
+          "ariaLabel": "Carl-Reiß_Platz_2Zi_04"
+        },
+        {
+          "key": "ba36ae98-9f96-4149-b4cc-262fc34a96d5",
+          "url": "https://mms.immonet.de/b/a/3/6/ba36ae98-9f96-4149-b4cc-262fc34a96d5.jpg?ci_seal=4550e0c5214b0c5940338ed7070f77f77f1e472d",
+          "description": "Carl-Reiß_Platz_2Zi_01",
+          "title": "Carl-Reiß_Platz_2Zi_01",
+          "ariaLabel": "Carl-Reiß_Platz_2Zi_01"
+        },
+        {
+          "key": "20ebb5f2-6370-49cd-82fc-9145d76e065a",
+          "url": "https://mms.immonet.de/2/0/e/b/20ebb5f2-6370-49cd-82fc-9145d76e065a.jpg?ci_seal=66c9a70dd411d2c74e617ca758dfa595922d2197",
+          "description": "Carl-Reiß_Platz_2Zi_03",
+          "title": "Carl-Reiß_Platz_2Zi_03",
+          "ariaLabel": "Carl-Reiß_Platz_2Zi_03"
+        },
+        {
+          "key": "fef507a0-ecc3-49a6-ac19-c58b45045a87",
+          "url": "https://mms.immonet.de/f/e/f/5/fef507a0-ecc3-49a6-ac19-c58b45045a87.jpg?ci_seal=0717b3f9fe966859bf5be02a47e03bebbca61957",
+          "description": "tempImageTaEheq",
+          "title": "tempImageTaEheq",
+          "ariaLabel": "tempImageTaEheq"
+        },
+        {
+          "key": "c729a839-e9c2-4210-b8be-0f331098fc18",
+          "url": "https://mms.immonet.de/c/7/2/9/c729a839-e9c2-4210-b8be-0f331098fc18.jpg?ci_seal=d3755652e1ff3453ed7a55d3a6cd1f78625d12f8",
+          "description": "Carl-Reiß_Platz_2Zi_02",
+          "title": "Carl-Reiß_Platz_2Zi_02",
+          "ariaLabel": "Carl-Reiß_Platz_2Zi_02"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24394VICWYRX",
+      "price": 1160,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Mannheim",
+      "currency": "EUR",
+      "zip_code": "68165",
+      "building_state": "FIRST_TIME_USE",
+      "legacy_id": "9d11656a-c38b-454f-9e92-02f26db9c299",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "SCHOLL Real Estate Solutions GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoHref": "https://www.immonet.de/anbieter/9999525"
+      },
+      "contactCard": {
+        "title": "Julian Benz",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/9999525",
+      "imprintUrl": "https://www.immonet.de/anbieter/9999525#impressum",
+      "phoneNumbers": [
+        "+491722818987"
+      ],
+      "displayLinks": true,
+      "badge": {
+        "title": "immowelt Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/partner-duo.jpg"
+      }
+    },
+    "energyClass": "B",
+    "mainDescription": {
+      "headline": "Moderne 2-Zimmer-Neubauwohnung im 7. OG - Exklusives Wohnen über den Dächern von Mannheim"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/9d11656a-c38b-454f-9e92-02f26db9c299"
+  },
+  "24X1E8JDX3HZ": {
+    "brand": "immonet",
+    "id": "24X1E8JDX3HZ",
+    "status": "Published",
+    "metadata": {
+      "id": "24X1E8JDX3HZ",
+      "legacyId": "16dae603-538d-49f9-a93a-12c85feebd1d",
+      "creationDate": "2024-06-21T00:43:26.627Z",
+      "updateDate": "2024-06-21T00:43:41.119Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Mettmann",
+        "zipCode": "40822",
+        "street": "Breslauer Straße 8",
+        "district": "Dresdner Straße / Goethestraße"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "62,9 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "62,9 m²",
+          "splitValue": "62,9",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "639 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "639 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "9b94c896-bd9a-41a8-b13d-545d1c3b82d0",
+          "url": "https://mms.immonet.de/9/b/9/4/9b94c896-bd9a-41a8-b13d-545d1c3b82d0.jpg?ci_seal=f6cdc5dcbd7cdd582d562f4411824200e73b4f68",
+          "description": "Breslauer Straße 6-18",
+          "alt": "Wohnung zur Miete 639 € 3 Zimmer 62,9 m² 1. Geschoss Breslauer Straße 8 Dresdner Straße / Goethestraße Mettmann 40822",
+          "title": "Breslauer Straße 6-18",
+          "ariaLabel": "Breslauer Straße 6-18"
+        },
+        {
+          "key": "313c2ba6-dc24-4a95-a20a-f879fb8ac880",
+          "url": "https://mms.immonet.de/3/1/3/c/313c2ba6-dc24-4a95-a20a-f879fb8ac880.jpg?ci_seal=b97eef84cf887e9154db3fc79834a44fc72db71a",
+          "description": "Fair und transparent",
+          "title": "Fair und transparent",
+          "ariaLabel": "Fair und transparent"
+        },
+        {
+          "key": "0fd34c70-45b8-45a0-8ed9-68dff18aa2c9",
+          "url": "https://mms.immonet.de/0/f/d/3/0fd34c70-45b8-45a0-8ed9-68dff18aa2c9.jpg?ci_seal=a1bbc36e990c33310bb7788179c9cc6bd9534acd",
+          "description": "schreiben Sie uns",
+          "title": "schreiben Sie uns",
+          "ariaLabel": "schreiben Sie uns"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24X1E8JDX3HZ",
+      "price": 639,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Mettmann",
+      "currency": "EUR",
+      "zip_code": "40822",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "16dae603-538d-49f9-a93a-12c85feebd1d",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "LEG Wohnen NRW GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_7f08d51c4ff142cbb07f9714234b2ed1.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/15887"
+      },
+      "contactCard": {
+        "title": "Herr Markus Acker",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.leg-nrw.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/15887",
+      "imprintUrl": "https://www.immonet.de/anbieter/15887#impressum",
+      "phoneNumbers": [],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Auf der Breslauer Straße wohnen Sie in einer kleinen Hausgemeinschaft in ruhiger Lage. Das Haus hat 3 Etagen ohne Aufzug. Hier handelt es sich um die Erdgeschosswohnung des Hauses, die in die Grünflächen um das Haus über einen Balkon verfügt. Die großzügigen 3 Zimmer bieten ausreichend Platz für die ganze Familie. Parkmöglichkeiten sind ausreichend vor den Häusern vorhanden.<br><br><br><br>Haben Sie Interesse? Dann senden Sie die Objekt-Id 995-8-M per WhatsApp an 0211 740 740 0, per Signal an 0172 8877030, per Telegram an LEGWohnen oder per Threema an *LEGCHAT.<br><br>Wichtiger Hinweis: Nachdem Sie das Kontaktformular im Portal ausgefüllt und verschickt haben, erhalten Sie von uns innerhalb von 15 Minuten eine E-Mail. <br><br>Bitte folgen Sie dem dort angegebenen Link, um Ihre E-Mail-Adresse und Ihre Angaben zu bestätigen.",
+      "headline": "Demnächst frei! 3-Zimmer-Wohnung in Mettmann Zentrum"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/16dae603-538d-49f9-a93a-12c85feebd1d"
+  },
+  "24VMQ3K65P1U": {
+    "brand": "immonet",
+    "id": "24VMQ3K65P1U",
+    "status": "Published",
+    "metadata": {
+      "id": "24VMQ3K65P1U",
+      "legacyId": "62b0af0a-6e3a-4d74-adfe-1e782858b45b",
+      "creationDate": "2024-06-21T00:42:52.007Z",
+      "updateDate": "2024-06-21T00:43:40.895Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Hambühren",
+        "zipCode": "29313",
+        "street": "Schlochauer Straße 20a",
+        "district": "Hambühren II"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "63,2 m²",
+        "3. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "63,2 m²",
+          "splitValue": "63,2",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "3. Geschoss",
+          "splitValue": "3.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "509 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "509 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "09e67aee-b780-40de-986b-b4c3ce809d4d",
+          "url": "https://mms.immonet.de/0/9/e/6/09e67aee-b780-40de-986b-b4c3ce809d4d.jpg?ci_seal=1ad13544b3da38c59c0192ef7c510fffcd2adfbf",
+          "description": "Objektansicht",
+          "alt": "Wohnung zur Miete 509 € 3 Zimmer 63,2 m² 3. Geschoss Schlochauer Straße 20a Hambühren II Hambühren 29313",
+          "title": "Objektansicht",
+          "ariaLabel": "Objektansicht"
+        },
+        {
+          "key": "fce723ca-c1c5-493f-b687-e90f0d86f830",
+          "url": "https://mms.immonet.de/f/c/e/7/fce723ca-c1c5-493f-b687-e90f0d86f830.jpg?ci_seal=fc97b470c9a64bc65dcac55b6675d5851971413e",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        },
+        {
+          "key": "835dffd1-b4e9-4129-b3cd-0e169d478435",
+          "url": "https://mms.immonet.de/8/3/5/d/835dffd1-b4e9-4129-b3cd-0e169d478435.jpg?ci_seal=b6e23261c2a9e067f90c3e27bc5b2fa5ec98c488",
+          "description": "Objektansicht",
+          "title": "Objektansicht",
+          "ariaLabel": "Objektansicht"
+        },
+        {
+          "key": "1eef6e40-1dec-44e1-8026-1c6665afd623",
+          "url": "https://mms.immonet.de/1/e/e/f/1eef6e40-1dec-44e1-8026-1c6665afd623.jpg?ci_seal=bd8b3b63f679e4a0614c988f01cb455396f717d0",
+          "description": "Zuhause zählst nur Du!",
+          "title": "Zuhause zählst nur Du!",
+          "ariaLabel": "Zuhause zählst nur Du!"
+        },
+        {
+          "key": "28558743-4907-462f-ada5-0eeaff7fcb71",
+          "url": "https://mms.immonet.de/2/8/5/5/28558743-4907-462f-ada5-0eeaff7fcb71.jpg?ci_seal=d6da33baf1af7e77d5e7a72cfd5aa80cdaf769e8",
+          "description": "Tageslichtbad",
+          "title": "Tageslichtbad",
+          "ariaLabel": "Tageslichtbad"
+        },
+        {
+          "key": "c3eec086-11d2-43db-99e9-0542a55d51a0",
+          "url": "https://mms.immonet.de/c/3/e/e/c3eec086-11d2-43db-99e9-0542a55d51a0.jpg?ci_seal=fedfe650a2d03af0f50be8f4fc39306dd799d69d",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "d1ba2f55-c710-4278-bc57-4e6261469bc1",
+          "url": "https://mms.immonet.de/d/1/b/a/d1ba2f55-c710-4278-bc57-4e6261469bc1.jpg?ci_seal=3b6f27e323cf0695b31b5e4f0dd182189ff4e591",
+          "description": "Wohnzimmer mit Balkon",
+          "title": "Wohnzimmer mit Balkon",
+          "ariaLabel": "Wohnzimmer mit Balkon"
+        },
+        {
+          "key": "e379f136-ebad-4c53-9b82-b711d4608e92",
+          "url": "https://mms.immonet.de/e/3/7/9/e379f136-ebad-4c53-9b82-b711d4608e92.png?ci_seal=4c92adac5db230e007ccfeb298e136b1a11312c7",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "9bd82cfd-cef5-417c-9ee3-43b162cadca2",
+          "url": "https://mms.immonet.de/9/b/d/8/9bd82cfd-cef5-417c-9ee3-43b162cadca2.jpg?ci_seal=107619616f4b8791c10df96b84309517b4155376",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "61450375-343a-429c-a9b6-fcc79cf0dc8b",
+          "url": "https://mms.immonet.de/6/1/4/5/61450375-343a-429c-a9b6-fcc79cf0dc8b.jpg?ci_seal=ee4191f574b9154aed3c6c3b8304e61b06e2ee95",
+          "description": "Digitaler Mietvertrag",
+          "title": "Digitaler Mietvertrag",
+          "ariaLabel": "Digitaler Mietvertrag"
+        },
+        {
+          "key": "db9be741-6b0b-4247-9a97-d154c394f059",
+          "url": "https://mms.immonet.de/d/b/9/b/db9be741-6b0b-4247-9a97-d154c394f059.jpg?ci_seal=243de7d486a2a21a87b8ae0e893fdf933f7e7109",
+          "description": "Fair und transparent",
+          "title": "Fair und transparent",
+          "ariaLabel": "Fair und transparent"
+        },
+        {
+          "key": "37a41130-c5fc-4a0f-93fb-81b8538b3c97",
+          "url": "https://mms.immonet.de/3/7/a/4/37a41130-c5fc-4a0f-93fb-81b8538b3c97.jpg?ci_seal=c69c4995d3f355b363552acee488b920ea28a244",
+          "description": "schreiben Sie uns",
+          "title": "schreiben Sie uns",
+          "ariaLabel": "schreiben Sie uns"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24VMQ3K65P1U",
+      "price": 509,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Hambühren",
+      "currency": "EUR",
+      "zip_code": "29313",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "62b0af0a-6e3a-4d74-adfe-1e782858b45b",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "LEG Wohnen NRW GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_7f08d51c4ff142cbb07f9714234b2ed1.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/15887"
+      },
+      "contactCard": {
+        "title": "Herr Rick Kaupert",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.leg-nrw.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/15887",
+      "imprintUrl": "https://www.immonet.de/anbieter/15887#impressum",
+      "phoneNumbers": [],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Die angebotene Wohnung befindet sich im 2. OG eines gepflegten Mehrfamilienhauses aus den 60-iger Jahren und ist von großzügigen Grünanlagen umgeben. Eine große Anzahl an Parkmöglichkeiten sind in direkter Nähe vorhanden. Zusätzlich wird ein separater Kellerraum kostenfrei zu Verfügung gestellt.<br><br>Die Mindestmietdauer beträgt ab Vertragsbeginn ein Jahr.<br><br>Haben Sie Interesse? Dann senden Sie die Objekt-Id 5041-74-M per WhatsApp an 0211 740 740 0, per Signal an 0172 8877030, per Telegram an LEGWohnen oder per Threema an *LEGCHAT.<br><br>Wichtiger Hinweis: Nachdem Sie das Kontaktformular im Portal ausgefüllt und verschickt haben, erhalten Sie von uns innerhalb von 15 Minuten eine E-Mail. <br><br>Bitte folgen Sie dem dort angegebenen Link, um Ihre E-Mail-Adresse und Ihre Angaben zu bestätigen.",
+      "headline": "Sanierte 3-Zimmer-Wohnung mit großem Balkon!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/62b0af0a-6e3a-4d74-adfe-1e782858b45b"
+  },
+  "2486LH28623I": {
+    "brand": "immonet",
+    "id": "2486LH28623I",
+    "status": "Published",
+    "metadata": {
+      "id": "2486LH28623I",
+      "legacyId": "fc5e80fb-0117-434e-9101-dc9be1b20348",
+      "creationDate": "2024-06-21T00:42:15.28Z",
+      "updateDate": "2024-06-21T00:42:40.694Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Herne",
+        "zipCode": "44653",
+        "street": "Steinhausenstraße 22",
+        "district": "Unser Fritz"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "52,7 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "52,7 m²",
+          "splitValue": "52,7",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "369 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "369 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "74ef3f3b-32e3-4ed2-bc22-a48d18ff1644",
+          "url": "https://mms.immonet.de/7/4/e/f/74ef3f3b-32e3-4ed2-bc22-a48d18ff1644.jpg?ci_seal=1e9d6d0500c14bb922f99d62dbbe0bf98169ef16",
+          "description": "BC2931CE-98B0-4448-AE67-E70807A23741",
+          "alt": "Wohnung zur Miete 369 € 3 Zimmer 52,7 m² 1. Geschoss Steinhausenstraße 22 Unser Fritz Herne 44653",
+          "title": "BC2931CE-98B0-4448-AE67-E70807A23741",
+          "ariaLabel": "BC2931CE-98B0-4448-AE67-E70807A23741"
+        },
+        {
+          "key": "e59472b0-6ae9-43e9-a068-484d669098ff",
+          "url": "https://mms.immonet.de/e/5/9/4/e59472b0-6ae9-43e9-a068-484d669098ff.jpg?ci_seal=edf81fa796ca9f94df23e3cdc107f96429cae4cd",
+          "description": "image",
+          "title": "image",
+          "ariaLabel": "image"
+        },
+        {
+          "key": "fe38cd15-d04f-4a98-965f-f42ba96b41aa",
+          "url": "https://mms.immonet.de/f/e/3/8/fe38cd15-d04f-4a98-965f-f42ba96b41aa.jpg?ci_seal=e6a5ded4c06b22a1cef4f6bd9d36f278344556a8",
+          "description": "image",
+          "title": "image",
+          "ariaLabel": "image"
+        },
+        {
+          "key": "1003253f-82cc-42ae-b8b2-d41a44a1dd0a",
+          "url": "https://mms.immonet.de/1/0/0/3/1003253f-82cc-42ae-b8b2-d41a44a1dd0a.jpg?ci_seal=7987eb8582bc9d966d83face8bec0dfc8424f332",
+          "description": "image",
+          "title": "image",
+          "ariaLabel": "image"
+        },
+        {
+          "key": "27a2d481-37e8-4329-9872-6e2447b77e68",
+          "url": "https://mms.immonet.de/2/7/a/2/27a2d481-37e8-4329-9872-6e2447b77e68.jpg?ci_seal=99e41601eba53ca2bd5ead53d735f45c5c02b3f3",
+          "description": "image",
+          "title": "image",
+          "ariaLabel": "image"
+        },
+        {
+          "key": "d6e97d75-08fd-447b-9df2-8ae615a131f4",
+          "url": "https://mms.immonet.de/d/6/e/9/d6e97d75-08fd-447b-9df2-8ae615a131f4.jpg?ci_seal=ea702a6379dc35c9a8bdcac8215fffe57703bea8",
+          "description": "image",
+          "title": "image",
+          "ariaLabel": "image"
+        },
+        {
+          "key": "3b2e9a8d-1881-4e9e-97dc-7e1951175278",
+          "url": "https://mms.immonet.de/3/b/2/e/3b2e9a8d-1881-4e9e-97dc-7e1951175278.jpg?ci_seal=64898817227dcacc88b55e843cc7190d1ee05487",
+          "description": "Wohnung in Renovierung",
+          "title": "Wohnung in Renovierung",
+          "ariaLabel": "Wohnung in Renovierung"
+        },
+        {
+          "key": "970c10be-6e4c-4614-be06-3d6adde5011c",
+          "url": "https://mms.immonet.de/9/7/0/c/970c10be-6e4c-4614-be06-3d6adde5011c.jpg?ci_seal=5165ca3c6c06344d522dff2845cdd36ab4fb23c5",
+          "description": "Chat-Kanäle",
+          "title": "Chat-Kanäle",
+          "ariaLabel": "Chat-Kanäle"
+        },
+        {
+          "key": "d1dcd17e-19f7-4887-b274-41141fe5c0a9",
+          "url": "https://mms.immonet.de/d/1/d/c/d1dcd17e-19f7-4887-b274-41141fe5c0a9.jpg?ci_seal=1e6a4f18eac16f81d32efd8a405f024832c5721f",
+          "description": "Fair und transparent",
+          "title": "Fair und transparent",
+          "ariaLabel": "Fair und transparent"
+        },
+        {
+          "key": "bff87561-a615-4af7-99b7-fdb2591cb274",
+          "url": "https://mms.immonet.de/b/f/f/8/bff87561-a615-4af7-99b7-fdb2591cb274.jpg?ci_seal=b4c943a098898a806ef5db89bd7a8d6248a9a022",
+          "description": "schreiben Sie uns",
+          "title": "schreiben Sie uns",
+          "ariaLabel": "schreiben Sie uns"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "2486LH28623I",
+      "price": 369,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Herne",
+      "currency": "EUR",
+      "zip_code": "44653",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "fc5e80fb-0117-434e-9101-dc9be1b20348",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "LEG Wohnen NRW GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_7f08d51c4ff142cbb07f9714234b2ed1.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/15887"
+      },
+      "contactCard": {
+        "title": null,
+        "subtitle": "Dein Kontakt",
+        "display": false,
+        "logoUrl": "//filestore.immowelt.de/ProfilBilder/150_8572d697826c4b5e8aaa2420667b9db4.jpg"
+      },
+      "website": "http://www.leg-nrw.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/15887",
+      "imprintUrl": "https://www.immonet.de/anbieter/15887#impressum",
+      "phoneNumbers": [],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Gepflegtes Mehrfamilienhaus in ruhiger Wohnanlage, Baujahr 1952, 2-3 Etagen, verkehrsberuhigtes Wohnviertel, Spielplätze im direkten Umfeld, Parkmöglichkeiten genügend vorhanden.<br><br>Haben Sie Interesse? Dann senden Sie die Objekt-Id 4358-26-M per WhatsApp an 0211 740 740 0, per Signal an 0172 8877030, per Telegram an LEGWohnen oder per Threema an *LEGCHAT.<br><br>Wichtiger Hinweis: Nachdem Sie das Kontaktformular im Portal ausgefüllt und verschickt haben, erhalten Sie von uns innerhalb von 15 Minuten eine E-Mail. <br><br>Bitte folgen Sie dem dort angegebenen Link, um Ihre E-Mail-Adresse und Ihre Angaben zu bestätigen.",
+      "headline": "Wohnen in ruhiger Lage - 3 Zimmer-Whg. mit neuwertigem Tageslichtbad"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/fc5e80fb-0117-434e-9101-dc9be1b20348"
+  },
+  "2469T5DG1GUY": {
+    "brand": "immonet",
+    "id": "2469T5DG1GUY",
+    "status": "Published",
+    "metadata": {
+      "id": "2469T5DG1GUY",
+      "legacyId": "b9dbf015-dff8-41f8-b5c8-a5de05564c72",
+      "creationDate": "2024-06-21T00:42:13.873Z",
+      "updateDate": "2024-06-21T00:42:39.194Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Herne",
+        "zipCode": "44653",
+        "street": "Steinhausenstraße 20",
+        "district": "Unser Fritz"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3,5 Zimmer",
+        "52,7 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3,5 Zimmer",
+          "splitValue": "3,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "52,7 m²",
+          "splitValue": "52,7",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "369 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "369 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "0208e5ca-b65f-413a-be76-939ca9a95b5c",
+          "url": "https://mms.immonet.de/0/2/0/8/0208e5ca-b65f-413a-be76-939ca9a95b5c.jpg?ci_seal=02d7ec70c6202e4a19b09f3f6eb80809e5685c89",
+          "description": "Diele Ansicht 1",
+          "alt": "Wohnung zur Miete 369 € 3,5 Zimmer 52,7 m² 1. Geschoss Steinhausenstraße 20 Unser Fritz Herne 44653",
+          "title": "Diele Ansicht 1",
+          "ariaLabel": "Diele Ansicht 1"
+        },
+        {
+          "key": "bbf4a209-fa4e-4b8e-9bbe-bc70a7c394c6",
+          "url": "https://mms.immonet.de/b/b/f/4/bbf4a209-fa4e-4b8e-9bbe-bc70a7c394c6.jpg?ci_seal=fa0d943c30ce52bde3b3fa9684cc1c3ca1b83796",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "923c95fe-b026-48d8-a9ca-437b68097893",
+          "url": "https://mms.immonet.de/9/2/3/c/923c95fe-b026-48d8-a9ca-437b68097893.jpg?ci_seal=390026e5c80f72f2d0adc378be1b866e4c268443",
+          "description": "Diele Ansicht 2",
+          "title": "Diele Ansicht 2",
+          "ariaLabel": "Diele Ansicht 2"
+        },
+        {
+          "key": "65062b70-9db9-4cab-b798-82b59e451909",
+          "url": "https://mms.immonet.de/6/5/0/6/65062b70-9db9-4cab-b798-82b59e451909.jpg?ci_seal=9565d5bfd9c5592f48c7fad26cd7864050a9a2d6",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "ac2a4d02-8cb4-4a0e-ad61-49243ad459d9",
+          "url": "https://mms.immonet.de/a/c/2/a/ac2a4d02-8cb4-4a0e-ad61-49243ad459d9.jpg?ci_seal=7c82527cdacce545bcaed48caf063116b65f7647",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "311fc1c8-3391-4f60-82f4-8e6a584b03cc",
+          "url": "https://mms.immonet.de/3/1/1/f/311fc1c8-3391-4f60-82f4-8e6a584b03cc.jpg?ci_seal=64b28c288ad2d2f6101b52ca60d275417ae206cc",
+          "description": "Wohnzimmer Ansicht 1",
+          "title": "Wohnzimmer Ansicht 1",
+          "ariaLabel": "Wohnzimmer Ansicht 1"
+        },
+        {
+          "key": "e60b4fde-36c7-4c22-ba47-351284d27ba4",
+          "url": "https://mms.immonet.de/e/6/0/b/e60b4fde-36c7-4c22-ba47-351284d27ba4.jpg?ci_seal=a0f164e751560e774f1c9d06ec62c50f07dec1f0",
+          "description": "Wohnzimmer Ansicht 2",
+          "title": "Wohnzimmer Ansicht 2",
+          "ariaLabel": "Wohnzimmer Ansicht 2"
+        },
+        {
+          "key": "6cf43c70-cf9b-4bb0-9e51-0c01a1738cf4",
+          "url": "https://mms.immonet.de/6/c/f/4/6cf43c70-cf9b-4bb0-9e51-0c01a1738cf4.jpg?ci_seal=0d7fcfd06a5f7970a5fa2c7e3d7f10caa34c58e4",
+          "description": "Kinderzimmer",
+          "title": "Kinderzimmer",
+          "ariaLabel": "Kinderzimmer"
+        },
+        {
+          "key": "0f9f376d-e057-4ce0-ae57-01c6828c9aee",
+          "url": "https://mms.immonet.de/0/f/9/f/0f9f376d-e057-4ce0-ae57-01c6828c9aee.jpg?ci_seal=78f7cc4fd5edd39e5418beb8d5fa9c63cd923cf1",
+          "description": "Fair und transparent",
+          "title": "Fair und transparent",
+          "ariaLabel": "Fair und transparent"
+        },
+        {
+          "key": "63fd530c-f947-49b2-858c-deb96ab97613",
+          "url": "https://mms.immonet.de/6/3/f/d/63fd530c-f947-49b2-858c-deb96ab97613.jpg?ci_seal=a30c2eecf39a624cc7416f2419b4156fa4639bcc",
+          "description": "schreiben Sie uns",
+          "title": "schreiben Sie uns",
+          "ariaLabel": "schreiben Sie uns"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "2469T5DG1GUY",
+      "price": 369,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Herne",
+      "currency": "EUR",
+      "zip_code": "44653",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "b9dbf015-dff8-41f8-b5c8-a5de05564c72",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "LEG Wohnen NRW GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_7f08d51c4ff142cbb07f9714234b2ed1.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/15887"
+      },
+      "contactCard": {
+        "title": null,
+        "subtitle": "Dein Kontakt",
+        "display": false,
+        "logoUrl": "//filestore.immowelt.de/ProfilBilder/150_8572d697826c4b5e8aaa2420667b9db4.jpg"
+      },
+      "website": "http://www.leg-nrw.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/15887",
+      "imprintUrl": "https://www.immonet.de/anbieter/15887#impressum",
+      "phoneNumbers": [],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Mehrfamilienhaus in ruhiger Wohnanlage, Baujahr 1952, 2-3 Etagen, verkehrsberuhigtes Wohnviertel, Spielplätze im direkten Umfeld, Parkmöglichkeiten genügend vorhanden.<br><br>Haben Sie Interesse? Dann senden Sie die Objekt-Id 4358-14-M per WhatsApp an 0211 740 740 0, per Signal an 0172 8877030, per Telegram an LEGWohnen oder per Threema an *LEGCHAT.<br><br>Wichtiger Hinweis: Nachdem Sie das Kontaktformular im Portal ausgefüllt und verschickt haben, erhalten Sie von uns innerhalb von 15 Minuten eine E-Mail. <br><br>Bitte folgen Sie dem dort angegebenen Link, um Ihre E-Mail-Adresse und Ihre Angaben zu bestätigen.",
+      "headline": "Wir haben für Sie renoviert! Bezugsfertige 3 Zimmer-Whg. nähe Rhein-Herne Kanal!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/b9dbf015-dff8-41f8-b5c8-a5de05564c72"
+  },
+  "24IGEBT5N3LY": {
+    "brand": "immonet",
+    "id": "24IGEBT5N3LY",
+    "status": "Published",
+    "metadata": {
+      "id": "24IGEBT5N3LY",
+      "legacyId": "c1195356-b9cb-4acc-ad74-cd8ba0cdd35e",
+      "creationDate": "2024-06-21T00:41:06.46Z",
+      "updateDate": "2024-06-21T00:41:56.38Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Essen",
+        "zipCode": "45279",
+        "street": "Philosophenweg 24",
+        "district": "Freisenbruch"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "1,5 Zimmer",
+        "33,4 m²",
+        "Erdgeschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "1,5 Zimmer",
+          "splitValue": "1,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "33,4 m²",
+          "splitValue": "33,4",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "Erdgeschoss",
+          "splitValue": "Erdgeschoss",
+          "label": ""
+        }
+      ],
+      "price": {
+        "value": "299 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "299 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "cedab99c-ea49-4cbb-b165-e4345a96f929",
+          "url": "https://mms.immonet.de/c/e/d/a/cedab99c-ea49-4cbb-b165-e4345a96f929.jpg?ci_seal=b5666e47dd472c2f4bdf9b6b2fc5b2eccc009ce7",
+          "description": "mh61004X",
+          "alt": "Wohnung zur Miete 299 € 1,5 Zimmer 33,4 m² Erdgeschoss Philosophenweg 24 Freisenbruch Essen 45279",
+          "title": "mh61004X",
+          "ariaLabel": "mh61004X"
+        },
+        {
+          "key": "98345f65-cb96-4e78-bde7-aa9846e2baa9",
+          "url": "https://mms.immonet.de/9/8/3/4/98345f65-cb96-4e78-bde7-aa9846e2baa9.jpg?ci_seal=956b76b1adc30abbe36f42e34df908e3d1aaaf5b",
+          "description": "Fair und transparent",
+          "title": "Fair und transparent",
+          "ariaLabel": "Fair und transparent"
+        },
+        {
+          "key": "5bbdfb93-df45-4fb8-9abf-898cf38f4776",
+          "url": "https://mms.immonet.de/5/b/b/d/5bbdfb93-df45-4fb8-9abf-898cf38f4776.jpg?ci_seal=071691ef9352c81e55156d81ec2d226ec9dd4f20",
+          "description": "schreiben Sie uns",
+          "title": "schreiben Sie uns",
+          "ariaLabel": "schreiben Sie uns"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24IGEBT5N3LY",
+      "price": 299,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Essen",
+      "currency": "EUR",
+      "zip_code": "45279",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "c1195356-b9cb-4acc-ad74-cd8ba0cdd35e",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "LEG Wohnen NRW GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_7f08d51c4ff142cbb07f9714234b2ed1.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/15887"
+      },
+      "contactCard": {
+        "title": "Frau Natalie Scholz",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.leg-nrw.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/15887",
+      "imprintUrl": "https://www.immonet.de/anbieter/15887#impressum",
+      "phoneNumbers": [],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Das gepflegte Mehrfamilienhaus ist in dem Jahr 1968 gebaut worden.  Die Wohnung befindet sich in einem grünem Hausumfeld und bietet dem Mieter eine Vielzahl von Spielplätzen in der gesamten Siedlung. Öffentliche Parkmöglichkeiten sowie diverse Tiefgaragen sind nach Verfügung vorhanden.<br><br>Sie wohnen im Haus mit  12  Mietparteien verteilt auf 4 Etagen. Die 1 Zimmerwohnung befindet sich im Erdgeschoss des Hauses. <br><br>Das Haus wurde von Außen sowie von Innen im Jahr 2010 modernisiert. Im Zuge der Modernisierung wurden die Bäder erneuert und mit Warmwasserzähler und Kaltwasserzählern ausgestattet.<br><br>Für die Anmietung der Wohnung ist ein Wohnberechtigungsschein erforderlich, nach Rücksprache besteht aber die Möglichkeit eine Freistellung für die Wohnung zu beantragen.<br><br>Haben Sie Interesse? Dann senden Sie die Objekt-Id 1381-299-M per WhatsApp an 0211 740 740 0, per Signal an 0172 8877030, per Telegram an LEGWohnen oder per Threema an *LEGCHAT.<br><br>Wichtiger Hinweis: Nachdem Sie das Kontaktformular im Portal ausgefüllt und verschickt haben, erhalten Sie von uns innerhalb von 15 Minuten eine E-Mail. <br><br>Bitte folgen Sie dem dort angegebenen Link, um Ihre E-Mail-Adresse und Ihre Angaben zu bestätigen.",
+      "headline": "** Klein aber Fein ! ***"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/c1195356-b9cb-4acc-ad74-cd8ba0cdd35e"
+  },
+  "24YDZAT3RCS6": {
+    "brand": "immonet",
+    "id": "24YDZAT3RCS6",
+    "status": "Published",
+    "metadata": {
+      "id": "24YDZAT3RCS6",
+      "legacyId": "7d418f6e-8ee1-4b51-a725-f8ff34345a58",
+      "creationDate": "2024-06-21T00:30:46.43Z",
+      "updateDate": "2024-06-21T00:31:41.271Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Herne",
+        "zipCode": "44627",
+        "street": "Moselstraße 12",
+        "district": "Sodingen - Süd"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "57 m²",
+        "Erdgeschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "57 m²",
+          "splitValue": "57",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "Erdgeschoss",
+          "splitValue": "Erdgeschoss",
+          "label": ""
+        }
+      ],
+      "price": {
+        "value": "384,55 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "384.55 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "afb91edc-f2b2-41c6-919a-cdc11dffba90",
+          "url": "https://mms.immonet.de/a/f/b/9/afb91edc-f2b2-41c6-919a-cdc11dffba90.jpg?ci_seal=1e4bb11ecd9d4d7e4d1b6e263b96bb0685376e61",
+          "description": "Ansicht",
+          "alt": "Wohnung zur Miete 384,55 € 2 Zimmer 57 m² Erdgeschoss Moselstraße 12 Sodingen - Süd Herne 44627",
+          "title": "Ansicht",
+          "ariaLabel": "Ansicht"
+        },
+        {
+          "key": "c530e7c9-5b69-4007-8783-46cf6d7f7cb7",
+          "url": "https://mms.immonet.de/c/5/3/0/c530e7c9-5b69-4007-8783-46cf6d7f7cb7.jpg?ci_seal=ca5f94dfc5af98e1a483bda48d48b08f8ae4d84a",
+          "description": "Ansicht",
+          "title": "Ansicht",
+          "ariaLabel": "Ansicht"
+        },
+        {
+          "key": "56fd734b-d172-4383-b330-a9f50798910b",
+          "url": "https://mms.immonet.de/5/6/f/d/56fd734b-d172-4383-b330-a9f50798910b.jpg?ci_seal=ce392ddd1528145ee106d62cb5e41b4b6c41bc53",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "4d791e44-76b9-4df7-b540-b16e109ca2a7",
+          "url": "https://mms.immonet.de/4/d/7/9/4d791e44-76b9-4df7-b540-b16e109ca2a7.jpg?ci_seal=2247ee8e8a15d2afdf9035851714c369779cccf4",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "38767e23-72e0-4300-bf29-14a4b52fc7e9",
+          "url": "https://mms.immonet.de/3/8/7/6/38767e23-72e0-4300-bf29-14a4b52fc7e9.jpg?ci_seal=41db74b1b5ddbbaddf77872361bb1aaefad7f9ba",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "befbfa95-a2c3-43e2-b168-09f66f4a080c",
+          "url": "https://mms.immonet.de/b/e/f/b/befbfa95-a2c3-43e2-b168-09f66f4a080c.jpg?ci_seal=c378727431b2cfec8906557e2b69e970c0d8bf24",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "45c5c772-86d1-42f1-a7b7-7b6cbe25077e",
+          "url": "https://mms.immonet.de/4/5/c/5/45c5c772-86d1-42f1-a7b7-7b6cbe25077e.jpg?ci_seal=b42717534dc5fb13710fee4f8d87798c793ba20f",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "2ae29593-8b91-4128-8c51-b53ae166cd18",
+          "url": "https://mms.immonet.de/2/a/e/2/2ae29593-8b91-4128-8c51-b53ae166cd18.jpg?ci_seal=3c4dac8f1964092cea0428edaf90cdf32f5b2ea3",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24YDZAT3RCS6",
+      "price": 384.55,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Herne",
+      "currency": "EUR",
+      "zip_code": "44627",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "7d418f6e-8ee1-4b51-a725-f8ff34345a58",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "Wohnungsverein Herne eG",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_94e15682f4a440d38779575005fb9c07.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/69682"
+      },
+      "contactCard": {
+        "title": "Frau Constanze Keßeler",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.wohnungsverein-herne.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/69682",
+      "imprintUrl": "https://www.immonet.de/anbieter/69682#impressum",
+      "phoneNumbers": [
+        "02323-9949124",
+        "015125386078"
+      ],
+      "rating": {
+        "rating": 3.4,
+        "reviews": 10,
+        "link": "https://www.immonet.de/anbieter/69682#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Platin Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/platin-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "In unserem Objekt in der Moselstraße 12 wird eine schöne Erdgeschosswohnung frei!",
+      "headline": "Gemütliche 2 Zimmer Wohnung in Sodingen!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/7d418f6e-8ee1-4b51-a725-f8ff34345a58"
+  },
+  "242ZAKKREM73": {
+    "brand": "immonet",
+    "id": "242ZAKKREM73",
+    "status": "Published",
+    "metadata": {
+      "id": "242ZAKKREM73",
+      "legacyId": "a6cbe448-f340-4948-b376-57ef5c43a33a",
+      "creationDate": "2024-06-21T00:12:19.127Z",
+      "updateDate": "2024-06-21T00:12:41.423Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Görlitz",
+        "zipCode": "02827",
+        "street": "Etkar-Andre-Str. 16",
+        "district": "Weinhübel"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2 Zimmer",
+        "48,7 m²",
+        "3. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2 Zimmer",
+          "splitValue": "2",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "48,7 m²",
+          "splitValue": "48,7",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "3. Geschoss",
+          "splitValue": "3.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "300 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "300 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "17dc638e-5a7c-464e-b2bc-b8831bd0548e",
+          "url": "https://mms.immonet.de/1/7/d/c/17dc638e-5a7c-464e-b2bc-b8831bd0548e.jpg?ci_seal=40ffc442f91337f398f03ec3d73c52142cc5a06e",
+          "description": "Bild",
+          "alt": "Wohnung zur Miete 300 € 2 Zimmer 48,7 m² 3. Geschoss Etkar-Andre-Str. 16 Weinhübel Görlitz 02827",
+          "title": "Bild",
+          "ariaLabel": "Bild"
+        },
+        {
+          "key": "50854121-85ff-41af-8101-b2fc688e4940",
+          "url": "https://mms.immonet.de/5/0/8/5/50854121-85ff-41af-8101-b2fc688e4940.jpg?ci_seal=cb09cf236163b18b3ddb03014d3db460302dd971",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "f2e28442-6cde-4874-9f7d-d097a179bfb8",
+          "url": "https://mms.immonet.de/f/2/e/2/f2e28442-6cde-4874-9f7d-d097a179bfb8.jpg?ci_seal=1ed3cb9f85d9d1865503ced2584fd0f50c850b0a",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "cd098d33-a6ff-4d72-89de-a2cbe92f1c25",
+          "url": "https://mms.immonet.de/c/d/0/9/cd098d33-a6ff-4d72-89de-a2cbe92f1c25.jpg?ci_seal=6221921ac7d2077ad4d77c94f1b4f8997e678f2e",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "7490e617-3d1e-405d-8633-e54f01141da9",
+          "url": "https://mms.immonet.de/7/4/9/0/7490e617-3d1e-405d-8633-e54f01141da9.jpg?ci_seal=68236dc0e5c4125508e4fe7cf8714c59d7b74d4a",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "c8f369a9-bc90-4d4f-85ac-7fbebd2430da",
+          "url": "https://mms.immonet.de/c/8/f/3/c8f369a9-bc90-4d4f-85ac-7fbebd2430da.jpg?ci_seal=1ab08b2cd6a333999bee1719f7f7b7da88168451",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "7bbb86e7-e670-40ae-a9bd-734468a00ba4",
+          "url": "https://mms.immonet.de/7/b/b/b/7bbb86e7-e670-40ae-a9bd-734468a00ba4.jpg?ci_seal=79cef427fed17ea3d4f92ffeb94b03230729126a",
+          "description": "Loggia/Balkon",
+          "title": "Loggia/Balkon",
+          "ariaLabel": "Loggia/Balkon"
+        },
+        {
+          "key": "45387fdf-1541-4a54-a98e-7ddcabbd4175",
+          "url": "https://mms.immonet.de/4/5/3/8/45387fdf-1541-4a54-a98e-7ddcabbd4175.jpg?ci_seal=49ea2bff7fa64542feeb8f024709820b420dda72",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "aec5ef2f-9570-4a0f-b372-bbbc45f54764",
+          "url": "https://mms.immonet.de/a/e/c/5/aec5ef2f-9570-4a0f-b372-bbbc45f54764.jpg?ci_seal=cdbc54b406ee2dd4a32b6725cd4f6d83bb091b48",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "242ZAKKREM73",
+      "price": 300,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Görlitz",
+      "currency": "EUR",
+      "zip_code": "02827",
+      "legacy_id": "a6cbe448-f340-4948-b376-57ef5c43a33a",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "KOMMWOHNEN Service GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoHref": "https://www.immonet.de/anbieter/40220"
+      },
+      "contactCard": {
+        "title": "N. Kampka",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/40220",
+      "imprintUrl": "https://www.immonet.de/anbieter/40220#impressum",
+      "phoneNumbers": [
+        "03581461172"
+      ],
+      "rating": {
+        "rating": 4.9,
+        "reviews": 2,
+        "link": "https://www.immonet.de/anbieter/40220#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "C",
+    "mainDescription": {
+      "headline": "Wohnen zwischen Neiße und See"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/a6cbe448-f340-4948-b376-57ef5c43a33a"
+  },
+  "24NNNJ5S7LMC": {
+    "brand": "immonet",
+    "id": "24NNNJ5S7LMC",
+    "status": "Published",
+    "metadata": {
+      "id": "24NNNJ5S7LMC",
+      "legacyId": "6e8792b1-f70c-46fe-a32b-8e83de9817e0",
+      "creationDate": "2024-06-21T00:07:14.647Z",
+      "updateDate": "2024-06-21T00:07:35.464Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Oberhausen",
+        "zipCode": "46047",
+        "street": "Marienburgstr. 3a",
+        "district": "Bermensfeld"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "1 Zimmer",
+        "59 m²",
+        "Erdgeschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "1 Zimmer",
+          "splitValue": "1",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "59 m²",
+          "splitValue": "59",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "Erdgeschoss",
+          "splitValue": "Erdgeschoss",
+          "label": ""
+        }
+      ],
+      "price": {
+        "value": "590 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "590 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "86d03705-bc30-4d2c-baab-9d33ce477ec7",
+          "url": "https://mms.immonet.de/8/6/d/0/86d03705-bc30-4d2c-baab-9d33ce477ec7.jpg?ci_seal=a93fffd4f416c83aaef67fcc1dd15d7513960faa",
+          "description": "Gemeinschaftsraum",
+          "alt": "Wohnung zur Miete 590 € 1 Zimmer 59 m² Erdgeschoss Marienburgstr. 3a Bermensfeld Oberhausen 46047",
+          "title": "Gemeinschaftsraum",
+          "ariaLabel": "Gemeinschaftsraum"
+        },
+        {
+          "key": "44482f11-d733-4f6e-9823-aa476e89cfd1",
+          "url": "https://mms.immonet.de/4/4/4/8/44482f11-d733-4f6e-9823-aa476e89cfd1.jpg?ci_seal=e533904042ffbfcac5ab4f4029e6ae448a7c172f",
+          "description": "Außenbereich",
+          "title": "Außenbereich",
+          "ariaLabel": "Außenbereich"
+        },
+        {
+          "key": "d343f4c5-61e4-4cae-90ff-5a70d49478c0",
+          "url": "https://mms.immonet.de/d/3/4/3/d343f4c5-61e4-4cae-90ff-5a70d49478c0.jpg?ci_seal=d671b3d1d365743ab31df36c1f5158f9e5ca0c0c",
+          "description": "Eingangsbereich",
+          "title": "Eingangsbereich",
+          "ariaLabel": "Eingangsbereich"
+        },
+        {
+          "key": "eb44d49c-ddfb-48b4-8b52-06ad8e9e2fc9",
+          "url": "https://mms.immonet.de/e/b/4/4/eb44d49c-ddfb-48b4-8b52-06ad8e9e2fc9.jpg?ci_seal=efdcef3dfce903d1a706c15fe9b093e8e2b6dc6f",
+          "description": "Gemeinschaftsraum",
+          "title": "Gemeinschaftsraum",
+          "ariaLabel": "Gemeinschaftsraum"
+        },
+        {
+          "key": "893fc593-a02e-40eb-b3ca-27b5f0abfee2",
+          "url": "https://mms.immonet.de/8/9/3/f/893fc593-a02e-40eb-b3ca-27b5f0abfee2.jpg?ci_seal=e9caadb23ec6236100b17fa3567e3035282b4316",
+          "description": "Wohnbereich",
+          "title": "Wohnbereich",
+          "ariaLabel": "Wohnbereich"
+        },
+        {
+          "key": "d6736893-273f-40cf-b12e-88b21033e77a",
+          "url": "https://mms.immonet.de/d/6/7/3/d6736893-273f-40cf-b12e-88b21033e77a.jpg?ci_seal=51e4a4466e800c92ce702047de1a9c1dfca696cf",
+          "description": "Bad",
+          "title": "Bad",
+          "ariaLabel": "Bad"
+        },
+        {
+          "key": "f9d698ad-65a1-410e-820d-914c0164cf07",
+          "url": "https://mms.immonet.de/f/9/d/6/f9d698ad-65a1-410e-820d-914c0164cf07.jpg?ci_seal=a36d6a89558316c9fc787b6dd997a3023de1afe7",
+          "description": "Küchenbereich",
+          "title": "Küchenbereich",
+          "ariaLabel": "Küchenbereich"
+        },
+        {
+          "key": "b94a25f5-6906-49ab-9b74-c0c9d5422033",
+          "url": "https://mms.immonet.de/b/9/4/a/b94a25f5-6906-49ab-9b74-c0c9d5422033.jpg?ci_seal=cbf267baa286e2020938e76162c640fc3cbefca1",
+          "description": "Raum für Waschmaschine",
+          "title": "Raum für Waschmaschine",
+          "ariaLabel": "Raum für Waschmaschine"
+        },
+        {
+          "key": "9fe1f479-c2f3-4692-a882-5c500fd4635e",
+          "url": "https://mms.immonet.de/9/f/e/1/9fe1f479-c2f3-4692-a882-5c500fd4635e.jpg?ci_seal=e02bb0b9043cfbe6f4c1e547b3c1e4aa0678610d",
+          "description": "Außenansicht",
+          "title": "Außenansicht",
+          "ariaLabel": "Außenansicht"
+        },
+        {
+          "key": "2cebaa31-a0d7-412f-9cef-7f4cfd4de33d",
+          "url": "https://mms.immonet.de/2/c/e/b/2cebaa31-a0d7-412f-9cef-7f4cfd4de33d.jpg?ci_seal=15c4aee75d52aa3832ba665d8abcb74cf7396cc9",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        },
+        {
+          "key": "c2963aa0-0d9b-44ce-88cb-912164ae749a",
+          "url": "https://mms.immonet.de/c/2/9/6/c2963aa0-0d9b-44ce-88cb-912164ae749a.jpg?ci_seal=edca80ce45a19043282745f82f915be91f5b69bb",
+          "description": "Service-App für Mieter",
+          "title": "Service-App für Mieter",
+          "ariaLabel": "Service-App für Mieter"
+        },
+        {
+          "key": "9de33967-ca7f-480f-b1d5-7759ca296bdc",
+          "url": "https://mms.immonet.de/9/d/e/3/9de33967-ca7f-480f-b1d5-7759ca296bdc.png?ci_seal=5cc79cd5f4641df1a623389ba0d25d253ef8039e",
+          "description": "Serviceleistungen",
+          "title": "Serviceleistungen",
+          "ariaLabel": "Serviceleistungen"
+        },
+        {
+          "key": "924dea54-9fd9-4029-8617-ef4f7284509e",
+          "url": "https://mms.immonet.de/9/2/4/d/924dea54-9fd9-4029-8617-ef4f7284509e.png?ci_seal=f0200d3fd2b1c476cd09606980a3d456c66599a8",
+          "description": "Auszeichnungen",
+          "title": "Auszeichnungen",
+          "ariaLabel": "Auszeichnungen"
+        },
+        {
+          "key": "b550140f-977d-45d6-a428-4c2106cbe2f1",
+          "url": "https://mms.immonet.de/b/5/5/0/b550140f-977d-45d6-a428-4c2106cbe2f1.gif?ci_seal=27009073a03a80c462e33a35d0b52452ef7cd9b1",
+          "description": "Energiebedarfswerte",
+          "title": "Energiebedarfswerte",
+          "ariaLabel": "Energiebedarfswerte"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24NNNJ5S7LMC",
+      "price": 590,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Oberhausen",
+      "currency": "EUR",
+      "zip_code": "46047",
+      "legacy_id": "6e8792b1-f70c-46fe-a32b-8e83de9817e0",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "Covivio Immobilien GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_6cb89771378b493ea4c509e491c90bae.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/50305"
+      },
+      "contactCard": {
+        "title": "Frau Evelin Huth",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.covivio.immo",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/50305",
+      "imprintUrl": "https://www.immonet.de/anbieter/50305#impressum",
+      "phoneNumbers": [
+        "0208-97064-449"
+      ],
+      "rating": {
+        "rating": 4.1,
+        "reviews": 254,
+        "link": "https://www.immonet.de/anbieter/50305#reviews"
+      },
+      "displayLinks": true
+    },
+    "energyClass": "B",
+    "mainDescription": {
+      "description": "Covivio hat hier ein neuartiges Wohnkonzept entwickelt !<br>Ab dem 01.06.2024 wird hier ein tolles Apartment frei!<br>In diesem Objekt entstanden durch Um- und Neubau 9 behindertenfreundliche Apartments mit schwellenlosen Zugang in das Objekt und in alle Räume.<br>Die Haupteingangstür hat eine hydraulische Automatik-Öffnung nach Schlüsselerkennung.<br> Geeignet für Singles/Paare/WG's, interessant besonders für Senioren und Menschen mit einer körperlichen Beeinträchtigung. Die Wohnanlage ist barrierearm und somit auch für Rollatoren und Rollstuhlfahrer geeignet. Alle Apartments sind um einen offenen Gemeinschaftsbereich gruppiert und bieten somit den neuen Bewohnern die Möglichkeit zum gemütlichen Beisammensein.<br>Gleichzeitig ist es ein Wohnkonzept, was Individualität bietet, jeder kann so wie er möchte Kontakte zu seinen Nachbarn pflegen oder ganz für sich sein.<br>Das Apartment bietet  eine behindertenfreundliche Ausstattung, wie natürlich eine ebenerdige, rollstuhlgerechte Dusche und Fenster mit einer Brüstungshöhe von 0,50 cm. Wir übergeben Ihnen das Apartment komplett bezugsfertig tapeziert und gestrichen. Auch der Boden ist ein hochwertiger Designboden. <br>Des Weiteren gibt es einen Gemeinschaftsgarten direkt vor dem Haupteingang und eigene Terasse. <br>Vereinbaren Sie gern mit uns einen Besichtigungstermin! Wir stehen Ihnen für alle Fragen zur Verfügung und bieten Ihnen bestmöglichen Service für Ihr neues Zuhause!<br>unser Unternehmen bietet Ihnen weiterhin:<br>- digitalen Kundenservice, einfache und schnelle Kommunikation z.B. mit der Covivio Mieter-App<br>- Mietvertrag und Übergabe digital, einfach, sicher und schnell<br>- alle unsere Wohngebäude wurden ausgerichtet auf die Zukunft mit einem <br>Nachhaltigkeitszertifikat ausgezeichnet<br>- ein gutes Gefühl: Covivio wurde mehrfach ausgezeichnet, u.a. als eine der <br>fairsten Vermieterinnen Deutschlands<br>Gern bieten wir auch eine Besichtigung via Videochat an.",
+      "headline": "Selbstständig gemeinsam wohnen! Barrierearmes,behindertenfreundliches Apartment!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/6e8792b1-f70c-46fe-a32b-8e83de9817e0"
+  },
+  "24G8UVNJSVZ1": {
+    "brand": "immonet",
+    "id": "24G8UVNJSVZ1",
+    "status": "Published",
+    "metadata": {
+      "id": "24G8UVNJSVZ1",
+      "legacyId": "49c30a47-a894-44d1-8fa9-90ffdc0d43fe",
+      "creationDate": "2024-06-20T23:27:33.457Z",
+      "updateDate": "2024-06-20T23:28:47.103Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Bautzen",
+        "zipCode": "02625",
+        "street": "Löhrstraße 14",
+        "district": "Ostvorstadt"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "80 m²"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "80 m²",
+          "splitValue": "80",
+          "label": "m²"
+        }
+      ],
+      "price": {
+        "value": "456 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "456 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "50594504-644b-4c4e-95a3-7bdc4d2a95a4",
+          "url": "https://mms.immonet.de/5/0/5/9/50594504-644b-4c4e-95a3-7bdc4d2a95a4.jpg?ci_seal=829dd82c607d9f37a91ca2d4fc2b647a17c5795d",
+          "description": "Ansicht vorn 1",
+          "alt": "Wohnung zur Miete 456 € 3 Zimmer 80 m² Löhrstraße 14 Ostvorstadt Bautzen 02625",
+          "title": "Ansicht vorn 1",
+          "ariaLabel": "Ansicht vorn 1"
+        },
+        {
+          "key": "597dd7f9-147f-4df1-817c-074b5e1f6abd",
+          "url": "https://mms.immonet.de/5/9/7/d/597dd7f9-147f-4df1-817c-074b5e1f6abd.jpg?ci_seal=10dc7314b08cce384220ba6f6c7b642fcc53ddb1",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "c7645ccd-f859-4be5-bd8b-f65b9ab8c067",
+          "url": "https://mms.immonet.de/c/7/6/4/c7645ccd-f859-4be5-bd8b-f65b9ab8c067.jpg?ci_seal=b66560f0fb0a943de4615c0d5ecf1a334659f676",
+          "description": "Wohnzimmer (2)",
+          "title": "Wohnzimmer (2)",
+          "ariaLabel": "Wohnzimmer (2)"
+        },
+        {
+          "key": "ddc5848f-3134-4bc3-9247-be0161273dc3",
+          "url": "https://mms.immonet.de/d/d/c/5/ddc5848f-3134-4bc3-9247-be0161273dc3.jpg?ci_seal=707f8f9bdd77f4abd747e41b2f8a8101f56bf7a0",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "353d3f69-84cd-47d0-b1c3-10a7e6e5550a",
+          "url": "https://mms.immonet.de/3/5/3/d/353d3f69-84cd-47d0-b1c3-10a7e6e5550a.jpg?ci_seal=2e42ab84728f40928983a2f891cd188337336f98",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "cec29c47-c7ed-4e8f-9540-8727e0672343",
+          "url": "https://mms.immonet.de/c/e/c/2/cec29c47-c7ed-4e8f-9540-8727e0672343.jpg?ci_seal=74d6451151a9dfd210008141b8b3098855787432",
+          "description": "Schlafzimmer (2)",
+          "title": "Schlafzimmer (2)",
+          "ariaLabel": "Schlafzimmer (2)"
+        },
+        {
+          "key": "d02c904d-5467-4b6b-af23-03447403b241",
+          "url": "https://mms.immonet.de/d/0/2/c/d02c904d-5467-4b6b-af23-03447403b241.jpg?ci_seal=f569597e8f9db2485793506710522856e00bddb6",
+          "description": "Kinderzimmer",
+          "title": "Kinderzimmer",
+          "ariaLabel": "Kinderzimmer"
+        },
+        {
+          "key": "41699a2e-fb5e-4706-99c8-cf515111de4b",
+          "url": "https://mms.immonet.de/4/1/6/9/41699a2e-fb5e-4706-99c8-cf515111de4b.jpg?ci_seal=60ec66b95bbc7e12a8af7e4fad23c2c9e3368483",
+          "description": "Bad",
+          "title": "Bad",
+          "ariaLabel": "Bad"
+        },
+        {
+          "key": "566f623f-59b0-4a5d-8858-8bf2bf432096",
+          "url": "https://mms.immonet.de/5/6/6/f/566f623f-59b0-4a5d-8858-8bf2bf432096.jpg?ci_seal=8fb70b9cb8c945afe34b37046b78de9bd8eb66df",
+          "description": "Bad 2",
+          "title": "Bad 2",
+          "ariaLabel": "Bad 2"
+        },
+        {
+          "key": "197a8cd2-d05b-4707-82d5-77094c17a8f7",
+          "url": "https://mms.immonet.de/1/9/7/a/197a8cd2-d05b-4707-82d5-77094c17a8f7.jpg?ci_seal=ce0bf53b1e65245a09c79862530d283b1e637263",
+          "description": "Küche",
+          "title": "Küche",
+          "ariaLabel": "Küche"
+        },
+        {
+          "key": "937bb97e-2baf-4788-bfb9-05726b6cad30",
+          "url": "https://mms.immonet.de/9/3/7/b/937bb97e-2baf-4788-bfb9-05726b6cad30.jpg?ci_seal=1a88a74cb01c8a8dfad7a6c263174041936c42a6",
+          "description": "Küche 2",
+          "title": "Küche 2",
+          "ariaLabel": "Küche 2"
+        },
+        {
+          "key": "876b2ab5-4384-41f1-90a6-edef3c44202a",
+          "url": "https://mms.immonet.de/8/7/6/b/876b2ab5-4384-41f1-90a6-edef3c44202a.jpg?ci_seal=aaa7d8833eae26c8d68bc29bb8a51d88dc917f48",
+          "description": "Küche 3",
+          "title": "Küche 3",
+          "ariaLabel": "Küche 3"
+        },
+        {
+          "key": "16e63cc3-f7c2-497c-9b7e-e4e2cb77bc63",
+          "url": "https://mms.immonet.de/1/6/e/6/16e63cc3-f7c2-497c-9b7e-e4e2cb77bc63.jpg?ci_seal=2a62f15da55f625f56f4041fcf40ccdd945d2cad",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "abf09209-e563-4098-9c94-f0b766d70f7a",
+          "url": "https://mms.immonet.de/a/b/f/0/abf09209-e563-4098-9c94-f0b766d70f7a.jpg?ci_seal=c329198018eae4a982b7a17baec620f31c8d6060",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "edd9f795-797e-4de4-aabd-4eaa7432cfbf",
+          "url": "https://mms.immonet.de/e/d/d/9/edd9f795-797e-4de4-aabd-4eaa7432cfbf.jpg?ci_seal=bf8b732b627c54106e1bb8028ac539c179904773",
+          "description": "Flur",
+          "title": "Flur",
+          "ariaLabel": "Flur"
+        },
+        {
+          "key": "0a29e452-f656-40ad-b273-20f711084aec",
+          "url": "https://mms.immonet.de/0/a/2/9/0a29e452-f656-40ad-b273-20f711084aec.jpg?ci_seal=90d4c22a8985225d81e8212c782640f00bf321be",
+          "description": "WE04 - Wäschplatz",
+          "title": "WE04 - Wäschplatz",
+          "ariaLabel": "WE04 - Wäschplatz"
+        },
+        {
+          "key": "74ea1f3d-8b15-41cc-b6e2-e259fb4fec98",
+          "url": "https://mms.immonet.de/7/4/e/a/74ea1f3d-8b15-41cc-b6e2-e259fb4fec98.jpg?ci_seal=282f09319e1e66a1acb38ba99b6d3973c4466ce8",
+          "description": "Ansicht hinten",
+          "title": "Ansicht hinten",
+          "ariaLabel": "Ansicht hinten"
+        },
+        {
+          "key": "7d838fd2-c4de-413d-9ee4-1c2f8267d9a8",
+          "url": "https://mms.immonet.de/7/d/8/3/7d838fd2-c4de-413d-9ee4-1c2f8267d9a8.jpg?ci_seal=5ebd0a2b5669e3949cda28f03f2ae140ad452818",
+          "description": "Luftaufnahme ",
+          "title": "Luftaufnahme ",
+          "ariaLabel": "Luftaufnahme "
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24G8UVNJSVZ1",
+      "price": 456,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Bautzen",
+      "currency": "EUR",
+      "zip_code": "02625",
+      "building_state": "FULLY_RENOVATED",
+      "legacy_id": "49c30a47-a894-44d1-8fa9-90ffdc0d43fe",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "A4RES Advisory GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_df3824f611e94a24b1c4d957755ad770.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/2668830"
+      },
+      "contactCard": {
+        "title": "Herr Kay Beyer",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.a4res.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/2668830",
+      "imprintUrl": "https://www.immonet.de/anbieter/2668830#impressum",
+      "phoneNumbers": [
+        "+49(3591) 3266029"
+      ],
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Kurzbeschreibung\n3 Raum-Wohnung mit Balkon im Villenviertel von Bautzen\n\nObjekt\nDie 3 Raum-Wohnung mit Balkon befindet sich im ruhig gelegenen Villenvirtel von Bautzen auf der Löhrstraße 14. <br>Genießen Sie die Ruhe und dennoch die Nähe zum Stadtzentrum.",
+      "headline": "3 Raum-Wohnung mit Balkon im Villenviertel von Bautzen"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/49c30a47-a894-44d1-8fa9-90ffdc0d43fe"
+  },
+  "24ACT7R1VISV": {
+    "brand": "immonet",
+    "id": "24ACT7R1VISV",
+    "status": "Published",
+    "metadata": {
+      "id": "24ACT7R1VISV",
+      "legacyId": "a8b82bd7-93d0-421d-b573-d7eb8476313e",
+      "creationDate": "2024-06-20T23:09:33.577Z",
+      "updateDate": "2024-06-20T23:10:57.88Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Krefeld",
+        "zipCode": "47829",
+        "district": "Hohenbudberg"
+      },
+      "isAddressPublished": false
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "2,5 Zimmer",
+        "51 m²",
+        "Erdgeschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "2,5 Zimmer",
+          "splitValue": "2,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "51 m²",
+          "splitValue": "51",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "Erdgeschoss",
+          "splitValue": "Erdgeschoss",
+          "label": ""
+        }
+      ],
+      "price": {
+        "value": "393 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "393 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "cee38dda-3589-466a-9913-37122db96857",
+          "url": "https://mms.immonet.de/c/e/e/3/cee38dda-3589-466a-9913-37122db96857.jpg?ci_seal=8072ba108bce539dac6c6ec08e7a1784689e46fa",
+          "description": "Außenansicht",
+          "alt": "Wohnung zur Miete 393 € 2,5 Zimmer 51 m² Erdgeschoss Hohenbudberg Krefeld 47829",
+          "title": "Außenansicht",
+          "ariaLabel": "Außenansicht"
+        },
+        {
+          "key": "48464b07-899a-4038-b737-ad66b6ee0d7b",
+          "url": "https://mms.immonet.de/4/8/4/6/48464b07-899a-4038-b737-ad66b6ee0d7b.jpg?ci_seal=6efd8b1471e4de50a3bcc27c07a76f11c39dab05",
+          "description": "Wohnungsgrundriss (Muster)",
+          "title": "Wohnungsgrundriss (Muster)",
+          "ariaLabel": "Wohnungsgrundriss (Muster)"
+        },
+        {
+          "key": "2a4f919c-6317-4f41-a92f-debe9fe7ed8f",
+          "url": "https://mms.immonet.de/2/a/4/f/2a4f919c-6317-4f41-a92f-debe9fe7ed8f.jpg?ci_seal=133ec5aff20825d21826f942eb678c411fedb76d",
+          "description": "Kontakt per Messenger!",
+          "title": "Kontakt per Messenger!",
+          "ariaLabel": "Kontakt per Messenger!"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24ACT7R1VISV",
+      "price": 393,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Krefeld",
+      "currency": "EUR",
+      "zip_code": "47829",
+      "legacy_id": "a8b82bd7-93d0-421d-b573-d7eb8476313e",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "Vivawest Wohnen GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_9c3d2c3e3906437f9f20bb9769f37dac.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/1135102"
+      },
+      "contactCard": {
+        "title": "Herr Lars Buhren",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "https://www.vivawest.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/1135102",
+      "imprintUrl": "https://www.immonet.de/anbieter/1135102#impressum",
+      "phoneNumbers": [
+        "02841 5097-0"
+      ],
+      "rating": {
+        "rating": 4.1,
+        "reviews": 364,
+        "link": "https://www.immonet.de/anbieter/1135102#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "G",
+    "mainDescription": {
+      "description": "Die hier angebotene Wohnung liegt in der inzwischen neunzigjährigen Ter-Meer-Siedlung, die 2010 mit dem TÜV-Gütesiegel --- Geprüfte Lebensqualität in Siedlungen --- ausgezeichnet wurde. Die charmante Siedlung besticht durch zahlreiches Grün und gepflegte Häuser in familiärer Atmosphäre.<br> Das historische Mehrfamilienhaus verfügt über einen großzügigen Gemeinschaftsgarten und befindet sich in ruhiger Wohnlage. Das Haus ist baujahresentsprechend ausgestattet und wurde nachträglich mit Isolierverglasung versehen.<br><br>Nach dem Absenden des Kontaktformulars nehmen wir per E-Mail Kontakt mit Ihnen auf. Wir bitten Sie, Ihre Daten über den in der E-Mail enthaltenen Link zu vervollständigen und zu bestätigen.<br><br>Kontaktieren Sie uns auch über den Messenger auf Ihrem Smartphone. Schreiben Sie uns die Objekt-ID 860-2-M in WhatsApp an 0209 380-11000, in Telegram an VivawestWohnen, in Threema an *VVWCHAT oder in Signal an 0151 72777077. Alternativ können Sie Ihre Wohnungsanfrage auch an unseren Chatbot VIBO auf unserer Homepage richten.",
+      "headline": "Hier ist Platz zum Wohnen"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/a8b82bd7-93d0-421d-b573-d7eb8476313e"
+  },
+  "241UH2K8EURN": {
+    "brand": "immonet",
+    "id": "241UH2K8EURN",
+    "status": "Published",
+    "metadata": {
+      "id": "241UH2K8EURN",
+      "legacyId": "fb71e8b6-d26f-4ad2-a6f8-4a05539ce6c4",
+      "creationDate": "2024-06-20T23:09:14.547Z",
+      "updateDate": "2024-06-20T23:09:42.106Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Herne",
+        "zipCode": "44651",
+        "street": "Pestalozzistraße 6",
+        "district": "Röhlinghausen - Kern"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3,5 Zimmer",
+        "68,4 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3,5 Zimmer",
+          "splitValue": "3,5",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "68,4 m²",
+          "splitValue": "68,4",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "616 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "616 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "26d8f23c-5806-4ff6-b902-6968f76469da",
+          "url": "https://mms.immonet.de/2/6/d/8/26d8f23c-5806-4ff6-b902-6968f76469da.jpg?ci_seal=ccd9b25fe699c9e2336a59bf0919b8a447aa0485",
+          "description": "Vorderansicht",
+          "alt": "Wohnung zur Miete 616 € 3,5 Zimmer 68,4 m² 1. Geschoss Pestalozzistraße 6 Röhlinghausen - Kern Herne 44651",
+          "title": "Vorderansicht",
+          "ariaLabel": "Vorderansicht"
+        },
+        {
+          "key": "f87ebc06-b58b-41a1-8525-e6e9f1466180",
+          "url": "https://mms.immonet.de/f/8/7/e/f87ebc06-b58b-41a1-8525-e6e9f1466180.jpg?ci_seal=348f10e6e71d268c259a8a30da4851c62b19b8d0",
+          "description": "Rückansicht Balkone",
+          "title": "Rückansicht Balkone",
+          "ariaLabel": "Rückansicht Balkone"
+        },
+        {
+          "key": "9380aa4e-505f-4747-b1aa-099c3498b542",
+          "url": "https://mms.immonet.de/9/3/8/0/9380aa4e-505f-4747-b1aa-099c3498b542.jpg?ci_seal=a3dadd3a6dc34178966cdd9451d97d2424dcbee2",
+          "description": "Grundriss",
+          "title": "Grundriss",
+          "ariaLabel": "Grundriss"
+        },
+        {
+          "key": "00ba4151-c0bc-42d1-af42-b8e5feed8016",
+          "url": "https://mms.immonet.de/0/0/b/a/00ba4151-c0bc-42d1-af42-b8e5feed8016.jpg?ci_seal=50b708fe7d78fed124ce6e42d74488c897913602",
+          "description": "Ausblick vom Balkon",
+          "title": "Ausblick vom Balkon",
+          "ariaLabel": "Ausblick vom Balkon"
+        },
+        {
+          "key": "462cbed4-bb6f-4ee7-a448-b492716803dc",
+          "url": "https://mms.immonet.de/4/6/2/c/462cbed4-bb6f-4ee7-a448-b492716803dc.jpg?ci_seal=6aa6d64b0bdaa590ef6974ed818ecbe36a669d58",
+          "description": "Beispielbadezimmer",
+          "title": "Beispielbadezimmer",
+          "ariaLabel": "Beispielbadezimmer"
+        },
+        {
+          "key": "de8775d3-45a6-4ae3-87cd-00d824536343",
+          "url": "https://mms.immonet.de/d/e/8/7/de8775d3-45a6-4ae3-87cd-00d824536343.jpg?ci_seal=04148b1d5b19577da69cc8a3c42b1050784569a1",
+          "description": "Straßenzug",
+          "title": "Straßenzug",
+          "ariaLabel": "Straßenzug"
+        },
+        {
+          "key": "2847b38b-0c5f-4a59-942c-46170a75c480",
+          "url": "https://mms.immonet.de/2/8/4/7/2847b38b-0c5f-4a59-942c-46170a75c480.jpg?ci_seal=c33adb7711f52afba36b3034f913d0892ba161eb",
+          "description": "Kontakt per Messenger!",
+          "title": "Kontakt per Messenger!",
+          "ariaLabel": "Kontakt per Messenger!"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "241UH2K8EURN",
+      "price": 616,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Herne",
+      "currency": "EUR",
+      "zip_code": "44651",
+      "legacy_id": "fb71e8b6-d26f-4ad2-a6f8-4a05539ce6c4",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "Vivawest Wohnen GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_9c3d2c3e3906437f9f20bb9769f37dac.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/1135102"
+      },
+      "contactCard": {
+        "title": "Frau Sandra Laskowski",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "https://www.vivawest.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/1135102",
+      "imprintUrl": "https://www.immonet.de/anbieter/1135102#impressum",
+      "phoneNumbers": [
+        "02325 3775-21228"
+      ],
+      "rating": {
+        "rating": 4.1,
+        "reviews": 364,
+        "link": "https://www.immonet.de/anbieter/1135102#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Premium Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/premium-partner-duo.svg"
+      }
+    },
+    "energyClass": "C",
+    "mainDescription": {
+      "description": "Die gemütliche 3,5 Zimmerwohnung befindet sich in einem modernisierten Wohnungsbestand in Sackgassenlage. Die Siedlung wurde vor kurzer Zeit mit einer Wärmedämmfassade, ansprechenden Außenanlagen und großzügigen Balkonen ausgestattet.<br><br>Nach dem Absenden des Kontaktformulars nehmen wir per E-Mail Kontakt mit Ihnen auf. Wir bitten Sie, Ihre Daten über den in der E-Mail enthaltenen Link zu vervollständigen und zu bestätigen.<br><br>Kontaktieren Sie uns auch über den Messenger auf Ihrem Smartphone. Schreiben Sie uns die Objekt-ID 764-9-M in WhatsApp an 0209 380-11000, in Telegram an VivawestWohnen, in Threema an *VVWCHAT oder in Signal an 0151 72777077. Alternativ können Sie Ihre Wohnungsanfrage auch an unseren Chatbot VIBO auf unserer Homepage richten.",
+      "headline": "Bei VIVAWEST die Sonnenstrahlen auf dem eigenen Balkon genießen."
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/fb71e8b6-d26f-4ad2-a6f8-4a05539ce6c4"
+  },
+  "24F8429VC1EJ": {
+    "brand": "immonet",
+    "id": "24F8429VC1EJ",
+    "status": "Published",
+    "metadata": {
+      "id": "24F8429VC1EJ",
+      "legacyId": "1d33dd68-2e3f-494b-8a00-a48d57bb6711",
+      "creationDate": "2024-06-20T21:01:10.677Z",
+      "updateDate": "2024-06-20T21:01:47.002Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Oldenburg",
+        "zipCode": "26127",
+        "district": "Alexanderfeld"
+      },
+      "isAddressPublished": false
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "1 Zimmer",
+        "34 m²",
+        "Erdgeschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "1 Zimmer",
+          "splitValue": "1",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "34 m²",
+          "splitValue": "34",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "Erdgeschoss",
+          "splitValue": "Erdgeschoss",
+          "label": ""
+        }
+      ],
+      "price": {
+        "value": "340 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "340 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "8bce8d4b-ef86-4214-80ab-dbb511fe6b90",
+          "url": "https://mms.immonet.de/8/b/c/e/8bce8d4b-ef86-4214-80ab-dbb511fe6b90.jpg?ci_seal=1761d45995db4979242e512e89151fe728196a8e",
+          "description": "Bild...",
+          "alt": "Wohnung zur Miete 340 € 1 Zimmer 34 m² Erdgeschoss Alexanderfeld Oldenburg 26127",
+          "title": "Bild...",
+          "ariaLabel": "Bild..."
+        },
+        {
+          "key": "81e21ada-c716-46c8-a0d8-96e8f59191e3",
+          "url": "https://mms.immonet.de/8/1/e/2/81e21ada-c716-46c8-a0d8-96e8f59191e3.jpg?ci_seal=ae8248f18f044daa56b05baf610c83d3d1b0878c",
+          "description": "Bild...",
+          "title": "Bild...",
+          "ariaLabel": "Bild..."
+        },
+        {
+          "key": "24d09ea9-ffef-4eeb-b989-1ec31549efbb",
+          "url": "https://mms.immonet.de/2/4/d/0/24d09ea9-ffef-4eeb-b989-1ec31549efbb.jpg?ci_seal=7cd97d449ba121389a35ba1d3295457ab27623d9",
+          "description": "Bild...",
+          "title": "Bild...",
+          "ariaLabel": "Bild..."
+        },
+        {
+          "key": "20d627e5-8b84-414b-b39b-487ec02d6a03",
+          "url": "https://mms.immonet.de/2/0/d/6/20d627e5-8b84-414b-b39b-487ec02d6a03.jpg?ci_seal=4eed33746c837606ec364486926e82a86d6e4cb4",
+          "description": "Bild...",
+          "title": "Bild...",
+          "ariaLabel": "Bild..."
+        },
+        {
+          "key": "032fdfa1-a229-4a9a-9231-9c2b35fcca92",
+          "url": "https://mms.immonet.de/0/3/2/f/032fdfa1-a229-4a9a-9231-9c2b35fcca92.jpg?ci_seal=cbee58ff2854a945dc9932054a8f0bcc42ad1fa0",
+          "description": "Bild...",
+          "title": "Bild...",
+          "ariaLabel": "Bild..."
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24F8429VC1EJ",
+      "price": 340,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Oldenburg",
+      "currency": "EUR",
+      "zip_code": "26127",
+      "legacy_id": "1d33dd68-2e3f-494b-8a00-a48d57bb6711",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "ANbiente Immobilien",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_c162b8cfb297470d849bc8750e69ce4c.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/1774266"
+      },
+      "contactCard": {
+        "title": "Frau Annette Nevries",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.anbiente.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/1774266",
+      "imprintUrl": "https://www.immonet.de/anbieter/1774266#impressum",
+      "phoneNumbers": [
+        "089-38164426-0",
+        "017612500501"
+      ],
+      "displayLinks": true,
+      "badge": {
+        "title": "Platin Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/platin-partner-duo.svg"
+      }
+    },
+    "mainDescription": {
+      "description": "Ein großzügiges Appartement mit offener Einbauküche. Durch den guten Schnitt, kann der Wohnraum hervorragend aufgeteilt werden.<br>Das hell geflieste Badezimmer ist mit einer Badewanne ausgestattet.<br><br>Zur Wohnung gehören ein Kellerraum und ein Außenstellplatz",
+      "headline": "Sonniges Appartement in Oldenburg mit hübscher Terrasse"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/1d33dd68-2e3f-494b-8a00-a48d57bb6711"
+  },
+  "24JJLGKBR9Y1": {
+    "brand": "immonet",
+    "id": "24JJLGKBR9Y1",
+    "status": "Published",
+    "metadata": {
+      "id": "24JJLGKBR9Y1",
+      "legacyId": "d37b7aac-c37f-4138-a61d-af1a33f1a24e",
+      "creationDate": "2024-06-20T21:01:01.497Z",
+      "updateDate": "2024-06-20T21:01:46.482Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Montabaur",
+        "zipCode": "56410",
+        "district": "Montabaur"
+      },
+      "isAddressPublished": false
+    },
+    "hardFacts": {
+      "title": "Wohnung zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "116 m²",
+        "2. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "116 m²",
+          "splitValue": "116",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "2. Geschoss",
+          "splitValue": "2.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "1.280 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "1280 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "eed10212-e50b-4644-b9b0-e873411abec8",
+          "url": "https://mms.immonet.de/e/e/d/1/eed10212-e50b-4644-b9b0-e873411abec8.jpg?ci_seal=edaeda0784ac95fa126dc84da60a95c31a11d656",
+          "description": "Hausansicht",
+          "alt": "Wohnung zur Miete 1.280 € 3 Zimmer 116 m² 2. Geschoss Montabaur Montabaur 56410",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "c2439d99-7313-4f90-b7b6-3e3e67192cfb",
+          "url": "https://mms.immonet.de/c/2/4/3/c2439d99-7313-4f90-b7b6-3e3e67192cfb.jpg?ci_seal=0f04f212f77d709f9044903463c1bf106d8765b6",
+          "description": "Wohnzimmer",
+          "title": "Wohnzimmer",
+          "ariaLabel": "Wohnzimmer"
+        },
+        {
+          "key": "5ffaaf56-6db4-47a7-baac-289cc03ed648",
+          "url": "https://mms.immonet.de/5/f/f/a/5ffaaf56-6db4-47a7-baac-289cc03ed648.jpg?ci_seal=4abe92294076bfd25fd2a194881b17bd20b2145d",
+          "description": "Schlafzimmer",
+          "title": "Schlafzimmer",
+          "ariaLabel": "Schlafzimmer"
+        },
+        {
+          "key": "728edef0-6560-4406-a9b6-b832555c37b2",
+          "url": "https://mms.immonet.de/7/2/8/e/728edef0-6560-4406-a9b6-b832555c37b2.jpg?ci_seal=83a4934dd1180282907a0ec5cb29ae49a73ccc78",
+          "description": "Kinder/Gäste/Büro",
+          "title": "Kinder/Gäste/Büro",
+          "ariaLabel": "Kinder/Gäste/Büro"
+        },
+        {
+          "key": "f7d89af9-40d6-4061-8014-5d33c20bdac5",
+          "url": "https://mms.immonet.de/f/7/d/8/f7d89af9-40d6-4061-8014-5d33c20bdac5.jpg?ci_seal=3e2282611626b24269e8e9015004357f3c7970ab",
+          "description": "Einbauküche",
+          "title": "Einbauküche",
+          "ariaLabel": "Einbauküche"
+        },
+        {
+          "key": "34af52dc-2c38-4f3f-b515-06a426f3ce19",
+          "url": "https://mms.immonet.de/3/4/a/f/34af52dc-2c38-4f3f-b515-06a426f3ce19.jpg?ci_seal=7a4312e189ac9fb9d6ebac344cb2e51cf4fa9546",
+          "description": "Einbauküche",
+          "title": "Einbauküche",
+          "ariaLabel": "Einbauküche"
+        },
+        {
+          "key": "3ce2506f-ec75-4075-8235-08d1b32cbdbc",
+          "url": "https://mms.immonet.de/3/c/e/2/3ce2506f-ec75-4075-8235-08d1b32cbdbc.jpg?ci_seal=6dae07c2320a3f9d4a942b09b61b911ae279f1d1",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "bfc74ec8-eb16-430b-8485-c6ae3db8649d",
+          "url": "https://mms.immonet.de/b/f/c/7/bfc74ec8-eb16-430b-8485-c6ae3db8649d.jpg?ci_seal=a64fe990059446727456a2ce39fc73a3bdff747f",
+          "description": "Badezimmer",
+          "title": "Badezimmer",
+          "ariaLabel": "Badezimmer"
+        },
+        {
+          "key": "3075e083-16fd-4879-b755-5c62812acaac",
+          "url": "https://mms.immonet.de/3/0/7/5/3075e083-16fd-4879-b755-5c62812acaac.jpg?ci_seal=76235f36032d621c522f5b14b1985a28592bd0cf",
+          "description": "Gäste-WC",
+          "title": "Gäste-WC",
+          "ariaLabel": "Gäste-WC"
+        },
+        {
+          "key": "e7738a8d-74d6-43e0-90ab-b018d6dcf207",
+          "url": "https://mms.immonet.de/e/7/7/3/e7738a8d-74d6-43e0-90ab-b018d6dcf207.jpg?ci_seal=5457347b9b10273c68b8cfc1aa87dc2f37cbb3a8",
+          "description": "Aufzug",
+          "title": "Aufzug",
+          "ariaLabel": "Aufzug"
+        },
+        {
+          "key": "12858e0f-8b00-478b-88bf-754323a51273",
+          "url": "https://mms.immonet.de/1/2/8/5/12858e0f-8b00-478b-88bf-754323a51273.jpg?ci_seal=e9f8cc4677a59bed48ca4a3b2134082c050d06fb",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "c509d6a6-20b2-4ea3-a4b9-c03c08833471",
+          "url": "https://mms.immonet.de/c/5/0/9/c509d6a6-20b2-4ea3-a4b9-c03c08833471.jpg?ci_seal=cf63dfce6a0c167273d5693d90e30a9b7abadeab",
+          "description": "Unser Team für Sie",
+          "title": "Unser Team für Sie",
+          "ariaLabel": "Unser Team für Sie"
+        },
+        {
+          "key": "01e63c42-3a87-4f34-924c-924c4949de7a",
+          "url": "https://mms.immonet.de/0/1/e/6/01e63c42-3a87-4f34-924c-924c4949de7a.jpg?ci_seal=fdf7b2f32f840107cd469bb546e18347caab3203",
+          "description": "Bewertung",
+          "title": "Bewertung",
+          "ariaLabel": "Bewertung"
+        },
+        {
+          "key": "9979e737-209a-4602-a551-cf83cc4ff88f",
+          "url": "https://mms.immonet.de/9/9/7/9/9979e737-209a-4602-a551-cf83cc4ff88f.jpg?ci_seal=98453f7b5de9bbf8ae67a62f68d0b1127e325373",
+          "description": "koblenz@vp-finance.de",
+          "title": "koblenz@vp-finance.de",
+          "ariaLabel": "koblenz@vp-finance.de"
+        },
+        {
+          "key": "c16c5e90-3115-47e5-b2d1-ae1725d4ec4c",
+          "url": "https://mms.immonet.de/c/1/6/c/c16c5e90-3115-47e5-b2d1-ae1725d4ec4c.jpg?ci_seal=1b67e830918ddf4ea3d0121456cbeb706b082f55",
+          "description": "2. Obergeschoss",
+          "title": "2. Obergeschoss",
+          "ariaLabel": "2. Obergeschoss"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "24JJLGKBR9Y1",
+      "price": 1280,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Montabaur",
+      "currency": "EUR",
+      "zip_code": "56410",
+      "building_state": "WELL_KEPT",
+      "legacy_id": "d37b7aac-c37f-4138-a61d-af1a33f1a24e",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "VON POLL IMMOBILIEN Koblenz - Florian Bender",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/top_f41fc4a482ae4776a3bc6c2e99dbc7b4.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/37670"
+      },
+      "contactCard": {
+        "title": "Team VON POLL IMMOBILIEN Montabaur",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": null
+      },
+      "website": "http://www.von-poll.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/37670",
+      "imprintUrl": "https://www.immonet.de/anbieter/37670#impressum",
+      "phoneNumbers": [
+        "+49 172 - 80 07 781"
+      ],
+      "displayLinks": true,
+      "badge": {
+        "title": "immowelt Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/partner-duo.jpg"
+      }
+    },
+    "energyClass": "A",
+    "mainDescription": {
+      "description": "In direkter Nähe zum ICE- Bahnhof und dem Style Outlet Center befindet sich dieses in hochwertiger Bauweise erstellte, barrierefreie 7- Parteienhaus. Die zu vermietende Wohnung befindet sich im 2. Obergeschoss und ist ab dem 1.8.24. <br><br>Auf ca. 116 m² Wohnfläche und 3 Zimmern genießen Sie auf einem wohl durchdachten Grundriss ein hochwertiges, modernes Ambiente. Der offene Wohn-/ Essbereich ist mit bodentiefen Fensterelementen ausgestattet und bietet den Zugang auf den ca. 20 m² großen Balkon in Süd-West- Ausrichtung. Angrenzend an den Wohnbereich finden Sie die Wohnküche sowie 2 weitere Schlafzimmer, ein modernes Badezimmer mit Badewanneund Dusche und ein Gäste- WC. Weitere Abstellfläche im eigenen, abschließbaren Kellerraum und ein gemeinschaftlicher Waschraum im Keller runden dieses city- und ICE-nahe Angebot ab. <br><br> Die Einbauküche wird mit 50 €/mtl. Aufschlag berechnet. <br><br>Alle Wohnungen und  Etagen sind bequem über einen Aufzug erreichbar. <br><br>Ausstattungsdetails:<br>- Barrierefreier Zugang in das Haus sowie in alle Wohnungen<br>- Moderne Holzparkettböden im Wohnbereich und in den Schlafzimmern<br>- Fliesen in Schieferoptik in den restlichen Räumen<br>- Video-Gegensprechanlage<br>- Gemeinschaftliche SAT- Anlage<br>- Energieeffiziente Luft-Wasser-Wärmepumpe sowie Gas-Zentralheizung in Kombination mit Fußbodenheizung, Raumthermostate <br>- 3-fach verglaste Kunststofffenster mit elektrischen Außenraffstores an der Südseite, Rest mit elektrischen Rollläden<br>- Fensterlüfter mit selbstregulierendem Außenluftauslass für freie Lüftung<br>- Glasfaser vorhanden<br><br>Ein Hausmeisterdienst (für Treppenhausreinigung, Gartenarbeiten, etc.) ist in den Nebenkosten inbegriffen. Ein Stellplatz in der Tiefgarage (75€/ mtl.) und ein Außenstellplatz (40 €/ mtl.- nach Verfügbarkeit) können separat dazu gemietet werden.",
+      "headline": "Exklusives Ambiente in Top Lage in City- und ICE-Nähe"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/d37b7aac-c37f-4138-a61d-af1a33f1a24e"
+  },
+  "243TDUVV48Z9": {
+    "brand": "immonet",
+    "id": "243TDUVV48Z9",
+    "status": "Published",
+    "metadata": {
+      "id": "243TDUVV48Z9",
+      "legacyId": "ad67fe3b-310d-4cfd-9b8e-dfed93ad422c",
+      "creationDate": "2024-06-20T20:38:06.197Z",
+      "updateDate": "2024-06-20T20:38:37.692Z"
+    },
+    "location": {
+      "address": {
+        "country": "DEU",
+        "city": "Leipzig",
+        "zipCode": "04229",
+        "street": "Weißenfelser Straße 11",
+        "district": "Plagwitz"
+      },
+      "isAddressPublished": true
+    },
+    "hardFacts": {
+      "title": "Apartment zur Miete",
+      "keyfacts": [
+        "3 Zimmer",
+        "66,5 m²",
+        "1. Geschoss"
+      ],
+      "facts": [
+        {
+          "type": "numberOfRooms",
+          "value": "3 Zimmer",
+          "splitValue": "3",
+          "label": "Zimmer"
+        },
+        {
+          "type": "livingSpace",
+          "value": "66,5 m²",
+          "splitValue": "66,5",
+          "label": "m²"
+        },
+        {
+          "type": "numberOfFloors",
+          "value": "1. Geschoss",
+          "splitValue": "1.",
+          "label": "Geschoss"
+        }
+      ],
+      "price": {
+        "value": "565 €",
+        "additionalInformation": "Kaltmiete zzgl. Nebenkosten",
+        "ariaLabel": "565 €"
+      }
+    },
+    "gallery": {
+      "images": [
+        {
+          "key": "0aaa70a2-bd47-4c31-93a3-4aa4029ae405",
+          "url": "https://mms.immonet.de/0/a/a/a/0aaa70a2-bd47-4c31-93a3-4aa4029ae405.jpg?ci_seal=3b9bf6665b17b5163a5af616a741a54033e5021b",
+          "description": "Balkon",
+          "alt": "Apartment zur Miete 565 € 3 Zimmer 66,5 m² 1. Geschoss Weißenfelser Straße 11 Plagwitz Leipzig 04229",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "152804df-2438-4bb2-b382-03248cb899cc",
+          "url": "https://mms.immonet.de/1/5/2/8/152804df-2438-4bb2-b382-03248cb899cc.jpg?ci_seal=a0d6d862df0ecab52b7ddf3957dcbc5b785a3cad",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "4b1f9543-5e7d-410f-a403-ee37c014faca",
+          "url": "https://mms.immonet.de/4/b/1/f/4b1f9543-5e7d-410f-a403-ee37c014faca.jpg?ci_seal=f5f08608054b93466b8dcd70fc791724428d1336",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "9a0156b0-c481-4b0a-8f0e-7dec1cb95fdd",
+          "url": "https://mms.immonet.de/9/a/0/1/9a0156b0-c481-4b0a-8f0e-7dec1cb95fdd.jpg?ci_seal=e181706b33af50bf58842315ecc76167c9bf5e1b",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "7a433795-3266-41e6-9431-8185999df3a3",
+          "url": "https://mms.immonet.de/7/a/4/3/7a433795-3266-41e6-9431-8185999df3a3.jpg?ci_seal=51c45f65691e9bfc2c716af3f0ff3816a647425b",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        },
+        {
+          "key": "52bb1495-bb42-48a9-be60-7b15393fc799",
+          "url": "https://mms.immonet.de/5/2/b/b/52bb1495-bb42-48a9-be60-7b15393fc799.jpg?ci_seal=a21e8883b8da9fd50e83a02ef7cd330e2327f93c",
+          "description": "Treppenhaus",
+          "title": "Treppenhaus",
+          "ariaLabel": "Treppenhaus"
+        },
+        {
+          "key": "3da86ed7-0a3e-473d-81d0-eca805bcfa59",
+          "url": "https://mms.immonet.de/3/d/a/8/3da86ed7-0a3e-473d-81d0-eca805bcfa59.jpg?ci_seal=f574810e0771521b4f3cb35c9957b943380a1c11",
+          "description": "Treppenhaus",
+          "title": "Treppenhaus",
+          "ariaLabel": "Treppenhaus"
+        },
+        {
+          "key": "530f2719-9ac4-4a2a-bc65-5791c84b6e08",
+          "url": "https://mms.immonet.de/5/3/0/f/530f2719-9ac4-4a2a-bc65-5791c84b6e08.jpg?ci_seal=8b03df4878e2239636282ecf55e646bbe6aad337",
+          "description": "Treppenhaus",
+          "title": "Treppenhaus",
+          "ariaLabel": "Treppenhaus"
+        },
+        {
+          "key": "b5fcca14-b4ff-4d69-9114-a1ae1ba2ee55",
+          "url": "https://mms.immonet.de/b/5/f/c/b5fcca14-b4ff-4d69-9114-a1ae1ba2ee55.jpg?ci_seal=c7aaa41b7f093bc9a5d1a04cf13119c2fb47c58e",
+          "description": "Balkon",
+          "title": "Balkon",
+          "ariaLabel": "Balkon"
+        },
+        {
+          "key": "350eabf0-37e0-4f22-8b9d-f79de717cd72",
+          "url": "https://mms.immonet.de/3/5/0/e/350eabf0-37e0-4f22-8b9d-f79de717cd72.jpg?ci_seal=5453fd84bfd346eeb5c57c8c60567d280816192d",
+          "description": "Treppenhaus",
+          "title": "Treppenhaus",
+          "ariaLabel": "Treppenhaus"
+        },
+        {
+          "key": "b0871f57-2059-4a2f-b182-acd76b0ac7a4",
+          "url": "https://mms.immonet.de/b/0/8/7/b0871f57-2059-4a2f-b182-acd76b0ac7a4.jpg?ci_seal=c20fcb4f28fdb893edeed52b269b40601acbe7fb",
+          "description": "Hausansicht",
+          "title": "Hausansicht",
+          "ariaLabel": "Hausansicht"
+        }
+      ]
+    },
+    "tracking": {
+      "name": "classified",
+      "list_name": "classified_detail_similars_bottom",
+      "id": "243TDUVV48Z9",
+      "price": 565,
+      "estate_type": "av_2",
+      "distribution_type": "1",
+      "country": "Germany",
+      "city": "Leipzig",
+      "currency": "EUR",
+      "zip_code": "04229",
+      "building_state": "FULLY_RENOVATED",
+      "legacy_id": "ad67fe3b-310d-4cfd-9b8e-dfed93ad422c",
+      "product_type": "standard"
+    },
+    "provider": {
+      "intermediaryCard": {
+        "title": "FeelHome Immobilien Projektentwicklung GmbH",
+        "subtitle": "Gewerblicher Anbieter",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/logo/left_75a5e398c18240ce8cf5afb01a0242cf.jpg",
+        "logoHref": "https://www.immonet.de/anbieter/40197"
+      },
+      "contactCard": {
+        "title": "Herr Sven Gebhardt",
+        "subtitle": "Dein Kontakt",
+        "display": true,
+        "logoUrl": "//filestore.immowelt.de/ProfilBilder/150_c4c6d6b445f54c6fb13206f180387a34.jpg"
+      },
+      "website": "http://www.feelhome-immo.de",
+      "isPrivateOwner": false,
+      "profileUrl": "https://www.immonet.de/anbieter/40197",
+      "imprintUrl": "https://www.immonet.de/anbieter/40197#impressum",
+      "phoneNumbers": [
+        "+49 341 6522797-0",
+        "+49 174 3455334"
+      ],
+      "rating": {
+        "rating": 4.3,
+        "reviews": 6,
+        "link": "https://www.immonet.de/anbieter/40197#reviews"
+      },
+      "displayLinks": true,
+      "badge": {
+        "title": "Platin Partner",
+        "imageUrl": "https://s.immonet.de/shared/images/partner-badges/platin-partner-duo.svg"
+      }
+    },
+    "energyClass": "C",
+    "mainDescription": {
+      "description": "Diese ansprechende 3-Zimmer-Wohnung im ersten Obergeschoss eines Gründerzeitbaus in der Weißenfelser Straße 11, 04229 Leipzig, bietet auf ca. 75 qm alles, was das Herz begehrt. Sie liegt in einem ruhigen Wohnviertel von Plagwitz, nur wenige Schritte vom idyllischen Clara-Zetkin-Park entfernt.<br><br>Beim Betreten der Wohnung gelangen Sie in eine großzügige Diele, die viel Stauraum und zwei praktische Einbauschränke bietet. Rechter Hand befindet sich die Küche, die Sie nach Ihren Vorstellungen einrichten können. Geradeaus führt der Weg in das ca. 22 qm große Wohnzimmer, das mit viel Licht und einem gepflegten Parkettboden überzeugt. Von hier aus gelangen Sie auf den 6,40 qm großen Balkon, der sich in ruhiger Lage befindet und zum Entspannen einlädt.<br><br>Linker Hand vom Flur erreichen Sie das innenliegende Badezimmer, welches mit einer Badewanne und einem Waschmaschinenanschluss ausgestattet ist. Daneben liegt das großzügige Schlafzimmer, das ebenfalls viel Platz bietet. Ein weiteres Zimmer kann individuell genutzt werden, sei es als Arbeitszimmer, Gästezimmer oder Kinderzimmer.<br><br>Diese Wohnung bietet die perfekte Kombination aus Ruhe und urbanem Leben in einem der beliebtesten Stadtteile von Leipzig. Überzeugen Sie sich selbst und vereinbaren Sie einen Besichtigungstermin!",
+      "headline": "Charmante 3-Zimmer-Wohnung im 1. Obergeschoss mit Balkon in Plagwitz Nähe Clara-Zetkin-Park!"
+    },
+    "type": "PROFESSIONAL",
+    "url": "/expose/ad67fe3b-310d-4cfd-9b8e-dfed93ad422c"
+  }
+}
