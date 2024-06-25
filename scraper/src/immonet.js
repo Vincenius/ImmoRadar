@@ -13,7 +13,7 @@ const crawler = new CheerioCrawler({
             const data = JSON.parse(rawData)
             const { page, classifiedsData } = data?.props?.pageProps?.pageProps || {}
 
-            fs.writeFileSync('./immonet_de.json', JSON.stringify(classifiedsData))
+            fs.writeFileSync('./immonet.json', JSON.stringify(classifiedsData))
         } catch (e) {
             console.error(e)
         }
@@ -34,5 +34,6 @@ const crawler = new CheerioCrawler({
 
 export const immonetCrawler = () => crawler.run([
     'https://www.immonet.de/wohnung-mieten.html',
+    // https://www.immonet.de/haus-mieten.html
 ]);
 

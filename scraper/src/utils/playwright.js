@@ -1,0 +1,45 @@
+import playwright from 'playwright'
+import { getRandomResolution, getRandomGeolocation, getRandomUseragent } from './utils.js'
+
+export const getBrowser = async (callback) => {
+    console.log('Booting Playwright...')
+    let browser;
+
+    try {
+        const USER_AGENT = getRandomUseragent();
+        const viewportSize = getRandomResolution();
+        const geolocation = getRandomGeolocation()
+
+        browser = await playwright.chromium.launch({ headless: true });
+        const context = await browser.newContext({
+            userAgent: USER_AGENT,
+            locale: 'de-DE',
+            viewport: viewportSize,
+            permissions: [], // Add any required permissions here
+            geolocation,
+            timezoneId: 'Europe/Berlin',
+        });
+        await context.addInitScript(() => {
+            Object.defineProperty(navigator, 'languages', {
+                get: () => ['de-DE', 'de', 'en-US', 'en']
+            });
+            Object.defineProperty(navigator, 'webdriver', {
+                get: () => false
+            });
+        });
+        const page = await context.newPage({ bypassCSP: true });
+        await page.setDefaultTimeout(30000);
+        await page.setViewportSize(viewportSize);
+
+        console.log('Playwright ready...')
+
+        await callback(page)
+    } catch (error) {
+        console.error("Playwright Error:", error);
+    } finally {
+        if (browser) {
+            console.log('Closing Playwright...')
+            // await browser.close();
+        }
+    }
+}

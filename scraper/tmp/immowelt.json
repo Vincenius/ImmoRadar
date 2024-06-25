@@ -1,0 +1,3103 @@
+[
+  {
+    "id": "estate_395e6d42-6dd7-417c-b738-8c935b7bd7a9",
+    "itemType": "ESTATE",
+    "gok": "395e6d42-6dd7-417c-b738-8c935b7bd7a9",
+    "locationIds": [
+      529840,
+      529870,
+      528418,
+      499985,
+      26058112,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499985,
+    "place": {
+      "point": {
+        "lat": 52.524688,
+        "lon": 13.466321,
+        "geohash": "u33df3vfkp88",
+        "fragment": true
+      },
+      "postcode": "10369",
+      "city": "Berlin",
+      "district": "Lichtenberg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Top floor bright and spacious apartment, Fhein / Fennpfhul",
+    "prices": [
+      {
+        "amountMin": 1035,
+        "amountMax": 1035,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 69,
+        "sizeMax": 69,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 69,
+      "sizeMax": 69,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1035,
+      "amountMax": 1035,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T09:30:42.707Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BARRIER_FREE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "BALCONY",
+      "TERRACE",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/595e625d-f53a-452d-8121-bfc80b1f6f38/7602dd52-bccd-41b3-8b30-ed89d8df9890/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/595e625d-f53a-452d-8121-bfc80b1f6f38/7602dd52-bccd-41b3-8b30-ed89d8df9890",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/12137b34-dbd7-4ead-8f0d-5747bda05c9d/a4689871-c7e2-493d-8d36-98daa9b15a90/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/12137b34-dbd7-4ead-8f0d-5747bda05c9d/a4689871-c7e2-493d-8d36-98daa9b15a90",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ea12b242-8937-46cd-9baf-b6e22f8c11b8/1ac2253a-05b0-4312-8372-c6ed585507fe/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/ea12b242-8937-46cd-9baf-b6e22f8c11b8/1ac2253a-05b0-4312-8372-c6ed585507fe",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/26c9eece-a717-476a-8d2c-8303de7997ef/37a9e1da-2d72-4978-9cca-5cd2813e6f44/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/26c9eece-a717-476a-8d2c-8303de7997ef/37a9e1da-2d72-4978-9cca-5cd2813e6f44",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2c9065fc-7d7e-4aa6-af73-b2bfb4bf2ae8/b83351d6-a921-4e94-8cc5-e8e66167050a/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/2c9065fc-7d7e-4aa6-af73-b2bfb4bf2ae8/b83351d6-a921-4e94-8cc5-e8e66167050a",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/00f2c273-a731-4c7b-9222-b94068e37062/a4a2e0bd-55aa-45b4-b8c1-4011e9358e64/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/00f2c273-a731-4c7b-9222-b94068e37062/a4a2e0bd-55aa-45b4-b8c1-4011e9358e64",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/834f0eae-d21e-443c-8e40-4cd976f1d646/af5a7b69-9511-4c28-ae78-b2c581166358/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/834f0eae-d21e-443c-8e40-4cd976f1d646/af5a7b69-9511-4c28-ae78-b2c581166358",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/30b0b431-04de-42a7-81a2-5823f582f551/66ccca27-ab46-4f55-9fda-7dc9b85bd4d8/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/30b0b431-04de-42a7-81a2-5823f582f551/66ccca27-ab46-4f55-9fda-7dc9b85bd4d8",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/bf5dceda-fe17-4626-8d4c-e1ecbf6c7546/5748cbbb-5497-4444-a3a5-f09a61d768eb/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/bf5dceda-fe17-4626-8d4c-e1ecbf6c7546/5748cbbb-5497-4444-a3a5-f09a61d768eb",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/613a9c43-5a8c-44eb-aba1-e9e12f561dd2/68af857b-6ec0-48ef-90c3-8cd9f46e3995/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/613a9c43-5a8c-44eb-aba1-e9e12f561dd2/68af857b-6ec0-48ef-90c3-8cd9f46e3995",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ed25c1da-f856-4ad3-ab18-2ec757317045/9e98e26e-8999-4e42-803d-e153096ed099/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/ed25c1da-f856-4ad3-ab18-2ec757317045/9e98e26e-8999-4e42-803d-e153096ed099",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/512fb274-8dcb-496e-998c-a3dfca0595b7/82862e19-4946-456f-b48b-813d4491f3da/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/512fb274-8dcb-496e-998c-a3dfca0595b7/82862e19-4946-456f-b48b-813d4491f3da",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/733b56dc-5f01-49a0-8b32-0779d84dd02b/a73dbb03-28d1-4ff0-83de-d31e853599ee/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/733b56dc-5f01-49a0-8b32-0779d84dd02b/a73dbb03-28d1-4ff0-83de-d31e853599ee",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/98718ce2-4857-4453-9f7b-007ed6218727/a80a5246-02c7-4ae1-96a4-379587616c13/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/98718ce2-4857-4453-9f7b-007ed6218727/a80a5246-02c7-4ae1-96a4-379587616c13",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/3df059c3-755c-49a6-a276-abff29fb4267/b0fd42d7-ca21-4f6c-8757-3f94b5458664/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/3df059c3-755c-49a6-a276-abff29fb4267/b0fd42d7-ca21-4f6c-8757-3f94b5458664",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2e23u5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_d675232b-1c50-4c5f-8bce-b1ffc72df55d",
+    "itemType": "ESTATE",
+    "gok": "d675232b-1c50-4c5f-8bce-b1ffc72df55d",
+    "locationIds": [
+      526610,
+      529870,
+      528418,
+      499885,
+      26058105,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499885,
+    "place": {
+      "point": {
+        "lat": 52.506279,
+        "lon": 13.310481,
+        "geohash": "u336wykrhxvf",
+        "fragment": true
+      },
+      "postcode": "10625",
+      "city": "Berlin",
+      "district": "Charlottenburg",
+      "street": "Kantstr. 122",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "Schicke 3-Zimmer Wohnung in zentraler Lage von Charlottenburg",
+    "prices": [
+      {
+        "amountMin": 1148.37,
+        "amountMax": 1148.37,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      },
+      {
+        "amountMin": 1568.37,
+        "amountMax": 1568.37,
+        "type": "RENT_INCLUDING_HEATING",
+        "currency": "EUR",
+        "attributes": []
+      },
+      {
+        "amountMin": 1148.37,
+        "amountMax": 1148.37,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 89,
+        "sizeMax": 89,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 89,
+      "sizeMax": 89,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1148.37,
+      "amountMax": 1148.37,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "constructionYear": 1918,
+    "timestamp": "2024-06-23T09:30:23.417Z",
+    "isNew": true,
+    "features": [
+      "BATH_WITH_TUB",
+      "BATH_WITH_WINDOW"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/c9aa0245-d4ea-4040-b690-99992a4b2b88/2589d50f-e98f-4f39-a656-f0bdee09ac8c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c9aa0245-d4ea-4040-b690-99992a4b2b88/2589d50f-e98f-4f39-a656-f0bdee09ac8c",
+        "description": "Hausansicht"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/3e0cb1c1-9723-410c-a1a6-1ebc414fd553/6d1bc305-5845-44e5-a76a-44652e0da0fb/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/3e0cb1c1-9723-410c-a1a6-1ebc414fd553/6d1bc305-5845-44e5-a76a-44652e0da0fb",
+        "description": "FLur"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c0886d3e-f0ec-42d6-8160-98b7bf3647ce/327c34fb-0539-4726-8a60-2763d314ceda/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c0886d3e-f0ec-42d6-8160-98b7bf3647ce/327c34fb-0539-4726-8a60-2763d314ceda",
+        "description": "Wohnzimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2d3cadd4-bee1-49f9-aca2-b57a01977ec7/00246916-ad3d-4acd-8cfe-cde6bad1feb6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2d3cadd4-bee1-49f9-aca2-b57a01977ec7/00246916-ad3d-4acd-8cfe-cde6bad1feb6",
+        "description": "Schlafzimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ca424fe6-0939-4396-b13b-f88dc16b9158/c88ef5d7-c0a3-4a36-ba7b-3a207369b9dc/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ca424fe6-0939-4396-b13b-f88dc16b9158/c88ef5d7-c0a3-4a36-ba7b-3a207369b9dc",
+        "description": "Schlafzimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f4dc5d18-e71a-447b-85fa-a025fe1ae435/9fef5c5d-7dbe-455c-82c4-02445e79b8d8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f4dc5d18-e71a-447b-85fa-a025fe1ae435/9fef5c5d-7dbe-455c-82c4-02445e79b8d8",
+        "description": "Badezimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c054f98a-9bdd-4833-8d3c-2780c2907052/02e2ad25-4416-46af-9455-12c67c73c5fe/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c054f98a-9bdd-4833-8d3c-2780c2907052/02e2ad25-4416-46af-9455-12c67c73c5fe",
+        "description": "Küche"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 53628,
+      "sellerType": "PARTNER",
+      "companyName": "Adler Group",
+      "partnerAward": "PREMIUM",
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_82312f79a6bc4f8ca63fbb03b02b8c57.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_82312f79a6bc4f8ca63fbb03b02b8c57.jpg"
+    },
+    "onlineId": "2ex2u5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_bed7993e-628f-4050-80aa-4e8ab5fb088a",
+    "itemType": "ESTATE",
+    "gok": "bed7993e-628f-4050-80aa-4e8ab5fb088a",
+    "locationIds": [
+      532760,
+      529870,
+      528418,
+      499921,
+      26058105,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499921,
+    "place": {
+      "point": {
+        "lat": 52.498759,
+        "lon": 13.300827,
+        "geohash": "u336wtj77tzr",
+        "fragment": true
+      },
+      "postcode": "10711",
+      "city": "Berlin",
+      "district": "Halensee",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "SALE",
+    "title": "?? Direkt am Kudamm - Charmante 1 Zi Balkon-Wohnung in Berliner Top-Lage",
+    "prices": [
+      {
+        "amountMin": 155000,
+        "amountMax": 155000,
+        "type": "PURCHASE_PRICE",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 31,
+        "sizeMax": 31,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 31,
+      "sizeMax": 31,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 155000,
+      "amountMax": 155000,
+      "type": "PURCHASE_PRICE",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 1,
+    "roomsMax": 1,
+    "constructionYear": 1960,
+    "timestamp": "2024-06-23T09:17:50.440Z",
+    "isNew": true,
+    "features": [
+      "LOGGIA",
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "BALCONY",
+      "RENTED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/2f9fb849-2fee-4ad6-9a83-ca512b6d05f6/507fc6e8-f420-4462-ba1c-5d60e102c6e0/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2f9fb849-2fee-4ad6-9a83-ca512b6d05f6/507fc6e8-f420-4462-ba1c-5d60e102c6e0",
+        "description": "Ansicht Haus"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/604b14e8-1c6c-4b43-833b-2cb066c67eb1/acb8cd47-fbd0-4144-a984-657841c15b78/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/604b14e8-1c6c-4b43-833b-2cb066c67eb1/acb8cd47-fbd0-4144-a984-657841c15b78",
+        "description": "Ansicht Haus"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/42ee1561-4e1c-4b26-aa60-6e11a8d02a36/d85503b3-16f4-4dda-bc46-26a105f3390b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/42ee1561-4e1c-4b26-aa60-6e11a8d02a36/d85503b3-16f4-4dda-bc46-26a105f3390b",
+        "description": "Ansicht Haus"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ef428419-3995-4e9c-9bba-c27257774dcc/27f909fa-417f-4a29-9e5a-466d7ff017f8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ef428419-3995-4e9c-9bba-c27257774dcc/27f909fa-417f-4a29-9e5a-466d7ff017f8",
+        "description": "Ansicht Dach"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f0a5f0e9-a6c3-4428-ae1b-57865022744d/79c2e5d6-e047-4db7-a0f0-947512fad7cf/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f0a5f0e9-a6c3-4428-ae1b-57865022744d/79c2e5d6-e047-4db7-a0f0-947512fad7cf",
+        "description": "Wohnzimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/8d3e6741-9560-4a30-976f-533270760b9d/13452e66-b711-4d71-8b5c-ea2af5141a4a/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/8d3e6741-9560-4a30-976f-533270760b9d/13452e66-b711-4d71-8b5c-ea2af5141a4a",
+        "description": "IMMODO - Individuell finanziert, persönlich betreut"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c05b4090-de4a-4a01-84be-ebd2fbcc2f14/0798c262-0ca3-4060-b4f0-26b789c30d62/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c05b4090-de4a-4a01-84be-ebd2fbcc2f14/0798c262-0ca3-4060-b4f0-26b789c30d62",
+        "description": "IMMODO - Ihr Immobilienprofi in Berlin"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 5859268,
+      "sellerType": "PARTNER",
+      "companyName": "IMMODO Berlin",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_9a7d2921f0c142b68b968fec589b1141.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_9a7d2921f0c142b68b968fec589b1141.jpg"
+    },
+    "onlineId": "2esst5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_6c7de4e6-0e55-4bc2-91a0-c7851c5325c6",
+    "itemType": "ESTATE",
+    "gok": "6c7de4e6-0e55-4bc2-91a0-c7851c5325c6",
+    "locationIds": [
+      524845,
+      529870,
+      528418,
+      499983,
+      26058103,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499983,
+    "place": {
+      "point": {
+        "lat": 52.499493,
+        "lon": 13.445342,
+        "geohash": "u33d9vnxenvd",
+        "fragment": true
+      },
+      "postcode": "10997",
+      "city": "Berlin",
+      "district": "Kreuzberg",
+      "street": "schlesische strasse ",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "3 Zimmer in Kreuzberg",
+    "prices": [
+      {
+        "amountMin": 1657.1,
+        "amountMax": 1657.1,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      },
+      {
+        "amountMin": 1800,
+        "amountMax": 1800,
+        "type": "RENT_INCLUDING_HEATING",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 75,
+        "sizeMax": 75,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 75,
+      "sizeMax": 75,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1657.1,
+      "amountMax": 1657.1,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "constructionYear": 1899,
+    "timestamp": "2024-06-23T09:17:43.067Z",
+    "isNew": true,
+    "features": [
+      "RENOVATED",
+      "OLD_BUILDING",
+      "PARTLY_FURNISHED",
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/dd9f799b-c38d-414d-a42e-b9d9f78fe8d7/f2f7dfd1-6b88-48ea-811c-df898bc42765/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/dd9f799b-c38d-414d-a42e-b9d9f78fe8d7/f2f7dfd1-6b88-48ea-811c-df898bc42765",
+        "description": "IMG_7348.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d15a7464-a62d-4116-8b5f-a342717f9281/903cedd6-35c5-43d4-8576-d573c6da3a9f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d15a7464-a62d-4116-8b5f-a342717f9281/903cedd6-35c5-43d4-8576-d573c6da3a9f",
+        "description": "IMG_7350.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/3a404ac3-e565-4cca-98eb-f025325f225d/8b9ac7c7-9897-44fe-8f1e-59f22bb4856b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/3a404ac3-e565-4cca-98eb-f025325f225d/8b9ac7c7-9897-44fe-8f1e-59f22bb4856b",
+        "description": "IMG_7355.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/25bc4600-b5b2-4090-8724-abf1a4bd64eb/b93e4b45-db16-4e32-8dd5-dd8bfd5f5c22/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/25bc4600-b5b2-4090-8724-abf1a4bd64eb/b93e4b45-db16-4e32-8dd5-dd8bfd5f5c22",
+        "description": "IMG_7351.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/7926fc2b-a6da-4bda-862f-3afeb10dfe26/2066a598-4039-4e03-9f4d-d212f433d7a8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/7926fc2b-a6da-4bda-862f-3afeb10dfe26/2066a598-4039-4e03-9f4d-d212f433d7a8",
+        "description": "IMG_7352.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/fd0b6c85-50bd-461a-8ca4-687e33820733/21fbcbe5-47eb-41f2-b3dc-9a874929e90d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/fd0b6c85-50bd-461a-8ca4-687e33820733/21fbcbe5-47eb-41f2-b3dc-9a874929e90d",
+        "description": "IMG_7357.jpeg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/46805103-d91e-454b-95c5-147f93872cf1/4a82d4c3-11d0-4d48-bc53-33608fd6247e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/46805103-d91e-454b-95c5-147f93872cf1/4a82d4c3-11d0-4d48-bc53-33608fd6247e",
+        "description": "IMG_7358.jpeg"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 10145152,
+      "sellerType": "EAZ_PRIVATE",
+      "companyName": "",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "",
+      "logoUriHttps": "https:"
+    },
+    "onlineId": "2eqst5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_b4d85d97-a356-4f1d-ab41-69c33c4bce89",
+    "itemType": "ESTATE",
+    "gok": "b4d85d97-a356-4f1d-ab41-69c33c4bce89",
+    "locationIds": [
+      531701,
+      529870,
+      528418,
+      500030,
+      26058108,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500030,
+    "place": {
+      "point": {
+        "lat": 52.456608,
+        "lon": 13.419741,
+        "geohash": "u33d3m7vyskp",
+        "fragment": true
+      },
+      "postcode": "12099",
+      "city": "Berlin",
+      "district": "Tempelhof",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 1.5Zi Wohnung nähe von Hermannstr. gegen Einzelzimmerwohnung",
+    "prices": [
+      {
+        "amountMin": 816,
+        "amountMax": 816,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 56,
+        "sizeMax": 56,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 56,
+      "sizeMax": 56,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 816,
+      "amountMax": 816,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 1.5,
+    "roomsMax": 1.5,
+    "timestamp": "2024-06-23T08:51:21.710Z",
+    "isNew": true,
+    "features": [
+      "GARDEN",
+      "GROUND_FLOOR",
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/252182f3-9529-4c04-bb93-7572c8d974ad/32cb88b7-e14a-4405-b9ec-ffeb01b4cf75/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/252182f3-9529-4c04-bb93-7572c8d974ad/32cb88b7-e14a-4405-b9ec-ffeb01b4cf75",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f299bbd0-15e7-48f7-a2b8-72828235421b/3fba9228-b929-4f39-8a41-436ee883feea/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f299bbd0-15e7-48f7-a2b8-72828235421b/3fba9228-b929-4f39-8a41-436ee883feea",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f3aca27d-e337-43e0-8f3f-ab39a09191c7/80685fa3-0f10-4896-beed-23bb1326f90f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f3aca27d-e337-43e0-8f3f-ab39a09191c7/80685fa3-0f10-4896-beed-23bb1326f90f",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/b570bf90-3cc3-4e56-bacc-182c8b1c242f/7fc204c7-96ea-4737-9a47-1b4e2cddfed6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/b570bf90-3cc3-4e56-bacc-182c8b1c242f/7fc204c7-96ea-4737-9a47-1b4e2cddfed6",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4b8cac0d-3f34-4ce9-bcb6-712dbb0188c8/8f4d59ab-a46a-4a8f-9c34-4452aaba149e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4b8cac0d-3f34-4ce9-bcb6-712dbb0188c8/8f4d59ab-a46a-4a8f-9c34-4452aaba149e",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e01a9339-e255-45c1-8240-3794f67555bf/46fb9eba-918c-419d-8457-6b10e47115cd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e01a9339-e255-45c1-8240-3794f67555bf/46fb9eba-918c-419d-8457-6b10e47115cd",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d6ea1281-42f0-4b43-a427-cf107f5cf50a/4d683cb7-6c0f-45fa-ac57-bf91022b4466/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d6ea1281-42f0-4b43-a427-cf107f5cf50a/4d683cb7-6c0f-45fa-ac57-bf91022b4466",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e5402d28-ab90-4004-b657-30ccde7cc4bf/fb7a728e-88ec-4301-9544-7f87bdbc1e5a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e5402d28-ab90-4004-b657-30ccde7cc4bf/fb7a728e-88ec-4301-9544-7f87bdbc1e5a",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ce63dc5a-9008-4dc4-8f92-5bbf90525fa9/b66d8a4b-f6ba-4456-8850-210622eab937/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ce63dc5a-9008-4dc4-8f92-5bbf90525fa9/b66d8a4b-f6ba-4456-8850-210622eab937",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0cee3f16-8706-45a6-ba8f-5581e87d3ece/96e7116a-205a-4663-86bc-0c0cf99fc077/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0cee3f16-8706-45a6-ba8f-5581e87d3ece/96e7116a-205a-4663-86bc-0c0cf99fc077",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/690e90ab-3fe7-433e-b7ed-340e22eb1ab4/98084fb4-c15c-424c-a330-6edcc55a3497/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/690e90ab-3fe7-433e-b7ed-340e22eb1ab4/98084fb4-c15c-424c-a330-6edcc55a3497",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/18b9cd60-ae60-44be-8711-c9d942371955/c179ea26-0852-42b5-ab25-45a0b95c1254/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/18b9cd60-ae60-44be-8711-c9d942371955/c179ea26-0852-42b5-ab25-45a0b95c1254",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/404f3f90-cea2-4bf5-bd38-800503121ce3/f521b1d8-1ffa-4d26-acfe-95055583df2d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/404f3f90-cea2-4bf5-bd38-800503121ce3/f521b1d8-1ffa-4d26-acfe-95055583df2d",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/57138ee3-3e1c-4fde-8b97-5ccf354a60ca/0b183289-fabd-414e-87b2-77be735603ba/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/57138ee3-3e1c-4fde-8b97-5ccf354a60ca/0b183289-fabd-414e-87b2-77be735603ba",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/700cec89-e23a-4efc-9699-89bb44b1f679/bba9979a-634d-4937-ab50-4cbf50e6cfb4/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/700cec89-e23a-4efc-9699-89bb44b1f679/bba9979a-634d-4937-ab50-4cbf50e6cfb4",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2e9rt5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_0f4542c6-855a-4c06-aa6d-1df8c2a6ab3b",
+    "itemType": "ESTATE",
+    "gok": "0f4542c6-855a-4c06-aa6d-1df8c2a6ab3b",
+    "locationIds": [
+      525772,
+      529870,
+      528418,
+      500004,
+      26058109,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500004,
+    "place": {
+      "point": {
+        "lat": 52.465225,
+        "lon": 13.433043,
+        "geohash": "u33d3xj8hdfc",
+        "fragment": true
+      },
+      "postcode": "12051",
+      "city": "Berlin",
+      "district": "Neukölln",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Exklusive Stadtwohnung im Herzen von Neukölln",
+    "prices": [
+      {
+        "amountMin": 680,
+        "amountMax": 680,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 90,
+        "sizeMax": 90,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 90,
+      "sizeMax": 90,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 680,
+      "amountMax": 680,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "timestamp": "2024-06-23T08:50:57.483Z",
+    "isNew": true,
+    "features": [
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "BALCONY",
+      "TERRACE"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/d07f8253-28fe-4e62-87af-aa87ac036943/3b81c0db-3e51-4eb7-a43a-3c5864869e6b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d07f8253-28fe-4e62-87af-aa87ac036943/3b81c0db-3e51-4eb7-a43a-3c5864869e6b",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/08f6c66a-5124-4f1b-987a-123fa6a090d0/a1c70bde-84b7-4085-88e2-60fa2d2a13d0/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/08f6c66a-5124-4f1b-987a-123fa6a090d0/a1c70bde-84b7-4085-88e2-60fa2d2a13d0",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f22ed43d-3ade-4238-a724-147902058cdd/466b51f7-402a-42a5-aa32-0fc17afee567/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f22ed43d-3ade-4238-a724-147902058cdd/466b51f7-402a-42a5-aa32-0fc17afee567",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/515c327b-6f5d-4f57-b684-e819792ee41e/f32ed9ab-d1ad-4608-9d0c-c698982f6610/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/515c327b-6f5d-4f57-b684-e819792ee41e/f32ed9ab-d1ad-4608-9d0c-c698982f6610",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/177983fb-a1e8-4163-b9e0-0c0d0ef864b3/a7635ef0-da71-4f08-816b-0b24d6b550c8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/177983fb-a1e8-4163-b9e0-0c0d0ef864b3/a7635ef0-da71-4f08-816b-0b24d6b550c8",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c1b16de0-418f-4d58-aa4a-d12c9841244c/91fc8b83-25a0-4b67-8f5c-ce231f318a9f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c1b16de0-418f-4d58-aa4a-d12c9841244c/91fc8b83-25a0-4b67-8f5c-ce231f318a9f",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/97e3a94a-929f-4275-a1d8-8eeefb21d358/04a5f32a-82a1-446a-8da7-ba77651eb91a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/97e3a94a-929f-4275-a1d8-8eeefb21d358/04a5f32a-82a1-446a-8da7-ba77651eb91a",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0fe32127-c83c-436f-87ec-5221e3d33ed9/cfe3b27f-9212-42e2-bbc6-1bb97bf59d7e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0fe32127-c83c-436f-87ec-5221e3d33ed9/cfe3b27f-9212-42e2-bbc6-1bb97bf59d7e",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6b01fb10-44dd-464e-b6cf-710a07069d0d/7436642e-2da7-47ac-a4ea-8d9eec486134/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6b01fb10-44dd-464e-b6cf-710a07069d0d/7436642e-2da7-47ac-a4ea-8d9eec486134",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e94789d4-802a-45fe-aa0f-41c6f23604e9/9bd8d068-d596-470c-a696-dc00c42bc14e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e94789d4-802a-45fe-aa0f-41c6f23604e9/9bd8d068-d596-470c-a696-dc00c42bc14e",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c9beeac2-9a51-4197-8dfa-dc893f619972/0a36a2a0-1bbf-4c54-a8de-7a93e81817fd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c9beeac2-9a51-4197-8dfa-dc893f619972/0a36a2a0-1bbf-4c54-a8de-7a93e81817fd",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4b881078-e37b-4e17-a0d2-b296a5254aea/317e585c-fae3-4e8c-9452-7a6463c7fac8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4b881078-e37b-4e17-a0d2-b296a5254aea/317e585c-fae3-4e8c-9452-7a6463c7fac8",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/233de550-a561-42a7-a875-94ad0de6cf3e/2c5eba62-7dc0-43fa-8467-1fffdb2867f9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/233de550-a561-42a7-a875-94ad0de6cf3e/2c5eba62-7dc0-43fa-8467-1fffdb2867f9",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4494701e-9e3c-4917-90f1-874e6cf61316/bf08f2fc-25bf-402d-ba73-cbbff59b670a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4494701e-9e3c-4917-90f1-874e6cf61316/bf08f2fc-25bf-402d-ba73-cbbff59b670a",
+        "description": "Bild 14"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2e6rt5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_cc93e3dc-deab-47a1-abfe-6bde90e5caf8",
+    "itemType": "ESTATE",
+    "gok": "cc93e3dc-deab-47a1-abfe-6bde90e5caf8",
+    "locationIds": [
+      523030,
+      529870,
+      528418,
+      500045,
+      26058105,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500045,
+    "place": {
+      "point": {
+        "lat": 52.484867,
+        "lon": 13.334949,
+        "geohash": "u336x6w4wb6d",
+        "fragment": true
+      },
+      "postcode": "10715",
+      "city": "Berlin",
+      "district": "Wilmersdorf",
+      "street": "Babelsbergerstr.",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "Tolle 2 Zimmer Wohnung voll möbliert",
+    "prices": [
+      {
+        "amountMin": 1490,
+        "amountMax": 1490,
+        "type": "RENT_INCLUDING_HEATING",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 63,
+        "sizeMax": 63,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 63,
+      "sizeMax": 63,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1490,
+      "amountMax": 1490,
+      "type": "RENT_INCLUDING_HEATING",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T08:46:23.170Z",
+    "isNew": true,
+    "features": [
+      "OLD_BUILDING",
+      "FULLY_FURNISHED",
+      "BATH_WITH_WINDOW",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "AVAILABLE_FOR_RENT"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/d2c190cf-7714-465b-b37a-00fd92c0e037/b044aee9-cddb-407f-9a09-72560a3b6e46/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d2c190cf-7714-465b-b37a-00fd92c0e037/b044aee9-cddb-407f-9a09-72560a3b6e46",
+        "description": "IMG_20200601_131001.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/db70277c-44b7-4b14-bb0d-23e80e42ec54/2a3ba76b-40b6-407e-8f98-207a1f6ea332/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/db70277c-44b7-4b14-bb0d-23e80e42ec54/2a3ba76b-40b6-407e-8f98-207a1f6ea332",
+        "description": "20210217_170343.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d7a0a853-5f3b-4efd-b870-cce285cdb4d3/5b2f93f5-f7cc-471d-844d-4b4955a4ee1e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d7a0a853-5f3b-4efd-b870-cce285cdb4d3/5b2f93f5-f7cc-471d-844d-4b4955a4ee1e",
+        "description": "20210217_170429.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/abc81452-f951-42bd-ba94-9338898f94b7/1245ee82-bede-452f-b02c-bd9889117442/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/abc81452-f951-42bd-ba94-9338898f94b7/1245ee82-bede-452f-b02c-bd9889117442",
+        "description": "20210217_170737.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e40fed6a-964c-474d-97d0-6a72c3988413/dea6a0dd-c26d-4624-a45e-e4f4f4d5376a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e40fed6a-964c-474d-97d0-6a72c3988413/dea6a0dd-c26d-4624-a45e-e4f4f4d5376a",
+        "description": "20210217_170948.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/3e7293dd-ef51-4c7d-aef4-e8c10a9be3de/fab44914-1197-442f-baca-468f48dc4878/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/3e7293dd-ef51-4c7d-aef4-e8c10a9be3de/fab44914-1197-442f-baca-468f48dc4878",
+        "description": "20210217_170243.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/451d8fb1-6901-4f0a-9963-08b132dd5359/5b46782d-bffb-4f3b-9a26-77242fdfdb40/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/451d8fb1-6901-4f0a-9963-08b132dd5359/5b46782d-bffb-4f3b-9a26-77242fdfdb40",
+        "description": "IMG_3629.JPG"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d05b0c21-6ccd-480f-985a-56ef1350072c/64076659-4cce-4bbe-8fc7-d4afec2460d3/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d05b0c21-6ccd-480f-985a-56ef1350072c/64076659-4cce-4bbe-8fc7-d4afec2460d3",
+        "description": "Bad 1.JPG"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/50f42cf8-6ee1-4ea1-97a3-dd2f03d27e21/646bdd33-4d46-4140-baf4-c7677c174a26/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/50f42cf8-6ee1-4ea1-97a3-dd2f03d27e21/646bdd33-4d46-4140-baf4-c7677c174a26",
+        "description": "20210217_171011.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4cbf8ae0-fb07-469d-94bf-15d2590d16d9/09a3cf9d-1669-4d24-b84d-fd0a39e8f05a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4cbf8ae0-fb07-469d-94bf-15d2590d16d9/09a3cf9d-1669-4d24-b84d-fd0a39e8f05a",
+        "description": "20210217_171225.jpg"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d33a6527-8b73-4cd5-bf44-056b79f5a958/c98a7550-70cb-4bc8-bb51-448e5fbae37c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d33a6527-8b73-4cd5-bf44-056b79f5a958/c98a7550-70cb-4bc8-bb51-448e5fbae37c",
+        "description": "EPSON003.JPG"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 1656263,
+      "sellerType": "EAZ_PRIVATE",
+      "companyName": "",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "",
+      "logoUriHttps": "https:"
+    },
+    "onlineId": "2etqt5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_0b0d37a6-ce8b-46af-ab81-59b3accf1413",
+    "itemType": "ESTATE",
+    "gok": "0b0d37a6-ce8b-46af-ab81-59b3accf1413",
+    "locationIds": [
+      531005,
+      529870,
+      528418,
+      500000,
+      26058102,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500000,
+    "place": {
+      "point": {
+        "lat": 52.530457,
+        "lon": 13.349127,
+        "geohash": "u336zfbs14yt",
+        "fragment": true
+      },
+      "postcode": "10559",
+      "city": "Berlin",
+      "district": "Moabit",
+      "street": "Birkenstraße 12A",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "SALE",
+    "title": "38 m² große 2-Zimmer-Neubauwohnung mit Balkon in Berlin-Moabit - Rohbau fertig!",
+    "prices": [
+      {
+        "amountMin": 338000,
+        "amountMax": 338000,
+        "type": "PURCHASE_PRICE",
+        "currency": "EUR",
+        "attributes": []
+      },
+      {
+        "amountMin": 8895,
+        "amountMax": 8895,
+        "type": "SQUARE_METER_PRICE",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 38,
+        "sizeMax": 38,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 38,
+      "sizeMax": 38,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 338000,
+      "amountMax": 338000,
+      "type": "PURCHASE_PRICE",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "constructionYear": 2025,
+    "timestamp": "2024-06-23T08:44:20.553Z",
+    "isNew": true,
+    "features": [
+      "NEW_BUILDING",
+      "GARDEN_SHARED",
+      "CELLAR_SHARE",
+      "BARRIER_FREE",
+      "PASSENGER_LIFT",
+      "BALCONY",
+      "AVAILABLE_FOR_RENT"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/8296d075-d7a8-4e07-b727-fa7cb52fd61c/4b14f4fb-8efb-45f9-bd8f-ab4e21bfec37/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/8296d075-d7a8-4e07-b727-fa7cb52fd61c/4b14f4fb-8efb-45f9-bd8f-ab4e21bfec37",
+        "description": "Baustelle"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/8ec708a0-3bc5-4662-ba30-4f83cedde2bd/5fa0c0c5-4025-40d1-95a4-34031f966ff8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/8ec708a0-3bc5-4662-ba30-4f83cedde2bd/5fa0c0c5-4025-40d1-95a4-34031f966ff8",
+        "description": "Wohn-Ess-Bereich"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/82c1cd6d-f970-424e-873b-1325e1f69da2/4797c635-ca5f-47b2-960a-408b11061c91/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/82c1cd6d-f970-424e-873b-1325e1f69da2/4797c635-ca5f-47b2-960a-408b11061c91",
+        "description": "Bad"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f930073e-7e29-4f21-b59f-f4b227ad4153/0c3da5da-818f-4b9c-b937-a0307c40b364/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f930073e-7e29-4f21-b59f-f4b227ad4153/0c3da5da-818f-4b9c-b937-a0307c40b364",
+        "description": "Fassade"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c8c156ad-4f93-41bf-b4fd-0a022d17e934/2ef1da09-23bf-4b4f-adef-4e4bfe4aae31/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c8c156ad-4f93-41bf-b4fd-0a022d17e934/2ef1da09-23bf-4b4f-adef-4e4bfe4aae31",
+        "description": "Grundriss 2-Zimmer links.jpg"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8042033,
+      "sellerType": "PARTNER",
+      "companyName": "SeG Kapital VV GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_22245bb875fc4787a1a745cef365e947.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_22245bb875fc4787a1a745cef365e947.jpg"
+    },
+    "onlineId": "2epqt5v",
+    "relatedItems": [
+      {
+        "itemType": "PROJECT",
+        "onlineId": "k2lm832",
+        "gok": null,
+        "projectId": "6771",
+        "title": "Neubau-Mikroapartments in ruhiger Hoflage nahe Europacity",
+        "roomsMin": null,
+        "roomsMax": null,
+        "primaryPrice": null,
+        "primaryArea": null,
+        "features": null
+      }
+    ],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_d9ff20d5-7949-441c-9155-41cdda2a4bef",
+    "itemType": "ESTATE",
+    "gok": "d9ff20d5-7949-441c-9155-41cdda2a4bef",
+    "locationIds": [
+      522516,
+      529870,
+      528418,
+      499908,
+      26058103,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499908,
+    "place": {
+      "point": {
+        "lat": 52.511482,
+        "lon": 13.464614,
+        "geohash": "u33ddrkts1xz",
+        "fragment": true
+      },
+      "postcode": "10249",
+      "city": "Berlin",
+      "district": "Friedrichshain",
+      "street": "Kinzigstr. 41",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "Traumhaft schönes DG mit Einbauküche und Terrasse",
+    "prices": [
+      {
+        "amountMin": 2176,
+        "amountMax": 2176,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 80,
+        "sizeMax": 80,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 80,
+      "sizeMax": 80,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 2176,
+      "amountMax": 2176,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "constructionYear": 2023,
+    "timestamp": "2024-06-23T08:40:01.530Z",
+    "isNew": true,
+    "features": [
+      "FIRST_TIME_USE",
+      "PARTLY_AIR_CONDITIONED",
+      "ATTIC",
+      "BATH_WITH_TUB",
+      "BATH_WITH_WINDOW",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "TERRACE",
+      "AVAILABLE_FOR_RENT"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/1579c060-2996-4da5-bf84-48137d3730fb/8ab802c9-4778-4217-a0b1-8e7f46455f3e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/1579c060-2996-4da5-bf84-48137d3730fb/8ab802c9-4778-4217-a0b1-8e7f46455f3e",
+        "description": "Hausansicht"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c236e297-4d94-44ff-854f-53fef433aace/51b181ca-4cf6-4172-9e7e-8b23381f542d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c236e297-4d94-44ff-854f-53fef433aace/51b181ca-4cf6-4172-9e7e-8b23381f542d",
+        "description": "Der Flur"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/748baca4-e1bc-49a5-9764-a675908c1200/60497967-72c5-4e0f-af4d-8bf94bbb8930/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/748baca4-e1bc-49a5-9764-a675908c1200/60497967-72c5-4e0f-af4d-8bf94bbb8930",
+        "description": "Küche linke Seite"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a18fa212-6e6b-44c4-aa96-951091aee29f/40287aeb-22a0-40bb-967b-7170dd0e3ba1/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a18fa212-6e6b-44c4-aa96-951091aee29f/40287aeb-22a0-40bb-967b-7170dd0e3ba1",
+        "description": "Küche rechte Seite"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c0c446fc-e7f0-4e9b-85bc-803f6cbd2422/779c1662-fe6c-453d-b630-4ba9a674b195/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c0c446fc-e7f0-4e9b-85bc-803f6cbd2422/779c1662-fe6c-453d-b630-4ba9a674b195",
+        "description": "Der Eßbereich"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ec111081-2bc4-49f3-b548-50d15832f710/7382fceb-81f7-404b-a5c9-155aeab6521a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ec111081-2bc4-49f3-b548-50d15832f710/7382fceb-81f7-404b-a5c9-155aeab6521a",
+        "description": "Die Terrasse"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/882ada44-5428-4d15-8243-d2a5e26b5e7d/29cf203d-749b-42d6-8bb6-977d6f13c897/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/882ada44-5428-4d15-8243-d2a5e26b5e7d/29cf203d-749b-42d6-8bb6-977d6f13c897",
+        "description": "Die Zimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/87b42f61-c6b6-432e-bf44-74c4d0a298dc/ff440298-c8b4-491d-8403-975d25f28b12/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/87b42f61-c6b6-432e-bf44-74c4d0a298dc/ff440298-c8b4-491d-8403-975d25f28b12",
+        "description": "Die Badewanne"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/82ec5590-d9a9-4080-8e24-58ce4cb4463b/6958fa35-29d9-4e61-9b5b-fc38324882cb/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/82ec5590-d9a9-4080-8e24-58ce4cb4463b/6958fa35-29d9-4e61-9b5b-fc38324882cb",
+        "description": "Der Waschbereich"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/1e3cd05d-980b-42e6-8af5-8a6f470de518/af9e12bb-573f-4ee8-a896-3498cd605bc2/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/1e3cd05d-980b-42e6-8af5-8a6f470de518/af9e12bb-573f-4ee8-a896-3498cd605bc2",
+        "description": "Der Waschmaschinenplatz"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 1769266,
+      "sellerType": "PARTNER",
+      "companyName": "Christiane Schweizer Immobilien",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_c58cb3b2b5cb4d9e8ee1cc4170081238.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_c58cb3b2b5cb4d9e8ee1cc4170081238.jpg"
+    },
+    "onlineId": "2ecqt5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_720486f8-bdc6-4206-94cb-32208585e6e2",
+    "itemType": "ESTATE",
+    "gok": "720486f8-bdc6-4206-94cb-32208585e6e2",
+    "locationIds": [
+      527819,
+      529870,
+      528418,
+      500028,
+      26058107,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500028,
+    "place": {
+      "point": {
+        "lat": 52.452837,
+        "lon": 13.348007,
+        "geohash": "u336rsxxzje2",
+        "fragment": true
+      },
+      "postcode": "12169",
+      "city": "Berlin",
+      "district": "Steglitz",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "SALE",
+    "title": "***Steglitz/nähe S-Bhf-Südende! 3-Zi-bezugsfrei/renovierungsbedürftig! Hell, gute Infrastruktur***",
+    "prices": [
+      {
+        "amountMin": 298000,
+        "amountMax": 298000,
+        "type": "PURCHASE_PRICE",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 65.38,
+        "sizeMax": 65.38,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 65.38,
+      "sizeMax": 65.38,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 298000,
+      "amountMax": 298000,
+      "type": "PURCHASE_PRICE",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "constructionYear": 1957,
+    "timestamp": "2024-06-23T08:12:18.543Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/6ba0dd86-edce-4c51-a806-b720aa1669f1/d695a2ba-a60b-47b1-8898-2152d73d35f5/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6ba0dd86-edce-4c51-a806-b720aa1669f1/d695a2ba-a60b-47b1-8898-2152d73d35f5",
+        "description": "Hausansicht_ (1)"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/23ab1816-7150-465a-b6c4-b7661c3f920d/4b933d19-ba4e-4eff-ab5c-3981b2eba4ce/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/23ab1816-7150-465a-b6c4-b7661c3f920d/4b933d19-ba4e-4eff-ab5c-3981b2eba4ce",
+        "description": "Raum_2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/015546dd-8802-4ffb-a131-c5c591d9ff60/bb64300f-4006-40fd-9f7d-34ee9921c9c7/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/015546dd-8802-4ffb-a131-c5c591d9ff60/bb64300f-4006-40fd-9f7d-34ee9921c9c7",
+        "description": "Balkon_ (1)"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/592b41e7-6457-4689-9f38-aec26e4adb2d/d081967b-8876-404a-ab3f-e7b98596058e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/592b41e7-6457-4689-9f38-aec26e4adb2d/d081967b-8876-404a-ab3f-e7b98596058e",
+        "description": "Raum_1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4fb0893e-5c54-41dc-84a4-6493bfdade29/af81ff3a-f16e-4316-86af-d177e9b4db04/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4fb0893e-5c54-41dc-84a4-6493bfdade29/af81ff3a-f16e-4316-86af-d177e9b4db04",
+        "description": "Raum_3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/8e55b8ba-b91f-4c22-b8a3-8fc491a202a0/5706643d-2f3a-4cfd-b11d-6f3308b26d5d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/8e55b8ba-b91f-4c22-b8a3-8fc491a202a0/5706643d-2f3a-4cfd-b11d-6f3308b26d5d",
+        "description": "Diele"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0857f1f8-1594-41e6-b46d-2081e9b950ae/4cc27309-f86c-4828-8fb0-90de8aab6643/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0857f1f8-1594-41e6-b46d-2081e9b950ae/4cc27309-f86c-4828-8fb0-90de8aab6643",
+        "description": "Bad_ (1)"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/db4383ac-30ba-43ec-80f2-5eea4527dd92/701d88e2-3789-4b35-acbf-e98549fa6253/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/db4383ac-30ba-43ec-80f2-5eea4527dd92/701d88e2-3789-4b35-acbf-e98549fa6253",
+        "description": "Küche"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/56d740c7-6b27-4f39-9f3a-2a8aabcf5668/b0485f14-2161-43c8-93d9-9e4dfacf38f0/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/56d740c7-6b27-4f39-9f3a-2a8aabcf5668/b0485f14-2161-43c8-93d9-9e4dfacf38f0",
+        "description": "Grundriss"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a63c37e2-8de4-47f6-a98d-fab620a86a3c/e71303a0-9465-4438-acbe-fca4fb08c364/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a63c37e2-8de4-47f6-a98d-fab620a86a3c/e71303a0-9465-4438-acbe-fca4fb08c364",
+        "description": "Hausansicht_ (3)"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e69e0de9-e445-40d3-b36f-cb87406bd781/2cc6a41a-d7cd-4958-9d35-b4443d7974a2/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e69e0de9-e445-40d3-b36f-cb87406bd781/2cc6a41a-d7cd-4958-9d35-b4443d7974a2",
+        "description": "Straße_ (2)"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 557312,
+      "sellerType": "PARTNER",
+      "companyName": "Haus- &amp; Grundbesitzverwaltung Heide",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_7facaa9635aa49d381be3578919b2d50.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_7facaa9635aa49d381be3578919b2d50.jpg"
+    },
+    "onlineId": "2ekht5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_840d790c-b6e1-419e-a986-f8e47ec636da",
+    "itemType": "ESTATE",
+    "gok": "840d790c-b6e1-419e-a986-f8e47ec636da",
+    "locationIds": [
+      530051,
+      529870,
+      528418,
+      499902,
+      26058109,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499902,
+    "place": {
+      "point": {
+        "lat": 52.465636,
+        "lon": 13.446008,
+        "geohash": "u33d3zp46xqj",
+        "fragment": true
+      },
+      "postcode": "12347",
+      "city": "Berlin",
+      "district": "Britz",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 2 Zimmer Wohnung im ruhigen neuköllner Viertel",
+    "prices": [
+      {
+        "amountMin": 438,
+        "amountMax": 438,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 61,
+        "sizeMax": 61,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 61,
+      "sizeMax": 61,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 438,
+      "amountMax": 438,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T08:10:58.047Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "PASSENGER_LIFT",
+      "BALCONY",
+      "TERRACE",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/2b3bcb3c-ebd7-436b-9235-ae1cdae5aacb/820cae5a-b95a-4144-8ff8-5dd266a0c7ed/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2b3bcb3c-ebd7-436b-9235-ae1cdae5aacb/820cae5a-b95a-4144-8ff8-5dd266a0c7ed",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6013e7ee-5168-4ead-bd81-be4ef357a48b/08ee9a78-6b8c-479a-bd03-2cd0a28b8a0e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6013e7ee-5168-4ead-bd81-be4ef357a48b/08ee9a78-6b8c-479a-bd03-2cd0a28b8a0e",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ce0183f2-52dd-4af2-9a07-2ffcf015ca34/77e9a925-c625-4491-9e63-a743db6009bf/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ce0183f2-52dd-4af2-9a07-2ffcf015ca34/77e9a925-c625-4491-9e63-a743db6009bf",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/b4601a79-e6d4-4ca0-b5fd-eb1737dbb368/0ea1b353-3be7-4298-8813-05c87b5e5070/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/b4601a79-e6d4-4ca0-b5fd-eb1737dbb368/0ea1b353-3be7-4298-8813-05c87b5e5070",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/60b8c4ae-07bd-410c-b2cd-e6d84b99a141/5384befd-5ef1-4337-a4bb-9c5adde8a01f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/60b8c4ae-07bd-410c-b2cd-e6d84b99a141/5384befd-5ef1-4337-a4bb-9c5adde8a01f",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/b735b5c0-a2e5-4d09-aa34-e42f284425be/3b6985fb-6034-40af-8c93-cde3a3150f22/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/b735b5c0-a2e5-4d09-aa34-e42f284425be/3b6985fb-6034-40af-8c93-cde3a3150f22",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9b999bc0-692e-4495-90cf-7aa7fae8c0db/b2ba4ffc-4098-4086-8233-72b8c202e3fa/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9b999bc0-692e-4495-90cf-7aa7fae8c0db/b2ba4ffc-4098-4086-8233-72b8c202e3fa",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f9995733-dc12-4a88-8d95-880064a37def/f3d6f361-39cb-4f7e-a1be-21b5409ed0e2/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f9995733-dc12-4a88-8d95-880064a37def/f3d6f361-39cb-4f7e-a1be-21b5409ed0e2",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/b425fa1c-57bc-43e9-8da4-c7ac2c2a2651/cd10fd1f-704e-48b3-b334-59bb26d875e7/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/b425fa1c-57bc-43e9-8da4-c7ac2c2a2651/cd10fd1f-704e-48b3-b334-59bb26d875e7",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d24858bc-78a2-4b92-b94f-2adbc0cc74c9/9a76efa9-d0fc-4121-a5ba-132c12e36a6c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d24858bc-78a2-4b92-b94f-2adbc0cc74c9/9a76efa9-d0fc-4121-a5ba-132c12e36a6c",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f796e7ad-5182-4303-b459-5f1ac38a7be0/2e1dcba7-d5df-40c1-991e-970af7f34760/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f796e7ad-5182-4303-b459-5f1ac38a7be0/2e1dcba7-d5df-40c1-991e-970af7f34760",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/20fd0aee-f59e-4e12-a98f-5caebc11020b/57265846-0bfb-4e8a-8241-1251160e878e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/20fd0aee-f59e-4e12-a98f-5caebc11020b/57265846-0bfb-4e8a-8241-1251160e878e",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4d17413e-da89-499f-8f5e-7637381abec7/40ea7e2b-ec0c-4a6e-946f-27468931d277/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4d17413e-da89-499f-8f5e-7637381abec7/40ea7e2b-ec0c-4a6e-946f-27468931d277",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/1e19de83-2ffa-44c5-880b-d81a4d2357c9/c0530cf4-58ea-483e-926e-27047269bdd9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/1e19de83-2ffa-44c5-880b-d81a4d2357c9/c0530cf4-58ea-483e-926e-27047269bdd9",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ac1a47e3-896a-47f1-884d-2719bcd5e80d/ce12441e-715e-42e2-9c44-b16ab440d870/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ac1a47e3-896a-47f1-884d-2719bcd5e80d/ce12441e-715e-42e2-9c44-b16ab440d870",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2ehht5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_b41d8781-d773-4752-aeef-b101f0c45839",
+    "itemType": "ESTATE",
+    "gok": "b41d8781-d773-4752-aeef-b101f0c45839",
+    "locationIds": [
+      530068,
+      529870,
+      528418,
+      500045,
+      26058105,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500045,
+    "place": {
+      "point": {
+        "lat": 52.497749,
+        "lon": 13.31586,
+        "geohash": "u336xhbmd18y",
+        "fragment": true
+      },
+      "postcode": "10707",
+      "city": "Berlin",
+      "district": "Wilmersdorf",
+      "street": "Württembergische Straße 44",
+      "geoPointIsAnonymized": false
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "Rosengärten: Klassisch elegantes Wohnen nahe Kurfürstendamm in Ruhiglage",
+    "prices": [
+      {
+        "amountMin": 2700,
+        "amountMax": 2700,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 135.48,
+        "sizeMax": 135.48,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 135.48,
+      "sizeMax": 135.48,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 2700,
+      "amountMax": 2700,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 4,
+    "roomsMax": 4,
+    "constructionYear": 2014,
+    "timestamp": "2024-06-23T07:26:00.633Z",
+    "isNew": true,
+    "features": [
+      "FULLY_RENOVATED",
+      "CELLAR_SHARE",
+      "BARRIER_FREE",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "BALCONY",
+      "UNDERGROUND_PARKING",
+      "PARKING_AREA"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/68e12f48-ffe8-48dc-8b13-0618ec498eb7/4751ce77-36d5-42a7-ac7f-87ee4cb5de51/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/68e12f48-ffe8-48dc-8b13-0618ec498eb7/4751ce77-36d5-42a7-ac7f-87ee4cb5de51",
+        "description": "Württembergische Straße 44"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9f748641-2370-459d-a33d-d73242769776/c265047f-10d0-4e5f-9498-eda245e1661a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9f748641-2370-459d-a33d-d73242769776/c265047f-10d0-4e5f-9498-eda245e1661a",
+        "description": "Foyer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c04861b2-618b-4b89-b4e4-bd8381312942/1ac18041-c0eb-494b-8405-ade72c2e1976/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c04861b2-618b-4b89-b4e4-bd8381312942/1ac18041-c0eb-494b-8405-ade72c2e1976",
+        "description": "Diele"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/52cf2e37-7b7d-4b80-8a77-b4eb40b1b867/2311e85b-eb7d-4fb5-a0fe-6532d20b5925/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/52cf2e37-7b7d-4b80-8a77-b4eb40b1b867/2311e85b-eb7d-4fb5-a0fe-6532d20b5925",
+        "description": "Diele"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/98e258c9-a31c-4ab7-810f-f0528c59469f/3749e45e-f393-46a0-a7b6-95dec3415e22/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/98e258c9-a31c-4ab7-810f-f0528c59469f/3749e45e-f393-46a0-a7b6-95dec3415e22",
+        "description": "Wohnzimmer"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/34af32e9-ae93-4326-885c-71b2470e1dbe/8f97c1e1-e6a8-480d-acc3-ee01f30e925b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/34af32e9-ae93-4326-885c-71b2470e1dbe/8f97c1e1-e6a8-480d-acc3-ee01f30e925b",
+        "description": "Kleines Duschbad"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/5a6b08a4-a466-44f6-a6fb-752262ab032c/619eb523-b285-40eb-866c-a60308c45db9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/5a6b08a4-a466-44f6-a6fb-752262ab032c/619eb523-b285-40eb-866c-a60308c45db9",
+        "description": "Küche Richtung Eßplatz"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6ea840e3-f963-4ca4-a637-2bc0f496e526/56281e2c-06f3-44c9-bc8d-b9876933c061/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6ea840e3-f963-4ca4-a637-2bc0f496e526/56281e2c-06f3-44c9-bc8d-b9876933c061",
+        "description": "Linke Küchenzeile"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e06a4f00-e2bc-4b11-91fe-be5ee7540286/a55c43d8-9326-4e25-99d2-42a1f65505cd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e06a4f00-e2bc-4b11-91fe-be5ee7540286/a55c43d8-9326-4e25-99d2-42a1f65505cd",
+        "description": "Rechte Küchenzeile"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/bf92f322-bdaf-4f9b-b71f-1acc15c341b5/ce33e6da-ba88-4d14-8a03-bc704bfe3081/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/bf92f322-bdaf-4f9b-b71f-1acc15c341b5/ce33e6da-ba88-4d14-8a03-bc704bfe3081",
+        "description": "Eßbereich in der Küche"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0336647b-dee9-450e-9e24-f74637a9b9f5/7bd75040-b135-4067-86ab-64e6d516713b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0336647b-dee9-450e-9e24-f74637a9b9f5/7bd75040-b135-4067-86ab-64e6d516713b",
+        "description": "Schlafzimmer 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/feef4f4a-390a-4b20-a34a-e11a63c75e82/9bb267b8-5faa-4167-aaee-0d50d4730038/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/feef4f4a-390a-4b20-a34a-e11a63c75e82/9bb267b8-5faa-4167-aaee-0d50d4730038",
+        "description": "Schlafzimmer 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/cbfcb60e-53fe-4056-969e-4a9ae3188156/594d0801-8e68-43b5-b9a2-4751263f1302/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/cbfcb60e-53fe-4056-969e-4a9ae3188156/594d0801-8e68-43b5-b9a2-4751263f1302",
+        "description": "Ankleide"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c0065fa4-de6c-4446-bbd4-4b317b66ccc8/c771dd78-8f5d-4953-ae25-8404354036cb/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c0065fa4-de6c-4446-bbd4-4b317b66ccc8/c771dd78-8f5d-4953-ae25-8404354036cb",
+        "description": "Masterbad ensuite"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/5cfb444d-dc49-4787-aebb-2589433a8c46/97813490-e8ef-4677-9bb7-e2553080a1e9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/5cfb444d-dc49-4787-aebb-2589433a8c46/97813490-e8ef-4677-9bb7-e2553080a1e9",
+        "description": "Grundriss"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 17957,
+      "sellerType": "PARTNER",
+      "companyName": "City-Concept Gesellschaft für Immobilienmanagement mbH",
+      "partnerAward": "PLATIN",
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_36336c8467ac47a0b5e144d9c34a33fb.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_36336c8467ac47a0b5e144d9c34a33fb.jpg"
+    },
+    "onlineId": "2e9ft5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_820b294b-f5d4-4fca-8f2e-f643c53fd485",
+    "itemType": "ESTATE",
+    "gok": "820b294b-f5d4-4fca-8f2e-f643c53fd485",
+    "locationIds": [
+      526010,
+      529870,
+      528418,
+      500016,
+      26058104,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500016,
+    "place": {
+      "point": {
+        "lat": 52.529755,
+        "lon": 13.43536,
+        "geohash": "u33dcdz2484d",
+        "fragment": true
+      },
+      "postcode": "10407",
+      "city": "Berlin",
+      "district": "Prenzlauer Berg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Wünderschöne Altbau im herzen Prenzlauerberg",
+    "prices": [
+      {
+        "amountMin": 1081,
+        "amountMax": 1081,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 76,
+        "sizeMax": 76,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 76,
+      "sizeMax": 76,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1081,
+      "amountMax": 1081,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T07:24:42.937Z",
+    "isNew": true,
+    "features": [
+      "GARDEN",
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "BALCONY",
+      "TERRACE"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/d59e82b5-8b66-49c9-a18c-b8494e4de69a/3fc13594-5176-4275-a25c-3881d3e82f34/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d59e82b5-8b66-49c9-a18c-b8494e4de69a/3fc13594-5176-4275-a25c-3881d3e82f34",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2574edcc-75d4-41e6-a646-77587a6bd997/15860e3d-984a-44d2-bf73-5fb8e3ee1a73/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2574edcc-75d4-41e6-a646-77587a6bd997/15860e3d-984a-44d2-bf73-5fb8e3ee1a73",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/da77048c-fe26-44b7-ad2f-ba62f370682e/0a16b279-ab6c-44a2-9753-25f1df2489f7/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/da77048c-fe26-44b7-ad2f-ba62f370682e/0a16b279-ab6c-44a2-9753-25f1df2489f7",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/aa8b7e3c-d44e-4290-8fee-17bf3addc309/f6208e75-4ea5-4818-9985-36a866b02e57/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/aa8b7e3c-d44e-4290-8fee-17bf3addc309/f6208e75-4ea5-4818-9985-36a866b02e57",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d0fe34cc-b23c-4ff3-b546-996a7e26f6b1/91cb6ce9-0fd6-4347-a799-3844ed9301b4/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d0fe34cc-b23c-4ff3-b546-996a7e26f6b1/91cb6ce9-0fd6-4347-a799-3844ed9301b4",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/00a7e269-74be-4e11-952f-528951981865/a76bb763-b14e-4296-b884-03ebe1cc8859/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/00a7e269-74be-4e11-952f-528951981865/a76bb763-b14e-4296-b884-03ebe1cc8859",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e324b797-3882-4812-b795-844b441cc535/6b0134bf-8eca-41d9-abe0-b36ca7dd850f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e324b797-3882-4812-b795-844b441cc535/6b0134bf-8eca-41d9-abe0-b36ca7dd850f",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9fa41f98-bd3c-486b-9ee2-e8fb3205b51a/728f5a3b-9e75-4ccb-be9a-069b317ae4b6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9fa41f98-bd3c-486b-9ee2-e8fb3205b51a/728f5a3b-9e75-4ccb-be9a-069b317ae4b6",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e752fb4b-caa6-44c8-a019-dc17afda23fe/ee8fca95-74dc-4520-9695-cfe69a36a403/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e752fb4b-caa6-44c8-a019-dc17afda23fe/ee8fca95-74dc-4520-9695-cfe69a36a403",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/fb4f19b4-7279-4468-8392-480d6bea1a25/54096398-2e39-40de-a3c3-4626ab58291c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/fb4f19b4-7279-4468-8392-480d6bea1a25/54096398-2e39-40de-a3c3-4626ab58291c",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/1730571e-663e-4003-8961-9e5b2d86db51/7ad6d260-412a-44bd-96b0-0406e458405d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/1730571e-663e-4003-8961-9e5b2d86db51/7ad6d260-412a-44bd-96b0-0406e458405d",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f45a66a1-40e8-49c2-b318-09885d828294/1767daaa-29ec-48a4-8a62-d3b92e7846c3/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f45a66a1-40e8-49c2-b318-09885d828294/1767daaa-29ec-48a4-8a62-d3b92e7846c3",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/299affd2-75eb-4e27-a260-0466fc95adc7/ff76a504-64a2-4931-9685-faf45cd966d0/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/299affd2-75eb-4e27-a260-0466fc95adc7/ff76a504-64a2-4931-9685-faf45cd966d0",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f2d067e5-3ad5-41f1-a79b-c60d5d7ae054/d346cb60-7918-4ca3-934c-7092a3d0ef58/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f2d067e5-3ad5-41f1-a79b-c60d5d7ae054/d346cb60-7918-4ca3-934c-7092a3d0ef58",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c31a1456-3f11-460b-9cdb-097f8317bca7/e5c57461-c11c-401f-97d6-fe7712e89c93/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c31a1456-3f11-460b-9cdb-097f8317bca7/e5c57461-c11c-401f-97d6-fe7712e89c93",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2e5ft5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_458880c8-4e70-49d0-93cf-4e866b684b38",
+    "itemType": "ESTATE",
+    "gok": "458880c8-4e70-49d0-93cf-4e866b684b38",
+    "locationIds": [
+      532001,
+      529870,
+      528418,
+      500019,
+      26058113,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500019,
+    "place": {
+      "point": {
+        "lat": 52.569932,
+        "lon": 13.363557,
+        "geohash": "u33e045413w7",
+        "fragment": true
+      },
+      "postcode": "13409",
+      "city": "Berlin",
+      "district": "Reinickendorf",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Sonnige 3 Z. Altbau in Wedding / Pankow gegen NK / XBERG",
+    "prices": [
+      {
+        "amountMin": 700,
+        "amountMax": 700,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 73,
+        "sizeMax": 73,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 73,
+      "sizeMax": 73,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 700,
+      "amountMax": 700,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "timestamp": "2024-06-23T07:23:53.433Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BALCONY",
+      "TERRACE",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/0861c9d9-d0ec-4e33-8600-1ecf3fba5037/6ad7f724-991e-4f7c-8eb2-74ef1488090a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0861c9d9-d0ec-4e33-8600-1ecf3fba5037/6ad7f724-991e-4f7c-8eb2-74ef1488090a",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/29781c82-fe5d-4c18-bfde-f719a6e27b1f/f9b538b8-5be5-4de2-b202-d15586580474/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/29781c82-fe5d-4c18-bfde-f719a6e27b1f/f9b538b8-5be5-4de2-b202-d15586580474",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/523d5c69-ca65-4004-9dcf-79343226a19d/a0871110-b692-447c-95b2-e3b51d926306/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/523d5c69-ca65-4004-9dcf-79343226a19d/a0871110-b692-447c-95b2-e3b51d926306",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/45bbcde5-db8c-4276-8ee1-d2b5820edd7e/02cedf26-d54c-434f-af43-9b9ff7440f6b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/45bbcde5-db8c-4276-8ee1-d2b5820edd7e/02cedf26-d54c-434f-af43-9b9ff7440f6b",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/cb1e56c2-97c8-4d6e-99ed-f075799e442b/bec3e0e4-2aa2-4a4f-be4b-86a8495f2681/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/cb1e56c2-97c8-4d6e-99ed-f075799e442b/bec3e0e4-2aa2-4a4f-be4b-86a8495f2681",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ad2f5f61-c3b4-4df1-9161-12a1f407eada/e8561bf6-663f-4fb0-a939-7b7f01c41c35/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ad2f5f61-c3b4-4df1-9161-12a1f407eada/e8561bf6-663f-4fb0-a939-7b7f01c41c35",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a2be20c6-982a-490f-9288-60b59d6e33dc/9e4ed9b4-83e1-4609-9324-d919605a055f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a2be20c6-982a-490f-9288-60b59d6e33dc/9e4ed9b4-83e1-4609-9324-d919605a055f",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/7efc545a-be56-48ba-9705-1ddabdd71e89/2d8f84f8-fc1f-44c9-a8d8-aff238fc8c03/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/7efc545a-be56-48ba-9705-1ddabdd71e89/2d8f84f8-fc1f-44c9-a8d8-aff238fc8c03",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f6cb4538-d963-4555-a9c1-7193039a783f/e8b68d8c-de17-4d2d-a9e0-86c473f2dbd2/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f6cb4538-d963-4555-a9c1-7193039a783f/e8b68d8c-de17-4d2d-a9e0-86c473f2dbd2",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/620a7a9f-1669-49fd-afd2-93c507276ac9/da2201d9-05a3-423f-8ac7-26a766da41ae/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/620a7a9f-1669-49fd-afd2-93c507276ac9/da2201d9-05a3-423f-8ac7-26a766da41ae",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/11b0c3f0-81c6-460d-a9d4-382c820d41f8/dd82c2f1-df7e-455d-8a4b-b83efb0591f3/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/11b0c3f0-81c6-460d-a9d4-382c820d41f8/dd82c2f1-df7e-455d-8a4b-b83efb0591f3",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9e6dae27-30f2-4dbe-ac23-bc7a55ff0135/7314ebc0-9010-40fc-9ee8-d3941856efe7/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9e6dae27-30f2-4dbe-ac23-bc7a55ff0135/7314ebc0-9010-40fc-9ee8-d3941856efe7",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/71760fc4-f8c3-4232-aaf7-9de656da2cf9/32fb30ef-d91a-4d68-8d72-93e22b174782/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/71760fc4-f8c3-4232-aaf7-9de656da2cf9/32fb30ef-d91a-4d68-8d72-93e22b174782",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/446374ea-67b0-4b90-a7ef-3cb9be776d6a/d6f8fb31-30bc-4b87-96d0-e3c7410e7964/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/446374ea-67b0-4b90-a7ef-3cb9be776d6a/d6f8fb31-30bc-4b87-96d0-e3c7410e7964",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/390a799e-574e-4dd7-a688-b68a0e50e88f/8b833036-b2ad-4cbe-9a50-bd5da34bf4d5/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/390a799e-574e-4dd7-a688-b68a0e50e88f/8b833036-b2ad-4cbe-9a50-bd5da34bf4d5",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2eyet5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_5949b1ac-6b3a-49c2-bb80-544c335470b3",
+    "itemType": "ESTATE",
+    "gok": "5949b1ac-6b3a-49c2-bb80-544c335470b3",
+    "locationIds": [
+      526015,
+      529870,
+      528418,
+      499983,
+      26058103,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 499983,
+    "place": {
+      "point": {
+        "lat": 52.495906,
+        "lon": 13.392993,
+        "geohash": "u33d8u86z65m",
+        "fragment": true
+      },
+      "postcode": "10961",
+      "city": "Berlin",
+      "district": "Kreuzberg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 4Z 137qm Bergmannkiez geg. 2+ Zi - muss landeseigen sein!",
+    "prices": [
+      {
+        "amountMin": 1100,
+        "amountMax": 1100,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 137,
+        "sizeMax": 137,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 137,
+      "sizeMax": 137,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1100,
+      "amountMax": 1100,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 4,
+    "roomsMax": 4,
+    "timestamp": "2024-06-23T07:23:30.993Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "BALCONY",
+      "TERRACE",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/26da6913-5a92-4141-9814-9e73c5e992a6/0fc90e8d-88b2-4e2a-a1b6-000d3a8924bc/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/26da6913-5a92-4141-9814-9e73c5e992a6/0fc90e8d-88b2-4e2a-a1b6-000d3a8924bc",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/631d00b2-58d9-4299-a766-3f82d040dbdc/2a259aff-2828-4e8b-a70d-a8b53c5b9843/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/631d00b2-58d9-4299-a766-3f82d040dbdc/2a259aff-2828-4e8b-a70d-a8b53c5b9843",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/bc424f0e-6ca6-4f02-ae48-91fb20097916/67e5e63d-6bfb-41ca-bb68-b6625e8c0eb3/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/bc424f0e-6ca6-4f02-ae48-91fb20097916/67e5e63d-6bfb-41ca-bb68-b6625e8c0eb3",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f1546fdf-fd09-4496-813a-093a4099133e/8b4f1097-2b40-4ecd-bc26-be9ccd0d3bca/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f1546fdf-fd09-4496-813a-093a4099133e/8b4f1097-2b40-4ecd-bc26-be9ccd0d3bca",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a5ccc73a-669d-48b3-8231-20d6e60cf21a/f2f79b77-13e5-46a9-9775-f657d6f57e22/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a5ccc73a-669d-48b3-8231-20d6e60cf21a/f2f79b77-13e5-46a9-9775-f657d6f57e22",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ff83081b-1dff-4b86-983b-3b15db694d45/9d139e51-2be7-4d16-b6c4-f4674413820b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ff83081b-1dff-4b86-983b-3b15db694d45/9d139e51-2be7-4d16-b6c4-f4674413820b",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9cc6b721-6651-49c6-8d89-f8cdc2df230a/1750d47a-70a7-49b6-806d-3734e2389499/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9cc6b721-6651-49c6-8d89-f8cdc2df230a/1750d47a-70a7-49b6-806d-3734e2389499",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6400a132-2149-43fb-8739-33ee48743601/6ecfd5e6-e07c-4134-9782-0ed7d63afad4/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6400a132-2149-43fb-8739-33ee48743601/6ecfd5e6-e07c-4134-9782-0ed7d63afad4",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/f1caeb31-8d0f-4aab-9fba-4f0ab5c82ee0/670c0028-47a0-4960-af68-0a3928e5c907/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/f1caeb31-8d0f-4aab-9fba-4f0ab5c82ee0/670c0028-47a0-4960-af68-0a3928e5c907",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/bfee6624-df38-4832-a04e-8d05d95e52d6/22a5a8e5-6800-4fd5-bb2c-1b2bfb1a31d8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/bfee6624-df38-4832-a04e-8d05d95e52d6/22a5a8e5-6800-4fd5-bb2c-1b2bfb1a31d8",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/b2359a2a-3e9d-4f65-9082-ac46ccd3606e/0628e9b7-25eb-4fa9-8d12-3a07bb5ec1b6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/b2359a2a-3e9d-4f65-9082-ac46ccd3606e/0628e9b7-25eb-4fa9-8d12-3a07bb5ec1b6",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/13c6ca54-df37-4633-8625-b3eb2b9a7c9d/92aba2a5-0885-4baf-93e7-7f2f56eb28fd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/13c6ca54-df37-4633-8625-b3eb2b9a7c9d/92aba2a5-0885-4baf-93e7-7f2f56eb28fd",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/41392ef1-0094-4277-9c2a-726c18130fc0/20d610c5-b5a9-494d-90b2-c0cb5adb453a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/41392ef1-0094-4277-9c2a-726c18130fc0/20d610c5-b5a9-494d-90b2-c0cb5adb453a",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a542d7d3-720b-4df8-870a-f37175b978d9/e1c8c71f-5b2d-471f-8c6f-3d3165286317/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a542d7d3-720b-4df8-870a-f37175b978d9/e1c8c71f-5b2d-471f-8c6f-3d3165286317",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/420331c3-81d7-4164-9b2d-fbd422b8913c/5888bcb5-2038-411c-b0ae-a74e6e749a0b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/420331c3-81d7-4164-9b2d-fbd422b8913c/5888bcb5-2038-411c-b0ae-a74e6e749a0b",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2elet5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_2ba79b46-372e-4e01-b33a-bc707d74db4f",
+    "itemType": "ESTATE",
+    "gok": "2ba79b46-372e-4e01-b33a-bc707d74db4f",
+    "locationIds": [
+      529315,
+      529870,
+      528418,
+      500029,
+      26058113,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500029,
+    "place": {
+      "point": {
+        "lat": 52.600086,
+        "lon": 13.295868,
+        "geohash": "u337nx9c8ntw",
+        "fragment": true
+      },
+      "postcode": "13403",
+      "city": "Berlin",
+      "district": "Tegel",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 3 Zimmer Wohnung mit großem Balkon in Buch",
+    "prices": [
+      {
+        "amountMin": 400,
+        "amountMax": 400,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 63,
+        "sizeMax": 63,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 63,
+      "sizeMax": 63,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 400,
+      "amountMax": 400,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 3,
+    "roomsMax": 3,
+    "timestamp": "2024-06-23T07:23:10.337Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "BALCONY",
+      "TERRACE",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/429f8448-db52-4de6-a340-69760f630523/9c074e61-bc4b-4da1-8ff1-816020456ce9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/429f8448-db52-4de6-a340-69760f630523/9c074e61-bc4b-4da1-8ff1-816020456ce9",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/bddae336-72d1-4d85-b9ee-db5d98582ca2/4a994f69-d8ec-4d67-82f1-4cb85b25d3af/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/bddae336-72d1-4d85-b9ee-db5d98582ca2/4a994f69-d8ec-4d67-82f1-4cb85b25d3af",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/cf97965c-099b-469b-b117-2f23d5f7dcef/6b043e50-c065-443d-8bcc-79e30ca3404d/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/cf97965c-099b-469b-b117-2f23d5f7dcef/6b043e50-c065-443d-8bcc-79e30ca3404d",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/98e67e99-9584-4da6-ac32-338fdebdb99a/33b030ea-a9d9-41a4-a346-842c1581c477/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/98e67e99-9584-4da6-ac32-338fdebdb99a/33b030ea-a9d9-41a4-a346-842c1581c477",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/614d1408-6ba0-4e44-a916-c0dd66096b40/347b2955-169b-4280-9671-c952099c6fe8/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/614d1408-6ba0-4e44-a916-c0dd66096b40/347b2955-169b-4280-9671-c952099c6fe8",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4cc15900-9f9e-4946-a157-75e00c982e6f/26f243b9-1216-4e39-a0ed-aae8a51b1363/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4cc15900-9f9e-4946-a157-75e00c982e6f/26f243b9-1216-4e39-a0ed-aae8a51b1363",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a9d81066-b7fa-46a3-b88d-806e074d7b49/68d4b069-242d-488f-bb10-d586c1087f96/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a9d81066-b7fa-46a3-b88d-806e074d7b49/68d4b069-242d-488f-bb10-d586c1087f96",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a36100f8-dedb-4548-b66e-8ea70aaed25b/edd6c14f-e9f6-4ba4-9ed6-49af95937b0c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a36100f8-dedb-4548-b66e-8ea70aaed25b/edd6c14f-e9f6-4ba4-9ed6-49af95937b0c",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/5fa1a506-79c6-45ee-becd-328d82812328/d1a77021-dbab-47d2-ade1-3e3a3bd7c9bf/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/5fa1a506-79c6-45ee-becd-328d82812328/d1a77021-dbab-47d2-ade1-3e3a3bd7c9bf",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4f5a7c71-647f-40cd-ad75-9346daa21d4a/6d7c306e-c62f-4fd0-b9b3-e7ceba6a4c14/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4f5a7c71-647f-40cd-ad75-9346daa21d4a/6d7c306e-c62f-4fd0-b9b3-e7ceba6a4c14",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/11bd934b-7330-47c4-aa2c-12babca0f846/592c5d05-455e-4c32-bf93-555186bafcbb/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/11bd934b-7330-47c4-aa2c-12babca0f846/592c5d05-455e-4c32-bf93-555186bafcbb",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/1e7b817e-54d9-491e-8d1a-8e9c82b401d9/8d047a8f-9438-4062-8fd9-5180b2c82697/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/1e7b817e-54d9-491e-8d1a-8e9c82b401d9/8d047a8f-9438-4062-8fd9-5180b2c82697",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4d92996a-44e9-4983-9e1a-464bf2e063c7/d6ea71de-d007-4ae5-8e1f-5332670ec824/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4d92996a-44e9-4983-9e1a-464bf2e063c7/d6ea71de-d007-4ae5-8e1f-5332670ec824",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/199a2690-e860-4909-b270-27c29f9cc5a9/0f056c6b-38d4-494e-9f60-c5a3e56924ee/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/199a2690-e860-4909-b270-27c29f9cc5a9/0f056c6b-38d4-494e-9f60-c5a3e56924ee",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/c000dd38-398c-4693-97d4-84bdb45584c7/c5d5629f-7e13-450b-816b-6e4b922a0845/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/c000dd38-398c-4693-97d4-84bdb45584c7/c5d5629f-7e13-450b-816b-6e4b922a0845",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2ebet5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_0d6b8746-1915-4137-a776-4826fd61cb15",
+    "itemType": "ESTATE",
+    "gok": "0d6b8746-1915-4137-a776-4826fd61cb15",
+    "locationIds": [
+      525772,
+      529870,
+      528418,
+      500004,
+      26058109,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500004,
+    "place": {
+      "point": {
+        "lat": 52.470989,
+        "lon": 13.428677,
+        "geohash": "u33d9843wv73",
+        "fragment": true
+      },
+      "postcode": "12051",
+      "city": "Berlin",
+      "district": "Neukölln",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 4-Zimmer in Neukölln gegen mind. 3.5 Zimmer",
+    "prices": [
+      {
+        "amountMin": 900,
+        "amountMax": 900,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 110,
+        "sizeMax": 110,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 110,
+      "sizeMax": 110,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 900,
+      "amountMax": 900,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 4,
+    "roomsMax": 4,
+    "timestamp": "2024-06-23T07:22:45.527Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "BALCONY",
+      "TERRACE"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/86fe9063-85fd-41c2-83e2-ba9007099a70/09488aa9-7d9b-42f7-93b8-e0da0616572e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/86fe9063-85fd-41c2-83e2-ba9007099a70/09488aa9-7d9b-42f7-93b8-e0da0616572e",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e5277faa-b67e-43c7-9c69-d516ee81f82a/b72e6044-194a-4700-8441-b0e5d5481d00/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e5277faa-b67e-43c7-9c69-d516ee81f82a/b72e6044-194a-4700-8441-b0e5d5481d00",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/24336468-45b3-4f7c-82a7-604b1b04ce06/c3ccb545-fde3-4324-92d8-4c46fc7ab90e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/24336468-45b3-4f7c-82a7-604b1b04ce06/c3ccb545-fde3-4324-92d8-4c46fc7ab90e",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/1e8dc15b-8232-4e12-8dba-50768622fb99/3dd43263-2784-48e4-9ef7-ca173a2f3c45/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/1e8dc15b-8232-4e12-8dba-50768622fb99/3dd43263-2784-48e4-9ef7-ca173a2f3c45",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e5377938-927a-4d5d-bfbb-fc7d819403df/94e568f9-c78b-44fa-84d2-3c3fd276506f/original.png",
+        "imageUriBasePath": "https://ms.immowelt.org/e5377938-927a-4d5d-bfbb-fc7d819403df/94e568f9-c78b-44fa-84d2-3c3fd276506f",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/42f91382-ad2d-43de-94ab-ab377c902118/34d325cb-217c-4a65-b7dc-fa0e57590672/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/42f91382-ad2d-43de-94ab-ab377c902118/34d325cb-217c-4a65-b7dc-fa0e57590672",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6c66ec7a-fbc8-4325-a905-a451ff85c787/3fd76ce1-d7ed-4e5a-8f5d-f87a71a86e75/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6c66ec7a-fbc8-4325-a905-a451ff85c787/3fd76ce1-d7ed-4e5a-8f5d-f87a71a86e75",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/3f703c68-d67e-4324-9033-b369c52fe584/e123cc5a-a958-4f41-8dc0-dce54fffcb26/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/3f703c68-d67e-4324-9033-b369c52fe584/e123cc5a-a958-4f41-8dc0-dce54fffcb26",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/84c1c60f-c798-4718-b349-5f70f705e159/075e9ff2-6ede-4c94-b22e-6aa3b11e2c30/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/84c1c60f-c798-4718-b349-5f70f705e159/075e9ff2-6ede-4c94-b22e-6aa3b11e2c30",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/015f4a7a-766f-4087-b3bc-d527a3cec6bd/4b7c926f-d123-43aa-aa35-036e604c977e/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/015f4a7a-766f-4087-b3bc-d527a3cec6bd/4b7c926f-d123-43aa-aa35-036e604c977e",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ca1eb1d6-84de-4c35-8251-fb5af380ef49/ff155d54-6c62-49b0-b79a-c43ec15b584a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ca1eb1d6-84de-4c35-8251-fb5af380ef49/ff155d54-6c62-49b0-b79a-c43ec15b584a",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0ff42930-b4c0-4108-8583-d3b5ee52bd5f/0a4b18b7-2d89-4925-8ad6-74d9e8a281be/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0ff42930-b4c0-4108-8583-d3b5ee52bd5f/0a4b18b7-2d89-4925-8ad6-74d9e8a281be",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/36516a58-9651-4890-9cd4-c59c65474a45/f4b4f046-373b-45f5-9f73-b57f486e4f45/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/36516a58-9651-4890-9cd4-c59c65474a45/f4b4f046-373b-45f5-9f73-b57f486e4f45",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0711cc79-3120-4f40-be9d-91ae62e42a9e/c1cde766-feb1-43d5-971d-eeae001546a4/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0711cc79-3120-4f40-be9d-91ae62e42a9e/c1cde766-feb1-43d5-971d-eeae001546a4",
+        "description": "Bild 14"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2eydt5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_72fe859f-b903-4fb8-9dd2-bc797c36cc2e",
+    "itemType": "ESTATE",
+    "gok": "72fe859f-b903-4fb8-9dd2-bc797c36cc2e",
+    "locationIds": [
+      532765,
+      529870,
+      528418,
+      500024,
+      26058108,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500024,
+    "place": {
+      "point": {
+        "lat": 52.496924,
+        "lon": 13.364231,
+        "geohash": "u33d8hg89puv",
+        "fragment": true
+      },
+      "postcode": "10783",
+      "city": "Berlin",
+      "district": "Schöneberg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] 2 Zimmer Wohnung mit Balkon  in Schoeneberg",
+    "prices": [
+      {
+        "amountMin": 700,
+        "amountMax": 700,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 75,
+        "sizeMax": 75,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 75,
+      "sizeMax": 75,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 700,
+      "amountMax": 700,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T07:17:06.827Z",
+    "isNew": true,
+    "features": [
+      "CELLAR_SHARE",
+      "BALCONY",
+      "TERRACE"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/84f0223a-30f7-4969-b63c-72922902e983/b07b220a-830f-452d-bce2-45eb0d007e1b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/84f0223a-30f7-4969-b63c-72922902e983/b07b220a-830f-452d-bce2-45eb0d007e1b",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e515d69f-7853-45a4-81f3-6b005c159a64/4ce606a8-04d7-4843-af79-a96926602d7b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e515d69f-7853-45a4-81f3-6b005c159a64/4ce606a8-04d7-4843-af79-a96926602d7b",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/536d6b21-8aa2-4104-96df-17225db03369/44fcc044-b40e-4148-bc7d-66fa4df2a4c6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/536d6b21-8aa2-4104-96df-17225db03369/44fcc044-b40e-4148-bc7d-66fa4df2a4c6",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/5cb02e27-1566-4066-8531-5857846860e3/08d25958-d066-4a2b-a8c3-b1ffc5111977/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/5cb02e27-1566-4066-8531-5857846860e3/08d25958-d066-4a2b-a8c3-b1ffc5111977",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ecb41e5b-0e23-4d87-ae36-6908c164f19c/135be380-3b65-4c53-b8fc-8c18cbf6ce66/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ecb41e5b-0e23-4d87-ae36-6908c164f19c/135be380-3b65-4c53-b8fc-8c18cbf6ce66",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/838ebe5e-2ef1-446a-a22f-0ecbd1f2bc8c/fedbc78a-79fb-45c6-a080-180ae2472969/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/838ebe5e-2ef1-446a-a22f-0ecbd1f2bc8c/fedbc78a-79fb-45c6-a080-180ae2472969",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/6984d8cf-60b1-4ab5-ba1c-aa5d8f1d4e05/88b2a952-3f7b-417f-9f56-704fa763ee89/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/6984d8cf-60b1-4ab5-ba1c-aa5d8f1d4e05/88b2a952-3f7b-417f-9f56-704fa763ee89",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/096bcbce-4d53-486b-b31f-4131deb29287/f5efb240-0def-4b79-8661-f8a43be85270/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/096bcbce-4d53-486b-b31f-4131deb29287/f5efb240-0def-4b79-8661-f8a43be85270",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/499097a9-d705-4db0-8d96-d0b2f6cdcd2a/b1898f70-fa01-4fd4-bd6b-273d05f0a2bd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/499097a9-d705-4db0-8d96-d0b2f6cdcd2a/b1898f70-fa01-4fd4-bd6b-273d05f0a2bd",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/8b663e04-10f4-4103-a6ef-5a55666f4e90/4f6e1e7e-6db9-4b0b-9a9c-27b5036da20b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/8b663e04-10f4-4103-a6ef-5a55666f4e90/4f6e1e7e-6db9-4b0b-9a9c-27b5036da20b",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/679d034a-dff3-41c0-b192-179c6e8d3638/7b3cedf0-6c5a-4ee0-a2f8-62ee5f604f9b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/679d034a-dff3-41c0-b192-179c6e8d3638/7b3cedf0-6c5a-4ee0-a2f8-62ee5f604f9b",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/7bcdee65-99f5-467d-9688-5e3eabc19924/9c67ddd5-b392-4394-936c-5924fed7e82a/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/7bcdee65-99f5-467d-9688-5e3eabc19924/9c67ddd5-b392-4394-936c-5924fed7e82a",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9fff0453-b2d6-4580-a680-4df6978a633c/45a57295-5d10-42bc-8e52-53cc60bf49cd/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9fff0453-b2d6-4580-a680-4df6978a633c/45a57295-5d10-42bc-8e52-53cc60bf49cd",
+        "description": "Bild 13"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2ez9t5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_87d0af42-32bb-4c83-916d-480880e25220",
+    "itemType": "ESTATE",
+    "gok": "87d0af42-32bb-4c83-916d-480880e25220",
+    "locationIds": [
+      524260,
+      529870,
+      528418,
+      500024,
+      26058108,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500024,
+    "place": {
+      "point": {
+        "lat": 52.493139,
+        "lon": 13.364585,
+        "geohash": "u33d8h5f9qkg",
+        "fragment": true
+      },
+      "postcode": "10827",
+      "city": "Berlin",
+      "district": "Schöneberg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Suche Berlin-Schöneberg, Biete Altbauwohnung Münster",
+    "prices": [
+      {
+        "amountMin": 1200,
+        "amountMax": 1200,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 90,
+        "sizeMax": 90,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 90,
+      "sizeMax": 90,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 1200,
+      "amountMax": 1200,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2,
+    "roomsMax": 2,
+    "timestamp": "2024-06-23T07:16:44.397Z",
+    "isNew": true,
+    "features": [],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/11fbe2fe-697a-4bff-ab3f-b8fa6bb654e3/d7a45da7-7e73-4400-888b-edce1d48d858/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/11fbe2fe-697a-4bff-ab3f-b8fa6bb654e3/d7a45da7-7e73-4400-888b-edce1d48d858",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/88adf4ef-66d2-4ba2-b37d-7b74e01a7031/16d05cd6-0476-4f86-be88-0886e621866c/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/88adf4ef-66d2-4ba2-b37d-7b74e01a7031/16d05cd6-0476-4f86-be88-0886e621866c",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/0a908dfb-17f6-4016-8d2b-be94875db1cd/9e187159-7df7-4e6d-846f-4b8d7e98359b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/0a908dfb-17f6-4016-8d2b-be94875db1cd/9e187159-7df7-4e6d-846f-4b8d7e98359b",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2f1e7970-099e-462b-b2e7-6a43049c27ec/2352638e-ff4e-4737-8470-185b3323356f/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2f1e7970-099e-462b-b2e7-6a43049c27ec/2352638e-ff4e-4737-8470-185b3323356f",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4985cb48-c156-45fc-a113-e1e874440c8a/179a559c-9f16-4f45-856b-53435f7b9e28/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4985cb48-c156-45fc-a113-e1e874440c8a/179a559c-9f16-4f45-856b-53435f7b9e28",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/5198e4e1-fba0-454d-9dbf-d0ab51cb93bc/80b5446b-f9c3-43cf-ae7d-24be198bea08/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/5198e4e1-fba0-454d-9dbf-d0ab51cb93bc/80b5446b-f9c3-43cf-ae7d-24be198bea08",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e1355faf-bfff-435b-bfb9-8e56015c4a9d/18d1320d-c604-4d53-9725-6f3c26e27d9b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e1355faf-bfff-435b-bfb9-8e56015c4a9d/18d1320d-c604-4d53-9725-6f3c26e27d9b",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/743af428-e41e-4990-8d99-2c9e516f9fca/af0f1af2-3b76-4a94-a320-bfa7fbe61902/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/743af428-e41e-4990-8d99-2c9e516f9fca/af0f1af2-3b76-4a94-a320-bfa7fbe61902",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a3b1e442-2bf5-4f95-845f-8b7a91e3d0d5/24bda3d0-d357-48d3-a4f9-cb0417a920ca/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a3b1e442-2bf5-4f95-845f-8b7a91e3d0d5/24bda3d0-d357-48d3-a4f9-cb0417a920ca",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/d2b3f989-ed23-4107-820e-e1d53e136752/de03b09a-78a4-46c0-b15f-cd57bf79cad9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/d2b3f989-ed23-4107-820e-e1d53e136752/de03b09a-78a4-46c0-b15f-cd57bf79cad9",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e62ef67f-8187-45aa-8eb3-667cd8346014/0c6636e2-7659-41c1-916a-0396fe88e8a3/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e62ef67f-8187-45aa-8eb3-667cd8346014/0c6636e2-7659-41c1-916a-0396fe88e8a3",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9be2a560-9369-4f6f-8987-6a2233589af0/5de67c80-61a1-4693-8ad1-46c13092a739/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9be2a560-9369-4f6f-8987-6a2233589af0/5de67c80-61a1-4693-8ad1-46c13092a739",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/ddbda4b0-ec21-4690-9f14-a2145adcf86f/2521987c-b05d-4399-a48b-4add600851e6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/ddbda4b0-ec21-4690-9f14-a2145adcf86f/2521987c-b05d-4399-a48b-4add600851e6",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/9c20cd97-fe13-4f5c-9eb7-1faf709a62a5/0199e2b6-6937-4dad-a9af-1daef677e332/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/9c20cd97-fe13-4f5c-9eb7-1faf709a62a5/0199e2b6-6937-4dad-a9af-1daef677e332",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/387b1d3d-d6d4-40ac-aa00-c2e40c6b6610/9e28fa69-aa3f-4878-a487-b474ecd3875b/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/387b1d3d-d6d4-40ac-aa00-c2e40c6b6610/9e28fa69-aa3f-4878-a487-b474ecd3875b",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2ey9t5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  },
+  {
+    "id": "estate_cb211435-fceb-4f27-af35-8b572963f309",
+    "itemType": "ESTATE",
+    "gok": "cb211435-fceb-4f27-af35-8b572963f309",
+    "locationIds": [
+      522895,
+      529870,
+      528418,
+      500024,
+      26058108,
+      150696,
+      113886,
+      121726
+    ],
+    "lowestLevelLocationId": 500024,
+    "place": {
+      "point": {
+        "lat": 52.469946,
+        "lon": 13.344811,
+        "geohash": "u336rxv7sdu7",
+        "fragment": true
+      },
+      "postcode": "12159",
+      "city": "Berlin",
+      "district": "Schöneberg",
+      "geoPointIsAnonymized": true
+    },
+    "estateTypes": [
+      "APARTMENT"
+    ],
+    "estateSubtypes": [],
+    "distributionType": "RENT",
+    "title": "[TAUSCHWOHNUNG] Biete schöne 2,5 Zimmer 66qm gegen 3,5/4/5 Zimmer",
+    "prices": [
+      {
+        "amountMin": 800,
+        "amountMax": 800,
+        "type": "COLD_RENT",
+        "currency": "EUR",
+        "attributes": []
+      }
+    ],
+    "areas": [
+      {
+        "sizeMin": 66,
+        "sizeMax": 66,
+        "type": "LIVING_AREA"
+      }
+    ],
+    "primaryArea": {
+      "sizeMin": 66,
+      "sizeMax": 66,
+      "type": "LIVING_AREA"
+    },
+    "primaryPrice": {
+      "amountMin": 800,
+      "amountMax": 800,
+      "type": "COLD_RENT",
+      "currency": "EUR",
+      "attributes": []
+    },
+    "roomsMin": 2.5,
+    "roomsMax": 2.5,
+    "timestamp": "2024-06-23T07:16:28.427Z",
+    "isNew": true,
+    "features": [
+      "PARTLY_FURNISHED",
+      "CELLAR_SHARE",
+      "BATH_WITH_TUB",
+      "FITTED_KITCHEN",
+      "PASSENGER_LIFT",
+      "PETS_ALLOWED"
+    ],
+    "pictures": [
+      {
+        "imageUri": "https://ms.immowelt.org/88620631-3016-4573-979c-0c36ab77dcf2/24205421-d39a-4369-8a30-8ba45111f8da/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/88620631-3016-4573-979c-0c36ab77dcf2/24205421-d39a-4369-8a30-8ba45111f8da",
+        "description": "Bild 1"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/330eeef1-19d7-43f0-b668-5bce900c7a5b/966a69b4-2be0-4221-8aa3-3be74c35d3ee/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/330eeef1-19d7-43f0-b668-5bce900c7a5b/966a69b4-2be0-4221-8aa3-3be74c35d3ee",
+        "description": "Bild 2"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/4351f4b7-ec00-4e70-b443-3cb4bc1e97b4/4c1a7a5f-1626-4242-9d0b-ebfa212f9e96/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/4351f4b7-ec00-4e70-b443-3cb4bc1e97b4/4c1a7a5f-1626-4242-9d0b-ebfa212f9e96",
+        "description": "Bild 3"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/93fdf85f-3346-40bf-b0c8-ae6e56e68b02/6ce9bcb3-65b9-4d6d-bacd-d5b3f05b1a75/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/93fdf85f-3346-40bf-b0c8-ae6e56e68b02/6ce9bcb3-65b9-4d6d-bacd-d5b3f05b1a75",
+        "description": "Bild 4"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/e3a0c5f3-b1a8-4789-b9e8-b6e458d72017/d9ae14fa-d3a5-4af6-98da-069eb77c16e6/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/e3a0c5f3-b1a8-4789-b9e8-b6e458d72017/d9ae14fa-d3a5-4af6-98da-069eb77c16e6",
+        "description": "Bild 5"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/a94d6584-60e4-4951-a5bd-0f11b34e97cf/2de3bc75-ed35-4f51-9dfd-b4e9e13a51b5/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/a94d6584-60e4-4951-a5bd-0f11b34e97cf/2de3bc75-ed35-4f51-9dfd-b4e9e13a51b5",
+        "description": "Bild 6"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/434ee77d-ddb9-4287-9ae3-1fff1c5e7dcc/c6a3aa4c-a5bc-450a-8587-7687556191ce/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/434ee77d-ddb9-4287-9ae3-1fff1c5e7dcc/c6a3aa4c-a5bc-450a-8587-7687556191ce",
+        "description": "Bild 7"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2ed73e73-28fa-47b7-ae75-a77c32179f42/6c3a730b-8768-4493-9514-7e0abaf97e40/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2ed73e73-28fa-47b7-ae75-a77c32179f42/6c3a730b-8768-4493-9514-7e0abaf97e40",
+        "description": "Bild 8"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/fae56fea-c869-42f9-9b78-ca2072a48f6a/70a54770-ac70-4bb2-9c7f-6889f9d307f4/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/fae56fea-c869-42f9-9b78-ca2072a48f6a/70a54770-ac70-4bb2-9c7f-6889f9d307f4",
+        "description": "Bild 9"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/52425431-2da8-4bff-9297-c592b6313cad/18525118-e9ef-432f-a791-c21d43cb8dae/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/52425431-2da8-4bff-9297-c592b6313cad/18525118-e9ef-432f-a791-c21d43cb8dae",
+        "description": "Bild 10"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/2224e9ec-af75-426b-88dd-ffe391a13f85/49e88c61-66c5-45b8-b55a-17b9f0ff1e40/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/2224e9ec-af75-426b-88dd-ffe391a13f85/49e88c61-66c5-45b8-b55a-17b9f0ff1e40",
+        "description": "Bild 11"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/092f3f8d-6299-4f08-a05a-936f7dbf45f8/1ac573f3-09f3-40ce-a566-30ac6152f4a9/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/092f3f8d-6299-4f08-a05a-936f7dbf45f8/1ac573f3-09f3-40ce-a566-30ac6152f4a9",
+        "description": "Bild 12"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/51e6206e-f939-44cc-bdf4-0c62f64cb437/103ee6f4-26af-4541-b802-e518ab892eb5/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/51e6206e-f939-44cc-bdf4-0c62f64cb437/103ee6f4-26af-4541-b802-e518ab892eb5",
+        "description": "Bild 13"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/50a2b0b7-d8fd-4140-aa38-4a8a01f6cc33/f28961a6-9821-48ac-a17f-35b397d06f96/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/50a2b0b7-d8fd-4140-aa38-4a8a01f6cc33/f28961a6-9821-48ac-a17f-35b397d06f96",
+        "description": "Bild 14"
+      },
+      {
+        "imageUri": "https://ms.immowelt.org/fb585725-1e1c-4e0a-9783-e3dbd03b3e97/2b32b8f1-732e-4a1e-9d05-a68b8ef73438/original.jpg",
+        "imageUriBasePath": "https://ms.immowelt.org/fb585725-1e1c-4e0a-9783-e3dbd03b3e97/2b32b8f1-732e-4a1e-9d05-a68b8ef73438",
+        "description": "Bild 15"
+      }
+    ],
+    "presentationProducts": [],
+    "broker": {
+      "guid": 8345381,
+      "sellerType": "PARTNER",
+      "companyName": "Tauschwohnung GmbH",
+      "partnerAward": null,
+      "immoweltExclusive": false,
+      "logoUri": "//filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg",
+      "logoUriHttps": "https://filestore.immowelt.de/logo/100_bcc36a3460be48978f3e3e09063dc6a3.jpg"
+    },
+    "onlineId": "2ew9t5v",
+    "relatedItems": [],
+    "estateGroups": [
+      "RESIDENTIAL"
+    ]
+  }
+]
