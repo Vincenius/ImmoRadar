@@ -2,7 +2,7 @@ import fs from 'fs';
 import { getBrowser } from './utils/playwright.js'
 
 const scrapeData = async (page) => {
-    const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mk?d=true&sd=DESC&sf=TIMESTAMP&sp=1';
+    const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP&sp=1';
     await page.goto(BASE_URL);
 
     const content = await page.content();
@@ -26,11 +26,13 @@ const scrapeData = async (page) => {
             const housingData = JSON.parse(jsonData);
             console.log(housingData);
 
+            // housingData.initialState.estateSearch.ui.pagination.pagesCount.selectedPage // pagesCount
+
             // Access the specific data you need
             if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
                 const estates = housingData.initialState.estateSearch.data.estates;
 
-                fs.writeFileSync('./immowelt.json', JSON.stringify(estates))
+                fs.writeFileSync('./immowelt.json', JSON.stringify(housingData))
             } else {
                 console.log('Housing data not found');
             }

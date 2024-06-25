@@ -1,39 +1,41 @@
-// For more information, see https://crawlee.dev/
-import { CheerioCrawler, ProxyConfiguration } from 'crawlee';
 import fs from 'fs';
+import { getBrowser } from './utils/playwright.js'
 
-const crawler = new CheerioCrawler({
-    // proxyConfiguration: new ProxyConfiguration({ proxyUrls: ['...'] }),
-    // Comment this option to scrape the full website.
-    maxRequestsPerCrawl: 20,
-    async requestHandler({ request, response, body, contentType, $ }) {
-        const rawData = $('#__NEXT_DATA__').text()
+// 
+// https://www.immonet.de/haus-mieten.html
+const scrapeData = async (page) => {
+    const BASE_URL = 'https://www.immonet.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD04DE11';
+    await page.goto(BASE_URL);
 
-        try {
-            const data = JSON.parse(rawData)
-            const { page, classifiedsData } = data?.props?.pageProps?.pageProps || {}
+    const content = await page.content();
 
-            fs.writeFileSync('./immonet.json', JSON.stringify(classifiedsData))
-        } catch (e) {
-            console.error(e)
-        }
-        // Do some data extraction from the page with Cheerio.
-        // $('[data-testid="serp-card-testid"]').each((index, el) => {
-        //     data.push({ title: $(el).find('a').title() });
-        // });
+    const scriptTagStart = `<script id="__NEXT_DATA__" type="application/json">`;
+    const scriptTagEnd = '</script>';
 
-        // // Save the data to dataset.
-        // await Dataset.pushData({
-        //     url: request.url,
-        //     html: body,
-        //     data,
-        // })
-    },
-});
+    // Locate the start and end positions of the script content
+    const startIndex = content.indexOf(scriptTagStart) + scriptTagStart.length;
+    const endIndex = content.indexOf(scriptTagEnd, startIndex);
 
+    if (startIndex === -1 || endIndex === -1) {
+        throw new Error('Script tag not found');
+    }
 
-export const immonetCrawler = () => crawler.run([
-    'https://www.immonet.de/wohnung-mieten.html',
-    // https://www.immonet.de/haus-mieten.html
-]);
+    // Extract the JSON string
+    const jsonString = content.substring(startIndex, endIndex).trim();
+    const data = JSON.parse(jsonString)
+    const { page: pageNumber, classifiedsData } = data?.props?.pageProps?.pageProps || {}
+
+    fs.writeFileSync('./immonet.json', JSON.stringify(classifiedsData))
+}
+
+const crawler = async () => {
+    try {
+        await getBrowser(scrapeData);
+    } catch (error) {
+        console.error("Immonet Error:", error);
+    }
+}
+
+export const immonetCrawler = crawler;
+
 

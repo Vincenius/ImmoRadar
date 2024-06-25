@@ -1,0 +1,29 @@
+{
+    "url": "https://www.immonet.de/123/343434",
+    "provider": "immonet.de",
+    "publicationDate": "09.05.2024",
+    "price": {
+        "value": 123,
+        "currency": "EUR",
+        "additionalInfo": "Warmmiete"
+    },
+    "livingSpace": 32.3,
+    "availabiltiy": "Now",
+    "address": {
+        "zipCode": "10369",
+        "city": "Berlin",
+        "district": "Lichtenberg",
+        "street": null,
+        "geolocation": {
+            "lat": 52.524688,
+            "lon": 13.466321
+        }
+    },
+    "title": "",
+    "description": "",
+    "gallery": [{ "url": "...", "alt": "alt description" }],
+    "features": {
+        "möbliert": true,
+        "schlafzimmer": 2
+    }
+}
