@@ -1,47 +1,63 @@
 import fs from 'fs';
 import { getBrowser } from './utils/playwright.js'
 
+// TODO: optional parameter / scrape all or just recents
 const scrapeData = async (page) => {
-    const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP&sp=1';
-    await page.goto(BASE_URL);
+    let currentPage = 1;
+    let lastPage = 1;
+    let error;
+    let data = [];
 
-    const content = await page.content();
+    while (lastPage && currentPage <= lastPage && !error) {
+        console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
+        const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
 
-    const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
+        await page.goto(BASE_URL + `&sp=${currentPage}`);
 
-    // Find the script tag and extract the content
-    const scriptMatch = content.match(scriptRegex);
-    if (scriptMatch && scriptMatch[1]) {
-        let jsonData = scriptMatch[1].trim();
+        const content = await page.content();
 
-        // Remove potential HTML comments surrounding the JSON data
-        if (jsonData.startsWith('<!--')) {
-            jsonData = jsonData.slice(4);
-        }
-        if (jsonData.endsWith('-->')) {
-            jsonData = jsonData.slice(0, -3);
-        }
-        try {
-            // Parse the JSON data
-            const housingData = JSON.parse(jsonData);
-            console.log(housingData);
+        const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
+        const scriptMatch = content.match(scriptRegex);
 
-            // housingData.initialState.estateSearch.ui.pagination.pagesCount.selectedPage // pagesCount
+        if (scriptMatch && scriptMatch[1]) {
+            let jsonData = scriptMatch[1].trim();
 
-            // Access the specific data you need
-            if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
-                const estates = housingData.initialState.estateSearch.data.estates;
-
-                fs.writeFileSync('./immowelt.json', JSON.stringify(housingData))
-            } else {
-                console.log('Housing data not found');
+            // Remove potential HTML comments surrounding the JSON data
+            if (jsonData.startsWith('<!--')) {
+                jsonData = jsonData.slice(4);
             }
-        } catch (err) {
-            console.error('Failed to parse JSON data:', err);
+            if (jsonData.endsWith('-->')) {
+                jsonData = jsonData.slice(0, -3);
+            }
+            try {
+                // Parse the JSON data
+                const housingData = JSON.parse(jsonData);
+                lastPage = housingData.initialState.estateSearch.ui.pagination.pagesCount
+                currentPage++;
+
+                // Access the specific data you need
+                if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
+                    const estates = housingData.initialState.estateSearch.data.estates;
+
+                    data = [...data, ...estates]
+                } else {
+                    console.log(content, 'Housing data not found');
+                    error = true;
+                }
+            } catch (err) {
+                console.error(err, 'Failed to parse JSON data');
+                error = true;
+            }
+        } else {
+            console.log(content, 'Script tag with JSON data not found');
+            error = true;
         }
-    } else {
-        console.log('Script tag with JSON data not found');
     }
+
+    console.log('Scraped', data.length, 'elements')
+    // TODO parse data
+    // TODO handle database
+    fs.writeFileSync('./immowelt.json', JSON.stringify(data))
 }
 
 const crawler = async () => {
