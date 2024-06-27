@@ -1,12 +1,17 @@
 import playwright from 'playwright'
+import { MongoClient, ObjectId } from 'mongodb';
 import { getRandomResolution, getRandomGeolocation, getRandomUseragent } from './utils.js'
 
 export const getBrowser = async (callback) => {
     console.log('Booting Playwright...')
     let browser;
-    let database;
+    const client = new MongoClient(process.env.MONGODB_URI);
 
     try {
+        await client.connect();
+        const db = client.db(process.env.MONGODB_DB);
+        const estateCollection = db.collection('estates');
+
         const USER_AGENT = getRandomUseragent();
         const viewportSize = getRandomResolution();
         const geolocation = getRandomGeolocation()
@@ -34,7 +39,7 @@ export const getBrowser = async (callback) => {
 
         console.log('Playwright ready...')
 
-        await callback(page, database)
+        await callback(page, estateCollection)
     } catch (error) {
         console.error("Playwright Error:", error);
     } finally {
@@ -42,8 +47,6 @@ export const getBrowser = async (callback) => {
             console.log('Closing Playwright...')
             await browser.close();
         }
-        if (database) {
-            // close database
-        }
+        client.close();
     }
 }
