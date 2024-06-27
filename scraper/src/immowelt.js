@@ -1,4 +1,3 @@
-import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 
 const mapPriceType = {
@@ -17,7 +16,7 @@ const parseData = (estates) => estates.map(e => ({
         currency: e.primaryPrice?.currency,
         additionalInfo: mapPriceType[e.primaryPrice?.type] || e.primaryPrice?.type,
     },
-    livingSpace: e.primaryArea.sizeMin,
+    livingSpace: e.primaryArea?.sizeMin,
     rooms: e.roomsMin,
     // "availabiltiy": "Now",
     address: {
@@ -25,24 +24,26 @@ const parseData = (estates) => estates.map(e => ({
         city: e.place.city,
         district: e.place.district,
         street: e.place.street,
-        geolocation: {
+        geolocation: e.place.point ? {
             lat: e.place.point.lat,
             lon: e.place.point.lon,
-        }
+        } : null
     },
-    title: e.title,
+    title: e.title.trim(),
     // "description": "",
     gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
     features: e.features,
-    company: e.broker.companyName,
+    company: e.broker.companyName.trim(),
 }) )
 
-const scrapeData = async (page) => {
+const scrapeData = async (page, collection, type) => {
     const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
     let currentPage = 1;
     let lastPage = 1;
     let error;
     let data = [];
+    let count = 0;
+    const prevEntries = await collection.find({ provider: "immonet.de" }, { projection: { id: 1 } }).toArray();
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
@@ -72,10 +73,19 @@ const scrapeData = async (page) => {
                 // Access the specific data you need
                 if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
                     const estates = housingData.initialState.estateSearch.data.estates;
-
                     const parsedData = parseData(estates)
+                    const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
-                    // todo check & push to database
+                    if (newData.length) {
+                        await collection.insertMany(newData)
+                    }
+
+                    if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
+                        console.log('Found old entries on page - quit scan');
+                        lastPage = currentPage - 1;
+                    }
+
+                    count += newData.length;
                     data = [...data, ...parsedData]
                 } else {
                     console.log(content, 'Housing data not found');
@@ -91,12 +101,22 @@ const scrapeData = async (page) => {
         }
     }
 
-    console.log('Scraped', data.length, 'elements')
+    console.log('Immowelt scraped', count, ' new estates');
+
+    if (type === 'FULL_SCAN') {
+        const toRemove = prevEntries
+            .filter(e => !data.find(d => d.id === e.id))
+            .map(e => e.id);
+
+        // Remove multiple entries by _id
+        const result = await collection.deleteMany({ id: { $in: toRemove } });
+        console.log(`Immowelt ${result.deletedCount} old estates were deleted.`);
+    }
 }
 
-const crawler = async () => {
+const crawler = async (type) => {
     try {
-        await middleware(scrapeData);
+        await middleware(scrapeData, type);
     } catch (error) {
         console.error("Immowelt Error:", error);
     }

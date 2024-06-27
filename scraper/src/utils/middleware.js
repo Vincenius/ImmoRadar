@@ -1,8 +1,8 @@
 import playwright from 'playwright'
-import { MongoClient, ObjectId } from 'mongodb';
+import { MongoClient } from 'mongodb';
 import { getRandomResolution, getRandomGeolocation, getRandomUseragent } from './utils.js'
 
-export const getBrowser = async (callback) => {
+export const middleware = async (callback, type) => {
     console.log('Booting Playwright...')
     let browser;
     const client = new MongoClient(process.env.MONGODB_URI);
@@ -39,7 +39,7 @@ export const getBrowser = async (callback) => {
 
         console.log('Playwright ready...')
 
-        await callback(page, estateCollection)
+        await callback(page, estateCollection, type)
     } catch (error) {
         console.error("Playwright Error:", error);
     } finally {
