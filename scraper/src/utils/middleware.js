@@ -4,6 +4,7 @@ import { getRandomResolution, getRandomGeolocation, getRandomUseragent } from '.
 export const getBrowser = async (callback) => {
     console.log('Booting Playwright...')
     let browser;
+    let database;
 
     try {
         const USER_AGENT = getRandomUseragent();
@@ -33,13 +34,16 @@ export const getBrowser = async (callback) => {
 
         console.log('Playwright ready...')
 
-        await callback(page)
+        await callback(page, database)
     } catch (error) {
         console.error("Playwright Error:", error);
     } finally {
         if (browser) {
             console.log('Closing Playwright...')
-            // await browser.close();
+            await browser.close();
+        }
+        if (database) {
+            // close database
         }
     }
 }

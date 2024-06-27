@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { getBrowser } from './utils/playwright.js'
+import { middleware } from './utils/middleware.js'
 
 const scrapeData = async (page) => {
     const BASE_URL = 'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/c203+wohnung_mieten.swap_s:nein'
@@ -85,7 +85,7 @@ const scrapeData = async (page) => {
 }
 
 const crawler = async () => {
-    await getBrowser(scrapeData);
+    await middleware(scrapeData);
 }
 
 export const kleinanzeigenCrawler = crawler;

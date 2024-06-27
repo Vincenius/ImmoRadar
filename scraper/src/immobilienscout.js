@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { getBrowser } from './utils/playwright.js'
+import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 
 const scrapeData = async (page) => {
@@ -28,7 +28,7 @@ const scrapeData = async (page) => {
 }
 
 const crawler = async () => {
-    await getBrowser(scrapeData);
+    await middleware(scrapeData);
 }
 
 

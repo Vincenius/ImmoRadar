@@ -1,8 +1,44 @@
 import fs from 'fs';
-import { getBrowser } from './utils/playwright.js'
+import { middleware } from './utils/middleware.js'
 
-// TODO: optional parameter / scrape all or just recents
+const mapPriceType = {
+    "COLD_RENT": "COLD_RENT",
+    "RENT_INCLUDING_HEATING": "WARM_RENT",
+    "PURCHASE_PRICE": "PURCHASE_PRICE",
+}
+
+const parseData = (estates) => estates.map(e => ({
+    id: e.id,
+    url: `https://www.immowelt.de/expose/${e.onlineId}`,
+    provider: "immonet.de",
+    date: e.timestamp,
+    price: {
+        value: e.primaryPrice?.amountMax,
+        currency: e.primaryPrice?.currency,
+        additionalInfo: mapPriceType[e.primaryPrice?.type] || e.primaryPrice?.type,
+    },
+    livingSpace: e.primaryArea.sizeMin,
+    rooms: e.roomsMin,
+    // "availabiltiy": "Now",
+    address: {
+        zipCode: e.place.postcode,
+        city: e.place.city,
+        district: e.place.district,
+        street: e.place.street,
+        geolocation: {
+            lat: e.place.point.lat,
+            lon: e.place.point.lon,
+        }
+    },
+    title: e.title,
+    // "description": "",
+    gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
+    features: e.features,
+    company: e.broker.companyName,
+}) )
+
 const scrapeData = async (page) => {
+    const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
     let currentPage = 1;
     let lastPage = 1;
     let error;
@@ -10,12 +46,10 @@ const scrapeData = async (page) => {
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
-        const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
 
         await page.goto(BASE_URL + `&sp=${currentPage}`);
 
         const content = await page.content();
-
         const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
         const scriptMatch = content.match(scriptRegex);
 
@@ -39,7 +73,10 @@ const scrapeData = async (page) => {
                 if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
                     const estates = housingData.initialState.estateSearch.data.estates;
 
-                    data = [...data, ...estates]
+                    const parsedData = parseData(estates)
+
+                    // todo check & push to database
+                    data = [...data, ...parsedData]
                 } else {
                     console.log(content, 'Housing data not found');
                     error = true;
@@ -55,14 +92,11 @@ const scrapeData = async (page) => {
     }
 
     console.log('Scraped', data.length, 'elements')
-    // TODO parse data
-    // TODO handle database
-    fs.writeFileSync('./immowelt.json', JSON.stringify(data))
 }
 
 const crawler = async () => {
     try {
-        await getBrowser(scrapeData);
+        await middleware(scrapeData);
     } catch (error) {
         console.error("Immowelt Error:", error);
     }

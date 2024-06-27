@@ -1,5 +1,5 @@
 import fs from 'fs';
-import { getBrowser } from './utils/playwright.js'
+import { middleware } from './utils/middleware.js'
 
 // 
 // https://www.immonet.de/haus-mieten.html
@@ -30,7 +30,7 @@ const scrapeData = async (page) => {
 
 const crawler = async () => {
     try {
-        await getBrowser(scrapeData);
+        await middleware(scrapeData);
     } catch (error) {
         console.error("Immonet Error:", error);
     }
