@@ -67,3 +67,63 @@ export const getRandomUseragent = () => {
 }
 
 export const delay = ms => new Promise(res => setTimeout(res, ms));
+
+export const parseCurrencyString = (currencyString) => {
+  // Use a regular expression to find the numeric part of the string
+  const numberMatch = currencyString.match(/[\d,.]+/);
+  if (numberMatch) {
+      let numberString = numberMatch[0];
+
+      // Remove any commas used as thousand separators if periods are not used as thousand separators
+      if (numberString.indexOf(',') > -1 && numberString.indexOf('.') === -1) {
+          numberString = numberString.replace(/,/g, '');
+      }
+
+      // If periods are used as thousand separators and commas as decimal separators
+      if (numberString.indexOf('.') > -1 && numberString.indexOf(',') > -1) {
+          numberString = numberString.replace(/\./g, '').replace(',', '.');
+      }
+
+      // Parse the string to a floating point number
+      const value = parseFloat(numberString);
+      return value;
+  } else {
+      return null
+  }
+}
+
+export const germanDateToIso = (dateStr) => {
+  // Mapping of German month names to month numbers
+  const months = {
+      "Januar": 1,
+      "Februar": 2,
+      "März": 3,
+      "April": 4,
+      "Mai": 5,
+      "Juni": 6,
+      "Juli": 7,
+      "August": 8,
+      "September": 9,
+      "Oktober": 10,
+      "November": 11,
+      "Dezember": 12
+  };
+
+  // Split the input string
+  const [monthStr, yearStr] = dateStr.split(" ");
+
+  // Get the month number
+  const month = months[monthStr];
+  const year = parseInt(yearStr, 10);
+
+  // Create a Date object (month is zero-indexed in JavaScript)
+  const date = new Date(year, month - 1, 1);
+
+  try {
+    // Convert to ISO format
+    const isoDate = date.toISOString();
+    return isoDate;
+  } catch (err) {
+    return null; // invalid date
+  }
+}
