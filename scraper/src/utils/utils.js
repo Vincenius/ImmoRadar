@@ -69,27 +69,14 @@ export const getRandomUseragent = () => {
 export const delay = ms => new Promise(res => setTimeout(res, ms));
 
 export const parseCurrencyString = (currencyString) => {
-  // Use a regular expression to find the numeric part of the string
-  const numberMatch = currencyString.match(/[\d,.]+/);
-  if (numberMatch) {
-      let numberString = numberMatch[0];
+  let numericString = currencyString.replace(/[^\d-]/g, '');
+  let number = parseFloat(numericString);
 
-      // Remove any commas used as thousand separators if periods are not used as thousand separators
-      if (numberString.indexOf(',') > -1 && numberString.indexOf('.') === -1) {
-          numberString = numberString.replace(/,/g, '');
-      }
-
-      // If periods are used as thousand separators and commas as decimal separators
-      if (numberString.indexOf('.') > -1 && numberString.indexOf(',') > -1) {
-          numberString = numberString.replace(/\./g, '').replace(',', '.');
-      }
-
-      // Parse the string to a floating point number
-      const value = parseFloat(numberString);
-      return value;
-  } else {
-      return null
+  if (isNaN(number)) {
+    return null;
   }
+
+  return number;
 }
 
 export const germanDateToIso = (dateStr) => {

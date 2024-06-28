@@ -1,17 +1,15 @@
 import { middleware } from './utils/middleware.js'
 import { parseCurrencyString, germanDateToIso } from './utils/utils.js'
 
-import fs from 'fs'
-
 const scrapeData = async (page, collection, type) => {
     let currentPage = 1;
-    let lastPage = 10;
+    let lastPage = 1;
     let data = [];
-    const tmpData =[]
     let count = 0;
     let error;
 
-    const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { url: 1 } }).toArray();
+    const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { link: 1 } }).toArray();
+
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage);
@@ -35,14 +33,14 @@ const scrapeData = async (page, collection, type) => {
             return [urls, lastPage];
         });
 
-        data.push(links)
+        data = [...data, ...links]
 
-        // lastPage = newLastPage;
+        lastPage = newLastPage;
 
-        const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
+        const newLinks = links.filter(link => !prevEntries.some(entry => entry.link === link));
+        count += newLinks.length;
 
         // Loop through each link, navigate to the page, and scrape data
-        // TODO only if scrape all
         for (const link of newLinks) {
             await page.goto(link);
 
@@ -104,10 +102,35 @@ const scrapeData = async (page, collection, type) => {
                     pageData.gallery.push({ url: imgElement.getAttribute('src'), alt: imgElement.getAttribute('alt') });
                 });
 
-                // TODO features: e.features,
                 pageData.rawFeatures = [];
+
+                const featureMap = {
+                    'Möbliert/Teilmöbliert': 'FULLY_FURNISHED',
+                    'Balkon': 'BALCONY',
+                    'Einbauküche': 'FITTED_KITCHEN',
+                    'Badewanne': 'BATH_WITH_TUB',
+                    'Stufenloser Zugang': 'WHEELCHAIR_ACCESSIBLE',
+                    'Fußbodenheizung': 'UNDERFLOOR_HEATING',
+                    'Neubau': 'NEW_BUILDING',
+                    'Aufzug': 'PASSENGER_LIFT',
+                    'Garage/Stellplatz': 'CAR_PARK',
+                    'Garten/-mitnutzung': 'GARDEN_SHARED',
+                    'Haustiere erlaubt': 'PETS_ALLOWED',
+                    'Gäste WC': 'GUEST_TOILET',
+                    'Keller': 'BASEMENT',
+                    'WG-geeignet': 'FLAT_SHARE_POSSIBLE',
+                    'Altbau': 'OLD_BUILDING',
+                    'Terrasse': 'TERRACE',
+                    'WBS benötigt': 'CERTIFICATE_OF_ELIGIBILITY',
+                    'Dachboden': 'ATTIC'
+                };
                 document.querySelectorAll('#viewad-configuration .checktag').forEach(featureElement => {
-                    pageData.rawFeatures.push(featureElement.textContent.trim());
+                    const feature = featureMap[featureElement.textContent.trim()]
+                    if (!feature) {
+                        console.warn('Could not find feature', featureElement.textContent.trim());
+                    } else {
+                        pageData.rawFeatures.push(feature);
+                    }
                 });
 
                 const privateElement = document.querySelector('.userprofile-vip-details-text')
@@ -130,22 +153,35 @@ const scrapeData = async (page, collection, type) => {
                 subPageData.availabiltiy = subPageData.availabiltiy ? germanDateToIso(subPageData.availabiltiy) : '';
             
                 if (subPageData.address.zipCode) {
-                    const city = await fetch(`https://zip-api.eu/api/v1/info/DE-${subPageData.address.zipCode}`).then(res => res.json())
-                    // TODO store zip - city mapping in database for less dependency on external API
-                    subPageData.address.city = city
+                    const apiCity = await fetch(`https://zip-api.eu/api/v1/info/DE-${subPageData.address.zipCode}`).then(res => res.json())
+                    // TODO maybe store zip - city mapping in database for less dependency on external API
+                    subPageData.address.city = apiCity.place_name.replace(subPageData.address.district, '').trim()
                 }
     
-                tmpData.push(subPageData);
-                // Store the data
-                // TODO STORE
+                await collection.insertOne(subPageData)
             } else {
                 console.log(`Failed to extract data from ${link}`);
                 error = true;
             }
         }
+
+        if (type === 'NEW_SCAN' && newLinks.length < (links.length - 5)) { // -5 tolerance because of possible ads on top
+            console.log('Found old entries on page - quit scan');
+            lastPage = currentPage - 1;
+        }
     }
 
-    fs.writeFileSync('./kleinanzeigen.json', JSON.stringify(tmpData))
+    console.log('Kleinanzeigen scraped', count, 'new estates');
+
+    if (type === 'FULL_SCAN') {
+        const toRemove = prevEntries
+            .filter(e => data.indexOf(e.link) === -1)
+            .map(e => e.link);
+
+        // Remove multiple entries by _id
+        const result = await collection.deleteMany({ link: { $in: toRemove } });
+        console.log(`Kleinanzeigen ${result.deletedCount} old estates were deleted.`);
+    }
 }
 
 const crawler = async (type) => {
