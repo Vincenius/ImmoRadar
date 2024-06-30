@@ -30,7 +30,6 @@ const parseData = (estates) => estates.map(e => ({
         } : null
     },
     title: e.title.trim(),
-    // "description": "",
     gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
     features: e.features,
     company: e.broker.companyName.trim(),

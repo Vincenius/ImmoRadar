@@ -10,7 +10,6 @@ const scrapeData = async (page, collection, type) => {
 
     const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { link: 1 } }).toArray();
 
-
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage);
         const BASE_URL = `https://www.kleinanzeigen.de/s-wohnung-mieten/berlin/anzeige:angebote/seite:${currentPage}/c203l3331+wohnung_mieten.swap_s:nein`
@@ -135,9 +134,9 @@ const scrapeData = async (page, collection, type) => {
 
                 const privateElement = document.querySelector('.userprofile-vip-details-text')
                 const isPrivate = privateElement ? privateElement.textContent === 'Privater Nutzer' : false;
-                
+
                 if (isPrivate) {
-                    pageData.company = "Privater Nutzer"
+                    pageData.company = "Privat"
                 } else {
                     const companyElement = document.querySelector('#viewad-bizteaser--title a')
                     pageData.company = companyElement ? companyElement.textContent : ''

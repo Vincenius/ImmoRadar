@@ -2,12 +2,12 @@ import fs from 'fs'
 import 'dotenv/config'
 import { middleware } from './src/utils/middleware.js'
 
-const tmp = fs.readFileSync('./kleinanzeigen.json')
-const data = JSON.parse(tmp)
+// const tmp = fs.readFileSync('./immoscout.json')
+// const data = JSON.parse(tmp)
 
-const rawFeatures = data.map(d => d.rawFeatures).flat()
+// const rawFeatures = data.map(d => d.rawFeatures).flat()
 
-console.log([...new Set(rawFeatures)])
+// console.log([...new Set(rawFeatures)])
 
 
 // const run = async (page, collection) => {
@@ -17,7 +17,12 @@ console.log([...new Set(rawFeatures)])
 //         { $project: { _id: 0, feature: "$_id" } }  // Project the unique values into a field called "feature"
 //     ]).toArray()
 
-//     console.log(result)
+//     const result = await collection.updateMany(
+//       { company: "Privater Nutzer" },
+//       { $set: { company: "Privat" } }
+//     )
+
+//     console.log('Documents updated:', result);
 // }
 
 // const crawler = async () => {
@@ -71,5 +76,8 @@ console.log([...new Set(rawFeatures)])
 //     "PARTLY_AIR_CONDITIONED",
 //     "CARPORT",
 //     "ATTIC",
-//     "GARDEN_PART"
+//     "GARDEN_PART",
+//     "GUEST_TOILET"
 //   ]
+
+
