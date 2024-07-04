@@ -10,7 +10,7 @@ export const middleware = async (callback, type) => {
     try {
         await client.connect();
         const db = client.db(process.env.MONGODB_DB);
-        const estateCollection = db.collection('locations');
+        const estateCollection = db.collection('estates');
 
         const USER_AGENT = getRandomUseragent();
         const viewportSize = getRandomResolution();
