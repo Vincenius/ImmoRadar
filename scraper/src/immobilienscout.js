@@ -33,6 +33,7 @@ const parseData = (estates) => estates.map(e => {
 
     return {
         id: e['@id'],
+        created_at: new Date().toISOString(),
         url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
         provider: "immobilienscout24.de",
         date: e['@publishDate'],
@@ -84,7 +85,7 @@ const scrapeData = async (page, collection, type) => {
         console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
 
         await page.goto(BASE_URL);
-        await delay(5000);
+        // await delay(5000); // needed??
 
         const content = await page.content();
         const scriptRegex = /IS24\.resultList\s*=\s*(\{[\s\S]*?\});/;

@@ -10,13 +10,13 @@ export const middleware = async (callback, type) => {
     try {
         await client.connect();
         const db = client.db(process.env.MONGODB_DB);
-        const estateCollection = db.collection('estates');
+        const estateCollection = db.collection('locations');
 
         const USER_AGENT = getRandomUseragent();
         const viewportSize = getRandomResolution();
         const geolocation = getRandomGeolocation()
 
-        browser = await playwright.chromium.launch({ headless: true });
+        browser = await playwright.chromium.launch({ headless: false });
         const context = await browser.newContext({
             userAgent: USER_AGENT,
             locale: 'de-DE',

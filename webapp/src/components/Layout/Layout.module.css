@@ -1,0 +1,5 @@
+.header {
+  box-shadow: var(--mantine-shadow-sm);
+  z-index: 1;
+  position: relative;
+}
