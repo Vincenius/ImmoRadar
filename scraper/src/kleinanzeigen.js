@@ -147,17 +147,12 @@ const scrapeData = async (page, collection, type) => {
             });
 
             if (subPageData) {
-                console.log('Scraped data from sub-page', link);
                 subPageData.link = link;
                 subPageData.price.value = subPageData.price.value ? parseCurrencyString(subPageData.price.value) : '';
                 subPageData.availabiltiy = subPageData.availabiltiy ? germanDateToIso(subPageData.availabiltiy) : '';
             
-                if (subPageData.address.zipCode) {
-                    const apiCity = await fetch(`https://zip-api.eu/api/v1/info/DE-${subPageData.address.zipCode}`).then(res => res.json())
-                    // TODO maybe store zip - city mapping in database for less dependency on external API
-                    subPageData.address.city = apiCity.place_name.replace(subPageData.address.district, '').trim()
-                }
-    
+                console.log('Scraped data from sub-page', link);
+                
                 await collection.insertOne(subPageData)
             } else {
                 console.log(`Failed to extract data from ${link}`);
@@ -173,7 +168,7 @@ const scrapeData = async (page, collection, type) => {
 
     console.log('Kleinanzeigen scraped', count, 'new estates');
 
-    if (type === 'FULL_SCAN') {
+    if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
             .filter(e => data.indexOf(e.link) === -1)
             .map(e => e.link);

@@ -4,36 +4,32 @@ export default async function handler(req, res) {
   const client = new MongoClient(process.env.MONGODB_URI);
 
   try {
-    // zipCode "10234"
-    // city "Berlin-Siemensstadt" <- todo fix
-    // district "Siemensstadt"
-
     if (req.method === 'GET') {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
-      const estateCollection = db.collection('estates');
+      const collection = db.collection('locations');
 
       let result = []
 
-      result = await estateCollection.aggregate([
+      result = await collection.aggregate([
         {
-          $group: {
-            _id: {
-              zipCode: "$address.zipCode",
-              city: "$address.city",
-              district: "$address.district"
-            }
+          $project: {
+            name: 1,
+            zipCodeCount: { $size: "$zipCodes" }
           }
         },
         {
+          $sort: { zipCodeCount: -1 }
+        },
+        {
           $project: {
-            _id: 0,
-            zipCode: "$_id.zipCode",
-            city: "$_id.city",
-            district: "$_id.district"
+            name: 1,
+            _id: 0
           }
         }
       ]).toArray()
+
+
 
       res.status(200).json(result);
     } else {

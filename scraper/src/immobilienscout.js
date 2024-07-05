@@ -76,16 +76,24 @@ const scrapeData = async (page, collection, type) => {
     let error;
     let data = [];
     let count = 0;
+    let retry = 0;
     const prevEntries = await collection.find({ provider: "immobilienscout24.de" }, { projection: { id: 1 } }).toArray();
 
-    while (lastPage && currentPage <= lastPage && !error) {
+    while (lastPage && currentPage <= lastPage && !error && retry < 3) {
         const pageQuery = currentPage === 1 ? '' : `&pagenumber=${currentPage}`
         const BASE_URL = `https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2${pageQuery}`
 
         console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
 
         await page.goto(BASE_URL);
-        // await delay(5000); // needed??
+        // TODO find best time to prevent bot protection -> try wait 10 seconds every 50
+        // if (currentPage % 20 === 0) {
+        //     console.log('Waiting 5 seconds to prevent bot protection...')
+        //     await delay(5000);
+        // } else {
+        //     // await delay(1000);
+        // }
+        await delay(2000);
 
         const content = await page.content();
         const scriptRegex = /IS24\.resultList\s*=\s*(\{[\s\S]*?\});/;
@@ -93,6 +101,7 @@ const scrapeData = async (page, collection, type) => {
         const match = scriptRegex.exec(content);
         if (match && match[1]) {
             currentPage++;
+            retry = 0;
             try {
                 const scriptContent = match[1];
                 const resultList = eval('(' + scriptContent + ')');
@@ -122,14 +131,20 @@ const scrapeData = async (page, collection, type) => {
                 error = true;
             }
         } else {
-            console.error('IS24.resultList object not found');
-            error = true;
+            console.log('No IS24.resultList found on page - retrying in 5 seconds...');
+            await delay(5000); // wait and retry to bypass bot waiting screen
+            retry++;
         }
+    }
+
+    if (retry === 3) {
+        console.error('IS24.resultList object not found after three retries')
+        error = true;
     }
 
     console.log('Immobilienscout24 scraped', count, ' new estates');
 
-    if (type === 'FULL_SCAN') {
+    if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
             .filter(e => !data.find(d => d.id === e.id))
             .map(e => e.id);

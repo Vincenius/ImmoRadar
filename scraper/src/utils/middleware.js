@@ -14,9 +14,9 @@ export const middleware = async (callback, type) => {
 
         const USER_AGENT = getRandomUseragent();
         const viewportSize = getRandomResolution();
-        const geolocation = getRandomGeolocation()
+        const geolocation = getRandomGeolocation();
 
-        browser = await playwright.chromium.launch({ headless: false });
+        browser = await playwright.chromium.launch({ headless: true });
         const context = await browser.newContext({
             userAgent: USER_AGENT,
             locale: 'de-DE',

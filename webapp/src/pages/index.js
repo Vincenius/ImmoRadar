@@ -1,3 +1,5 @@
+import { useState, useEffect } from 'react';
+import { useRouter } from 'next/navigation';
 import { Flex, Text, Group, ThemeIcon, Title, Box, Autocomplete } from '@mantine/core';
 import { IconClock, IconList, IconBell } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
@@ -5,6 +7,17 @@ import Logos from '@/components/Logos/Logos'
 import styles from '@/styles/Home.module.css'
 
 export default function Home() {
+  const router = useRouter()
+  const [autocompleOptions, setAutocompleteOptions] = useState([]) // todo add defaults
+
+  useEffect(() => {
+    fetch('/api/autocomplete')
+      .then(res => res.json())
+      .then(data => {
+        setAutocompleteOptions(data)
+      })
+  }, [])
+
   return (
     <Layout
       title="ImmoRadar | Alle Immobilienangebote an einem Ort"
@@ -21,13 +34,14 @@ export default function Home() {
 
             <Group position="center">
               <Autocomplete
-                data={['Berlin', 'Hamburg']} // fetch from api -> include top 100 before fetching from api
+                data={autocompleOptions.map(o => o.name)}
                 comboboxProps={{ shadow: 'md' }}
-                limit={5}
+                limit={10}
                 className={styles.input}
                 placeholder="Ort / Stadt / Bezirk Suchen"
                 size="lg"
                 w="100%"
+                onOptionSubmit={(value) => router.push('/search?q=' + encodeURI(value))}
               />
             </Group>
           </Box>

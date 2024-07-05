@@ -103,7 +103,7 @@ const scrapeData = async (page, collection, type) => {
 
     console.log('Immowelt scraped', count, ' new estates');
 
-    if (type === 'FULL_SCAN') {
+    if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
             .filter(e => !data.find(d => d.id === e.id))
             .map(e => e.id);
