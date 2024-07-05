@@ -8,7 +8,7 @@ import styles from '@/styles/Home.module.css'
 
 export default function Home() {
   const router = useRouter()
-  const [autocompleOptions, setAutocompleteOptions] = useState([]) // todo add defaults
+  const [autocompleOptions, setAutocompleteOptions] = useState([])
 
   useEffect(() => {
     fetch('/api/autocomplete')

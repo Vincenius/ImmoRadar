@@ -42,6 +42,12 @@ export default function Home() {
                 size="lg"
                 w="100%"
                 onOptionSubmit={(value) => router.push('/search?q=' + encodeURI(value))}
+                // submit on enter
+                onKeyUp={(e) => {
+                  if (e.key === 'Enter' && e.target.value && e.target.value.length > 2){
+                    router.push('/search?q=' + encodeURI(e.target.value) + '&input=manual')}
+                  } 
+                }
               />
             </Group>
           </Box>

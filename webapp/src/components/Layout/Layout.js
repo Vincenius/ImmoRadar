@@ -1,7 +1,10 @@
-import React from 'react'
+import React from 'react';
 import Head from "next/head";
+import Image from 'next/image';
+import Link from 'next/link';
 import { Container, Text, Flex, Indicator } from '@mantine/core';
-import styles from './Layout.module.css'
+import Logo from './logo.svg';
+import styles from './Layout.module.css';
 
 const Layout = ({ children, title, description }) => {
   return <>
@@ -15,10 +18,14 @@ const Layout = ({ children, title, description }) => {
       <header height={60} mb={30} p="md" className={styles.header}>
         <Container>
           <Flex justify="space-between" component="nav" py="sm">
-            {/* logo */}
-            <Indicator inline label="Beta" size={16}>
-              <Text weight={700} size="xl">ImmoRadar</Text>
-            </Indicator>
+            <Link href="/">
+              <Flex align="center" gap="sm">
+                <Image src={Logo} width={40} height={40} />
+                <Indicator inline label="Beta" size={16}>
+                  <Text weight={700} size="xl">ImmoRadar</Text>
+                </Indicator>
+              </Flex>
+            </Link>
 
             <Flex justify="flex-end" align="center">
               <a>Über uns</a>
