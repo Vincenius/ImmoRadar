@@ -1,0 +1,3 @@
+.input {
+    --input-bd: var(--input-bd-focus);
+}

@@ -19,7 +19,3 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
-.input {
-  --input-bd: var(--input-bd-focus);
-}

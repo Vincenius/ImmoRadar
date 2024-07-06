@@ -1,29 +1,41 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Flex, Text, Group, ThemeIcon, Title, Box, Autocomplete } from '@mantine/core';
-import { IconClock, IconList, IconBell } from '@tabler/icons-react';
+import useSWR from 'swr'
+import { useRouter } from 'next/router';
+import { Box, Grid, Card, Flex } from '@mantine/core';
 import Layout from '@/components/Layout/Layout'
-import Logos from '@/components/Logos/Logos'
-import styles from '@/styles/Home.module.css'
+import SearchBar from '@/components/SearchBar/SearchBar';
+import { fetcher } from '@/utils/fetcher'
 
-export default function Home() {
+export default function Search() {
   const router = useRouter()
-  const [autocompleOptions, setAutocompleteOptions] = useState([])
+  const { q } = (router.query || {})
+  const { data, error, isLoading } = useSWR(`/api/search?q=${q}`, fetcher)
 
-  useEffect(() => {
-    fetch('/api/autocomplete')
-      .then(res => res.json())
-      .then(data => {
-        setAutocompleteOptions(data)
-      })
-  }, [])
+  console.log(data)
 
   return (
     <Layout
       title="ImmoRadar | Alle Immobilienangebote an einem Ort"
       description="Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten."
     >
-      Search page
+      <Box py="xl">
+        <SearchBar defaultValue={q} />
+      </Box>
+
+      <Grid>
+        <Grid.Col span={8}>
+          {data && data.map((item) => (
+            <Card shadow="sm" padding="lg" radius="md" withBorder mb="md" key={item.id}>
+              <Flex justify="space-between">
+                <h2>{item.title}</h2>
+                <p>{item.created_at}</p>
+              </Flex>
+            </Card>
+          ))}
+        </Grid.Col>
+        <Grid.Col span={4}>
+          Filter & signup
+        </Grid.Col>
+      </Grid>
     </Layout>
   );
 }

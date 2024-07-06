@@ -12,7 +12,7 @@ const Layout = ({ children, title, description }) => {
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
-      <link rel="icon" href="/favicon.ico" />
+      <link rel="icon" href="/favicon.svg" />
     </Head>
     <div>
       <header height={60} mb={30} p="md" className={styles.header}>
@@ -20,7 +20,7 @@ const Layout = ({ children, title, description }) => {
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/">
               <Flex align="center" gap="sm">
-                <Image src={Logo} width={40} height={40} />
+                <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" />
                 <Indicator inline label="Beta" size={16}>
                   <Text weight={700} size="xl">ImmoRadar</Text>
                 </Indicator>

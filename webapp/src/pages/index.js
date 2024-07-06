@@ -1,22 +1,12 @@
-import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
-import { Flex, Text, Group, ThemeIcon, Title, Box, Autocomplete } from '@mantine/core';
+import { Flex, Text, Group, ThemeIcon, Title, Box } from '@mantine/core';
 import { IconClock, IconList, IconBell } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
+import SearchBar from '@/components/SearchBar/SearchBar';
 import styles from '@/styles/Home.module.css'
 
 export default function Home() {
-  const router = useRouter()
-  const [autocompleOptions, setAutocompleteOptions] = useState([]) // todo add defaults
-
-  useEffect(() => {
-    fetch('/api/autocomplete')
-      .then(res => res.json())
-      .then(data => {
-        setAutocompleteOptions(data)
-      })
-  }, [])
+  
 
   return (
     <Layout
@@ -33,22 +23,7 @@ export default function Home() {
             </Title>
 
             <Group position="center">
-              <Autocomplete
-                data={autocompleOptions.map(o => o.name)}
-                comboboxProps={{ shadow: 'md' }}
-                limit={10}
-                className={styles.input}
-                placeholder="Ort / Stadt / Bezirk Suchen"
-                size="lg"
-                w="100%"
-                onOptionSubmit={(value) => router.push('/search?q=' + encodeURI(value))}
-                // submit on enter
-                onKeyUp={(e) => {
-                  if (e.key === 'Enter' && e.target.value && e.target.value.length > 2){
-                    router.push('/search?q=' + encodeURI(e.target.value) + '&input=manual')}
-                  } 
-                }
-              />
+              <SearchBar />
             </Group>
           </Box>
             <Flex justify="space-between" align="center" direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'md'}}>
