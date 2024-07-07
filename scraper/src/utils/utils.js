@@ -114,3 +114,8 @@ export const germanDateToIso = (dateStr) => {
     return null; // invalid date
   }
 }
+
+export const germanAltDateToIso = (dateStr) => {
+  const [day, month, year] = dateStr.split('.').map(Number);
+  return new Date(year, month - 1, day);
+}

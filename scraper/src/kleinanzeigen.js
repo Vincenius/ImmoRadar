@@ -1,5 +1,5 @@
 import { middleware } from './utils/middleware.js'
-import { parseCurrencyString, germanDateToIso } from './utils/utils.js'
+import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
 
 const scrapeData = async (page, collection, type) => {
     let currentPage = 1;
@@ -102,7 +102,7 @@ const scrapeData = async (page, collection, type) => {
                     pageData.gallery.push({ url: imgElement.getAttribute('src'), alt: imgElement.getAttribute('alt') });
                 });
 
-                pageData.rawFeatures = [];
+                pageData.features = [];
 
                 const featureMap = {
                     'Möbliert/Teilmöbliert': 'FULLY_FURNISHED',
@@ -129,7 +129,7 @@ const scrapeData = async (page, collection, type) => {
                     if (!feature) {
                         console.warn('Could not find feature', featureElement.textContent.trim());
                     } else {
-                        pageData.rawFeatures.push(feature);
+                        pageData.features.push(feature);
                     }
                 });
 
@@ -147,12 +147,21 @@ const scrapeData = async (page, collection, type) => {
             });
 
             if (subPageData) {
-                subPageData.link = link;
+                subPageData.url = link;
                 subPageData.price.value = subPageData.price.value ? parseCurrencyString(subPageData.price.value) : '';
                 subPageData.availabiltiy = subPageData.availabiltiy ? germanDateToIso(subPageData.availabiltiy) : '';
-            
+
+                const date = subPageData.date
+                    ? germanAltDateToIso(subPageData.date)
+                    : new Date(subPageData.created_at)
+                const useDate = date.toDateString() === new Date(subPageData.created_at).toDateString()
+                    ? new Date(subPageData.created_at) // use crawled at datetime, because kleinanzeigen doesn't provide time
+                    : date;
+
+                subPageData.date = useDate.toISOString()
+
                 console.log('Scraped data from sub-page', link);
-                
+
                 await collection.insertOne(subPageData)
             } else {
                 console.log(`Failed to extract data from ${link}`);

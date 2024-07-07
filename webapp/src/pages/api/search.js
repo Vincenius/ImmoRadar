@@ -12,22 +12,27 @@ export default async function handler(req, res) {
                 const db = client.db(process.env.MONGODB_DB);
                 const collection = db.collection('estates');
                 const locationCollection = db.collection('locations');
-    
+
                 let results = [];
-    
+
                 if (input === 'manual') {
                     results = await collection.find({ $or: [
-                        {'address.city': { $regex: q, $options: 'i' } },
+                        { 'address.city': { $regex: q, $options: 'i' } },
                         { 'address.district': { $regex: q, $options: 'i' } }
-                    ] }).limit(20).toArray();
+                    ] })
+                    .sort({ date: -1 })
+                    .limit(20).toArray();
                 } else {
                     const location = await locationCollection.findOne({ name: q });
-    
+
                     if (location) {
-                        results = await collection.find({ 'address.zipCode': { $in: location.zipCodes } }).limit(20).toArray(); 
+                        results = await collection
+                            .find({ 'address.zipCode': { $in: location.zipCodes } })
+                            .sort({ date: -1 })
+                            .limit(20).toArray();
                     }
                 }
-    
+
                 res.status(200).json(results);
             }
         } catch (error) {

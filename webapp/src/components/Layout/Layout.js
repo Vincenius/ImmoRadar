@@ -20,7 +20,7 @@ const Layout = ({ children, title, description }) => {
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/">
               <Flex align="center" gap="sm">
-                <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" />
+                <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" priority />
                 <Indicator inline label="Beta" size={16}>
                   <Text weight={700} size="xl">ImmoRadar</Text>
                 </Indicator>

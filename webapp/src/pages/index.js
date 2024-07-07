@@ -41,35 +41,9 @@ export default function Home() {
               </Flex>
             </Flex>
         </Flex>
-
-        {/* <Flex mih="600px" direction="column" justify="center" gap="xl">
-          <Box>
-            <Title order={1} align="center" size={48} fw="normal">
-              Alle Immobilienangebote an einem Ort
-            </Title>
-            <Flex justify="space-between" align="center" direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'md'}}>
-              <Flex align="center" direction="row" gap="sm">
-                <ThemeIcon radius="xl" size="md" variant="light"><IconList size={24} /></ThemeIcon>
-                <Text>Eine einzige, gut sortierte Liste ohne Duplikate</Text>
-              </Flex>
-              <Flex align="center" direction="row" gap="sm">
-                <ThemeIcon radius="xl" size="md" variant="light"><IconBell size={24} /></ThemeIcon>
-                <Text align="center">Benachrichtigungen bei neuen Angeboten</Text>
-              </Flex>
-            </Flex>
-          </Box>
-          <Group position="center">
-            <Input
-              placeholder="Ort / Stadt / Bezirk Suchen"
-              size="lg"
-              w="100%"
-            />
-          </Group>
-        </Flex> */}
       </Box>
 
       <Logos />
-
     </Layout>
   );
 }

@@ -1,0 +1,14 @@
+/* css for "..." at the end of two lines and removing the rest */
+
+.headline {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word; /* Ensures long words are broken appropriately */
+}
+
+.moreFeatures {
+  cursor: pointer;
+}
