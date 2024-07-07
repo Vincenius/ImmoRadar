@@ -8,7 +8,7 @@ const scrapeData = async (page, collection, type) => {
     let count = 0;
     let error;
 
-    const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { link: 1 } }).toArray();
+    const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { url: 1 } }).toArray();
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage);
@@ -36,7 +36,7 @@ const scrapeData = async (page, collection, type) => {
 
         lastPage = newLastPage;
 
-        const newLinks = links.filter(link => !prevEntries.some(entry => entry.link === link));
+        const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
         count += newLinks.length;
 
         // Loop through each link, navigate to the page, and scrape data
@@ -179,11 +179,11 @@ const scrapeData = async (page, collection, type) => {
 
     if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
-            .filter(e => data.indexOf(e.link) === -1)
-            .map(e => e.link);
+            .filter(e => data.indexOf(e.url) === -1)
+            .map(e => e.url);
 
         // Remove multiple entries by _id
-        const result = await collection.deleteMany({ link: { $in: toRemove } });
+        const result = await collection.deleteMany({ url: { $in: toRemove } });
         console.log(`Kleinanzeigen ${result.deletedCount} old estates were deleted.`);
     }
 }
