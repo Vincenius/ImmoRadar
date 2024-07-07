@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "immoradar-scraper",
+            "script": "npm",
+            "args": "run cron",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
