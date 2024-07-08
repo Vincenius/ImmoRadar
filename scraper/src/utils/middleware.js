@@ -24,6 +24,7 @@ export const middleware = async (callback, type) => {
             permissions: [], // Add any required permissions here
             geolocation,
             timezoneId: 'Europe/Berlin',
+            timeout: 60000,
         });
         await context.addInitScript(() => {
             Object.defineProperty(navigator, 'languages', {

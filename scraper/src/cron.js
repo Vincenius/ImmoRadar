@@ -8,26 +8,12 @@ import { immobilienscoutCrawler } from "./immobilienscout.js";
 
 let isFullScanRunning = false;
 
-// run sequential because of slow server -> can be changed on upgrades
-const runScan = async (type) => {
-  try {
-    await immoweltCrawler(type);
-  } catch (e) {
-    console.error('immoweltCrawler', e);
-  }
+const runScan = async (type) => Promise.allSettled([
+  immoweltCrawler(type),
+  immobilienscoutCrawler(type),
+  kleinanzeigenCrawler(type)
+])
 
-  try {
-    await immobilienscoutCrawler(type)
-  } catch (e) {
-    console.error('immobilienscoutCrawler', e);
-  }
-
-  try {
-    await kleinanzeigenCrawler(type);
-  } catch (e) {
-    console.error('kleinanzeigenCrawler', e);
-  }
-}
 console.log('INIT CRON JOB')
 
 cron.schedule('1,11,21,31,41,51 * * * *', () => {
@@ -42,7 +28,7 @@ cron.schedule('1,11,21,31,41,51 * * * *', () => {
   }
 });
 
-cron.schedule('0 */12 * * *', () => {
+cron.schedule('0 */6 * * *', () => {
   console.log(new Date().toISOString(), 'running full scan');
   isFullScanRunning = true;
 
