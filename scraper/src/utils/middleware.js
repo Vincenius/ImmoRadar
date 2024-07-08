@@ -24,7 +24,6 @@ export const middleware = async (callback, type) => {
             permissions: [], // Add any required permissions here
             geolocation,
             timezoneId: 'Europe/Berlin',
-            timeout: 60000,
         });
         await context.addInitScript(() => {
             Object.defineProperty(navigator, 'languages', {
@@ -35,7 +34,7 @@ export const middleware = async (callback, type) => {
             });
         });
         const page = await context.newPage({ bypassCSP: true });
-        await page.setDefaultTimeout(30000);
+        await page.setDefaultTimeout(60000);
         await page.setViewportSize(viewportSize);
 
         console.log('Playwright ready...')
