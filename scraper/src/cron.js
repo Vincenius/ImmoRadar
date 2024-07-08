@@ -16,7 +16,7 @@ const runScan = async (type) => Promise.allSettled([
 
 console.log('INIT CRON JOB')
 
-cron.schedule('1,6,11,16,21,26,31,36,41,46,51,56 * * * *', () => {
+cron.schedule('1,11,21,31,41,51 * * * *', () => {
   if (!isFullScanRunning) {
     console.log(new Date().toISOString(), 'running new scan');
 
