@@ -33,7 +33,9 @@ const parseData = (estates) => estates.map(e => ({
     title: e.title.trim(),
     gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
     features: e.features,
-    company: e.broker.companyName.trim(),
+    company: e.broker?.companyName
+        ? e.broker?.companyName.trim()
+        : null,
 }) )
 
 const scrapeData = async (page, collection, type) => {
@@ -72,7 +74,7 @@ const scrapeData = async (page, collection, type) => {
 
                 // Access the specific data you need
                 if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
-                    const estates = housingData.initialState.estateSearch.data.estates;
+                    const estates = housingData.initialState.estateSearch.data.estates.filter(e => e.t);
                     const parsedData = parseData(estates)
                     const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
