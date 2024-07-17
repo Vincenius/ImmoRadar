@@ -21,7 +21,7 @@ const SearchItem = ({ item }) => {
         <Box w="50%">
           { item.gallery.length <= 1 && <Image fallbackSrc="/fallback.jpg" src={item.gallery[0]?.url} alt={item.gallery[0]?.alt} h={230} radius="sm" /> }
           { item.gallery.length > 1 && <Carousel h={230} withIndicators align="start" controlSize={18} loop>
-            {item.gallery.map((img, i) => <Carousel.Slide>
+            {item.gallery.map((img, i) => <Carousel.Slide key={`carousel-slide-${i}`}>
               <Image key={`${item._id}-img-${i}`} fallbackSrc="/fallback.jpg" src={img.url} alt={img.alt} h={230} radius="sm" />
             </Carousel.Slide>)}
           </Carousel> }
