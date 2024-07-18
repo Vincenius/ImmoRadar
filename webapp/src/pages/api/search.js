@@ -4,8 +4,10 @@ export default async function handler(req, res) {
     if (req.method === 'GET') {
         const client = new MongoClient(process.env.MONGODB_URI);
         try {
-            const { q, input, sort, minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, features = '' } = req.query;
-            const featuresArray = features.split(',');
+            const {
+                q, input, sort, minPrice, maxPrice, minSize, maxSize,
+                minRooms, maxRooms, titleIncludes, titleExcludes, features = '', page = 1, limit = 20 } = req.query;
+            const featuresArray = features && features.length && features.split(',');
 
             if (!q) {
                 res.status(200).json([])
@@ -55,40 +57,68 @@ export default async function handler(req, res) {
                     featuresFilter['features'] = { $all: featuresArray };
                 }
 
-                const filter = { ...priceFilter, ...sizeFilter, ...roomsFilter, ...featuresFilter };
+                // TITLE FILTER
+                const titleFilter = {};
+                if (titleIncludes) {
+                    titleFilter['title'] = { $regex: titleIncludes, $options: 'i' };
+                }
+                if (titleExcludes) {
+                    titleFilter['title'] = { ...titleFilter['title'], $not: { $regex: titleExcludes, $options: 'i' } };
+                }
+
+                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter];
 
                 // RUN QUERY
                 let results = [];
+                let pages = 0;
 
                 if (input === 'manual') {
-                    results = await collection.find({
+                    const query = {
                         $and: [
                             { $or: [
                                 { 'address.city': { $regex: q, $options: 'i' } },
                                 { 'address.district': { $regex: q, $options: 'i' } }
                             ] },
-                            filter
+                            ...filter,
                         ]
-                    })
-                    .sort(mongoSort)
-                    .limit(20).toArray();
+                    }
+                    const [res, totalDocs] = await Promise.all([
+                        collection.find(query)
+                            .sort(mongoSort)
+                            .skip((page - 1) * limit)
+                            .limit(limit)
+                            .toArray(),
+                        collection.countDocuments(query)
+                    ]);
+
+                    results = res;
+                    pages = Math.ceil(totalDocs / limit);
                 } else {
                     const location = await locationCollection.findOne({ name: q });
 
                     if (location) {
-                        results = await collection
-                            .find({
-                                $and: [
-                                    { 'address.zipCode': { $in: location.zipCodes } },
-                                    filter
-                                ]
-                            })
-                            .sort(mongoSort)
-                            .limit(20).toArray();
+                        const query = {
+                            $and: [
+                                { 'address.zipCode': { $in: location.zipCodes } },
+                                ...filter
+                            ]
+                        }
+                        const [res, totalDocs] = await Promise.all([
+                            collection
+                                .find(query)
+                                .sort(mongoSort)
+                                .skip((page - 1) * limit)
+                                .limit(limit)
+                                .toArray(),
+                            collection.countDocuments(query)
+                        ]);
+
+                        results = res;
+                        pages = Math.ceil(totalDocs / limit);
                     }
                 }
 
-                res.status(200).json(results);
+                res.status(200).json({ estates: results, pages });
             }
         } catch (error) {
             console.error(error);
@@ -98,6 +128,6 @@ export default async function handler(req, res) {
             client.close();
         }
     } else {
-    res.status(400).json([])
-  }
+        res.status(400).json([])
+    }
 }

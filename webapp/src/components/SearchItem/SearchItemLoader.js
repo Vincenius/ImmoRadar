@@ -7,12 +7,12 @@ import styles from './SearchItem.module.css'
 const SearchItemLoader = ({ index }) => {
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-      <Flex justify="space-between" gap="sm">
-        <Box w="50%">
+      <Flex justify="space-between" gap="sm" direction={{ base: "column", xs: "row" }}>
+        <Box w={{ base: "100%", xs: "50%" }}>
           <Skeleton height={230} />
         </Box>
 
-        <Flex w="50%" direction="column" justify="space-between" gap="sm">
+        <Flex w={{ base: "100%", xs: "50%" }} direction="column" justify="space-between" gap="sm">
           <Box>
             <Skeleton height={20} mb="sm" radius="xl" />
             <Skeleton height={20} mb="sm" width="70%" radius="xl" />

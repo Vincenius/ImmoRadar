@@ -2,7 +2,7 @@ import React from 'react';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Text, Flex, Indicator } from '@mantine/core';
+import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
 import Logo from './logo.svg';
 import styles from './Layout.module.css';
 
@@ -15,7 +15,7 @@ const Layout = ({ children, title, description }) => {
       <link rel="icon" href="/favicon.svg" />
     </Head>
     <div>
-      <header height={60} mb={30} p="md" className={styles.header}>
+      <Box as="header" height={60} className={styles.header}>
         <Container>
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/">
@@ -32,11 +32,24 @@ const Layout = ({ children, title, description }) => {
             </Flex>
           </Flex>
         </Container>
-      </header>
+      </Box>
 
       <Container as="main">
         {children}
       </Container>
+
+      <Box as="footer" className={styles.footer} p="md" mt="md">
+        <Container>
+          <Flex justify="space-between" gap="md">
+            <Text size="sm" c="dimmed">© {new Date().getFullYear()} ImmoRadar</Text>
+
+            <Flex gap="md" ml="auto">
+              <Link href="/impressum"><Text size="sm" c="dimmed">Impressum</Text></Link>
+              <Link href="/datenschutz"><Text size="sm" c="dimmed">Datenschutz</Text></Link>
+            </Flex>
+          </Flex>
+        </Container>
+      </Box>
     </div>
   </>
 }

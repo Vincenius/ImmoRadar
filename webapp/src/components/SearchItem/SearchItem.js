@@ -17,8 +17,8 @@ const SearchItem = ({ item }) => {
 
   return (
     <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-      <Flex justify="space-between" gap="sm">
-        <Box w="50%">
+      <Flex justify="space-between" gap="sm" direction={{ base: "column", xs: "row" }}>
+        <Box w={{ base: "100%", xs: "50%" }}>
           { item.gallery.length <= 1 && <Image fallbackSrc="/fallback.jpg" src={item.gallery[0]?.url} alt={item.gallery[0]?.alt} h={230} radius="sm" /> }
           { item.gallery.length > 1 && <Carousel h={230} withIndicators align="start" controlSize={18} loop>
             {item.gallery.map((img, i) => <Carousel.Slide key={`carousel-slide-${i}`}>
@@ -27,7 +27,7 @@ const SearchItem = ({ item }) => {
           </Carousel> }
         </Box>
 
-        <Flex w="50%" direction="column" justify="space-between" gap="sm">
+        <Flex w={{ base: "100%", xs: "50%" }} direction="column" justify="space-between" gap="sm">
           <Box>
             <Title order={4} mb="sm" className={styles.headline}>{item.title}</Title>
 

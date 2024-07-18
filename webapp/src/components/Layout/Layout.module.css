@@ -4,3 +4,10 @@
   position: relative;
   background: #fff;
 }
+
+.footer {
+  box-shadow: inset var(--mantine-shadow-sm);
+  z-index: 1;
+  position: relative;
+  background: #fff;
+}

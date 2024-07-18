@@ -1,13 +1,36 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box } from '@mantine/core';
-import { IconClock, IconList, IconBell } from '@tabler/icons-react';
+import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion } from '@mantine/core';
+import { IconClock, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
 import SearchBar from '@/components/SearchBar/SearchBar';
+import FeatureCards from '@/components/FeatureCards/FeatureCards';
 import styles from '@/styles/Home.module.css'
+import { Button } from '@mantine/core';
+
+const faqs = [
+  {
+    question: 'Ist die Nutzung von ImmoRadar kostenlos?',
+    answer: 'Ja, die Nutzung von ImmoRadar ist völlig kostenlos. Es fallen keine Gebühren oder versteckten Kosten an.',
+  },
+  {
+    question: 'Welche Immobilien-Webseiten werden von ImmoRadar durchsucht?',
+    answer: 'ImmoRadar durchsucht alle großen und relevanten Immobilien-Webseiten in Deutschland. Dazu gehören aktuell Immobilienscout24, Immowelt und Kleinanzeigen. Die Liste wird in Zukunft noch erweitert. Fehlt eine wichtige Immobilien-Webseite? Schreibe mir eine E-Mail.',
+  },
+  {
+    question: 'Wie kann ich Benachrichtigungen für neue Angebote aktivieren?',
+    answer: 'Um Benachrichtigungen zu aktivieren, geben Sie einfach Ihre Suchkriterien ein und klicken Sie auf den Button "Benachrichtigungen aktivieren". Sie erhalten dann eine E-Mail, sobald eine neue Wohnung, die Ihren Kriterien entspricht, gelistet wird.',
+  },
+  {
+    question: 'Wie oft werden die Suchergebnisse aktualisiert?',
+    answer: 'Aktuell werden die Immobielen-Webseiten etwa alle 10 Minuten auf neue Einträge überprüft. In Zukunft wird diese Frequenz erhöht um sicherzustellen, dass Sie immer die aktuellsten Einträge sehen können.',
+  },
+  {
+    question: 'Wie finanziert sich ImmoRadar?',
+    answer: 'ImmoRadar wird in Zukunft eine Premium-Version anbieten, die zusätzliche Funktionen und Vorteile bietet. Die kostenlose Version wird jedoch immer verfügbar bleiben.',
+  }
+];
 
 export default function Home() {
-  
-
   return (
     <Layout
       title="ImmoRadar | Alle Immobilienangebote an einem Ort"
@@ -16,9 +39,9 @@ export default function Home() {
       <Box className={styles.header}>
         <div className={styles.background}></div>
 
-        <Flex mih="600px" h="83vh" direction="column" justify="space-evenly">
+        <Flex mih="600px" h="calc(100vh - 70px - 64px)" direction="column" justify="space-evenly">
           <Box>
-            <Title order={1} align="left" size={72} fw="bold" mb="lg">
+            <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" mb="lg" textWrap="balance">
               Alle <span className={styles.gradientText}>Immobilienangebote</span> an einem Ort
             </Title>
 
@@ -26,24 +49,53 @@ export default function Home() {
               <SearchBar />
             </Group>
           </Box>
-            <Flex justify="space-between" align="center" direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'md'}}>
-              <Flex align="center" direction="row" gap="sm">
-                <ThemeIcon radius="xl" size="md" variant="filled"><IconList size={24} /></ThemeIcon>
-                <Text>Eine einzige, gut sortierte Liste ohne Duplikate</Text>
-              </Flex>
-              <Flex align="center" direction="row" gap="sm">
-                <ThemeIcon radius="xl" size="md" variant="filled"><IconBell size={24} /></ThemeIcon>
-                <Text align="left">Benachrichtigungen bei neuen Angeboten</Text>
-              </Flex>
-              <Flex align="center" direction="row" gap="sm">
-                <ThemeIcon radius="xl" size="md" variant="filled"><IconClock size={24} /></ThemeIcon>
-                <Text align="left">Kein mühsames Durchsuchen mehrerer Webseiten</Text>
-              </Flex>
+          <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
+            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
+              <Text ta={{ base: 'left', sm: 'center'}}>Eine einzige, gut sortierte Liste ohne Duplikate</Text>
             </Flex>
+            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconBell size={24} /></ThemeIcon>
+              <Text ta={{ base: 'left', sm: 'center'}}>Benachrichtigungen bei neuen Angeboten</Text>
+            </Flex>
+            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconClock size={24} /></ThemeIcon>
+              <Text ta={{ base: 'left', sm: 'center'}}>Kein mühsames Durchsuchen mehrerer Webseiten</Text>
+            </Flex>
+          </Flex>
         </Flex>
       </Box>
 
       <Logos />
+
+      <Box my="6em">
+        <FeatureCards />
+      </Box>
+
+      <Box my="6em">
+        <Title order={2} fz={36} fw={700} mb="lg" ta="center">Häufig gestellte Fragen</Title>
+        <Accordion variant="contained">
+          {faqs.map((item) => (
+            <Accordion.Item key={item.question} value={item.question}>
+              <Accordion.Control><Text fw={500}>{item.question}</Text></Accordion.Control>
+              <Accordion.Panel>{item.answer}</Accordion.Panel>
+            </Accordion.Item>
+          ))}
+        </Accordion>
+      </Box>
+      
+      <Box my="6em">
+        <Button
+          variant="filled"
+          // color="primary"
+          size="lg"
+          fullWidth
+          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+        >
+          JETZT SUCHEN
+          <IconArrowUp size={20} ml="sm"/>
+        </Button>
+      </Box>
     </Layout>
   );
 }
