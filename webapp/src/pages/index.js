@@ -1,4 +1,4 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion } from '@mantine/core';
+import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container } from '@mantine/core';
 import { IconClock, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
@@ -72,7 +72,7 @@ export default function Home() {
         <FeatureCards />
       </Box>
 
-      <Box my="6em">
+      <Container my="6em" size="sm">
         <Title order={2} fz={36} fw={700} mb="lg" ta="center">Häufig gestellte Fragen</Title>
         <Accordion variant="contained">
           {faqs.map((item) => (
@@ -82,7 +82,7 @@ export default function Home() {
             </Accordion.Item>
           ))}
         </Accordion>
-      </Box>
+      </Container>
       
       <Box my="6em">
         <Button

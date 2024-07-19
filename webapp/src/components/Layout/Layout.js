@@ -18,7 +18,7 @@ const Layout = ({ children, title, description }) => {
       <Box as="header" height={60} className={styles.header}>
         <Container>
           <Flex justify="space-between" component="nav" py="sm">
-            <Link href="/">
+            <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" priority />
                 <Indicator inline label="Beta" size={16}>
@@ -28,13 +28,13 @@ const Layout = ({ children, title, description }) => {
             </Link>
 
             <Flex justify="flex-end" align="center">
-              <a>Über uns</a>
+              <Link href="/about">Über uns</Link>
             </Flex>
           </Flex>
         </Container>
       </Box>
 
-      <Container as="main">
+      <Container as="main" mih="calc(100vh - 64px - 52px - 16px)">
         {children}
       </Container>
 
