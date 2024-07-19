@@ -2,8 +2,6 @@ Todos
 
 - notifications
 - mobile notifications
-- meta info
 - duplicate filter
-
-- datenschutz
-- impressum
+- fix kleinanzeigen duplicate entries ? id ?
+- optimize image loading / lazy load carousel?

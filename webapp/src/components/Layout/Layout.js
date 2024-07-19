@@ -12,6 +12,14 @@ const Layout = ({ children, title, description }) => {
       <title>{title}</title>
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content="/og-image.jpg" />
+      <meta property="og:url" content="https://immoradar.xyz" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content="/og-image.jpg" />
       <link rel="icon" href="/favicon.svg" />
     </Head>
     <div>

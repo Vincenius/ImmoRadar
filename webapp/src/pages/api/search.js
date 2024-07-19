@@ -65,8 +65,16 @@ export default async function handler(req, res) {
                 if (titleExcludes) {
                     titleFilter['title'] = { ...titleFilter['title'], $not: { $regex: titleExcludes, $options: 'i' } };
                 }
+                
+                // PROVIDER FILTER
+                const providerFilter = {};
+                if (req.query.providers) {
+                    const providersArray = req.query.providers.split(',');
+                    providerFilter['provider'] = { $nin: providersArray };
+                }
 
-                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter];
+                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter, providerFilter];
+
 
                 // RUN QUERY
                 let results = [];

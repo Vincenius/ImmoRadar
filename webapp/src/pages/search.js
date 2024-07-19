@@ -10,6 +10,7 @@ import SearchItem from '@/components/SearchItem/SearchItem';
 import SearchItemLoader from '@/components/SearchItem/SearchItemLoader';
 import { fetcher } from '@/utils/fetcher'
 import { featureMap } from '@/utils/featureMap'
+import { providers } from '@/utils/providers'
 
 const eurIcon = <IconCurrencyEuro style={{ width: rem(20), height: rem(20) }} stroke={1.5} />;
 
@@ -82,7 +83,6 @@ const Filter = ({ filter, setFilter, applyFilter }) => {
       />
     </Flex>
 
-    {/* rooms */}
     <Flex gap="sm" align="center" mb="sm">
       <NumberInput
         label="Min. Zimmer"
@@ -122,7 +122,28 @@ const Filter = ({ filter, setFilter, applyFilter }) => {
         mb="sm"
       />
 
-      {/* todo questionmark indicator explain */}
+      <Text size="sm" fw={500} mb="sm">Anbieter</Text>
+
+      {providers.map(p => <Checkbox
+        mb="sm"
+        key={p.id}
+        label={p.label}
+        checked={!filter.providers?.includes(p.id)}
+        onChange={(event) => {
+          if (!event.currentTarget.checked) {
+            setFilter((prevFilter) => ({
+              ...prevFilter,
+              providers: [...(prevFilter.providers || []), p.id],
+            }));
+          } else {
+            setFilter((prevFilter) => ({
+              ...prevFilter,
+              providers: prevFilter.providers?.filter((f) => f !== p.id),
+            }));
+          }
+        }}
+      />)}
+
       <Text size="sm" fw={500} mb="sm">Ausstattung</Text>
 
       <Flex wrap="wrap" gap="xs">
@@ -178,10 +199,13 @@ export default function Search() {
     titleIncludes: '',
     titleExcludes: '',
     features: [],
+    providers: [],
   })
 
   useEffect(() => {
     if (router.isReady) {
+      filterQuery.features = filterQuery?.features?.split(',') || []
+      filterQuery.providers = filterQuery?.providers?.split(',') || []
       setFilter({
         ...filter,
         ...filterQuery,
@@ -193,12 +217,14 @@ export default function Search() {
     router.push({ query: { ...router.query, sort, page: 1 } }) 
   }
 
-  const setPage = (newPage) => {
+  const setPage = (newPage) => {
     router.push({ query: { ...router.query, page: newPage } })
   }
 
   const applyFilter = () => {
     const query = { ...router.query, ...filter, page: 1 }
+    query.features = query.features.join(',')
+    query.providers = query.providers.join(',')
     Object.keys(query).forEach(key => !query[key] && delete query[key])
     if (filterModalOpen) {
       closeFilterModal()
@@ -238,7 +264,9 @@ export default function Search() {
               <SearchItemLoader key={`loader-${i}`} index={i} />
             ))}
           </>}
-          {estates && estates.map((item) => <SearchItem key={item._id} item={item} />)}
+          {estates && estates.length > 0 && estates.map((item) => <SearchItem key={item._id} item={item} />)}
+
+          {estates && estates.length === 0 && <Text c="gray" mt="md">Keine Ergebnisse gefunden</Text>}
         </Box>
 
         {/* only desktop design */}
@@ -253,7 +281,7 @@ export default function Search() {
         </Box>
       </Flex>
 
-      { pages && pages > 1 && <Pagination total={pages} value={pageInt} onChange={setPage} mt="sm" mb="sm" /> }
+      { pages > 1 && <Pagination total={pages} value={pageInt} onChange={setPage} mt="sm" mb="sm" /> }
 
     </Layout>
   );
