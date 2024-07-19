@@ -44,8 +44,8 @@ const Layout = ({ children, title, description }) => {
             <Text size="sm" c="dimmed">© {new Date().getFullYear()} ImmoRadar</Text>
 
             <Flex gap="md" ml="auto">
-              <Link href="/impressum"><Text size="sm" c="dimmed">Impressum</Text></Link>
-              <Link href="/datenschutz"><Text size="sm" c="dimmed">Datenschutz</Text></Link>
+              <Link href="/imprint"><Text size="sm" c="dimmed">Impressum</Text></Link>
+              <Link href="/privacy"><Text size="sm" c="dimmed">Datenschutz</Text></Link>
             </Flex>
           </Flex>
         </Container>
