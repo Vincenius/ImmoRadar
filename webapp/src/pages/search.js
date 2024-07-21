@@ -204,17 +204,19 @@ export default function Search() {
 
   useEffect(() => {
     if (router.isReady) {
-      filterQuery.features = filterQuery?.features?.split(',') || []
-      filterQuery.providers = filterQuery?.providers?.split(',') || []
+      const newFilter = filterQuery?.features?.split(',') || []
+      const newProviders = filterQuery?.providers?.split(',') || []
       setFilter({
         ...filter,
         ...filterQuery,
+        filter: newFilter,
+        providers: newProviders,
       })
     }
   }, [router.isReady, router.query]);
 
   const updateSort = (sort) => {
-    router.push({ query: { ...router.query, sort, page: 1 } }) 
+    router.push({ query: { ...router.query, sort, page: 1 } })
   }
 
   const setPage = (newPage) => {

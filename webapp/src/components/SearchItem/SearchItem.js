@@ -1,9 +1,12 @@
 import React, { useState } from 'react'
+import NextImage from 'next/image'
 import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Badge } from '@mantine/core';
 import { Carousel } from '@mantine/carousel'
 import { IconMapPin, IconLink } from '@tabler/icons-react';
 import { featureMap } from '@/utils/featureMap';
 import styles from './SearchItem.module.css'
+
+const imgPlaceholder = "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAADICAIAAADdvUsCAAABhWlDQ1BJQ0MgcHJvZmlsZQAAKJF9kT1Iw1AUhU9TpSIVByuIOGSourQgKuKoVShChVArtOpg8tIfoUlDkuLiKLgWHPxZrDq4OOvq4CoIgj8gzg5Oii5S4n1JoUWMDy7v47x3DvfdBwj1MtOsjjFA020znUyI2dyKGHpFCP1Uo4jJzDJmJSkF3/V1jwDf7+I8y//en6tHzVsMCIjEM8wwbeJ14qlN2+C8TxxhJVklPieOmdQg8SPXFY/fOBddFnhmxMyk54gjxGKxjZU2ZiVTI54kjqqaTvlC1mOV8xZnrVxlzT75C8N5fXmJ61RDSGIBi5AgQkEVGyjDRpx2nRQLaTpP+PgHXb9ELoVcG2DkmEcFGmTXD/4Hv2drFSbGvaRwAuh8cZyPYSC0CzRqjvN97DiNEyD4DFzpLX+lDkx/kl5radEjoHcbuLhuacoecLkDDDwZsim7UpBKKBSA9zP6phzQdwt0r3pza57j9AHI0KxSN8DBITBSpOw1n3d3tc/t3zvN+f0Amvlytw7oP/YAAAAJcEhZcwAALiMAAC4jAXilP3YAAAAHdElNRQfoBxUHKBHRhtAvAAAAGXRFWHRDb21tZW50AENyZWF0ZWQgd2l0aCBHSU1QV4EOFwAAAbFJREFUeNrt0zENAEAIwMDn/WtkYEAHMhi4k9CkkdUP2PMlABOCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggkBE4IJAROCCQETggnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEgAnBhIAJwYSACcGEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQsCEYELAhGBCwIRgQjAhYEIwIWBCuGkAdeMENq40MU8AAAAASUVORK5CYII="
 
 const SearchItem = ({ item }) => {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
@@ -19,10 +22,10 @@ const SearchItem = ({ item }) => {
     <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
       <Flex justify="space-between" gap="sm" direction={{ base: "column", xs: "row" }}>
         <Box w={{ base: "100%", xs: "50%" }}>
-          { item.gallery.length <= 1 && <Image fallbackSrc="/fallback.jpg" src={item.gallery[0]?.url} alt={item.gallery[0]?.alt} h={230} radius="sm" /> }
+          { item.gallery.length <= 1 && <Image component={NextImage} fallbackSrc="/fallback.jpg" src={item.gallery[0]?.url} alt={item.gallery[0]?.alt || item.title} height={230} width={500} radius="sm" placeholder={imgPlaceholder} /> }
           { item.gallery.length > 1 && <Carousel h={230} withIndicators align="start" controlSize={18} loop>
             {item.gallery.map((img, i) => <Carousel.Slide key={`carousel-slide-${i}`}>
-              <Image key={`${item._id}-img-${i}`} fallbackSrc="/fallback.jpg" src={img.url} alt={img.alt} h={230} radius="sm" />
+              <Image component={NextImage} key={`${item._id}-img-${i}`} fallbackSrc="/fallback.jpg" src={img.url} alt={img.alt || item.title} height={230} width={500} radius="sm" placeholder={imgPlaceholder} />
             </Carousel.Slide>)}
           </Carousel> }
         </Box>
