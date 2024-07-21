@@ -10,7 +10,7 @@ const parseData = (estates) => estates.map(e => ({
     id: e.id,
     created_at: new Date().toISOString(),
     url: `https://www.immowelt.de/expose/${e.onlineId}`,
-    provider: "immonet.de",
+    provider: "immowelt.de",
     date: e.timestamp,
     price: {
         value: e.primaryPrice?.amountMax,
@@ -45,7 +45,7 @@ const scrapeData = async (page, collection, type) => {
     let error;
     let data = [];
     let count = 0;
-    const prevEntries = await collection.find({ provider: "immonet.de" }, { projection: { id: 1 } }).toArray();
+    const prevEntries = await collection.find({ provider: "immowelt.de" }, { projection: { id: 1 } }).toArray();
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);

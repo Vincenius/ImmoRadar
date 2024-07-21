@@ -1,5 +1,40 @@
 import { MongoClient } from 'mongodb';
 
+const filterDuplicateAggregation = [{
+    $group: {
+        _id: {
+            title: "$title",
+            price: "$price"
+        },
+        docs: { $push: "$$ROOT" }
+    }},
+    {
+        $unwind: "$docs"
+    },
+    {
+    $group: {
+        _id: {
+            title: "$_id.title",
+            price: "$_id.price",
+            provider: "$docs.provider"
+        },
+        doc: { $first: "$docs" }
+    }
+    },
+    {
+        $group: {
+        _id: {
+            title: "$_id.title",
+            price: "$_id.price"
+        },
+        doc: { $first: "$doc" }
+        }
+    },
+    {
+        $replaceRoot: { newRoot: "$doc" }
+    },
+]
+
 export default async function handler(req, res) {
     if (req.method === 'GET') {
         const client = new MongoClient(process.env.MONGODB_URI);
@@ -65,7 +100,7 @@ export default async function handler(req, res) {
                 if (titleExcludes) {
                     titleFilter['title'] = { ...titleFilter['title'], $not: { $regex: titleExcludes, $options: 'i' } };
                 }
-                
+
                 // PROVIDER FILTER
                 const providerFilter = {};
                 if (req.query.providers) {
@@ -79,9 +114,10 @@ export default async function handler(req, res) {
                 // RUN QUERY
                 let results = [];
                 let pages = 0;
+                let query = {}
 
                 if (input === 'manual') {
-                    const query = {
+                    query = {
                         $and: [
                             { $or: [
                                 { 'address.city': { $regex: q, $options: 'i' } },
@@ -90,43 +126,46 @@ export default async function handler(req, res) {
                             ...filter,
                         ]
                     }
-                    const [res, totalDocs] = await Promise.all([
-                        collection.find(query)
-                            .sort(mongoSort)
-                            .skip((page - 1) * limit)
-                            .limit(limit)
-                            .toArray(),
-                        collection.countDocuments(query)
-                    ]);
-
-                    results = res;
-                    pages = Math.ceil(totalDocs / limit);
                 } else {
                     const location = await locationCollection.findOne({ name: q });
 
                     if (location) {
-                        const query = {
+                        query = {
                             $and: [
                                 { 'address.zipCode': { $in: location.zipCodes } },
                                 ...filter
                             ]
                         }
-                        const [res, totalDocs] = await Promise.all([
-                            collection
-                                .find(query)
-                                .sort(mongoSort)
-                                .skip((page - 1) * limit)
-                                .limit(limit)
-                                .toArray(),
-                            collection.countDocuments(query)
-                        ]);
-
-                        results = res;
-                        pages = Math.ceil(totalDocs / limit);
                     }
                 }
 
-                res.status(200).json({ estates: results, pages });
+                const [result] = await collection.aggregate([
+                    { $match: query },
+                    ...filterDuplicateAggregation,
+                    {
+                        $facet: {
+                            results: [
+                                { $sort: mongoSort },
+                                { $skip: (page - 1) * limit },
+                                { $limit: limit }
+                            ],
+                            totalCount: [
+                                { $count: "count" }
+                            ]
+                        }
+                    },
+                    {
+                        $project: {
+                            results: 1,
+                            totalCount: { $arrayElemAt: ["$totalCount.count", 0] }
+                        }
+                    }
+                ]).toArray()
+
+                const estates = result.results
+                pages = Math.ceil(result.totalCount / limit);
+
+                res.status(200).json({ estates, pages });
             }
         } catch (error) {
             console.error(error);

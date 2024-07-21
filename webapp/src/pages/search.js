@@ -209,7 +209,7 @@ export default function Search() {
       setFilter({
         ...filter,
         ...filterQuery,
-        filter: newFilter,
+        features: newFilter,
         providers: newProviders,
       })
     }
@@ -236,7 +236,7 @@ export default function Search() {
 
   return (
     <Layout
-      title={`ImmoRadar | ${q} Suchergebnisse`}
+      title={`ImmoRadar | ${q || ''} Suchergebnisse`}
       description="Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten."
     >
       <Box pt="xl" pb="md">
