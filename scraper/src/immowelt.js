@@ -46,6 +46,7 @@ const scrapeData = async (page, collection, type) => {
     let data = [];
     let count = 0;
     const prevEntries = await collection.find({ provider: "immowelt.de" }, { projection: { id: 1 } }).toArray();
+    console.log('Immowelt found', prevEntries.length, 'old estates' ,prevEntries);
 
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
@@ -74,7 +75,7 @@ const scrapeData = async (page, collection, type) => {
 
                 // Access the specific data you need
                 if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
-                    const estates = housingData.initialState.estateSearch.data.estates.filter(e => e.t);
+                    const estates = housingData.initialState.estateSearch.data.estates;
                     const parsedData = parseData(estates)
                     const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
