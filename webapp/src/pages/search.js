@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, NumberInput, rem, Text, Button, Divider, Collapse, Checkbox, TextInput, Modal, Pagination } from '@mantine/core';
+import { Box, Card, Flex, Select, NumberInput, rem, Text, Button, Divider, Collapse, Checkbox, TextInput, Modal, Pagination, Slider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconCurrencyEuro, IconAdjustmentsHorizontal, IconBell } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
@@ -176,6 +176,32 @@ const Filter = ({ filter, setFilter, applyFilter }) => {
   </>
 }
 
+const Notifications = ({ notification, setNotification }) => {
+  const { email = '', frequency = 1 } = notification
+
+  return <>
+    <Card p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7}>
+      <Text size="sm" fs="italic">
+        Erhalte alle neuen Angebote basierend auf deinen Filtern per E-Mail.
+        Bestimme selbst, wie oft du E-Mails erhalten möchtest.
+      </Text>
+    </Card>
+
+    <TextInput
+      label="E-Mail Adresse"
+      placeholder="deine-email@gmail.com"
+      mb="md"
+      value={email}
+      onChange={e => setNotification({ ...notification, email: e.target.value })}
+      type="email"
+    />
+
+    <NumberInput label="Häufigkeit (alle x Tage)" mb="md" value={frequency} onChange={val => setNotification({ ...notification, frequency: val })}/>
+
+    <Button>Abonieren</Button>
+  </>
+}
+
 export default function Search() {
   const router = useRouter()
   const { q, sort = 'date', page = '1', ...filterQuery } = (router.query || {})
@@ -188,6 +214,7 @@ export default function Search() {
   const { estates, pages = 0 } = data
   const sortValue = sortOptions.find((option) => option.value === sort)?.value || 'date'
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
+  const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
 
   const [filter, setFilter] = useState({
     minPrice: null,
@@ -200,6 +227,11 @@ export default function Search() {
     titleExcludes: '',
     features: [],
     providers: [],
+  })
+
+  const [notification, setNotification] = useState({
+    email: '',
+    frequency: 1,
   })
 
   useEffect(() => {
@@ -249,11 +281,14 @@ export default function Search() {
           <Button leftSection={<IconAdjustmentsHorizontal size={14} />} variant="default" onClick={openFilterModal}>
             Filter
           </Button>
-          <Button leftSection={<IconBell size={14} />} variant="default">
-            Benachrichtigung
+          <Button leftSection={<IconBell size={14} />} variant="default" onClick={openNotificationModal}>
+            Benachrichtigungen
           </Button>
           <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
             <Filter filter={filter} setFilter={setFilter} applyFilter={applyFilter} />
+          </Modal>
+          <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
+            <Notifications notification={notification} setNotification={setNotification} />
           </Modal>
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
@@ -273,12 +308,17 @@ export default function Search() {
 
         {/* only desktop design */}
         <Box w="34%" display={{ base: 'none', md: 'block'}}>
-          <Card shadow="sm" padding="md" radius="md" withBorder>
+          <Card shadow="sm" padding="md" radius="md" mb="md" withBorder>
             <SortInput sortValue={sortValue} updateSort={updateSort} mb="xs"/>
 
             <Divider my="md" />
 
             <Filter filter={filter} setFilter={setFilter} applyFilter={applyFilter} />
+          </Card>
+
+          <Card shadow="sm" padding="md" radius="md" withBorder>
+            <Flex gap="sm" align="center" mb="sm"><IconBell size={16} /> <Text fw={500}>Benachrichtigungen</Text></Flex>
+            <Notifications notification={notification} setNotification={setNotification} />
           </Card>
         </Box>
       </Flex>
