@@ -40,8 +40,48 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
   w={{ base: '100%', xs: 'auto' }}
 />
 
-const Filter = ({ filter, setFilter, applyFilter }) => {
+const Filter = () => {
   const [opened, { toggle }] = useDisclosure(false);
+  const router = useRouter()
+  const { q, sort = 'date', page = '1', ...filterQuery } = (router.query || {})
+
+  const [filter, setFilter] = useState({
+    minPrice: null,
+    maxPrice: null,
+    minSize: null,
+    maxSize: null,
+    minRooms: null,
+    maxRooms: null,
+    titleIncludes: '',
+    titleExcludes: '',
+    features: [],
+    providers: [],
+  })
+
+  useEffect(() => {
+    if (router.isReady) {
+      const newFilter = filterQuery?.features?.split(',') || []
+      const newProviders = filterQuery?.providers?.split(',') || []
+      setFilter({
+        ...filter,
+        ...filterQuery,
+        features: newFilter,
+        providers: newProviders,
+      })
+    }
+  }, [router.isReady, router.query]);
+
+  const applyFilter = () => {
+    const query = { ...router.query, ...filter, page: 1 }
+    query.features = query.features.join(',')
+    query.providers = query.providers.join(',')
+    Object.keys(query).forEach(key => !query[key] && delete query[key])
+    if (filterModalOpen) {
+      closeFilterModal()
+    }
+    router.push({ query })
+  }
+
   return <>
     <Flex gap="sm" align="center" mb="sm">
       <NumberInput
@@ -176,8 +216,9 @@ const Filter = ({ filter, setFilter, applyFilter }) => {
   </>
 }
 
-const Notifications = ({ notification, setNotification }) => {
-  const { email = '', frequency = 1 } = notification
+const Notifications = () => {
+  const [email, setEmail] = useState('')
+  const [frequency, setFrequency] = useState(1)
 
   return <>
     <Card p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7}>
@@ -192,11 +233,11 @@ const Notifications = ({ notification, setNotification }) => {
       placeholder="deine-email@gmail.com"
       mb="md"
       value={email}
-      onChange={e => setNotification({ ...notification, email: e.target.value })}
+      onChange={e => setEmail(e.target.value)}
       type="email"
     />
 
-    <NumberInput label="Häufigkeit (alle x Tage)" mb="md" value={frequency} onChange={val => setNotification({ ...notification, frequency: val })}/>
+    <NumberInput label="Häufigkeit (alle x Tage)" mb="md" value={frequency} onChange={val => setFrequency(val)}/>
 
     <Button>Abonieren</Button>
   </>
@@ -216,54 +257,12 @@ export default function Search() {
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
 
-  const [filter, setFilter] = useState({
-    minPrice: null,
-    maxPrice: null,
-    minSize: null,
-    maxSize: null,
-    minRooms: null,
-    maxRooms: null,
-    titleIncludes: '',
-    titleExcludes: '',
-    features: [],
-    providers: [],
-  })
-
-  const [notification, setNotification] = useState({
-    email: '',
-    frequency: 1,
-  })
-
-  useEffect(() => {
-    if (router.isReady) {
-      const newFilter = filterQuery?.features?.split(',') || []
-      const newProviders = filterQuery?.providers?.split(',') || []
-      setFilter({
-        ...filter,
-        ...filterQuery,
-        features: newFilter,
-        providers: newProviders,
-      })
-    }
-  }, [router.isReady, router.query]);
-
   const updateSort = (sort) => {
     router.push({ query: { ...router.query, sort, page: 1 } })
   }
 
   const setPage = (newPage) => {
     router.push({ query: { ...router.query, page: newPage } })
-  }
-
-  const applyFilter = () => {
-    const query = { ...router.query, ...filter, page: 1 }
-    query.features = query.features.join(',')
-    query.providers = query.providers.join(',')
-    Object.keys(query).forEach(key => !query[key] && delete query[key])
-    if (filterModalOpen) {
-      closeFilterModal()
-    }
-    router.push({ query })
   }
 
   return (
@@ -285,10 +284,10 @@ export default function Search() {
             Benachrichtigungen
           </Button>
           <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
-            <Filter filter={filter} setFilter={setFilter} applyFilter={applyFilter} />
+            <Filter />
           </Modal>
           <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
-            <Notifications notification={notification} setNotification={setNotification} />
+            <Notifications />
           </Modal>
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
@@ -313,12 +312,12 @@ export default function Search() {
 
             <Divider my="md" />
 
-            <Filter filter={filter} setFilter={setFilter} applyFilter={applyFilter} />
+            <Filter />
           </Card>
 
           <Card shadow="sm" padding="md" radius="md" withBorder>
             <Flex gap="sm" align="center" mb="sm"><IconBell size={16} /> <Text fw={500}>Benachrichtigungen</Text></Flex>
-            <Notifications notification={notification} setNotification={setNotification} />
+            <Notifications />
           </Card>
         </Box>
       </Flex>
