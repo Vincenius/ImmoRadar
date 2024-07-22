@@ -40,7 +40,7 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
   w={{ base: '100%', xs: 'auto' }}
 />
 
-const Filter = () => {
+const Filter = ({ filterModalOpen, closeFilterModal }) => {
   const [opened, { toggle }] = useDisclosure(false);
   const router = useRouter()
   const { q, sort = 'date', page = '1', ...filterQuery } = (router.query || {})
@@ -60,12 +60,12 @@ const Filter = () => {
 
   useEffect(() => {
     if (router.isReady) {
-      const newFilter = filterQuery?.features?.split(',') || []
+      const newFeatures = filterQuery?.features?.split(',') || []
       const newProviders = filterQuery?.providers?.split(',') || []
       setFilter({
         ...filter,
         ...filterQuery,
-        features: newFilter,
+        features: newFeatures,
         providers: newProviders,
       })
     }
@@ -216,11 +216,50 @@ const Filter = () => {
   </>
 }
 
-const Notifications = () => {
+const Notifications = ({ filter }) => {
   const [email, setEmail] = useState('')
   const [frequency, setFrequency] = useState(1)
+  const [isLoading, setIsLoading] = useState(false)
 
-  return <>
+  const submit = (e) => {
+    e.preventDefault();
+    setIsLoading(true);
+
+    const newFeatures = filter?.features?.split(',') || [];
+    const newProviders = filter?.providers?.split(',') || [];
+
+    const parsedFilter = {
+      ...filter,
+      minPrice: filter.minPrice && parseInt(filter.minPrice),
+      maxPrice: filter.maxPrice && parseInt(filter.maxPrice),
+      minSize: filter.minSize && parseInt(filter.minSize),
+      maxSize: filter.maxSize && parseInt(filter.maxSize),
+      minRooms: filter.minRooms && parseInt(filter.minRooms),
+      maxRooms: filter.maxRooms && parseInt(filter.maxRooms),
+      features: newFeatures,
+      providers: newProviders,
+    };
+
+    const filteredFilter = Object.entries(parsedFilter).reduce((acc, [key, value]) => {
+      if (value !== null && value !== undefined && value !== false && value !== '') {
+        acc[key] = value;
+      }
+      return acc;
+    }, {});
+
+    fetch('/api/subscribe', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ email, frequency, filter: filteredFilter }),
+    }).then(() => {
+      setIsLoading(false);
+      // todo success message
+    });
+  };
+
+  return <form onSubmit={submit}>
     <Card p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7}>
       <Text size="sm" fs="italic">
         Erhalte alle neuen Angebote basierend auf deinen Filtern per E-Mail.
@@ -235,12 +274,22 @@ const Notifications = () => {
       value={email}
       onChange={e => setEmail(e.target.value)}
       type="email"
+      required
     />
 
-    <NumberInput label="Häufigkeit (alle x Tage)" mb="md" value={frequency} onChange={val => setFrequency(val)}/>
+    <NumberInput
+      min={1}
+      max={30}
+      label="Häufigkeit (alle x Tage)"
+      mb="md" value={frequency}
+      onChange={val => setFrequency(val)}
+      required
+    />
 
-    <Button>Abonieren</Button>
-  </>
+    <Button loading={isLoading} type="submit">
+      Abonieren
+    </Button>
+  </form>
 }
 
 export default function Search() {
@@ -284,10 +333,10 @@ export default function Search() {
             Benachrichtigungen
           </Button>
           <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
-            <Filter />
+            <Filter filterModalOpen={filterModalOpen} closeFilterModal={closeFilterModal} />
           </Modal>
           <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
-            <Notifications />
+            <Notifications filter={filterQuery} />
           </Modal>
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
@@ -312,12 +361,12 @@ export default function Search() {
 
             <Divider my="md" />
 
-            <Filter />
+            <Filter filterModalOpen={filterModalOpen} closeFilterModal={closeFilterModal} />
           </Card>
 
           <Card shadow="sm" padding="md" radius="md" withBorder>
             <Flex gap="sm" align="center" mb="sm"><IconBell size={16} /> <Text fw={500}>Benachrichtigungen</Text></Flex>
-            <Notifications />
+            <Notifications filter={filterQuery} />
           </Card>
         </Box>
       </Flex>
