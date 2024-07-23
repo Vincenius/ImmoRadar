@@ -1,36 +1,26 @@
 import AWS from 'aws-sdk';
+import nodemailer from 'nodemailer'
 
-const sendEmail = async ({ to, subject, text }) => {
-    try {
-        // Configure AWS SES
-        AWS.config.update({
-            region: 'eu-central-1',
-            accessKeyId: process.env.AWS_ACCESS_KEY_ID,
-            secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
-        });
-        const ses = new AWS.SES({ apiVersion: '2010-12-01' });
+export const sendEmail = async ({ to, subject, html }) => {
+    AWS.config.update({
+        apiVersion: '2010-12-01',
+        region: 'eu-central-1',
+        accessKeyId: process.env.AWS_ACCESS_KEY_ID,
+        secretAccessKey: process.env.AWS_SECRET_ACCESS_KEY
+    });
 
-        // Send email
-        const result = await ses.sendEmail({
-            Source: 'updates@immoradar.xyz',
-            Destination: {
-                ToAddresses: to
-            },
-            Message: {
-                Subject: {
-                    Data: subject
-                },
-                Body: {
-                    Text: {
-                        Data: text
-                    }
-                }
-            }
-        }).promise();
-        console.log('Email sent:', result.MessageId);
-    } catch (error) {
-        console.error('Error sending email:', error);
-    }
+    const transporter = nodemailer.createTransport({
+        SES: new AWS.SES()
+    })
+
+    const result = await transporter.sendMail({
+        from: 'ImmoRadar <updates@immoradar.xyz>',
+        to: `${to} <${to}>`,
+        subject,
+        html,
+    })
+    
+    return result;
 };
 
 export default sendEmail;
