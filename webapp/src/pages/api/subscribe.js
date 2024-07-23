@@ -1,4 +1,5 @@
 import { MongoClient } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid';
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -9,10 +10,30 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('subscriptions');
 
-      
-      // todo create a new subscription
+      const { email, frequency, filter } = req.body;
 
-      // todo send opt in email
+      const existingSub = await collection.findOne({ email: req.body.email });
+      console.log('existingSub', existingSub);
+
+      // if (existingSub) {
+      //   // TODO add or update
+      // } else {
+      //   // new user
+      //   const notifications = [{
+      //     frequency,
+      //     filter,
+      //   }]
+      //   const token = uuidv4();
+      //   await collection.insertOne({
+      //     email,
+      //     notifications,
+      //     created_at: new Date(),
+      //     confirmed: false,
+      //     token,
+      //   });
+        
+      //   // todo send email
+      // }
 
       res.status(200).json({ success: true });
     } catch (error) {

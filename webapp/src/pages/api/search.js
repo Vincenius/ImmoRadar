@@ -41,8 +41,11 @@ export default async function handler(req, res) {
         try {
             const {
                 q, input, sort, minPrice, maxPrice, minSize, maxSize,
-                minRooms, maxRooms, titleIncludes, titleExcludes, features = '', page = 1, limit = 20 } = req.query;
+                minRooms, maxRooms, titleIncludes, titleExcludes, features = '', providers = '',
+                page = 1, limit = 20
+            } = req.query;
             const featuresArray = features && features.length && features.split(',');
+            const providersArray = providers && providers.length && providers.split(',');
 
             if (!q) {
                 res.status(200).json([])
@@ -103,8 +106,7 @@ export default async function handler(req, res) {
 
                 // PROVIDER FILTER
                 const providerFilter = {};
-                if (req.query.providers) {
-                    const providersArray = req.query.providers.split(',');
+                if (providersArray && Array.isArray(providersArray)) {
                     providerFilter['provider'] = { $nin: providersArray };
                 }
 
