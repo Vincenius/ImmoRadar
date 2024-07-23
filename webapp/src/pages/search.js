@@ -3,6 +3,7 @@ import useSWR from 'swr'
 import { useRouter } from 'next/router';
 import { Box, Card, Flex, Select, NumberInput, rem, Text, Button, Divider, Collapse, Checkbox, TextInput, Modal, Pagination, Slider } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
+import { notifications } from '@mantine/notifications';
 import { IconCurrencyEuro, IconAdjustmentsHorizontal, IconBell } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
@@ -253,9 +254,27 @@ const Notifications = ({ filter }) => {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ email, frequency, filter: filteredFilter }),
-    }).then(() => {
+    })
+    .then(res => res.json())
+    .then((res) => {
       setIsLoading(false);
-      // todo success message
+      if (res.success) {
+        setEmail('');
+        setFrequency(1);
+        notifications.show({
+          color: 'green',
+          title: 'Erfolgreich abonniert',
+          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen',
+        })
+      } else {
+        // TODO custom notifications
+        notifications.show({
+          color: 'red',
+          title: 'Etwas ist schief gelaufen...',
+          message: 'Versuche es erneut oder kontaktiere den support',
+          classNames: classes,
+        })
+      }
     });
   };
 
