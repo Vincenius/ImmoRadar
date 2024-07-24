@@ -264,14 +264,14 @@ const Notifications = ({ filter }) => {
         notifications.show({
           color: 'green',
           title: 'Erfolgreich abonniert',
-          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen',
+          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen', // todo custom notifications
         })
       } else {
         // TODO custom notifications
         notifications.show({
           color: 'red',
           title: 'Etwas ist schief gelaufen...',
-          message: 'Versuche es erneut oder kontaktiere den support',
+          message: 'Versuche es erneut oder kontaktiere den Support',
           classNames: classes,
         })
       }

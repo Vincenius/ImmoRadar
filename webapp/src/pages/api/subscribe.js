@@ -32,9 +32,10 @@ export default async function handler(req, res) {
             notifications,
             created_at: new Date(),
             confirmed: false,
+            active: true,
             token,
           });
-          
+
           await sendEmail({
             to: email,
             subject: 'Bitte bestätige deine Anmeldung bei ImmoRadar',
