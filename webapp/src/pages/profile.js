@@ -1,15 +1,65 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Title, Table, Skeleton, Switch, ActionIcon, Flex } from '@mantine/core';
-import { IconPencil } from '@tabler/icons-react';
-import { notifications } from '@mantine/notifications';
+import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput } from '@mantine/core';
+import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
+import { notifications, updateNotification } from '@mantine/notifications';
 import Layout from '@/components/Layout/Layout';
 import { fetcher } from '@/utils/fetcher';
+import { featureMap } from '@/utils/featureMap';
+import { providers as providerMap } from '@/utils/providers';
+
+const formatFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, titleIncludes, titleExcludes, features, providers }) => {
+    const result = [];
+
+    if ((minPrice || minPrice === 0) && maxPrice) {
+        result.push(`${minPrice} - ${maxPrice} €`);
+    } else if (minPrice || minPrice === 0) {
+        result.push(`Ab ${minPrice} €`);
+    } else if (maxPrice) {
+        result.push(`Bis ${maxPrice} €`);
+    }
+
+    if ((minSize || minSize === 0) && maxSize) {
+        result.push(`${minSize} - ${maxSize} m²`);
+    } else if (minSize || minSize === 0) {
+        result.push(`Ab ${minSize} m²`);
+    } else if (maxSize) {
+        result.push(`Bis ${maxSize} m²`);
+    }
+
+    if ((minRooms || minRooms === 0) && maxRooms) {
+        result.push(`${minRooms} - ${maxRooms} Zimmer`);
+    } else if (minRooms || minRooms === 0) {
+        result.push(`Ab ${minRooms} Zimmer`);
+    } else if (maxRooms) {
+        result.push(`Bis ${maxRooms} Zimmer`);
+    }
+
+    if (titleIncludes) {
+        result.push(`Enthält "${titleIncludes}"`);
+    }
+    if (titleExcludes) {
+        result.push(`Enthält nicht "${titleExcludes}"`);
+    }
+
+    if (features && features.length) {
+        result.push(`Mit ${features.map(f => featureMap(f)).join(', ')}`);
+    }
+    if (providers && providers.length) {
+        result.push(`Von ${providers.map(p => providerMap.find(e => e.id === p).label).join(', ')}`);
+    }
+    
+    return result;
+    
+}
 
 const Profile = () => {
     const router = useRouter();
     const { id } = router.query;
+    const [editView, setEditView] = useState([]);
+    const [update, setUpdate] = useState('');
+    const [updateLoading, setUpdateLoading] = useState();
 
     useEffect(() => {
         const { confirm } = router.query;
@@ -31,7 +81,49 @@ const Profile = () => {
         }
     }, [router.query]);
 
-    const { data = {}, error, isLoading } = useSWR(`/api/profile?token=${id}`, fetcher)
+    const { data = {}, error, isLoading, mutate } = useSWR(`/api/profile?token=${id}`, fetcher)
+
+    const updateNotification = async (key, notificationId) => {
+        setUpdateLoading('frequency');
+        let error = false;
+        
+        await fetch(`/api/profile?token=${id}`, {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: notificationId, [key]: update }),
+        }).then((res) => ({
+            err: !res.ok,
+            data: res.json(),
+        })).then(({ data, err }) => {
+            if (err) {
+                error = true;
+            } else {
+                console.log(data)
+                mutate(data);
+                notifications.show({
+                    title: 'Benachrichtigung aktualisiert',
+                    message: 'Die Benachrichtigung wurde erfolgreich aktualisiert.',
+                    color: 'green',
+                });
+                setEditView(editView.filter(e => e !== key));
+            }
+        }).catch(e => {
+            console.error(e);
+            error = true;
+        }).finally(() => {
+            setUpdateLoading(null)
+        });
+
+        if (error) {
+            notifications.show({
+                title: 'Fehlgeschlagen',
+                message: 'Es ist ein Fehler aufgetreten. Bitte versuche es erneut.',
+                color: 'red',
+            });
+        }
+    }
 
     return (
         <Layout title="ImmoRadar | Deine Benachrichtigungen" description="Verwalte deine Benachrichtigungen">
@@ -45,6 +137,7 @@ const Profile = () => {
                         <Table.Th>Filter</Table.Th>
                         <Table.Th>Häufigkeit</Table.Th>
                         <Table.Th>Aktiv</Table.Th>
+                        <Table.Th></Table.Th>
                     </Table.Tr>
                 </Table.Thead>
                 <Table.Tbody>
@@ -54,6 +147,7 @@ const Profile = () => {
                             <Table.Td><Skeleton height={12} radius="xl" width="70%" my="sm" /></Table.Td>
                             <Table.Td><Skeleton height={12} radius="xl" width="30%" my="sm" /></Table.Td>
                             <Table.Td><Skeleton height={12} radius="xl" width="40px" my="sm" /></Table.Td>
+                            <Table.Td><Skeleton height={12} radius="xl" width="12px" my="sm" /></Table.Td>
                         </Table.Tr>
                     ))}
                     {!isLoading && (data.notifications || []).map((notification, index) => (
@@ -61,29 +155,57 @@ const Profile = () => {
                             <Table.Td>
                                 <Flex align="center" gap="sm">
                                     {notification.query}
-                                    <ActionIcon title="Suchbegriff bearbeiten" onClick={() => console.log('edit')} variant="subtle">
-                                        <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
-                                    </ActionIcon>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
                                 <Flex align="center" gap="sm">
-                                    todo filter
+                                    {formatFilter(notification.filter).map((f, i) => (
+                                        <Badge key={`feature-${index}-${i}`} variant="outline" size="sm" radius="sm" mr="4px">
+                                            {f}
+                                        </Badge>
+                                    )) }
                                     <ActionIcon title="Filter bearbeiten" onClick={() => console.log('edit')} variant="subtle">
                                         <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                     </ActionIcon>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
-                                <Flex align="center" gap="sm">
-                                    {notification.frequency === 1 ? `Jeden Tag` : `Alle ${notification.frequency}. Tage`}
-                                    <ActionIcon title="Häufigkeit bearbeiten" onClick={() => console.log('edit')} variant="subtle">
+                                { !editView.includes('frequency') && <Flex align="center" gap="sm">
+                                    {notification.frequency === 1 ? `Jeden Tag` : `Alle ${notification.frequency} Tage`}
+                                    <ActionIcon title="Häufigkeit bearbeiten" onClick={() => {
+                                        setUpdate(notification.frequency);
+                                        setEditView([...editView, 'frequency'])
+                                    }} variant="subtle">
                                         <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                     </ActionIcon>
-                                </Flex>
+                                </Flex> }
+                                { editView.includes('frequency') && <Flex align="center" gap="sm">
+                                    <NumberInput
+                                        min={1}
+                                        max={30}
+                                        placeholder="(alle x Tage)"
+                                        w={130}
+                                        value={update}
+                                        onChange={val => setUpdate(val)}
+                                    />
+                                    <ActionIcon
+                                        loading={updateLoading === 'frequency'}
+                                        title="Häufigkeit bearbeiten"
+                                        onClick={() => updateNotification('frequency', notification.id)}
+                                        variant="outline"
+                                        color="green"
+                                    >
+                                        <IconCheck style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                    </ActionIcon>
+                                </Flex> }
                             </Table.Td>
                             <Table.Td>
                                 <Switch size="sm" checked={notification.active} />
+                            </Table.Td>
+                            <Table.Td align='right'>
+                                <ActionIcon title="Löschen" onClick={() => console.log('delete')} variant="outline" color="red">
+                                    <IconTrash style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                                </ActionIcon>
                             </Table.Td>
                         </Table.Tr>
                     ))}
@@ -91,6 +213,8 @@ const Profile = () => {
             </Table>
 
             {/* todo text "Füge weitere benachrichtigungen hinzu indem ...." */}
+
+            {/* todo change email input */}
 
             {/* todo show delete user button */}
         </Layout>

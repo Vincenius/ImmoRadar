@@ -23,6 +23,7 @@ export default async function handler(req, res) {
       } else {
         try {
           const notifications = [{
+            id: uuidv4(),
             frequency,
             filter,
             query,
