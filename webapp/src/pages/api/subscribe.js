@@ -12,7 +12,7 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('subscriptions');
 
-      const { email, frequency, filter } = req.body;
+      const { email, frequency, filter, query } = req.body;
 
       const existingSub = await collection.findOne({ email: req.body.email });
       let success = true;
@@ -25,6 +25,9 @@ export default async function handler(req, res) {
           const notifications = [{
             frequency,
             filter,
+            query,
+            last_sent: null,
+            active: true,
           }]
           const token = uuidv4();
           await collection.insertOne({
@@ -32,7 +35,6 @@ export default async function handler(req, res) {
             notifications,
             created_at: new Date(),
             confirmed: false,
-            active: true,
             token,
           });
 

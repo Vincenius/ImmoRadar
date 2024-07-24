@@ -8,3 +8,5 @@ Todos
     - notification cron
     - 
 
+- update autocomplete for only berlin first
+- check if manual input is working / in notifications

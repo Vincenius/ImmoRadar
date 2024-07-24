@@ -217,7 +217,7 @@ const Filter = ({ filterModalOpen, closeFilterModal }) => {
   </>
 }
 
-const Notifications = ({ filter }) => {
+const Notifications = ({ filter, query }) => {
   const [email, setEmail] = useState('')
   const [frequency, setFrequency] = useState(1)
   const [isLoading, setIsLoading] = useState(false)
@@ -242,7 +242,7 @@ const Notifications = ({ filter }) => {
     };
 
     const filteredFilter = Object.entries(parsedFilter).reduce((acc, [key, value]) => {
-      if (value !== null && value !== undefined && value !== false && value !== '') {
+      if (value !== null && value !== undefined && value !== false && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
         acc[key] = value;
       }
       return acc;
@@ -253,7 +253,7 @@ const Notifications = ({ filter }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, frequency, filter: filteredFilter }),
+      body: JSON.stringify({ email, frequency, filter: filteredFilter, query }),
     })
     .then(res => res.json())
     .then((res) => {
@@ -267,7 +267,6 @@ const Notifications = ({ filter }) => {
           message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen', // todo custom notifications
         })
       } else {
-        // TODO custom notifications
         notifications.show({
           color: 'red',
           title: 'Etwas ist schief gelaufen...',
@@ -355,7 +354,7 @@ export default function Search() {
             <Filter filterModalOpen={filterModalOpen} closeFilterModal={closeFilterModal} />
           </Modal>
           <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
-            <Notifications filter={filterQuery} />
+            <Notifications filter={filterQuery} query={q} />
           </Modal>
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
@@ -385,7 +384,7 @@ export default function Search() {
 
           <Card shadow="sm" padding="md" radius="md" withBorder>
             <Flex gap="sm" align="center" mb="sm"><IconBell size={16} /> <Text fw={500}>Benachrichtigungen</Text></Flex>
-            <Notifications filter={filterQuery} />
+            <Notifications filter={filterQuery} query={q} />
           </Card>
         </Box>
       </Flex>

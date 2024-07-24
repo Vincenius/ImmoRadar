@@ -118,6 +118,7 @@ export default async function handler(req, res) {
                 let pages = 0;
                 let query = {}
 
+                // todo check if this is forwarded??
                 if (input === 'manual') {
                     query = {
                         $and: [
