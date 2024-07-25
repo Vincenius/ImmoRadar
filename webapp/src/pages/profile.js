@@ -84,7 +84,7 @@ const Profile = () => {
     const { data = {}, error, isLoading, mutate } = useSWR(`/api/profile?token=${id}`, fetcher)
 
     const updateNotification = async (key, notificationId, forceUpdate) => {
-        setUpdateLoading(key);
+        setUpdateLoading(key); // todo also include notification id
         let error = false;
 
         const useUpdate = forceUpdate !== undefined ? forceUpdate : update;
