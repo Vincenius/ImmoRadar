@@ -1,9 +1,9 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput } from '@mantine/core';
+import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader } from '@mantine/core';
 import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
-import { notifications, updateNotification } from '@mantine/notifications';
+import { notifications } from '@mantine/notifications';
 import Layout from '@/components/Layout/Layout';
 import { fetcher } from '@/utils/fetcher';
 import { featureMap } from '@/utils/featureMap';
@@ -83,16 +83,18 @@ const Profile = () => {
 
     const { data = {}, error, isLoading, mutate } = useSWR(`/api/profile?token=${id}`, fetcher)
 
-    const updateNotification = async (key, notificationId) => {
-        setUpdateLoading('frequency');
+    const updateNotification = async (key, notificationId, forceUpdate) => {
+        setUpdateLoading(key);
         let error = false;
+
+        const useUpdate = forceUpdate !== undefined ? forceUpdate : update;
         
         await fetch(`/api/profile?token=${id}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify({ id: notificationId, [key]: update }),
+            body: JSON.stringify({ id: notificationId, [key]: useUpdate }),
         }).then((res) => ({
             err: !res.ok,
             data: res.json(),
@@ -100,7 +102,6 @@ const Profile = () => {
             if (err) {
                 error = true;
             } else {
-                console.log(data)
                 mutate(data);
                 notifications.show({
                     title: 'Benachrichtigung aktualisiert',
@@ -200,7 +201,16 @@ const Profile = () => {
                                 </Flex> }
                             </Table.Td>
                             <Table.Td>
-                                <Switch size="sm" checked={notification.active} />
+                                <Flex gap="sm">
+                                    <Switch
+                                        size="sm"
+                                        checked={notification.active}
+                                        onChange={() => updateNotification('active', notification.id, !notification.active)}
+                                        disabled={updateLoading === 'active'}
+                                        mr={updateLoading === 'active' ? 0 : 26}
+                                    />
+                                    { updateLoading === 'active' && <Loader size={14} /> }
+                                </Flex>
                             </Table.Td>
                             <Table.Td align='right'>
                                 <ActionIcon title="Löschen" onClick={() => console.log('delete')} variant="outline" color="red">
