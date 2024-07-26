@@ -226,7 +226,7 @@ const Profile = () => {
                                 </Flex>
                             </Table.Td>
                             <Table.Td align='right'>
-                                <ActionIcon title="Löschen" onClick={() => console.log('delete')} variant="outline" color="red">
+                                <ActionIcon title="Löschen" onClick={() => console.log('todo delete')} variant="outline" color="red">
                                     <IconTrash style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                 </ActionIcon>
                             </Table.Td>

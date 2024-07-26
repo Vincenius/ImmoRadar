@@ -43,8 +43,6 @@ export default async function handler(req, res) {
                 .map(([key, value]) => [`notifications.$.${key}`, value])
             );
 
-            console.log(update)
-
             const result = await collection.findOneAndUpdate({
                 token,
                 'notifications.id': id
