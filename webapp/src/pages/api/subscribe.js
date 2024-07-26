@@ -22,9 +22,9 @@ export default async function handler(req, res) {
 
       const { email, frequency, filter, query } = req.body;
 
-      const existingSub = await collection.findOne({ email: req.body.email });
+      const existingSub = await collection.findOne({ email });
       let success = true;
-      let added = false;
+      let duplicate = false;
 
       if (existingSub) {
         if (!existingSub.notifications.find(n => n.frequency === frequency && deepEqual(n.filter, filter) && n.query === query)) {
@@ -38,9 +38,9 @@ export default async function handler(req, res) {
           });
 
           await collection.updateOne({ email }, { $set: { notifications: existingSub.notifications } });
-          added = true;
         } else {
-          // TODO: handle error exists already
+          duplicate = true;
+          success = false;
         }
       } else {
         try {
@@ -72,7 +72,7 @@ export default async function handler(req, res) {
         }
       }
 
-      res.status(200).json({ success, added });
+      res.status(200).json({ success, newAccount: !existingSub, duplicate });
     } catch (error) {
       console.error('Error on creating user:', error);
       res.status(500)

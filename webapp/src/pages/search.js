@@ -84,14 +84,19 @@ const Notifications = ({ filter, query }) => {
         notifications.show({
           color: 'green',
           title: 'Erfolgreich abonniert',
-          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen', // todo success after adding (added === true)
+          message: res.newAccount
+            ? 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen'
+            : 'Benauchrichtigungen wurden erfolgreich aktiviert',
         })
       } else {
         notifications.show({
           color: 'red',
-          title: 'Etwas ist schief gelaufen...',
-          message: 'Versuche es erneut oder kontaktiere den Support',
-          classNames: classes,
+          title: res.duplicate
+            ? 'Abonnement existiert bereits'
+            : 'Etwas ist schief gelaufen...',
+          message: res.duplicate
+            ? 'Du hast bereits ein Abonnement mit diesen Filtern'
+            : 'Versuche es erneut oder kontaktiere den Support',
         })
       }
     });
@@ -125,7 +130,7 @@ const Notifications = ({ filter, query }) => {
     />
 
     <Button loading={isLoading} type="submit">
-      Abonieren
+      Abonnieren
     </Button>
   </form>
 }

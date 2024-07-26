@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
+import Link from 'next/link';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader, Modal } from '@mantine/core';
+import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader, Modal, Text } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
+import classes from '@/styles/Profile.module.css';
 import Layout from '@/components/Layout/Layout';
 import Filter from '@/components/Filter/Filter';
 import { fetcher } from '@/utils/fetcher';
@@ -169,8 +171,7 @@ const Profile = () => {
         <Layout title="ImmoRadar | Deine Benachrichtigungen" description="Verwalte deine Benachrichtigungen">
             <Title pt="xl" mb="xl">Deine Benachrichtigungen</Title>
 
-            {/* switch (de-)activate all */}
-            <Table striped>
+            <Table striped className={classes.table}>
                 <Table.Thead>
                     <Table.Tr>
                         <Table.Th>Suchbegriff</Table.Th>
@@ -246,7 +247,7 @@ const Profile = () => {
                                     </ActionIcon>
                                 </Flex> }
                             </Table.Td>
-                            <Table.Td>
+                            <Table.Td w={100}>
                                 <Flex gap="sm">
                                     <Switch
                                         size="sm"
@@ -258,7 +259,7 @@ const Profile = () => {
                                     { updateLoading.key === 'active' && updateLoading.id === notification.id && <Loader size={14} /> }
                                 </Flex>
                             </Table.Td>
-                            <Table.Td align='right'>
+                            <Table.Td align={{ base: 'left', sm: 'right' }} w={50}>
                                 <ActionIcon
                                     title="Löschen"
                                     onClick={() => deleteNotification(notification.id)}
@@ -274,11 +275,9 @@ const Profile = () => {
                 </Table.Tbody>
             </Table>
 
-            {/* todo info icon (next email, prev email?) */}
-
-            {/* todo switch de-activate all / delete all (mit bestätigungsmodal) */}
-
-            {/* todo text "Füge weitere benachrichtigungen hinzu indem ...." */}
+            <Text size="sm" fs="italic" mt="sm" align="center">
+                Nutze die <Link href="/">Suchfunktion</Link>, um weiter Benachrichtigungen hinzuzufügen.
+            </Text>
 
             {/* todo change email input */}
 
