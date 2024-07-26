@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
 import { Box, Card, Flex, Select, NumberInput, Text, Button, Divider, TextInput, Modal, Pagination } from '@mantine/core';
@@ -51,7 +51,6 @@ const Notifications = ({ filter, query }) => {
     const newProviders = filter?.providers?.split(',') || [];
 
     const parsedFilter = {
-      ...filter,
       minPrice: filter.minPrice && parseInt(filter.minPrice),
       maxPrice: filter.maxPrice && parseInt(filter.maxPrice),
       minSize: filter.minSize && parseInt(filter.minSize),
@@ -144,6 +143,30 @@ export default function Search() {
   const sortValue = sortOptions.find((option) => option.value === sort)?.value || 'date'
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
+  const [defaultFilter, setDefaultFilter] = useState()
+
+  useEffect(() => {
+    if (router.isReady) {
+      const newFeatures = filterQuery?.features?.split(',') || []
+      const newProviders = filterQuery?.providers?.split(',') || []
+      setDefaultFilter({
+        ...filterQuery,
+        features: newFeatures,
+        providers: newProviders,
+      })
+    }
+  }, [router.isReady, router.query]);
+
+  const applyFilter = (filter) => {
+    const query = { ...router.query, ...filter, page: 1 }
+    query.features = query.features.join(',')
+    query.providers = query.providers.join(',')
+    Object.keys(query).forEach(key => !query[key] && delete query[key])
+    if (filterModalOpen) {
+      closeFilterModal()
+    }
+    router.push({ query })
+  }
 
   const updateSort = (sort) => {
     router.push({ query: { ...router.query, sort, page: 1 } })
@@ -172,7 +195,7 @@ export default function Search() {
             Benachrichtigungen
           </Button>
           <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
-            <Filter filterModalOpen={filterModalOpen} closeFilterModal={closeFilterModal} />
+            <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
           </Modal>
           <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
             <Notifications filter={filterQuery} query={q} />
@@ -200,7 +223,7 @@ export default function Search() {
 
             <Divider my="md" />
 
-            <Filter filterModalOpen={filterModalOpen} closeFilterModal={closeFilterModal} />
+            <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
           </Card>
 
           <Card shadow="sm" padding="md" radius="md" withBorder>

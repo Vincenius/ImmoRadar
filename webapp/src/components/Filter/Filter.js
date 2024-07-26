@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/router';
 import { Flex, NumberInput, Text, Button, Collapse, Checkbox, TextInput, rem } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconCurrencyEuro } from '@tabler/icons-react'
@@ -8,10 +7,8 @@ import { providers } from '@/utils/providers'
 
 const eurIcon = <IconCurrencyEuro style={{ width: rem(20), height: rem(20) }} stroke={1.5} />;
 
-const Filter = ({ filterModalOpen, closeFilterModal }) => {
+const Filter = ({ defaultFilter, applyFilter, loading }) => {
   const [opened, { toggle }] = useDisclosure(false);
-  const router = useRouter()
-  const { q, sort = 'date', page = '1', ...filterQuery } = (router.query || {})
 
   const [filter, setFilter] = useState({
     minPrice: null,
@@ -27,28 +24,10 @@ const Filter = ({ filterModalOpen, closeFilterModal }) => {
   })
 
   useEffect(() => {
-    if (router.isReady) {
-      const newFeatures = filterQuery?.features?.split(',') || []
-      const newProviders = filterQuery?.providers?.split(',') || []
-      setFilter({
-        ...filter,
-        ...filterQuery,
-        features: newFeatures,
-        providers: newProviders,
-      })
+    if (defaultFilter) {
+      setFilter(defaultFilter)
     }
-  }, [router.isReady, router.query]);
-
-  const applyFilter = () => {
-    const query = { ...router.query, ...filter, page: 1 }
-    query.features = query.features.join(',')
-    query.providers = query.providers.join(',')
-    Object.keys(query).forEach(key => !query[key] && delete query[key])
-    if (filterModalOpen) {
-      closeFilterModal()
-    }
-    router.push({ query })
-  }
+  }, [defaultFilter, setFilter]);
 
   return <>
     <Flex gap="sm" align="center" mb="sm">
@@ -178,7 +157,7 @@ const Filter = ({ filterModalOpen, closeFilterModal }) => {
       </Flex>
     </Collapse>
 
-    <Button onClick={applyFilter} mt="md">
+    <Button onClick={() => applyFilter(filter)} mt="md" loading={loading}>
       Filter Anwenden
     </Button>
   </>

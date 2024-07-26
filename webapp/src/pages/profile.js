@@ -1,10 +1,12 @@
 import { useEffect, useState } from 'react';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader } from '@mantine/core';
+import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader, Modal } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
 import Layout from '@/components/Layout/Layout';
+import Filter from '@/components/Filter/Filter';
 import { fetcher } from '@/utils/fetcher';
 import { featureMap } from '@/utils/featureMap';
 import { providers as providerMap } from '@/utils/providers';
@@ -44,10 +46,10 @@ const formatFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms
     }
 
     if (features && features.length) {
-        result.push(`Mit ${features.map(f => featureMap(f)).join(', ')}`);
+        result.push(`Mit ${features.map(f => featureMap[f]).join(', ')}`);
     }
     if (providers && providers.length) {
-        result.push(`Von ${providers.map(p => providerMap.find(e => e.id === p).label).join(', ')}`);
+        result.push(`Ohne ${providers.map(p => providerMap.find(e => e.id === p).label).join(', ')}`);
     }
     
     return result;
@@ -60,6 +62,7 @@ const Profile = () => {
     const [editView, setEditView] = useState([]);
     const [update, setUpdate] = useState('');
     const [updateLoading, setUpdateLoading] = useState();
+    const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
 
     useEffect(() => {
         const { confirm } = router.query;
@@ -109,6 +112,9 @@ const Profile = () => {
                     color: 'green',
                 });
                 setEditView(editView.filter(e => e !== key));
+                if (key === 'filter') {
+                    closeFilterModal()
+                }
             }
         }).catch(e => {
             console.error(e);
@@ -159,15 +165,22 @@ const Profile = () => {
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
-                                <Flex align="center" gap="sm">
+                                <Flex align="center" columnGap="sm" rowGap={4} wrap="wrap">
                                     {formatFilter(notification.filter).map((f, i) => (
                                         <Badge key={`feature-${index}-${i}`} variant="outline" size="sm" radius="sm" mr="4px">
                                             {f}
                                         </Badge>
                                     )) }
-                                    <ActionIcon title="Filter bearbeiten" onClick={() => console.log('edit')} variant="subtle">
+                                    <ActionIcon title="Filter bearbeiten" onClick={openFilterModal} variant="subtle">
                                         <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                     </ActionIcon>
+                                    <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
+                                        <Filter
+                                            defaultFilter={notification.filter}
+                                            applyFilter={(newFilter) => updateNotification('filter', notification.id, newFilter)}
+                                            loading={updateLoading === 'filter'}
+                                        />
+                                    </Modal>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
