@@ -27,7 +27,7 @@ export default async function handler(req, res) {
             frequency,
             filter,
             query,
-            last_sent: null,
+            last_sent: new Date(),
             active: true,
           }]
           const token = uuidv4();
