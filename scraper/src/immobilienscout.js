@@ -86,13 +86,6 @@ const scrapeData = async (page, collection, type) => {
         console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
 
         await page.goto(BASE_URL);
-        // TODO find best time to prevent bot protection -> try wait 10 seconds every 50
-        // if (currentPage % 20 === 0) {
-        //     console.log('Waiting 5 seconds to prevent bot protection...')
-        //     await delay(5000);
-        // } else {
-        //     // await delay(1000);
-        // }
         await delay(2000);
 
         const content = await page.content();

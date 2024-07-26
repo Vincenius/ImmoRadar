@@ -84,7 +84,7 @@ const Notifications = ({ filter, query }) => {
         notifications.show({
           color: 'green',
           title: 'Erfolgreich abonniert',
-          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen', // todo custom notifications
+          message: 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen', // todo success after adding (added === true)
         })
       } else {
         notifications.show({

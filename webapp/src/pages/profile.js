@@ -61,7 +61,8 @@ const Profile = () => {
     const { id } = router.query;
     const [editView, setEditView] = useState([]);
     const [update, setUpdate] = useState('');
-    const [updateLoading, setUpdateLoading] = useState();
+    const [updateLoading, setUpdateLoading] = useState({ });
+    const [deleteLoading, setDeleteLoading] = useState('');
     const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
 
     useEffect(() => {
@@ -87,7 +88,7 @@ const Profile = () => {
     const { data = {}, error, isLoading, mutate } = useSWR(`/api/profile?token=${id}`, fetcher)
 
     const updateNotification = async (key, notificationId, forceUpdate) => {
-        setUpdateLoading(key); // todo also include notification id
+        setUpdateLoading({ key, id: notificationId });
         let error = false;
 
         const useUpdate = forceUpdate !== undefined ? forceUpdate : update;
@@ -120,7 +121,7 @@ const Profile = () => {
             console.error(e);
             error = true;
         }).finally(() => {
-            setUpdateLoading(null)
+            setUpdateLoading({ })
         });
 
         if (error) {
@@ -130,6 +131,38 @@ const Profile = () => {
                 color: 'red',
             });
         }
+    }
+
+    const deleteNotification = async (notificationId) => {
+        setDeleteLoading(notificationId)
+        let error = false;
+
+        await fetch(`/api/profile?token=${id}`, {
+            method: 'DELETE',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ id: notificationId }),
+        }).then((res) => ({
+            err: !res.ok,
+            data: res.json(),
+        })).then(({ data, err }) => {
+            if (err) {
+                error = true;
+            } else {
+                mutate(data);
+                notifications.show({
+                    title: 'Benachrichtigung gelöscht',
+                    message: 'Die Benachrichtigung wurde erfolgreich gelöscht.',
+                    color: 'green',
+                });
+            }
+        }).catch(e => {
+            console.error(e);
+            error = true;
+        }).finally(() => {
+            setDeleteLoading('')
+        });
     }
 
     return (
@@ -178,7 +211,7 @@ const Profile = () => {
                                         <Filter
                                             defaultFilter={notification.filter}
                                             applyFilter={(newFilter) => updateNotification('filter', notification.id, newFilter)}
-                                            loading={updateLoading === 'filter'}
+                                            loading={updateLoading.key === 'filter'}
                                         />
                                     </Modal>
                                 </Flex>
@@ -203,7 +236,7 @@ const Profile = () => {
                                         onChange={val => setUpdate(val)}
                                     />
                                     <ActionIcon
-                                        loading={updateLoading === 'frequency'}
+                                        loading={updateLoading.key === 'frequency' && updateLoading.id === notification.id}
                                         title="Häufigkeit bearbeiten"
                                         onClick={() => updateNotification('frequency', notification.id)}
                                         variant="outline"
@@ -219,14 +252,20 @@ const Profile = () => {
                                         size="sm"
                                         checked={notification.active}
                                         onChange={() => updateNotification('active', notification.id, !notification.active)}
-                                        disabled={updateLoading === 'active'}
-                                        mr={updateLoading === 'active' ? 0 : 26}
+                                        disabled={updateLoading.key === 'active' && updateLoading.id === notification.id}
+                                        mr={updateLoading.key === 'active' && updateLoading.id === notification.id ? 0 : 26}
                                     />
-                                    { updateLoading === 'active' && <Loader size={14} /> }
+                                    { updateLoading.key === 'active' && updateLoading.id === notification.id && <Loader size={14} /> }
                                 </Flex>
                             </Table.Td>
                             <Table.Td align='right'>
-                                <ActionIcon title="Löschen" onClick={() => console.log('todo delete')} variant="outline" color="red">
+                                <ActionIcon
+                                    title="Löschen"
+                                    onClick={() => deleteNotification(notification.id)}
+                                    variant="outline"
+                                    color="red"
+                                    loading={deleteLoading === notification.id}
+                                >
                                     <IconTrash style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                 </ActionIcon>
                             </Table.Td>
@@ -234,6 +273,10 @@ const Profile = () => {
                     ))}
                 </Table.Tbody>
             </Table>
+
+            {/* todo info icon (next email, prev email?) */}
+
+            {/* todo switch de-activate all / delete all (mit bestätigungsmodal) */}
 
             {/* todo text "Füge weitere benachrichtigungen hinzu indem ...." */}
 
