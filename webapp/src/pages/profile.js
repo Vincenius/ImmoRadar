@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import useSWR from 'swr'
 import { useRouter } from 'next/router';
-import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader, Modal, Text } from '@mantine/core';
+import { Title, Table, Skeleton, Switch, ActionIcon, Flex, Badge, NumberInput, Loader, Modal, Text, Button } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconPencil, IconTrash, IconCheck } from '@tabler/icons-react';
 import { notifications } from '@mantine/notifications';
@@ -66,6 +66,7 @@ const Profile = () => {
     const [updateLoading, setUpdateLoading] = useState({ });
     const [deleteLoading, setDeleteLoading] = useState('');
     const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
+    const [deleteModalOpen, { open: openDeleteModal, close: closeDeleteModal }] = useDisclosure(false);
 
     useEffect(() => {
         const { confirm } = router.query;
@@ -94,7 +95,7 @@ const Profile = () => {
         let error = false;
 
         const useUpdate = forceUpdate !== undefined ? forceUpdate : update;
-        
+
         await fetch(`/api/profile?token=${id}`, {
             method: 'PUT',
             headers: {
@@ -167,11 +168,13 @@ const Profile = () => {
         });
     }
 
+    const hasAccount = !isLoading && data && data._id;
+
     return (
         <Layout title="ImmoRadar | Deine Benachrichtigungen" description="Verwalte deine Benachrichtigungen">
-            <Title pt="xl" mb="xl">Deine Benachrichtigungen</Title>
+            { (isLoading || hasAccount) && <Title pt="xl" mb="xl">Deine Benachrichtigungen</Title> }
 
-            <Table striped className={classes.table}>
+            { (isLoading || hasAccount) && <Table striped className={classes.table}>
                 <Table.Thead>
                     <Table.Tr>
                         <Table.Th>Suchbegriff</Table.Th>
@@ -273,15 +276,30 @@ const Profile = () => {
                         </Table.Tr>
                     ))}
                 </Table.Tbody>
-            </Table>
+            </Table> }
 
-            <Text size="sm" fs="italic" mt="sm" align="center">
+            { hasAccount && <Text size="sm" fs="italic" mt="sm" align="center">
                 Nutze die <Link href="/">Suchfunktion</Link>, um weiter Benachrichtigungen hinzuzufügen.
-            </Text>
+            </Text> }
 
-            {/* todo change email input */}
+            { hasAccount && <Button onClick={openDeleteModal} color="red" variant="outline" mt="xl">
+                Account Löschen
+            </Button> }
+            <Modal opened={deleteModalOpen} onClose={closeDeleteModal} title="Account Löschen">
+                <Text>
+                    Alle Benachrichtigungen werden gelöscht und können nicht wiederhergestellt werden. Möchtest du fortfahren?
+                </Text>
+                <Flex mt="md" gap="md" justify="flex-end">
+                    <Button color="gray" variant="outline" onClick={closeDeleteModal}>Abbrechen</Button>
+                    <Button color="red" variant="outline" onClick={() => router.push(`/api/unsubscribe?token=${id}`)}>Account Löschen</Button>
+                </Flex>
+            </Modal>
 
-            {/* todo show delete user button */}
+
+            { (!isLoading && !hasAccount) && <Text fs="italic" py="xl" align="center">
+                Es wurde kein Account gefunden.<br/>
+                Bitte überprüfe den Link oder <Link href="/">erstelle einen neuen Account</Link> über die Suchfunktion.
+            </Text> }
         </Layout>
     );
 };

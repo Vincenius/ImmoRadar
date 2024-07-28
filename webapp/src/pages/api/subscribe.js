@@ -20,7 +20,7 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('subscriptions');
 
-      const { email, frequency, filter, query } = req.body;
+      const { email, frequency, filter, query, manualInput } = req.body;
 
       const existingSub = await collection.findOne({ email });
       let success = true;
@@ -33,6 +33,7 @@ export default async function handler(req, res) {
             frequency,
             filter,
             query,
+            manualInput,
             last_sent: new Date(),
             active: true,
           });
@@ -49,6 +50,7 @@ export default async function handler(req, res) {
             frequency,
             filter,
             query,
+            manualInput,
             last_sent: new Date(),
             active: true,
           }]

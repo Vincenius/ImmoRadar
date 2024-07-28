@@ -68,12 +68,14 @@ const Notifications = ({ filter, query }) => {
       return acc;
     }, {});
 
+    const manualInput = filter.input === 'manual';
+
     fetch('/api/subscribe', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, frequency, filter: filteredFilter, query }),
+      body: JSON.stringify({ email, frequency, filter: filteredFilter, query, manualInput }),
     })
     .then(res => res.json())
     .then((res) => {
