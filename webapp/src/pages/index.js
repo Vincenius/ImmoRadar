@@ -1,4 +1,4 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container } from '@mantine/core';
+import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container, Card } from '@mantine/core';
 import { IconClock, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
@@ -22,11 +22,7 @@ const faqs = [
   },
   {
     question: 'Wie oft werden die Suchergebnisse aktualisiert?',
-    answer: 'Aktuell werden die Immobielen-Webseiten etwa alle 10 Minuten auf neue Einträge überprüft. In Zukunft wird diese Frequenz erhöht um sicherzustellen, dass Sie immer die aktuellsten Einträge sehen können.',
-  },
-  {
-    question: 'Wie finanziert sich ImmoRadar?',
-    answer: 'ImmoRadar wird in Zukunft eine Premium-Version anbieten, die zusätzliche Funktionen und Vorteile bietet. Die kostenlose Version wird jedoch immer verfügbar bleiben.',
+    answer: 'Aktuell werden die Immobilien-Webseiten etwa alle 10 Minuten auf neue Einträge überprüft. In Zukunft wird diese Frequenz erhöht um sicherzustellen, dass Sie immer die aktuellsten Einträge sehen können.',
   }
 ];
 
@@ -47,6 +43,11 @@ export default function Home() {
 
             <Group position="center">
               <SearchBar />
+              <Card fs="sm" p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7} w="100%">
+                <Text size="sm" fs="italic">
+                  ImmoRadar befindet sich aktuell in der Beta-Phase. Aktuell werden nur Suchanfragen für "Berlin" unterstützt.<br/>Alle anderen Städte / Bezirke werden in Kürze hinzugefügt.
+                </Text>
+              </Card>
             </Group>
           </Box>
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
