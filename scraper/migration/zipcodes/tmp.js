@@ -109,6 +109,8 @@ const main = async () => {
 
   // await collection.insertMany(mappedData)
 
+  // client.close();
+
   console.log('DONE')
 }
 

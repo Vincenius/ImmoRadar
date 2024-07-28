@@ -7,6 +7,7 @@
 //   const collection = db.collection('estates');
 //   await collection.deleteMany({ provider: "kleinanzeigen.de" });
 //   console.log('DONE')
+//   client.close();
 // }
 
 // run()
