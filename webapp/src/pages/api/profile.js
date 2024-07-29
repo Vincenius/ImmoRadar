@@ -34,6 +34,7 @@ export default async function handler(req, res) {
             const collection = db.collection('subscriptions');
             const { id, frequency, filter, active } = req.body;
             // filter empty values from body
+            // TODO if new frequency is set, update next notification time
             const update = Object.fromEntries(Object.entries({
                     frequency,
                     filter,

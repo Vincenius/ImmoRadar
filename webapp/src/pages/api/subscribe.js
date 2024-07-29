@@ -26,6 +26,9 @@ export default async function handler(req, res) {
       let success = true;
       let duplicate = false;
 
+      const nextSendDate = new Date();
+      nextSendDate.setDate(nextSendDate.getDate() + frequency);
+
       if (existingSub) {
         if (!existingSub.notifications.find(n => n.frequency === frequency && deepEqual(n.filter, filter) && n.query === query)) {
           existingSub.notifications.push({
@@ -34,7 +37,7 @@ export default async function handler(req, res) {
             filter,
             query,
             manualInput,
-            last_sent: new Date(),
+            next_send_date: nextSendDate,
             active: true,
           });
 
@@ -51,7 +54,7 @@ export default async function handler(req, res) {
             filter,
             query,
             manualInput,
-            last_sent: new Date(),
+            next_send_date: nextSendDate,
             active: true,
           }]
           const token = uuidv4();
