@@ -162,8 +162,6 @@ const notificationRunner = async () => {
         return query
       }).filter(obj => Object.keys(obj).length > 0);
 
-      console.log(JSON.stringify({ $match: { $or: queries } }))
-
       const [result] = await collection.aggregate([
         { $match: { $or: queries } },
         ...filterDuplicateAggregation,
@@ -187,9 +185,9 @@ const notificationRunner = async () => {
       ]).toArray()
 
       console.log(result)
-    }
-      // construct and send if there are new elements email
+      // construct and send email if there are new elements
       // update next_send_date
+    }
 
   } catch (error) {
     console.error("Error:", error);
