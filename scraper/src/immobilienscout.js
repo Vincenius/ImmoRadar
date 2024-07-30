@@ -33,7 +33,7 @@ const parseData = (estates) => estates.map(e => {
 
     return {
         id: e['@id'],
-        created_at: new Date().toISOString(),
+        created_at: new Date(),
         url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
         provider: "immobilienscout24.de",
         date: e['@publishDate'],

@@ -47,7 +47,7 @@ const scrapeData = async (page, collection, type) => {
             const subPageData = await page.evaluate(async () => {
                 const pageData = {
                     provider: "kleinanzeigen.de",
-                    created_at: new Date().toISOString(),
+                    created_at: new Date(),
                 };
 
                 const rawDetails = {};

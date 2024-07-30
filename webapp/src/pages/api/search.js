@@ -110,8 +110,8 @@ export default async function handler(req, res) {
                     providerFilter['provider'] = { $nin: providersArray };
                 }
 
-                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter, providerFilter];
-
+                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter, providerFilter]
+                    .filter(obj => Object.keys(obj).length > 0);
 
                 // RUN QUERY
                 let results = [];

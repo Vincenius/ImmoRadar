@@ -8,7 +8,7 @@ const mapPriceType = {
 
 const parseData = (estates) => estates.map(e => ({
     id: e.id,
-    created_at: new Date().toISOString(),
+    created_at: new Date(),
     url: `https://www.immowelt.de/expose/${e.onlineId}`,
     provider: "immowelt.de",
     date: e.timestamp,
