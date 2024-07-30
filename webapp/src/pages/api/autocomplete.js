@@ -196,7 +196,7 @@ export default async function handler(req, res) {
       result = await collection.aggregate([
         {
           $match: {
-            zipCodes: { $in: berlinZipCodes } // todo temporary
+            zipCodes: { $in: berlinZipCodes } // temporary
           }
         },
         {

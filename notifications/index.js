@@ -127,7 +127,6 @@ const notificationRunner = async () => {
     // loop through notifications
     for (const sub of filteredSubs) {
       const { email, notifications, token } = sub;
-      // todo get all non-manual zip codes
 
       const fetchLocations = notifications.map(notif => (!notif.manualInput && notif.query)).filter(Boolean)
       const locations = await locationCollection.find({ name: { $in: [...new Set(fetchLocations)] } }).toArray();

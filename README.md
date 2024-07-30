@@ -3,7 +3,6 @@
 todos
 
 - notification cron
-- notification email
 - glitchtip frontend & notification cron
 - 2 more scrapers
 
