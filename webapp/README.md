@@ -1,5 +1,6 @@
 Todos
 
-update next_send_date on frequency update
+- update next_send_date on frequency update
+- link to search from profile page
 
 http://localhost:3000/profile?id=b2b4da98-dfd6-4066-b8fc-409f3ab47333

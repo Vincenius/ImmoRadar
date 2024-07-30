@@ -16,7 +16,7 @@ const confirmTemplate = ({ confirm_url }) => mjml2html(`<mjml>
           </mj-column>
         </mj-group>
       </mj-section>
-      <mj-section background-color="#f3f3f3" background-color="#c5f6fa">
+      <mj-section background-color="#f3f3f3">
         <mj-column>
           <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Bestätige deine Anmeldung!</mj-text>
           <mj-text font-size="15px" color="#000" font-family="helvetica">vielen Dank für deine Anmeldung bei ImmoRadar!</mj-text>
