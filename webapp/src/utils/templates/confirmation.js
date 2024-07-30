@@ -12,7 +12,7 @@ const confirmTemplate = ({ confirm_url }) => mjml2html(`<mjml>
       <mj-section>
         <mj-group>
           <mj-column vertical-align="middle">
-            <mj-image width="300px" src="https://immoradar.xyz/email-header.png"></mj-image>
+            <mj-image href="https://immoradar.xyz" width="300px" src="https://immoradar.xyz/email-header.png"></mj-image>
           </mj-column>
         </mj-group>
       </mj-section>

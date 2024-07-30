@@ -1,5 +1,7 @@
 import 'dotenv/config'
 import { MongoClient } from 'mongodb';
+import getTemplate from './templates/notification.js'
+import { sendEmail } from './utils/emails.js'
 
 const mapFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, featuresArray, titleIncludes, titleExcludes, providersArray }) => {
   // FILTER
@@ -184,9 +186,18 @@ const notificationRunner = async () => {
         }
       ]).toArray()
 
-      console.log(result)
-      // construct and send email if there are new elements
-      // update next_send_date
+      if (result.totalCount > 0 && result.results.length > 0) {
+        const count = result.totalCount;
+        const templateHtml = getTemplate({ count, estates: result.results, token });
+        const subject = `ImmoRadar | ${count > 50 ? '50+' : count} neue Wohnungen gefunden!`
+
+        sendEmail({
+          to: email,
+          subject,
+          html: templateHtml
+        })
+        // TODO update next_send_date
+      }
     }
 
   } catch (error) {
