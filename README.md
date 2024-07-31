@@ -2,8 +2,7 @@
 
 todos
 
-- notification cron
-- glitchtip frontend & notification cron
+- glitchtip frontend
 - 2 more scrapers
 
 launch reddit

@@ -1,5 +1,5 @@
 import Layout from '@/components/Layout/Layout';
-import { Container, Text, Title } from '@mantine/core';
+import { Container, Title } from '@mantine/core';
 import styles from '@/styles/Privacy.module.css';
 
 const Privacy = () => {

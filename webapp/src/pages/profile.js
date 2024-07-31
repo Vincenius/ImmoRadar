@@ -64,6 +64,7 @@ const Profile = () => {
     const [editView, setEditView] = useState([]);
     const [update, setUpdate] = useState('');
     const [updateLoading, setUpdateLoading] = useState({ });
+    const [filterModalNotification, setFilterModalNotification] = useState({ });
     const [deleteLoading, setDeleteLoading] = useState('');
     const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
     const [deleteModalOpen, { open: openDeleteModal, close: closeDeleteModal }] = useDisclosure(false);
@@ -115,7 +116,7 @@ const Profile = () => {
                     message: 'Die Benachrichtigung wurde erfolgreich aktualisiert.',
                     color: 'green',
                 });
-                setEditView(editView.filter(e => e !== key));
+                setEditView(editView.filter(e => !(e.key === key && e.id === notificationId)));
                 if (key === 'filter') {
                     closeFilterModal()
                 }
@@ -168,6 +169,21 @@ const Profile = () => {
         });
     }
 
+    const getSearchLink = (notification) => {
+        const query = { q: notification.query, ...notification.filter }
+        query.features = query.features?.join(',')
+        query.providers = query.providers?.join(',')
+        query.input = notification.manualInput && 'manual'
+        Object.keys(query).forEach(key => !query[key] && delete query[key])
+
+        let queryString = ''
+        if (Object.keys(query).length > 0) {
+            queryString = new URLSearchParams(query).toString();
+        }
+
+        return queryString
+    }
+
     const hasAccount = !isLoading && data && data._id;
 
     return (
@@ -198,7 +214,7 @@ const Profile = () => {
                         <Table.Tr key={`table-notification-${index}`}>
                             <Table.Td>
                                 <Flex align="center" gap="sm">
-                                    {notification.query}
+                                    <Link href={`https://immoradar.xyz/search?${getSearchLink(notification)}`}>{notification.query}</Link>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
@@ -208,29 +224,32 @@ const Profile = () => {
                                             {f}
                                         </Badge>
                                     )) }
-                                    <ActionIcon title="Filter bearbeiten" onClick={openFilterModal} variant="subtle">
+                                    <ActionIcon title="Filter bearbeiten" onClick={() => {
+                                        setFilterModalNotification(notification);
+                                        openFilterModal()
+                                    }} variant="subtle">
                                         <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                     </ActionIcon>
                                     <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
                                         <Filter
-                                            defaultFilter={notification.filter}
-                                            applyFilter={(newFilter) => updateNotification('filter', notification.id, newFilter)}
+                                            defaultFilter={filterModalNotification.filter}
+                                            applyFilter={(newFilter) => updateNotification('filter', filterModalNotification.id, newFilter)}
                                             loading={updateLoading.key === 'filter'}
                                         />
                                     </Modal>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>
-                                { !editView.includes('frequency') && <Flex align="center" gap="sm">
+                                { (!editView.find(ev => ev.key === 'frequency' && ev.id === notification.id)) && <Flex align="center" gap="sm">
                                     {notification.frequency === 1 ? `Jeden Tag` : `Alle ${notification.frequency} Tage`}
                                     <ActionIcon title="Häufigkeit bearbeiten" onClick={() => {
                                         setUpdate(notification.frequency);
-                                        setEditView([...editView, 'frequency'])
+                                        setEditView([...editView, { key: 'frequency', id: notification.id }]);
                                     }} variant="subtle">
                                         <IconPencil style={{ width: '70%', height: '70%' }} stroke={1.5} />
                                     </ActionIcon>
                                 </Flex> }
-                                { editView.includes('frequency') && <Flex align="center" gap="sm">
+                                { (editView.find(ev => ev.key === 'frequency' && ev.id === notification.id)) && <Flex align="center" gap="sm">
                                     <NumberInput
                                         min={1}
                                         max={30}

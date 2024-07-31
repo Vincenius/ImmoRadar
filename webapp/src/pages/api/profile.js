@@ -34,14 +34,30 @@ export default async function handler(req, res) {
             const collection = db.collection('subscriptions');
             const { id, frequency, filter, active } = req.body;
             // filter empty values from body
-            // TODO if new frequency is set, update next notification time
             const update = Object.fromEntries(Object.entries({
-                    frequency,
-                    filter,
-                    active,
-                }).filter(([key, value]) => value !== undefined && value !== null)
-                .map(([key, value]) => [`notifications.$.${key}`, value])
-            );
+                frequency,
+                filter,
+                active,
+            }).filter(([key, value]) => value !== undefined && value !== null)
+                .map(([key, value]) => [`notifications.$.${key}`, value]));
+
+            
+            if (update['notifications.$.frequency']) {
+                const prevEntry = await collection.findOne({ token, 'notifications.id': id });
+                const prevNotification = prevEntry.notifications.find(n => n.id === id);
+                const nextSendDate = new Date(prevNotification.next_send_date);
+                const difference = update['notifications.$.frequency'] - prevNotification.frequency;
+                const endOfToday = new Date();
+                endOfToday.setHours(23, 59, 59, 999);
+                
+                nextSendDate.setDate(nextSendDate.getDate() + difference)
+                // if nextSendDate is today or earlier, set it to tomorrow
+                if (nextSendDate < endOfToday) {
+                    nextSendDate.setDate(nextSendDate.getDate() + 1);
+                }
+                
+                update['notifications.$.next_send_date'] = nextSendDate;
+            }
 
             const result = await collection.findOneAndUpdate({
                 token,
