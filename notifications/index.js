@@ -190,13 +190,24 @@ const notificationRunner = async () => {
         const templateHtml = getTemplate({ count, estates: result.results, token });
         const subject = `ImmoRadar | ${count > 50 ? '50+' : count} neue Wohnungen gefunden!`
 
-        sendEmail({
+        await sendEmail({
           to: email,
           subject,
           html: templateHtml
         })
-        // TODO update next_send_date
       }
+
+      const updatePromises = notifications.map(notif => {
+        const nextSendDate = new Date(notif.next_send_date);
+        nextSendDate.setDate(nextSendDate.getDate() + notif.frequency);
+  
+        return subscriptionCollection.updateOne(
+          { email, "notifications.id": notif.id },
+          { $set: { "notifications.$.next_send_date": nextSendDate } }
+        );
+      });
+      
+      await Promise.all(updatePromises);
     }
 
   } catch (error) {
