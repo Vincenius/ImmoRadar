@@ -2,7 +2,6 @@
 
 todos
 
-- glitchtip frontend
 - 2 more scrapers
 
 launch reddit
