@@ -4,7 +4,7 @@ import { Title, Text } from '@mantine/core';
 
 const Imprint = () => {
     return (
-        <Layout>
+        <Layout title="ImmoRadar | Account erfolgreich gelöscht">
             <Title order={1} py="xl">Account erfolgreich gelöscht</Title>
             <Text fs="italic">Dein Account wurde mit allen dazugehörigen Benachrichtigungen entfernt.</Text>
         </Layout>
