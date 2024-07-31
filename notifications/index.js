@@ -1,7 +1,15 @@
 import 'dotenv/config'
+import * as Sentry from '@sentry/node';
+import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
 import getTemplate from './templates/notification.js'
 import { sendEmail } from './utils/emails.js'
+
+
+if (process.env.GLITCHTIP_URL) {
+  console.log('Init Glitchtip', process.env.GLITCHTIP_URL)
+  Sentry.init({ dsn: process.env.GLITCHTIP_URL });
+}
 
 const mapFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, featuresArray, titleIncludes, titleExcludes, providersArray }) => {
   // FILTER
@@ -217,4 +225,10 @@ const notificationRunner = async () => {
   }
 }
 
-notificationRunner();
+console.log('INIT CRON JOB')
+
+cron.schedule('0 10 * * *', () => {
+  console.log(new Date().toISOString(), 'running notification job');
+  notificationRunner();
+});
+
