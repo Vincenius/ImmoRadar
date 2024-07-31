@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "immoradar-notifications",
+            "script": "npm",
+            "args": "start",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
