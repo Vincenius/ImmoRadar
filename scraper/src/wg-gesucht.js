@@ -15,7 +15,7 @@ const scrapeData = async (page, collection, type) => {
     while (lastPage && currentPage <= lastPage && !error) {
         console.log('WG Gesucht SCRAPING', currentPage, 'OF', lastPage);
         // TODO page
-        const BASE_URL = 'https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2'
+        const BASE_URL = 'https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2&rent_types%5B%5D=2'
         await page.goto(BASE_URL);
         currentPage++;
 
@@ -64,20 +64,20 @@ const scrapeData = async (page, collection, type) => {
                 }
                 pageData.rooms = keyFactElemets[2] ? parseInt(keyFactElemets[2].textContent.trim()) : null;
 
+                const addressElement = document.querySelector('a[href="#mapContainer"] .section_panel_detail')
+                    .innerHTML.trim().split("<br>").map(el => el.replace(/\n/g, ' ').trim()) // [ "Mierendorffstrasse 31", "10589 Berlin" ]
+                const [zipCode, ...cityElems] = addressElement[1].split(" ") // [ "10589", "Berlin" ]
+                pageData.address = {
+                    street: addressElement[0] || '',
+                    zipCode,
+                    city: cityElems.join(" ") || '',
+                    district: '',
+                    geolocation: null,
+                }
 
                 //  https://www.wg-gesucht.de/wohnungen-in-Berlin-Schoeneberg.10940551.html
 
                 // return {
-                //     address: {
-                //         zipCode: e['resultlist.realEstate'].address.postcode,
-                //         city: e['resultlist.realEstate'].address.city,
-                //         district: e['resultlist.realEstate'].address.quarter,
-                //         street: `${e['resultlist.realEstate'].address.street || ''} ${e['resultlist.realEstate'].address.houseNumber || ''}`.trim(),
-                //         geolocation: e['resultlist.realEstate'].address.wgs84Coordinate ? {
-                //             lat: e['resultlist.realEstate'].address.wgs84Coordinate.latitude,
-                //             lon: e['resultlist.realEstate'].address.wgs84Coordinate.longitude,
-                //         } : null
-                //     },
                 //     gallery: gallery
                 //         .filter(a => a.urls && a.urls.length)
                 //         .map(a => a.urls.map(u => u.url['@href'].replace("%WIDTH%", "420").replace("%HEIGHT%", "315")))
