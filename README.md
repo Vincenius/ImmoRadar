@@ -3,6 +3,10 @@
 todos
 
 - 2 more scrapers
+    - https://www.wohnungsboerse.net structure
+    - https://www.wg-gesucht.de/ structure
+    - immonet?
+
 
 launch reddit
 
