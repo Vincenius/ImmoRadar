@@ -75,15 +75,20 @@ const scrapeData = async (page, collection, type) => {
                     geolocation: null,
                 }
 
+                const gallery = []
+                document.querySelectorAll('.sp-image').forEach(imgElement => {
+                    const src = imgElement.getAttribute('src')
+                    if (src.startsWith('https://') && !gallery.find(g => g.url === src)) {
+                        gallery.push({ url: imgElement.getAttribute('src'), alt: imgElement.getAttribute('alt') })
+                    };
+                });
+
+                pageData.gallery = gallery;
+                pageData.company = null;
+
                 //  https://www.wg-gesucht.de/wohnungen-in-Berlin-Schoeneberg.10940551.html
 
                 // return {
-                //     gallery: gallery
-                //         .filter(a => a.urls && a.urls.length)
-                //         .map(a => a.urls.map(u => u.url['@href'].replace("%WIDTH%", "420").replace("%HEIGHT%", "315")))
-                //         .flat()
-                //         .map(u => ({ url: u })),
-                //     company: e['resultlist.realEstate'].privateOffer === 'true' ? 'Privat' : e['resultlist.realEstate'].contactDetails?.company || null,
                 //     features: mapFeatures((e.realEstateTags && e.realEstateTags.tag)
                 //         ? (typeof e.realEstateTags.tag) === 'string'
                 //             ? [e.realEstateTags.tag]
