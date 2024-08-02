@@ -53,18 +53,21 @@ const scrapeData = async (page, collection, type) => {
                 pageData.title = titleElement ? titleElement.textContent.trim() : '';
 
                 const dateAvailableElement = document.querySelector('#main_content .row:nth-child(6) .col-xs-12:nth-child(2) .row:nth-child(2) .col-xs-6:nth-child(2) .section_panel_value') 
+                pageData.date = dateAvailableElement ? dateAvailableElement.textContent.trim() : '';
+
+                const keyFactElemets = document.querySelectorAll('.key_fact_value');
+                pageData.livingSpace = keyFactElemets[0] ? parseInt(keyFactElemets[0].textContent.replace('m²', '').trim()) : '';
+                pageData.price = {
+                    value: keyFactElemets[1] ? parseInt(keyFactElemets[1].textContent.replace('€', '').trim()) : '',
+                    currency: '€',
+                    additionalInfo: ""
+                }
+                pageData.rooms = keyFactElemets[2] ? parseInt(keyFactElemets[2].textContent.trim()) : null;
+
+
                 //  https://www.wg-gesucht.de/wohnungen-in-Berlin-Schoeneberg.10940551.html
 
                 // return {
-                //     date: e['@publishDate'],
-                //     price: {
-                //         value: e['resultlist.realEstate'].price.value,
-                //         currency: e['resultlist.realEstate'].price.currency,
-                //         additionalInfo: "COLD_RENT"
-                //     },
-                //     livingSpace: e['resultlist.realEstate'].livingSpace,
-                //     rooms: e['resultlist.realEstate'].numberOfRooms,
-                //     // "availabiltiy": "Now",
                 //     address: {
                 //         zipCode: e['resultlist.realEstate'].address.postcode,
                 //         city: e['resultlist.realEstate'].address.city,

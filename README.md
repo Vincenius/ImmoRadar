@@ -6,7 +6,7 @@ todos
     - https://www.wohnungsboerse.net structure
     - https://www.wg-gesucht.de/ structure
     - immonet?
-
+- data valid checker for scrapers
 
 launch reddit
 
