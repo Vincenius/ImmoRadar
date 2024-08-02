@@ -86,6 +86,12 @@ const scrapeData = async (page, collection, type) => {
                 pageData.gallery = gallery;
                 pageData.company = null;
 
+                const rawFeatures = []
+                document.querySelectorAll('.utility_icons .text-center').forEach(el => {
+                    rawFeatures.push(el.textContent.replace(/\n/g, ' ').trim())
+                    // todo split , elements
+                })
+
                 //  https://www.wg-gesucht.de/wohnungen-in-Berlin-Schoeneberg.10940551.html
 
                 // return {
