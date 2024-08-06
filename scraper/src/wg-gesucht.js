@@ -2,6 +2,7 @@
 
 import fs from 'fs';
 import { middleware } from './utils/middleware.js'
+import { delay } from './utils/utils.js'
 
 const scrapeData = async (page, collection, type) => {
     let currentPage = 1;
@@ -9,6 +10,7 @@ const scrapeData = async (page, collection, type) => {
     let data = [];
     let count = 0;
     let error;
+    const result = []
 
     const prevEntries = await collection.find({ provider: "wg-gesucht.de" }, { projection: { url: 1 } }).toArray();
 
@@ -36,13 +38,15 @@ const scrapeData = async (page, collection, type) => {
 
         data = [...data, ...links]
 
-        // lastPage = newLastPage; -> todo
+        lastPage = 4 // newLastPage; -> todo
 
         const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
         count += newLinks.length;
 
         for (const link of newLinks) {
-            // todo timeout 2-6 seconds random
+            console.log('scraping', link)
+            // wait between 2-6 seconds
+            await delay(2000 + Math.floor(Math.random() * 4000)); // TODO Fix captcha error
             await page.goto(link);
 
             const subPageData = await page.evaluate(async () => {
@@ -114,7 +118,7 @@ const scrapeData = async (page, collection, type) => {
                 subPageData.id = link;
                 subPageData.url = link;
 
-                console.log('Scraped data from sub-page', link, subPageData);
+                result.push(subPageData)
 
                 // await collection.insertOne(subPageData) // todo
             } else {
@@ -123,6 +127,8 @@ const scrapeData = async (page, collection, type) => {
             }
         }
     }
+
+    fs.writeFileSync(`./wg-gesucht.json`, JSON.stringify(result));
 }
 
 const crawler = async (type) => {

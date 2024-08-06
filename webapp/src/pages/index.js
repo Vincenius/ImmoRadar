@@ -23,6 +23,10 @@ const faqs = [
   {
     question: 'Wie oft werden die Suchergebnisse aktualisiert?',
     answer: 'Aktuell werden die Immobilien-Webseiten etwa alle 10 Minuten auf neue Einträge überprüft. In Zukunft wird diese Frequenz erhöht um sicherzustellen, dass Sie immer die aktuellsten Einträge sehen können.',
+  },
+  {
+    question: 'Warum ist ein Inserat auf ImmoRadar sichtbar, obwohl es auf dem Immobilien-Portal nicht mehr verfügbar ist?',
+    answer: 'Das Abgleichen unserer Datenbank mit den Immobilienseiten findet mehrmals Täglich statt. Trotzdem können durch die Verzögerung bei der Aktualisierung alte Einträge angezeigt werden, die bereits nicht mehr verfügbar sind.',
   }
 ];
 
