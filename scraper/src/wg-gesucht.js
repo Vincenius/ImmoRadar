@@ -42,6 +42,7 @@ const scrapeData = async (page, collection, type) => {
         count += newLinks.length;
 
         for (const link of newLinks) {
+            // todo timeout 2-6 seconds random
             await page.goto(link);
 
             const subPageData = await page.evaluate(async () => {
@@ -88,11 +89,15 @@ const scrapeData = async (page, collection, type) => {
 
                 const rawFeatures = []
                 document.querySelectorAll('.utility_icons .text-center').forEach(el => {
-                    rawFeatures.push(el.textContent.replace(/\n/g, ' ').trim())
-                    // todo split , elements
+                    const content = el.textContent
+                        .replace(/\n/g, ' ') // remove new lines
+                        .replace(/\s+/g, ' ').trim() // remove multiple spaces
+                    content.split(',').forEach(e => {
+                        rawFeatures.push(e.trim())
+                    })
                 })
 
-                //  https://www.wg-gesucht.de/wohnungen-in-Berlin-Schoeneberg.10940551.html
+                pageData.rawFeatures = rawFeatures;
 
                 // return {
                 //     features: mapFeatures((e.realEstateTags && e.realEstateTags.tag)
