@@ -1,7 +1,7 @@
 import { middleware } from './utils/middleware.js'
 import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
 
-const scrapeData = async (page, collection, type) => {
+const scrapeData = async ({ page, collection, type }) => {
     let currentPage = 1;
     let lastPage = 1;
     let data = [];

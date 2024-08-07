@@ -3,7 +3,7 @@ import { middleware } from './utils/middleware.js'
 
 // 
 // https://www.immonet.de/haus-mieten.html
-const scrapeData = async (page) => {
+const scrapeData = async ({ page }) => {
     // https://www.immonet.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD08DE8634&order=Default&m=homepage_new_search_classified_search_result
     const BASE_URL = 'https://www.immonet.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD04DE11';
     await page.goto(BASE_URL);

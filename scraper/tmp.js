@@ -10,7 +10,7 @@ import { middleware } from './src/utils/middleware.js'
 // console.log([...new Set(rawFeatures)])
 
 
-// const run = async (page, collection) => {
+// const run = async ({ page, collection }) => {
 //     const result = await collection.aggregate([
 //         { $unwind: "$features" },  // Unwind the "features" array
 //         { $group: { _id: "$features" } },  // Group by the "features" array values

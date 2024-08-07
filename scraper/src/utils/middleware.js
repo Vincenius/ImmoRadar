@@ -1,4 +1,6 @@
-import playwright from 'playwright'
+import { chromium } from 'playwright-extra'
+import StealthPlugin from "puppeteer-extra-plugin-stealth"
+// import RecaptchaPlugin from 'puppeteer-extra-plugin-recaptcha'
 import { MongoClient } from 'mongodb';
 import { getRandomResolution, getRandomGeolocation, getRandomUseragent } from './utils.js'
 
@@ -16,7 +18,16 @@ export const middleware = async (callback, type) => {
         const viewportSize = getRandomResolution();
         const geolocation = getRandomGeolocation();
 
-        browser = await playwright.chromium.launch({ headless: true });
+        chromium.use(StealthPlugin())
+        // chromium.use(RecaptchaPlugin({
+        //     provider: {
+        //       id: '2captcha',
+        //       token: process.env.CAPTCHA_KEY
+        //     },
+        //     visualFeedback: true
+        // }))
+
+        browser = await chromium.launch({ headless: false });
         const context = await browser.newContext({
             userAgent: USER_AGENT,
             locale: 'de-DE',
@@ -30,16 +41,33 @@ export const middleware = async (callback, type) => {
                 get: () => ['de-DE', 'de', 'en-US', 'en']
             });
             Object.defineProperty(navigator, 'webdriver', {
-                get: () => false
+                get: () => undefined,
+            });
+            Object.defineProperty(navigator, 'platform', {
+                get: () => 'Win32'
             });
         });
         const page = await context.newPage({ bypassCSP: true });
         await page.setDefaultTimeout(60000);
         await page.setViewportSize(viewportSize);
 
+        // don't load images and stuff
+        await page.route('**/*', (route) => {
+            const resourceType = route.request().resourceType();
+            if (['image', 'stylesheet', 'font'].includes(resourceType)) {
+                route.abort();
+            } else {
+                route.continue();
+            }
+        });
+
         console.log('Playwright ready...')
 
-        await callback(page, estateCollection, type)
+        await callback({
+            page,
+            collection: estateCollection,
+            type,
+        })
     } catch (error) {
         console.error("Playwright Error:", error);
     } finally {

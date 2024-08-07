@@ -70,7 +70,7 @@ const parseData = (estates) => estates.map(e => {
     }
 })
 
-const scrapeData = async (page, collection, type) => {
+const scrapeData = async ({ page, collection, type }) => {
     let currentPage = 1;
     let lastPage = 1;
     let error;

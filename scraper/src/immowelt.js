@@ -38,7 +38,7 @@ const parseData = (estates) => estates.map(e => ({
         : null,
 }) )
 
-const scrapeData = async (page, collection, type) => {
+const scrapeData = async ({ page, collection, type }) => {
     const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
     let currentPage = 1;
     let lastPage = 1;

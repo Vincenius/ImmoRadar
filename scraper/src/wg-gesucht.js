@@ -4,17 +4,20 @@ import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 
-const scrapeData = async (page, collection, type) => {
+// https://httpbin.org/ip
+
+const scrapeData = async ({ page, collection, type }) => {
     let currentPage = 1;
     let lastPage = 1;
     let data = [];
     let count = 0;
     let error;
     const result = []
+    let captcha = false
 
     const prevEntries = await collection.find({ provider: "wg-gesucht.de" }, { projection: { url: 1 } }).toArray();
 
-    while (lastPage && currentPage <= lastPage && !error) {
+    while (lastPage && currentPage <= lastPage && !error && !captcha) {
         console.log('WG Gesucht SCRAPING', currentPage, 'OF', lastPage);
         // TODO page
         const BASE_URL = 'https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2&rent_types%5B%5D=2'
@@ -36,6 +39,9 @@ const scrapeData = async (page, collection, type) => {
             return [urls, lastPage];
         });
 
+        // accept cookies
+        await page.click('#cmpbntyestxt');
+
         data = [...data, ...links]
 
         lastPage = 4 // newLastPage; -> todo
@@ -46,10 +52,42 @@ const scrapeData = async (page, collection, type) => {
         for (const link of newLinks) {
             console.log('scraping', link)
             // wait between 2-6 seconds
-            await delay(2000 + Math.floor(Math.random() * 4000)); // TODO Fix captcha error
+            await delay(2000 + Math.floor(Math.random() * 4000));
             await page.goto(link);
 
+            let isLoaded = false
+            let tries = 0
+            while (!isLoaded && tries < 3) {
+                tries++;
+                const hasError = await page.evaluate(async () => {
+                    const headline = document.querySelector('h1')
+                    return headline && headline.textContent === '504 Gateway Time-out'
+                })
+                isLoaded = !hasError
+                if (hasError) {
+                    console.log('504 error - trying again...')
+                    await page.goto(link);
+                }
+            }
+
+            const hasCaptcha = await page.evaluate(async () => {
+                return !document.querySelector('a[href="#mapContainer"] .section_panel_detail')
+            })
+            // if (hasCaptcha) {
+            //     console.log('found captcha - solving...')
+            //     await page.solveRecaptchas();
+            //     console.log('captcha solved?!')
+            // }
+
+            if (hasCaptcha) {
+                console.log('found captcha - quitting...')
+                captcha = true
+                break;
+            }
+
             const subPageData = await page.evaluate(async () => {
+                const randomScroll = Math.floor(Math.random() * window.innerHeight);
+                window.scrollBy(0, randomScroll);
                 const pageData = {
                     provider: "wg-gesucht.de",
                     created_at: new Date(),

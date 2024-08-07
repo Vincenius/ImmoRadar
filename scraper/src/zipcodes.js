@@ -1,7 +1,7 @@
 import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 
-const scrapeData = async (page, collection, type) => {
+const scrapeData = async ({ page, collection, type }) => {
     const BASE_URL = 'https://home.meinestadt.de/deutschland/plz-9'
     await page.goto(BASE_URL);
 
