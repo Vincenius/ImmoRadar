@@ -27,7 +27,7 @@ export const middleware = async (callback, type) => {
         //     visualFeedback: true
         // }))
 
-        browser = await chromium.launch({ headless: false });
+        browser = await chromium.launch({ headless: true });
         const context = await browser.newContext({
             userAgent: USER_AGENT,
             locale: 'de-DE',
