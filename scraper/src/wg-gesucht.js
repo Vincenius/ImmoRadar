@@ -22,7 +22,6 @@ const scrapeData = async ({ page, collection, type }) => {
         // TODO page
         const BASE_URL = 'https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2&rent_types%5B%5D=2'
         await page.goto(BASE_URL);
-        currentPage++;
 
         const [links, newLastPage] = await page.evaluate(() => {
             const pages = document.querySelectorAll(".page-link")
@@ -40,10 +39,13 @@ const scrapeData = async ({ page, collection, type }) => {
         });
 
         // accept cookies
-        await page.click('#cmpbntyestxt');
+        if (currentPage === 1) {
+            await page.click('#cmpbntyestxt');
+        }
 
         data = [...data, ...links]
 
+        currentPage++;
         lastPage = 4 // newLastPage; -> todo
 
         const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
