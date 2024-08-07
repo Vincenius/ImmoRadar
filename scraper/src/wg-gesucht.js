@@ -51,8 +51,8 @@ const scrapeData = async ({ page, collection, type }) => {
 
         for (const link of newLinks) {
             console.log('scraping', link)
-            // wait between 2-6 seconds
-            await delay(2000 + Math.floor(Math.random() * 4000));
+            // wait between 4-8 seconds
+            await delay(4000 + Math.floor(Math.random() * 4000));
             await page.goto(link);
 
             let isLoaded = false

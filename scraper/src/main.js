@@ -5,6 +5,7 @@ import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
 import { immonetCrawler } from "./immonet.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
+import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 
 // 'NEW_SCAN' OR 'FULL_SCAN'
 // await immoweltCrawler('FULL_SCAN')
@@ -13,5 +14,6 @@ import { wgGesuchtCrawler } from "./wg-gesucht.js";
 await wgGesuchtCrawler('FULL_SCAN')
 
 // TODOs
+// await wohnungsboerseCrawler('FULL_SCAN')
 // await immonetCrawler('FULL_SCAN');
 
