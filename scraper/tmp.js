@@ -2,12 +2,12 @@ import fs from 'fs'
 import 'dotenv/config'
 import { middleware } from './src/utils/middleware.js'
 
-// const tmp = fs.readFileSync('./immoscout.json')
-// const data = JSON.parse(tmp)
+const tmp = fs.readFileSync('./tmp/wg-gesucht.json')
+const data = JSON.parse(tmp)
 
-// const rawFeatures = data.map(d => d.rawFeatures).flat()
+const rawFeatures = data.map(d => d.rawFeatures).flat()
 
-// console.log([...new Set(rawFeatures)])
+console.log(JSON.stringify([...new Set(rawFeatures)]))
 
 
 // const run = async ({ page, collection }) => {

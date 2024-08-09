@@ -1,17 +1,45 @@
-// https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2
-
 import fs from 'fs';
 import { middleware } from './utils/middleware.js'
-import { delay } from './utils/utils.js'
+import { delay, withRetries } from './utils/utils.js'
 
-// https://httpbin.org/ip
+// todo full scan / new scan
 
-const scrapeData = async ({ page, collection, type }) => {
+const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
+    let page = defaultPage
+    let tries = 0;
+    let hasCaptcha = await page.evaluate(async () => {
+        return !(
+            document.querySelector('a[href="#mapContainer"] .section_panel_detail') || // detail page
+            document.querySelector("#assets_list_pagination") // list page
+        )
+    })
+
+    while (tries < 3 && hasCaptcha) {
+        tries++;
+        console.log('captcha found... retrying...', tries)
+        await delay(2000);
+        page = await restartBrowser({ options: { useProxy: true, randomBrowser: true, preventScripts: true }}) // retry with proxy
+        await withRetries(async () => {
+            await page.goto(url);
+        });
+        hasCaptcha = await page.evaluate(async () => {
+            return !document.querySelector('a[href="#mapContainer"] .section_panel_detail')
+        })
+    }
+
+    return {
+        page,
+        hasCaptcha
+    }
+}
+
+const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser }) => {
     let currentPage = 1;
     let lastPage = 1;
     let data = [];
     let count = 0;
     let error;
+    let page = defaultPage
     const result = []
     let captcha = false
 
@@ -19,9 +47,21 @@ const scrapeData = async ({ page, collection, type }) => {
 
     while (lastPage && currentPage <= lastPage && !error && !captcha) {
         console.log('WG Gesucht SCRAPING', currentPage, 'OF', lastPage);
-        // TODO page
-        const BASE_URL = 'https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.0.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories%5B%5D=1&categories%5B%5D=2&rent_types%5B%5D=2'
-        await page.goto(BASE_URL);
+        const BASE_URL = `https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.${currentPage - 1}.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories[]=1&categories[]=2&rent_types[]=2&pagination=1&pu=`
+        
+        await withRetries(async () => {
+            await page.goto(BASE_URL);
+        });
+        await delay(2000);
+
+        const { page: newPage, hasCaptcha } = await checkCaptcha({ page, url: BASE_URL, restartBrowser })
+        page = newPage;
+
+        if (hasCaptcha) {
+            captcha = true
+            console.log('couldnt bypass captcha - exiting')
+            break;
+        }
 
         const [links, newLastPage] = await page.evaluate(() => {
             const pages = document.querySelectorAll(".page-link")
@@ -46,16 +86,17 @@ const scrapeData = async ({ page, collection, type }) => {
         data = [...data, ...links]
 
         currentPage++;
-        lastPage = 4 // newLastPage; -> todo
+        lastPage = newLastPage;
 
         const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
         count += newLinks.length;
 
         for (const link of newLinks) {
             console.log('scraping', link)
-            // wait between 4-8 seconds
-            await delay(4000 + Math.floor(Math.random() * 4000));
-            await page.goto(link);
+            
+            await withRetries(async () => {
+                await page.goto(link);
+            });
 
             let isLoaded = false
             let tries = 0
@@ -68,22 +109,18 @@ const scrapeData = async ({ page, collection, type }) => {
                 isLoaded = !hasError
                 if (hasError) {
                     console.log('504 error - trying again...')
-                    await page.goto(link);
+                    await withRetries(async () => {
+                        await page.goto(link);
+                    });
                 }
             }
 
-            const hasCaptcha = await page.evaluate(async () => {
-                return !document.querySelector('a[href="#mapContainer"] .section_panel_detail')
-            })
-            // if (hasCaptcha) {
-            //     console.log('found captcha - solving...')
-            //     await page.solveRecaptchas();
-            //     console.log('captcha solved?!')
-            // }
-
-            if (hasCaptcha) {
-                console.log('found captcha - quitting...')
+            const { page: newPage, hasCaptcha: hasPageCaptcha } = await checkCaptcha({ page, url: link, restartBrowser })
+            page = newPage;
+    
+            if (hasPageCaptcha) {
                 captcha = true
+                console.log('couldnt bypass captcha - exiting')
                 break;
             }
 
@@ -131,25 +168,44 @@ const scrapeData = async ({ page, collection, type }) => {
                 pageData.gallery = gallery;
                 pageData.company = null;
 
-                const rawFeatures = []
+                const featureMap = {
+                    "teilmöbliert": "PARTLY_FURNISHED",
+                    "Eigenes Bad": "BATH_WITH_TUB",
+                    "Balkon": "BALCONY",
+                    "Barrierefrei": "BARRIER_FREE",
+                    "möbliert": "FULLY_FURNISHED",
+                    "Badewanne": "BATH_WITH_TUB",
+                    "Aufzug": "PASSENGER_LIFT",
+                    "WG geeignet": "FLAT_SHARE_POSSIBLE",
+                    "sanierter Altbau": "FULLY_RENOVATED",
+                    "EG": "GROUND_FLOOR",
+                    "Eigene Küche": "FITTED_KITCHEN",
+                    "Fahrradkeller": "BASEMENT",
+                    "Altbau": "OLD_BUILDING",
+                    "Keller": "FULLY_CELLARED",
+                    "Neubau": "NEW_BUILDING",
+                    "Gartenmitbenutzung": "GARDEN_SHARED",
+                    "Terrasse": "TERRACE",
+                    "Garten": "GARDEN",
+                    "Haustiere erlaubt": "PETS_ALLOWED",
+                    "Tiefgaragenstellplatz": "UNDERGROUND_PARKING",
+                    "Gäste WC": "GUEST_TOILET",
+                };
+
+                const features = []
                 document.querySelectorAll('.utility_icons .text-center').forEach(el => {
                     const content = el.textContent
                         .replace(/\n/g, ' ') // remove new lines
                         .replace(/\s+/g, ' ').trim() // remove multiple spaces
                     content.split(',').forEach(e => {
-                        rawFeatures.push(e.trim())
+                        const feat = e.trim()
+                        if (featureMap[feat]) {
+                            features.push(featureMap[feat])
+                        }
                     })
                 })
 
-                pageData.rawFeatures = rawFeatures;
-
-                // return {
-                //     features: mapFeatures((e.realEstateTags && e.realEstateTags.tag)
-                //         ? (typeof e.realEstateTags.tag) === 'string'
-                //             ? [e.realEstateTags.tag]
-                //             : e.realEstateTags.tag
-                //         : []),
-                // }
+                pageData.features = features;
 
                 return pageData
             })
@@ -160,19 +216,34 @@ const scrapeData = async ({ page, collection, type }) => {
 
                 result.push(subPageData)
 
-                // await collection.insertOne(subPageData) // todo
+                await collection.insertOne(subPageData)
             } else {
                 console.log(`Failed to extract data from ${link}`);
                 error = true;
             }
         }
+
+        if (type === 'NEW_SCAN' && newLinks.length < (links.length - 2)) { // -2 tolerance
+            console.log('Found old entries on page - quit scan');
+            lastPage = currentPage - 1;
+        }
     }
 
-    fs.writeFileSync(`./wg-gesucht.json`, JSON.stringify(result));
+    if (type === 'FULL_SCAN' && !error) {
+        const toRemove = prevEntries
+            .filter(e => data.indexOf(e.url) === -1)
+            .map(e => e.url);
+
+        // Remove multiple entries by _id
+        const result = await collection.deleteMany({ url: { $in: toRemove } });
+        console.log(`WG Gesucht ${result.deletedCount} old estates were deleted.`);
+    }
+
+    // fs.writeFileSync(`./wg-gesucht.json`, JSON.stringify(result));
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type);
+    await middleware(scrapeData, type, { randomBrowser: true });
 }
 
 export const wgGesuchtCrawler = crawler;

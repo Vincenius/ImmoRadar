@@ -119,3 +119,19 @@ export const germanAltDateToIso = (dateStr) => {
   const [day, month, year] = dateStr.split('.').map(Number);
   return new Date(year, month - 1, day);
 }
+
+export const withRetries = async (fn, retries = 3, delay = 1000) => {
+  let attempt = 0;
+  while (attempt < retries) {
+    try {
+      return await fn();
+    } catch (error) {
+      attempt++;
+      console.log(`Attempt ${attempt} failed: ${error.message}`);
+      if (attempt >= retries) {
+        throw new Error(`Operation failed after ${retries} attempts: ${error.message}`);
+      }
+      await new Promise(res => setTimeout(res, delay));
+    }
+  }
+}

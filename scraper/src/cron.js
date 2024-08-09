@@ -5,13 +5,15 @@ import './utils/glitchtip.js'
 import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
+import { wgGesuchtCrawler } from "./wg-gesucht.js";
 
 let isFullScanRunning = false;
 
 const runScan = async (type) => Promise.allSettled([
   immoweltCrawler(type),
   immobilienscoutCrawler(type),
-  kleinanzeigenCrawler(type)
+  kleinanzeigenCrawler(type),
+  wgGesuchtCrawler(type)
 ])
 
 console.log('INIT CRON JOB')
