@@ -1,5 +1,6 @@
 export const providers = [
     { id: "immobilienscout24.de", label: "ImmoScout24" },
-    { id: "immonet.de", label: "Immonet" },
+    { id: "immowelt.de", label: "Immowelt" },
     { id: "kleinanzeigen.de", label: "Kleinanzeigen" },
+    { id: "wg-gesucht.de", label: "WG Gesucht" },
 ];

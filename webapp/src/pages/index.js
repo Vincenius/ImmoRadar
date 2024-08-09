@@ -14,7 +14,7 @@ const faqs = [
   },
   {
     question: 'Welche Immobilien-Webseiten werden von ImmoRadar durchsucht?',
-    answer: 'ImmoRadar durchsucht alle großen und relevanten Immobilien-Webseiten in Deutschland. Dazu gehören aktuell Immobilienscout24, Immowelt und Kleinanzeigen. Die Liste wird in Zukunft noch erweitert. Fehlt eine wichtige Immobilien-Webseite? Schreibe mir eine E-Mail.',
+    answer: 'ImmoRadar durchsucht alle großen und relevanten Immobilien-Webseiten in Deutschland. Dazu gehören aktuell Immobilienscout24, Immowelt, WG-Gesucht und Kleinanzeigen. Die Liste wird in Zukunft noch erweitert. Fehlt eine wichtige Immobilien-Webseite? Schreibe mir eine E-Mail.',
   },
   {
     question: 'Wie kann ich Benachrichtigungen für neue Angebote aktivieren?',

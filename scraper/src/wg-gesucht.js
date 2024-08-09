@@ -1,8 +1,5 @@
-import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay, withRetries } from './utils/utils.js'
-
-// todo full scan / new scan
 
 const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
     let page = defaultPage
