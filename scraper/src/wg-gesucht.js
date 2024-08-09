@@ -63,20 +63,41 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
             break;
         }
 
-        const [links, newLastPage] = await page.evaluate(() => {
-            const pages = document.querySelectorAll(".page-link")
-            lastPage = parseInt(pages[pages.length - 2].textContent)
-
-            const linkElements = document.querySelectorAll('h3.truncate_title a');
-            const urls = [];
-            linkElements.forEach(el => {
-                const url = el.getAttribute('href');
-                if (url && url.startsWith('/') && url.endsWith('.html')) {
-                    urls.push(`https://www.wg-gesucht.de${url}`);
+        let pageTries = 0;
+        let pageError = false;
+        let newLastPage
+        let links
+        while (pageTries === 0 || (pageError && pageTries < 3)) {
+            pageTries++;
+            const [l, lp, pe] = await page.evaluate(() => {
+                const pages = document.querySelectorAll(".page-link")
+    
+                if (pages && pages.length) {
+                    lastPage = parseInt(pages[pages.length - 2].textContent)
+    
+                    const linkElements = document.querySelectorAll('h3.truncate_title a');
+                    const urls = [];
+                    linkElements.forEach(el => {
+                        const url = el.getAttribute('href');
+                        if (url && url.startsWith('/') && url.endsWith('.html')) {
+                            urls.push(`https://www.wg-gesucht.de${url}`);
+                        }
+                    });
+                    return [urls, lastPage];
+                } else {
+                    return [null, null, true]
                 }
             });
-            return [urls, lastPage];
-        });
+            pageError = pe;
+            links = l;
+            newLastPage = lp;
+
+            if (pe) {
+                console.log('page error - trying again...')
+                await page.goto(BASE_URL);
+                await delay(2000);
+            }
+        }
 
         // accept cookies
         if (currentPage === 1) {

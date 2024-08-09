@@ -7,6 +7,7 @@ import styles from './Logos.module.css';
 import immowelt from './immowelt.png';
 import immoscout24 from './immoscout24.png';
 import kleinanzeigen from './kleinanzeigen.png';
+import wgGesucht from './wg-gesucht.png';
 
 const Logos = () => {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
@@ -26,6 +27,7 @@ const Logos = () => {
       <Carousel.Slide><Image src={immowelt} alt="Immowelt Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={immoscout24} alt="Immobilienscout24 Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={kleinanzeigen} alt="Kleinanzeigen Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={wgGesucht} alt="WG Gesucht Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Text>Weitere folgen...</Text></Carousel.Slide>
     </Carousel>
   </Box>

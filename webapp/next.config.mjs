@@ -3,7 +3,7 @@ import {withSentryConfig} from '@sentry/nextjs';
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['pictures.immobilienscout24.de', 'img.kleinanzeigen.de', 'ms.immowelt.org'],
+    domains: ['pictures.immobilienscout24.de', 'img.kleinanzeigen.de', 'ms.immowelt.org', 'img.wg-gesucht.de'],
   },
 };
 
