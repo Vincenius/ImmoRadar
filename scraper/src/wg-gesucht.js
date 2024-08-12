@@ -251,6 +251,8 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
         }
     }
 
+    console.log('WG Gesucht scraped', count, 'new estates');
+
     if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
             .filter(e => data.indexOf(e.url) === -1)
