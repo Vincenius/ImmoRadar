@@ -120,7 +120,7 @@ export const germanAltDateToIso = (dateStr) => {
   return new Date(year, month - 1, day);
 }
 
-export const withRetries = async (fn, retries = 3, delay = 1000) => {
+export const withRetries = async (fn, fallback, retries = 3, delay = 1000) => {
   let attempt = 0;
   while (attempt < retries) {
     try {
@@ -129,7 +129,10 @@ export const withRetries = async (fn, retries = 3, delay = 1000) => {
       attempt++;
       console.log(`Attempt ${attempt} failed: ${error.message}`);
       if (attempt >= retries) {
-        throw new Error(`Operation failed after ${retries} attempts: ${error.message}`);
+        console.error(`Operation failed after ${retries} attempts: ${error.message}`)
+        if (fallback) {
+          await fallback()
+        }
       }
       await new Promise(res => setTimeout(res, delay));
     }

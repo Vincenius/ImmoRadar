@@ -38,24 +38,23 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
     let error;
     let page = defaultPage
     const result = []
-    let captcha = false
 
     const prevEntries = await collection.find({ provider: "wg-gesucht.de" }, { projection: { url: 1 } }).toArray();
 
-    while (lastPage && currentPage <= lastPage && !error && !captcha) {
+    while (lastPage && currentPage <= lastPage && !error) {
         console.log('WG Gesucht SCRAPING', currentPage, 'OF', lastPage);
         const BASE_URL = `https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.${currentPage - 1}.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories[]=1&categories[]=2&rent_types[]=2&pagination=1&pu=`
 
         await withRetries(async () => {
             await page.goto(BASE_URL);
-        });
+        }, () => { error = true });
         await delay(2000);
 
         const { page: newPage, hasCaptcha } = await checkCaptcha({ page, url: BASE_URL, restartBrowser })
         page = newPage;
 
         if (hasCaptcha) {
-            captcha = true
+            error = true
             console.log('couldnt bypass captcha - exiting')
             break;
         }
@@ -119,7 +118,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
 
             await withRetries(async () => {
                 await page.goto(link);
-            });
+            }, () => { error = true });
 
             let isLoaded = false
             let tries = 0
@@ -134,7 +133,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
                     console.log('504 error - trying again...')
                     await withRetries(async () => {
                         await page.goto(link);
-                    });
+                    }, () => { error = true });
                 }
             }
 
@@ -142,7 +141,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
             page = newPage;
 
             if (hasPageCaptcha) {
-                captcha = true
+                error = true;
                 console.log('couldnt bypass captcha - exiting')
                 break;
             }
