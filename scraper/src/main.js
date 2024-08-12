@@ -11,8 +11,8 @@ import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 // await immoweltCrawler('FULL_SCAN')
 // await immobilienscoutCrawler('NEW_SCAN');
 // await kleinanzeigenCrawler('NEW_SCAN')
-// await wgGesuchtCrawler('FULL_SCAN')
-await wohnungsboerseCrawler('FULL_SCAN')
+await wgGesuchtCrawler('FULL_SCAN')
+// await wohnungsboerseCrawler('FULL_SCAN')
 
 // TODOs
 // await immonetCrawler('FULL_SCAN');

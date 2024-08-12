@@ -39,7 +39,7 @@ const startBrowser = async ({ options = {} }) => {
         password: proxies[1].password,
     } : undefined
 
-    const browser = await playwright.launch({ headless: true, proxy });
+    const browser = await playwright.launch({ headless: false, proxy });
     const context = await browser.newContext({
         userAgent: USER_AGENT,
         locale: 'de-DE',
@@ -114,7 +114,7 @@ export const middleware = async (callback, type, options = {}) => {
     } finally {
         if (browser) {
             console.log('Closing Playwright...')
-            await browser.close();
+            // await browser.close();
         }
         client.close();
     }
