@@ -31,8 +31,8 @@ const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
 }
 
 const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser }) => {
-    let currentPage = 8;
-    let lastPage = 8;
+    let currentPage = 1;
+    let lastPage = 1;
     let data = [];
     let count = 0;
     let error;
@@ -252,16 +252,15 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
         }
     }
 
-    // todo uncomment
-    // if (type === 'FULL_SCAN' && !error) {
-    //     const toRemove = prevEntries
-    //         .filter(e => data.indexOf(e.url) === -1)
-    //         .map(e => e.url);
+    if (type === 'FULL_SCAN' && !error) {
+        const toRemove = prevEntries
+            .filter(e => data.indexOf(e.url) === -1)
+            .map(e => e.url);
 
-    //     // Remove multiple entries by _id
-    //     const result = await collection.deleteMany({ url: { $in: toRemove } });
-    //     console.log(`WG Gesucht ${result.deletedCount} old estates were deleted.`);
-    // }
+        // Remove multiple entries by _id
+        const result = await collection.deleteMany({ url: { $in: toRemove } });
+        console.log(`WG Gesucht ${result.deletedCount} old estates were deleted.`);
+    }
 }
 
 const crawler = async (type) => {
