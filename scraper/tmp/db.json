@@ -2,7 +2,6 @@
     "id": "12312312321",
     "url": "https://www.immonet.de/123/343434",
     "provider": "immonet.de",
-    "types": ["APPARTMENT"],
     "date": "09.05.2024",
     "price": {
         "value": 123,

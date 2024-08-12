@@ -44,8 +44,6 @@ const scrapeData = async ({ page, collection, type }) => {
             };
 
                 // const parsedData = {
-    //     id: "35442515", // Assuming this ID is the "Objekt-ID" mentioned in the HTML
-    //     types: ["APARTMENT"], // Hardcoded as "APARTMENT" for this example
     //     date: new Date().toLocaleDateString("de-DE"), // Use current date for this example
     //     price: {
     //       value: parseFloat(
@@ -107,6 +105,7 @@ const scrapeData = async ({ page, collection, type }) => {
         })
 
         if (subPageData) {
+            subPageData.id = link;
             subPageData.url = link;
 
             console.log('Scraped data from sub-page', link);
