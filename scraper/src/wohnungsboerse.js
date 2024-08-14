@@ -5,6 +5,12 @@ const scrapeData = async ({ page, collection, type }) => {
     const BASE_URL = 'https://www.wohnungsboerse.net/searches/index?isSearch=1&country=DE&page=1&estate_marketing_types=miete%2C1&marketing_type=miete&estate_types%5B%5D=1&cities%5B%5D=Berlin&zipcodes%5B%5D=&umkreiskm=&minprice=&maxprice=&minsize=&maxsize=&minrooms=&maxrooms=';
     await page.goto(BASE_URL);
 
+    let currentPage = 1;
+    let lastPage = 1;
+    let data = [];
+    let count = 0;
+    let error;
+
     const [links, newLastPage] = await page.evaluate(() => {
         const pages = document.querySelectorAll(".paging a")
         lastPage = parseInt(pages[pages.length-2].textContent.trim())
@@ -20,13 +26,24 @@ const scrapeData = async ({ page, collection, type }) => {
         return [urls, lastPage];
     });
 
-    console.log(links, newLastPage)
+    data = [...data, ...links]
 
-    // const parsedData = {
-    //     id: "35442515", // Assuming this ID is the "Objekt-ID" mentioned in the HTML
-    //     url: window.location.href, // The current page URL
-    //     provider: "wohnungsboerse.net", // Assuming the provider is the current domain
-    //     types: ["APARTMENT"], // Hardcoded as "APARTMENT" for this example
+    lastPage = newLastPage;
+
+    const newLinks = links.filter(link => !prevEntries.some(entry => entry.url === link));
+    count += newLinks.length;
+
+    for (const link of newLinks) {
+        await page.goto(link);
+
+        // Extract and parse the script content
+        const subPageData = await page.evaluate(async () => {
+            const pageData = {
+                provider: "wohnungsboerse.net",
+                created_at: new Date(),
+            };
+
+                // const parsedData = {
     //     date: new Date().toLocaleDateString("de-DE"), // Use current date for this example
     //     price: {
     //       value: parseFloat(
@@ -84,21 +101,21 @@ const scrapeData = async ({ page, collection, type }) => {
     //     ],
     //   };
 
-    // const scriptContent = await page.evaluate(() => {
-    //     // Find all script tags
-    //     const scripts = document.querySelectorAll('script');
+            return pageData;
+        })
 
-    //     // Iterate over scripts to find the one containing `window["__UFRN_FETCHER__"]`
-    //     for (let script of scripts) {
-    //         if (script.innerHTML.includes('window["__UFRN_FETCHER__"]')) {
-    //             return script.innerHTML;
-    //         }
-    //     }
+        if (subPageData) {
+            subPageData.id = link;
+            subPageData.url = link;
 
-    //     // Return null if no matching script is found
-    //     return null;
-    // });
+            console.log('Scraped data from sub-page', link);
 
+            await collection.insertOne(subPageData)
+        } else {
+            console.log(`Failed to extract data from ${link}`);
+            error = true;
+        }
+    }
 }
 
 const crawler = async (type) => {

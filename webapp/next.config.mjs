@@ -3,7 +3,31 @@ import {withSentryConfig} from '@sentry/nextjs';
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ['pictures.immobilienscout24.de', 'img.kleinanzeigen.de', 'ms.immowelt.org', 'img.wg-gesucht.de'],
+    remotePatterns: [
+      {
+        protocol: 'https',
+        hostname: 'pictures.immobilienscout24.de',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.kleinanzeigen.de',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'ms.immowelt.org',
+        port: '',
+        pathname: '/**',
+      },
+      {
+        protocol: 'https',
+        hostname: 'img.wg-gesucht.de',
+        port: '',
+        pathname: '/**',
+      }],
   },
 };
 

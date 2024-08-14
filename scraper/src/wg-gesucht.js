@@ -38,24 +38,23 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
     let error;
     let page = defaultPage
     const result = []
-    let captcha = false
 
     const prevEntries = await collection.find({ provider: "wg-gesucht.de" }, { projection: { url: 1 } }).toArray();
 
-    while (lastPage && currentPage <= lastPage && !error && !captcha) {
+    while (lastPage && currentPage <= lastPage && !error) {
         console.log('WG Gesucht SCRAPING', currentPage, 'OF', lastPage);
         const BASE_URL = `https://www.wg-gesucht.de/1-zimmer-wohnungen-und-wohnungen-in-Berlin.8.1+2.1.${currentPage - 1}.html?offer_filter=1&city_id=8&sort_column=0&sort_order=0&noDeact=1&categories[]=1&categories[]=2&rent_types[]=2&pagination=1&pu=`
-        
+
         await withRetries(async () => {
             await page.goto(BASE_URL);
-        });
+        }, () => { error = true });
         await delay(2000);
 
         const { page: newPage, hasCaptcha } = await checkCaptcha({ page, url: BASE_URL, restartBrowser })
         page = newPage;
 
         if (hasCaptcha) {
-            captcha = true
+            error = true
             console.log('couldnt bypass captcha - exiting')
             break;
         }
@@ -68,12 +67,15 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
             pageTries++;
             const [l, lp, pe] = await page.evaluate(() => {
                 const pages = document.querySelectorAll(".page-link")
-    
+                let lastPage
+
                 if (pages && pages.length) {
                     lastPage = parseInt(pages[pages.length - 2].textContent)
-    
-                    const linkElements = document.querySelectorAll('h3.truncate_title a');
-                    const urls = [];
+                }
+
+                const linkElements = document.querySelectorAll('h3.truncate_title a');
+                const urls = [];
+                if (linkElements && linkElements.length) {
                     linkElements.forEach(el => {
                         const url = el.getAttribute('href');
                         if (url && url.startsWith('/') && url.endsWith('.html')) {
@@ -87,7 +89,9 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
             });
             pageError = pe;
             links = l;
-            newLastPage = lp;
+            if (lp) {
+                newLastPage = lp;
+            }
 
             if (pe) {
                 console.log('page error - trying again...')
@@ -111,10 +115,10 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
 
         for (const link of newLinks) {
             console.log('scraping', link)
-            
+
             await withRetries(async () => {
                 await page.goto(link);
-            });
+            }, () => { error = true });
 
             let isLoaded = false
             let tries = 0
@@ -129,15 +133,15 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
                     console.log('504 error - trying again...')
                     await withRetries(async () => {
                         await page.goto(link);
-                    });
+                    }, () => { error = true });
                 }
             }
 
             const { page: newPage, hasCaptcha: hasPageCaptcha } = await checkCaptcha({ page, url: link, restartBrowser })
             page = newPage;
-    
+
             if (hasPageCaptcha) {
-                captcha = true
+                error = true;
                 console.log('couldnt bypass captcha - exiting')
                 break;
             }
@@ -247,6 +251,8 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
         }
     }
 
+    console.log('WG Gesucht scraped', count, 'new estates');
+
     if (type === 'FULL_SCAN' && !error) {
         const toRemove = prevEntries
             .filter(e => data.indexOf(e.url) === -1)
@@ -256,8 +262,6 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
         const result = await collection.deleteMany({ url: { $in: toRemove } });
         console.log(`WG Gesucht ${result.deletedCount} old estates were deleted.`);
     }
-
-    // fs.writeFileSync(`./wg-gesucht.json`, JSON.stringify(result));
 }
 
 const crawler = async (type) => {
