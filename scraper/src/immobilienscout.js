@@ -86,7 +86,7 @@ const scrapeData = async ({ page, collection, type }) => {
         console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
 
         await page.goto(BASE_URL);
-        await delay(2000);
+        await delay(3000);
 
         const content = await page.content();
         const scriptRegex = /IS24\.resultList\s*=\s*(\{[\s\S]*?\});/;
@@ -149,7 +149,7 @@ const scrapeData = async ({ page, collection, type }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type);
+    await middleware(scrapeData, type, { randomBrowser: true });
 }
 
 
