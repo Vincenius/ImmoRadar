@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { fetcher } from '@/utils/fetcher';
 import styles from './SearchBar.module.css'
 
-const SearchBar = ({ defaultValue = '' }) => {
+const SearchBar = ({ defaultValue = '', city }) => {
     const router = useRouter()
     const { data = [] } = useSWR('/api/autocomplete', fetcher)
     const [value, setValue] = useState(defaultValue);
@@ -21,7 +21,7 @@ const SearchBar = ({ defaultValue = '' }) => {
             comboboxProps={{ shadow: 'md' }}
             limit={10}
             className={styles.input}
-            placeholder="Ort / Stadt / Bezirk Suchen"
+            placeholder={ city ? "Bezirk Suchen" : "Ort / Stadt / Bezirk Suchen" }
             size="lg"
             w="100%"
             onOptionSubmit={(value) => router.push('/search?q=' + encodeURI(value))}

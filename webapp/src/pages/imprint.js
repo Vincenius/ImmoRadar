@@ -4,7 +4,7 @@ import { Title } from '@mantine/core';
 
 const Imprint = () => {
     return (
-        <Layout>
+        <Layout title="Impressum | ImmoRadar" description="Das Impressum von ImmoRadar">
             <Title order={1} my="xl">Impressum</Title>
 
             <Title order={2} my="md">Angaben gem. § 5 TMG:</Title>
