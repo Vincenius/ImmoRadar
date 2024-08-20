@@ -95,14 +95,34 @@ export default function Home() {
 
         <List 
           mb="lg"
-          icon={
-            <ThemeIcon color="teal" size={24} radius="xl">
-              <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
-            </ThemeIcon>
-          }
+          listStyleType="none"
         >
           <List.Item mb="sm">
-            <Link href="/berlin">Berlin</Link>
+            <Flex gap="sm" align="center">
+              <ThemeIcon color="teal" size={24} radius="xl">
+                <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
+              </ThemeIcon>
+              <Link href="/berlin">Berlin</Link>
+            </Flex>
+            
+            <List withPadding mt="xs" listStyleType="none" style={{ paddingLeft: '1.6rem' }}>
+              <List.Item>
+                <Flex gap="sm" align="center">
+                  <ThemeIcon color="teal.2" size={16} radius="xl">
+                    <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
+                  </ThemeIcon>
+                  <Link href="/berlin/spandau">Spandau</Link>
+                </Flex>
+              </List.Item>
+              <List.Item>
+                <Flex gap="sm" align="center">
+                    <ThemeIcon color="teal.2" size={16} radius="xl">
+                      <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
+                    </ThemeIcon>
+                    <span>Weitere folgen...</span>
+                </Flex>
+              </List.Item>
+            </List>
           </List.Item>
         </List>
       </Box>
