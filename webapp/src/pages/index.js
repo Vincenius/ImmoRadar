@@ -1,5 +1,6 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container, Card } from '@mantine/core';
-import { IconClock, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
+import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container, Card, List, rem } from '@mantine/core';
+import { IconClock, IconList, IconBell, IconArrowUp, IconMapPinFilled } from '@tabler/icons-react';
+import Link from 'next/link'
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
 import SearchBar from '@/components/SearchBar/SearchBar';
@@ -88,6 +89,23 @@ export default function Home() {
           ))}
         </Accordion>
       </Container>
+
+      <Box my="6em">
+        <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in folgenden Regionen</Title>
+
+        <List 
+          mb="lg"
+          icon={
+            <ThemeIcon color="teal" size={24} radius="xl">
+              <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
+            </ThemeIcon>
+          }
+        >
+          <List.Item mb="sm">
+            <Link href="/berlin">Berlin</Link>
+          </List.Item>
+        </List>
+      </Box>
       
       <Box my="6em">
         <Button
