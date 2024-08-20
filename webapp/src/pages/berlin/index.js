@@ -115,7 +115,25 @@ export default function Home() {
         </Text>
       </Box>
 
-      {/* todo bezirke */}
+      {/* todo bezirke
+      - wohnungen berlin wedding
+      - wohnung berlin spandau
+      - wohnung berlin mitte
+      - wohnung berlin lichtenberg
+      - wohnung berlin charlottenburg
+      - wohnung berlin marzahn
+      - wohnung berlin schöneberg
+      - wohnung berlin buch
+      - wohnung berlin friedrichshain
+      - wohnung berlin kreuzberg
+      - wohnung berlin pankow
+      - wohnung berlin prenzlauer berg
+      - wohnung berlin neukölln
+      - wohnung berlin weißensee
+      - wohnung berlin tegel
+      - wohnung berlin lichterfelde
+      - wohnung berlin westend
+      */}
 
       <Box my="6em">
         <Button
