@@ -1,5 +1,5 @@
 import { Flex, Text, ThemeIcon, Title, Box, List, rem } from '@mantine/core';
-import { IconClock, IconList, IconBell, IconArrowUp, IconCircleCheck } from '@tabler/icons-react';
+import { IconClock, IconList, IconBell, IconArrowUp, IconCircleCheck, IconMapPinFilled } from '@tabler/icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
 import Layout from '@/components/Layout/Layout'
@@ -27,12 +27,12 @@ export default function Home() {
           </Box>
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconClock size={24} /></ThemeIcon>
-              <Text c="white" ta={{ base: 'left', sm: 'center'}}>Kein mühsames Durchsuchen mehrerer Webseiten</Text>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconMapPinFilled size={24} /></ThemeIcon>
+              <Text c="white" ta={{ base: 'left', sm: 'center'}}>Alle Immobilienangebote an einem Ort</Text>
             </Flex>
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
-              <Text c="white" ta={{ base: 'left', sm: 'center'}}>Eine einzige, gut sortierte Liste ohne Duplikate</Text>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconClock size={24} /></ThemeIcon>
+              <Text c="white" ta={{ base: 'left', sm: 'center'}}>Kein mühsames Durchsuchen mehrerer Webseiten</Text>
             </Flex>
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
               <ThemeIcon radius="sm" size="lg" variant="filled"><IconBell size={24} /></ThemeIcon>
