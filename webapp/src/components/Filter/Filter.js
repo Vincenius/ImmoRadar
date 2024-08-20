@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Flex, NumberInput, Text, Button, Collapse, Checkbox, TextInput, rem } from '@mantine/core';
+import { Flex, NumberInput, Text, Button, Collapse, Checkbox, TextInput, rem, TagsInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconCurrencyEuro } from '@tabler/icons-react'
 import { featureMap } from '@/utils/featureMap'
@@ -17,8 +17,8 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
     maxSize: null,
     minRooms: null,
     maxRooms: null,
-    titleIncludes: '',
-    titleExcludes: '',
+    titleIncludes: [],
+    titleExcludes: [],
     features: [],
     providers: [],
   })
@@ -89,26 +89,34 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
       />
     </Flex>
 
+    <TagsInput
+      label="Titel enthält"
+      description='Füge mit "Enter" hinzu'
+      placeholder="Suche nach bestimmten Texten"
+      data={[]}
+      value={filter.titleIncludes || []}
+      onChange={(val) => setFilter({ ...filter, titleIncludes: val })}
+      mb="sm"
+      acceptValueOnBlur
+      clearable
+    />
+    <TagsInput
+      label="Titel enthält nicht"
+      description='Füge mit "Enter" hinzu'
+      placeholder="Schließe bestimmten Text aus"
+      data={[]}
+      value={filter.titleExcludes || []}
+      onChange={(val) => setFilter({ ...filter, titleExcludes: val })}
+      mb="sm"
+      acceptValueOnBlur
+      clearable
+    />
+
     {!opened &&
       <Text c="blue" td="underline"onClick={toggle} style={{ cursor: 'pointer' }}>Erweiterte Filter</Text>
     }
 
     <Collapse in={opened}>
-      <TextInput
-        label="Titel enthält"
-        placeholder="Suche nach bestimmten Text"
-        value={filter.titleIncludes}
-        onChange={(event) => setFilter({ ...filter, titleIncludes: event.currentTarget.value })}
-        mb="sm"
-      />
-      <TextInput
-        label="Titel enthält nicht"
-        placeholder="Schließe bestimmten Text aus"
-        value={filter.titleExcludes}
-        onChange={(event) => setFilter({ ...filter, titleExcludes: event.currentTarget.value })}
-        mb="sm"
-      />
-
       <Text size="sm" fw={500} mb="sm">Anbieter</Text>
 
       {providers.map(p => <Checkbox

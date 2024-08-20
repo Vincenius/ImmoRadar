@@ -98,10 +98,17 @@ export default async function handler(req, res) {
                 // TITLE FILTER
                 const titleFilter = {};
                 if (titleIncludes) {
-                    titleFilter['title'] = { $regex: titleIncludes, $options: 'i' };
+                    const includesArray = titleIncludes.split(',').map(str => str.trim());
+                    titleFilter['$and'] = includesArray.map(includeStr => ({
+                        title: { $regex: includeStr, $options: 'i' }
+                    }));
                 }
+                
                 if (titleExcludes) {
-                    titleFilter['title'] = { ...titleFilter['title'], $not: { $regex: titleExcludes, $options: 'i' } };
+                    const excludesArray = titleExcludes.split(',').map(str => str.trim());
+                    titleFilter['$nor'] = excludesArray.map(excludeStr => ({
+                        title: { $regex: excludeStr, $options: 'i' }
+                    }));
                 }
 
                 // PROVIDER FILTER

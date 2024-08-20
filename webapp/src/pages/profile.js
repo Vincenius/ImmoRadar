@@ -40,11 +40,11 @@ const formatFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms
         result.push(`Bis ${maxRooms} Zimmer`);
     }
 
-    if (titleIncludes) {
-        result.push(`Enthält "${titleIncludes}"`);
+    if (titleIncludes && titleIncludes.length) {
+        result.push(`Enthält "${titleIncludes.join(', ')}"`);
     }
-    if (titleExcludes) {
-        result.push(`Enthält nicht "${titleExcludes}"`);
+    if (titleExcludes && titleExcludes.length) {
+        result.push(`Enthält nicht "${titleExcludes.join(', ')}"`);
     }
 
     if (features && features.length) {
@@ -173,6 +173,8 @@ const Profile = () => {
         const query = { q: notification.query, ...notification.filter }
         query.features = query.features?.join(',')
         query.providers = query.providers?.join(',')
+        query.titleIncludes = query.titleIncludes?.join(',')
+        query.titleExcludes = query.titleExcludes?.join(',')
         query.input = notification.manualInput && 'manual'
         Object.keys(query).forEach(key => !query[key] && delete query[key])
 

@@ -49,6 +49,8 @@ const Notifications = ({ filter, query }) => {
 
     const newFeatures = filter?.features?.split(',') || [];
     const newProviders = filter?.providers?.split(',') || [];
+    const newTitleIncludes = filter?.titleIncludes?.split(',') || [];
+    const newTitleExcludes = filter?.titleExcludes?.split(',') || [];
 
     const parsedFilter = {
       minPrice: filter.minPrice && parseInt(filter.minPrice),
@@ -59,6 +61,8 @@ const Notifications = ({ filter, query }) => {
       maxRooms: filter.maxRooms && parseInt(filter.maxRooms),
       features: newFeatures,
       providers: newProviders,
+      titleIncludes: newTitleIncludes,
+      titleExcludes: newTitleExcludes,
     };
 
     const filteredFilter = Object.entries(parsedFilter).reduce((acc, [key, value]) => {
@@ -156,10 +160,14 @@ export default function Search() {
     if (router.isReady) {
       const newFeatures = filterQuery?.features?.split(',') || []
       const newProviders = filterQuery?.providers?.split(',') || []
+      const newTitleIncludes = filterQuery?.titleIncludes?.split(',') || []
+      const newTitleExcludes = filterQuery?.titleExcludes?.split(',') || []
       setDefaultFilter({
         ...filterQuery,
         features: newFeatures,
         providers: newProviders,
+        titleIncludes: newTitleIncludes,
+        titleExcludes: newTitleExcludes,
       })
     }
   }, [router.isReady, router.query]);
@@ -168,6 +176,8 @@ export default function Search() {
     const query = { ...router.query, ...filter, page: 1 }
     query.features = query.features.join(',')
     query.providers = query.providers.join(',')
+    query.titleIncludes = query.titleIncludes.join(',')
+    query.titleExcludes = query.titleExcludes.join(',')
     Object.keys(query).forEach(key => !query[key] && delete query[key])
     if (filterModalOpen) {
       closeFilterModal()
