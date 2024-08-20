@@ -1,8 +1,6 @@
-import React, { useState } from 'react'
-import { Box, Card, Flex, Skeleton, Title, ThemeIcon, Text, Badge } from '@mantine/core';
+import React from 'react'
+import { Box, Card, Flex, Skeleton, ThemeIcon } from '@mantine/core';
 import { IconMapPin, IconLink } from '@tabler/icons-react';
-import { featureMap } from '@/utils/featureMap';
-import styles from './SearchItem.module.css'
 
 const SearchItemLoader = ({ index }) => {
   return (
