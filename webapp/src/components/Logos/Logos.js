@@ -8,6 +8,12 @@ import immowelt from './immowelt.png';
 import immoscout24 from './immoscout24.png';
 import kleinanzeigen from './kleinanzeigen.png';
 import wgGesucht from './wg-gesucht.png';
+import degewo from './degewo.png';
+import gesobau from './gesobau.png';
+import gewobag from './gewobag.png';
+import howoge from './howoge.png';
+import stadtundland from './stadtundland.png';
+import wbm from './wbm.png';
 
 const Logos = () => {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
@@ -28,7 +34,12 @@ const Logos = () => {
       <Carousel.Slide><Image src={immoscout24} alt="Immobilienscout24 Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={kleinanzeigen} alt="Kleinanzeigen Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={wgGesucht} alt="WG Gesucht Logo" height={30} width="100%" /></Carousel.Slide>
-      <Carousel.Slide><Text>Weitere folgen...</Text></Carousel.Slide>
+      <Carousel.Slide><Image src={howoge} alt="Howoge Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={gesobau} alt="Gesobau Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={degewo} alt="Degewo Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={gewobag} alt="Gewobag Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={stadtundland} alt="STADT UND LAND Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={wbm} alt="wbm Logo" height={30} width="100%" /></Carousel.Slide>
     </Carousel>
   </Box>
 }

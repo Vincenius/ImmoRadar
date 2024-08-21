@@ -4,7 +4,7 @@ import { getZipByAddress } from './utils/utils.js'
 const scrapeData = async ({ page, collection }) => {
     let data = [];
 
-    const providers = ["howoge.de", "gewobag.de", "stadtundland.de", "degewo.de", 'wbm.de', 'gesobau.de']; // Replace with your list of providers
+    const providers = ["howoge.de", "gewobag.de", "stadtundland.de", "degewo.de", "wbm.de", "gesobau.de"];
     const prevEntries = await collection.find(
         { provider: { $in: providers } },
         { projection: { id: 1 } }
@@ -55,7 +55,7 @@ const scrapeData = async ({ page, collection }) => {
                 created_at: new Date(),
                 provider: providerMap[logo.src],
                 title: el.querySelector('h2').textContent,
-                link: 'https://inberlinwohnen.de' + el.querySelector('.org-but').getAttribute('href'),
+                url: 'https://inberlinwohnen.de' + el.querySelector('.org-but').getAttribute('href'),
                 // availabiltiy: date === 'ab sofort' ? new Date() : new Date(date),
                 price: {
                     value: parseFloat(
