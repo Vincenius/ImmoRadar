@@ -151,7 +151,6 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
                 window.scrollBy(0, randomScroll);
                 const pageData = {
                     provider: "wg-gesucht.de",
-                    created_at: new Date(),
                 };
                 const titleElement = document.querySelector('h1.headline');
                 pageData.title = titleElement ? titleElement.textContent.trim() : '';
@@ -235,6 +234,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser 
             if (subPageData) {
                 subPageData.id = link;
                 subPageData.url = link;
+                subPageData.created_at = new Date();
 
                 result.push(subPageData)
 
