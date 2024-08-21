@@ -59,6 +59,7 @@
         "FLAT_SHARE_POSSIBLE",
         "AIR_CONDITIONED",
         "BASEMENT",
-        "RENOVATED"
+        "RENOVATED",
+        "GUEST_TOILET"
     ]
 }

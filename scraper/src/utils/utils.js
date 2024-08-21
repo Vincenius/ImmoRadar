@@ -138,3 +138,12 @@ export const withRetries = async (fn, fallback, retries = 3, delay = 1000) => {
     }
   }
 }
+
+export const getZipByAddress = async (address) => {
+  const addressString = encodeURI(`${address.street} Berlin ${address.district}`.trim())
+  const data = await fetch(`https://nominatim.openstreetmap.org/search?q=${addressString}&format=json&addressdetails=1`)
+    .then(res => res.json())
+
+  const zip = data[0]?.address?.postcode || null
+  return zip
+}

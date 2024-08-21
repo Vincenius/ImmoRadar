@@ -62,7 +62,7 @@ const scrapeData = async ({ page, collection, type }) => {
 
                 const priceElement = document.querySelector('#viewad-price');
                 pageData.price = {
-                    value: priceElement ? priceElement.textContent.trim() : '',
+                    value: priceElement ? parseFloat(priceElement.textContent.trim()) : '',
                     currency: 'EUR',
                     additionalInfo: rawDetails['Warmmiete']
                         ? rawDetails['Warmmiete'] === priceElement.textContent.trim() ? 'WARM_RENT' : 'COLD_RENT'

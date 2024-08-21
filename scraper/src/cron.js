@@ -6,6 +6,7 @@ import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
+import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 let isFullScanRunning = false;
 
@@ -13,7 +14,8 @@ const runScan = async (type) => Promise.allSettled([
   immoweltCrawler(type),
   immobilienscoutCrawler(type),
   kleinanzeigenCrawler(type),
-  wgGesuchtCrawler(type)
+  wgGesuchtCrawler(type),
+  inberlinwohnenCrawler()
 ])
 
 console.log('INIT CRON JOB')
