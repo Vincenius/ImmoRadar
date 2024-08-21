@@ -15,19 +15,24 @@ export default function Home() {
       cta="button"
     >
       <Text mb="lg">
-        Willkommen bei ImmoRadar, Ihrer zentralen Anlaufstelle für die besten Wohnungsangebote in Berlin Spandau.
-        ImmoRadar durchsucht alle relevanten Immobilienportale in Deutschland und liefert Ihnen eine umfassende Auswahl an Wohnungen,
-        die Ihren Bedürfnissen entsprechen. Egal, ob Sie eine gemütliche Ein-Zimmer-Wohnung oder eine geräumige Wohnung mit Garten suchen – bei
-        uns finden Sie die passende Immobilie.
+        Du suchst eine Wohnung in Berlin Spandau?
+        Egal ob du auf der Suche nach einem Ein-Zimmer-Apartment oder einer Wohnung mit Garten bist.
+        Mit ImmoRadar wird deine Suche nach der perfekten Wohnung zum Kinderspiel.
       </Text>
 
-      <Title order={2} mb="sm">Wohnungen in Berlin Spandau: Entdecken Sie Ihr neues Zuhause</Title>
+      <Title order={2} mb="sm">Warum ImmoRadar für Wohnungen in Berlin Spandau?</Title>
       <Text mb="sm">
-        Berlin Spandau bietet eine perfekte Kombination aus urbanem Leben und grüner Umgebung.
-        ImmoRadar präsentiert Ihnen eine Vielzahl von Wohnungen in diesem charmanten Bezirk, sodass Sie die beste Auswahl für Ihre Anforderungen haben:
+        Wir wissen, wie anstrengend die Wohnungssuche sein kann. Deswegen haben wir ImmoRadar entwickelt.
+        Hier findest du alle Angebote von allen wichtigen Immobilienseiten auf einen Blick.
+        Du sparst dir stundenlanges Durchsuchen verschiedener Plattformen.
+        Außerdem kannst dir Benachrichtigungen einrichten, damit du keine neuen Angebote mehr verpasst.
       </Text>
 
-      <List 
+      <Text mb="sm">
+        <b>Bei uns findest du:</b>
+      </Text>
+
+      <List
         mb="xl"
         icon={
           <ThemeIcon color="teal" size={24} radius="xl">
@@ -36,51 +41,28 @@ export default function Home() {
         }
       >
         <List.Item mb="sm">
-          <Link href="/search?q=Berlin-Spandau&titleIncludes=WBS&page=1">Wohnung Berlin Spandau WBS</Link>: Entdecken Sie günstige Wohnungen mit Wohnberechtigungsschein (WBS) in Spandau.
-          Wir bieten Ihnen eine breite Auswahl an verfügbaren WBS-Wohnungen, damit Sie schnell und unkompliziert einziehen können.
+          <Link href="/search?q=Berlin-Spandau&titleIncludes=WBS&page=1">Wohnung Berlin Spandau WBS</Link>: Entdecke günstige Wohnungen mit Wohnberechtigungsschein (WBS) in Spandau.
         </List.Item>
         <List.Item mb="sm">
           <Link href="/search?q=Berlin-Spandau&page=1&minRooms=1&maxRooms=1">Wohnung Spandau Berlin 1 Zimmer</Link>: Suchen Sie eine kompakte und kostengünstige Ein-Zimmer-Wohnung?
           Hier finden Sie attraktive Angebote, die perfekt für Singles oder Studenten geeignet sind.
         </List.Item>
         <List.Item mb="sm">
-          Wohnung Spandau Berlin 2-5 Zimmer: Egal, ob Sie eine <Link href="/search?q=Berlin-Spandau&page=1&minRooms=2&maxRooms=2">Zwei-Zimmer-Wohnung</Link> für
-          ein Pärchen oder eine geräumige <Link href="/search?q=Berlin-Spandau&page=1&minRooms=5&maxRooms=5">Fünf-Zimmer-Wohnung</Link> für die ganze Familie suchen – ImmoRadar hat die passenden Angebote für Sie.
-        </List.Item>
+          Wohnung Spandau Berlin 2-5 Zimmer: Egal, ob du eine <Link href="/search?q=Berlin-Spandau&page=1&minRooms=2&maxRooms=2">Zwei-Zimmer-Wohnung</Link> für
+          ein Pärchen oder eine geräumige <Link href="/search?q=Berlin-Spandau&page=1&minRooms=5&maxRooms=5">Fünf-Zimmer-Wohnung</Link> für die ganze Familie suchst.        </List.Item>
         <List.Item mb="sm">
-          <Link href="/search?q=Berlin-Spandau&titleIncludes=auf+Zeit&page=1">Wohnung Berlin Spandau auf Zeit</Link>:  Benötigen Sie eine Wohnung für einen begrenzten Zeitraum?
-          Wir bieten Ihnen eine Auswahl an möblierten Wohnungen zur Zwischenmiete in Spandau.
+          <Link href="/search?q=Berlin-Spandau&titleIncludes=auf+Zeit&page=1">Wohnung Berlin Spandau auf Zeit</Link>: Benötigst du eine Wohnung für einen begrenzten Zeitraum?
+          Wir verlinken eine Auswahl an möblierten Wohnungen zur Zwischenmiete in Spandau.
         </List.Item>
         <List.Item>
-          <Link href="/search?q=Berlin-Spandau&page=1&titleIncludes=Garten">Wohnung Berlin Spandau Garten</Link>: Träumen Sie von einer Wohnung mit eigenem Garten?
-          Entdecken Sie unsere exklusiven Angebote für Wohnungen mit Garten in Berlin Spandau.
+          <Link href="/search?q=Berlin-Spandau&page=1&titleIncludes=Garten">Wohnung Berlin Spandau Garten</Link>:
+          Entdecke unsere Angebote für Wohnungen mit Garten in Berlin Spandau.
         </List.Item>
       </List>
 
-      <Title order={2} mb="sm">So funktioniert ImmoRadar</Title>
-
-      <Text mb="lg">
-        Mit ImmoRadar ist die Wohnungssuche kinderleicht:
-      </Text>
-      <List type="ordered" mb="xl">
-        <List.Item mb="sm"><b>Suchanfrage starten</b>: Geben Sie Ihre bevorzugten Suchkriterien ein, wie z.B. die Anzahl der Zimmer, die Wohnfläche oder besondere Ausstattungsmerkmale wie einen Garten.</List.Item>
-        <List.Item mb="sm"><b>Ergebnisse vergleichen</b>: ImmoRadar durchsucht alle relevanten Immobilienportale und zeigt Ihnen die besten Treffer auf einen Blick.</List.Item>
-        <List.Item mb="sm"><b>Benachrichtigungen einrichten</b>: Verpassen Sie kein neues Angebot! Richten Sie einfach Benachrichtigungen ein, und wir informieren Sie sofort, wenn eine passende Wohnung verfügbar ist.</List.Item>
-      </List>
-
-      <Title order={2} mb="sm">Warum Spandau?</Title>
-
-      <Text mb="sm">
-        Berlin Spandau ist ein Bezirk voller Vielfalt und Lebensqualität. Hier genießen Sie das Beste aus zwei Welten: die
-        Dynamik der Großstadt und die Ruhe der Natur. Spandau bietet weitläufige Grünflächen, historische Sehenswürdigkeiten
-        wie die Zitadelle Spandau und eine ausgezeichnete Anbindung an das Berliner Stadtzentrum. Mit seinen charmanten Wohnvierteln,
-        familienfreundlichen Strukturen und einer wachsenden Infrastruktur ist Spandau ein begehrter Wohnort für alle, die in der Hauptstadt
-        leben möchten, ohne auf Natur und Ruhe zu verzichten. Entdecken Sie mit ImmoRadar, warum Spandau der ideale Ort für Ihr neues Zuhause ist.
-      </Text>
-      
       <Text>
-        Finden Sie noch heute Ihre ideale Wohnung in Berlin Spandau mit ImmoRadar – Ihrer umfassenden Immobilien-Suchmaschine.
-        Starten Sie jetzt Ihre Suche und lassen Sie sich von uns auf dem Weg zu Ihrem neuen Zuhause begleiten.
+        Starte jetzt mit ImmoRadar und finde genau die Wohnung in Berlin Spandau, die zu dir passt.
+        Wir freuen uns darauf, dir zu helfen!
       </Text>
     </CityLayout>
   );
