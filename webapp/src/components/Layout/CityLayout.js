@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
 import SearchBar from '@/components/SearchBar/SearchBar';
+import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Cities.module.css'
 import { Button } from '@mantine/core';
 
@@ -55,6 +56,8 @@ export default function CityLayout({
       <Box my="6em">
         {children}
       </Box>
+
+      <FAQs />
 
       <Box my="6em">
         <Button
