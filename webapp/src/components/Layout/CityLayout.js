@@ -6,17 +6,19 @@ import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import FAQs from '@/components/FAQ/FAQ';
-import styles from '@/styles/Cities.module.css'
 import { Button } from '@mantine/core';
+import styles from './CityLayout.module.css'
 
 export default function CityLayout({
-    title,
-    description,
-    headerImage,
-    city,
-    titleContent,
-    cta,
-    children
+  title,
+  description,
+  headerImage,
+  city,
+  titleContent,
+  cta,
+  count,
+  cityTitle,
+  children
 }) {
   return (
     <Layout title={title} description={description}>
@@ -30,8 +32,8 @@ export default function CityLayout({
             </Title>
 
             { cta === 'search' && <SearchBar city={city} /> }
-            { cta === 'button' && <Button variant="filled" radius="md" size="lg" fullWidth href={`/search?q=${city}`} component={Link}>
-                Jetzt alle 110+ Wohnungen in Spandau anzeigen
+            { cta === 'button' && <Button variant="filled" radius="md" size="lg" fullWidth href={`/search?q=${city}`} component={Link} className={styles.button}>
+                Jetzt alle {count}+ Wohnungen in {cityTitle} anzeigen
             </Button> }
           </Box>
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">

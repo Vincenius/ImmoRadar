@@ -7,12 +7,14 @@ import styles from '@/styles/Cities.module.css'
 export default function Home() {
   return (
     <CityLayout
-      title="Wohnungen in Berlin Spandau - Finden Sie Ihre Traumwohnung | ImmoRadar"
-      description="Finden Sie Ihre Traumwohnung in Berlin Spandau mit ImmoRadar. Entdecken Sie aktuelle Angebote von 1- bis 5-Zimmer-Wohnungen, WBS-Wohnungen, möblierte Wohnungen auf Zeit und mehr. Jetzt suchen und direkt benachrichtigt werden!"
+      title="Wohnungen in Berlin Spandau - Finde Deine Traumwohnung | ImmoRadar"
+      description="Finden Deine Traumwohnung in Berlin Spandau mit ImmoRadar. Entdecke aktuelle Angebote von 1- bis 5-Zimmer-Wohnungen, WBS-Wohnungen, möblierte Wohnungen auf Zeit und mehr. Jetzt suchen und direkt benachrichtigt werden!"
       city="Berlin-Spandau"
+      cityTitle="Spandau"
       headerImage="/cities/spandau.jpeg"
-      titleContent={<>Wohnungen in <span className={styles.gradientText}>Berlin Spandau</span> - Finden Sie Ihre Traumwohnung</>}
+      titleContent={<>Wohnungen in <span className={styles.gradientText}>Berlin Spandau</span> - Finden Deine Traumwohnung</>}
       cta="button"
+      count="110"
     >
       <Text mb="lg">
         Du suchst eine Wohnung in Berlin Spandau?
@@ -44,11 +46,11 @@ export default function Home() {
           <Link href="/search?q=Berlin-Spandau&titleIncludes=WBS&page=1">Wohnung Berlin Spandau WBS</Link>: Entdecke günstige Wohnungen mit Wohnberechtigungsschein (WBS) in Spandau.
         </List.Item>
         <List.Item mb="sm">
-          <Link href="/search?q=Berlin-Spandau&page=1&minRooms=1&maxRooms=1">Wohnung Spandau Berlin 1 Zimmer</Link>: Suchen Sie eine kompakte und kostengünstige Ein-Zimmer-Wohnung?
-          Hier finden Sie attraktive Angebote, die perfekt für Singles oder Studenten geeignet sind.
+          <Link href="/search?q=Berlin-Spandau&page=1&minRooms=1&maxRooms=1">Wohnung Spandau Berlin 1 Zimmer</Link>: Suchst du eine kompakte und kostengünstige Ein-Zimmer-Wohnung?
+          Hier findst du attraktive Angebote, die perfekt für Singles oder Studenten geeignet sind.
         </List.Item>
         <List.Item mb="sm">
-          Wohnung Spandau Berlin 2-5 Zimmer: Egal, ob du eine <Link href="/search?q=Berlin-Spandau&page=1&minRooms=2&maxRooms=2">Zwei-Zimmer-Wohnung</Link> für
+          Wohnung Berlin Spandau 2-5 Zimmer: Egal, ob du eine <Link href="/search?q=Berlin-Spandau&page=1&minRooms=2&maxRooms=2">Zwei-Zimmer-Wohnung</Link> für
           ein Pärchen oder eine geräumige <Link href="/search?q=Berlin-Spandau&page=1&minRooms=5&maxRooms=5">Fünf-Zimmer-Wohnung</Link> für die ganze Familie suchst.        </List.Item>
         <List.Item mb="sm">
           <Link href="/search?q=Berlin-Spandau&titleIncludes=auf+Zeit&page=1">Wohnung Berlin Spandau auf Zeit</Link>: Benötigst du eine Wohnung für einen begrenzten Zeitraum?

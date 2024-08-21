@@ -9,6 +9,19 @@ import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Home.module.css'
 import { Button } from '@mantine/core';
 
+const ListItem = ({ isPrimary, title, link, children }) => (
+  <List.Item>
+    <Flex gap="sm" align="center">
+      <ThemeIcon color={ isPrimary ? 'teal' : 'teal.2'} size={isPrimary ? 24 : 16} radius="xl">
+        <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
+      </ThemeIcon>
+      <Link href={link}>{title}</Link>
+    </Flex>
+
+    {children}
+  </List.Item>
+)
+
 export default function Home() {
   return (
     <Layout
@@ -65,23 +78,12 @@ export default function Home() {
           mb="lg"
           listStyleType="none"
         >
-          <List.Item mb="sm">
-            <Flex gap="sm" align="center">
-              <ThemeIcon color="teal" size={24} radius="xl">
-                <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
-              </ThemeIcon>
-              <Link href="/berlin">Berlin</Link>
-            </Flex>
-            
+          <ListItem isPrimary={true} title="Berlin" link="/berlin">
+
             <List withPadding mt="xs" listStyleType="none" style={{ paddingLeft: '1.6rem' }}>
-              <List.Item>
-                <Flex gap="sm" align="center">
-                  <ThemeIcon color="teal.2" size={16} radius="xl">
-                    <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
-                  </ThemeIcon>
-                  <Link href="/berlin/spandau">Spandau</Link>
-                </Flex>
-              </List.Item>
+              <ListItem isPrimary={false} title="Mitte" link="/berlin/mitte"></ListItem>
+              <ListItem isPrimary={false} title="Spandau" link="/berlin/spandau"></ListItem>
+
               <List.Item>
                 <Flex gap="sm" align="center">
                     <ThemeIcon color="teal.2" size={16} radius="xl">
@@ -91,7 +93,7 @@ export default function Home() {
                 </Flex>
               </List.Item>
             </List>
-          </List.Item>
+          </ListItem>
         </List>
       </Box>
       
