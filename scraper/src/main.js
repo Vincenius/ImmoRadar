@@ -12,7 +12,7 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 // await immoweltCrawler('NEW_SCAN')
 // await immobilienscoutCrawler('NEW_SCAN');
 // await kleinanzeigenCrawler('NEW_SCAN')
-await wgGesuchtCrawler('NEW_SCAN')
+// await wgGesuchtCrawler('NEW_SCAN')
 // await inberlinwohnenCrawler()
 
 // TODOs

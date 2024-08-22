@@ -64,7 +64,7 @@ const SearchItem = ({ item }) => {
               </Flex>
             </a>
 
-            <Box>
+            <Flex wrap="wrap" gap={2}>
               {features.map((f, i) => <Badge key={`${item._id}-feature-${i}`} variant="default" size="sm" radius="sm" mr="4px">
                 {f}
               </Badge>)}
@@ -72,7 +72,7 @@ const SearchItem = ({ item }) => {
                 <Badge className={styles.moreFeatures} variant="outline" size="sm" radius="sm" mr="4px" onClick={() => setShowAllFeatures(true)}>
                   ...
                 </Badge>}
-            </Box>
+            </Flex>
           </Box>
 
           <Flex justify="space-between">
