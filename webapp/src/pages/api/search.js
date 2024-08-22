@@ -56,13 +56,13 @@ export default async function handler(req, res) {
 
                 // SORT
                 const mongoSortMap = {
-                    date: { date: -1 },
+                    created_at: { created_at: -1 },
                     priceAsc: { 'price.value': 1 },
                     priceDesc: { 'price.value': -1 },
                     sizeAsc: { 'livingSpace': 1 },
                     sizeDesc: { 'livingSpace': -1 }
                 }
-                const mongoSort = mongoSortMap[sort] || { date: -1 };
+                const mongoSort = mongoSortMap[sort] || { created_at: -1 };
 
                 // FILTER
                 const priceFilter = {};
