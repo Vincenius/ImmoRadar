@@ -1,16 +1,16 @@
+import React from "react";
 import Layout from "@/components/Layout/Layout";
 import useSWR from "swr";
 import { useState } from "react";
-import { Container, Button, Group, Table, Pagination, Title, Text, Skeleton } from "@mantine/core";
+import { Container, Button, Group, Table, Title, Text, Skeleton } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { fetcher } from "@/utils/fetcher";
 
 export default function Home() {
   const [from, setFrom] = useState(new Date(new Date().toISOString().split('T')[0]));
   const [to, setTo] = useState(new Date());
-  const [page, setPage] = useState(1);
 
-  const { data, error, isLoading } = useSWR(`/api/logs?from=${from.toISOString()}&to=${to.toISOString()}&page=${page}`, fetcher);
+  const { data, error, isLoading } = useSWR(`/api/fields?from=${from.toISOString()}&to=${to.toISOString()}`, fetcher);
 
   const handleDateRangeChange = (range) => {
     const now = new Date();
@@ -34,7 +34,6 @@ export default function Home() {
       default:
         break;
     }
-    setPage(1); // Reset to page 1 on date range change
   };
 
   if (isLoading) {
@@ -52,7 +51,7 @@ export default function Home() {
     return (
       <Layout>
         <Container>
-          <Text c="red">Failed to load logs.</Text>
+          <Text color="red">Failed to load data.</Text>
         </Container>
       </Layout>
     );
@@ -70,41 +69,33 @@ export default function Home() {
           <Button variant="outline" onClick={() => handleDateRangeChange("All Time")}>All Time</Button>
         </Group>
 
-        <Title order={3} mb="md">Summary</Title>
-        {data.summary.sort((a, b) => b.scraper - a.scraper).map((item) => (
-          <Group key={item._id} mb="sm">
-            <Text><strong>Scraper:</strong> {item._id}</Text>
-            <Text><strong>Success True:</strong> {item.success_true}</Text>
-            <Text><strong>Success False:</strong> {item.success_false}</Text>
-          </Group>
-        ))}
-
-        <Title order={3} mt="lg">Logs</Title>
+        <Title order={3} mb="md">Field Completion Summary</Title>
         <Table striped highlightOnHover>
           <Table.Thead>
             <Table.Tr>
-              <Table.Th>Date</Table.Th>
-              <Table.Th>Scraper</Table.Th>
-              <Table.Th>Details</Table.Th>
+              <Table.Th>Field</Table.Th>
+              {data && data.map((providerData) => (
+                <Table.Th key={providerData.provider}>{providerData.provider}</Table.Th>
+              ))}
             </Table.Tr>
           </Table.Thead>
           <Table.Tbody>
-            {data.logs.map((log) => (
-              <Table.Tr key={log._id} bg={log.success ? 'green.1' : 'red.1'}>
-                <Table.Td>{new Date(log.created_at).toLocaleString()}</Table.Td>
-                <Table.Td>{log.scraper}</Table.Td>
-                <Table.Td>{log.message}</Table.Td>
-              </Table.Tr>
-            ))}
+            {data && 
+              Object.keys(data[0].fields).map((field) => (
+                <Table.Tr key={field}>
+                  <Table.Td>{field}</Table.Td>
+                  {data.map((providerData) => (
+                    <Table.Td key={`${providerData.provider}-${field}`} bg={providerData.fields[field] < 50 ? 'red.1' : 'inherit'}>
+                      {providerData.fields[field] !== undefined
+                        ? `${providerData.fields[field].toFixed(2)}%`
+                        : 'N/A'}
+                    </Table.Td>
+                  ))}
+                </Table.Tr>
+              ))
+            }
           </Table.Tbody>
         </Table>
-
-        <Pagination
-          page={page}
-          onChange={setPage}
-          total={data.pagination.totalPages}
-          mt="lg"
-        />
       </Container>
     </Layout>
   );

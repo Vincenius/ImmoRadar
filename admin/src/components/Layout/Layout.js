@@ -1,5 +1,6 @@
 import Head from "next/head";
-import { AppShell, Burger, Title, Flex } from '@mantine/core';
+import Link from "next/link";
+import { AppShell, Burger, Title, Flex, NavLink } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 
 function Layout({ children }) {
@@ -34,7 +35,18 @@ function Layout({ children }) {
           </Flex>
         </AppShell.Header>
 
-        <AppShell.Navbar p="md">Navbar</AppShell.Navbar>
+        <AppShell.Navbar p="md">
+          <NavLink
+            component={Link}
+            href="/"
+            label="Logs"
+          />
+          <NavLink
+            component={Link}
+            href="/fields"
+            label="Felder"
+          />
+        </AppShell.Navbar>
 
         <AppShell.Main>
           { children }
