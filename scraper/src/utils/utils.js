@@ -69,10 +69,16 @@ export const getRandomUseragent = () => {
 export const delay = ms => new Promise(res => setTimeout(res, ms));
 
 export const parseCurrencyString = (currencyString) => {
-  let numericString = currencyString.replace(/[^\d-]/g, '');
-  let number = parseFloat(numericString);
-
-  if (isNaN(number)) {
+  let number = null
+  try {
+    let numericString = currencyString.replace(/[^\d-]/g, '');
+    let number = parseFloat(numericString);
+  
+    if (isNaN(number)) {
+      return null;
+    }
+  } catch(e) {
+    console.error('error on parsing currency string', currencyString)
     return null;
   }
 
