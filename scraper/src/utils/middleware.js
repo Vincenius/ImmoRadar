@@ -87,6 +87,7 @@ export const middleware = async (callback, type, options = {}) => {
         await client.connect();
         const db = client.db(process.env.MONGODB_DB);
         const estateCollection = db.collection('estates');
+        const logCollection = db.collection('logs');
 
         const { browser: newBrowser, page } = await startBrowser({ options });    
         browser = newBrowser    
@@ -103,10 +104,23 @@ export const middleware = async (callback, type, options = {}) => {
             return newPage
         }
 
+        const logEvent = async ({ scraper, success, message }) => {
+            if (!process.env.DISABLE_LOGS) {
+                await logCollection.insertOne({
+                    created_at: new Date(),
+                    scraper,
+                    type,
+                    success,
+                    message,
+                })
+            }
+        }
+
         await callback({
             page,
             collection: estateCollection,
             type,
+            logEvent,
             restartBrowser,
         })
     } catch (error) {

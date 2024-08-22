@@ -38,81 +38,97 @@ const parseData = (estates) => estates.map(e => ({
         : null,
 }) )
 
-const scrapeData = async ({ page, collection, type }) => {
-    const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
-    let currentPage = 1;
-    let lastPage = 1;
-    let error;
-    let data = [];
-    let count = 0;
-    const prevEntries = await collection.find({ provider: "immowelt.de" }, { projection: { id: 1 } }).toArray();
+const scrapeData = async ({ page, collection, type, logEvent }) => {
+    try {
+        const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
+        let currentPage = 1;
+        let lastPage = 1;
+        let error;
+        let data = [];
+        let count = 0;
+        const prevEntries = await collection.find({ provider: "immowelt.de" }, { projection: { id: 1 } }).toArray();
 
-    while (lastPage && currentPage <= lastPage && !error) {
-        console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
+        while (lastPage && currentPage <= lastPage && !error) {
+            console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
 
-        await page.goto(BASE_URL + `&sp=${currentPage}`);
+            await page.goto(BASE_URL + `&sp=${currentPage}`);
 
-        const content = await page.content();
-        const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
-        const scriptMatch = content.match(scriptRegex);
+            const content = await page.content();
+            const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
+            const scriptMatch = content.match(scriptRegex);
 
-        if (scriptMatch && scriptMatch[1]) {
-            let jsonData = scriptMatch[1].trim();
+            if (scriptMatch && scriptMatch[1]) {
+                let jsonData = scriptMatch[1].trim();
 
-            // Remove potential HTML comments surrounding the JSON data
-            if (jsonData.startsWith('<!--')) {
-                jsonData = jsonData.slice(4);
-            }
-            if (jsonData.endsWith('-->')) {
-                jsonData = jsonData.slice(0, -3);
-            }
-            try {
-                // Parse the JSON data
-                const housingData = JSON.parse(jsonData);
-                lastPage = housingData.initialState.estateSearch.ui.pagination.pagesCount
-                currentPage++;
+                // Remove potential HTML comments surrounding the JSON data
+                if (jsonData.startsWith('<!--')) {
+                    jsonData = jsonData.slice(4);
+                }
+                if (jsonData.endsWith('-->')) {
+                    jsonData = jsonData.slice(0, -3);
+                }
+                try {
+                    // Parse the JSON data
+                    const housingData = JSON.parse(jsonData);
+                    lastPage = housingData.initialState.estateSearch.ui.pagination.pagesCount
+                    currentPage++;
 
-                // Access the specific data you need
-                if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
-                    const estates = housingData.initialState.estateSearch.data.estates;
-                    const parsedData = parseData(estates)
-                    const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
+                    // Access the specific data you need
+                    if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
+                        const estates = housingData.initialState.estateSearch.data.estates;
+                        const parsedData = parseData(estates)
+                        const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
-                    if (newData.length) {
-                        await collection.insertMany(newData)
+                        if (newData.length) {
+                            await collection.insertMany(newData)
+                        }
+
+                        if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
+                            console.log('Found old entries on page - quit scan');
+                            lastPage = currentPage - 1;
+                        }
+
+                        count += newData.length;
+                        data = [...data, ...parsedData]
+                    } else {
+                        const message = `${content} - Housing data not found`
+                        await logEvent({ scraper: 'immowelt.de', success: false, message });
+                        console.log(message);
+                        error = true;
                     }
-
-                    if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
-                        console.log('Found old entries on page - quit scan');
-                        lastPage = currentPage - 1;
-                    }
-
-                    count += newData.length;
-                    data = [...data, ...parsedData]
-                } else {
-                    console.log(content, 'Housing data not found');
+                } catch (err) {
+                    const message = `${err} - Failed to parse JSON data`
+                    await logEvent({ scraper: 'immowelt.de', success: false, message });
+                    console.error(message);
                     error = true;
                 }
-            } catch (err) {
-                console.error(err, 'Failed to parse JSON data');
+            } else {
+                const message = `${content} - Script tag with JSON data not found`
+                await logEvent({ scraper: 'immowelt.de', success: false, message });
+                console.log(message);
                 error = true;
             }
-        } else {
-            console.log(content, 'Script tag with JSON data not found');
-            error = true;
         }
-    }
 
-    console.log('Immowelt scraped', count, ' new estates');
+        if (type === 'FULL_SCAN' && !error) {
+            const toRemove = prevEntries
+                .filter(e => !data.find(d => d.id === e.id))
+                .map(e => e.id);
 
-    if (type === 'FULL_SCAN' && !error) {
-        const toRemove = prevEntries
-            .filter(e => !data.find(d => d.id === e.id))
-            .map(e => e.id);
-
-        // Remove multiple entries by _id
-        const result = await collection.deleteMany({ id: { $in: toRemove } });
-        console.log(`Immowelt ${result.deletedCount} old estates were deleted.`);
+            // Remove multiple entries by _id
+            const result = await collection.deleteMany({ id: { $in: toRemove } });
+            const message = `Immowelt - Scraped ${count} new estates and removed ${result.deletedCount} old estates.`;
+            await logEvent({ scraper: 'immowelt.de', success: true, message });
+            console.log(message);
+        } else if (!error) {
+            const message = `Immowelt - Scraped ${count} new estates`;
+            await logEvent({ scraper: 'immowelt.de', success: true, message });
+            console.log(message);
+        }
+    } catch (error) {
+        const errorMsg = 'Unexpected error scraping Immobilienscout24: ' + error
+        console.error(errorMsg);
+        await logEvent({ scraper: 'immowelt.de', success: false, message: errorMsg });
     }
 }
 
