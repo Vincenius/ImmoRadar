@@ -100,7 +100,7 @@ export default function Home() {
       <Box my="6em">
         <Button
           variant="filled"
-          color="cyan.7"
+          color="cyan.8"
           size="lg"
           fullWidth
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
