@@ -7,7 +7,7 @@
     "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
-    "start2": "next start -p 3001",
+    "start2": "next start -p 3002",
     "lint": "next lint"
   },
   "dependencies": {
@@ -28,7 +28,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-lazy-load-image-component": "^1.6.2",
-    "sharp": "^0.33.4",
+    "sharp": "0.32",
     "swr": "^2.2.5",
     "uuid": "^10.0.0"
   },
