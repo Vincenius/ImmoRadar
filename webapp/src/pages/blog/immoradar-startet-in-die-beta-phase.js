@@ -6,7 +6,7 @@ import { posts } from '@/utils/blog';
 const BlogPost = () => {
     return (
         <Layout
-            title={posts[0].title}
+            title={`${posts[0].title} | ImmoRadar Blog`}
             description={posts[0].description}
             date={posts[0].isoDate}
             // todo meta image

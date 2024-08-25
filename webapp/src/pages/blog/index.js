@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { Container, Title, Text, Box } from '@mantine/core';
+import { Container, Title, Text, Box, Divider } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 import { posts } from '@/utils/blog';
 
@@ -12,12 +12,13 @@ const Blog = () => {
         >
             <Container py="xl" size="sm">
                 <Title order={1} mb="xl">Blog</Title>
-                {posts.reverse().map(post => <Box key={post.slug} my="md">
+                {posts.sort((a,b) => new Date(b.isoDate) - new Date(a.isoDate)).map(post => <Box key={post.slug}>
                   <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
                   <Link href={`/blog/${post.slug}`}>
                     <Title order={2} mb="sm">{post.title}</Title>
                   </Link>
                   <Text>{post.description}</Text>
+                  <Divider my="xl" />
                 </Box>)}
 
             </Container>
