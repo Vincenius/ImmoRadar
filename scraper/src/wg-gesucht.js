@@ -175,7 +175,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
                         street: addressElement[0] || '',
                         zipCode,
                         city: cityElems.join(" ") || '',
-                        district: '',
+                        district: '', // todo get district based on zipCode
                         geolocation: null,
                     }
     

@@ -1,5 +1,5 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Accordion, Container, Card, List, rem } from '@mantine/core';
-import { IconClock, IconList, IconBell, IconArrowUp, IconMapPinFilled } from '@tabler/icons-react';
+import { Flex, Text, Group, ThemeIcon, Title, Box, Card, List, rem } from '@mantine/core';
+import { IconArrowMergeBoth, IconList, IconBell, IconArrowUp, IconMapPinFilled } from '@tabler/icons-react';
 import Link from 'next/link'
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
@@ -48,16 +48,16 @@ export default function Home() {
           </Box>
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+              <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
+              <Text ta={{ base: 'left', sm: 'center'}}>Kombiniert Ergebnisse von <b>9 Immobilien-Webseiten</b></Text>
+            </Flex>
+            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
               <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Eine einzige, gut sortierte Liste ohne Duplikate</Text>
+              <Text ta={{ base: 'left', sm: 'center'}}>Eine einzige, gut sortierte Liste <b>ohne Duplikate</b></Text>
             </Flex>
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
               <ThemeIcon radius="sm" size="lg" variant="filled"><IconBell size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Benachrichtigungen bei neuen Angeboten</Text>
-            </Flex>
-            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconClock size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Kein mühsames Durchsuchen mehrerer Webseiten</Text>
+              <Text ta={{ base: 'left', sm: 'center'}}><b>Benachrichtigungen</b> bei neuen Angeboten</Text>
             </Flex>
           </Flex>
         </Flex>

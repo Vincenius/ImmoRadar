@@ -7,7 +7,7 @@ import styles from '@/styles/Cities.module.css'
 export default function Berlin() {
   return (
     <CityLayout
-      title="Wohnungen in Berlin - Ihr neues Zuhause in der Hauptstadt finden | ImmoRadar"
+      title="Wohnungen in Berlin - Alle Ergebnisse von 9 Immobilien-Webseiten | ImmoRadar"
       description="Mit unserem umfassenden Angebot an Wohnungen in Berlin haben Sie jedoch alle Möglichkeiten, genau das Zuhause zu finden, das Ihren Wünschen entspricht. ImmoRadar bietet eine breite Auswahl an Immobilien in Berlin, die regelmäßig aktualisiert werden."
       city="Berlin"
       headerImage="/cities/berlin.jpg"
@@ -15,17 +15,17 @@ export default function Berlin() {
       cta="search"
     >
       <Text mb="lg">
-        Berlin ist ein spannender Ort zum Leben, und wir wissen, wie schwer es sein kann,
-        die perfekte Wohnung in dieser lebendigen Stadt zu finden. Deshalb haben wir ImmoRadar
-        entwickelt - deine persönliche Suchmaschine für Immobilien in Berlin. Egal, ob du eine kleine
-        Wohnung mit einem Zimmer suchst oder Platz für die ganze Familie brauchst, wir haben alles im Blick.
+        Wir wissen, wie schwer es sein kann, eine Wohnung in der Hauptstadt zu finden. Deshalb haben wir ImmoRadar
+        entwickelt - eine Suchmaschine für Immobilien in Berlin. Wir durchsuchen alle relevanten
+        Immobilienseiten für Berlin und sammeln die aktuellen Angebote. Egal ob du eine kleine
+        Wohnung mit einem Zimmer suchst oder Platz für die ganze Familie brauchst
       </Text>
 
       <Title order={2} mb="sm">Warum ImmoRadar?</Title>
       <Text mb="sm">
         ImmoRadar kombiniert für dich die besten Angebote aus allen relevanten Immobilienseiten in Deutschland.
-        Du musst nicht mehr unzählige Webseiten durchforsten - bei uns findest du alles an einem Ort.
-        Und das Beste? Du kannst Benachrichtigungen einstellen, die dich informieren, sobald eine neue Wohnung
+        Du musst nicht mehr unzählige Webseiten durchsuchen - bei uns findest du alles an einem Ort.
+        Um kein Angebot zu verpassen kannst Benachrichtigungen einstellen, die dich informieren, sobald eine neue Wohnung
         deinen Kriterien entspricht.
       </Text>
       <Text mb="sm">
@@ -41,7 +41,7 @@ export default function Berlin() {
         }
       >
         <List.Item mb="sm">
-          <Link href="/search?q=Berlin&titleIncludes=WBS&page=1">Wohnungen in Berlin mit WBS</Link>: Für Wohnungssuchende mit Wohnberechtigungsschein (WBS) bieten wir gezielte Filter
+          <Link href="/search?q=Berlin&titleIncludes=WBS&page=1">Wohnungen in Berlin mit WBS</Link>: Für Wohnungssuchende mit Wohnberechtigungsschein (WBS) bieten wir einen Filter
           für Wohnungen, die deinen finanziellen Möglichkeiten entspricht.
         </List.Item>
         <List.Item mb="sm">
@@ -65,8 +65,8 @@ export default function Berlin() {
 
       <Text mb="sm">
         Wir bei ImmoRadar wollen dir helfen, die Wohnung in Berlin zu finden, die perfekt zu dir
-        passt - ohne Stress, ohne langes Suchen. Starte deine Suche jetzt und lass uns gemeinsam dein neues
-        Zuhause in Berlin finden!
+        passt - ohne Stress, ohne langes Suchen. Starte deine Suche jetzt und finde dein neues
+        Zuhause in Berlin!
       </Text>
     </CityLayout>
   );
