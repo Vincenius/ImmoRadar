@@ -5,7 +5,7 @@ export const posts = [{
     slug: 'immoradar-startet-in-die-beta-phase',
     description: 'Das Ziel von ImmoRadar ist es die Wohnungssuche zu erleichtern, indem die Ergebnisse der größten Immobilien-Webseiten zusammengefasst werden.'
   }, {
-    title: 'Berliner Genossenschaftswohnungen hinzugefügt',
+    title: 'Berliner Genossenschafts<wbr>wohnungen hinzugefügt',
     date: '21. August 2024',
     isoDate: '2024-08-21',
     slug: 'berliner-genossenschaftswohnungen-hinzugefuegt',

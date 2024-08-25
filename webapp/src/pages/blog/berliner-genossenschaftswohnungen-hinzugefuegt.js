@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Text, Blockquote } from '@mantine/core';
+import { Container, Title, Text } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 import { posts } from '@/utils/blog';
 
@@ -15,7 +15,7 @@ const BlogPost = () => {
         >
             <Container py="xl" size="sm">
                 <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
-                <Title order={1}>{post.title}</Title>
+                <Title order={1} dangerouslySetInnerHTML={{__html: post.title}}></Title>
 
                 {/* todo image */}
 

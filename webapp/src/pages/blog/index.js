@@ -15,7 +15,7 @@ const Blog = () => {
                 {posts.sort((a,b) => new Date(b.isoDate) - new Date(a.isoDate)).map(post => <Box key={post.slug}>
                   <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
                   <Link href={`/blog/${post.slug}`}>
-                    <Title order={2} mb="sm">{post.title}</Title>
+                    <Title order={2} mb="sm" dangerouslySetInnerHTML={{__html: post.title}}></Title>
                   </Link>
                   <Text>{post.description}</Text>
                   <Divider my="xl" />
