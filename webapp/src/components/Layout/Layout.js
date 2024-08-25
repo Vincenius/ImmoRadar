@@ -6,7 +6,7 @@ import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
 import Logo from './logo.svg';
 import styles from './Layout.module.css';
 
-const Layout = ({ children, title, description }) => {
+const Layout = ({ children, title, description, date }) => {
   return <>
     <Head>
       <title>{title}</title>
@@ -20,6 +20,8 @@ const Layout = ({ children, title, description }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content="/og-image.jpg" />
+      { date && <meta property="article:published_time" content={date}></meta> }
+      { date && <meta name="author" content="Vincent Will"></meta> }
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
@@ -39,7 +41,8 @@ const Layout = ({ children, title, description }) => {
               </Flex>
             </Link>
 
-            <Flex justify="flex-end" align="center">
+            <Flex justify="flex-end" align="center" gap="lg">
+              <Link href="/blog">Blog</Link>
               <Link href="/about">Über uns</Link>
             </Flex>
           </Flex>

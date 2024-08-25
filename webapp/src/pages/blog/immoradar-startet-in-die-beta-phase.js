@@ -1,23 +1,24 @@
 import React from 'react';
 import { Container, Title, Text, Blockquote } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
+import { posts } from '@/utils/blog';
 
 const BlogPost = () => {
     return (
         <Layout
-            title="ImmoRadar startet in die Beta Phase| ImmoRadar Blog"
-            description="Todo..."
+            title={posts[0].title}
+            description={posts[0].description}
+            date={posts[0].isoDate}
             // todo meta image
-            // todo date
         >
             <Container py="xl" size="sm">
-                <Text fs="italic" component="time" datetime="2024-08-15">15. August 2024</Text>
-                <Title order={1}>ImmoRadar startet in die Beta Phase</Title>
+                <Text fs="italic" component="time" datetime={posts[0].isoDate}>{posts[0].date}</Text>
+                <Title order={1}>{posts[0].title}</Title>
 
                 {/* todo image */}
 
                 <Text my="md">
-                    Nach mehreren Monaten der Entwicklungszeit habe ich heute den Schritt gewagt und ImmoRadar
+                    Nach etwa einem Monat Entwicklungszeit habe ich heute den Schritt gewagt und ImmoRadar
                     auf <a href="https://old.reddit.com/r/berlin/comments/1erwaxp/i_built_a_free_search_engine_for_flat_hunting_in/" rel="noopener noreferrer">Reddit</a> veröffentlicht. In
                     der Beta Phase wird nur eine kleine Anzahl von Immobilien Webseiten durchsucht. Desweiteren ist die Suche auf Berlin beschränkt.
                 </Text>
