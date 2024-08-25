@@ -42,8 +42,8 @@ const Layout = ({ children, title, description, date }) => {
             </Link>
 
             <Flex justify="flex-end" align="center" gap="lg">
-              <Link href="/blog">Blog</Link>
-              <Link href="/about">Über uns</Link>
+              <Link href="/blog"><Text c="cyan.9">Blog</Text></Link>
+              <Link href="/about"><Text c="cyan.9">Über uns</Text></Link>
             </Flex>
           </Flex>
         </Container>
