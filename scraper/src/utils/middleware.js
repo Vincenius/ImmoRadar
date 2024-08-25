@@ -16,22 +16,16 @@ const proxies = [{
 
 const startBrowser = async ({ options = {} }) => {
     const useFirefox = options.useFirefox || (options.randomBrowser && Math.random() < 0.5)
+    console.log('Booting Playwright', useFirefox ? 'Firefox' : 'Chromium', '...')
     const playwright = useFirefox ? firefox : chromium;
 
     const USER_AGENT = getRandomUseragent();
     const viewportSize = getRandomResolution();
-    const geolocation = getRandomGeolocation(); // maybe based on ip??
+    const geolocation = getRandomGeolocation();
 
     if (!useFirefox) {
         playwright.use(StealthPlugin())
     }
-    // playwright.use(RecaptchaPlugin({
-    //     provider: {
-    //       id: '2captcha',
-    //       token: process.env.CAPTCHA_KEY
-    //     },
-    //     visualFeedback: true
-    // }))
 
     const proxy = options.useProxy ? {
         server: proxies[1].server,
@@ -79,7 +73,6 @@ const startBrowser = async ({ options = {} }) => {
 }
 
 export const middleware = async (callback, type, options = {}) => {
-    console.log('Booting Playwright...')
     let browser;
     const client = new MongoClient(process.env.MONGODB_URI);
 
@@ -89,16 +82,15 @@ export const middleware = async (callback, type, options = {}) => {
         const estateCollection = db.collection('estates');
         const logCollection = db.collection('logs');
 
-        const { browser: newBrowser, page } = await startBrowser({ options });    
-        browser = newBrowser    
+        const { browser: newBrowser, page } = await startBrowser({ options });
+        browser = newBrowser
 
         console.log('Playwright ready...')
 
-        // todo return function that handles creating a new browser with proxy
         const restartBrowser = async ({ options: newOptions }) => {
             console.log('Restarting browser...')
             browser.close();
-            const { browser: newBrowser, page: newPage } = await startBrowser({ options: newOptions || options });    
+            const { browser: newBrowser, page: newPage } = await startBrowser({ options: newOptions || options });
             browser = newBrowser
 
             return newPage

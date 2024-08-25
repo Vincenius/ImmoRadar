@@ -132,13 +132,14 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
                 retry++;
             }
         }
-    
+
         if (retry === 3) {
             console.error('IS24.resultList object not found after three retries')
+            // todo maybe restart browser??
             await logEvent({ scraper: 'immobilienscout24.de', success: false, message: 'IS24.resultList object not found after three retries' });
             error = true;
         }
-    
+
         if (type === 'FULL_SCAN' && !error) {
             const toRemove = prevEntries
                 .filter(e => !data.find(d => d.id === e.id))
@@ -162,7 +163,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type, { randomBrowser: true });
+    await middleware(scrapeData, type, { useFirefox: true });
 }
 
 
