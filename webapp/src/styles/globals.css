@@ -91,12 +91,12 @@ body {
 }
 
 a {
-  color: var(--mantine-primary-color-8);
+  color: var(--mantine-primary-color-9);
   text-decoration: none;
 }
 
 a:hover {
-  color: var(--mantine-primary-color-filled-hover);
+  color: var(--mantine-primary-color-7);
 }
 
 @media (prefers-color-scheme: dark) {

@@ -42,8 +42,8 @@ const Layout = ({ children, title, description, date }) => {
             </Link>
 
             <Flex justify="flex-end" align="center" gap="lg">
-              <Link href="/blog"><Text c="cyan.9">Blog</Text></Link>
-              <Link href="/about"><Text c="cyan.9">Über uns</Text></Link>
+              <Link href="/blog">Blog</Link>
+              <Link href="/about">Über uns</Link>
             </Flex>
           </Flex>
         </Container>
@@ -56,11 +56,11 @@ const Layout = ({ children, title, description, date }) => {
       <Box as="footer" className={styles.footer} p="md" mt="md">
         <Container>
           <Flex justify="space-between" gap="md">
-            <Text size="sm" c="dimmed">© {new Date().getFullYear()} ImmoRadar</Text>
+            <Text size="sm" c="gray.7">© {new Date().getFullYear()} ImmoRadar</Text>
 
             <Flex gap="md" ml="auto">
-              <Link href="/imprint"><Text size="sm" c="dimmed">Impressum</Text></Link>
-              <Link href="/privacy"><Text size="sm" c="dimmed">Datenschutz</Text></Link>
+              <Link href="/imprint"><Text size="sm" c="gray.7">Impressum</Text></Link>
+              <Link href="/privacy"><Text size="sm" c="gray.7">Datenschutz</Text></Link>
             </Flex>
           </Flex>
         </Container>
