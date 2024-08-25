@@ -14,6 +14,8 @@ const BlogPost = () => {
                 <Text fs="italic" component="time" datetime="2024-08-15">15. August 2024</Text>
                 <Title order={1}>ImmoRadar startet in die Beta Phase</Title>
 
+                {/* todo image */}
+
                 <Text my="md">
                     Nach mehreren Monaten der Entwicklungszeit habe ich heute den Schritt gewagt und ImmoRadar
                     auf <a href="https://old.reddit.com/r/berlin/comments/1erwaxp/i_built_a_free_search_engine_for_flat_hunting_in/" rel="noopener noreferrer">Reddit</a> veröffentlicht. In
