@@ -4,16 +4,17 @@ import Layout from '@/components/Layout/Layout';
 import { posts } from '@/utils/blog';
 
 const BlogPost = () => {
+    const post = posts.find(post => post.slug === 'immoradar-startet-in-die-beta-phase');
     return (
         <Layout
-            title={`${posts[0].title} | ImmoRadar Blog`}
-            description={posts[0].description}
-            date={posts[0].isoDate}
+            title={`${post.title} | ImmoRadar Blog`}
+            description={post.description}
+            date={post.isoDate}
             // todo meta image
         >
             <Container py="xl" size="sm">
-                <Text fs="italic" component="time" datetime={posts[0].isoDate}>{posts[0].date}</Text>
-                <Title order={1}>{posts[0].title}</Title>
+                <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
+                <Title order={1}>{post.title}</Title>
 
                 {/* todo image */}
 
