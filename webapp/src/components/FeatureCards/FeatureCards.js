@@ -17,7 +17,7 @@ const FeatureCard = ({ image, title, text }) => <Card shadow="sm" padding="lg" r
 
   <Text fw={500} mt="md" mb="sm">{title}</Text>
 
-  <Text size="sm" c="dimmed">{text}</Text>
+  <Text size="sm" c="gray.7">{text}</Text>
 </Card>
 
 const FeatureCards = () => {
