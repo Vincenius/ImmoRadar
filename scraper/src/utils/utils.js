@@ -72,13 +72,13 @@ export const parseCurrencyString = (currencyString) => {
   let number = null
   try {
     let numericString = currencyString.replace(/[^\d-]/g, '');
-    let number = parseFloat(numericString);
-  
+    number = parseFloat(numericString);
+
     if (isNaN(number)) {
       return null;
     }
   } catch(e) {
-    console.error('error on parsing currency string', currencyString)
+    console.error('error on parsing currency string', currencyString, e)
     return null;
   }
 
