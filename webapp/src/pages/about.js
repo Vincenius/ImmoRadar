@@ -5,7 +5,7 @@ import Layout from '@/components/Layout/Layout';
 const AboutPage = () => {
     return (
         <Layout
-            title="ImmoRadar | Über Uns"
+            title="Über Uns | ImmoRadar"
             description="Willkommen bei ImmoRadar, Ihrer Webseite für die Wohnungssuche in Deutschland. Diese Webseite wurde von mir, Vincent, ins Leben gerufen. Mein Ziel ist es, die Wohnungssuche so einfach und stressfrei wie möglich zu gestalten..."
         >
             <Container py="xl" size="sm">
