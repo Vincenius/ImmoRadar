@@ -31,7 +31,7 @@ export default function CityLayout({
               {titleContent}
             </Title>
 
-            { cta === 'search' && <SearchBar city={city} /> }
+            { cta === 'search' && <SearchBar city={city} showFilter={true} /> }
             { cta === 'button' && <Button variant="filled" radius="md" size="lg" fullWidth href={`/search?q=${city}`} component={Link} className={styles.button}>
                 Jetzt alle {count}+ Wohnungen in {cityTitle} anzeigen
             </Button> }

@@ -7,25 +7,30 @@ import { providers } from '@/utils/providers'
 
 const eurIcon = <IconCurrencyEuro style={{ width: rem(20), height: rem(20) }} stroke={1.5} />;
 
+const initFilter = {
+  minPrice: null,
+  maxPrice: null,
+  minSize: null,
+  maxSize: null,
+  minRooms: null,
+  maxRooms: null,
+  titleIncludes: [],
+  titleExcludes: [],
+  features: [],
+  providers: [],
+}
+
 const Filter = ({ defaultFilter, applyFilter, loading }) => {
   const [opened, { toggle }] = useDisclosure(false);
 
-  const [filter, setFilter] = useState({
-    minPrice: null,
-    maxPrice: null,
-    minSize: null,
-    maxSize: null,
-    minRooms: null,
-    maxRooms: null,
-    titleIncludes: [],
-    titleExcludes: [],
-    features: [],
-    providers: [],
-  })
+  const [filter, setFilter] = useState(initFilter)
 
   useEffect(() => {
     if (defaultFilter) {
-      setFilter(defaultFilter)
+      setFilter({
+        ...initFilter,
+        ...defaultFilter
+      })
     }
   }, [defaultFilter, setFilter]);
 
