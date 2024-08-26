@@ -13,7 +13,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
     
         while (lastPage && currentPage <= lastPage && !error) {
             console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage);
-            const BASE_URL = `https://www.kleinanzeigen.de/s-wohnung-mieten/berlin/anzeige:angebote/seite:${currentPage}/c203l3331+wohnung_mieten.swap_s:nein`
+            const BASE_URL = `https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/seite:${currentPage}/c203+wohnung_mieten.swap_s:nein`
             currentPage++;
     
             await page.goto(BASE_URL);
