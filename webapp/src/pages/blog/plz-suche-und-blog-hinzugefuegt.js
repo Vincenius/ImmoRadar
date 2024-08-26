@@ -14,7 +14,7 @@ const BlogPost = () => {
             <Text my="md">
                 Zusätzlich wurde der Blog zu ImmoRadar hinzugefügt um über Neuerungen zu informieren.
                 Es ist geplant in Zukunft neben Informationen zu Aktualisierungen auf ImmoRadar auch Blog Beiträge
-                rund um Immobilien und Mieten zu erstellen.
+                rund um Immobilien und übers Mieten zu erstellen.
             </Text>
             <Text>
                 Viel Erfolg bei der Immobilien Suche!
