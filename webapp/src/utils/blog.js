@@ -10,4 +10,10 @@ export const posts = [{
     isoDate: '2024-08-21',
     slug: 'berliner-genossenschaftswohnungen-hinzugefuegt',
     description: 'Seit heute können auch Wohnungen von Howoge, Gewobag, Degewo, Gesobau, WBM und Stadt und Land auf ImmoRadar gefunden werden.'
+  }, {
+    title: 'PLZ Suche und Blog hinzugefügt',
+    date: '26. August 2024',
+    isoDate: '2024-08-26',
+    slug: 'plz-suche-und-blog-hinzugefuegt',
+    description: 'Über das Suchfeld können jetzt Immobilien nach der Postleitzahl gesucht werden. Außerdem wurde der Blog zu ImmoRadar hinzugefügt um über Neuerungen zu informieren.'
   }]
