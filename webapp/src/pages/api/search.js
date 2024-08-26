@@ -126,14 +126,24 @@ export default async function handler(req, res) {
                 let query = {}
 
                 if (input === 'manual') {
-                    query = {
-                        $and: [
-                            { $or: [
-                                { 'address.city': { $regex: q, $options: 'i' } },
-                                { 'address.district': { $regex: q, $options: 'i' } }
-                            ] },
-                            ...filter,
-                        ]
+                    // if zip code format
+                    if (/^\d{5}$/.test(q)) {
+                        query = {
+                            $and: [
+                                { 'address.zipCode': { $in: [q] } },
+                                ...filter
+                            ]
+                        }
+                    } else {
+                        query = {
+                            $and: [
+                                { $or: [
+                                    { 'address.city': { $regex: q, $options: 'i' } },
+                                    { 'address.district': { $regex: q, $options: 'i' } }
+                                ] },
+                                ...filter,
+                            ]
+                        }
                     }
                 } else {
                     const location = await locationCollection.findOne({ name: q });
