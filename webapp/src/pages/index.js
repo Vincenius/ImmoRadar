@@ -83,6 +83,7 @@ export default function Home() {
             <List withPadding mt="xs" listStyleType="none" style={{ paddingLeft: '1.6rem' }}>
               <ListItem isPrimary={false} title="Mitte" link="/berlin/mitte"></ListItem>
               <ListItem isPrimary={false} title="Spandau" link="/berlin/spandau"></ListItem>
+              <ListItem isPrimary={false} title="Lichtenberg" link="/berlin/lichtenberg"></ListItem>
 
               <List.Item>
                 <Flex gap="sm" align="center">
