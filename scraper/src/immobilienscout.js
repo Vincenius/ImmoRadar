@@ -2,6 +2,10 @@ import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 
+// https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-800.0&pricetype=rentpermonth&enteredFrom=result_list
+// https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-&pricetype=rentpermonth&enteredFrom=result_list
+// store scrape url for delete query
+
 const parseData = (estates) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
     gallery = Array.isArray(gallery) ? gallery : [gallery]
