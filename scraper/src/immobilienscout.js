@@ -2,9 +2,12 @@ import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 
-// https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-800.0&pricetype=rentpermonth&enteredFrom=result_list
-// https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-&pricetype=rentpermonth&enteredFrom=result_list
-// store scrape url for delete query
+// todo split in smaller pieces (max 500 pages) and run in parallel
+const scrapeUrls = [
+    'https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2', // berlin
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-799.99&pricetype=rentpermonth&enteredFrom=result_list&sorting=2', // all part 1
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-&pricetype=rentpermonth&enteredFrom=result_list&sorting=2' // all part 2
+]
 
 const parseData = (estates) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
@@ -74,6 +77,8 @@ const parseData = (estates) => estates.map(e => {
     }
 })
 
+// TODO function loop through scrapeUrls (parallel run) promise allSettled
+
 const scrapeData = async ({ page, collection, type, logEvent }) => {
     try {
         let currentPage = 1;
@@ -82,11 +87,12 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
         let data = [];
         let count = 0;
         let retry = 0;
+        // todo based on scrapeUrl
         const prevEntries = await collection.find({ provider: "immobilienscout24.de" }, { projection: { id: 1 } }).toArray();
     
         while (lastPage && currentPage <= lastPage && !error && retry < 3) {
             const pageQuery = currentPage === 1 ? '' : `&pagenumber=${currentPage}`
-            const BASE_URL = `https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2${pageQuery}`
+            const BASE_URL = `https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2${pageQuery}` // todo loop url
     
             console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
     
@@ -107,8 +113,6 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
                     lastPage = result.paging.numberOfPages;
     
                     const estates = result.resultlistEntries[0].resultlistEntry;
-    
-                    // fs.writeFileSync('./immoscout-tmp.json', JSON.stringify(estates))
     
                     const parsedData = parseData(estates)
                     const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
@@ -139,7 +143,6 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
 
         if (retry === 3) {
             console.error('IS24.resultList object not found after three retries')
-            // todo maybe restart browser??
             await logEvent({ scraper: 'immobilienscout24.de', success: false, message: 'IS24.resultList object not found after three retries' });
             error = true;
         }
@@ -167,7 +170,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type, { useFirefox: true });
+    await middleware(scrapeData, type, { useFirefox: true }); // todo try to disable js
 }
 
 
