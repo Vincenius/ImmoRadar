@@ -1,4 +1,4 @@
-import { Flex, Text, ThemeIcon, Title, Box } from '@mantine/core';
+import { Flex, Text, ThemeIcon, Title, Box, Container } from '@mantine/core';
 import { IconArrowMergeBoth, IconBell, IconArrowUp, IconList } from '@tabler/icons-react';
 import Link from 'next/link'
 import Image from 'next/image'
@@ -55,9 +55,9 @@ export default function CityLayout({
 
       <Logos />
 
-      <Box my="6em">
+      <Container my="xl" size="sm">
         {children}
-      </Box>
+      </Container>
 
       <FAQs />
 

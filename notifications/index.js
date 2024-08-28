@@ -152,15 +152,26 @@ const notificationRunner = async () => {
 
         let query = {}
         if (notif.manualInput) {
-          query = {
-            $and: [
-              { created_at: { $gte: from } },
-              { $or: [
-                { 'address.city': { $regex: notif.query, $options: 'i' } },
-                { 'address.district': { $regex: notif.query, $options: 'i' } }
-              ] },
-              ...mapFilter(notif.filter),
-            ]
+          // zip code search
+          if (/^\d{5}$/.test(q)) {
+            query = {
+              $and: [
+                { created_at: { $gte: from } },
+                { 'address.zipCode': { $in: [notif.query] } },
+                ...mapFilter(notif.filter),
+              ]
+            }
+          } else {
+            query = {
+              $and: [
+                { created_at: { $gte: from } },
+                { $or: [
+                  { 'address.city': { $regex: notif.query, $options: 'i' } },
+                  { 'address.district': { $regex: notif.query, $options: 'i' } }
+                ] },
+                ...mapFilter(notif.filter),
+              ]
+            }
           }
         } else {
           const location = locations.find(loc => loc.name === notif.query);

@@ -42,7 +42,7 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
 
         Object.keys(query).forEach(key => !query[key] && delete query[key])
         if (manual) {
-            query.manual = true;
+            query.input = 'manual';
         }
         router.push({ pathname: '/search', query });
     }
@@ -55,7 +55,7 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
                 comboboxProps={{ shadow: 'md' }}
                 limit={10}
                 className={showFilter ? styles.inputWithFilter : styles.input}
-                placeholder={ city ? "Bezirk Suchen" : "Ort / Stadt / Bezirk Suchen" }
+                placeholder={ city ? "Bezirk / PLZ Suchen" : "Ort / Stadt / Bezirk / PLZ Suchen" }
                 size="lg"
                 w="100%"
                 onOptionSubmit={(value) => handleSearch({ value })}
