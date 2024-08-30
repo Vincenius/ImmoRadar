@@ -46,6 +46,11 @@ function Layout({ children }) {
             href="/fields"
             label="Felder"
           />
+          <NavLink
+            component={Link}
+            href="/emails"
+            label="Emails"
+          />
         </AppShell.Navbar>
 
         <AppShell.Main>

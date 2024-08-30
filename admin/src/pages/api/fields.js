@@ -19,6 +19,8 @@ export default async function handler(req, res) {
       // Parse the from and to dates
       const fromDate = new Date(from);
       const toDate = new Date(to);
+      fromDate.setHours(0, 0, 0, 0);
+      toDate.setHours(23, 59, 59, 999);
 
       if (isNaN(fromDate.getTime()) || isNaN(toDate.getTime())) {
         res.status(400).json({ error: 'Invalid "from" or "to" date' });
