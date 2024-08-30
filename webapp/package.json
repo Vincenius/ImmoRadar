@@ -17,6 +17,7 @@
     "@mantine/notifications": "^7.11.2",
     "@sentry/nextjs": "^8",
     "@tabler/icons-react": "^3.7.0",
+    "@vercel/og": "^0.6.2",
     "aws-sdk": "^2.1661.0",
     "embla-carousel-autoplay": "^7.1.0",
     "embla-carousel-react": "^7.1.0",

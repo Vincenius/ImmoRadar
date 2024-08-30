@@ -45,7 +45,7 @@ const getEstateElem = ({ gallery, url, title, address, provider, price, livingSp
   </mj-table>
 </mj-column>`
 
-const getTemplate = ({ count, estates, token }) => {
+const getTemplate = ({ count, estates, token, emailToken }) => {
   let mjmlCode = `<mjml>
     <mj-head>
       <mj-style>
@@ -97,6 +97,11 @@ const getTemplate = ({ count, estates, token }) => {
         </mj-column>
         <mj-column>
           <mj-text font-size="12px" color="#000" font-family="helvetica" align="center"><a href="https://immoradar.xyz/api/unsubscribe?token=${token}">Newsletter Abbestellen</a></mj-text>
+        </mj-column>
+      </mj-section>
+      <mj-section>
+        <mj-column vertical-align="middle">
+          <mj-image href="https://immoradar.xyz" src="https://immoradar.xyz/api/email/pixel/${emailToken}" width="10px" height="10px"></mj-image>
         </mj-column>
       </mj-section>
     </mj-body>

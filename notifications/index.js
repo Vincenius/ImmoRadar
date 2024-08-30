@@ -2,9 +2,9 @@ import 'dotenv/config'
 import * as Sentry from '@sentry/node';
 import cron from 'node-cron';
 import { MongoClient } from 'mongodb';
+import { v4 as uuidv4 } from 'uuid';
 import getTemplate from './templates/notification.js'
 import { sendEmail } from './utils/emails.js'
-
 
 if (process.env.GLITCHTIP_URL) {
   console.log('Init Glitchtip', process.env.GLITCHTIP_URL)
@@ -113,6 +113,7 @@ const notificationRunner = async () => {
     const subscriptionCollection = db.collection('subscriptions');
     const collection = db.collection('estates');
     const locationCollection = db.collection('locations');
+    const emailCollection = db.collection('emails');
     const endOfToday = new Date();
     const startOfToday = new Date();
     endOfToday.setHours(23, 59, 59, 999);
@@ -212,27 +213,36 @@ const notificationRunner = async () => {
       ]).toArray()
 
       if (result.totalCount > 0 && result.results.length > 0) {
+        const emailToken = uuidv4();
         const count = result.totalCount;
-        const templateHtml = getTemplate({ count, estates: result.results, token });
+        const templateHtml = getTemplate({ count, estates: result.results, token, emailToken });
         const subject = `ImmoRadar | ${count > 50 ? '50+' : count} neue Wohnungen gefunden!`
 
-        await sendEmail({
-          to: email,
-          subject,
-          html: templateHtml
-        })
+        await Promise.all([
+          sendEmail({
+            to: email,
+            subject,
+            html: templateHtml
+          }),
+          emailCollection.insertOne({
+            email,
+            created_at: new Date(),
+            opened: false,
+            token: emailToken,
+          })
+        ]);
       }
 
       const updatePromises = notifications.map(notif => {
         const nextSendDate = new Date(notif.next_send_date);
         nextSendDate.setDate(nextSendDate.getDate() + notif.frequency);
-  
+
         return subscriptionCollection.updateOne(
           { email, "notifications.id": notif.id },
           { $set: { "notifications.$.next_send_date": nextSendDate } }
         );
       });
-      
+
       await Promise.all(updatePromises);
     }
 
