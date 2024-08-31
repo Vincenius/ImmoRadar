@@ -53,7 +53,7 @@ const SearchItem = ({ item }) => {
               <Text size="sm">{address}</Text>
             </Flex>
 
-            <a href={item.url} target="_blank" rel="noopener noreferrer">
+            <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">
               <Flex gap="xs" align="center" mb="xs">
                 <ThemeIcon variant="white" size="xs">
                   <IconLink />

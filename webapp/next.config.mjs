@@ -2,32 +2,26 @@ import {withSentryConfig} from '@sentry/nextjs';
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   reactStrictMode: true,
-  images: {
-    remotePatterns: [
+  async redirects() {
+    return [
       {
-        protocol: 'https',
-        hostname: 'pictures.immobilienscout24.de',
-        port: '',
-        pathname: '/**',
+        source: '/berlin',
+        destination: '/search?q=Berlin',
+        permanent: true,
+      }, {
+        source: '/berlin/lichtenberg',
+        destination: '/search?q=Berlin-Lichtenberg',
+        permanent: true,
+      }, {
+        source: '/berlin/mitte',
+        destination: '/search?q=Berlin-Mitte',
+        permanent: true,
+      }, {
+        source: '/berlin/spandau',
+        destination: '/search?q=Berlin-Spandau',
+        permanent: true,
       },
-      {
-        protocol: 'https',
-        hostname: 'img.kleinanzeigen.de',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'ms.immowelt.org',
-        port: '',
-        pathname: '/**',
-      },
-      {
-        protocol: 'https',
-        hostname: 'img.wg-gesucht.de',
-        port: '',
-        pathname: '/**',
-      }],
+    ]
   },
 };
 

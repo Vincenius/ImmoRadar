@@ -1,16 +1,16 @@
-import { useState, useEffect } from 'react';
-import useSWR from 'swr'
+import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, NumberInput, Text, Button, Divider, TextInput, Modal, Pagination } from '@mantine/core';
+import { Box, Card, Flex, Select, NumberInput, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { IconAdjustmentsHorizontal, IconBell } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
-import SearchItemLoader from '@/components/SearchItem/SearchItemLoader';
 import Filter from '@/components/Filter/Filter';
+import SearchPages from '@/components/SearchPages/SearchPages';
 import { fetcher } from '@/utils/fetcher'
+import { getSearchTitle, getDefaultTitle, getSearchPages } from '@/utils/searchSeo'
 
 const sortOptions = [{
   label: 'Aktuellste Angebote',
@@ -141,65 +141,44 @@ const Notifications = ({ filter, query }) => {
   </form>
 }
 
-export default function Search() {
-  const router = useRouter()
-  const { q, sort = 'date', page = '1', ...filterQuery } = (router.query || {})
-  const pageInt = parseInt(page) || 1
-  const filterString = Object.entries(filterQuery)
-    .filter(([key, value]) => !!value)
-    .map(([key, value]) => `${key}=${value}`)
-    .join('&');
-  const { data = {}, error, isLoading } = useSWR(`/api/search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`, fetcher)
-  const { estates, pages = 0 } = data
-  const sortValue = sortOptions.find((option) => option.value === sort)?.value || 'date'
+export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery, autocomplete }) {
+  const router = useRouter();
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
-  const [defaultFilter, setDefaultFilter] = useState()
-
-  useEffect(() => {
-    if (router.isReady) {
-      const newFeatures = filterQuery?.features?.split(',') || []
-      const newProviders = filterQuery?.providers?.split(',') || []
-      const newTitleIncludes = filterQuery?.titleIncludes?.split(',') || []
-      const newTitleExcludes = filterQuery?.titleExcludes?.split(',') || []
-      setDefaultFilter({
-        ...filterQuery,
-        features: newFeatures,
-        providers: newProviders,
-        titleIncludes: newTitleIncludes,
-        titleExcludes: newTitleExcludes,
-      })
-    }
-  }, [router.isReady, router.query]);
 
   const applyFilter = (filter) => {
-    const query = { ...router.query, ...filter, page: 1 }
-    query.features = query.features.join(',')
-    query.providers = query.providers.join(',')
-    query.titleIncludes = query.titleIncludes.join(',')
-    query.titleExcludes = query.titleExcludes.join(',')
-    Object.keys(query).forEach(key => !query[key] && delete query[key])
+    const query = { ...router.query, ...filter, page: 1 };
+    query.features = query.features.join(',');
+    query.providers = query.providers.join(',');
+    query.titleIncludes = query.titleIncludes.join(',');
+    query.titleExcludes = query.titleExcludes.join(',');
+    Object.keys(query).forEach(key => !query[key] && delete query[key]);
     if (filterModalOpen) {
-      closeFilterModal()
+      closeFilterModal();
     }
-    router.push({ query })
-  }
+    router.push({ query });
+  };
 
   const updateSort = (sort) => {
-    router.push({ query: { ...router.query, sort, page: 1 } })
-  }
+    router.push({ query: { ...router.query, sort, page: 1 } });
+  };
 
   const setPage = (newPage) => {
-    router.push({ query: { ...router.query, page: newPage } })
-  }
+    router.push({ query: { ...router.query, page: newPage } });
+  };
+
+  const { title: generatedTitle, description } = getSearchTitle({ q, filterQuery, count, sortValue });
+  const title = generatedTitle || getDefaultTitle(q);
 
   return (
     <Layout
-      title={`ImmoRadar | ${q || ''} Suchergebnisse`}
-      description="Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten."
+      title={`${title} | ImmoRadar Suchergebnisse`}
+      description={description}
+      noindex={!generatedTitle || pageInt > 1 || sortValue !== 'date'}
     >
-      <Box pt="xl" pb="md">
-        <SearchBar defaultValue={q} />
+      { count > 0 && <Title pt="xl" size="h3" order={1} fw="500" >{count} Ergebnisse | {title}</Title> }
+      <Box pt="md" pb="md">
+        <SearchBar defaultValue={q} data={autocomplete} />
       </Box>
 
       {/* only mobile design */}
@@ -223,11 +202,6 @@ export default function Search() {
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>
-          {isLoading && <>
-            {Array.from({ length: 5 }).map((_, i) => (
-              <SearchItemLoader key={`loader-${i}`} index={i} />
-            ))}
-          </>}
           {estates && estates.length > 0 && estates.map((item) => <SearchItem key={item._id} item={item} />)}
 
           {estates && estates.length === 0 && <Text c="gray" mt="md">Keine Ergebnisse gefunden</Text>}
@@ -252,6 +226,52 @@ export default function Search() {
 
       { pages > 1 && <Pagination total={pages} value={pageInt} onChange={setPage} mt="sm" mb="sm" /> }
 
+      <Divider my="lg" />
+      <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>
+      <SearchPages data={getSearchPages(q)} />
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  const { q, sort = 'date', page = '1', ...filterQuery } = query;
+  const pageInt = parseInt(page) || 1;
+  const filterString = Object.entries(filterQuery)
+    .filter(([key, value]) => !!value)
+    .map(([key, value]) => `${key}=${value}`)
+    .join('&');
+
+  const [data, autocomplete] = await Promise.all([
+    fetcher(`${process.env.BASE_URL}/api/search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
+    fetcher(`${process.env.BASE_URL}/api/autocomplete`),
+  ]);
+  const { estates, pages = 0, count } = data;
+
+  const newFeatures = filterQuery?.features?.split(',') || [];
+  const newProviders = filterQuery?.providers?.split(',') || [];
+  const newTitleIncludes = filterQuery?.titleIncludes?.split(',') || [];
+  const newTitleExcludes = filterQuery?.titleExcludes?.split(',') || [];
+
+  const defaultFilter = {
+    ...filterQuery,
+    features: newFeatures,
+    providers: newProviders,
+    titleIncludes: newTitleIncludes,
+    titleExcludes: newTitleExcludes,
+  };
+
+  return {
+    props: {
+      estates,
+      pages,
+      count,
+      defaultFilter,
+      q,
+      sortValue: sort,
+      pageInt,
+      filterQuery,
+      autocomplete,
+    },
+  };
 }

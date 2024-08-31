@@ -184,7 +184,7 @@ export default async function handler(req, res) {
                 const estates = result.results
                 pages = Math.ceil(result.totalCount / limit);
 
-                res.status(200).json({ estates, pages });
+                res.status(200).json({ estates, pages, count: result.totalCount });
             }
         } catch (error) {
             console.error(error);

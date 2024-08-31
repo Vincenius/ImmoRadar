@@ -1,28 +1,16 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Card, List, rem } from '@mantine/core';
-import { IconArrowMergeBoth, IconList, IconBell, IconArrowUp, IconMapPinFilled } from '@tabler/icons-react';
-import Link from 'next/link'
+import { Flex, Text, Group, ThemeIcon, Title, Box, Card } from '@mantine/core';
+import { IconArrowMergeBoth, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
+import { fetcher } from '@/utils/fetcher'
 import Layout from '@/components/Layout/Layout'
 import Logos from '@/components/Logos/Logos'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import FeatureCards from '@/components/FeatureCards/FeatureCards';
+import SearchPages from '@/components/SearchPages/SearchPages';
 import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Home.module.css'
 import { Button } from '@mantine/core';
 
-const ListItem = ({ isPrimary, title, link, children }) => (
-  <List.Item>
-    <Flex gap="sm" align="center">
-      <ThemeIcon color={ isPrimary ? 'teal' : 'teal.2'} size={isPrimary ? 24 : 16} radius="xl">
-        <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
-      </ThemeIcon>
-      <Link href={link}>{title}</Link>
-    </Flex>
-
-    {children}
-  </List.Item>
-)
-
-export default function Home() {
+export default function Home({ autocomplete }) {
   return (
     <Layout
       title="ImmoRadar | Alle Immobilienangebote an einem Ort"
@@ -38,7 +26,7 @@ export default function Home() {
             </Title>
 
             <Group position="center">
-              <SearchBar showFilter={true} />
+              <SearchBar showFilter={true} data={autocomplete} />
               <Card fs="sm" p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7} w="100%">
                 <Text size="sm" fs="italic">
                   ImmoRadar befindet sich aktuell in der Beta-Phase. Aktuell werden nur Suchanfragen für &quot;Berlin&quot; unterstützt.<br/>Alle anderen Städte / Gemeinden werden in Kürze hinzugefügt.
@@ -74,30 +62,9 @@ export default function Home() {
       <Box my="6em">
         <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in folgenden Regionen</Title>
 
-        <List 
-          mb="lg"
-          listStyleType="none"
-        >
-          <ListItem isPrimary={true} title="Berlin" link="/berlin">
-
-            <List withPadding mt="xs" listStyleType="none" style={{ paddingLeft: '1.6rem' }}>
-              <ListItem isPrimary={false} title="Mitte" link="/berlin/mitte"></ListItem>
-              <ListItem isPrimary={false} title="Spandau" link="/berlin/spandau"></ListItem>
-              <ListItem isPrimary={false} title="Lichtenberg" link="/berlin/lichtenberg"></ListItem>
-
-              <List.Item>
-                <Flex gap="sm" align="center">
-                    <ThemeIcon color="teal.2" size={16} radius="xl">
-                      <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
-                    </ThemeIcon>
-                    <span>Weitere folgen...</span>
-                </Flex>
-              </List.Item>
-            </List>
-          </ListItem>
-        </List>
+        <SearchPages data={autocomplete.map(a => ({ label: a.name, url: `/search?q=${a.name}`}))} />
       </Box>
-      
+
       <Box my="6em">
         <Button
           variant="filled"
@@ -112,4 +79,14 @@ export default function Home() {
       </Box>
     </Layout>
   );
+}
+
+export async function getServerSideProps(context) {
+  const data = await fetcher(`${process.env.BASE_URL}/api/autocomplete`);
+
+  return {
+    props: {
+      autocomplete: data
+    },
+  };
 }

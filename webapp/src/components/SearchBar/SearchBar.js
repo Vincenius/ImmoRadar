@@ -1,17 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { useSearchParams } from 'next/navigation'
-import useSWR from 'swr'
 import { Autocomplete, Flex, ActionIcon, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconAdjustmentsHorizontal } from '@tabler/icons-react'
 import { useRouter } from 'next/navigation';
-import { fetcher } from '@/utils/fetcher';
 import Filter from '@/components/Filter/Filter';
 import styles from './SearchBar.module.css'
 
-const SearchBar = ({ defaultValue = '', city, showFilter }) => {
+const SearchBar = ({ defaultValue = '', city, showFilter, data }) => {
     const router = useRouter()
-    const { data = [] } = useSWR('/api/autocomplete', fetcher)
     const [value, setValue] = useState(defaultValue);
     const [filterQuery, setFilterQuery] = useState({})
     const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
