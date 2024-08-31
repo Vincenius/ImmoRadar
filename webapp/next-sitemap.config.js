@@ -196,7 +196,7 @@ module.exports = {
             },
         ],
     },
-    generateIndexSitemap: false,
+    // generateIndexSitemap: false,
     additionalPaths: async (config) => {
         const client = new MongoClient(process.env.MONGODB_URI);
 
