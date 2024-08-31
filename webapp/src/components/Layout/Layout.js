@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
@@ -6,7 +7,40 @@ import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
 import Logo from './logo.svg';
 import styles from './Layout.module.css';
 
+function generateCanonicalUrl() {
+  const router = useRouter();
+  const { query, pathname } = router;
+
+  // Clone the query object and track if any parameter was removed
+  const canonicalQuery = { ...query };
+  let parametersRemoved = false;
+
+  if (canonicalQuery.page === '1') {
+    delete canonicalQuery.page;
+    parametersRemoved = true;
+  }
+  if (canonicalQuery.sort === 'date') {
+    delete canonicalQuery.sort;
+    parametersRemoved = true;
+  }
+
+  // If no parameters were removed, return null
+  if (!parametersRemoved) {
+    return null;
+  }
+
+  // Generate the canonical URL
+  const canonicalUrl = new URL(pathname, 'https://immoradar.xyz');
+  Object.keys(canonicalQuery).forEach((key) => {
+    canonicalUrl.searchParams.append(key, canonicalQuery[key]);
+  });
+
+  return canonicalUrl.href;
+}
+
 const Layout = ({ children, title, description, date, noindex }) => {
+  const canonicalUrl = generateCanonicalUrl();
+
   return <>
     <Head>
       <title>{title}</title>
@@ -23,7 +57,7 @@ const Layout = ({ children, title, description, date, noindex }) => {
       { date && <meta property="article:published_time" content={date}></meta> }
       { date && <meta name="author" content="Vincent Will"></meta> }
       { noindex && <meta name="robots" content="noindex" /> }
-      {/* if query page=1 canonical */}
+      { canonicalUrl && <link rel="canonical" href={canonicalUrl} /> }
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
