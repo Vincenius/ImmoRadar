@@ -7,7 +7,7 @@ import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
 import Logo from './logo.svg';
 import styles from './Layout.module.css';
 
-function generateCanonicalUrl() {
+function useCannonical() {
   const router = useRouter();
   const { query, pathname } = router;
 
@@ -39,7 +39,7 @@ function generateCanonicalUrl() {
 }
 
 const Layout = ({ children, title, description, date, noindex }) => {
-  const canonicalUrl = generateCanonicalUrl();
+  const canonicalUrl = useCannonical();
 
   return <>
     <Head>
