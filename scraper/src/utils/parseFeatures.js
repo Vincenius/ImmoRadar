@@ -120,7 +120,6 @@ export const parseFeatures = estate => {
       includes.some(i => estate.title.toLowerCase().includes(i)) &&
       !excludes.some(e => estate.title.toLowerCase().includes(e))
     ) {
-      console.log('ADD', estate.title, feature)
       features.push(feature)
     }
   });
