@@ -1,4 +1,5 @@
 import { middleware } from './utils/middleware.js'
+import { parseFeatures } from './utils/parseFeatures.js';
 import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
 
 const scrapeData = async ({ page, collection, type, logEvent }) => {
@@ -161,6 +162,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
                         : date;
     
                     subPageData.date = useDate.toISOString()
+                    subPageData.features = parseFeatures(subPageData);
     
                     console.log('Scraped data from sub-page', link);
     

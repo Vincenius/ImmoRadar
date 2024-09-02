@@ -1,4 +1,5 @@
 import { middleware } from './utils/middleware.js'
+import { parseFeatures } from './utils/parseFeatures.js';
 import { getZipByAddress } from './utils/utils.js'
 
 const scrapeData = async ({ page, collection, logEvent }) => {
@@ -49,7 +50,7 @@ const scrapeData = async ({ page, collection, logEvent }) => {
                     'Seniorenwohnung': 'SENIOR_FRIENDLY',
                     'Gäste-WC': 'GUEST_TOILET'
                 }
-    
+
                 pageData.push({
                     id,
                     created_at: new Date(),
@@ -90,7 +91,8 @@ const scrapeData = async ({ page, collection, logEvent }) => {
                 address: {
                     ...filteredData[i].address,
                     zipCode: await getZipByAddress(filteredData[i].address)
-                }
+                },
+                features: parseFeatures(filteredData[i])
             }
     
             data.push(newElem)

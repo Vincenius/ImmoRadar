@@ -94,9 +94,7 @@ const scrapeData = async ({ page, collection, type }) => {
     //     features: [
     //       "FULLY_FURNISHED",
     //       "BALCONY",
-    //       "UNDERGROUND_PARKING",
     //       "BASEMENT",
-    //       "RENOVATED",
     //       // Add or adjust these features based on the page content
     //     ],
     //   };

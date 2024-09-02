@@ -1,4 +1,5 @@
 import { middleware } from './utils/middleware.js'
+import { parseFeatures } from './utils/parseFeatures.js';
 import { delay, withRetries } from './utils/utils.js'
 
 const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
@@ -194,7 +195,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
                         "teilmöbliert": "PARTLY_FURNISHED",
                         "Eigenes Bad": "BATH_WITH_TUB",
                         "Balkon": "BALCONY",
-                        "Barrierefrei": "BARRIER_FREE",
+                        "Barrierefrei": "WHEELCHAIR_ACCESSIBLE",
                         "möbliert": "FULLY_FURNISHED",
                         "Badewanne": "BATH_WITH_TUB",
                         "Aufzug": "PASSENGER_LIFT",
@@ -210,7 +211,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
                         "Terrasse": "TERRACE",
                         "Garten": "GARDEN",
                         "Haustiere erlaubt": "PETS_ALLOWED",
-                        "Tiefgaragenstellplatz": "UNDERGROUND_PARKING",
+                        "Tiefgaragenstellplatz": "CAR_PARK",
                         "Gäste WC": "GUEST_TOILET",
                     };
     
@@ -236,6 +237,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
                     subPageData.id = link;
                     subPageData.url = link;
                     subPageData.created_at = new Date();
+                    subPageData.features = parseFeatures(subPageData)
     
                     result.push(subPageData)
     

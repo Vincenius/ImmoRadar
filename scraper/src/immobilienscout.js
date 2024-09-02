@@ -1,6 +1,7 @@
 import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
+import { parseFeatures } from './utils/parseFeatures.js';
 
 // todo split in smaller pieces (max 500 pages) and run in parallel
 const scrapeUrls = [
@@ -19,7 +20,7 @@ const parseData = (estates) => estates.map(e => {
         'Garten': 'GARDEN',
         'Keller': 'BASEMENT',
         'Aufzug': 'PASSENGER_LIFT',
-        'Stufenlos': 'BARRIER_FREE',
+        'Stufenlos': 'WHEELCHAIR_ACCESSIBLE',
         'Gäste-WC': 'GUEST_TOILET',
         'WG-geeignet': 'FLAT_SHARE_POSSIBLE'
     };
@@ -38,7 +39,13 @@ const parseData = (estates) => estates.map(e => {
         console.log('FAILED TO PARSE GALLERY', gallery)
     }
 
-    return {
+    const features = mapFeatures((e.realEstateTags && e.realEstateTags.tag)
+        ? (typeof e.realEstateTags.tag) === 'string'
+            ? [e.realEstateTags.tag]
+            : e.realEstateTags.tag
+        : [])
+
+    const result = {
         id: e['@id'],
         created_at: new Date(),
         url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
@@ -69,11 +76,12 @@ const parseData = (estates) => estates.map(e => {
             .flat()
             .map(u => ({ url: u })),
         company: e['resultlist.realEstate'].privateOffer === 'true' ? 'Privat' : e['resultlist.realEstate'].contactDetails?.company || null,
-        features: mapFeatures((e.realEstateTags && e.realEstateTags.tag)
-            ? (typeof e.realEstateTags.tag) === 'string'
-                ? [e.realEstateTags.tag]
-                : e.realEstateTags.tag
-            : []),
+        features,
+    }
+
+    return {
+        ...result,
+        features: parseFeatures(result)
     }
 })
 

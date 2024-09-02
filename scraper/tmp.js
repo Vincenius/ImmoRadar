@@ -33,15 +33,9 @@ console.log(JSON.stringify([...new Set(rawFeatures)]))
 
 
 // [
-//     "BARRIER_FREE",
 //     "FIRST_TIME_USE",
-//     "RENOVATED",
-//     "RENTED",
-//     "AVAILABLE_FOR_RENT",
 //     "FITTED_KITCHEN",
-//     "PARKING_AREA",
 //     "LOGGIA",
-//     "DOUBLE_PARKER",
 //     "PASSENGER_LIFT",
 //     "SENIOR_FRIENDLY",
 //     "BALCONY",
@@ -59,10 +53,8 @@ console.log(JSON.stringify([...new Set(rawFeatures)]))
 //     "COMPUTER_CABLING",
 //     "BATH_WITH_TUB",
 //     "WHEELCHAIR_ACCESSIBLE",
-//     "UNDERGROUND_PARKING",
 //     "GARDEN",
 //     "FULLY_FURNISHED",
-//     "GARAGE",
 //     "FREIGHT_ELEVATOR",
 //     "FULLY_RENOVATED",
 //     "BATH_WITH_WINDOW",
@@ -70,13 +62,10 @@ console.log(JSON.stringify([...new Set(rawFeatures)]))
 //     "TERRACE",
 //     "PARTLY_FURNISHED",
 //     "BASEMENT",
-//     "CELLAR_SHARE",
 //     "CERTIFICATE_OF_ELIGIBILITY",
 //     "NEW_BUILDING_PROJECT",
-//     "PARTLY_AIR_CONDITIONED",
 //     "CARPORT",
 //     "ATTIC",
-//     "GARDEN_PART",
 //     "GUEST_TOILET"
 //   ]
 

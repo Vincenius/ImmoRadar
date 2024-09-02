@@ -1,4 +1,5 @@
 import { middleware } from './utils/middleware.js'
+import { parseFeatures } from './utils/parseFeatures.js'
 
 const mapPriceType = {
     "COLD_RENT": "COLD_RENT",
@@ -6,37 +7,53 @@ const mapPriceType = {
     "PURCHASE_PRICE": "PURCHASE_PRICE",
 }
 
-const parseData = (estates) => estates.map(e => ({
-    id: e.id,
-    created_at: new Date(),
-    url: `https://www.immowelt.de/expose/${e.onlineId}`,
-    provider: "immowelt.de",
-    date: e.timestamp,
-    price: {
-        value: e.primaryPrice?.amountMax,
-        currency: e.primaryPrice?.currency,
-        additionalInfo: mapPriceType[e.primaryPrice?.type] || e.primaryPrice?.type,
-    },
-    livingSpace: e.primaryArea?.sizeMin,
-    rooms: e.roomsMin,
-    // "availabiltiy": "Now",
-    address: {
-        zipCode: e.place.postcode,
-        city: e.place.city,
-        district: e.place.district,
-        street: e.place.street,
-        geolocation: e.place.point ? {
-            lat: e.place.point.lat,
-            lon: e.place.point.lon,
-        } : null
-    },
-    title: e.title.trim(),
-    gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
-    features: e.features,
-    company: e.broker?.companyName
-        ? e.broker?.companyName.trim()
-        : null,
-}) )
+const mapFeatures = {
+    "CELLAR_SHARE": "BASEMENT",
+    "BARRIER_FREE": "WHEELCHAIR_ACCESSIBLE",
+    "PARKING_AREA": "CAR_PARK",
+    "UNDERGROUND_PARKING": "CAR_PARK",
+    "PARTLY_AIR_CONDITIONED": "AIR_CONDITIONED",
+    "RENOVATED": "FULLY_RENOVATED",
+}
+
+const parseData = (estates) => estates.map(e => {
+    const result = {
+        id: e.id,
+        created_at: new Date(),
+        url: `https://www.immowelt.de/expose/${e.onlineId}`,
+        provider: "immowelt.de",
+        date: e.timestamp,
+        price: {
+            value: e.primaryPrice?.amountMax,
+            currency: e.primaryPrice?.currency,
+            additionalInfo: mapPriceType[e.primaryPrice?.type] || e.primaryPrice?.type,
+        },
+        livingSpace: e.primaryArea?.sizeMin,
+        rooms: e.roomsMin,
+        // "availabiltiy": "Now",
+        address: {
+            zipCode: e.place.postcode,
+            city: e.place.city,
+            district: e.place.district,
+            street: e.place.street,
+            geolocation: e.place.point ? {
+                lat: e.place.point.lat,
+                lon: e.place.point.lon,
+            } : null
+        },
+        title: e.title.trim(),
+        gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
+        features: e.features.map(f => mapFeatures[f] || f),
+        company: e.broker?.companyName
+            ? e.broker?.companyName.trim()
+            : null,
+    }
+
+    return {
+        ...result,
+        features: parseFeatures(result)
+    }
+})
 
 const scrapeData = async ({ page, collection, type, logEvent }) => {
     try {
