@@ -72,7 +72,8 @@ const startBrowser = async ({ options = {} }) => {
     return { browser, page }
 }
 
-export const middleware = async (callback, type, options = {}) => {
+export const middleware = async (callback, options = {}) => {
+    const { type, searchUrl } = options
     let browser;
     const client = new MongoClient(process.env.MONGODB_URI);
 
@@ -84,8 +85,6 @@ export const middleware = async (callback, type, options = {}) => {
 
         const { browser: newBrowser, page } = await startBrowser({ options });
         browser = newBrowser
-
-        console.log('Playwright ready...')
 
         const restartBrowser = async ({ options: newOptions }) => {
             console.log('Restarting browser...')
@@ -102,9 +101,12 @@ export const middleware = async (callback, type, options = {}) => {
                     created_at: new Date(),
                     scraper,
                     type,
+                    searchUrl,
                     success,
                     message,
                 })
+            } else {
+                console.log({ scraper, success, message, searchUrl })
             }
         }
 
@@ -112,6 +114,7 @@ export const middleware = async (callback, type, options = {}) => {
             page,
             collection: estateCollection,
             type,
+            searchUrl,
             logEvent,
             restartBrowser,
         })
@@ -119,7 +122,6 @@ export const middleware = async (callback, type, options = {}) => {
         console.error("Playwright Error:", error);
     } finally {
         if (browser) {
-            console.log('Closing Playwright...')
             await browser.close();
         }
         client.close();

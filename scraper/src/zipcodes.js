@@ -36,7 +36,7 @@ const scrapeData = async ({ page, collection, type }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type);
+    await middleware(scrapeData, { type });
 }
 
 

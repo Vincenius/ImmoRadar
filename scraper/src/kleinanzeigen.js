@@ -205,7 +205,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type);
+    await middleware(scrapeData, { type });
 }
 
 export const kleinanzeigenCrawler = crawler;

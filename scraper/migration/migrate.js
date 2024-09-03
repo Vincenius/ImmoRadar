@@ -1,6 +1,8 @@
 import { MongoClient } from 'mongodb';
 import { parseFeatures } from '../src/utils/parseFeatures.js';
 
+// todo migration remove without searchUrl
+
 const run = async () => {
   const client = new MongoClient('here');
   await client.connect();

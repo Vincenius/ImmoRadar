@@ -1,14 +1,6 @@
-import fs from 'fs';
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 import { parseFeatures } from './utils/parseFeatures.js';
-
-// todo split in smaller pieces (max 500 pages) and run in parallel
-const scrapeUrls = [
-    'https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2', // berlin
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-799.99&pricetype=rentpermonth&enteredFrom=result_list&sorting=2', // all part 1
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-&pricetype=rentpermonth&enteredFrom=result_list&sorting=2' // all part 2
-]
 
 const parseData = (estates) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
@@ -85,9 +77,7 @@ const parseData = (estates) => estates.map(e => {
     }
 })
 
-// TODO function loop through scrapeUrls (parallel run) promise allSettled
-
-const scrapeData = async ({ page, collection, type, logEvent }) => {
+const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
     try {
         let currentPage = 1;
         let lastPage = 1;
@@ -95,14 +85,13 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
         let data = [];
         let count = 0;
         let retry = 0;
-        // todo based on scrapeUrl
-        const prevEntries = await collection.find({ provider: "immobilienscout24.de" }, { projection: { id: 1 } }).toArray();
+        const prevEntries = await collection.find({ provider: "immobilienscout24.de", searchUrl }, { projection: { id: 1 } }).toArray();
     
         while (lastPage && currentPage <= lastPage && !error && retry < 3) {
             const pageQuery = currentPage === 1 ? '' : `&pagenumber=${currentPage}`
-            const BASE_URL = `https://www.immobilienscout24.de/Suche/de/berlin/berlin/wohnung-mieten?sorting=2${pageQuery}` // todo loop url
+            const BASE_URL = `${searchUrl}&sorting=2${pageQuery}`
     
-            console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage);
+            console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage, searchUrl);
     
             await page.goto(BASE_URL);
             await delay(3000);
@@ -177,8 +166,27 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
     }
 }
 
+const scrapeUrls = [
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-299.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=300.0-349.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=350.0-399.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=400.0-449.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=450.0-499.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=500.0-599.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=600.0-699.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=700.0-799.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-899.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=900.0-1099.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1100.0-1299.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1300.0-1699.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1700.0&pricetype=rentpermonth&enteredFrom=result_list',
+]
+
 const crawler = async (type) => {
-    await middleware(scrapeData, type, { useFirefox: true }); // todo try to disable js
+    console.log('running immobilienscout scraper')
+    await Promise.allSettled(
+        scrapeUrls.map(searchUrl => middleware(scrapeData, { type, searchUrl, useFirefox: true }))
+    )
 }
 
 

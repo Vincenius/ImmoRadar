@@ -120,7 +120,7 @@ const scrapeData = async ({ page, collection, logEvent }) => {
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type);
+    await middleware(scrapeData, { type });
 }
 
 export const inberlinwohnenCrawler = crawler;

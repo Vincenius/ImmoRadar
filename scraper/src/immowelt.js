@@ -151,7 +151,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
 
 const crawler = async (type) => {
     try {
-        await middleware(scrapeData, type);
+        await middleware(scrapeData, { type });
     } catch (error) {
         console.error("Immowelt Error:", error);
     }

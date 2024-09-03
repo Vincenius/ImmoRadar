@@ -117,7 +117,10 @@ export default async function handler(req, res) {
                     providerFilter['provider'] = { $nin: providersArray };
                 }
 
-                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter, providerFilter]
+                // hide elements from all scan for now
+                const tmpFilter = { searchUrl: { $exists: false } };
+
+                const filter = [priceFilter, sizeFilter, roomsFilter, featuresFilter, titleFilter, providerFilter, tmpFilter]
                     .filter(obj => Object.keys(obj).length > 0);
 
                 // RUN QUERY

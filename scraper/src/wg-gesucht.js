@@ -279,7 +279,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
 }
 
 const crawler = async (type) => {
-    await middleware(scrapeData, type, { randomBrowser: true });
+    await middleware(scrapeData, { type, randomBrowser: true });
 }
 
 export const wgGesuchtCrawler = crawler;

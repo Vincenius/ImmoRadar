@@ -118,7 +118,7 @@ const scrapeData = async ({ page, collection, type }) => {
 
 const crawler = async (type) => {
     try {
-        await middleware(scrapeData, type);
+        await middleware(scrapeData, { type });
     } catch (error) {
         console.error("Wohnungsboerse Error:", error);
     }
