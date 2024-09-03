@@ -11,7 +11,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
     }
 
     if (Object.keys(filterQuery).length === 1) {
-      if (filterQuery.titleIncludes === 'WBS') { // CERTIFICATE_OF_ELIGIBILITY
+      if (filterQuery.features === 'CERTIFICATE_OF_ELIGIBILITY') {
         title = `WBS Wohnungen in ${q} - Günstige Sozialwohnungen mieten`
         description = `Alle verfügbaren WBS Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 9 Immobilien-Webseiten.`
       }
@@ -19,11 +19,11 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
         title = `Wohnen auf Zeit in ${q} - Möblierte Wohnungen mieten`
         description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für möblierte Wohnungen von 9 Immobilien-Webseiten.`
       }
-      if (filterQuery.titleIncludes === 'Garten') { // GARDEN_SHARED
+      if (filterQuery.features === 'GARDEN') {
         title = `Wohnungen mit Garten in ${q} mieten`
-        description = `Alle verfügbaren Wohnungen mit Garden in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Garden von 9 Immobilien-Webseiten.`
+        description = `Alle verfügbaren Wohnungen mit Garten in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Garten von 9 Immobilien-Webseiten.`
       }
-      if (filterQuery.titleIncludes === 'Neubau') { // NEW_BUILDING
+      if (filterQuery.features === 'NEW_BUILDING') {
         title = `Neubauwohnungen in ${q} - Angebote von 9 Immobilienportalen`
         description = `Alle verfügbaren Neubauwohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Neubauwohnungen zur Miete von 9 Immobilien-Webseiten.`
       }
@@ -70,16 +70,16 @@ export const getDefaultTitle = (q) => {
 
 export const getSearchPages = q => [{
   label: `WBS Wohnungen in ${q}`,
-  url: `/search?q=${q}&titleIncludes=WBS`,
+  url: `/search?q=${q}&features=CERTIFICATE_OF_ELIGIBILITY`,
 }, {
   label: `Wohnungen auf Zeit in ${q}`,
   url: `/search?q=${q}&titleIncludes=auf+Zeit`,
 }, {
   label: `Wohnungen mit Garten in ${q}`,
-  url: `/search?q=${q}&titleIncludes=Garten`,
+  url: `/search?q=${q}&features=GARDEN`,
 }, {
   label: `Neubauwohnungen in ${q}`,
-  url: `/search?q=${q}&titleIncludes=Neubau`,
+  url: `/search?q=${q}&features=NEW_BUILDING`,
 }, {
   label: `WG-geeignete Wohnungen in ${q}`,
   url: `/search?q=${q}&features=FLAT_SHARE_POSSIBLE`,
