@@ -188,6 +188,7 @@ const crawler = async (type) => {
     await Promise.allSettled(
         scrapeUrls.map(searchUrl => middleware(scrapeData, { type, searchUrl, useFirefox: true }))
     )
+    console.log('finished immobilienscout scraper')
 }
 
 
