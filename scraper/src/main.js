@@ -9,7 +9,7 @@ import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 // 'NEW_SCAN' OR 'FULL_SCAN'
-await immobilienscoutCrawler('NEW_SCAN');
+await immobilienscoutCrawler('FULL_SCAN');
 // await immoweltCrawler('FULL_SCAN')
 // await kleinanzeigenCrawler('NEW_SCAN')
 // await wgGesuchtCrawler('NEW_SCAN')

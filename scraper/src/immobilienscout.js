@@ -2,7 +2,7 @@ import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 
-const parseData = (estates) => estates.map(e => {
+const parseData = (estates, searchUrl) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
     gallery = Array.isArray(gallery) ? gallery : [gallery]
 
@@ -112,7 +112,7 @@ const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
     
                     const estates = result.resultlistEntries[0].resultlistEntry;
     
-                    const parsedData = parseData(estates)
+                    const parsedData = parseData(estates, searchUrl)
                     const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
     
                     if (newData.length) {
