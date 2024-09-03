@@ -77,11 +77,11 @@ const SearchItem = ({ item }) => {
 
           <Flex justify="space-between">
             <Box>
-              <Text size="md" fw="bold">{item.price.value} €</Text>
+              <Text size="md" fw="bold">{item.price.value || 'N/A'} €</Text>
               <Text size="sm">{priceType}</Text>
             </Box>
             <Box>
-              <Text size="md" fw="bold">{item.livingSpace} m²</Text>
+              <Text size="md" fw="bold">{item.livingSpace || 'N/A'} m²</Text>
               <Text size="sm">Wohnfläche</Text>
             </Box>
             { item.rooms && <Box>
