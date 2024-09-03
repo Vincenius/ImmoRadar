@@ -42,6 +42,7 @@ const parseData = (estates) => estates.map(e => {
         created_at: new Date(),
         url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
         provider: "immobilienscout24.de",
+        searchUrl,
         date: e['@publishDate'],
         price: {
             value: e['resultlist.realEstate'].price.value,
