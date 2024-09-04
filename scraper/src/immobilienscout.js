@@ -95,7 +95,8 @@ const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
             console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage, searchUrl);
     
             await page.goto(BASE_URL);
-            await delay(3000);
+            // await delay(3000);
+            await page.waitForSelector('#resultlistpage')
     
             const content = await page.content();
             const scriptRegex = /IS24\.resultList\s*=\s*(\{[\s\S]*?\});/;
