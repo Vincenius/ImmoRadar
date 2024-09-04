@@ -10,13 +10,15 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 let isFullScanRunning = false;
 
-const runScan = async (type) => Promise.allSettled([
-  immoweltCrawler(type),
-  immobilienscoutCrawler(type),
-  kleinanzeigenCrawler(type),
-  wgGesuchtCrawler(type),
-  inberlinwohnenCrawler()
-])
+const runScan = async (type) => {
+  await Promise.allSettled[
+    immoweltCrawler(type),
+    kleinanzeigenCrawler(type),
+    wgGesuchtCrawler(type),
+    inberlinwohnenCrawler()
+  ]
+  await immobilienscoutCrawler(type)    
+}
 
 console.log('INIT CRON JOB')
 
