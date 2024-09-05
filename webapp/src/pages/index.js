@@ -27,11 +27,6 @@ export default function Home({ autocomplete }) {
 
             <Group position="center">
               <SearchBar showFilter={true} data={autocomplete} />
-              <Card fs="sm" p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7} w="100%">
-                <Text size="sm" fs="italic">
-                  ImmoRadar befindet sich aktuell in der Beta-Phase. Aktuell werden nur Suchanfragen für &quot;Berlin&quot; unterstützt.<br/>Alle anderen Städte / Gemeinden werden in Kürze hinzugefügt.
-                </Text>
-              </Card>
             </Group>
           </Box>
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
