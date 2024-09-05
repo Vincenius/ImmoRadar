@@ -246,7 +246,9 @@ export async function getServerSideProps(context) {
     fetcher(`${process.env.BASE_URL}/api/search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
     fetcher(`${process.env.BASE_URL}/api/autocomplete`),
   ]);
-  const { estates, pages = 0, count } = data;
+
+  console.log(data)
+  const { estates, pages = 0, count = 0 } = data;
 
   const newFeatures = filterQuery?.features?.split(',') || [];
   const newProviders = filterQuery?.providers?.split(',') || [];

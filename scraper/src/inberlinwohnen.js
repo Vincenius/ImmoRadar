@@ -50,6 +50,7 @@ const scrapeData = async ({ page, collection, logEvent }) => {
                     'Seniorenwohnung': 'SENIOR_FRIENDLY',
                     'Gäste-WC': 'GUEST_TOILET'
                 }
+                const amount = el.querySelector('._tb_left strong:nth-child(3)');
 
                 pageData.push({
                     id,
@@ -59,7 +60,7 @@ const scrapeData = async ({ page, collection, logEvent }) => {
                     url: 'https://inberlinwohnen.de' + el.querySelector('.org-but').getAttribute('href'),
                     price: {
                         value: parseFloat(
-                            el.querySelector('._tb_left strong:nth-child(3)').textContent.replace(',', '.')
+                            amount ? amount.textContent.replace(',', '.') : null
                         ),
                         currency: 'EUR',
                         additionalInfo: 'Kaltmiete'
