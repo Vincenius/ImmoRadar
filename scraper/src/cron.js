@@ -9,21 +9,21 @@ import { immobilienscoutCrawler } from "./immobilienscout.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
-let isFullScanRunning = false;
+// let isFullScanRunning = false;
 
 const runScan = async (type) => {
-  const immoscoutScraper = immobilienscoutCrawler(type);
-  const immoweltScraper = immoweltCrawler(type)
-  const scraper1 = kleinanzeigenCrawler(type)
-  const scraper2 = wgGesuchtCrawler(type)
-  const scraper3 = inberlinwohnenCrawler()
+  const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
+  const immoweltScraper = immoweltCrawler('NEW_SCAN')
+  const kleinanzeigenScraper = kleinanzeigenCrawler('NEW_SCAN')
+  const wgGesuchtScraper = wgGesuchtCrawler('NEW_SCAN')
+  const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
   const allScraper = [
     ...immoscoutScraper,
     ...immoweltScraper,
-    scraper1, // kleinanzeigen
-    scraper2, // wg gesucht
-    scraper3, // inberlinwohnen
+    wgGesuchtScraper,
+    inBerlinWohnenScraper,
+    ...kleinanzeigenScraper,
   ]
 
   const batches = splitIntoBatches(allScraper, 5)

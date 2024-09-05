@@ -2,7 +2,7 @@ import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
 
-const scrapeData = async ({ page, collection, type, logEvent }) => {
+const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     try {
         let currentPage = 1;
         let lastPage = 1;
@@ -10,12 +10,11 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
         let count = 0;
         let error;
     
-        const prevEntries = await collection.find({ provider: "kleinanzeigen.de" }, { projection: { url: 1 } }).toArray();
+        const prevEntries = await collection.find({ provider: "kleinanzeigen.de", searchUrl }, { projection: { url: 1 } }).toArray();
     
         while (lastPage && currentPage <= lastPage && !error) {
-            console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage);
-            // https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/seite:1/c203+wohnung_mieten.swap_s:nein
-            const BASE_URL = `https://www.kleinanzeigen.de/s-wohnung-mieten/berlin/anzeige:angebote/seite:${currentPage}/c203l3331+wohnung_mieten.swap_s:nein`
+            console.log('Kleinanzeigen SCRAPING', currentPage, 'OF', lastPage, searchUrl);
+            const BASE_URL = searchUrl.replace('{page}', currentPage)
             currentPage++;
     
             await page.goto(BASE_URL);
@@ -151,6 +150,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
     
                 if (subPageData) {
                     subPageData.url = link;
+                    subPageData.searchUrl = searchUrl;
                     subPageData.price.value = subPageData.price.value ? parseCurrencyString(subPageData.price.value) : '';
                     subPageData.availabiltiy = subPageData.availabiltiy ? germanDateToIso(subPageData.availabiltiy) : '';
     
@@ -204,16 +204,37 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
     }
 }
 
+const scrapeUrls = [
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:0:329/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:330:399/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:400:449/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:450:499/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:500:549/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:550:599/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:600:649/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:650:699/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:700:749/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:750:799/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:800:849/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:850:899/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1050:1349/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1350:1549/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1550:/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+]
 
 const crawler = (type) => {
-    return () => new Promise(async (resolve, reject) => {
-        try {
-            await middleware(scrapeData, { type })
-            resolve()
-        } catch (e) {
-            console.log('error on immobilienscout crawler', e)
-            reject(e)
-        }
+    return scrapeUrls.map(searchUrl => {
+        return () => new Promise(async (resolve, reject) => {
+            try {
+                await middleware(scrapeData, { type, searchUrl, preventScripts: true })
+                resolve()
+            } catch (e) {
+                console.log('error on immowelt crawler', e)
+                reject(e)
+            }
+        })
     })
 }
 
