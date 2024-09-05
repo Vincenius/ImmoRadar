@@ -187,14 +187,19 @@ const scrapeUrls = [
     'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=2000&pricetype=rentpermonth&enteredFrom=result_list',
 ]
 
-const crawler = async (type) => {
-    console.log('running immobilienscout scraper')
-    await Promise.allSettled(
-        scrapeUrls.map(searchUrl => middleware(scrapeData, { type, searchUrl, useFirefox: true }))
-    )
-    console.log('finished immobilienscout scraper')
+const crawler = (type) => {
+    return scrapeUrls.map(searchUrl => {
+        return () => new Promise(async (resolve, reject) => {
+            try {
+                await middleware(scrapeData, { type, searchUrl, useFirefox: true })
+                resolve()
+            } catch (e) {
+                console.log('error on immobilienscout crawler', e)
+                reject(e)
+            }
+        })
+    })
 }
-
 
 export const immobilienscoutCrawler = crawler;
 

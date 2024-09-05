@@ -162,14 +162,18 @@ const scrapeUrls = [
     'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pmi=1500&sd=DESC&sf=TIMESTAMP&sp=1',
 ]
 
-const crawler = async (type) => {
-    try {
-        await Promise.allSettled(
-            scrapeUrls.map(searchUrl => middleware(scrapeData, { type, searchUrl }))
-        )
-    } catch (error) {
-        console.error("Immowelt Error:", error);
-    }
+const crawler = (type) => {
+    return scrapeUrls.map(searchUrl => {
+        return () => new Promise(async (resolve, reject) => {
+            try {
+                await middleware(scrapeData, { type, searchUrl, preventScripts: true })
+                resolve()
+            } catch (e) {
+                console.log('error on immowelt crawler', e)
+                reject(e)
+            }
+        })
+    })
 }
 
 export const immoweltCrawler = crawler;

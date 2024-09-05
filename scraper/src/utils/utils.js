@@ -153,3 +153,11 @@ export const getZipByAddress = async (address) => {
   const zip = data[0]?.address?.postcode || null
   return zip
 }
+
+export const splitIntoBatches = (arr, batchSize = 5) => {
+  let result = [];
+  for (let i = 0; i < arr.length; i += batchSize) {
+    result.push(arr.slice(i, i + batchSize));
+  }
+  return result;
+}

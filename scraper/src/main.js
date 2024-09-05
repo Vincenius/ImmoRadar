@@ -1,5 +1,6 @@
 import 'dotenv/config'
 import './utils/glitchtip.js'
+import { splitIntoBatches } from './utils/utils.js'
 import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
@@ -8,30 +9,31 @@ import { wgGesuchtCrawler } from "./wg-gesucht.js";
 import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
-
-// const runScan = async (type) => {
-//   console.log('run various')
-//   await Promise.allSettled([
-//     immoweltCrawler(type),
-//     kleinanzeigenCrawler(type),
-//     wgGesuchtCrawler(type),
-//     inberlinwohnenCrawler()
-//   ])
-//   console.log('run immoscout crawler')
-//   await immobilienscoutCrawler(type)    
-// }
-
-// await runScan('NEW_SCAN')
-
 // 'NEW_SCAN' OR 'FULL_SCAN'
-// await immobilienscoutCrawler('NEW_SCAN');
-await immoweltCrawler('NEW_SCAN')
-// await kleinanzeigenCrawler('NEW_SCAN')
-// await wgGesuchtCrawler('NEW_SCAN')
-// await inberlinwohnenCrawler()
+const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
+const immoweltScraper = immoweltCrawler('NEW_SCAN')
+const scraper1 = kleinanzeigenCrawler('NEW_SCAN')
+const scraper2 = wgGesuchtCrawler('NEW_SCAN')
+const scraper3 = inberlinwohnenCrawler()
 
 // TODOs
 // await immonetCrawler('FULL_SCAN');
 // await wohnungsboerseCrawler('FULL_SCAN')
 
-console.log('DONE')
+const allScraper = [
+  ...immoscoutScraper,
+  ...immoweltScraper,
+  scraper1, // kleinanzeigen
+  scraper2, // wg gesucht
+  scraper3, // inberlinwohnen
+]
+
+const batches = splitIntoBatches(allScraper, 5)
+for (const batch of batches) {
+  try {
+    await Promise.allSettled(batch.map(fn => fn()))
+  } catch (error) {
+      console.error("Batch Error:", error);
+  }
+}
+

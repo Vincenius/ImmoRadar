@@ -278,8 +278,16 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
     }
 }
 
-const crawler = async (type) => {
-    await middleware(scrapeData, { type, randomBrowser: true });
+const crawler = (type) => {
+    return () => new Promise(async (resolve, reject) => {
+        try {
+            await middleware(scrapeData, { type, randomBrowser: true })
+            resolve()
+        } catch (e) {
+            console.log('error on immobilienscout crawler', e)
+            reject(e)
+        }
+    })
 }
 
 export const wgGesuchtCrawler = crawler;

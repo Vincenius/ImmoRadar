@@ -119,8 +119,17 @@ const scrapeData = async ({ page, collection, logEvent }) => {
     }
 }
 
-const crawler = async (type) => {
-    await middleware(scrapeData, { type });
+const crawler = (type) => {
+    return () => new Promise(async (resolve, reject) => {
+        try {
+            await middleware(scrapeData, { type })
+            resolve()
+        } catch (e) {
+            console.log('error on immobilienscout crawler', e)
+            reject(e)
+        }
+    })
 }
+
 
 export const inberlinwohnenCrawler = crawler;
