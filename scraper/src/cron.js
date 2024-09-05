@@ -38,7 +38,7 @@ const runScan = async (type) => {
 
 console.log('INIT CRON JOB')
 
-cron.schedule('1,12,21,31,41,51 * * * *', () => {
+cron.schedule('5,15,25,35,45,55 * * * *', () => {
   console.log(new Date().toISOString(), 'running new scan');
 
   runScan('NEW_SCAN').then(() => {
