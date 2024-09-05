@@ -169,19 +169,22 @@ const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
 }
 
 const scrapeUrls = [
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-299.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=300.0-349.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=350.0-399.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=400.0-449.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=450.0-499.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=500.0-599.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=600.0-699.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=700.0-799.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=800.0-899.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=900.0-1099.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1100.0-1299.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1300.0-1699.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1700.0&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-289.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=290.0-339.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=340.0-389.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=390.0-439.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=440.0-489.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=490.0-549.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=550.0-609.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=610.0-689.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=690.0-769.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=770.0-859.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=860.0-979.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=980.0-1109.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1110.0-1299.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1300.0-1549.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1550.0-1999.99&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=2000&pricetype=rentpermonth&enteredFrom=result_list',
 ]
 
 const crawler = async (type) => {
