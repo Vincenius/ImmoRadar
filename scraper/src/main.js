@@ -24,8 +24,8 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 // await runScan('NEW_SCAN')
 
 // 'NEW_SCAN' OR 'FULL_SCAN'
-await immobilienscoutCrawler('NEW_SCAN');
-// await immoweltCrawler('FULL_SCAN')
+// await immobilienscoutCrawler('NEW_SCAN');
+await immoweltCrawler('NEW_SCAN')
 // await kleinanzeigenCrawler('NEW_SCAN')
 // await wgGesuchtCrawler('NEW_SCAN')
 // await inberlinwohnenCrawler()
@@ -33,3 +33,5 @@ await immobilienscoutCrawler('NEW_SCAN');
 // TODOs
 // await immonetCrawler('FULL_SCAN');
 // await wohnungsboerseCrawler('FULL_SCAN')
+
+console.log('DONE')

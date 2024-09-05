@@ -16,12 +16,13 @@ const mapFeatures = {
     "RENOVATED": "FULLY_RENOVATED",
 }
 
-const parseData = (estates) => estates.map(e => {
+const parseData = (estates, searchUrl) => estates.map(e => {
     const result = {
         id: e.id,
         created_at: new Date(),
         url: `https://www.immowelt.de/expose/${e.onlineId}`,
         provider: "immowelt.de",
+        searchUrl,
         date: e.timestamp,
         price: {
             value: e.primaryPrice?.amountMax,
@@ -55,18 +56,18 @@ const parseData = (estates) => estates.map(e => {
     }
 })
 
-const scrapeData = async ({ page, collection, type, logEvent }) => {
+const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     try {
-        const BASE_URL = 'https://www.immowelt.de/suche/berlin/wohnungen/mieten?d=true&sd=DESC&sf=TIMESTAMP';
+        const BASE_URL = searchUrl;
         let currentPage = 1;
         let lastPage = 1;
         let error;
         let data = [];
         let count = 0;
-        const prevEntries = await collection.find({ provider: "immowelt.de" }, { projection: { id: 1 } }).toArray();
+        const prevEntries = await collection.find({ provider: "immowelt.de", searchUrl }, { projection: { id: 1 } }).toArray();
 
         while (lastPage && currentPage <= lastPage && !error) {
-            console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage);
+            console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage, searchUrl);
 
             await page.goto(BASE_URL + `&sp=${currentPage}`);
 
@@ -93,7 +94,7 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
                     // Access the specific data you need
                     if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
                         const estates = housingData.initialState.estateSearch.data.estates;
-                        const parsedData = parseData(estates)
+                        const parsedData = parseData(estates, searchUrl)
                         const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
                         if (newData.length) {
@@ -149,9 +150,23 @@ const scrapeData = async ({ page, collection, type, logEvent }) => {
     }
 }
 
+const scrapeUrls = [
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=299&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=359&pmi=300&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=429&pmi=360&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=509&pmi=430&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=609&pmi=510&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=729&pmi=610&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=899&pmi=730&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=1499&pmi=1150&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pmi=1500&sd=DESC&sf=TIMESTAMP&sp=1',
+]
+
 const crawler = async (type) => {
     try {
-        await middleware(scrapeData, { type });
+        await Promise.allSettled(
+            scrapeUrls.map(searchUrl => middleware(scrapeData, { type, searchUrl }))
+        )
     } catch (error) {
         console.error("Immowelt Error:", error);
     }

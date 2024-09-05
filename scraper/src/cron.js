@@ -11,15 +11,13 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 let isFullScanRunning = false;
 
 const runScan = async (type) => {
-  console.log('run various')
   await Promise.allSettled([
-    immoweltCrawler(type),
     kleinanzeigenCrawler(type),
     wgGesuchtCrawler(type),
     inberlinwohnenCrawler()
   ])
-  console.log('run immoscout crawler')
   await immobilienscoutCrawler(type)    
+  await immoweltCrawler(type)
 }
 
 console.log('INIT CRON JOB')
@@ -46,6 +44,4 @@ cron.schedule('0 */6 * * *', () => {
   })
 });
 
-// */5 * * * * -> run and check if it is every sixth hour -> NEW
-// 0 */6 * * * -> FULL
-// global variable to check if full scan is running
+// */5 * * * *
