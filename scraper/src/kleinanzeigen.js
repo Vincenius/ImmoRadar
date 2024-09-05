@@ -219,9 +219,10 @@ const scrapeUrls = [
     'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:850:899/seite:{page}/c203+wohnung_mieten.swap_s:nein',
     'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
     'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1050:1349/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1350:1549/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1550:/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1050:1199/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1200:1399/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1400:1699/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1700:/seite:{page}/c203+wohnung_mieten.swap_s:nein',
 ]
 
 const crawler = (type) => {
