@@ -12,12 +12,12 @@ let isFullScanRunning = false;
 
 const runScan = async (type) => {
   console.log('run various')
-  await Promise.allSettled[
+  await Promise.allSettled([
     immoweltCrawler(type),
     kleinanzeigenCrawler(type),
     wgGesuchtCrawler(type),
     inberlinwohnenCrawler()
-  ]
+  ])
   console.log('run immoscout crawler')
   await immobilienscoutCrawler(type)    
 }
