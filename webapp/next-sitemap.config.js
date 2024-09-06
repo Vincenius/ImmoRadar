@@ -6,6 +6,7 @@ module.exports = {
     siteUrl: 'https://immoradar.xyz',
     generateRobotsTxt: true,
     exclude: exclude,
+    sitemapSize: 20000,
     robotsTxtOptions: {
         policies: [
             {
