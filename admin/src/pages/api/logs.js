@@ -10,7 +10,7 @@ export default async function handler(req, res) {
       const collection = db.collection('logs');
 
       // Get 'from', 'to', and pagination parameters from query
-      const { from, to, page = 1 } = req.query;
+      const { from, to, page = 1, type } = req.query;
       const limit = 50; // Items per page
 
       if (!from || !to) {
@@ -26,13 +26,17 @@ export default async function handler(req, res) {
         return res.status(400).json({ error: 'Invalid date format for "from" or "to"' });
       }
 
+      const typeFilter = type ? { type } : {};
+
       // MongoDB query to filter by created_at within the given timeframe
       const query = {
         created_at: {
           $gte: fromDate,
           $lte: toDate,
         },
+        ...typeFilter
       };
+      console.log(query)
 
       // Fetch total count for pagination
       const totalCount = await collection.countDocuments(query);

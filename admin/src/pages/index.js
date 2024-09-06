@@ -9,8 +9,9 @@ export default function Home() {
   const [from, setFrom] = useState(new Date(new Date().toISOString().split('T')[0]));
   const [to, setTo] = useState(new Date());
   const [page, setPage] = useState(1);
+  const [typeFilter, setTypeFilter] = useState('');
 
-  const { data, error, isLoading } = useSWR(`/api/logs?from=${from.toISOString()}&to=${to.toISOString()}&page=${page}`, fetcher);
+  const { data, error, isLoading } = useSWR(`/api/logs?from=${from.toISOString()}&to=${to.toISOString()}&page=${page}&type=${typeFilter}`, fetcher);
 
   const handleDateRangeChange = (range) => {
     const now = new Date();
@@ -70,6 +71,12 @@ export default function Home() {
           <Button variant="outline" onClick={() => handleDateRangeChange("All Time")}>All Time</Button>
         </Group>
 
+        <Group position="apart" mb="md">
+          <Button variant={typeFilter === '' ? 'light' : 'outline'} onClick={() => setTypeFilter('')}>All</Button>
+          <Button variant={typeFilter === 'NEW_SCAN' ? 'light' : 'outline'}  onClick={() => setTypeFilter('NEW_SCAN')}>New Scan</Button>
+          <Button variant={typeFilter === 'FULL_SCAN' ? 'light' : 'outline'}  onClick={() => setTypeFilter('FULL_SCAN')}>Full Scan</Button>
+        </Group>
+
         <Title order={3} mb="md">Summary</Title>
         {data.summary.sort((a, b) => b.scraper - a.scraper).map((item) => (
           <Group key={item._id} mb="sm">
@@ -100,7 +107,7 @@ export default function Home() {
         </Table>
 
         <Pagination
-          page={page}
+          value={page}
           onChange={setPage}
           total={data.pagination.totalPages}
           mt="lg"

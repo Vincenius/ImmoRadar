@@ -247,7 +247,6 @@ export async function getServerSideProps(context) {
     fetcher(`${process.env.BASE_URL}/api/autocomplete`),
   ]);
 
-  console.log(data)
   const { estates, pages = 0, count = 0 } = data;
 
   const newFeatures = filterQuery?.features?.split(',') || [];
