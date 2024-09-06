@@ -9,6 +9,7 @@ import SearchPages from '@/components/SearchPages/SearchPages';
 import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Home.module.css'
 import { Button } from '@mantine/core';
+import { mainSearches } from '@/utils/searchSeo'
 
 export default function Home() {
   return (
@@ -54,11 +55,11 @@ export default function Home() {
 
       <FAQs />
 
-      {/* <Box my="6em">
-        <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in folgenden Regionen</Title>
+      <Box my="6em">
+        <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in deiner Region</Title>
 
-        <SearchPages data={autocomplete.map(a => ({ label: a.name, url: `/search?q=${a.name}`}))} />
-      </Box> */}
+        <SearchPages data={mainSearches} />
+      </Box>
 
       <Box my="6em">
         <Button

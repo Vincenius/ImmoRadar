@@ -16,4 +16,10 @@ export const posts = [{
     isoDate: '2024-08-26',
     slug: 'plz-suche-und-blog-hinzugefuegt',
     description: 'Über das Suchfeld können jetzt Immobilien nach der Postleitzahl gesucht werden. Außerdem wurde der Blog zu ImmoRadar hinzugefügt um über Neuerungen zu informieren.'
+  }, {
+    title: 'ImmoRadar jetzt deutschlandweit verfügbar',
+    date: '6. September 2024',
+    isoDate: '2024-09-06',
+    slug: 'immoradar-jetzt-deutschlandweit-verfuegbar',
+    description: 'Die ersten Immobilienportale für ganz Deutschland sind jetzt verfügbar. Es werden Immobilien von Immobilienscout24, Immowelt und Kleinanzeigen gelistet.'
   }]

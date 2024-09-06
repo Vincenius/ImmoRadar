@@ -13,7 +13,7 @@ const Blog = () => {
             <Container py="xl" size="sm">
                 <Title order={1} mb="xl">Blog</Title>
                 {posts.sort((a,b) => new Date(b.isoDate) - new Date(a.isoDate)).map(post => <Box key={post.slug}>
-                  <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
+                  <Text fs="italic" component="time" dateTime={post.isoDate}>{post.date}</Text>
                   <Link href={`/blog/${post.slug}`}>
                     <Title order={2} mb="sm" dangerouslySetInnerHTML={{__html: post.title}}></Title>
                   </Link>

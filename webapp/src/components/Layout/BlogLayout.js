@@ -11,7 +11,7 @@ const BlogPost = ({ post, children }) => {
             // todo meta image
         >
             <Container py="xl" size="sm">
-                <Text fs="italic" component="time" datetime={post.isoDate}>{post.date}</Text>
+                <Text fs="italic" component="time" dateTime={post.isoDate}>{post.date}</Text>
                 <Title order={1} dangerouslySetInnerHTML={{__html: post.title}}></Title>
 
                 {/* todo image */}
