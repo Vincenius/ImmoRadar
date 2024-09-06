@@ -141,7 +141,7 @@ const Notifications = ({ filter, query }) => {
   </form>
 }
 
-export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery, autocomplete }) {
+export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery }) {
   const router = useRouter();
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
@@ -178,7 +178,7 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
     >
       { count > 0 && <Title pt="xl" size="h3" order={1} fw="500" >{count} Ergebnisse | {title}</Title> }
       <Box pt="md" pb="md">
-        <SearchBar defaultValue={q} data={autocomplete} />
+        <SearchBar defaultValue={q} />
       </Box>
 
       {/* only mobile design */}
@@ -242,9 +242,8 @@ export async function getServerSideProps(context) {
     .map(([key, value]) => `${key}=${value}`)
     .join('&');
 
-  const [data, autocomplete] = await Promise.all([
+  const [data] = await Promise.all([
     fetcher(`${process.env.BASE_URL}/api/search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
-    fetcher(`${process.env.BASE_URL}/api/autocomplete`),
   ]);
 
   const { estates, pages = 0, count = 0 } = data;
@@ -272,7 +271,6 @@ export async function getServerSideProps(context) {
       sortValue: sort,
       pageInt,
       filterQuery,
-      autocomplete,
     },
   };
 }

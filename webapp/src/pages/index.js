@@ -10,7 +10,7 @@ import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Home.module.css'
 import { Button } from '@mantine/core';
 
-export default function Home({ autocomplete }) {
+export default function Home() {
   return (
     <Layout
       title="ImmoRadar | Alle Immobilienangebote an einem Ort"
@@ -26,7 +26,7 @@ export default function Home({ autocomplete }) {
             </Title>
 
             <Group position="center">
-              <SearchBar showFilter={true} data={autocomplete} />
+              <SearchBar showFilter={true} />
               <Card fs="sm" p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7} w="100%">
                 <Text size="sm" fs="italic">
                   ImmoRadar befindet sich aktuell in der Beta-Phase. Aktuell werden nur Suchanfragen für &quot;Berlin&quot; unterstützt.<br/>Alle anderen Städte / Gemeinden werden in Kürze hinzugefügt.
@@ -59,11 +59,11 @@ export default function Home({ autocomplete }) {
 
       <FAQs />
 
-      <Box my="6em">
+      {/* <Box my="6em">
         <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in folgenden Regionen</Title>
 
         <SearchPages data={autocomplete.map(a => ({ label: a.name, url: `/search?q=${a.name}`}))} />
-      </Box>
+      </Box> */}
 
       <Box my="6em">
         <Button
@@ -79,14 +79,4 @@ export default function Home({ autocomplete }) {
       </Box>
     </Layout>
   );
-}
-
-export async function getServerSideProps(context) {
-  const data = await fetcher(`${process.env.BASE_URL}/api/autocomplete`);
-
-  return {
-    props: {
-      autocomplete: data
-    },
-  };
 }
