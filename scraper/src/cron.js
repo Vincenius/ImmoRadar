@@ -29,11 +29,11 @@ const runScan = async (type) => {
   const batches = splitIntoBatches(allScraper, 5)
   for (const batch of batches) {
     try {
-      await Promise.allSettled(batch.map(fn => fn()))
+      await Promise.allSettled(batch.map(fn => fn(type)))
     } catch (error) {
         console.error("Batch Error:", error);
     }
-  }  
+  }
 }
 
 console.log('INIT CRON JOB')
