@@ -9,7 +9,7 @@ import { immobilienscoutCrawler } from "./immobilienscout.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
-// let isFullScanRunning = false;
+let isFullScanRunning = false;
 
 const runScan = async (type) => {
   const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
@@ -39,26 +39,23 @@ const runScan = async (type) => {
 console.log('INIT CRON JOB')
 
 cron.schedule('5,15,25,35,45,55 * * * *', () => {
-  console.log(new Date().toISOString(), 'running new scan');
+  if (!isFullScanRunning) {
+    console.log(new Date().toISOString(), 'running new scan');
 
-  runScan('NEW_SCAN').then(() => {
-    console.log(new Date().toISOString(), 'new scan finished');
-  })
-  // if (!isFullScanRunning) {
-    
-  // } else {
-  //   console.log(new Date().toISOString(), 'skipping new scan because full scan is running');
-  // }
+    runScan('NEW_SCAN').then(() => {
+      console.log(new Date().toISOString(), 'new scan finished');
+    })
+  } else {
+    console.log(new Date().toISOString(), 'skipping new scan because full scan is running');
+  }
 });
 
 cron.schedule('0 */6 * * *', () => {
   console.log(new Date().toISOString(), 'running full scan');
-  // isFullScanRunning = true;
+  isFullScanRunning = true;
 
   runScan('FULL_SCAN').then(() => {
-    // isFullScanRunning = false;
+    isFullScanRunning = false;
     console.log(new Date().toISOString(), 'full scan finished');
   })
 });
-
-// */5 * * * *
