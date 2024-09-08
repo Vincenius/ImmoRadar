@@ -2,6 +2,25 @@ const { MongoClient } = require('mongodb');
 
 const exclude = ['/deleted', '/profile']
 
+const regionData = {
+    'baden-württemberg': 'Baden-Württemberg',
+    'bayern': 'Bayern',
+    'brandenburg': 'Brandenburg',
+    'bremen': 'Bremen',
+    'berlin': 'Berlin',
+    'hamburg': 'Hamburg',
+    'hessen': 'Hessen',
+    'mecklenburg-vorpommern': 'Mecklenburg-Vorpommern',
+    'niedersachsen': 'Niedersachsen',
+    'nordrhein-westfalen': 'Nordrhein-Westfalen',
+    'rheinland-pfalz': 'Rheinland-Pfalz',
+    'saarland': 'Saarland',
+    'sachsen': 'Sachsen',
+    'sachsen-anhalt': 'Sachsen-Anhalt',
+    'schleswig-holstein': 'Schleswig-Holstein',
+    'thüringen': 'Thüringen',
+}
+
 module.exports = {
     siteUrl: 'https://immoradar.xyz',
     generateRobotsTxt: true,
@@ -55,12 +74,18 @@ module.exports = {
         const existingZipCodes = zipCodeEstateCount.filter(item => item.count > 0).map(item => item._id)
         const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))
 
+        const regionSitemap = await Promise.all(Object.keys(regionData).map(async item => {
+            const res = await config.transform(config, `/uebersicht/${item}`)
+            return res
+        }))
         const searchSitemap = await Promise.all(filteredResult.map(async item => {
             const res = await config.transform(config, `/search?q=${item.name}`)
-
             return res
         }))
 
-        return searchSitemap
+        return [
+            ...regionSitemap,
+            ...searchSitemap
+        ]
     }
 }
