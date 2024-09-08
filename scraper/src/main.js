@@ -31,7 +31,7 @@ const allScraper = [
 const batches = splitIntoBatches(allScraper, 5)
 for (const batch of batches) {
   try {
-    await Promise.allSettled(batch.map(fn => fn(type)))
+    await Promise.allSettled(batch.map(fn => fn()))
   } catch (error) {
       console.error("Batch Error:", error);
   }

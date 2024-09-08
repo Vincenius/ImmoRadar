@@ -12,10 +12,10 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 let isFullScanRunning = false;
 
 const runScan = async (type) => {
-  const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
-  const immoweltScraper = immoweltCrawler('NEW_SCAN')
-  const kleinanzeigenScraper = kleinanzeigenCrawler('NEW_SCAN')
-  const wgGesuchtScraper = wgGesuchtCrawler('NEW_SCAN')
+  const immoscoutScraper = immobilienscoutCrawler(type);
+  const immoweltScraper = immoweltCrawler(type)
+  const kleinanzeigenScraper = kleinanzeigenCrawler(type)
+  const wgGesuchtScraper = wgGesuchtCrawler(type)
   const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
   const allScraper = [
@@ -29,7 +29,7 @@ const runScan = async (type) => {
   const batches = splitIntoBatches(allScraper, 5)
   for (const batch of batches) {
     try {
-      await Promise.allSettled(batch.map(fn => fn(type)))
+      await Promise.allSettled(batch.map(fn => fn()))
     } catch (error) {
         console.error("Batch Error:", error);
     }

@@ -2,7 +2,7 @@ import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { getZipByAddress } from './utils/utils.js'
 
-const scrapeData = async ({ page, collection, logEvent }) => {
+const scrapeData = async ({ page, collection, logEvent, type }) => {
     try {
         let data = [];
 
