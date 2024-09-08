@@ -17,9 +17,9 @@ function splitArray(arr) {
   return parts;
 }
 
-function ListItem({ item, secondary = false }) {
+function ListItem({ item, color = 'teal.5' }) {
   return <Flex gap="sm" key={item.label}>
-    <ThemeIcon color={secondary ? 'teal.2' : 'teal.4'} size={16} radius="xl" mt={6}>
+    <ThemeIcon color={color} size={16} radius="xl" mt={6}>
       <IconMapPinFilled style={{ width: rem(16), height: rem(16) }} />
     </ThemeIcon>
     { item.url && <Link href={item.url}>{item.label}</Link> }
@@ -27,7 +27,7 @@ function ListItem({ item, secondary = false }) {
   </Flex>
 }
 
-export default function SearchPages({ data }) {
+export default function SearchPages({ data, margin = 'md' }) {
   return <List
     mb="lg"
     listStyleType="none"
@@ -35,11 +35,15 @@ export default function SearchPages({ data }) {
     <Grid>
       {splitArray(data).map((row, index) => (
         <Grid.Col span={{ base: 6, lg: 3 }} key={`search-pages-col-${index}`}>
-          { row.map(d => <Box key={`search-pages-box-${index}-${d.primary.label}`} mb="md">
-              <ListItem item={d.primary} />
+          { row.map(d => <Box key={`search-pages-box-${index}-${d.primary.label}`} mb={margin}>
+              <ListItem item={d.primary} color="teal.9" />
               { d.secondary && <Box ml="sm">
-                { d.secondary.map(s => <ListItem key={s.label} item={s} secondary={true} /> )}
+                { d.secondary.map(s => <ListItem key={s.label} item={s} color="teal.6" /> )}
               </Box> }
+              { d.showMoreLink && <Box ml="sm"><ListItem
+                item={{ label: `alle Regionen in ${d.primary.label} anzeigen`, url: `/uebersicht/${d.primary.label.toLowerCase()}` }}
+                color="teal.2"
+              /></Box> }
             </Box> )}
         </Grid.Col>
       ))}

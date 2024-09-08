@@ -45,15 +45,15 @@ module.exports = {
 
         const zipCodeEstateCount = await estateCollection.aggregate([
             {
-              $group: {
-                _id: "$address.zipCode",
-                count: { $sum: 1 }
-              }
+                $group: {
+                    _id: "$address.zipCode",
+                    count: { $sum: 1 }
+                }
             }
-        ]).toArray() 
-    
+        ]).toArray()
+
         const existingZipCodes = zipCodeEstateCount.filter(item => item.count > 0).map(item => item._id)
-        const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))        
+        const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))
 
         const searchSitemap = await Promise.all(filteredResult.map(async item => {
             const res = await config.transform(config, `/search?q=${item.name}`)

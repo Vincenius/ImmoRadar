@@ -175,6 +175,10 @@ export const mainSearches = [
     secondary: ["Erfurt", "Jena", "Gera", "Weimar", "Gotha"]
   }
 ].map(({ primary, secondary }) => ({
-  primary: { label: primary },
-  secondary: secondary.map(s => ({ label: s, url: `/search?q=${encodeURI(s)}` }))
+  primary: {
+    label: primary,
+    url: ['Berlin', 'Hamburg', 'Bremen'].includes(primary) ? `/search?q=${encodeURI(primary)}` : null
+  },
+  secondary: secondary.map(s => ({ label: s, url: `/search?q=${encodeURI(s)}` })),
+  showMoreLink: true,
 }));
