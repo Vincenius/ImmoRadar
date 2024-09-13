@@ -25,16 +25,17 @@ const regionData = {
 }
 
 const Berlin = ({ region, result }) => {
-  const title = `Alle Gebiete mit verfügbaren Wohnungen in ${region} | ImmoRadar`
-  const description = `Eine Übersicht aller Gebiete mit verfügbaren Wohnungen in ${region}`
-
   if (!regionData[region] || result.length === 0) {
     return <ErrorPage statusCode={404} />
   }
 
+  const regionName = regionData[region]
+
+  const title = `Alle Gebiete mit verfügbaren Wohnungen in ${regionName} | ImmoRadar`
+  const description = `Eine Übersicht aller Gebiete mit verfügbaren Wohnungen in ${regionName}`
 
   return <Layout title={title} description={description}>
-    <Title order={1} my="xl">Alle Gebiete mit verfügbaren Wohnungen in {regionData[region]}</Title>
+    <Title order={1} my="xl">Alle Gebiete mit verfügbaren Wohnungen in {regionName}</Title>
     <SearchPages
       margin="xs"
       data={result.map(el => ({ primary: { label: `${el.name} [${el.count}]`, url: `/search?q=${encodeURI(el.name)}` } }))}
