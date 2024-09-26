@@ -2,52 +2,37 @@ import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js'
 
 const mapPriceType = {
-    "COLD_RENT": "COLD_RENT",
-    "RENT_INCLUDING_HEATING": "WARM_RENT",
+    "Kaltmiete zzgl. Nebenkosten": "COLD_RENT",
+    "Warmmiete": "WARM_RENT",
     "PURCHASE_PRICE": "PURCHASE_PRICE",
-}
-
-const mapFeatures = {
-    "CELLAR_SHARE": "BASEMENT",
-    "BARRIER_FREE": "WHEELCHAIR_ACCESSIBLE",
-    "PARKING_AREA": "CAR_PARK",
-    "UNDERGROUND_PARKING": "CAR_PARK",
-    "PARTLY_AIR_CONDITIONED": "AIR_CONDITIONED",
-    "RENOVATED": "FULLY_RENOVATED",
 }
 
 const parseData = (estates, searchUrl) => estates.map(e => {
     const result = {
         id: e.id,
         created_at: new Date(),
-        url: `https://www.immowelt.de/expose/${e.onlineId}`,
+        url: `https://www.immowelt.de${e.url}`,
         provider: "immowelt.de",
         searchUrl,
-        date: e.timestamp,
+        date: e.metadata.creationDate,
         price: {
-            value: e.primaryPrice?.amountMax,
-            currency: e.primaryPrice?.currency,
-            additionalInfo: mapPriceType[e.primaryPrice?.type] || e.primaryPrice?.type,
+            value: parseFloat(e.hardFacts.price.value.replace(/[^\d,]/g, '').replace(',', '.')),
+            currency: "EUR",
+            additionalInfo: mapPriceType[e.hardFacts.price.additionalInformation || e.hardFacts.price.addition.value], // todo map
         },
-        livingSpace: e.primaryArea?.sizeMin,
-        rooms: e.roomsMin,
-        // "availabiltiy": "Now",
+        livingSpace: e.hardFacts.facts.find(f => f.type === "livingSpace")?.splitValue || null,
+        rooms: e.hardFacts.facts.find(f => f.type === "numberOfRooms")?.splitValue || null,
+        // availability: e.hardFacts.facts.find(f => f.type === "availability")?.splitValue || "Now",
         address: {
-            zipCode: e.place.postcode,
-            city: e.place.city,
-            district: e.place.district,
-            street: e.place.street,
-            geolocation: e.place.point ? {
-                lat: e.place.point.lat,
-                lon: e.place.point.lon,
-            } : null
+            zipCode: e.location.address.zipCode,
+            city: e.location.address.city,
+            district: e.location.address.district,
+            street: e.location.address.street,
         },
-        title: e.title.trim(),
-        gallery: e.pictures.map(p => ({ url: p.imageUri, alt: p.description })),
-        features: e.features.map(f => mapFeatures[f] || f),
-        company: e.broker?.companyName
-            ? e.broker?.companyName.trim()
-            : null,
+        title: e.mainDescription.headline.trim(),
+        gallery: e.gallery ? e.gallery.images.map(p => ({ url: p.url, alt: p.alt })) : [],
+        features: [],
+        company: e.provider.intermediaryCard?.title || null,
     }
 
     return {
@@ -72,28 +57,21 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
             await page.goto(BASE_URL + `&sp=${currentPage}`);
 
             const content = await page.content();
-            const scriptRegex = /<script[^>]*type="application\/json"[^>]*>([\s\S]*?)<\/script>/;
-            const scriptMatch = content.match(scriptRegex);
-
+            const scriptMatch = content.match(/window\["__UFRN_FETCHER__"\]=JSON\.parse\("(.+?)"\);/);
+            
             if (scriptMatch && scriptMatch[1]) {
                 let jsonData = scriptMatch[1].trim();
-
-                // Remove potential HTML comments surrounding the JSON data
-                if (jsonData.startsWith('<!--')) {
-                    jsonData = jsonData.slice(4);
-                }
-                if (jsonData.endsWith('-->')) {
-                    jsonData = jsonData.slice(0, -3);
-                }
+    
                 try {
                     // Parse the JSON data
-                    const housingData = JSON.parse(jsonData);
-                    lastPage = housingData.initialState.estateSearch.ui.pagination.pagesCount
+                    const housingData = JSON.parse(JSON.parse(`"${jsonData}"`));
+                    const pageProps = housingData['classified-serp-init-data'].pageProps
+                    lastPage = Math.ceil(pageProps.totalCount / 30)
                     currentPage++;
 
                     // Access the specific data you need
-                    if (housingData.initialState && housingData.initialState.estateSearch && housingData.initialState.estateSearch.data && housingData.initialState.estateSearch.data.estates) {
-                        const estates = housingData.initialState.estateSearch.data.estates;
+                    if (pageProps.enrichedClassifiedsData && pageProps.classifiedsData) {
+                        const estates = Object.values(pageProps.classifiedsData)
                         const parsedData = parseData(estates, searchUrl)
                         const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
 
@@ -150,16 +128,19 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     }
 }
 
+// https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=299&priceMin=10&order=DateDesc
 const scrapeUrls = [
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=299&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=359&pmi=300&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=429&pmi=360&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=509&pmi=430&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=609&pmi=510&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=729&pmi=610&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=899&pmi=730&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pma=1499&pmi=1150&sd=DESC&sf=TIMESTAMP&sp=1',
-    'https://www.immowelt.de/suche/deutschland/wohnungen/mieten?d=true&pmi=1500&sd=DESC&sf=TIMESTAMP&sp=1',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=299&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=359&priceMin=300&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=429&priceMin=360&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=509&priceMin=430&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=609&priceMin=510&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=729&priceMin=610&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=899&priceMin=730&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1149&priceMin=900&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1499&priceMin=1150&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1999&priceMin=1500&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMin=2000&order=DateDesc',
 ]
 
 const crawler = (type) => {

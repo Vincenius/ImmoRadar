@@ -4,14 +4,14 @@ import { splitIntoBatches } from './utils/utils.js'
 import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
-import { immonetCrawler } from "./immonet.js";
+// import { immonetCrawler } from "./immonet.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
-import { wohnungsboerseCrawler } from './wohnungsboerse.js'
+// import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 // 'NEW_SCAN' OR 'FULL_SCAN'
 const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
-const immoweltScraper = immoweltCrawler('NEW_SCAN')
+const immoweltScraper = immoweltCrawler('FULL_SCAN')
 const kleinanzeigenScraper = kleinanzeigenCrawler('NEW_SCAN')
 const wgGesuchtScraper = wgGesuchtCrawler('NEW_SCAN')
 const inBerlinWohnenScraper = inberlinwohnenCrawler()
@@ -22,9 +22,9 @@ const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
 const allScraper = [
   // ...immoscoutScraper,
-  // ...immoweltScraper,
+  ...immoweltScraper,
   // wgGesuchtScraper,
-  inBerlinWohnenScraper,
+  // inBerlinWohnenScraper,
     // ...kleinanzeigenScraper,
 ]
 

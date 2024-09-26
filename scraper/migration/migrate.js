@@ -10,7 +10,8 @@ const run = async () => {
   const collection = db.collection('estates');
 
   // delete all immoscout entries
-  await collection.deleteMany({ provider: 'immowelt.de', searchUrl: { $exists: false } });
+  const result = await collection.deleteMany({ provider: 'immowelt.de' });
+  console.log(result)
 
   client.close();
 }
