@@ -10,7 +10,7 @@ import { wgGesuchtCrawler } from "./wg-gesucht.js";
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 // 'NEW_SCAN' OR 'FULL_SCAN'
-const immoscoutScraper = immobilienscoutCrawler('NEW_SCAN');
+const immoscoutScraper = immobilienscoutCrawler('FULL_SCAN');
 const immoweltScraper = immoweltCrawler('FULL_SCAN')
 const kleinanzeigenScraper = kleinanzeigenCrawler('NEW_SCAN')
 const wgGesuchtScraper = wgGesuchtCrawler('NEW_SCAN')
@@ -21,14 +21,14 @@ const inBerlinWohnenScraper = inberlinwohnenCrawler()
 // await wohnungsboerseCrawler('FULL_SCAN')
 
 const allScraper = [
-  // ...immoscoutScraper,
-  ...immoweltScraper,
+  ...immoscoutScraper,
+  // ...immoweltScraper,
   // wgGesuchtScraper,
   // inBerlinWohnenScraper,
     // ...kleinanzeigenScraper,
 ]
 
-const batches = splitIntoBatches(allScraper, 5)
+const batches = splitIntoBatches(allScraper, 1)
 for (const batch of batches) {
   try {
     await Promise.allSettled(batch.map(fn => fn()))

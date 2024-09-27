@@ -26,7 +26,7 @@ const runScan = async (type) => {
     ...kleinanzeigenScraper,
   ]
 
-  const batches = splitIntoBatches(allScraper, 3)
+  const batches = splitIntoBatches(allScraper, 4)
   for (const batch of batches) {
     try {
       await Promise.allSettled(batch.map(fn => fn()))
