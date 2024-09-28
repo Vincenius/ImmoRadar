@@ -3,7 +3,8 @@ import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
+import { Container, Text, Flex, Indicator, Box, ActionIcon } from '@mantine/core'
+import { IconBrandFacebook, IconBrandX, IconBrandLinkedin } from '@tabler/icons-react';
 import Logo from './logo.svg';
 import styles from './Layout.module.css';
 
@@ -92,12 +93,43 @@ const Layout = ({ children, title, description, date, noindex }) => {
       <Box as="footer" className={styles.footer} p="md" mt="md">
         <Container>
           <Flex justify="space-between" gap="md">
-            <Text size="sm" c="gray.7">© {new Date().getFullYear()} ImmoRadar</Text>
+            <Box>
+              <Flex mb="xs" gap="sm">
+                <ActionIcon
+                  component="a"
+                  href="https://www.facebook.com/profile.php?id=61566536998327"
+                  variant="outline"
+                  aria-label="Facebook"
+                  size="sm"
+                >
+                  <IconBrandFacebook />
+                </ActionIcon>
+                <ActionIcon
+                  component="a"
+                  href="https://x.com/ImmoRadar_DE"
+                  variant="outline"
+                  aria-label="X / Twitter"
+                  size="sm"
+                >
+                  <IconBrandX />
+                </ActionIcon>
+                <ActionIcon
+                  component="a"
+                  href="https://www.linkedin.com/company/immoradar-xyz/"
+                  variant="outline"
+                  aria-label="LinkedIn"
+                  size="sm"
+                >
+                  <IconBrandLinkedin />
+                </ActionIcon>
+              </Flex>
+              <Text size="sm" c="gray.7">© {new Date().getFullYear()} ImmoRadar</Text>
+            </Box>
 
-            <Flex gap="md" ml="auto">
+            <Box>
               <Link href="/imprint"><Text size="sm" c="gray.7">Impressum</Text></Link>
               <Link href="/privacy"><Text size="sm" c="gray.7">Datenschutz</Text></Link>
-            </Flex>
+            </Box>
           </Flex>
         </Container>
       </Box>
