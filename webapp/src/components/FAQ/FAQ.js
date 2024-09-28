@@ -37,7 +37,7 @@ const FAQ = () => {
               </Accordion.Item>
 
               <Accordion.Item value="frage7">
-                <Accordion.Control><Text fw={500}>Kann ich auf ImmoRadar eine Immobilien Inserat erstellen?</Text></Accordion.Control>
+                <Accordion.Control><Text fw={500}>Kann ich auf ImmoRadar ein Immobilien Inserat erstellen?</Text></Accordion.Control>
                 <Accordion.Panel>Aktuell ist es nicht möglich Inserate online zu erstellen. Besteht Interesse ein Inserat auf ImmoRadar zu veröffentlichen? <a href="mailto:vincent@immoradar.xyz">Schreibe mir eine E-Mail</a>.</Accordion.Panel>
               </Accordion.Item>
             </Accordion>
