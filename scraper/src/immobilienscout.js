@@ -78,8 +78,9 @@ const parseData = (estates, searchUrl) => estates.map(e => {
     }
 })
 
-const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
+const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logEvent, restartBrowser }) => {
     try {
+        let page = defaultPage;
         let currentPage = 1;
         let lastPage = 1;
         let error;
@@ -95,7 +96,16 @@ const scrapeData = async ({ page, collection, type, searchUrl, logEvent }) => {
             console.log('Immobilienscout24 SCRAPING', currentPage, 'OF', lastPage, searchUrl);
     
             await page.goto(BASE_URL);
-            // await delay(3000);
+            const captcha = page.locator('#captcha-container');
+            if (await captcha.count() > 0) {
+                console.log('Found captcha - restarting browser');
+                retry++;
+                await delay(2000);
+                page = await restartBrowser({ options: { type, searchUrl, useFirefox: true }})
+
+                continue
+            }
+            // await delay(100);
             await page.waitForSelector('#resultlistpage')
     
             const content = await page.content();
