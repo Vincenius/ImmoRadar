@@ -18,7 +18,7 @@ const FAQ = () => {
 
               <Accordion.Item value="frage3">
                 <Accordion.Control><Text fw={500}>Wie kann ich Benachrichtigungen für neue Angebote aktivieren?</Text></Accordion.Control>
-                <Accordion.Panel>Um Benachrichtigungen zu aktivieren, geben Sie einfach Ihre Suchkriterien ein und klicken Sie auf den Button "Benachrichtigungen aktivieren". Sie erhalten dann eine E-Mail, sobald eine neue Wohnung, die Ihren Kriterien entspricht, gelistet wird.</Accordion.Panel>
+                <Accordion.Panel>Um Benachrichtigungen zu aktivieren, geben Sie einfach Ihre Suchkriterien ein und klicken Sie auf den Button &quot;Benachrichtigungen aktivieren&quot;. Sie erhalten dann eine E-Mail, sobald eine neue Wohnung, die Ihren Kriterien entspricht, gelistet wird.</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item value="frage4">
