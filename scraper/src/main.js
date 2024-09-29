@@ -28,7 +28,7 @@ const allScraper = [
     // ...kleinanzeigenScraper,
 ]
 
-const batches = splitIntoBatches(allScraper, 1)
+const batches = splitIntoBatches(allScraper, 4)
 for (const batch of batches) {
   try {
     await Promise.allSettled(batch.map(fn => fn()))
