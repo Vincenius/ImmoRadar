@@ -4,7 +4,6 @@ import { splitIntoBatches } from './utils/utils.js'
 import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
-// import { immonetCrawler } from "./immonet.js";
 import { wgGesuchtCrawler } from "./wg-gesucht.js";
 // import { wohnungsboerseCrawler } from './wohnungsboerse.js'
 import { inberlinwohnenCrawler } from './inberlinwohnen.js'
@@ -17,15 +16,15 @@ const wgGesuchtScraper = wgGesuchtCrawler('FULL_SCAN')
 const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
 // TODOs
-// await immonetCrawler('FULL_SCAN');
 // await wohnungsboerseCrawler('FULL_SCAN')
 
 const allScraper = [
-  ...immoscoutScraper,
-  ...immoweltScraper,
-  wgGesuchtScraper,
-  inBerlinWohnenScraper,
-    ...kleinanzeigenScraper,
+  // ...immoscoutScraper,
+  // ...immoweltScraper,
+  // wgGesuchtScraper,
+  // inBerlinWohnenScraper,
+  // ...kleinanzeigenScraper,
+  immonetScraper,
 ]
 
 const batches = splitIntoBatches(allScraper, 4)
