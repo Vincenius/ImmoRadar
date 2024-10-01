@@ -3,8 +3,10 @@ import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Text, Flex, Indicator, Box } from '@mantine/core';
+import { Container, Text, Flex, Indicator, Box, ActionIcon } from '@mantine/core'
+import { IconBrandFacebook, IconBrandX, IconBrandLinkedin } from '@tabler/icons-react';
 import Logo from './logo.svg';
+import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
 function useCannonical() {
@@ -89,16 +91,53 @@ const Layout = ({ children, title, description, date, noindex }) => {
         {children}
       </Container>
 
-      <Box as="footer" className={styles.footer} p="md" mt="md">
+      <Box as="footer" className={styles.footer} p="md" pt="xl" pb="md">
         <Container>
-          <Flex justify="space-between" gap="md">
-            <Text size="sm" c="gray.7">© {new Date().getFullYear()} ImmoRadar</Text>
+          <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
+            <Box>
+              <Flex mb="xs" gap="sm" justify={{ base: "center", xs: "flex-start" }}>
+                <ActionIcon
+                  component="a"
+                  href="https://www.facebook.com/profile.php?id=61566536998327"
+                  variant="outline"
+                  aria-label="Facebook"
+                  size="md"
+                >
+                  <IconBrandFacebook />
+                </ActionIcon>
+                <ActionIcon
+                  component="a"
+                  href="https://x.com/ImmoRadar_DE"
+                  variant="outline"
+                  aria-label="X / Twitter"
+                  size="md"
+                >
+                  <IconBrandX />
+                </ActionIcon>
+                <ActionIcon
+                  component="a"
+                  href="https://www.linkedin.com/company/immoradar-xyz/"
+                  variant="outline"
+                  aria-label="LinkedIn"
+                  size="md"
+                >
+                  <IconBrandLinkedin />
+                </ActionIcon>
+              </Flex>
+              <Flex gap="sm" mt="md">
+                <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
+                <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
+              </Flex>
+            </Box>
 
-            <Flex gap="md" ml="auto">
+            <Box>
               <Link href="/imprint"><Text size="sm" c="gray.7">Impressum</Text></Link>
               <Link href="/privacy"><Text size="sm" c="gray.7">Datenschutz</Text></Link>
-            </Flex>
+              <Link href="/about"><Text size="sm" c="gray.7">Über uns</Text></Link>
+              <Link href="/sitemap-0.xml"><Text size="sm" c="gray.7">Sitemap</Text></Link>
+            </Box>
           </Flex>
+          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} ImmoRadar</Text>
         </Container>
       </Box>
     </div>
