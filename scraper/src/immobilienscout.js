@@ -2,7 +2,7 @@ import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 
-const parseData = (estates, searchUrl) => estates.map(e => {
+const parseData = (estates = [], searchUrl) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
     gallery = Array.isArray(gallery) ? gallery : [gallery]
 
