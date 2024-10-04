@@ -54,7 +54,7 @@ const startBrowser = async ({ options = {} }) => {
         });
     });
     const page = await context.newPage({ bypassCSP: true });
-    await page.setDefaultTimeout(60000);
+    await page.setDefaultTimeout(30000);
     await page.setViewportSize(viewportSize);
 
     // don't load images and stuff

@@ -123,7 +123,7 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
 const crawler = (type) => {
     return () => new Promise(async (resolve, reject) => {
         try {
-            await middleware(scrapeData, { type })
+            await middleware(scrapeData, { type, useProxy: true, preventScripts: true })
             resolve()
         } catch (e) {
             console.log('error on immobilienscout crawler', e)

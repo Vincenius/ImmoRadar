@@ -12,7 +12,7 @@ const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
         )
     })
 
-    while (tries < 3 && hasCaptcha) {
+    while (tries < 5 && hasCaptcha) {
         tries++;
         console.log('captcha found... retrying...', tries)
         await delay(2000);
@@ -65,7 +65,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
             let pageError = false;
             let newLastPage
             let links
-            while (pageTries === 0 || (pageError && pageTries < 3)) {
+            while (pageTries === 0 || (pageError && pageTries < 5)) {
                 pageTries++;
                 const [l, lp, pe] = await page.evaluate(() => {
                     const pages = document.querySelectorAll(".page-link")
@@ -124,7 +124,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
     
                 let isLoaded = false
                 let tries = 0
-                while (!isLoaded && tries < 3) {
+                while (!isLoaded && tries < 5) {
                     tries++;
                     const hasError = await page.evaluate(async () => {
                         const headline = document.querySelector('h1')

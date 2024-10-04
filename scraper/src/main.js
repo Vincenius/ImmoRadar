@@ -22,9 +22,8 @@ const allScraper = [
   // ...immoscoutScraper,
   // ...immoweltScraper,
   // wgGesuchtScraper,
-  // inBerlinWohnenScraper,
+  inBerlinWohnenScraper,
   // ...kleinanzeigenScraper,
-  immonetScraper,
 ]
 
 const batches = splitIntoBatches(allScraper, 4)

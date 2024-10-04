@@ -55,6 +55,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
             console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage, searchUrl);
 
             await page.goto(BASE_URL + `&sp=${currentPage}`);
+            await page.waitForSelector('[data-testid="serp-core-scrollablelistview-testid"]')
 
             const content = await page.content();
             const scriptMatch = content.match(/window\["__UFRN_FETCHER__"\]=JSON\.parse\("(.+?)"\);/);
@@ -122,7 +123,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
             console.log(message);
         }
     } catch (error) {
-        const errorMsg = 'Unexpected error scraping Immobilienscout24: ' + error
+        const errorMsg = 'Unexpected error scraping Immowelt: ' + error
         console.error(errorMsg);
         await logEvent({ scraper: 'immowelt.de', success: false, message: errorMsg });
     }
