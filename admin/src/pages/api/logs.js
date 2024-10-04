@@ -36,7 +36,6 @@ export default async function handler(req, res) {
         },
         ...typeFilter
       };
-      console.log(query)
 
       // Fetch total count for pagination
       const totalCount = await collection.countDocuments(query);

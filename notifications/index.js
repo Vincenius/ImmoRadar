@@ -11,6 +11,8 @@ if (process.env.GLITCHTIP_URL) {
   Sentry.init({ dsn: process.env.GLITCHTIP_URL });
 }
 
+const TEST_RUN = process.env.TEST_RUN === 'true'
+
 const mapFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, featuresArray, titleIncludes, titleExcludes, providersArray }) => {
   // FILTER
   const priceFilter = {};
@@ -45,16 +47,14 @@ const mapFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, f
 
   // TITLE FILTER
   const titleFilter = {};
-  if (titleIncludes) {
-      const includesArray = titleIncludes.split(',').map(str => str.trim());
-      titleFilter['$and'] = includesArray.map(includeStr => ({
+  if (titleIncludes && titleIncludes.length > 0) {
+      titleFilter['$and'] = titleIncludes.map(includeStr => ({
           title: { $regex: includeStr, $options: 'i' }
       }));
   }
   
-  if (titleExcludes) {
-      const excludesArray = titleExcludes.split(',').map(str => str.trim());
-      titleFilter['$nor'] = excludesArray.map(excludeStr => ({
+  if (titleExcludes && titleExcludes.length > 0) {
+      titleFilter['$nor'] = titleExcludes.map(excludeStr => ({
           title: { $regex: excludeStr, $options: 'i' }
       }));
   }
@@ -124,21 +124,20 @@ const notificationRunner = async () => {
       notifications: {
         $elemMatch: {
           active: true,
-          next_send_date: { $lte: endOfToday, $gte: startOfToday }
+          next_send_date: { $lte: endOfToday }
         }
       }
     }).toArray();
-
+  
     // filter notifications based on next_send_date
     const filteredSubs = subscriptions.map(sub => ({
       ...sub,
       notifications: sub.notifications.filter(notif =>
         notif.active &&
         notif.query &&
-        new Date(notif.next_send_date) <= endOfToday &&
-        new Date(notif.next_send_date) >= startOfToday
+        new Date(notif.next_send_date) <= endOfToday
       )
-    }))
+    })).filter(sub => !TEST_RUN || sub.email === 'vincentwill@arcor.de');
 
     // loop through notifications
     for (const sub of filteredSubs) {
@@ -154,7 +153,7 @@ const notificationRunner = async () => {
         let query = {}
         if (notif.manualInput) {
           // zip code search
-          if (/^\d{5}$/.test(q)) {
+          if (/^\d{5}$/.test(notif.query)) {
             query = {
               $and: [
                 { created_at: { $gte: from } },
@@ -243,7 +242,7 @@ const notificationRunner = async () => {
         );
       });
 
-      await Promise.all(updatePromises);
+      await Promise.allSettled(updatePromises);
     }
 
   } catch (error) {
@@ -253,10 +252,13 @@ const notificationRunner = async () => {
   }
 }
 
-console.log('INIT CRON JOB')
+if (!TEST_RUN) {
+  console.log('INIT CRON JOB')
 
-cron.schedule('0 10 * * *', () => {
-  console.log(new Date().toISOString(), 'running notification job');
+  cron.schedule('0 10 * * *', () => {
+    console.log(new Date().toISOString(), 'running notification job');
+    notificationRunner();
+  });
+} else {
   notificationRunner();
-});
-
+}
