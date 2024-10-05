@@ -11,8 +11,6 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 let isFullScanRunning = false;
 
-const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
-
 const runScan = async (type) => {
   const immoscoutScraper = immobilienscoutCrawler(type);
   const immoweltScraper = immoweltCrawler(type)
@@ -20,19 +18,28 @@ const runScan = async (type) => {
   const wgGesuchtScraper = wgGesuchtCrawler(type)
   const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
-  const allScraper = [
-    ...immoscoutScraper,
+  const otherScraper = [
     ...immoweltScraper,
     wgGesuchtScraper,
     inBerlinWohnenScraper,
     ...kleinanzeigenScraper,
   ]
 
-  const batches = splitIntoBatches(allScraper, 4)
+  const batches = splitIntoBatches(otherScraper, 4)
   for (const batch of batches) {
     try {
       await Promise.allSettled(batch.map(fn => fn()))
-      await wait(2000)
+      await page.close();
+    } catch (error) {
+        console.error("Batch Error:", error);
+    }
+  }
+
+  const immoscoutBatches = splitIntoBatches(immoscoutScraper, 2) // reduce concurrency because firefox uses more cpu
+  for (const batch of immoscoutBatches) {
+    try {
+      await Promise.allSettled(batch.map(fn => fn()))
+      await page.close();
     } catch (error) {
         console.error("Batch Error:", error);
     }
