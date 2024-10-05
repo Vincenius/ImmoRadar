@@ -29,7 +29,6 @@ const runScan = async (type) => {
   for (const batch of batches) {
     try {
       await Promise.allSettled(batch.map(fn => fn()))
-      await page.close();
     } catch (error) {
         console.error("Batch Error:", error);
     }
@@ -39,7 +38,6 @@ const runScan = async (type) => {
   for (const batch of immoscoutBatches) {
     try {
       await Promise.allSettled(batch.map(fn => fn()))
-      await page.close();
     } catch (error) {
         console.error("Batch Error:", error);
     }
