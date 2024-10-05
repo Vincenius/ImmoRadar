@@ -11,6 +11,8 @@ import { inberlinwohnenCrawler } from './inberlinwohnen.js'
 
 let isFullScanRunning = false;
 
+const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
+
 const runScan = async (type) => {
   const immoscoutScraper = immobilienscoutCrawler(type);
   const immoweltScraper = immoweltCrawler(type)
@@ -30,6 +32,7 @@ const runScan = async (type) => {
   for (const batch of batches) {
     try {
       await Promise.allSettled(batch.map(fn => fn()))
+      await wait(2000)
     } catch (error) {
         console.error("Batch Error:", error);
     }
