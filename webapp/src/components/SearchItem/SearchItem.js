@@ -58,7 +58,7 @@ const SearchItem = ({ item }) => {
                 <ThemeIcon variant="white" size="xs">
                   <IconLink />
                 </ThemeIcon>
-                <Text size="sm" c="cyan">
+                <Text size="sm" c="cyan.9">
                   {item.provider}
                 </Text>
               </Flex>
@@ -69,7 +69,7 @@ const SearchItem = ({ item }) => {
                 {f}
               </Badge>)}
               {!showAllFeatures && features.length < allFeatures.length &&
-                <Badge className={styles.moreFeatures} variant="outline" size="sm" radius="sm" mr="4px" onClick={() => setShowAllFeatures(true)}>
+                <Badge className={styles.moreFeatures} variant="outline" size="sm" radius="sm" mr="4px" c="cyan.9" onClick={() => setShowAllFeatures(true)}>
                   ...
                 </Badge>}
             </Flex>

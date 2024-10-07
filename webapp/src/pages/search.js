@@ -145,7 +145,7 @@ const Notifications = ({ filter, query }) => {
       onChange={val => setFrequency(val)}
     />
 
-    <Button loading={isLoading} type="submit">
+    <Button loading={isLoading} type="submit" color="cyan.9">
       Abonnieren
     </Button>
   </form>

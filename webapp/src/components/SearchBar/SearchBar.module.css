@@ -13,3 +13,7 @@
     border-bottom-left-radius: 0;
     border-left: 0;
 }
+
+.label {
+    width: 100%;
+}

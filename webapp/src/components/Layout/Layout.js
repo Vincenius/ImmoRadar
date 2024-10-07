@@ -73,7 +73,7 @@ const Layout = ({ children, title, description, date, noindex }) => {
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" priority />
-                <Indicator inline label="Beta" size={16}>
+                <Indicator inline label="Beta" size={16} color="cyan.9">
                   <Text weight={700} size="xl">ImmoRadar</Text>
                 </Indicator>
               </Flex>

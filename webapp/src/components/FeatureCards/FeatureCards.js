@@ -23,9 +23,9 @@ const FeatureCard = ({ image, title, text }) => <Card shadow="sm" padding="lg" r
 const FeatureCards = () => {
     return (
         <Flex gap="xl" direction={{ base: "column", sm: "row" }}>
-            <FeatureCard image={feature1} title="Alle Angebote an einem Ort" text="ImmoRadar durchsucht alle relevanten Immobilien-Webseiten und fasst die Ergebnisse zusammen. So sparen Sie Zeit und Mühe." />
-            <FeatureCard image={feature2} title="Keine Duplikate" text="Wir filtern doppelte Einträge heraus, sodass Sie eine klare und übersichtliche Liste der verfügbaren Wohnungen erhalten." />
-            <FeatureCard image={feature3} title="Benachrichtigungen" text="Erhalten Sie Benachrichtigungen, sobald eine neue Wohnung, die Ihren Suchkriterien entspricht, verfügbar wird. Verpassen Sie nie wieder eine passende Wohnung." />
+            <FeatureCard image={feature1} title="Alle Angebote an einem Ort" text="ImmoRadar durchsucht alle relevanten Immobilien-Webseiten und fasst die Ergebnisse zusammen. So sparen Sie Zeit und Mühe." alt="Wohnung mit Lupe Illustration"/>
+            <FeatureCard image={feature2} title="Keine Duplikate" text="Wir filtern doppelte Einträge heraus, sodass Sie eine klare und übersichtliche Liste der verfügbaren Wohnungen erhalten." alt="Wohnungen über einem Trichter Illustration" />
+            <FeatureCard image={feature3} title="Benachrichtigungen" text="Erhalten Sie Benachrichtigungen, sobald eine neue Wohnung, die Ihren Suchkriterien entspricht, verfügbar wird. Verpassen Sie nie wieder eine passende Wohnung." alt="Handy Illustration" />
         </Flex>
     );
 };

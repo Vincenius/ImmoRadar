@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Flex, NumberInput, Text, Button, Collapse, Checkbox, TextInput, rem, TagsInput } from '@mantine/core';
+import { Flex, NumberInput, Text, Button, Collapse, Checkbox, rem, TagsInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconCurrencyEuro } from '@tabler/icons-react'
 import { featureMap } from '@/utils/featureMap'
@@ -96,7 +96,7 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
 
     <TagsInput
       label="Titel enthält"
-      description='Füge mit "Enter" hinzu'
+      description='Füge mit "Enter" oder "," hinzu'
       placeholder="Suche nach bestimmten Texten"
       data={[]}
       value={filter.titleIncludes || []}
@@ -107,7 +107,7 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
     />
     <TagsInput
       label="Titel enthält nicht"
-      description='Füge mit "Enter" hinzu'
+      description='Füge mit "Enter" oder "," hinzu'
       placeholder="Schließe bestimmten Text aus"
       data={[]}
       value={filter.titleExcludes || []}
@@ -118,7 +118,7 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
     />
 
     {!opened &&
-      <Text c="blue" td="underline"onClick={toggle} style={{ cursor: 'pointer' }}>Erweiterte Filter</Text>
+      <Text c="cyan.9" td="underline"onClick={toggle} style={{ cursor: 'pointer' }}>Erweiterte Filter</Text>
     }
 
     <Collapse in={opened}>
@@ -170,7 +170,7 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
       </Flex>
     </Collapse>
 
-    <Button onClick={() => applyFilter(filter)} mt="md" loading={loading}>
+    <Button onClick={() => applyFilter(filter)} mt="md" loading={loading} color="cyan.9">
       Filter Anwenden
     </Button>
   </>
