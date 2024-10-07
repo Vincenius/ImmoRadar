@@ -3,7 +3,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
   let description = `Alle verfügbaren Wohnungen in ${q}. Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten.`
 
   if (
-    count > 0 &&
+    count > 1 &&
     q && filterQuery.input !== 'manual'
   ) {
     if (Object.keys(filterQuery).length === 0) {

@@ -40,7 +40,7 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
 
 const Notifications = ({ filter, query }) => {
   const [email, setEmail] = useState('')
-  const [frequency, setFrequency] = useState(1)
+  const [frequency, setFrequency] = useState('1')
   const [isLoading, setIsLoading] = useState(false)
 
   const submit = (e) => {
@@ -79,14 +79,20 @@ const Notifications = ({ filter, query }) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ email, frequency, filter: filteredFilter, query, manualInput }),
+      body: JSON.stringify({
+        email,
+        frequency: parseInt(frequency),
+        filter: filteredFilter,
+        query,
+        manualInput
+      }),
     })
     .then(res => res.json())
     .then((res) => {
       setIsLoading(false);
       if (res.success) {
         setEmail('');
-        setFrequency(1);
+        setFrequency('1');
         notifications.show({
           color: 'green',
           title: 'Erfolgreich abonniert',
@@ -126,13 +132,17 @@ const Notifications = ({ filter, query }) => {
       required
     />
 
-    <NumberInput
-      min={1}
-      max={30}
-      label="Häufigkeit (alle x Tage)"
-      mb="md" value={frequency}
-      onChange={val => setFrequency(val)}
+    <Select
+      label="Intervall"
+      data={[
+        { value: '1', label: 'täglich' },
+        { value: '3', label: 'alle 3 Tage' },
+        { value: '7', label: 'wöchentlich' }
+      ]}
       required
+      mb="md"
+      value={frequency}
+      onChange={val => setFrequency(val)}
     />
 
     <Button loading={isLoading} type="submit">
