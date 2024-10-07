@@ -44,7 +44,7 @@ const SearchItem = ({ item }) => {
 
         <Flex w={{ base: "100%", xs: "50%" }} direction="column" justify="space-between" gap="sm">
           <Box>
-            <Title order={4} mb="sm" className={styles.headline}>{item.title}</Title>
+            <Title order={2} size="h4" mb="sm" className={styles.headline}>{item.title}</Title>
 
             <Flex gap="xs" align="center" mb="xs">
               <ThemeIcon variant="white" size="xs">
@@ -65,11 +65,11 @@ const SearchItem = ({ item }) => {
             </a>
 
             <Flex wrap="wrap" gap={2}>
-              {features.map((f, i) => <Badge key={`${item._id}-feature-${i}`} variant="default" size="sm" radius="sm" mr="4px">
+              {features.map((f, i) => <Badge key={`${item._id}-feature-${i}`} variant="default" size="md" radius="sm" mr="4px">
                 {f}
               </Badge>)}
               {!showAllFeatures && features.length < allFeatures.length &&
-                <Badge className={styles.moreFeatures} variant="outline" size="sm" radius="sm" mr="4px" c="cyan.9" onClick={() => setShowAllFeatures(true)}>
+                <Badge className={styles.moreFeatures} variant="outline" size="md" radius="sm" mr="4px" c="cyan.9" onClick={() => setShowAllFeatures(true)}>
                   ...
                 </Badge>}
             </Flex>

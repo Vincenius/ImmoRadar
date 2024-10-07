@@ -3,18 +3,28 @@ import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
 import "@/styles/globals.css";
 
-import { createTheme, MantineProvider } from '@mantine/core';
+import { createTheme, MantineProvider, TagsInput, TextInput, Select } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
-import { TagsInput } from '@mantine/core';
 
 const theme = createTheme({
   primaryColor: 'cyan',
+  primaryShade: 9,
   components: {
     TagsInput: TagsInput.extend({
       styles: {
         description: { color: '#696969' },
       },
     }),
+    TextInput: TextInput.extend({
+      styles: {
+        required: { color: '#c92a2a' },
+      }
+    }),
+    Select: Select.extend({
+      styles: {
+        required: { color: '#c92a2a' },
+      }
+    })
   },
 });
 

@@ -3,7 +3,7 @@ import { useRouter } from 'next/router';
 import { Box, Card, Flex, Select, NumberInput, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
-import { IconAdjustmentsHorizontal, IconBell } from '@tabler/icons-react'
+import { IconAdjustmentsHorizontal, IconBell, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
@@ -11,6 +11,9 @@ import Filter from '@/components/Filter/Filter';
 import SearchPages from '@/components/SearchPages/SearchPages';
 import { fetcher } from '@/utils/fetcher'
 import { getSearchTitle, getDefaultTitle, getSearchPages } from '@/utils/searchSeo'
+
+const PaginationLeftIcon = ({ ...props }) => <IconArrowLeft {...props} aria-label="Zurück" />
+const PaginationRightIcon = ({ ...props }) => <IconArrowRight {...props} aria-label="Weiter" />
 
 const sortOptions = [{
   label: 'Aktuellste Angebote',
@@ -234,7 +237,14 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Box>
       </Flex>
 
-      { pages > 1 && <Pagination total={pages} value={pageInt} onChange={setPage} mt="sm" mb="sm" /> }
+      { pages > 1 && <Pagination
+        total={pages}
+        value={pageInt}
+        onChange={setPage}
+        mt="sm" mb="sm"
+        previousIcon={PaginationLeftIcon}
+        nextIcon={PaginationRightIcon}
+      /> }
 
       <Divider my="lg" />
       <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>

@@ -5,13 +5,13 @@ import feature1 from './feature1.webp';
 import feature2 from './feature2.webp';
 import feature3 from './feature3.webp';
 
-const FeatureCard = ({ image, title, text }) => <Card shadow="sm" padding="lg" radius="md" withBorder w="100%">
+const FeatureCard = ({ image, title, text, alt }) => <Card shadow="sm" padding="lg" radius="md" withBorder w="100%">
   <Card.Section>
     <Image
       component={NextImage}
       src={image}
       height={160}
-      alt={title}
+      alt={alt || title}
     />
   </Card.Section>
 
