@@ -21,7 +21,7 @@ const runScan = async (type) => {
   const otherScraper = [
     ...immoweltScraper,
     wgGesuchtScraper,
-    // inBerlinWohnenScraper,
+    inBerlinWohnenScraper,
     ...kleinanzeigenScraper,
   ]
 

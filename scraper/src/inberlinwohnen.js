@@ -103,13 +103,11 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
             await collection.insertMany(data);
         }
 
-        console.log('data', pageData[0])
-
-        console.log('preventries', prevEntries[0])
-
         const toRemove = prevEntries
-            .filter(e => pageData.indexOf(e.id) === -1)
+            .filter(e => pageData.indexOf(e.id) !== -1)
             .map(e => e.id);
+
+        console.log('toRemove', toRemove[0])
 
         // Remove multiple entries by _id
         const result = await collection.deleteMany({ id: { $in: toRemove } });
