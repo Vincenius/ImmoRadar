@@ -104,7 +104,7 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
         }
 
         const toRemove = prevEntries
-            .filter(e => pageData.indexOf(e.id) !== -1)
+            .filter(e => !pageData.some(pd => pd.id === e.id))
             .map(e => e.id);
 
         console.log('toRemove', toRemove[0])
