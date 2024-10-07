@@ -49,25 +49,25 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
 
     return (
         <Flex w="100%">
-            <label title="Suchbegriff" className={styles.label}>
-                <Autocomplete
-                    value={value} onChange={setValue}
-                    data={data.map(o => o.name)}
-                    comboboxProps={{ shadow: 'md' }}
-                    limit={10}
-                    className={showFilter ? styles.inputWithFilter : styles.input}
-                    placeholder={ city ? "Bezirk / PLZ Suchen" : "Ort / Stadt / Bezirk / PLZ Suchen" }
-                    size="lg"
-                    w="100%"
-                    onOptionSubmit={(value) => handleSearch({ value })}
-                    // submit on enter
-                    onKeyUp={(e) => {
-                        if (e.key === 'Enter' && e.target.value && e.target.value.length > 2){
-                            handleSearch({ value, manual: true })
-                        }
-                    }}
-                />
-            </label>
+            <Autocomplete
+                id="searchInput"
+                value={value} onChange={setValue}
+                data={data.map(o => o.name)}
+                comboboxProps={{ shadow: 'md' }}
+                limit={10}
+                className={showFilter ? styles.inputWithFilter : styles.input}
+                placeholder={ city ? "Bezirk / PLZ Suchen" : "Ort / Stadt / Bezirk / PLZ Suchen" }
+                size="lg"
+                w="100%"
+                onOptionSubmit={(value) => handleSearch({ value })}
+                // submit on enter
+                onKeyUp={(e) => {
+                    if (e.key === 'Enter' && e.target.value && e.target.value.length > 2){
+                        handleSearch({ value, manual: true })
+                    }
+                }}
+                aria-label="Suchbegriff"
+            />
             { showFilter && <ActionIcon
                 bg="white"
                 variant="outline"
