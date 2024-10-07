@@ -71,7 +71,7 @@ module.exports = {
             }
         ]).toArray()
 
-        const existingZipCodes = zipCodeEstateCount.filter(item => item.count > 0).map(item => item._id)
+        const existingZipCodes = zipCodeEstateCount.filter(item => item.count > 1).map(item => item._id)
         const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))
 
         const regionSitemap = await Promise.all(Object.keys(regionData).map(async item => {
