@@ -11,12 +11,12 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
             { provider: { $in: providers } },
             { projection: { id: 1 } }
         ).toArray();
-    
+
         console.log('inberlinwohnen SCRAPING');
         const BASE_URL = 'https://inberlinwohnen.de/wohnungsfinder/'
-    
+
         await page.goto(BASE_URL);
-    
+
         const pageData = await page.evaluate(async () => {
             const pageData = [];
             const providerMap = {
@@ -27,19 +27,19 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
                 'https://inberlinwohnen.de/wp-content/themes/ibw/images/logos/wbm-small-grey.jpg': 'wbm.de',
                 'https://inberlinwohnen.de/wp-content/themes/ibw/images/logos/gesobau-small-grey.jpg': 'gesobau.de',
             }
-    
+
             document.querySelectorAll('.tb-merkflat').forEach(el => {
                 const logo = el.querySelector('.alg_c img')
                 const id = el.getAttribute('id')
-    
+
                 const livingSpaceRow = Array.from(el.querySelectorAll('.tb-small-data tr')).find(row => {
                     return row.textContent.includes('Wohnfläche');
                 });
-                
+
                 const livingSpace = livingSpaceRow ? parseFloat(
                     livingSpaceRow.querySelector('.alg_r').textContent.replace(' m²', '').replace(',', '.').trim()
                 ) : null;
-    
+
                 const rawFeatures = Array.from(el.querySelectorAll('.tb-flatdet-smaller .hackerl')).map(feat => feat.textContent.trim())
                 const featureMap = {
                     'Balkon/Loggia/Terrasse': 'BALCONY',
@@ -60,7 +60,7 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
                     url: 'https://inberlinwohnen.de' + el.querySelector('.org-but').getAttribute('href'),
                     price: {
                         value: parseFloat(
-                            amount ? amount.textContent.replace(',', '.') : null
+                            amount ? amount.textContent.replace('.', '').replace(',', '.') : null
                         ),
                         currency: 'EUR',
                         additionalInfo: 'Kaltmiete'
@@ -80,12 +80,12 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
                     features: rawFeatures.map(feat => featureMap[feat]).filter(Boolean),
                 })
             })
-    
+
             return pageData;
         });
-    
+
         const filteredData = pageData.filter(d => !prevEntries.find(e => e.id === d.id));
-    
+
         for (let i = 0; i < filteredData.length; i++) {
             const newElem = {
                 ...filteredData[i],
@@ -95,24 +95,26 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
                 },
                 features: parseFeatures(filteredData[i])
             }
-    
+
             data.push(newElem)
         }
-    
+
         if (data && data.length > 0) {
             await collection.insertMany(data);
         }
-    
-        console.log('inberlinwohnen scraped', data.length, 'new estates');
-    
-        const toRemove = prevEntries
-            .filter(e => data.indexOf(e.id) === -1)
-            .map(e => e.id);
-    
-        // Remove multiple entries by _id
-        const result = await collection.deleteMany({ url: { $in: toRemove } });
-        console.log(`inberlinwohnen ${result.deletedCount} old estates were deleted.`);
 
+        console.log('data', pageData[0])
+
+        console.log('preventries', prevEntries[0])
+
+        const toRemove = prevEntries
+            .filter(e => pageData.indexOf(e.id) === -1)
+            .map(e => e.id);
+
+        // Remove multiple entries by _id
+        const result = await collection.deleteMany({ id: { $in: toRemove } });
+
+        console.log(`inberlinwohnen.de scraped ${data.length} new estates & deleted ${result.deletedCount} old ones` );
         await logEvent({ scraper: 'inberlinwohnen.de', success: true, message: `scraped ${data.length} new estates & deleted ${result.deletedCount} old ones` });
     } catch (err) {
         console.error('inberlinwohnen.de unexpected error', err);
