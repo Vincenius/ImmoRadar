@@ -83,6 +83,8 @@ module.exports = {
             return res
         }))
 
+        await client.close()
+
         return [
             ...regionSitemap,
             ...searchSitemap

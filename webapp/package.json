@@ -8,6 +8,7 @@
     "postbuild": "next-sitemap",
     "start": "next start",
     "start2": "next start -p 3002",
+    "deploy": "sh scripts/deploy.sh",
     "lint": "next lint"
   },
   "dependencies": {
