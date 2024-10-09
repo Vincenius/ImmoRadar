@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Text } from '@mantine/core';
+import { Text } from '@mantine/core';
 import BlogLayout from '@/components/Layout/BlogLayout';
 import { posts } from '@/utils/blog';
 

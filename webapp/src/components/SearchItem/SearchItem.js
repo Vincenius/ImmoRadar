@@ -44,7 +44,7 @@ const SearchItem = ({ item }) => {
 
         <Flex w={{ base: "100%", xs: "50%" }} direction="column" justify="space-between" gap="sm">
           <Box>
-            <Title order={2} size="h4" mb="sm" className={styles.headline}>{item.title}</Title>
+            <Title order={2} size="h4" mb="sm" className={styles.headline} title={item.title}>{item.title}</Title>
 
             <Flex gap="xs" align="center" mb="xs">
               <ThemeIcon variant="white" size="xs">
