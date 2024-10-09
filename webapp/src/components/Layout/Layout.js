@@ -65,6 +65,7 @@ const Layout = ({ children, title, description, date, noindex }) => {
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
         <script defer src="https://analytics.vincentwill.com/script.js" data-website-id="70bfc215-0eff-4c0e-8cf0-eef7202b8af5"></script>
       )}
+      <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
     <div>
       <Box as="header" height={60} className={styles.header}>
