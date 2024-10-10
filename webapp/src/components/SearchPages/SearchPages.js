@@ -29,6 +29,7 @@ function ListItem({ item, color = 'teal.5' }) {
 
 export default function SearchPages({ data, margin = 'md' }) {
   return <List
+    component="div"
     mb="lg"
     listStyleType="none"
   >
@@ -36,11 +37,12 @@ export default function SearchPages({ data, margin = 'md' }) {
       {splitArray(data).map((row, index) => (
         <Grid.Col span={{ base: 6, lg: 3 }} key={`search-pages-col-${index}`}>
           { row.map(d => <Box key={`search-pages-box-${index}-${d.primary.label}`} mb={margin}>
-              <ListItem item={d.primary} color="teal.9" />
+              <ListItem item={d.primary} color="teal.9" component="span" />
               { d.secondary && <Box ml="sm">
                 { d.secondary.map(s => <ListItem key={s.label} item={s} color="teal.6" /> )}
               </Box> }
               { d.showMoreLink && <Box ml="sm"><ListItem
+                component="span"
                 item={{ label: `alle Regionen in ${d.primary.label} anzeigen`, url: `/uebersicht/${d.primary.label.toLowerCase()}` }}
                 color="teal.2"
               /></Box> }

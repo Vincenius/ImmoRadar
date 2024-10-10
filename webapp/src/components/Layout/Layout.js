@@ -96,7 +96,7 @@ const Layout = ({ children, title, description, date, noindex }) => {
         <Container>
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
-              <Flex mb="xs" gap="sm" justify={{ base: "center", xs: "flex-start" }}>
+              <Flex mb="xl" gap="sm" justify={{ base: "center", xs: "flex-start" }}>
                 <ActionIcon
                   component="a"
                   href="https://www.facebook.com/profile.php?id=61566536998327"
@@ -125,16 +125,16 @@ const Layout = ({ children, title, description, date, noindex }) => {
                   <IconBrandLinkedin />
                 </ActionIcon>
               </Flex>
-              <Flex gap="sm" mt="md">
+              <Flex gap="sm" mt="xl">
                 <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
                 <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
               </Flex>
             </Box>
 
             <Box>
-              <Link href="/imprint"><Text size="sm" c="gray.7">Impressum</Text></Link>
-              <Link href="/privacy"><Text size="sm" c="gray.7">Datenschutz</Text></Link>
-              <Link href="/about"><Text size="sm" c="gray.7">Über uns</Text></Link>
+              <Link href="/imprint"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
+              <Link href="/privacy"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
+              <Link href="/about"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
               <Link href="/sitemap-0.xml"><Text size="sm" c="gray.7">Sitemap</Text></Link>
             </Box>
           </Flex>
