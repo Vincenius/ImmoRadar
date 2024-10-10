@@ -22,4 +22,11 @@ export const posts = [{
     isoDate: '2024-09-06',
     slug: 'immoradar-jetzt-deutschlandweit-verfuegbar',
     description: 'Die ersten Immobilienportale für ganz Deutschland sind jetzt verfügbar. Es werden Immobilien von Immobilienscout24, Immowelt und Kleinanzeigen gelistet.'
-  }]
+  }, {
+    title: 'ImmoRadar läuft mit grüner Energie und ist Barrierefrei',
+    date: '10. Oktober 2024',
+    isoDate: '2024-10-10',
+    slug: 'immoradar-nachhaltig-barrierefrei',
+    description: 'Wir haben alle nötigen Maßnahmen ergriffen um ImmoRadar barrierefrei zu machen. Zusätzlich läuft ImmoRadar seit der Einführung im August mit erneuerbaren Energien.'
+  }
+]
