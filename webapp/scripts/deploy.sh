@@ -11,26 +11,32 @@ ssh root@82.165.133.109 << 'EOF'
       app_name="ImmoRadar"
     fi
 
+    echo "Building App"
     cd "/root/node/$app_name/webapp"
     git pull
     yarn build
 
-    if $app_name == "ImmoRadar2"; then
+    echo "Resetarting App"
+    if [[ $app_name == "ImmoRadar2" ]]; then
       pm2 restart immoradar-2
     else
       pm2 restart immoradar
     fi
 
+    echo "Update Caddyfile"
     cd /etc/caddy/
-    if $app_name == "ImmoRadar2"; then
-      sed -i 's/#reverse_proxy localhost:3000/#reverse_proxy localhost:3000/' /etc/caddy/Caddyfile
-      sed -i 's/reverse_proxy localhost:3002/#reverse_proxy localhost:3002/' /etc/caddy/Caddyfile
-    else
-      sed -i 's/#reverse_proxy localhost:3002/#reverse_proxy localhost:3002/' /etc/caddy/Caddyfile
+    if [[ $app_name == "ImmoRadar" ]]; then
       sed -i 's/reverse_proxy localhost:3000/#reverse_proxy localhost:3000/' /etc/caddy/Caddyfile
+      sed -i 's/#reverse_proxy localhost:3002/reverse_proxy localhost:3002/' /etc/caddy/Caddyfile
+    else
+      sed -i 's/reverse_proxy localhost:3002/#reverse_proxy localhost:3002/' /etc/caddy/Caddyfile
+      sed -i 's/#reverse_proxy localhost:3000/reverse_proxy localhost:3000/' /etc/caddy/Caddyfile
     fi
-EOF
 
-    # cd ~/deploy/code
-    # git checkout main
-    # git pull
+    echo "Restarting Caddy"
+    sudo caddy stop
+    sudo caddy start
+
+    echo "Successfully deployed"
+    exit
+EOF
