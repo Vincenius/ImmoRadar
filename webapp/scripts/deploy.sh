@@ -14,6 +14,7 @@ ssh root@82.165.133.109 << 'EOF'
     echo "Building App"
     cd "/root/node/$app_name/webapp"
     git pull
+    yarn
     yarn build
 
     echo "Resetarting App"

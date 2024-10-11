@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build && create-ads-txt",
+    "build": "next build",
     "postbuild": "next-sitemap",
     "start": "next start",
     "start2": "next start -p 3002",
