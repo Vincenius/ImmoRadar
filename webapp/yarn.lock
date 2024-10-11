@@ -3772,6 +3772,11 @@ natural-compare@^1.4.0:
   resolved "https://registry.npmjs.org/natural-compare/-/natural-compare-1.4.0.tgz"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
 
+next-google-adsense@^1.0.9:
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/next-google-adsense/-/next-google-adsense-1.0.9.tgz#f1b272b21f9b2f709f69d5fd626eb9c8201cca6b"
+  integrity sha512-iMNFw0IL6airoX6NRxgCV8GTsluQ0QoQ21dIXzmLQ85ThGfL5I9egSatp07FY0XggWBIiTofvuDBK7wq5s3jQg==
+
 next-sitemap@^4.2.3:
   version "4.2.3"
   resolved "https://registry.npmjs.org/next-sitemap/-/next-sitemap-4.2.3.tgz"

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, NumberInput, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
+import { AdUnit } from "next-google-adsense";
+import { Box, Card, Flex, Select, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { IconAdjustmentsHorizontal, IconBell, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
@@ -212,6 +213,12 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
+
+      <AdUnit
+        publisherId="pub-1087144186006114"
+        slotId="6277079486"
+        layout="display"
+      />
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>

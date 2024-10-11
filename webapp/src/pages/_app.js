@@ -3,6 +3,7 @@ import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
 import "@/styles/globals.css";
 
+import { GoogleAdSense } from "next-google-adsense";
 import { createTheme, MantineProvider, TagsInput, TextInput, Select } from '@mantine/core';
 import { Notifications } from '@mantine/notifications';
 
@@ -31,6 +32,7 @@ const theme = createTheme({
 export default function App({ Component, pageProps }) {
   return (
     <MantineProvider theme={theme}>
+      <GoogleAdSense publisherId="pub-1087144186006114" />
       <Notifications />
       <Component {...pageProps} />
     </MantineProvider>
