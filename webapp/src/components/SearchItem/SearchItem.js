@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Badge, Skeleton } from '@mantine/core';
+import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Badge, Skeleton, rem } from '@mantine/core';
 import { Carousel } from '@mantine/carousel'
-import { IconMapPin, IconLink } from '@tabler/icons-react';
+import { IconMapPin, IconLink, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import { featureMap } from '@/utils/featureMap';
 import styles from './SearchItem.module.css'
 import 'react-lazy-load-image-component/src/effects/blur.css';
@@ -35,7 +35,15 @@ const SearchItem = ({ item }) => {
       <Flex justify="space-between" gap="sm" direction={{ base: "column", xs: "row" }}>
         <Box w={{ base: "100%", xs: "50%" }}>
           { item.gallery.length <= 1 && <GalleryImage item={item} image={item.gallery[0]} /> }
-          { item.gallery.length > 1 && <Carousel h={230} withIndicators align="start" controlSize={18} loop>
+          { item.gallery.length > 1 && <Carousel
+            h={230}
+            withIndicators
+            align="start"
+            controlSize={18}
+            loop
+            nextControlIcon={<IconArrowRight aria-label="Nächstes Bild" style={{ width: rem(16), height: rem(16) }} />}
+            previousControlIcon={<IconArrowLeft aria-label="Vorheriges Bild" style={{ width: rem(16), height: rem(16) }} />}
+          >
             {item.gallery.map((img, i) => <Carousel.Slide key={`carousel-slide-${i}`}>
               <GalleryImage key={`${item._id}-img-${i}`} item={item} image={img} />
             </Carousel.Slide>)}
