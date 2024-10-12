@@ -90,8 +90,8 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         }
                         const [, address, zip, city, district] = match;
                         return {
-                            address: address ? address.trim() : null,
-                            zip: zip.trim(),
+                            street: address ? address.trim() : null,
+                            zipCode: zip.trim(),
                             city: city.trim(),
                             district: district ? district.trim() : null
                         };
