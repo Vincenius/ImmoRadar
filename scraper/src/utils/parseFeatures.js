@@ -32,8 +32,8 @@ const featureMap = [{
   excludes: ['kein neubau']
 }, {
   feature: 'PASSENGER_LIFT',
-  includes: ['aufzug'],
-  excludes: ['kein aufzug', 'ohne aufzug', 'keinen aufzug', 'aufzug nicht']
+  includes: ['aufzug', 'fahrstuhl'],
+  excludes: ['kein aufzug', 'ohne aufzug', 'keinen aufzug', 'aufzug nicht', 'kein fahrstuhl', 'ohne fahrstuhl', 'keinen fahrstuhl', 'fahrstuhl nicht']
 }, {
   feature: 'CAR_PARK',
   includes: ['garage', 'stellplatz', 'parkplatz'],

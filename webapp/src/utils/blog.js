@@ -28,5 +28,11 @@ export const posts = [{
     isoDate: '2024-10-10',
     slug: 'immoradar-nachhaltig-barrierefrei',
     description: 'Wir haben alle nötigen Maßnahmen ergriffen um ImmoRadar barrierefrei zu machen. Zusätzlich läuft ImmoRadar seit der Einführung im August mit erneuerbaren Energien.'
+  }, {
+    title: 'Immobilien von ohne-makler.net hinzugefügt',
+    date: '12. Oktober 2024',
+    isoDate: '2024-10-12',
+    slug: 'ohne-makler-hinzugefuegt',
+    description: 'Wir haben unser Immobilien Angebot um alle Wohnungen von ohne-makler.net ergänzt. Damit unterstützt ImmoRadar nun 10 verschiedene Immobilien-Portale.'
   }
 ]

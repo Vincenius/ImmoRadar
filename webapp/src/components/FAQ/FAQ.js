@@ -13,7 +13,7 @@ const FAQ = () => {
 
               <Accordion.Item value="frage2">
                 <Accordion.Control><Text fw={500}>Welche Immobilien-Webseiten werden von ImmoRadar durchsucht?</Text></Accordion.Control>
-                <Accordion.Panel>ImmoRadar durchsucht alle großen und relevanten Immobilien-Webseiten in Deutschland. Dazu gehören aktuell <b>Immobilienscout24</b>, <b>Immowelt</b>, <b>WG-Gesucht</b>, <b>Howoge</b>, <b>Gewobag</b>, <b>Stadt und Land</b>, <b>Degewo</b>, <b>WBM</b>, <b>Gesobau</b> und <b>Kleinanzeigen</b>. Die Liste wird in Zukunft noch erweitert. Aboniere unsere Social Media Kanäle um Updates zu erhalten.</Accordion.Panel>
+                <Accordion.Panel>ImmoRadar durchsucht alle großen und relevanten Immobilien-Webseiten in Deutschland. Dazu gehören aktuell <b>Immobilienscout24</b>, <b>Immowelt</b>, <b>WG-Gesucht</b>, <b>Howoge</b>, <b>Gewobag</b>, <b>Stadt und Land</b>, <b>Degewo</b>, <b>WBM</b>, <b>Gesobau</b>, <b>Kleinanzeigen</b> und <b>Ohne Makler</b>. Die Liste wird in Zukunft noch erweitert. Aboniere unsere Social Media Kanäle um Updates zu erhalten.</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item value="frage3">

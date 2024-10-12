@@ -7,48 +7,48 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
     q && filterQuery.input !== 'manual'
   ) {
     if (Object.keys(filterQuery).length === 0) {
-      title = `Wohnungen in ${q} - Angebote von 9 Immobilienportalen`
+      title = `Wohnungen in ${q} - Angebote von 10 Immobilienportalen`
     }
 
     if (Object.keys(filterQuery).length === 1) {
       if (filterQuery.features === 'CERTIFICATE_OF_ELIGIBILITY') {
         title = `WBS Wohnungen in ${q} - Günstige Sozialwohnungen mieten`
-        description = `Alle verfügbaren WBS Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 9 Immobilien-Webseiten.`
+        description = `Alle verfügbaren WBS Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.titleIncludes === 'auf Zeit') {
         title = `Wohnen auf Zeit in ${q} - Möblierte Wohnungen mieten`
-        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für möblierte Wohnungen von 9 Immobilien-Webseiten.`
+        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für möblierte Wohnungen von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'GARDEN') {
         title = `Wohnungen mit Garten in ${q} mieten`
-        description = `Alle verfügbaren Wohnungen mit Garten in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Garten von 9 Immobilien-Webseiten.`
+        description = `Alle verfügbaren Wohnungen mit Garten in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Garten von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'NEW_BUILDING') {
-        title = `Neubauwohnungen in ${q} - Angebote von 9 Immobilienportalen`
-        description = `Alle verfügbaren Neubauwohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Neubauwohnungen zur Miete von 9 Immobilien-Webseiten.`
+        title = `Neubauwohnungen in ${q} - Angebote von 10 Immobilienportalen`
+        description = `Alle verfügbaren Neubauwohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Neubauwohnungen zur Miete von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'FLAT_SHARE_POSSIBLE') {
         title = `WG-geeignete Mietwohnungen in ${q}`
-        description = `Alle WG-geeigneten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen von 9 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
+        description = `Alle WG-geeigneten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen von 10 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
       }
       if (filterQuery.features === 'BALCONY') {
         title = `Wohnungen mit Balkon in ${q}`
-        description = `Alle Wohnungen mit Balkon in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen mit Balkon von 9 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Balkon in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen mit Balkon von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'WHEELCHAIR_ACCESSIBLE') {
         title = `Behindertengerechte / Barrierefreie Mietwohnungen in ${q}`
-        description = `Alle Barrierefreien Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für rollstuhlgerechte Mietwohnungen von 9 Immobilien-Webseiten.`
+        description = `Alle Barrierefreien Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für rollstuhlgerechte Mietwohnungen von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.minRooms === "6") {
         title = `6+ Zimmer Wohnungen in ${q}`
-        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige 6+ Raum Wohnungen von 9 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige 6+ Raum Wohnungen von 10 Immobilien-Webseiten.`
       }
     }
 
     if (Object.keys(filterQuery).length === 2 && filterQuery.minRooms && filterQuery.maxRooms && filterQuery.minRooms === filterQuery.maxRooms && parseInt(filterQuery.minRooms) <= 5) {
       title = `${filterQuery.minRooms} Zimmer Wohnungen in ${q} mieten`
       if (filterQuery.minRooms === 1) {
-        description = `Alle Einzimmer Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige ${filterQuery.minRooms} Raum Wohnungen von 9 Immobilien-Webseiten.`
+        description = `Alle Einzimmer Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
       } else if (filterQuery.minRooms > 1) {
         const rooms = {
           2: 'Zweizimmer',
@@ -56,7 +56,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
           4: 'Vierzimmer',
           5: 'Fünfzimmer',
         }
-        description = `Alle ${rooms[filterQuery.minRooms]} Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für ${filterQuery.minRooms} Raum Wohnungen von 9 Immobilien-Webseiten.`
+        description = `Alle ${rooms[filterQuery.minRooms]} Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
       }
     }
   }
@@ -65,7 +65,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
 };
 
 export const getDefaultTitle = (q) => {
-  return `Wohnungen in ${q} - Angebote von 9 Immobilienportalen`
+  return `Wohnungen in ${q} - Angebote von 10 Immobilienportalen`
 }
 
 export const getSearchPages = q => [{

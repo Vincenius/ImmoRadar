@@ -33,7 +33,7 @@ export default function Home() {
           <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
               <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Kombiniert Ergebnisse von <b>9 Immobilien-Webseiten</b></Text>
+              <Text ta={{ base: 'left', sm: 'center'}}>Kombiniert Ergebnisse von <b>10 Immobilien-Webseiten</b></Text>
             </Flex>
             <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
               <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>

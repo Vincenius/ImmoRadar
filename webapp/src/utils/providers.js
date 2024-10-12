@@ -9,4 +9,5 @@ export const providers = [
     { id: 'degewo.de', label: 'Degewo' },
     { id: 'wbm.de', label: 'WBM' },
     { id: 'gesobau.de', label: 'Gesobau' },
+    { id: 'ohne-makler.net', label: 'Ohne Makler' },
 ];

@@ -14,6 +14,7 @@ import gewobag from './gewobag.png';
 import howoge from './howoge.png';
 import stadtundland from './stadtundland.png';
 import wbm from './wbm.png';
+import ohneMakler from './ohne-makler.png';
 
 const Logos = () => {
   const autoplay = useRef(Autoplay({ delay: 2000 }));
@@ -35,11 +36,13 @@ const Logos = () => {
       <Carousel.Slide><Image src={kleinanzeigen} alt="Kleinanzeigen Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={wgGesucht} alt="WG Gesucht Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={howoge} alt="Howoge Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={ohneMakler} alt="Ohne Makler Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={gesobau} alt="Gesobau Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={degewo} alt="Degewo Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={gewobag} alt="Gewobag Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={stadtundland} alt="STADT UND LAND Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={wbm} alt="wbm Logo" height={30} width="100%" /></Carousel.Slide>
+
     </Carousel>
   </Box>
 }
