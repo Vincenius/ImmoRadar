@@ -45,14 +45,14 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
       }
       if (filterQuery.minRooms === "6") {
         title = `6+ Zimmer Wohnungen in ${q}`
-        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für kostengünstige 6+ Raum Wohnungen zur Miete von 10 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für günstige 6+ Raum Wohnungen zur Miete von 10 Immobilien-Webseiten.`
       }
     }
 
     if (Object.keys(filterQuery).length === 2 && filterQuery.minRooms && filterQuery.maxRooms && filterQuery.minRooms === filterQuery.maxRooms && parseInt(filterQuery.minRooms) <= 5) {
       title = `${filterQuery.minRooms} Zimmer Wohnungen in ${q} mieten`
       if (filterQuery.minRooms === 1) {
-        description = `Alle Einzimmer Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
+        description = `Alle Einzimmer Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und günstige ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
       } else if (filterQuery.minRooms > 1) {
         const rooms = {
           2: 'Zweizimmer',
