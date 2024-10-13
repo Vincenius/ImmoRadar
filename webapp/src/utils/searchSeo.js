@@ -16,8 +16,8 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
         description = `Alle verfügbaren WBS Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.titleIncludes === 'auf Zeit') {
-        title = `Wohnen auf Zeit in ${q} - Möblierte Wohnungen mieten`
-        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für möblierte Wohnungen von 10 Immobilien-Webseiten.`
+        title = `Wohnen auf Zeit in ${q} - Wohnungen zur Zwischenmiete finden`
+        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen zur Zwischenmiete von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'GARDEN') {
         title = `Wohnungen mit Garten in ${q} mieten`
@@ -29,19 +29,23 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
       }
       if (filterQuery.features === 'FLAT_SHARE_POSSIBLE') {
         title = `WG-geeignete Mietwohnungen in ${q}`
-        description = `Alle WG-geeigneten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen von 10 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
+        description = `Alle WG-geeigneten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen zur Miete von 10 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
       }
       if (filterQuery.features === 'BALCONY') {
         title = `Wohnungen mit Balkon in ${q}`
-        description = `Alle Wohnungen mit Balkon in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen mit Balkon von 10 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Balkon in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen zur Miete mit Balkon von 10 Immobilien-Webseiten.`
       }
       if (filterQuery.features === 'WHEELCHAIR_ACCESSIBLE') {
         title = `Behindertengerechte / Barrierefreie Mietwohnungen in ${q}`
         description = `Alle Barrierefreien Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für rollstuhlgerechte Mietwohnungen von 10 Immobilien-Webseiten.`
       }
+      if (filterQuery.features === 'FULLY_FURNISHED') {
+        title = `Möblierte Mietwohnungen in ${q}`
+        description = `Alle möblierten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Möbeln von 10 Immobilien-Webseiten.`
+      }
       if (filterQuery.minRooms === "6") {
         title = `6+ Zimmer Wohnungen in ${q}`
-        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und kostengünstige 6+ Raum Wohnungen von 10 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für kostengünstige 6+ Raum Wohnungen zur Miete von 10 Immobilien-Webseiten.`
       }
     }
 
@@ -90,6 +94,9 @@ export const getSearchPages = q => [{
   label: `Barrierefreie Wohnungen in ${q}`,
   url: `/search?q=${q}&features=WHEELCHAIR_ACCESSIBLE`,
 }, {
+  label: `Möblierte Wohnungen in ${q}`,
+  url: `/search?q=${q}&features=FULLY_FURNISHED`,
+} ,{
   label: `1 Zimmer Wohnungen in ${q}`,
   url: `/search?q=${q}&minRooms=1&maxRooms=1`,
 }, {
