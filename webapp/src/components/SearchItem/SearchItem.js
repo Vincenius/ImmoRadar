@@ -20,7 +20,18 @@ const GalleryImage = ({ item, image }) => {
   />
 }
 
-const SearchItem = ({ item }) => {
+const ProviderLink = ({ provider }) => {
+  return <Flex gap="xs" align="center" mb="xs">
+  <ThemeIcon variant="white" size="xs">
+    <IconLink />
+  </ThemeIcon>
+  <Text size="sm" c="cyan.9">
+    {provider}
+  </Text>
+</Flex>
+}
+
+const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
   const [showAllFeatures, setShowAllFeatures] = useState(false)
   const address = [item.address.street, item.address.district, item.address.zipCode, item.address.city].filter(Boolean).join(', ')
   const priceType = item.price.additionalInfo === 'WARM_RENT'
@@ -61,16 +72,10 @@ const SearchItem = ({ item }) => {
               <Text size="sm">{address}</Text>
             </Flex>
 
-            <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">
-              <Flex gap="xs" align="center" mb="xs">
-                <ThemeIcon variant="white" size="xs">
-                  <IconLink />
-                </ThemeIcon>
-                <Text size="sm" c="cyan.9">
-                  {item.provider}
-                </Text>
-              </Flex>
-            </a>
+            { !hideLink && <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">
+              <ProviderLink provider={item.provider} />
+            </a> }
+            { hideLink && <ProviderLink provider={item.provider} /> }
 
             <Flex wrap="wrap" gap={2}>
               {features.map((f, i) => <Badge key={`${item._id}-feature-${i}`} variant="default" size="md" radius="sm" mr="4px">
@@ -85,7 +90,10 @@ const SearchItem = ({ item }) => {
 
           <Flex justify="space-between">
             <Box>
-              <Text size="md" fw="bold">{item.price.value || 'N/A'} €</Text>
+              <Text size="md" fw="bold" c={hidePrice ? 'yellow' : 'black'}>
+                {hidePrice && '???'}
+                {!hidePrice && (item.price.value || 'N/A')} €
+              </Text>
               <Text size="sm">{priceType}</Text>
             </Box>
             <Box>
