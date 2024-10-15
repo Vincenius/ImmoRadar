@@ -20,12 +20,12 @@ const GalleryImage = ({ item, image }) => {
   />
 }
 
-const ProviderLink = ({ provider }) => {
+const ProviderLink = ({ provider, isLink }) => {
   return <Flex gap="xs" align="center" mb="xs">
   <ThemeIcon variant="white" size="xs">
     <IconLink />
   </ThemeIcon>
-  <Text size="sm" c="cyan.9">
+  <Text size="sm" c={isLink ? "cyan.9" : "default"}>
     {provider}
   </Text>
 </Flex>
@@ -73,9 +73,9 @@ const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
             </Flex>
 
             { !hideLink && <a href={item.url} target="_blank" rel="noopener noreferrer nofollow">
-              <ProviderLink provider={item.provider} />
+              <ProviderLink provider={item.provider} isLink={true} />
             </a> }
-            { hideLink && <ProviderLink provider={item.provider} /> }
+            { hideLink && <ProviderLink provider={item.provider} isLink={false} /> }
 
             <Flex wrap="wrap" gap={2}>
               {features.map((f, i) => <Badge key={`${item._id}-feature-${i}`} variant="default" size="md" radius="sm" mr="4px">
@@ -88,14 +88,13 @@ const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
             </Flex>
           </Box>
 
-          <Flex justify="space-between">
-            <Box>
-              <Text size="md" fw="bold" c={hidePrice ? 'yellow' : 'black'}>
-                {hidePrice && '???'}
-                {!hidePrice && (item.price.value || 'N/A')} €
+          <Flex justify={hidePrice ? "space-around" : "space-between"}>
+            {!hidePrice &&<Box>
+              <Text size="md" fw="bold">
+                (item.price.value || 'N/A') €
               </Text>
               <Text size="sm">{priceType}</Text>
-            </Box>
+            </Box> }
             <Box>
               <Text size="md" fw="bold">{item.livingSpace || 'N/A'} m²</Text>
               <Text size="sm">Wohnfläche</Text>

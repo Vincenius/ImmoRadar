@@ -8,20 +8,30 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('estates');
+      const locationCollection = db.collection('locations');
+
+      const { q } = req.query;
 
       let result = []
+      let query = []
+
+      if (q) {
+        const location = await locationCollection.findOne({ name: q });
+        if (location) {
+          query.push({ 'address.zipCode': { $in: location.zipCodes } })
+        }
+      }
 
       result = await collection.aggregate([
         {
           $match: { $and: [
+            ...query,
             { "price.value": { $gte: 300 } },
             { "price.additionalInfo": "COLD_RENT" },
             { $expr: { $gt: [{ $size: "$gallery" }, 3] } }
-
-            // todo match the query
           ] }
         },
-        { $sample: { size: 10 } },
+        { $sample: { size: 5 } },
       ]).toArray()
 
       res.status(200).json(result);
