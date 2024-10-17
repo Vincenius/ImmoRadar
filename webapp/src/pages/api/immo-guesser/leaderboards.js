@@ -14,8 +14,7 @@ export default async function handler(req, res) {
       let result = []
 
       result = await  collection.find({})
-        .sort({ score: -1 })
-        .limit(10).toArray()
+        .sort({ score: -1 }).toArray()
 
       res.status(200).json(result);
     } catch (error) {
@@ -34,12 +33,11 @@ export default async function handler(req, res) {
       const collection = db.collection('immo-guesser-leaderboards');
 
       let result = []
+      const { score, username } = req.body
 
-      result = await  collection.find({})
-        .sort({ score: -1 })
-        .limit(10).toArray()
+      await collection.insertOne({ score, username })
 
-      res.status(200).json(result);
+      res.status(200).json({ message: 'OK' });
     } catch (error) {
       console.error('Error on fetching autocomplete:', error);
       res.status(500)

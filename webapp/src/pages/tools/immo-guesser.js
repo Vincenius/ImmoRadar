@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, act } from 'react';
 import useSWR from "swr";
-import { Text, Title, Flex, Box, Card, Table, NumberInput, rem, ActionIcon, Indicator, Divider, Button, Tooltip, ThemeIcon, Modal, TextInput } from '@mantine/core';
+import { Text, Title, Flex, Box, Card, Table, NumberInput, rem, ActionIcon, Indicator, Divider, Button, Tooltip, ThemeIcon, Modal, TextInput, Pagination } from '@mantine/core';
 import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import ConfettiExplosion from 'react-confetti-explosion';
 import { useCountUp } from 'react-countup';
@@ -10,45 +10,128 @@ import SearchItem from '@/components/SearchItem/SearchItem';
 import { IconCurrencyEuro, IconArrowRight, IconQuestionMark } from '@tabler/icons-react';
 
 // todo mobile
-// todo leaderboard logic
-// todo pagination
 // todo pop up logic
-// todo local storage name
-// confetti on name submit
 // todo share icon
 // todo meta stuff
 // todo cors
 
-const ImmoGuesser = ({ data }) => {
-  const [opened, { open, close }] = useDisclosure(true);
-  const [level, setLevel] = useState(0)
-  const [score, setScore] = useState(1000)
-  const [revealed, setRevealed] = useState(false)
-  const [inputVal, setInputVal] = useState('')
-  const [newUsername, setNewUsername] = useState('')
-  const [isExploding, setIsExploding] = useState(false)
-  const countUpRef = React.useRef(null);
-  const [username, setUsername] = useLocalStorage({
-    key: 'immo-guesser-user',
-    defaultValue: '',
-  });
-  const { data: leaderboards, error, isLoading } = useSWR(`/api/immo-guesser/leaderboards`, fetcher);
-  const { update } = useCountUp({
-    ref: countUpRef,
-    start: 1000,
-    end: 1000,
-    duration: 1.5,
-  });
-
+const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
+  const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);
+  const defaultPage = defaultPlayerIndex !== -1 ? Math.ceil((defaultPlayerIndex + 1) / 5) : 1;
+  const [activePage, setActivePage] = useState(defaultPage);
+  const totalPages = Math.ceil(leaderboards.length / 5);
+  let leaderboardPlace = 1;
   const confettiProps = {
     force: 0.6,
     duration: 2500,
     particleCount: 100,
     onComplete: () => setIsExploding(false),
   };
+  const [isExploding, setIsExploding] = useState(false);
 
+  useEffect(() => {
+    setActivePage(defaultPage)
+  }, [defaultPage])
+
+  const afterSaving = (e) => {
+    setIsExploding(true)
+    // todo set correct page index
+  }
+
+  return <>
+    <Table striped>
+      <Table.Thead>
+        <Table.Tr>
+          <Table.Th></Table.Th>
+          <Table.Th>Name</Table.Th>
+          <Table.Th>Ergebnis</Table.Th>
+        </Table.Tr>
+      </Table.Thead>
+      <Table.Tbody>
+        { isExploding && <ConfettiExplosion { ...confettiProps } /> }
+        { leaderboards.sort((a, b) => b.score - a.score).map((player, index) => {
+          let currentPlace = index + 1;
+
+          // Check for previous player to determine if leaderboard place needs to be updated
+          if (index === 0 || leaderboards[index - 1].score !== player.score) {
+            leaderboardPlace = currentPlace;
+          }
+
+          if (index >= activePage * 5 || index < (activePage - 1) * 5) {
+            return null
+          }
+
+          if (player.newEntry) {
+            return <>
+              <Table.Tr key={`leaderboard-${index}`}>
+                <Table.Td>{leaderboardPlace}.</Table.Td>
+                <Table.Td>
+                  <form onSubmit={e => saveScore(e, afterSaving)}>
+                    <Flex align="end">
+                      <TextInput
+                        label="Name"
+                        required
+                        placeholder="Dein Name"
+                        value={username}
+                        onChange={(e) => setUsername(e.target.value)}
+                        maxLength={20}
+                      >
+                      </TextInput>
+                        <ActionIcon
+                          variant="filled" aria-label="Settings" h="36px" w="36px" type="submit"
+                          loading={submitScoreLoading} disabled={submitScoreLoading}
+                        >
+                          <IconArrowRight style={{ width: '70%', height: '70%' }} stroke={1.5} />
+                        </ActionIcon>
+                    </Flex>
+                  </form>
+                </Table.Td>
+                <Table.Td>{player.score}</Table.Td>
+              </Table.Tr>
+            </>
+          }
+          
+          return <Table.Tr key={`leaderboard-${index}`}>
+            <Table.Td>{leaderboardPlace}.</Table.Td>
+            <Table.Td>{player.username}</Table.Td>
+            <Table.Td>{player.score}</Table.Td>
+          </Table.Tr>
+        }) }
+      </Table.Tbody>
+    </Table>
+    { (totalPages > 1 && !disablePagination) && <Pagination mt="md" value={activePage} onChange={setActivePage} total={totalPages} /> }
+  </>
+}
+
+const ImmoGuesser = ({ data }) => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [level, setLevel] = useState(0)
+  const [score, setScore] = useState(1000)
+  const [revealed, setRevealed] = useState(false)
+  const [inputVal, setInputVal] = useState('')
+  const [isExploding, setIsExploding] = useState(false)
+  const [submitScoreLoading, setSubmitScoreLoading] = useState(false)
+  const [showNewEntry, setShowNewEntry] = useState(false)
+
+  const countUpRef = React.useRef(null);
+  const [username, setUsername] = useLocalStorage({
+    key: 'immo-guesser-user',
+    defaultValue: '',
+  });
+  const { data: leaderboards = [], error, isLoading, mutate } = useSWR(`/api/immo-guesser/leaderboards`, fetcher);
+  const { update } = useCountUp({
+    ref: countUpRef,
+    start: 1000,
+    end: 1000,
+    duration: 1.5,
+  });
+  const confettiProps = {
+    force: 0.6,
+    duration: 2500,
+    particleCount: 100,
+    onComplete: () => setIsExploding(false),
+  };
   const eurIcon = <IconCurrencyEuro style={{ width: rem(20), height: rem(20) }} stroke={1.5} />;
-
   const handleSubmit = (e) => {
     e.preventDefault()
     setRevealed(true)
@@ -65,6 +148,7 @@ const ImmoGuesser = ({ data }) => {
     setScore(newScore)
 
     if (level === 4) {
+      setShowNewEntry(true)
       open()
     }
   }
@@ -81,9 +165,24 @@ const ImmoGuesser = ({ data }) => {
     setScore(0)
   }
 
-  const saveScore = (e) => {
+  const saveScore = (e, callback) => {
     e.preventDefault()
-    console.log({ score, newUsername })
+
+    setSubmitScoreLoading(true)
+    
+    fetch('/api/immo-guesser/leaderboards', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ score, username }),
+    }).then(res => res.json()).then(async data => {
+      setShowNewEntry(false)
+      mutate([ ...leaderboards, { score, username } ])
+      callback()
+    }).finally(() => {
+      setSubmitScoreLoading(false)
+    })
   }
 
   return (
@@ -153,57 +252,26 @@ const ImmoGuesser = ({ data }) => {
         <Box miw="250px">
           <Card shadow="sm" padding="lg" radius="md" withBorder>
             <Title order={2} size="h4" mb="sm" align="center">Rangliste</Title>
-            {/* todo change name if name is set */}
-
-            <Table striped>
-              <Table.Thead>
-                <Table.Tr>
-                  <Table.Th></Table.Th>
-                  <Table.Th>Name</Table.Th>
-                  <Table.Th>Ergebnis</Table.Th>
-                </Table.Tr>
-              </Table.Thead>
-              <Table.Tbody>
-                <Table.Tr>
-                  <Table.Td>1.</Table.Td>
-                  <Table.Td>Vincent</Table.Td>
-                  <Table.Td>234</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>2.</Table.Td>
-                  <Table.Td>Vincent</Table.Td>
-                  <Table.Td>234</Table.Td>
-                </Table.Tr>
-                <Table.Tr>
-                  <Table.Td>3.</Table.Td>
-                  <Table.Td>Vincent</Table.Td>
-                  <Table.Td>234</Table.Td>
-                </Table.Tr>
-              </Table.Tbody>
-            </Table>
+            <LeaderboardTable leaderboards={leaderboards} />
           </Card>
         </Box>
       </Flex>
 
       <Modal opened={opened} onClose={close} title="Glückwunsch!">
         <Text>Du hast das Spiel mit <b>{ score }</b> Punkten abgeschlossen.</Text>
-        {/* Damit bist du auf Platz TODO unser heutigen und Platz TODO des gesamten Rankings.
-        wenn kein name: Trage deinen Namen ein um das Ergebnis zu speichern. */}
 
-        {!username && <>
-          <Text mb="sm">Trage dich in die Rangliste ein:</Text>
-          {/* todo show new leaderboard */}
-          <form onSubmit={saveScore}>
-            <TextInput
-              mb="sm"
-              label="Name"
-              required
-              placeholder="Dein Name"
-              value={newUsername}
-              onChange={(e) => setNewUsername(e.target.value)}></TextInput>
-            <Button mb="md" type="submit">Speichern</Button>
-          </form>
-        </>}
+        <Text mb="sm">Trage dich in die Rangliste ein:</Text>
+        <LeaderboardTable
+          disablePagination={true}
+          leaderboards={[
+            ...leaderboards,
+            showNewEntry && { username, score, newEntry: true },
+          ].filter(Boolean)}
+          saveScore={saveScore}
+          submitScoreLoading={submitScoreLoading}
+          username={username}
+          setUsername={setUsername}
+        />
 
         <Text>TODO Ergebnis Teilen</Text>
       </Modal>
