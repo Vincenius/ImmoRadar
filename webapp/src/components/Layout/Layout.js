@@ -40,8 +40,9 @@ function useCannonical() {
   return canonicalUrl.href;
 }
 
-const Layout = ({ children, title, description, date, noindex }) => {
+const Layout = ({ children, title, description, date, noindex, image }) => {
   const canonicalUrl = useCannonical();
+  const ogImage = image || '/og-image.jpg';
 
   return <>
     <Head>
@@ -50,12 +51,12 @@ const Layout = ({ children, title, description, date, noindex }) => {
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image" content="/og-image.jpg" />
+      <meta property="og:image" content={ogImage} />
       <meta property="og:url" content="https://immoradar.xyz" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
-      <meta name="twitter:image" content="/og-image.jpg" />
+      <meta name="twitter:image" content={ogImage} />
       { date && <meta property="article:published_time" content={date}></meta> }
       { date && <meta name="author" content="Vincent Will"></meta> }
       { noindex && <meta name="robots" content="noindex" /> }

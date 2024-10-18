@@ -88,18 +88,18 @@ const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
             </Flex>
           </Box>
 
-          <Flex justify={hidePrice ? "space-around" : "space-between"}>
-            {!hidePrice &&<Box>
+          <Flex justify={hidePrice ? "space-between" : "space-between"}>
+            {!hidePrice && <Box w="100%">
               <Text size="md" fw="bold">
                 (item.price.value || 'N/A') €
               </Text>
               <Text size="sm">{priceType}</Text>
             </Box> }
-            <Box>
+            <Box w="100%">
               <Text size="md" fw="bold">{item.livingSpace || 'N/A'} m²</Text>
               <Text size="sm">Wohnfläche</Text>
             </Box>
-            { item.rooms && <Box>
+            { item.rooms && <Box w="100%">
               <Text size="md" fw="bold">{item.rooms}</Text>
               <Text size="sm">Zimmer</Text>
             </Box> }

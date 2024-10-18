@@ -7,13 +7,7 @@ import { useCountUp } from 'react-countup';
 import Layout from '@/components/Layout/Layout';
 import { fetcher } from '@/utils/fetcher'
 import SearchItem from '@/components/SearchItem/SearchItem';
-import { IconCurrencyEuro, IconArrowRight, IconQuestionMark } from '@tabler/icons-react';
-
-// todo mobile
-// todo pop up logic
-// todo share icon
-// todo meta stuff
-// todo cors
+import { IconCurrencyEuro, IconArrowRight, IconQuestionMark, IconBrandFacebook, IconBrandWhatsapp, IconBrandX, IconBrandTelegram } from '@tabler/icons-react';
 
 const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
   const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);
@@ -103,8 +97,10 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
   </>
 }
 
-const ImmoGuesser = ({ data }) => {
-  const [opened, { open, close }] = useDisclosure(false);
+const getShareText = (score) => `Ich habe gerade bei ImmoGuesser eine Punktzahl von ${score} erreicht! Kannst du die Mieten besser schätzen als ich? Probiere es aus:`
+
+const ImmoGuesser = ({ data, url, slug }) => {
+  const [opened, { open, close }] = useDisclosure(true);
   const [level, setLevel] = useState(0)
   const [score, setScore] = useState(1000)
   const [revealed, setRevealed] = useState(false)
@@ -187,20 +183,21 @@ const ImmoGuesser = ({ data }) => {
 
   return (
     <Layout
-      title="ImmoGuesser | Schätze die Miete der Wohnungen"
-      description="Teste dein Gespür für Mietpreise! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet."
+      title={`ImmoGuesser | Schätze die Miete der Wohnungen aus ${slug}`}
+      description={`Teste dein Gespür für Mietpreise in ${slug}! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen aus ${slug} angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet.`}
+      image="https://immoradar.xyz/immo-guesser.jpg"
     >
-      <Title order={1} mt="xl" mb="md">ImmoGuesser | Schätze die Miete der Wohnungen</Title>
+      <Title order={1} mt="xl" mb="md">ImmoGuesser | Schätze die Miete der Wohnungen aus {slug}</Title>
       <Text mb="xl">Teste dein Gespür für Mietpreise! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet.</Text>
 
-      <Flex gap="md" mb="xl">
+      <Flex gap={{ base: '0', md: 'md'}} mb="xl" direction={{ base: 'column', md: 'row' }}>
         <Box w="100%">
           <Indicator position="top-start" radius="md" size={30} label={`${level + 1} / 5`}>
             <SearchItem item={data[level]} hidePrice={true} hideLink={!revealed} />
           </Indicator>
 
           <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
-            <Flex gap="xl">
+            <Flex gap={{ base: 'xs', md: 'xl'}} direction={{ base: 'column', md: 'row' }}>
               <form onSubmit={handleSubmit}>
                 <Flex align="end">
                   <NumberInput
@@ -212,7 +209,7 @@ const ImmoGuesser = ({ data }) => {
                     value={inputVal}
                     onChange={(val) => setInputVal(val)}
                     disabled={revealed}
-                    maw={120}
+                    maw={{ base: '100%', md: 120 }}
                   />
                   <ActionIcon variant="filled" aria-label="Settings" h="36px" w="36px" type="submit" disabled={revealed}>
                     <IconArrowRight style={{ width: '70%', height: '70%' }} stroke={1.5} />
@@ -221,7 +218,7 @@ const ImmoGuesser = ({ data }) => {
               </form>
               <Divider orientation="vertical" />
               <Box>
-                <Text fw="500" size="sm" mb="4px">Preis</Text>
+                <Text fw="500" size="sm" mb="4px">Kaltmiete</Text>
                 {isExploding && <ConfettiExplosion { ...confettiProps } />}
 
                 <Text fw="700" size="xl" ref={countUpRef}>
@@ -257,6 +254,8 @@ const ImmoGuesser = ({ data }) => {
         </Box>
       </Flex>
 
+      {/* todo more cities */}
+
       <Modal opened={opened} onClose={close} title="Glückwunsch!">
         <Text>Du hast das Spiel mit <b>{ score }</b> Punkten abgeschlossen.</Text>
 
@@ -273,23 +272,39 @@ const ImmoGuesser = ({ data }) => {
           setUsername={setUsername}
         />
 
-        <Text>TODO Ergebnis Teilen</Text>
+        <Divider my="md" />
+
+        <Text mb="xs" fs="italic">Ergebnis Teilen</Text>
+        <Flex gap="sm">
+          <ActionIcon variant="filled" aria-label="Facebook" color="#1877F2" href={`https://www.facebook.com/sharer/sharer.php?u=${url}`} component="a" target="_blank">
+            <IconBrandFacebook style={{ width: '70%', height: '70%' }} stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon variant="filled" aria-label="X / Twitter" color="#000000" href={`https://twitter.com/intent/tweet?url=${url}&text=${getShareText(score)}`} component="a" target="_blank">
+            <IconBrandX style={{ width: '70%', height: '70%' }} stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon variant="filled" aria-label="WhatsApp" color="#25D366" href={`https://wa.me/?text=${getShareText(score)} ${url}`} component="a" target="_blank">
+            <IconBrandWhatsapp style={{ width: '70%', height: '70%' }} stroke={1.5} />
+          </ActionIcon>
+          <ActionIcon variant="filled" aria-label="WhatsApp" color="#26A5E4" href={`https://telegram.me/share/url?url=${url}&text=${getShareText(score)}`} component="a" target="_blank">
+            <IconBrandTelegram style={{ width: '70%', height: '70%' }} stroke={1.5} />
+          </ActionIcon>
+        </Flex>
       </Modal>
     </Layout>
   );
 };
 
 export async function getServerSideProps(context) {
-  const { query } = context;
-  const { q = '' } = query;
+  const { slug } = context.params;
   const [data] = await Promise.all([
-    fetcher(`${process.env.BASE_URL}/api/immo-guesser/estates?q=${q}`),
+    fetcher(`${process.env.BASE_URL}/api/immo-guesser/estates?q=${slug}`),
   ]);
 
   return {
     props: {
-      q,
       data,
+      url: `${process.env.BASE_URL}/tools/immo-guesser/${slug}`,
+      slug,
     },
   };
 }
