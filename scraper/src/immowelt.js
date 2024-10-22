@@ -18,7 +18,7 @@ const parseData = (estates, searchUrl) => estates.map(e => {
         price: {
             value: parseFloat(e.hardFacts.price.value.replace(/[^\d,]/g, '').replace(',', '.')),
             currency: "EUR",
-            additionalInfo: mapPriceType[e.hardFacts.price.additionalInformation || e.hardFacts.price.addition.value], // todo map
+            additionalInfo: mapPriceType[e.hardFacts.price.additionalInformation || e.hardFacts.price.addition.value],
         },
         livingSpace: e.hardFacts.facts.find(f => f.type === "livingSpace")?.splitValue || null,
         rooms: e.hardFacts.facts.find(f => f.type === "numberOfRooms")?.splitValue || null,

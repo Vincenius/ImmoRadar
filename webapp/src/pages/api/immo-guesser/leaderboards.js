@@ -9,8 +9,6 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('immo-guesser-leaderboards');
 
-      const { q } = req.query; // todo user id
-
       let result = []
 
       result = await  collection.find({})
@@ -32,7 +30,6 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('immo-guesser-leaderboards');
 
-      let result = []
       const { score, username } = req.body
 
       await collection.insertOne({ score, username })

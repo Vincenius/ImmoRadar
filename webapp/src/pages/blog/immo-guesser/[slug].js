@@ -303,7 +303,7 @@ export async function getServerSideProps(context) {
   return {
     props: {
       data,
-      url: `${process.env.BASE_URL}/tools/immo-guesser/${slug}`,
+      url: `${process.env.BASE_URL}/blog/immo-guesser/${slug}`,
       slug,
     },
   };

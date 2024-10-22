@@ -1,0 +1,16 @@
+export const cities = [
+  'Deutschlandweit',
+  'Berlin',
+  'Hamburg',
+  'München',
+  'Köln',
+  'Frankfurt am Main',
+  'Stuttgart',
+  'Düsseldorf',
+  'Leipzig',
+  'Dortmund',
+  'Essen',
+  'Dresden',
+  'Hannover',
+  'Bremen',
+]
