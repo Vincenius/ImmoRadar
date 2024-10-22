@@ -9,9 +9,11 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('immo-guesser-leaderboards');
 
+      const { q } = req.query;
+
       let result = []
 
-      result = await  collection.find({})
+      result = await  collection.find({ region: q })
         .sort({ score: -1 }).toArray()
 
       res.status(200).json(result);
@@ -30,9 +32,9 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('immo-guesser-leaderboards');
 
-      const { score, username } = req.body
+      const { score, username, region } = req.body
 
-      await collection.insertOne({ score, username })
+      await collection.insertOne({ score, username, region })
 
       res.status(200).json({ message: 'OK' });
     } catch (error) {

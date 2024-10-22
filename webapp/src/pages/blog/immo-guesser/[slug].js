@@ -1,5 +1,6 @@
-import React, { useState, useEffect, act } from 'react';
+import React, { useState, useEffect } from 'react';
 import useSWR from "swr";
+import Link from 'next/link';
 import { Text, Title, Flex, Box, Card, Table, NumberInput, rem, ActionIcon, Indicator, Divider, Button, Tooltip, ThemeIcon, Modal, TextInput, Pagination } from '@mantine/core';
 import { useDisclosure, useLocalStorage } from '@mantine/hooks';
 import ConfettiExplosion from 'react-confetti-explosion';
@@ -8,17 +9,20 @@ import Layout from '@/components/Layout/Layout';
 import { fetcher } from '@/utils/fetcher'
 import SearchItem from '@/components/SearchItem/SearchItem';
 import { IconCurrencyEuro, IconArrowRight, IconQuestionMark, IconBrandFacebook, IconBrandWhatsapp, IconBrandX, IconBrandTelegram } from '@tabler/icons-react';
+import { cities } from './cities'
 
 const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
   const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);
   const defaultPage = defaultPlayerIndex !== -1 ? Math.ceil((defaultPlayerIndex + 1) / 5) : 1;
   const [activePage, setActivePage] = useState(defaultPage);
+  const [showNewInput, setShowNewInput] = useState(true);
   const totalPages = Math.ceil(leaderboards.length / 5);
   let leaderboardPlace = 1;
   const confettiProps = {
     force: 0.6,
     duration: 2500,
     particleCount: 100,
+    zIndex: 500,
     onComplete: () => setIsExploding(false),
   };
   const [isExploding, setIsExploding] = useState(false);
@@ -29,7 +33,7 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
 
   const afterSaving = (e) => {
     setIsExploding(true)
-    // todo set correct page index
+    setShowNewInput(false)
   }
 
   return <>
@@ -55,7 +59,7 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
             return null
           }
 
-          if (player.newEntry) {
+          if (player.newEntry && showNewInput) {
             return <>
               <Table.Tr key={`leaderboard-${index}`}>
                 <Table.Td>{leaderboardPlace}.</Table.Td>
@@ -84,7 +88,7 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
               </Table.Tr>
             </>
           }
-          
+
           return <Table.Tr key={`leaderboard-${index}`}>
             <Table.Td>{leaderboardPlace}.</Table.Td>
             <Table.Td>{player.username}</Table.Td>
@@ -100,21 +104,20 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
 const getShareText = (score) => `Ich habe gerade bei ImmoGuesser eine Punktzahl von ${score} erreicht! Kannst du die Mieten besser schätzen als ich? Probiere es aus:`
 
 const ImmoGuesser = ({ data, url, slug }) => {
-  const [opened, { open, close }] = useDisclosure(true);
+  const [opened, { open, close }] = useDisclosure(false);
   const [level, setLevel] = useState(0)
   const [score, setScore] = useState(1000)
   const [revealed, setRevealed] = useState(false)
   const [inputVal, setInputVal] = useState('')
   const [isExploding, setIsExploding] = useState(false)
   const [submitScoreLoading, setSubmitScoreLoading] = useState(false)
-  const [showNewEntry, setShowNewEntry] = useState(false)
 
   const countUpRef = React.useRef(null);
   const [username, setUsername] = useLocalStorage({
     key: 'immo-guesser-user',
     defaultValue: '',
   });
-  const { data: leaderboards = [], error, isLoading, mutate } = useSWR(`/api/immo-guesser/leaderboards`, fetcher);
+  const { data: leaderboards = [], error, isLoading, mutate } = useSWR(`/api/immo-guesser/leaderboards?q=${slug}`, fetcher);
   const { update } = useCountUp({
     ref: countUpRef,
     start: 1000,
@@ -134,7 +137,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
     const result = data[level].price.value > inputVal
       ? data[level].price.value - inputVal
       : inputVal - data[level].price.value
-    const newScore = score - result
+    const newScore = Math.round(score - result)
 
     if (result === 0) {
       setIsExploding(true)
@@ -144,7 +147,6 @@ const ImmoGuesser = ({ data, url, slug }) => {
     setScore(newScore)
 
     if (level === 4) {
-      setShowNewEntry(true)
       open()
     }
   }
@@ -156,25 +158,21 @@ const ImmoGuesser = ({ data, url, slug }) => {
   }
 
   const restart = () => {
-    setLevel(0)
-    setRevealed(false)
-    setScore(0)
+    location.reload()
   }
 
   const saveScore = (e, callback) => {
     e.preventDefault()
 
     setSubmitScoreLoading(true)
-    
+
     fetch('/api/immo-guesser/leaderboards', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ score, username }),
+      body: JSON.stringify({ score, username, region: slug }),
     }).then(res => res.json()).then(async data => {
-      setShowNewEntry(false)
-      mutate([ ...leaderboards, { score, username } ])
       callback()
     }).finally(() => {
       setSubmitScoreLoading(false)
@@ -241,7 +239,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
               </Box>
               <Divider orientation="vertical" />
               { level !== 4 && <Button disabled={!revealed} mt="sm" onClick={goNext}>Weiter</Button> }
-              { level === 4 && <Button disabled={!revealed} mt="sm" onClick={restart}>Erneut versuchen!</Button> }
+              { level === 4 && <Button disabled={!revealed} mt="sm" onClick={restart}>Neustart!</Button> }
             </Flex>
           </Card>
         </Box>
@@ -254,9 +252,19 @@ const ImmoGuesser = ({ data, url, slug }) => {
         </Box>
       </Flex>
 
-      {/* todo more cities */}
+      <Divider my="xl" />
 
-      <Modal opened={opened} onClose={close} title="Glückwunsch!">
+      <Title order={2} mb="xl">Spiele ImmoGuesser für andere Regionen:</Title>
+      <Flex gap={{ base: '0', md: 'md'}} direction={{ base: 'column', md: 'row' }}>
+        { cities.filter(c => c !== slug).slice(0, 3)
+          .map((city) => <Link href={`/blog/immo-guesser/${city}`}><Title order={3} key={city} mb="xs">{city}</Title></Link>) }
+      </Flex>
+      <Link href="/blog/immo-guesser"><Title order={3} mb="xl">Alle Regionen anzeigen</Title></Link>
+
+      <Modal opened={opened} onClose={() => {
+        close()
+        mutate()
+      }} title="Glückwunsch!">
         <Text>Du hast das Spiel mit <b>{ score }</b> Punkten abgeschlossen.</Text>
 
         <Text mb="sm">Trage dich in die Rangliste ein:</Text>
@@ -264,7 +272,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
           disablePagination={true}
           leaderboards={[
             ...leaderboards,
-            showNewEntry && { username, score, newEntry: true },
+            { username, score, newEntry: true },
           ].filter(Boolean)}
           saveScore={saveScore}
           submitScoreLoading={submitScoreLoading}
@@ -296,8 +304,11 @@ const ImmoGuesser = ({ data, url, slug }) => {
 
 export async function getServerSideProps(context) {
   const { slug } = context.params;
+  const query = slug === 'Deutschlandweit' || !cities.includes(slug)
+    ? ''
+    : slug
   const [data] = await Promise.all([
-    fetcher(`${process.env.BASE_URL}/api/immo-guesser/estates?q=${slug}`),
+    fetcher(`${process.env.BASE_URL}/api/immo-guesser/estates?q=${query}`),
   ]);
 
   return {
