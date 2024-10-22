@@ -21,6 +21,23 @@ const regionData = {
     'thüringen': 'Thüringen',
 }
 
+const immoGuesserCities = [
+    'Deutschlandweit',
+    'Berlin',
+    'Hamburg',
+    'München',
+    'Köln',
+    'Frankfurt am Main',
+    'Stuttgart',
+    'Düsseldorf',
+    'Leipzig',
+    'Dortmund',
+    'Essen',
+    'Dresden',
+    'Hannover',
+    'Bremen',
+]
+
 module.exports = {
     siteUrl: 'https://immoradar.xyz',
     generateRobotsTxt: true,
@@ -82,12 +99,17 @@ module.exports = {
             const res = await config.transform(config, `/search?q=${item.name}`)
             return res
         }))
+        const immoGuesserSitemap = await Promise.all(immoGuesserCities.map(async item => {
+            const res = await config.transform(config, `/immo-guesser/blog/${item}`)
+            return res
+        }))
 
         await client.close()
 
         return [
             ...regionSitemap,
-            ...searchSitemap
+            ...searchSitemap,
+            ...immoGuesserSitemap,
         ]
     }
 }
