@@ -257,7 +257,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
       <Title order={2} mb="xl">Spiele ImmoGuesser für andere Regionen:</Title>
       <Flex gap={{ base: '0', md: 'md'}} direction={{ base: 'column', md: 'row' }}>
         { cities.filter(c => c !== slug).slice(0, 3)
-          .map((city) => <Link href={`/blog/immo-guesser/${city}`}><Title order={3} key={city} mb="xs">{city}</Title></Link>) }
+          .map((city) => <Link href={`/blog/immo-guesser/${city}`} key={city}><Title order={3} mb="xs">{city}</Title></Link>) }
       </Flex>
       <Link href="/blog/immo-guesser"><Title order={3} mb="xl">Alle Regionen anzeigen</Title></Link>
 
