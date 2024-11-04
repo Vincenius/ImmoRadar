@@ -36,8 +36,8 @@ export const posts = [{
     description: 'Wir haben unser Immobilien Angebot um alle Wohnungen von ohne-makler.net ergänzt. Damit unterstützt ImmoRadar nun 10 verschiedene Immobilien-Portale.'
   }, {
     title: 'ImmoGuesser Minispiel',
-    date: '21. Oktober 2024', // todo set date
-    isoDate: '2024-10-21',
+    date: '4. Oktober 2024',
+    isoDate: '2024-11-04',
     slug: 'immo-guesser',
     description: 'Teste dein Gespür für Mietpreise! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet.'
   }
