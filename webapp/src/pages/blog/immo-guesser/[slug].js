@@ -9,7 +9,7 @@ import Layout from '@/components/Layout/Layout';
 import { fetcher } from '@/utils/fetcher'
 import SearchItem from '@/components/SearchItem/SearchItem';
 import { IconCurrencyEuro, IconArrowRight, IconQuestionMark, IconBrandFacebook, IconBrandWhatsapp, IconBrandX, IconBrandTelegram } from '@tabler/icons-react';
-import { cities } from './cities'
+import { cities } from '@/utils/cities'
 
 const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
   const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);

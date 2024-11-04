@@ -2,7 +2,7 @@ import React from 'react';
 import Link from 'next/link';
 import { Container, Title, Text } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
-import { cities } from './cities';
+import { cities } from '@/utils/cities';
 
 const ImmoGuesser = () => {
     return (
