@@ -12,9 +12,7 @@ import { IconCurrencyEuro, IconArrowRight, IconQuestionMark, IconBrandFacebook, 
 import { cities } from '@/utils/cities'
 
 const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
-  const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);
-  const defaultPage = defaultPlayerIndex !== -1 ? Math.ceil((defaultPlayerIndex + 1) / 5) : 1;
-  const [activePage, setActivePage] = useState(defaultPage);
+  const [activePage, setActivePage] = useState(0);
   const [showNewInput, setShowNewInput] = useState(true);
   const totalPages = Math.ceil(leaderboards.length / 5);
   let leaderboardPlace = 1;
@@ -28,8 +26,10 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
   const [isExploding, setIsExploding] = useState(false);
 
   useEffect(() => {
+    const defaultPlayerIndex = leaderboards.findIndex(player => player.newEntry) || leaderboards.findIndex(player => player.username === username);
+    const defaultPage = defaultPlayerIndex !== -1 ? Math.ceil((defaultPlayerIndex + 1) / 5) : 1;
     setActivePage(defaultPage)
-  }, [defaultPage])
+  }, [leaderboards])
 
   const afterSaving = (e) => {
     setIsExploding(true)
@@ -61,7 +61,7 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
 
           if (player.newEntry && showNewInput) {
             return <>
-              <Table.Tr key={`leaderboard-${index}`}>
+              <Table.Tr key={`leaderboard-${index}-new`}>
                 <Table.Td>{leaderboardPlace}.</Table.Td>
                 <Table.Td>
                   <form onSubmit={e => saveScore(e, afterSaving)}>
@@ -105,7 +105,7 @@ const getShareText = (score) => `Ich habe gerade bei ImmoGuesser eine Punktzahl 
 
 const ImmoGuesser = ({ data, url, slug }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [level, setLevel] = useState(0)
+  const [level, setLevel] = useState(4)
   const [score, setScore] = useState(1000)
   const [revealed, setRevealed] = useState(false)
   const [inputVal, setInputVal] = useState('')
