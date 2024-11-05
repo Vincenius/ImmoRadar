@@ -27,6 +27,7 @@ export default async function handler(req, res) {
           $match: { $and: [
             ...query,
             { "price.value": { $gte: 300 } },
+            { "price.value": { $lte: 9000 } },
             { "price.additionalInfo": "COLD_RENT" },
             { $expr: { $gt: [{ $size: "$gallery" }, 3] } }
           ] }

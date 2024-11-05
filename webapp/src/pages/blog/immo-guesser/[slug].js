@@ -72,7 +72,7 @@ const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, subm
                         placeholder="Dein Name"
                         value={username}
                         onChange={(e) => setUsername(e.target.value)}
-                        maxLength={20}
+                        maxLength={16}
                       >
                       </TextInput>
                         <ActionIcon
@@ -208,6 +208,9 @@ const ImmoGuesser = ({ data, url, slug }) => {
                     onChange={(val) => setInputVal(val)}
                     disabled={revealed}
                     maw={{ base: '100%', md: 120 }}
+                    min={0}
+                    max={10000}
+                    clampBehavior="strict"
                   />
                   <ActionIcon variant="filled" aria-label="Settings" h="36px" w="36px" type="submit" disabled={revealed}>
                     <IconArrowRight style={{ width: '70%', height: '70%' }} stroke={1.5} />
