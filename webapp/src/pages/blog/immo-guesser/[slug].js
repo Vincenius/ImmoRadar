@@ -105,7 +105,7 @@ const getShareText = (score) => `Ich habe gerade bei ImmoGuesser eine Punktzahl 
 
 const ImmoGuesser = ({ data, url, slug }) => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [level, setLevel] = useState(4)
+  const [level, setLevel] = useState(0)
   const [score, setScore] = useState(1000)
   const [revealed, setRevealed] = useState(false)
   const [inputVal, setInputVal] = useState('')
