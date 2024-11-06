@@ -1,6 +1,5 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { AdUnit } from "next-google-adsense";
 import { Box, Card, Flex, Select, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
@@ -157,8 +156,15 @@ const Notifications = ({ filter, query }) => {
 
 export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery }) {
   const router = useRouter();
+  const [isTracked, setIsTracked] = useState(false);
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
+
+  useEffect(() => {
+    if (window && window.umami) {
+      umami.track('search', { q })
+    }
+  })
 
   const applyFilter = (filter) => {
     const query = { ...router.query, ...filter, page: 1 };
@@ -213,12 +219,6 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
-
-      <AdUnit
-        publisherId="pub-1087144186006114"
-        slotId="6277079486"
-        layout="display"
-      />
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>
