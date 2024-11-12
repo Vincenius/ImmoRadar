@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, Text, Button, Divider, TextInput, Modal, Pagination, Title } from '@mantine/core';
+import { Box, Card, Flex, Select, Text, Button, Divider, TextInput, Modal, Pagination, Title, Image } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { notifications } from '@mantine/notifications';
 import { IconAdjustmentsHorizontal, IconBell, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
@@ -219,6 +219,20 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
+
+      <Box display={{ base: 'none', xs: 'block' }}>
+        <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723412&v=9350&q=488003&r=1764083">
+          <Image src="https://www.awin1.com/cshow.php?s=3723412&v=9350&q=488003&r=1764083" />
+          <Text size="sm" c="gray.8" align="right" mb="sm">Anzeige</Text>
+        </a>
+      </Box>
+
+      <Box display={{ base: 'block', xs: 'none' }}>
+        <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723410&v=9350&q=488003&r=1764083">
+          <Image src="https://www.awin1.com/cshow.php?s=3723410&v=9350&q=488003&r=1764083" />
+          <Text size="sm" c="gray.8" align="right" mb="sm">Anzeige</Text>
+        </a>
+      </Box>
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>
