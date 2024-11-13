@@ -223,14 +223,14 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
       <Box display={{ base: 'none', xs: 'block' }}>
         <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723412&v=9350&q=488003&r=1764083">
           <Image src="https://www.awin1.com/cshow.php?s=3723412&v=9350&q=488003&r=1764083" />
-          <Text size="sm" c="gray.8" align="right" mb="sm">Anzeige</Text>
+          <Text size="sm" c="gray.8" align="right" mb="xs">Anzeige</Text>
         </a>
       </Box>
 
       <Box display={{ base: 'block', xs: 'none' }}>
         <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723410&v=9350&q=488003&r=1764083">
           <Image src="https://www.awin1.com/cshow.php?s=3723410&v=9350&q=488003&r=1764083" />
-          <Text size="sm" c="gray.8" align="right" mb="sm">Anzeige</Text>
+          <Text size="sm" c="gray.7" align="right" mb="xs">Anzeige</Text>
         </a>
       </Box>
 
