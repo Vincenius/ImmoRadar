@@ -91,7 +91,7 @@ const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
           <Flex justify={hidePrice ? "space-between" : "space-between"}>
             {!hidePrice && <Box w="100%">
               <Text size="md" fw="bold">
-                ${item.price.value || 'N/A'} €
+                {item.price.value || 'N/A'} €
               </Text>
               <Text size="sm">{priceType}</Text>
             </Box> }
