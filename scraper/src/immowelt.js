@@ -66,7 +66,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 try {
                     // Parse the JSON data
                     const housingData = JSON.parse(JSON.parse(`"${jsonData}"`));
-                    const pageProps = housingData['classified-serp-init-data'].pageProps
+                    const pageProps = housingData.data['classified-serp-init-data'].pageProps
                     lastPage = Math.ceil(pageProps.totalCount / 30)
                     currentPage++;
 
