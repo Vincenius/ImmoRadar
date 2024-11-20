@@ -257,7 +257,9 @@ const ImmoGuesser = ({ data, url, slug }) => {
 
       <Divider my="xl" />
 
-      <Title order={2} mb="xl">Spiele ImmoGuesser für andere Regionen:</Title>
+      { slug !== 'Deutschlandweit' && <Link href={`/search?q=${slug}`}>Jetzt nach Wohnungen in {slug} suchen</Link> }
+
+      <Title order={2} my="xl">Spiele ImmoGuesser für andere Regionen:</Title>
       <Flex gap={{ base: '0', md: 'md'}} direction={{ base: 'column', md: 'row' }}>
         { cities.filter(c => c !== slug).slice(0, 3)
           .map((city) => <Link href={`/blog/immo-guesser/${city}`} key={city}><Title order={3} mb="xs">{city}</Title></Link>) }
