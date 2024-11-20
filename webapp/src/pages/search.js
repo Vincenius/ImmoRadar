@@ -11,6 +11,7 @@ import Filter from '@/components/Filter/Filter';
 import SearchPages from '@/components/SearchPages/SearchPages';
 import { fetcher } from '@/utils/fetcher'
 import { getSearchTitle, getDefaultTitle, getSearchPages } from '@/utils/searchSeo'
+import ads from '@/utils/ads'
 
 const PaginationLeftIcon = ({ ...props }) => <IconArrowLeft {...props} aria-label="Zurück" />
 const PaginationRightIcon = ({ ...props }) => <IconArrowRight {...props} aria-label="Weiter" />
@@ -154,15 +155,15 @@ const Notifications = ({ filter, query }) => {
   </form>
 }
 
-export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery }) {
+export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery, ad }) {
   const router = useRouter();
-  const [isTracked, setIsTracked] = useState(false);
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
   const [notificationModalOpen, { open: openNotificationModal, close: closeNotificationModal }] = useDisclosure(false);
 
   useEffect(() => {
     if (window && window.umami) {
       umami.track('search', { q })
+      umami.track('showAd', { ad })
     }
   })
 
@@ -220,16 +221,18 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
 
+      {/* desktop ad */}
       <Box display={{ base: 'none', xs: 'block' }}>
-        <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723412&v=9350&q=488003&r=1764083">
-          <Image src="https://www.awin1.com/cshow.php?s=3723412&v=9350&q=488003&r=1764083" />
+        <a rel="sponsored" href={ad.urlDesktop} data-umami-event="Ad Click" data-umami-event-ad={ad.id}>
+          <Image src={ad.imgDesktop} />
           <Text size="sm" c="gray.8" align="right" mb="xs">Anzeige</Text>
         </a>
       </Box>
 
+      {/* mobile ad */}
       <Box display={{ base: 'block', xs: 'none' }}>
-        <a rel="sponsored" href="https://www.awin1.com/cread.php?s=3723410&v=9350&q=488003&r=1764083">
-          <Image src="https://www.awin1.com/cshow.php?s=3723410&v=9350&q=488003&r=1764083" />
+        <a rel="sponsored" href={ad.urlMobile} data-umami-event="Ad Click" data-umami-event-ad={ad.id}>
+          <Image src={ad.imgMobile} />
           <Text size="sm" c="gray.7" align="right" mb="xs">Anzeige</Text>
         </a>
       </Box>
@@ -302,6 +305,9 @@ export async function getServerSideProps(context) {
     titleExcludes: newTitleExcludes,
   };
 
+  const getRandomElement = (arr) => arr[Math.floor(Math.random() * arr.length)];
+  const ad = getRandomElement(ads)
+
   return {
     props: {
       estates,
@@ -312,6 +318,7 @@ export async function getServerSideProps(context) {
       sortValue: sort,
       pageInt,
       filterQuery,
+      ad,
     },
   };
 }
