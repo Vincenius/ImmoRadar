@@ -163,7 +163,7 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
   useEffect(() => {
     if (window && window.umami) {
       umami.track('search', { q })
-      umami.track('showAd', { ad })
+      umami.track('showAd', { ad: ad.id })
     }
   })
 
