@@ -10,6 +10,8 @@ import { fetcher } from '@/utils/fetcher'
 import SearchItem from '@/components/SearchItem/SearchItem';
 import { IconCurrencyEuro, IconArrowRight, IconQuestionMark, IconBrandFacebook, IconBrandWhatsapp, IconBrandX, IconBrandTelegram } from '@tabler/icons-react';
 import { cities } from '@/utils/cities'
+import SearchPages from '@/components/SearchPages/SearchPages';
+import { getSearchPages } from '@/utils/searchSeo'
 
 const LeaderboardTable = ({ leaderboards, saveScore, username, setUsername, submitScoreLoading, disablePagination }) => {
   const [activePage, setActivePage] = useState(0);
@@ -257,14 +259,18 @@ const ImmoGuesser = ({ data, url, slug }) => {
 
       <Divider my="xl" />
 
-      { slug !== 'Deutschlandweit' && <Link href={`/search?q=${slug}`}>Jetzt nach Wohnungen in {slug} suchen</Link> }
-
-      <Title order={2} my="xl">Spiele ImmoGuesser für andere Regionen:</Title>
+      <Title order={2} mb="xl">Spiele ImmoGuesser für andere Regionen:</Title>
       <Flex gap={{ base: '0', md: 'md'}} direction={{ base: 'column', md: 'row' }}>
         { cities.filter(c => c !== slug).slice(0, 3)
           .map((city) => <Link href={`/blog/immo-guesser/${city}`} key={city}><Title order={3} mb="xs">{city}</Title></Link>) }
       </Flex>
       <Link href="/blog/immo-guesser"><Title order={3} mb="xl">Alle Regionen anzeigen</Title></Link>
+
+      { slug !== 'Deutschlandweit' && <>
+        <Divider my="xl" />
+        <Text mb="md" fw="bold"><Link href={`/search?q=${slug}`}>Jetzt nach Wohnungen in {slug} suchen</Link></Text>
+        <SearchPages data={getSearchPages(slug)} />
+      </> }
 
       <Modal opened={opened} onClose={() => {
         close()
