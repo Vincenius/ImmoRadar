@@ -11,7 +11,7 @@ const parseData = (estates, searchUrl) => estates.map(e => {
     const result = {
         id: e.id,
         created_at: new Date(),
-        url: `https://www.immowelt.de${e.url}`,
+        url: `${e.url}`,
         provider: "immowelt.de",
         searchUrl,
         date: e.metadata.creationDate,
