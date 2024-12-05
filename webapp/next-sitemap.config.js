@@ -92,15 +92,15 @@ module.exports = {
         const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))
 
         const regionSitemap = await Promise.all(Object.keys(regionData).map(async item => {
-            const res = await config.transform(config, `/uebersicht/${item}`)
+            const res = await config.transform(config, encodeURI(`/uebersicht/${item}`))
             return res
         }))
         const searchSitemap = await Promise.all(filteredResult.map(async item => {
-            const res = await config.transform(config, `/search?q=${item.name}`)
+            const res = await config.transform(config, encodeURI(`/search?q=${item.name}`))
             return res
         }))
         const immoGuesserSitemap = await Promise.all(immoGuesserCities.map(async item => {
-            const res = await config.transform(config, `/immo-guesser/blog/${item}`)
+            const res = await config.transform(config, encodeURI(`/immo-guesser/blog/${item}`))
             return res
         }))
 

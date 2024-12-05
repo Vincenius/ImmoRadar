@@ -158,28 +158,30 @@ export default async function handler(req, res) {
                     }
                 }
 
-                const [result] = await collection.aggregate([
-                    { $match: query },
-                    ...filterDuplicateAggregation,
-                    {
-                        $facet: {
-                            results: [
-                                { $sort: mongoSort },
-                                { $skip: (page - 1) * limit },
-                                { $limit: limit }
-                            ],
-                            totalCount: [
-                                { $count: "count" }
-                            ]
+                const [result] = Object.keys(query).length
+                    ? await collection.aggregate([
+                        { $match: query },
+                        ...filterDuplicateAggregation,
+                        {
+                            $facet: {
+                                results: [
+                                    { $sort: mongoSort },
+                                    { $skip: (page - 1) * limit },
+                                    { $limit: limit }
+                                ],
+                                totalCount: [
+                                    { $count: "count" }
+                                ]
+                            }
+                        },
+                        {
+                            $project: {
+                                results: 1,
+                                totalCount: { $arrayElemAt: ["$totalCount.count", 0] }
+                            }
                         }
-                    },
-                    {
-                        $project: {
-                            results: 1,
-                            totalCount: { $arrayElemAt: ["$totalCount.count", 0] }
-                        }
-                    }
-                ]).toArray()
+                    ]).toArray()
+                    : [{ results: [], totalCount: 0 }]
 
                 const estates = result.results
                 pages = Math.ceil(result.totalCount / limit);
