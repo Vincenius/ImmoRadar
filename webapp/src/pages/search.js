@@ -194,7 +194,7 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
 
   return (
     <Layout
-      title={`${title} | ImmoRadar Suchergebnisse`}
+      title={`${title} | ImmoRadar`}
       description={description}
       noindex={!generatedTitle || pageInt > 1 || sortValue !== 'date'}
     >

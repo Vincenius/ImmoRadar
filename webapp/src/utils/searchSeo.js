@@ -3,14 +3,14 @@ import { Text, Title } from '@mantine/core';
 export const getSearchTitle = ({ q, filterQuery, count }) => {
   let title
   let details
-  let description = `Alle verfügbaren Wohnungen in ${q}. Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten.`
+  let description = `Alle verfügbaren Wohnungen in ${q}. Eine gut sortierte Liste mit Wohnungen zur Miete in ${q} von 10 verschiedenen Anbietern ohne Duplikate.`
 
   if (
     count > 1 &&
     q && filterQuery.input !== 'manual'
   ) {
     if (Object.keys(filterQuery).length === 0) {
-      title = `Wohnungen in ${q} - Angebote von 10 Immobilienportalen`
+      title = `Wohnungen in ${q} finden - Angebote von 10 Portalen`
       details = <>
         <Title order={2} size="h4" mb="md">Mietwohnung in {q} finden – Schnelle & einfache Wohnungssuche mit ImmoRadar</Title>
         <Text mb="md">Du bist auf der Suche nach einer Mietwohnung in {q}? Mit ImmoRadar findest du schnell und unkompliziert aktuelle Wohnungsangebote in {q}. Bei uns entdeckst du täglich neue Inserate für verschiedenste Wohnungsarten.</Text>
@@ -22,7 +22,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
     if (Object.keys(filterQuery).length === 1) {
       if (filterQuery.features === 'CERTIFICATE_OF_ELIGIBILITY') {
         title = `WBS Wohnungen in ${q} - Günstige Sozialwohnungen mieten`
-        description = `Alle verfügbaren WBS Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 10 Immobilien-Webseiten.`
+        description = `Alle verfügbaren WBS Wohnungen in ${q}. Ergebnisse für Sozialwohnungen mit Wohnberechtigungsschein von 10 Immobilien-Webseiten.`
         details = <>
           <Title order={2} size="h4" mb="md">WBS Wohnungen in {q} finden – Günstige Sozialwohnungen mit ImmoRadar finden</Title>
           <Text mb="md">Du suchst eine Wohnung mit Wohnberechtigungsschein (WBS) in {q}? Mit ImmoRadar findest du schnell und unkompliziert aktuelle WBS-Wohnungsangebote in {q}. Unsere Plattform durchsucht die besten Immobilienseiten und präsentiert dir eine große Auswahl an günstigen Sozialwohnungen, die mit einem WBS angemietet werden können.</Text>
@@ -31,7 +31,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
       }
       if (filterQuery.titleIncludes === 'auf Zeit') {
         title = `Wohnen auf Zeit in ${q} - Wohnungen zur Zwischenmiete finden`
-        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen zur Zwischenmiete von 10 Immobilien-Webseiten.`
+        description = `Alle verfügbaren Wohnungen zur Miete auf Zeit in ${q}. Ergebnisse für Wohnungen zur Zwischenmiete von 10 Immobilien-Webseiten.`
         details = <>
           <Title order={2} size="h4" mb="md">Wohnungen auf Zeit in {q} finden – Flexible Wohnlösungen mit ImmoRadar</Title>
           <Text mb="md">Du suchst eine Wohnung auf Zeit in {q}? Mit ImmoRadar findest du schnell und einfach aktuelle Angebote für temporäres Wohnen in {q}. Ob für einen kurzen beruflichen Aufenthalt oder einen Übergangszeitraum – wir haben die passenden Wohnungsangebote für dich.</Text>
@@ -57,8 +57,8 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
         </>
       }
       if (filterQuery.features === 'FLAT_SHARE_POSSIBLE') {
-        title = `WG-geeignete Mietwohnungen in ${q}`
-        description = `Alle WG-geeigneten Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für Wohnungen zur Miete von 10 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
+        title = `WG-geeignete Wohnungen zur Miete in ${q}`
+        description = `Alle WG-geeigneten Wohnungen in ${q}. Ergebnisse für Wohnungen zur Miete von 10 Immobilien-Webseiten die für Wohnungsgemeinschaften geeignet sind.`
         details = <>
           <Title order={2} size="h4" mb="md">WG-geeignete Wohnungen in {q} finden – Perfekte Lösungen für Wohnungsgemeinschaften mit ImmoRadar</Title>
           <Text mb="md">Du suchst eine WG-geeignete Wohnung in {q}? Mit ImmoRadar findest du schnell und einfach passende Wohnungen, die sich ideal für eine Wohngemeinschaft eignen. Unsere Plattform durchsucht die besten Immobilienseiten und zeigt dir eine große Auswahl an Mietwohnungen, die genug Platz für mehrere Mitbewohner bieten.</Text>
@@ -75,7 +75,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
         </>
       }
       if (filterQuery.features === 'WHEELCHAIR_ACCESSIBLE') {
-        title = `Behindertengerechte / Barrierefreie Mietwohnungen in ${q}`
+        title = `Behindertengerechte & Barrierefreie Mietwohnungen in ${q}`
         description = `Alle Barrierefreien Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für rollstuhlgerechte Mietwohnungen von 10 Immobilien-Webseiten.`
         details = <>
           <Title order={2} size="h4" mb="md">Barrierefreie Wohnungen in {q} finden – Komfortables Wohnen mit ImmoRadar</Title>
@@ -94,14 +94,14 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
       }
       if (filterQuery.minRooms === "6") {
         title = `6+ Zimmer Wohnungen in ${q}`
-        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. ImmoRadar kombiniert die Ergebnisse für günstige 6+ Raum Wohnungen zur Miete von 10 Immobilien-Webseiten.`
+        description = `Alle Wohnungen mit Sechs oder mehr Räumen in ${q}. Ergebnisse für günstige 6+ Raum Wohnungen zur Miete von 10 Immobilien-Webseiten.`
       }
     }
 
     if (Object.keys(filterQuery).length === 2 && filterQuery.minRooms && filterQuery.maxRooms && filterQuery.minRooms === filterQuery.maxRooms && parseInt(filterQuery.minRooms) <= 5) {
       title = `${filterQuery.minRooms} Zimmer Wohnungen in ${q} mieten`
       if (filterQuery.minRooms === 1) {
-        description = `Alle Einzimmer Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für kompakte und günstige ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
+        description = `Alle Einzimmer Wohnungen in ${q}. Ergebnisse für kompakte und günstige ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
       } else if (filterQuery.minRooms > 1) {
         const rooms = {
           2: 'Zweizimmer',
@@ -109,7 +109,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
           4: 'Vierzimmer',
           5: 'Fünfzimmer',
         }
-        description = `Alle ${rooms[filterQuery.minRooms]} Wohnungen in ${q}. ImmoRadar kombiniert die Ergebnisse für ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
+        description = `Alle ${rooms[filterQuery.minRooms]} Wohnungen in ${q}. Ergebnisse für ${filterQuery.minRooms} Raum Wohnungen von 10 Immobilien-Webseiten.`
       }
     }
   }
