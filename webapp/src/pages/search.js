@@ -188,7 +188,8 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
     router.push({ query: { ...router.query, page: newPage } });
   };
 
-  const { title: generatedTitle, description } = getSearchTitle({ q, filterQuery, count, sortValue });
+  const { title: generatedTitle, description, details } = getSearchTitle({ q, filterQuery, count, sortValue });
+  console.log({ details })
   const title = generatedTitle || getDefaultTitle(q);
 
   return (
@@ -269,6 +270,11 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         previousIcon={PaginationLeftIcon}
         nextIcon={PaginationRightIcon}
       /> }
+
+      { details && <>
+        <Divider my="lg" />
+        { details }
+      </> }
 
       <Divider my="lg" />
       <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>
