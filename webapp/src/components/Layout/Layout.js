@@ -15,20 +15,12 @@ function useCannonical() {
 
   // Clone the query object and track if any parameter was removed
   const canonicalQuery = { ...query };
-  let parametersRemoved = false;
 
   if (canonicalQuery.page === '1') {
     delete canonicalQuery.page;
-    parametersRemoved = true;
   }
   if (canonicalQuery.sort === 'date') {
     delete canonicalQuery.sort;
-    parametersRemoved = true;
-  }
-
-  // If no parameters were removed, return null
-  if (!parametersRemoved) {
-    return null;
   }
 
   // Generate the canonical URL
@@ -37,7 +29,14 @@ function useCannonical() {
     canonicalUrl.searchParams.append(key, canonicalQuery[key]);
   });
 
-  return canonicalUrl.href;
+  let result = canonicalUrl.href;
+
+  // remove trailing slash
+  if (result.endsWith('/')) {
+    result = result.slice(0, -1);
+  }
+
+  return result;
 }
 
 const Layout = ({ children, title, description, date, noindex, image }) => {
