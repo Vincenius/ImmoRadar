@@ -10,7 +10,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
     q && filterQuery.input !== 'manual'
   ) {
     if (Object.keys(filterQuery).length === 0) {
-      title = `Wohnungen in ${q} finden - Angebote von 10 Portalen`
+      title = `Wohnungen in ${q} - Angebote von 10 Portalen`
       details = <>
         <Title order={2} size="h4" mb="md">Mietwohnung in {q} finden - Schnelle & einfache Wohnungssuche mit ImmoRadar</Title>
         <Text mb="md">Du bist auf der Suche nach einer Mietwohnung in {q}? Mit ImmoRadar findest du schnell und unkompliziert aktuelle Wohnungsangebote in {q}. Bei uns entdeckst du täglich neue Inserate für verschiedenste Wohnungsarten.</Text>
