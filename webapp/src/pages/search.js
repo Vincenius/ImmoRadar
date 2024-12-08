@@ -189,7 +189,6 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
   };
 
   const { title: generatedTitle, description, details } = getSearchTitle({ q, filterQuery, count, sortValue });
-  console.log({ details })
   const title = generatedTitle || getDefaultTitle(q);
 
   return (
