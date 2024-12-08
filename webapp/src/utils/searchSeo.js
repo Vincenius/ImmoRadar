@@ -43,7 +43,7 @@ export const getSearchTitle = ({ q, filterQuery, count }) => {
         description = `Alle verfügbaren Wohnungen mit Garten in ${q}. ImmoRadar kombiniert die Ergebnisse für Mietwohnungen mit Garten von 10 Immobilien-Webseiten.`
         details = <>
           <Title order={2} size="h4" mb="md">Wohnungen mit Garten in {q} finden - Grün wohnen mit ImmoRadar</Title>
-          <Text mb="md">Du träumst von einer Wohnung mit eigenem Garten in {q}? Mit ImmoRadar findest du schnell und unkompliziert aktuelle Wohnungsangebote mit Garten in {q}. Unsere Plattform durchsucht die besten Immobilienseiten und präsentiert dir eine Auswahl an Wohnungen mit grünem Außenbereich.</Text>
+          <Text mb="md">Du träumst von einer Erdgeschosswohnung mit eigenem Garten in {q}? Mit ImmoRadar findest du schnell und unkompliziert aktuelle Wohnungsangebote mit Garten in {q}. Unsere Plattform durchsucht die besten Immobilienseiten und präsentiert dir eine Auswahl an Wohnungen mit grünem Außenbereich.</Text>
           <Text mb="md">Mit ImmoRadar findest du dein neues Zuhause im Grünen. Spare Zeit bei der Suche und entdecke jetzt die schönsten Wohnungen mit Garten in {q}!</Text>
         </>
       }
