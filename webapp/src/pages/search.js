@@ -245,7 +245,7 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Box>
 
         {/* only desktop design */}
-        <Box w="34%" display={{ base: 'none', md: 'block'}}>
+        <Box w="34%" display={{ base: 'none', md: 'block'}} mb="xl">
           <Card shadow="sm" padding="md" radius="md" mb="md" withBorder>
             <SortInput sortValue={sortValue} updateSort={updateSort} mb="xs"/>
 
@@ -275,9 +275,11 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         { details }
       </> }
 
-      <Divider my="lg" />
-      <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>
-      <SearchPages data={getSearchPages(q)} />
+      {(estates && estates.length > 0) && <>
+        <Divider my="lg" />
+        <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>
+        <SearchPages data={getSearchPages(q)} />
+      </>}
     </Layout>
   );
 }
