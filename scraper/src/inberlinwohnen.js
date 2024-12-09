@@ -1,6 +1,7 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { getZipByAddress } from './utils/utils.js'
+import { archiveEntries } from './utils/archive.js'
 
 const scrapeData = async ({ page, collection, logEvent, type }) => {
     try {
@@ -107,13 +108,11 @@ const scrapeData = async ({ page, collection, logEvent, type }) => {
             .filter(e => !pageData.some(pd => pd.id === e.id))
             .map(e => e.id);
 
-        console.log('toRemove', toRemove[0])
-
         // Remove multiple entries by _id
-        const result = await collection.deleteMany({ id: { $in: toRemove } });
+        await archiveEntries({ collection, query: { id: { $in: toRemove } } });
 
-        console.log(`inberlinwohnen.de scraped ${data.length} new estates & deleted ${result.deletedCount} old ones` );
-        await logEvent({ scraper: 'inberlinwohnen.de', success: true, message: `scraped ${data.length} new estates & deleted ${result.deletedCount} old ones` });
+        console.log(`inberlinwohnen.de scraped ${data.length} new estates & archived ${toRemove.length} old ones` );
+        await logEvent({ scraper: 'inberlinwohnen.de', success: true, message: `scraped ${data.length} new estates & deleted ${toRemove.length} old ones` });
     } catch (err) {
         console.error('inberlinwohnen.de unexpected error', err);
         await logEvent({ scraper: 'inberlinwohnen.de', success: false, message: err });

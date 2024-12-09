@@ -1,6 +1,7 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
+import { archiveEntries } from './utils/archive.js'
 
 const featureMap = {
     'Keller': 'BASEMENT',
@@ -144,8 +145,8 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .map(e => e.url);
 
             // Remove multiple entries by _id
-            const result = await collection.deleteMany({ url: { $in: toRemove } });
-            const message = `Ohne Makler - Scraped ${count} new estates and removed ${result.deletedCount} old estates.`;
+            await archiveEntries({ collection, query: { url: { $in: toRemove } }});
+            const message = `Ohne Makler - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'ohne-makler.net', success: true, message });
             console.log(message);
         } else if (!error) {

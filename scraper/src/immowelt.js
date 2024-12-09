@@ -1,5 +1,6 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js'
+import { archiveEntries } from './utils/archive.js'
 
 const mapPriceType = {
     "Kaltmiete zzgl. Nebenkosten": "COLD_RENT",
@@ -113,8 +114,8 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .map(e => e.id);
 
             // Remove multiple entries by _id
-            const result = await collection.deleteMany({ id: { $in: toRemove } });
-            const message = `Immowelt - Scraped ${count} new estates and removed ${result.deletedCount} old estates.`;
+            await archiveEntries({ collection, query: { id: { $in: toRemove } } });
+            const message = `Immowelt - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'immowelt.de', success: true, message });
             console.log(message);
         } else if (!error) {

@@ -1,6 +1,7 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { delay, withRetries } from './utils/utils.js'
+import { archiveEntries } from './utils/archive.js'
 
 const checkCaptcha = async ({ page: defaultPage, url, restartBrowser }) => {
     let page = defaultPage
@@ -260,8 +261,8 @@ const scrapeData = async ({ page: defaultPage, collection, type, restartBrowser,
                 .map(e => e.url);
     
             // Remove multiple entries by _id
-            const result = await collection.deleteMany({ url: { $in: toRemove } });
-            const message = `WG Gesucht - Scraped ${count} new estates and removed ${result.deletedCount} old estates.`;
+            await archiveEntries({ collection, query: { url: { $in: toRemove } }});
+            const message = `WG Gesucht - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'wg-gesucht.de', success: true, message });
             console.log(message);
         } else if (!error) {

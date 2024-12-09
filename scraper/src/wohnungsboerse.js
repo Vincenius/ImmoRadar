@@ -1,5 +1,6 @@
 import fs from 'fs';
 import { middleware } from './utils/middleware.js'
+import { archiveEntries } from './utils/archive.js'
 
 const scrapeData = async ({ page, collection, type }) => {
     const BASE_URL = 'https://www.wohnungsboerse.net/searches/index?isSearch=1&country=DE&page=1&estate_marketing_types=miete%2C1&marketing_type=miete&estate_types%5B%5D=1&cities%5B%5D=Berlin&zipcodes%5B%5D=&umkreiskm=&minprice=&maxprice=&minsize=&maxsize=&minrooms=&maxrooms=';
