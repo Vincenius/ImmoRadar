@@ -30,7 +30,7 @@ const theme = createTheme({
 
 export default function App({ Component, pageProps }) {
   return (
-    <MantineProvider theme={theme}>
+    <MantineProvider theme={theme} forceColorScheme="light">
       <Notifications />
       <Component {...pageProps} />
     </MantineProvider>
