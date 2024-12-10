@@ -4,7 +4,7 @@ import 'dotenv/config'
 import { splitIntoBatches } from './src/utils/utils.js'
 
 const run = async () => {
-  const client = new MongoClient('mongodb://vincenius:6fc07b5d3d824f4d9f22284f9b959320@82.165.133.109:27017/?authSource=admin');
+  const client = new MongoClient('todo');
 
   try {
     await client.connect();
