@@ -4,13 +4,13 @@ import { parseFeatures } from '../src/utils/parseFeatures.js';
 // todo migration remove without searchUrl
 
 const run = async () => {
-  const client = new MongoClient('here');
+  const client = new MongoClient('yoyo');
   await client.connect();
   const db = client.db('prod');
   const collection = db.collection('estates');
 
   // delete all immoscout entries
-  const result = await collection.deleteMany({ provider: 'https://www.immowelt.de' });
+  const result = await collection.deleteMany({ provider: 'immobilienscout24.de' });
   console.log(result)
 
   client.close();

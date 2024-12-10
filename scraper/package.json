@@ -5,6 +5,7 @@
     "description": "This is an example of a Crawlee project.",
     "dependencies": {
         "@sentry/node": "^8.15.0",
+        "axios": "^1.7.9",
         "dotenv": "^16.4.5",
         "mongodb": "^6.7.0",
         "node-cron": "^3.0.3",
