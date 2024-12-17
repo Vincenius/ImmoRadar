@@ -1,7 +1,18 @@
 import { MongoClient } from 'mongodb';
-import axios from 'axios';
 import 'dotenv/config'
 import { splitIntoBatches } from './src/utils/utils.js'
+
+const providers = [{
+  name: 'immowelt.de',
+}, {
+  name: 'kleinanzeigen.de',
+  options: { batch: 20 },
+}, {
+  name: 'ohne-makler.net',
+}, {
+  name: 'wg-gesucht',
+  options: { reqType: 'GET' }
+}]
 
 const run = async () => {
   const client = new MongoClient('yoyo');
@@ -11,41 +22,16 @@ const run = async () => {
     const db = client.db('prod');
     const collection = db.collection('estates');
   
-    // delete all immoscout entries
-    // immobilienscout24.de, immowelt.de, (kleinanzeigen.de -> 20 batch), ohne-makler.net, wg-gesucht.de -> GET
-    // https://chatgpt.com/c/6751f7b4-d618-8007-9132-9b9808e95f5b
-    const result = await collection.find({ provider: 'kleinanzeigen.de' }).toArray();
+    // immowelt.de, immobilienscout24.de, (kleinanzeigen.de -> 20 batch), ohne-makler.net, wg-gesucht.de -> GET
+    const result = await collection.find({ provider: 'immowelt.de' }).toArray();
     client.close();
     
     const uris = result.map(r => r.url)
     const errors = []
-
-    // const response = await axios.head(uris[0], {
-    //   proxy: {
-    //     protocol: 'http',
-    //     host: '87.106.235.175',
-    //     port: 3128,
-    //     auth: {
-    //       username: process.env.PROXY_USERNAME_1,
-    //       password: process.env.PROXY_PASSWORD_1
-    //     }
-    //   },
-    //   headers: {
-    //     'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
-    //   }
-    // });
-    // console.log(response)
-
-    // console.log(result[0].url)
-    // const res = await fetch(result[0].url, { method: 'HEAD', headers: {
-    //   'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36',
-    //   'Accept-Language': 'en-US,en;q=0.9',
-    // } }).catch(err => console.log('err',err))
-    // console.log(res)
     
     const start = performance.now();
 
-    const batches = splitIntoBatches(uris, 20)
+    const batches = splitIntoBatches(uris, 50)
     let i = 1;
 
     for (const batch of batches) {
