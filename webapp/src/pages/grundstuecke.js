@@ -95,12 +95,12 @@ export default function Home() {
                   <ThemeIcon variant="outline">
                     <IconStar style={{ width: '70%', height: '70%' }} />
                   </ThemeIcon>
-                  <Text><b>Exklusive Grundstücke</b>: Entdecken Sie einmalige Grundstücke, die nur über unsere Plattform verfügbar sind und nirgendwo anders gelistet werden..</Text>
+                  <Text><b>Exklusive Grundstücke</b>: Entdecken Sie einmalige Grundstücke, die nur über unsere Plattform verfügbar sind und nirgendwo anders gelistet werden.</Text>
                 </Flex>
               </Flex>
             </Box>
 
-            <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={300} mx="auto" w="100%" mb="lg">
+            <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
                   <Title order={2} size="h3" mb="lg">In welcher Region soll Ihr Grundstück liegen?</Title>
