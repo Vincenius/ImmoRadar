@@ -1,13 +1,24 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Text, Flex, Indicator, Box, ActionIcon } from '@mantine/core'
+import { Container, Text, Flex, Indicator, Box, ActionIcon, Burger, Menu } from '@mantine/core'
 import { IconBrandFacebook, IconBrandX, IconBrandLinkedin } from '@tabler/icons-react';
 import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
+
+const menu = [{
+  label: 'Grundstücke',
+  url: '/grundstuecke'
+}, {
+  label: 'Blog',
+  url: '/blog'
+}, {
+  label: 'Über uns',
+  url: '/about'
+}];
 
 function useCannonical() {
   const router = useRouter();
@@ -42,6 +53,7 @@ function useCannonical() {
 const Layout = ({ children, title, description, date, noindex, image }) => {
   const canonicalUrl = useCannonical();
   const ogImage = image || '/og-image.jpg';
+  const [opened, setOpened] = useState(false);
 
   return <>
     <Head>
@@ -80,11 +92,27 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               </Flex>
             </Link>
 
-            <Flex justify="flex-end" align="center" gap="lg">
-              <Link href="/grundstuecke">Grundstücke</Link>
-              <Link href="/blog">Blog</Link>
-              <Link href="/about">Über uns</Link>
+            {/* desktop menu */}
+            <Flex justify="flex-end" align="center" gap="xl" display={{ base: "none", xs: "flex" }}>
+              { menu.map(menuItem =>
+                <Link key={menuItem.label} href={menuItem.url}>{menuItem.label}</Link>)
+              }
             </Flex>
+
+            {/* mobile menu */}
+            <Menu shadow="md" display={{ base: "block", xs: "none" }} opened={opened} onChange={setOpened}>
+              <Menu.Target>
+                <Burger opened={opened} aria-label="Menü" />
+              </Menu.Target>
+
+              <Menu.Dropdown>
+                { menu.map(menuItem =>
+                  <Menu.Item key={menuItem.label}>
+                     <Link href={menuItem.url}>{menuItem.label}</Link>
+                  </Menu.Item>
+                ) }
+              </Menu.Dropdown>
+            </Menu>
           </Flex>
         </Container>
       </Box>

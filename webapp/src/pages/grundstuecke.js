@@ -1,21 +1,16 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
-import { fetcher } from '@/utils/fetcher'
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon } from '@mantine/core';
+import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
-import Logos from '@/components/Logos/Logos'
-import SearchBar from '@/components/SearchBar/SearchBar';
-import FeatureCards from '@/components/FeatureCards/FeatureCards';
-import SearchPages from '@/components/SearchPages/SearchPages';
-import FAQs from '@/components/FAQ/FAQ';
 import styles from '@/styles/Home.module.css'
 
-const ButtonGroup = ({ active, setActive }) => {
+const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
+const ButtonGroup = ({ active, setActive, isLoading }) => {
   return <Group justify="space-between" mt="xl">
     { active === 0 && <div></div>}
-    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)}>Zurück</Button> }
-    { active < 3 && <Button type="submit">Weiter</Button> }
+    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
+    { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
   </Group>
 }
 
@@ -30,8 +25,11 @@ export default function Home() {
     const elements = e.target.elements;
     for (let element of elements) {
       if (element.name) {
-        formObject[element.name] = element.value;
-        // todo format thousand separator
+        if (numberFormatElements.includes(element.name)) {
+          formObject[element.name] = parseInt(element.value.replaceAll(',', ''));
+        } else {
+          formObject[element.name] = element.value;
+        }
       }
     }
 
@@ -40,10 +38,19 @@ export default function Home() {
       ...formObject
     }
 
-    console.log('SUBMIT', active)
     if (active === 2) {
       setIsLoading(true)
-      setActive(active + 1)
+
+      fetch('/api/property-signup', {
+        method: 'POST',
+        body: JSON.stringify(newData),
+      }).then(() => {
+        setActive(active + 1)
+      }).catch((err) => {
+        // todo error handling
+      }).finally(() => {
+        setIsLoading(false)
+      })
     } else {
       setData(newData)
       setActive(active + 1)
@@ -58,20 +65,42 @@ export default function Home() {
       <Box className={styles.header}>
         <div className={styles.background}></div>
 
-        <Flex mih="600px" h="calc(100vh - 70px - 64px)" direction="column" justify="space-evenly">
-          <Flex gap="xl">
-            <Box>
-              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" textWrap="balance">
+        <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
+          <Flex gap="xl" direction={{ base: "column", md: "row" }}>
+            <Box p={{ base: "sm", sm: "xl", md: "0" }}>
+              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
                 Finden Sie Ihr <span className={styles.gradientText}>Traumgrundstück</span>
               </Title>
-              <Text size="lg" mb="xl">
+              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
                 Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden.
               </Text>
 
-              {/* icons features?? */}
+
+              <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
+                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
+                  <ThemeIcon variant="outline">
+                    <IconHomeSearch style={{ width: '70%', height: '70%' }} />
+                  </ThemeIcon>
+                  <Text><b>Individuelle Grundstücksauswahl</b>: Wir filtern passende Grundstücke nach Ihren spezifischen Anforderungen.</Text>
+                </Flex>
+
+                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
+                  <ThemeIcon variant="outline">
+                    <IconClockBolt style={{ width: '70%', height: '70%' }} />
+                  </ThemeIcon>
+                  <Text><b>Schneller und unkomplizierter Prozess</b>: Sparen Sie Zeit und Nerven mit unserem einfach zu bedienenden Service.</Text>
+                </Flex>
+
+                <Flex gap="md" align={{ base: "center", sm: "start" }} direction={{ base: "row", sm: "column" }}>
+                  <ThemeIcon variant="outline">
+                    <IconStar style={{ width: '70%', height: '70%' }} />
+                  </ThemeIcon>
+                  <Text><b>Exklusive Grundstücke</b>: Entdecken Sie einmalige Grundstücke, die nur über unsere Plattform verfügbar sind und nirgendwo anders gelistet werden..</Text>
+                </Flex>
+              </Flex>
             </Box>
 
-            <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={300} mx="auto" w="100%">
+            <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={300} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
                   <Title order={2} size="h3" mb="lg">In welcher Region soll Ihr Grundstück liegen?</Title>
@@ -85,6 +114,7 @@ export default function Home() {
                       mb="sm"
                       name="Postalcode"
                       decimalScale={0}
+                      maxLength={5}
                       defaultValue={data.Postalcode}
                     />
                     <TextInput
@@ -214,7 +244,7 @@ export default function Home() {
                       defaultValue={data.Phone}
                     />
 
-                    <ButtonGroup active={active} setActive={setActive} />
+                    <ButtonGroup active={active} setActive={setActive} isLoading={isLoading} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
