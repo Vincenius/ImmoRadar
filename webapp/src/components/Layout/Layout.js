@@ -164,7 +164,6 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               <Link href="/imprint"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
               <Link href="/privacy"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
               <Link href="/about"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
-              <Link href="/sitemap-0.xml"><Text size="sm" c="gray.7">Sitemap</Text></Link>
             </Box>
           </Flex>
           <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} ImmoRadar</Text>
