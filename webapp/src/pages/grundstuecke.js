@@ -253,7 +253,10 @@ export default function Home() {
                    Wir haben Ihre Angaben erhalten und suchen jetzt passende Grundstücke für Sie.
                   </Text>
                   <Text mb="sm">
-                    Sie erhalten eine E-Mail sobald wir die ersten Ergebnissen haben. Falls wir Rückfragen haben, werden wir uns direkt bei Ihnen melden.
+                    <b>Bitte bestätigen Sie Ihre E-Mail-Adresse</b>, indem Sie den Link in der gerade versendeten E-Mail anklicken.
+                  </Text>
+                  <Text mb="sm">
+                    Sobald die Bestätigung erfolgt ist, erhalten Sie die ersten Ergebnisse. Falls wir Rückfragen haben, werden wir uns direkt bei Ihnen melden.
                   </Text>
                   <Text>
                     Vielen Dank für Ihr Vertrauen!

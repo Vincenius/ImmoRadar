@@ -1,6 +1,6 @@
 const { MongoClient } = require('mongodb');
 
-const exclude = ['/deleted', '/profile']
+const exclude = ['/deleted', '/profile', '/email-bestaetigt', '/unerwarteter-fehler']
 
 const regionData = {
     'baden-württemberg': 'Baden-Württemberg',

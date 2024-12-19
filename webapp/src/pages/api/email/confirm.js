@@ -26,7 +26,7 @@ export default async function handler(req, res) {
         return res.redirect(`/profile?id=${token}&confirm=true`)
     } catch (error) {
         console.error(error);
-        return res.status(500).json({ message: 'Internal Server Error' });
+        return res.redirect(`/unerwarteter-fehler`)
     } finally {
         // Close the connection
         client.close();

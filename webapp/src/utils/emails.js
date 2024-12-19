@@ -14,7 +14,7 @@ export const sendEmail = async ({ to, subject, html }) => {
     })
 
     const result = await transporter.sendMail({
-        from: 'ImmoRadar <updates@immoradar.xyz>',
+        from: 'ImmoRadar <noreply@immoradar.xyz>',
         to: `${to} <${to}>`,
         subject,
         html,
