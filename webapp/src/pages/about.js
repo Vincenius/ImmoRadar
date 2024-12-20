@@ -19,11 +19,15 @@ const AboutPage = () => {
                     Ich wollte eine Suchmaschine schaffen, die es mir ermöglicht, alle verfügbaren Wohnungen von verschiedenen Immobilien Webseiten auf einen Blick zu sehen.
                 </Text>
                 <Text my="md">
-                    ImmoRadar befindet sich aktuell noch in der Beta-Phase. Ich arbeite ständig daran, die Webseite zu verbessern und neue Funktionen hinzuzufügen.
+                    Seit Dezember 2024 gehören auch <b>Oliver Rausch</b>, <b>Christof Scholz</b>, <b>Dennis Kostenko</b> und <b>Felix Van Huet</b> zum Team.
+                </Text>
+                <Text my="md">
+                    Wir arbeiten ständig daran, die Webseite zu verbessern und neue Funktionen hinzuzufügen.
                     Wenn Sie Fragen oder Anregungen haben, zögern Sie nicht, mich zu kontaktieren.
                 </Text>
                 <Text my="md">
-                    <a href="mailto:vincent@immoradar.xyz">vincent@immoradar.xyz</a>
+                    <a href="mailto:vincent@immoradar.xyz">vincent@immoradar.xyz</a><br/>
+                    <a href="mailto:oliver.rausch@immoradar.xyz">oliver.rausch@immoradar.xyz</a><br/>
                 </Text>
             </Container>
         </Layout>
