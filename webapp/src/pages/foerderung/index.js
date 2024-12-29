@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Select } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, Select, List } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import { mainSearches } from '@/utils/searchSeo'
+import Checkout from '@/components/Checkout/Checkout';
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
@@ -16,9 +18,9 @@ const ButtonGroup = ({ active, setActive, isLoading }) => {
 }
 
 export default function Home() {
+  const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
   const [data, setData] = useState({})
-  const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -39,29 +41,14 @@ export default function Home() {
       ...formObject
     }
 
-    if (active === 2) {
-      setIsLoading(true)
-
-      // fetch('/api/property-signup', {
-      //   method: 'POST',
-      //   body: JSON.stringify(newData),
-      // }).then(() => {
-      //   setActive(active + 1)
-      // }).catch((err) => {
-      //   // todo error handling
-      // }).finally(() => {
-      //   setIsLoading(false)
-      // })
-    } else {
-      setData(newData)
-      setActive(active + 1)
-    }
+    setData(newData)
+    setActive(active + 1)
   }
 
   return (
     <Layout
-      title="ImmoRadar Grundstücke"
-      description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
+      title="ImmoRadar Förderung"
+      description="todo"
     >
       <Box className={styles.header} py="xl">
         <div className={styles.background}></div>
@@ -74,8 +61,9 @@ export default function Home() {
               </Title>
             </Box>
 
-            <Card withBorder radius="md" p="lg" maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
-              <Title order={2} ta="center" mb="lg">Förderungsrechner</Title>
+            <Button size="xl" onClick={open}>Förderungsrechner Starten</Button>
+
+            <Modal opened={opened} onClose={close} title="Förderungsrechner" size="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">In welchem Bundesland wollen Sie bauen?</Title>
@@ -94,7 +82,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">TODO?</Title>
+                  <Title order={2} size="h3" mb="lg">Weitere Fragen kommen hier...</Title>
 
                   <form onSubmit={handleSubmit}>
                     <NumberInput
@@ -115,26 +103,26 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">TODO</Title>
+                  <Title order={2} size="h3" mb="md">Sie können eine Förderung in Höhe von 2.000€ erhalten.</Title>
+                  <Text mb="md">Unsere Berechnungen haben anhand Ihrer Angaben ermittelt, dass Sie für <b>2 Förderprojekte</b> in Frage kommen.</Text>
+                  <Text mb="md">Schalten Sie jetzt den vollständigen Report für <b>20€</b> frei</Text>
+                  <Text mb="md">Der Report beinahltet</Text>
+
+                  <List>
+                    <List.Item>Erkärungen und Links zu den Förderungen</List.Item>
+                    <List.Item>Kontakt zu unserem Experten für weitere Fragen</List.Item>
+                    <List.Item>Geld zurück Garantie falls die berechnete Förderung nicht erhalten wird</List.Item>
+                  </List>
 
                   <form onSubmit={handleSubmit}>
-                    <TextInput
-                      label="Vorname"
-                      placeholder="Max"
-                      required
-                      mb="sm"
-                      name="Firstname"
-                      defaultValue={data.Firstname}
-                    />
-
-                    <ButtonGroup active={active} setActive={setActive} isLoading={isLoading} />
+                    <ButtonGroup active={active} setActive={setActive} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
-                  todo success
+                  <Checkout />
                 </Stepper.Completed>
               </Stepper>
-            </Card>
+            </Modal>
           </Flex>
         </Flex>
       </Box>
