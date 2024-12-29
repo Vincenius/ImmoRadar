@@ -1,8 +1,9 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Select } from '@mantine/core';
 import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
+import { mainSearches } from '@/utils/searchSeo'
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
@@ -20,7 +21,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const formObject = {};
     const elements = e.target.elements;
     for (let element of elements) {
@@ -41,16 +42,16 @@ export default function Home() {
     if (active === 2) {
       setIsLoading(true)
 
-      fetch('/api/property-signup', {
-        method: 'POST',
-        body: JSON.stringify(newData),
-      }).then(() => {
-        setActive(active + 1)
-      }).catch((err) => {
-        // todo error handling
-      }).finally(() => {
-        setIsLoading(false)
-      })
+      // fetch('/api/property-signup', {
+      //   method: 'POST',
+      //   body: JSON.stringify(newData),
+      // }).then(() => {
+      //   setActive(active + 1)
+      // }).catch((err) => {
+      //   // todo error handling
+      // }).finally(() => {
+      //   setIsLoading(false)
+      // })
     } else {
       setData(newData)
       setActive(active + 1)
@@ -69,7 +70,7 @@ export default function Home() {
           <Flex gap="xl" direction="column" justify="center" align="center">
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
               <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Jetzt bis zu 10.000€ an <span className={styles.gradientText}>Förderung</span> für Ihr Bauvorhaben sichern.
+                Jetzt <span className={styles.gradientText}>bis zu 10.000€</span> an Förderung für Ihr Bauvorhaben sichern.
               </Title>
             </Box>
 
@@ -77,19 +78,16 @@ export default function Home() {
               <Title order={2} ta="center" mb="lg">Förderungsrechner</Title>
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">TODO?</Title>
+                  <Title order={2} size="h3" mb="lg">In welchem Bundesland wollen Sie bauen?</Title>
 
                   <form onSubmit={handleSubmit}>
-                    <NumberInput
-                      label="Postleitzahl"
-                      placeholder="12345"
+                    <Select
+                      label="Bundesland"
+                      data={mainSearches.map(s => s.primary.label)}
                       required
-                      hideControls
                       mb="sm"
-                      name="Postalcode"
-                      decimalScale={0}
-                      maxLength={5}
-                      defaultValue={data.Postalcode}
+                      name="region"
+                      defaultValue={data.region}
                     />
 
                     <ButtonGroup active={active} setActive={setActive} />
