@@ -111,7 +111,7 @@ export default function Home() {
                   <List>
                     <List.Item>Erkärungen und Links zu den Förderungen</List.Item>
                     <List.Item>Kontakt zu unserem Experten für weitere Fragen</List.Item>
-                    <List.Item>Geld zurück Garantie falls die berechnete Förderung nicht erhalten wird</List.Item>
+                    <List.Item>Geld zurück Garantie falls keine Förderung erhalten wird</List.Item>
                   </List>
 
                   <form onSubmit={handleSubmit}>
