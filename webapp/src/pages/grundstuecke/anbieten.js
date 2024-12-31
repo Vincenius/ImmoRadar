@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
+import { IconMapPin2, IconHome2, IconUser, IconHomeDollar, IconClockBolt, IconMessage } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 
-const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
+const numberFormatElements = ['Size', 'Price', 'Postalcode']
 
 const ButtonGroup = ({ active, setActive, isLoading }) => {
   return <Group justify="space-between" mt="xl">
     { active === 0 && <div></div>}
-    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
+    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading}>Zurück</Button> }
     { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
   </Group>
 }
@@ -20,7 +20,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+
     const formObject = {};
     const elements = e.target.elements;
     for (let element of elements) {
@@ -43,7 +43,10 @@ export default function Home() {
 
       fetch('/api/property-signup', {
         method: 'POST',
-        body: JSON.stringify(newData),
+        body: JSON.stringify({
+          ...newData,
+          type: 'property'
+        }),
       }).then(() => {
         setActive(active + 1)
       }).catch((err) => {
@@ -59,43 +62,35 @@ export default function Home() {
 
   return (
     <Layout
-      title="ImmoRadar Grundstücke"
+      title="ImmoRadar Grundstücke Suchen"
       description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
     >
       <Box className={styles.header}>
         <div className={styles.background}></div>
 
-        <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
+        <Flex py="xl" mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction={{ base: "column", md: "row" }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
               <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Finden Sie Ihr <span className={styles.gradientText}>Traumgrundstück</span>
+                Verkaufen Sie Ihr <span className={styles.gradientText}>Grundstück</span>
               </Title>
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
-                Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden.
+                Möchten Sie Ihr Grundstück erfolgreich verkaufen? Unsere Grundstücksbörse hilft Ihnen dabei, einen Käufer zu finden.
               </Text>
 
-
               <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
+                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }} w="100%">
                   <ThemeIcon variant="outline">
-                    <IconHomeSearch style={{ width: '70%', height: '70%' }} />
+                    <IconHomeDollar style={{ width: '70%', height: '70%' }} />
                   </ThemeIcon>
-                  <Text><b>Individuelle Grundstücksauswahl</b>: Wir filtern passende Grundstücke nach Ihren spezifischen Anforderungen.</Text>
+                  <Text><b>Gezielte Käuferansprache</b>: Erreichen Sie potenzielle Käufer, die aktiv auf der Suche nach Grundstücken in Ihrer Region sind.</Text>
                 </Flex>
 
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
+                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }} w="100%">
                   <ThemeIcon variant="outline">
                     <IconClockBolt style={{ width: '70%', height: '70%' }} />
                   </ThemeIcon>
-                  <Text><b>Schneller und unkomplizierter Prozess</b>: Sparen Sie Zeit und Nerven mit unserem einfach zu bedienenden Service.</Text>
-                </Flex>
-
-                <Flex gap="md" align={{ base: "center", sm: "start" }} direction={{ base: "row", sm: "column" }}>
-                  <ThemeIcon variant="outline">
-                    <IconStar style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Exklusive Grundstücke</b>: Entdecken Sie einmalige Grundstücke, die nur über unsere Plattform verfügbar sind und nirgendwo anders gelistet werden.</Text>
+                  <Text><b>Schnelle und einfache Inserierung</b>: Inserieren Sie Ihr Grundstück in wenigen Schritten.</Text>
                 </Flex>
               </Flex>
             </Box>
@@ -103,9 +98,17 @@ export default function Home() {
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">In welcher Region soll Ihr Grundstück liegen?</Title>
+                  <Title order={2} size="h3" mb="lg">Wo liegt Ihr Grundstück?</Title>
 
                   <form onSubmit={handleSubmit}>
+                    <TextInput
+                      label="Adresse"
+                      placeholder="Straße und Hausnummer"
+                      required
+                      mb="sm"
+                      name="Address"
+                      defaultValue={data.Address}
+                    />
                     <NumberInput
                       label="Postleitzahl"
                       placeholder="12345"
@@ -125,79 +128,43 @@ export default function Home() {
                       name="City"
                       defaultValue={data.City}
                     />
-                    <NumberInput
-                      label="Umkreis"
-                      description="In welchem Radius um diesen Ort ist es noch möglich?"
-                      placeholder="200"
-                      required
-                      hideControls
-                      mb="sm"
-                      rightSection="km"
-                      name="Radius"
-                      decimalScale={0}
-                      thousandSeparator=","
-                      defaultValue={data.Radius}
-                    />
-                    <TextInput
-                      label="Städte ausschließen"
-                      description="Welche Orte sind auf jeden Fall ausgeschlossen?"
-                      placeholder="Leverkusen, Pulheim ..."
-                      mb="sm"
-                      name="ExcludeCity"
-                      defaultValue={data.ExcludeCity}
-                    />
 
                     <ButtonGroup active={active} setActive={setActive} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Welche Größe und Eigenschaften sind Ihnen wichtig?</Title>
+                  <Title order={2} size="h3" mb="lg">Welche Details können Sie uns zu Ihrem Grundstück mitteilen?</Title>
 
                   <form onSubmit={handleSubmit}>
-                    <Flex gap="sm">
-                      <NumberInput
-                        label="Min. Größe des Grundstücks"
-                        placeholder="100"
-                        required
-                        hideControls
-                        mb="sm"
-                        name="MinSize"
-                        rightSection="m²"
-                        thousandSeparator=","
-                        decimalScale={0}
-                        defaultValue={data.MinSize}
-                      />
-                      <NumberInput
-                        label="Max. Größe des Grundstücks"
-                        placeholder="500"
-                        required
-                        hideControls
-                        mb="sm"
-                        name="MaxSize"
-                        rightSection="m²"
-                        thousandSeparator=","
-                        decimalScale={0}
-                        defaultValue={data.MaxSize}
-                      />
-                    </Flex>
-                    
                     <NumberInput
-                      label="Budget"
-                      description="Welche Investition planen Sie für Ihr Grundstück?"
+                      label="Größe des Grundstücks"
+                      placeholder="500"
+                      required
+                      hideControls
+                      mb="sm"
+                      name="Size"
+                      rightSection="m²"
+                      thousandSeparator=","
+                      decimalScale={0}
+                      defaultValue={data.Size}
+                    />
+                    <NumberInput
+                      label="Preis"
+                      description="Wie viel ist Ihnen das Grundstück in etwa Wert?"
                       placeholder="300.000"
                       required
                       hideControls
                       mb="sm"
-                      name="Budget"
+                      name="Price"
                       rightSection="€"
                       thousandSeparator=","
                       decimalScale={0}
-                      defaultValue={data.Budget}
+                      defaultValue={data.Price}
                     />
                     <Textarea
                       label="Anmerkungen"
-                      description="Was ist Ihnen in Ihre Nähe noch wichtig?"
-                      placeholder="Nähe zu ÖPNV, Soziales Umfeld (Schulen, Kindergärten) ..."
+                      description="Was sollten wir noch zu Ihrem Grundstück wissen?"
+                      placeholder=""
                       name="Comment"
                       defaultValue={data.Comment}
                       mb="sm"
@@ -207,7 +174,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Wie können wir Sie erreichen, um Ihnen passende Grundstücke vorzustellen?</Title>
+                  <Title order={2} size="h3" mb="lg">Wie können wir Sie erreichen?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <TextInput
@@ -250,7 +217,7 @@ export default function Home() {
                 <Stepper.Completed>
                   <Title order={2} size="h3" mb="lg">Vielen Dank für Ihre Anfrage!</Title>
                   <Text mb="sm">
-                   Wir haben Ihre Angaben erhalten und suchen jetzt passende Grundstücke für Sie.
+                    Wir haben Ihre Angaben erhalten und suchen jetzt passende Käufer für Sie.
                   </Text>
                   <Text mb="sm">
                     <b>Bitte bestätigen Sie Ihre E-Mail-Adresse</b>, indem Sie den Link in der gerade versendeten E-Mail anklicken.

@@ -3,18 +3,15 @@ import { useRouter } from 'next/router';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { Container, Text, Flex, Indicator, Box, ActionIcon, Burger, Menu } from '@mantine/core'
+import { Container, Text, Flex, Box, ActionIcon, Burger, Menu } from '@mantine/core'
 import { IconBrandFacebook, IconBrandX, IconBrandLinkedin } from '@tabler/icons-react';
 import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
 const menu = [{
-  label: 'Grundstücke',
+  label: 'Grundstückbörse',
   url: '/grundstuecke'
-}, {
-  label: 'Blog',
-  url: '/blog'
 }, {
   label: 'Über uns',
   url: '/about'
