@@ -23,7 +23,7 @@ export default function Home() {
             </Text>
           </Box>
 
-          <Flex justify="space-between">
+          <Flex justify="space-between" direction={{ base: 'column', sm: 'row'}} gap="md">
             <Button size="lg" href="/grundstuecke/suchen" component={Link}>Grundstücke entdecken</Button>
             <Button size="lg" href="/grundstuecke/anbieten" component={Link}>Grundstücke anbieten</Button>
           </Flex>
