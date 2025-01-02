@@ -29,7 +29,7 @@ export default function Home() {
     for (let element of elements) {
       if (element.name) {
         if (numberFormatElements.includes(element.name)) {
-          formObject[element.name] = parseInt(element.value.replaceAll(',', ''));
+          formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
         } else {
           formObject[element.name] = element.value;
         }
@@ -94,7 +94,7 @@ export default function Home() {
                       mb="sm"
                       name="Budget"
                       rightSection="€"
-                      thousandSeparator=","
+                      thousandSeparator=" "
                       decimalScale={0}
                       defaultValue={data.Budget}
                     />

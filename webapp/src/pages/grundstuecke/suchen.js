@@ -26,7 +26,7 @@ export default function Home() {
     for (let element of elements) {
       if (element.name) {
         if (numberFormatElements.includes(element.name)) {
-          formObject[element.name] = parseInt(element.value.replaceAll(',', ''));
+          formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
         } else {
           formObject[element.name] = element.value;
         }
@@ -138,7 +138,7 @@ export default function Home() {
                       rightSection="km"
                       name="Radius"
                       decimalScale={0}
-                      thousandSeparator=","
+                      thousandSeparator=" "
                       defaultValue={data.Radius}
                     />
                     <TextInput
@@ -166,7 +166,7 @@ export default function Home() {
                         mb="sm"
                         name="MinSize"
                         rightSection="m²"
-                        thousandSeparator=","
+                        thousandSeparator=" "
                         decimalScale={0}
                         defaultValue={data.MinSize}
                       />
@@ -178,7 +178,7 @@ export default function Home() {
                         mb="sm"
                         name="MaxSize"
                         rightSection="m²"
-                        thousandSeparator=","
+                        thousandSeparator=" "
                         decimalScale={0}
                         defaultValue={data.MaxSize}
                       />
@@ -193,7 +193,7 @@ export default function Home() {
                       mb="sm"
                       name="Budget"
                       rightSection="€"
-                      thousandSeparator=","
+                      thousandSeparator=" "
                       decimalScale={0}
                       defaultValue={data.Budget}
                     />

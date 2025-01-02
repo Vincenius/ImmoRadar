@@ -12,9 +12,6 @@ import styles from './Layout.module.css';
 const menu = [{
   label: 'Grundstückbörse',
   url: '/grundstuecke'
-}, {
-  label: 'Über uns',
-  url: '/about'
 }];
 
 function useCannonical() {
@@ -157,11 +154,17 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               </Flex>
             </Box>
 
-            <Box>
-              <Link href="/imprint"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
-              <Link href="/privacy"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-              <Link href="/about"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
-            </Box>
+            <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
+              <Box>
+                <Link href="/budgetrechner"><Text size="sm" c="gray.7" mb="xs">Budgetrechner</Text></Link>
+              </Box>
+
+              <Box>
+                <Link href="/imprint"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
+                <Link href="/privacy"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
+                <Link href="/about"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
+              </Box>
+            </Flex>
           </Flex>
           <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} ImmoRadar</Text>
         </Container>
