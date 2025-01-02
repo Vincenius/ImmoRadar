@@ -49,7 +49,7 @@ const runScan = async (type) => {
 
 console.log('INIT CRON JOB')
 
-cron.schedule('5,25,45 * * * *', () => {
+cron.schedule('30 * * * *', () => {
   if (!isFullScanRunning) {
     console.log(new Date().toISOString(), 'running new scan');
 
@@ -61,7 +61,7 @@ cron.schedule('5,25,45 * * * *', () => {
   }
 });
 
-cron.schedule('0 */6 * * *', () => {
+cron.schedule('0 */24 * * *', () => {
   console.log(new Date().toISOString(), 'running full scan');
   isFullScanRunning = true;
 
