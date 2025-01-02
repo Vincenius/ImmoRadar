@@ -60,7 +60,7 @@ const Imprint = () => {
           placeholder="6%"
           decimalSeparator=","
           decimalScale={2}
-          min={0}
+          min={1}
           max={50}
           thousandSeparator=" "
           suffix="%"
