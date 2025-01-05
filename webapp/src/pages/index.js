@@ -1,15 +1,9 @@
-import { Flex, Text, Group, ThemeIcon, Title, Box, Card } from '@mantine/core';
-import { IconArrowMergeBoth, IconList, IconBell, IconArrowUp } from '@tabler/icons-react';
-import { fetcher } from '@/utils/fetcher'
+import { Flex, Text, Title, Box, Image, Button } from '@mantine/core';
+import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout'
-import Logos from '@/components/Logos/Logos'
-import SearchBar from '@/components/SearchBar/SearchBar';
-import FeatureCards from '@/components/FeatureCards/FeatureCards';
-import SearchPages from '@/components/SearchPages/SearchPages';
 import FAQs from '@/components/FAQ/FAQ';
+import FeatureCards from '@/components/FeatureCards/FeatureCards';
 import styles from '@/styles/Home.module.css'
-import { Button } from '@mantine/core';
-import { mainSearches } from '@/utils/searchSeo'
 
 export default function Home() {
   return (
@@ -20,59 +14,43 @@ export default function Home() {
       <Box className={styles.header}>
         <div className={styles.background}></div>
 
-        <Flex mih="600px" h="calc(100vh - 70px - 64px)" direction="column" justify="space-evenly">
-          <Box>
+        <Flex direction="column" justify="space-evenly">
+          <Box mb="xl">
             <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" mb="lg" textWrap="balance">
-              Alle <span className={styles.gradientText}>Immobilienangebote</span> an einem Ort
+              Ihr Partner für den <span className={styles.gradientText}>Weg ins Eigenheim</span>
             </Title>
-
-            <Group position="center">
-              <SearchBar showFilter={true} />
-            </Group>
+            <Text size="xl">
+              Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen.
+            </Text>
           </Box>
-          <Flex justify="space-between" align={{ base: 'left', sm: 'center' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl', sm: 'xl'}} maw={{ base: "350px", sm: "100%"}} m="0 auto">
-            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Kombiniert Ergebnisse von <b>10 Immobilien-Webseiten</b></Text>
-            </Flex>
-            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}>Eine einzige, gut sortierte Liste <b>ohne Duplikate</b></Text>
-            </Flex>
-            <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
-              <ThemeIcon radius="sm" size="lg" variant="filled"><IconBell size={24} /></ThemeIcon>
-              <Text ta={{ base: 'left', sm: 'center'}}><b>Benachrichtigungen</b> bei neuen Angeboten</Text>
-            </Flex>
-          </Flex>
+          
+          <FeatureCards />
         </Flex>
       </Box>
-
-      <Logos />
-
-      <Box my="6em">
-        <FeatureCards />
+      <Box component="section" py="8rem">
+        {/*  todo section - image left, text right, link button */}
+        <Flex>
+          <Image
+            radius="md"
+            component={NextImage}
+            src="/imgs/calculator.jpg"
+            alt="Schreibtisch mit Taschenrechner"
+            height={300}
+            width={300}
+            w={300}
+          />
+          <Box ml="xl">
+            <Title order={2} size="h1" mb="lg">
+              Förderungscheck
+            </Title>
+            <Text mb="md">
+              Finden Sie heraus, welche staatlichen Förderungen und Zuschüsse Ihnen für den Hausbau oder -kauf zur Verfahrung stehen.
+            </Text>
+            <Button>Förderungen finden</Button>
+          </Box>
+        </Flex>
       </Box>
-
       <FAQs />
-
-      <Box my="6em">
-        <Title order={2} fz={36} fw={700} mb="lg" ta="center">Finde Wohnungen in deiner Region</Title>
-
-        <SearchPages data={mainSearches} />
-      </Box>
-
-      <Box my="6em">
-        <Button
-          variant="filled"
-          color="cyan.9"
-          size="lg"
-          fullWidth
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          JETZT SUCHEN
-          <IconArrowUp size={20} ml="sm"/>
-        </Button>
-      </Box>
     </Layout>
   );
 }

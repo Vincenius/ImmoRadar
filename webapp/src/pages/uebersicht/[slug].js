@@ -52,7 +52,7 @@ export const getServerSideProps = async (context) => {
     await client.connect();
     const db = client.db(process.env.MONGODB_DB);
     const collection = db.collection('locations');
-    const estateCollection = db.collection('estates');
+    const estateCollection = db.collection('properties');
     const regions = await collection.aggregate([
       {
         $match: {

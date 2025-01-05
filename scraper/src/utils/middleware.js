@@ -80,7 +80,7 @@ export const middleware = async (callback, options = {}) => {
     try {
         await client.connect();
         const db = client.db(process.env.MONGODB_DB);
-        const estateCollection = db.collection('estates');
+        const estateCollection = db.collection('properties');
         const logCollection = db.collection('logs');
 
         const { browser: newBrowser, page } = await startBrowser({ options });

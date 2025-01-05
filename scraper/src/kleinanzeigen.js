@@ -1,7 +1,6 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js';
 import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
-import { archiveEntries } from './utils/archive.js'
 
 const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     try {
@@ -187,7 +186,6 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .map(e => e.url);
     
             // Remove multiple entries by _id
-            await archiveEntries({ collection, query: { url: { $in: toRemove } }});
             const message = `Kleinanzeigen - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'kleinanzeigen.de', success: true, message });
             console.log(message);
@@ -206,24 +204,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
 }
 
 const scrapeUrls = [
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:0:329/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:330:399/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:400:449/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:450:499/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:500:549/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:550:599/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:600:649/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:650:699/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:700:749/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:750:799/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:800:849/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:850:899/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1000:1049/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1050:1199/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1200:1399/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1400:1699/seite:{page}/c203+wohnung_mieten.swap_s:nein',
-    'https://www.kleinanzeigen.de/s-wohnung-mieten/anzeige:angebote/preis:1700:/seite:{page}/c203+wohnung_mieten.swap_s:nein',
+    // todo https://www.kleinanzeigen.de/s-grundstuecke-garten/anzeige:angebote/c207+grundstuecke_garten.art_s:kaufen
 ]
 
 const crawler = (type) => {

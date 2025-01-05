@@ -21,23 +21,6 @@ const regionData = {
     'thüringen': 'Thüringen',
 }
 
-const immoGuesserCities = [
-    'Deutschlandweit',
-    'Berlin',
-    'Hamburg',
-    'München',
-    'Köln',
-    'Frankfurt am Main',
-    'Stuttgart',
-    'Düsseldorf',
-    'Leipzig',
-    'Dortmund',
-    'Essen',
-    'Dresden',
-    'Hannover',
-    'Bremen',
-]
-
 module.exports = {
     siteUrl: 'https://immoradar.xyz',
     generateRobotsTxt: true,
@@ -57,7 +40,7 @@ module.exports = {
 
         const db = client.db(process.env.MONGODB_DB);
         const collection = db.collection('locations');
-        const estateCollection = db.collection('estates');
+        const estateCollection = db.collection('properties');
 
         const result = await collection.aggregate([
             {
@@ -95,21 +78,17 @@ module.exports = {
             const res = await config.transform(config, encodeURI(`/uebersicht/${item}`))
             return res
         }))
-        const searchSitemap = await Promise.all(filteredResult.map(async item => {
-            const res = await config.transform(config, encodeURI(`/search?q=${item.name}`))
-            return res
-        }))
-        const immoGuesserSitemap = await Promise.all(immoGuesserCities.map(async item => {
-            const res = await config.transform(config, encodeURI(`/immo-guesser/blog/${item}`))
-            return res
-        }))
+        // TODO update to grundstueck-suche
+        // const searchSitemap = await Promise.all(filteredResult.map(async item => {
+        //     const res = await config.transform(config, encodeURI(`/search?q=${item.name}`))
+        //     return res
+        // }))
 
         await client.close()
 
         return [
             ...regionSitemap,
-            ...searchSitemap,
-            ...immoGuesserSitemap,
+            // ...searchSitemap,
         ]
     }
 }

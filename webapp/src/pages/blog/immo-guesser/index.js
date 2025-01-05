@@ -1,21 +1,28 @@
 import React from 'react';
-import Link from 'next/link';
 import { Container, Title, Text } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
-import { cities } from '@/utils/cities';
 
 const ImmoGuesser = () => {
     return (
         <Layout
-            title="ImmoGuesser | Schätze die Miete der Wohnungen"
-            description="Teste dein Gespür für Mietpreise! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet."
+            title="ImmoGuesser ist nicht mehr verfügbar | Immoradar"
+            description="Vielen Dank für dein Interesse an ImmoGuesser. Aufgrund aktueller Entwicklungen haben wir uns entschieden, unsere Immobiliensuche einzustellen. Dadurch können die verfügbaren Daten für Immoguesser nicht mehr aktualisert werden."
             image="https://immoradar.xyz/immo-guesser.jpg"
         >
             <Container py="xl" size="sm">
-                <Title mb="sm" order={1}>ImmoGuesser</Title>
-                <Text mb="md">Teste dein Gespür für Mietpreise! In diesem kleinen Spiel bekommst du fünf verschiedene Wohnungen angezeigt. Deine Aufgabe: Schätze, wie viel die Wohnung kostet.</Text>
-                <Title mb="md" order={2}>Wähle deine Region:</Title>
-                { cities.map((city) => <Link href={`/blog/immo-guesser/${city}`} key={city}><Title order={3} mb="xs">{city}</Title></Link>) }
+                <Title order={1} my="xl">ImmoGuesser ist nicht mehr verfügbar</Title>
+                <Text mb="md">
+                    Vielen Dank für dein Interesse an ImmoGuesser. Aufgrund aktueller Entwicklungen haben wir uns entschieden, unsere Immobiliensuche einzustellen.
+                    Dadurch können die verfügbaren Daten für für unser Minispiel ImmoGuesser nicht mehr aktualisert werden.
+                </Text>
+                <Text mb="md">
+                    Solltest du Fragen haben oder Unterstützung benötigen, zögere nicht, uns zu kontaktieren.
+                    Wir schätzen dein Verständnis und freuen uns darauf, dir bald wieder helfen zu können.
+                </Text>
+                <Text>
+                    Vielen Dank für dein Vertrauen!<br/>
+                    Dein ImmoRadar-Team
+                </Text>
             </Container>
         </Layout>
     );

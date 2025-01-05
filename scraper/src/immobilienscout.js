@@ -1,7 +1,6 @@
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
 import { parseFeatures } from './utils/parseFeatures.js';
-import { archiveEntries } from './utils/archive.js'
 
 const parseData = (estates = [], searchUrl) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
@@ -163,7 +162,6 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
                 .map(e => e.id);
 
             // Remove multiple entries by _id
-            await archiveEntries({ collection, query: { id: { $in: toRemove } } });
             const message = `Immobilienscout24 scraped ${count} new estates and removed ${toRemove.length} old estates.`
             console.log(message);
             await logEvent({ scraper: 'immobilienscout24.de', success: true, message });
@@ -180,41 +178,23 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
 }
 
 const scrapeUrls = [
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=-249.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=250.0-289.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=290.0-309.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=310.0-329.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=330.0-349.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=350.0-369.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=350.0-369.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=370.0-389.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=390.0-409.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=410.0-439.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=440.0-469.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=470.0-499.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=500.0-529.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=530.0-559.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=560.0-599.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=600.0-629.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=630.0-659.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=630.0-659.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=660.0-699.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=700.0-739.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=740.0-779.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=780.0-819.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=820.0-869.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=870.0-919.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=920.0-979.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=980.0-1039.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1040.0-1099.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1100.0-1169.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1170.0-1249.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1250.0-1329.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1330.0-1449.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1450.0-1599.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1600.0-1799.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=1800.0-2199.99&pricetype=rentpermonth&enteredFrom=result_list',
-    'https://www.immobilienscout24.de/Suche/de/wohnung-mieten?price=2200&pricetype=rentpermonth&enteredFrom=result_list',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=-349.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=350.0-449.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=450.0-509.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=510.0-569.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=570.0-619.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=620.0-679.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=680.0-739.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=800.0-869.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=870.0-959.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=960.0-1059.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1060.0-1229.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1230.0-1499.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1500.0-1999.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=2000.0-3599.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=3600.0-&sorting=2',
 ]
 
 const crawler = (type) => {

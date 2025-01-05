@@ -111,7 +111,7 @@ const notificationRunner = async () => {
     await client.connect();
     const db = client.db(process.env.MONGODB_DB);
     const subscriptionCollection = db.collection('subscriptions');
-    const collection = db.collection('estates');
+    const collection = db.collection('properties');
     const locationCollection = db.collection('locations');
     const emailCollection = db.collection('emails');
     const endOfToday = new Date();

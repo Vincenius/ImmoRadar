@@ -14,7 +14,7 @@ export default async function handler(req, res) {
     try {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
-      const collection = db.collection('estates');
+      const collection = db.collection('properties');
 
       // Parse the from and to dates
       const fromDate = new Date(from);

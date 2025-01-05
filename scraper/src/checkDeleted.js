@@ -20,7 +20,7 @@ const run = async () => {
   try {
     await client.connect();
     const db = client.db('prod');
-    const collection = db.collection('estates');
+    const collection = db.collection('properties');
   
     // immowelt.de, immobilienscout24.de, (kleinanzeigen.de -> 20 batch), ohne-makler.net, wg-gesucht.de -> GET
     const result = await collection.find({ provider: 'immowelt.de' }).toArray();

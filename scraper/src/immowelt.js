@@ -1,6 +1,5 @@
 import { middleware } from './utils/middleware.js'
 import { parseFeatures } from './utils/parseFeatures.js'
-import { archiveEntries } from './utils/archive.js'
 
 const mapPriceType = {
     "Kaltmiete zzgl. Nebenkosten": "COLD_RENT",
@@ -114,7 +113,6 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .map(e => e.id);
 
             // Remove multiple entries by _id
-            await archiveEntries({ collection, query: { id: { $in: toRemove } } });
             const message = `Immowelt - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'immowelt.de', success: true, message });
             console.log(message);
@@ -132,17 +130,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
 
 // https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=299&priceMin=10&order=DateDesc
 const scrapeUrls = [
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=299&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=359&priceMin=300&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=429&priceMin=360&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=509&priceMin=430&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=609&priceMin=510&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=729&priceMin=610&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=899&priceMin=730&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1149&priceMin=900&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1499&priceMin=1150&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=1999&priceMin=1500&order=DateDesc',
-    'https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMin=2000&order=DateDesc',
+    // todo https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&order=DateDesc
 ]
 
 const crawler = (type) => {

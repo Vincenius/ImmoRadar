@@ -1,11 +1,13 @@
 import React from 'react';
+import Link from 'next/link';
 import NextImage from 'next/image';
-import { Flex, Text, Card, Image } from '@mantine/core';
-import feature1 from './feature1.webp';
-import feature2 from './feature2.webp';
-import feature3 from './feature3.webp';
+import { Flex, Text, Card, Image, rem } from '@mantine/core';
+import { IconArrowRight } from '@tabler/icons-react';
+import feature1 from './calculator.jpg';
+import feature2 from './house.jpg';
+import feature3 from './property.jpg';
 
-const FeatureCard = ({ image, title, text, alt }) => <Card shadow="sm" padding="lg" radius="md" withBorder w="100%">
+const FeatureCard = ({ image, title, text, alt, link, linkText }) => <Card shadow="sm" padding="lg" radius="md" withBorder w="100%">
   <Card.Section>
     <Image
       component={NextImage}
@@ -17,15 +19,43 @@ const FeatureCard = ({ image, title, text, alt }) => <Card shadow="sm" padding="
 
   <Text fw={500} mt="md" mb="sm">{title}</Text>
 
-  <Text size="sm" c="gray.7">{text}</Text>
+  <Text size="sm" c="gray.7" mb="md">{text}</Text>
+
+  <Text c="gray.6">
+    { link && <Link href={link} style={{ display: 'flex', alignItems: 'center', gap: rem(4) }}>
+      {linkText} <IconArrowRight style={{ width: rem(16), height: rem(16) }}/>
+    </Link> }
+    { !link && "Demnächst verfügbar" }
+  </Text>
 </Card>
 
 const FeatureCards = () => {
     return (
-        <Flex gap="xl" direction={{ base: "column", sm: "row" }}>
-            <FeatureCard image={feature1} title="Alle Angebote an einem Ort" text="ImmoRadar durchsucht alle relevanten Immobilien-Webseiten und fasst die Ergebnisse zusammen. So sparen Sie Zeit und Mühe." alt="Wohnung mit Lupe Illustration"/>
-            <FeatureCard image={feature2} title="Keine Duplikate" text="Wir filtern doppelte Einträge heraus, sodass Sie eine klare und übersichtliche Liste der verfügbaren Wohnungen erhalten." alt="Wohnungen über einem Trichter Illustration" />
-            <FeatureCard image={feature3} title="Benachrichtigungen" text="Erhalten Sie Benachrichtigungen, sobald eine neue Wohnung, die Ihren Suchkriterien entspricht, verfügbar wird. Verpassen Sie nie wieder eine passende Wohnung." alt="Handy Illustration" />
+        <Flex my="xl" gap="xl" direction={{ base: "column", sm: "row" }}>
+            <FeatureCard
+              image={feature1}
+              title="Förderungscheck"
+              text="Finden Sie heraus, welche staatlichen Förderungen und Zuschüsse Ihnen für den Hausbau oder -kauf zur Verfügung stehen."
+              alt="Taschenrechner und Geld auf einem Tisch"
+              link="/foerderung"
+              linkText="Förderungen finden"
+            />
+            <FeatureCard
+              image={feature2}
+              title="Fertighaus-Anbieter Vergleich"
+              text="Vergleichen Sie Fertighausanbieter schnell und einfach mit unserem Assistenten und entdecken Sie maßgeschneiderte Angebote.."
+              alt="Fertighaus von vorne"
+              // link="/vergleich"
+              // linkText="Anbieter vergleichen"
+            />
+            <FeatureCard
+              image={feature3}
+              title="Grundstücksbörse"
+              text="Entdecken Sie passende Grundstücke für Ihr Bauprojekt. Unsere Grundstücksbörse verbindet Verkäufer und Käufer."
+              alt="Grundstück von oben"
+              link="/grundstuecke"
+              linkText="Grundstücke entdecken"
+            />  
         </Flex>
     );
 };

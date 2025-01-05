@@ -7,7 +7,7 @@ const run = async () => {
   const client = new MongoClient('yoyo');
   await client.connect();
   const db = client.db('prod');
-  const collection = db.collection('estates');
+  const collection = db.collection('properties');
 
   // delete all immoscout entries
   const result = await collection.deleteMany({ provider: 'immobilienscout24.de' });
