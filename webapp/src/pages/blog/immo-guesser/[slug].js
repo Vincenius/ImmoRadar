@@ -1,5 +1,5 @@
 import React from 'react';
-import { Text, Title } from '@mantine/core';
+import { Text, Title, Container } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 
 const ImmoGuesser = ({ data, url, slug }) => {
