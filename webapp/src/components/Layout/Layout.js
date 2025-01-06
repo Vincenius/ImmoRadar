@@ -51,7 +51,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
   const canonicalUrl = useCannonical();
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
-  const setNoIndex = noindex || process.env.BASE_URL === 'https://dev.immoradar.xyz';
+  const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
 
   return <>
     <Head>

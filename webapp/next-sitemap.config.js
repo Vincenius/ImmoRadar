@@ -27,12 +27,14 @@ module.exports = {
     exclude: exclude,
     sitemapSize: 20000,
     robotsTxtOptions: {
-        policies: [
-            {
-                userAgent: '*',
-                disallow: exclude,
-            },
-        ],
+        policies: process.env.NEXT_PUBLIC_NOINDEX
+            ? [{ userAgent: '*', disallow: '/' }]
+            : [
+                {
+                    userAgent: '*',
+                    disallow: exclude,
+                },
+            ],
     },
     // generateIndexSitemap: false,
     additionalPaths: async (config) => {
