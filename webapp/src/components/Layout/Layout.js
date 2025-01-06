@@ -51,6 +51,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
   const canonicalUrl = useCannonical();
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
+  const setNoIndex = noindex || process.env.BASE_URL === 'https://dev.immoradar.xyz';
 
   return <>
     <Head>
@@ -69,7 +70,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta name="twitter:image" content={ogImage} />
       { date && <meta property="article:published_time" content={date}></meta> }
       { date && <meta name="author" content="Vincent Will"></meta> }
-      { noindex && <meta name="robots" content="noindex" /> }
+      { setNoIndex && <meta name="robots" content="noindex" /> }
       { canonicalUrl && <link rel="canonical" href={canonicalUrl} /> }
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
