@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "immoradar-dev",
+            "script": "npm",
+            "args": "run startdev",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
