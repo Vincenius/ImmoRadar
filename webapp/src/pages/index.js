@@ -9,8 +9,8 @@ import styles from '@/styles/Home.module.css'
 export default function Home() {
   return (
     <Layout
-      title="ImmoRadar | Alle Immobilienangebote an einem Ort"
-      description="Kein mühsames Durchsuchen mehrerer Webseiten. Eine gut sortierte Liste ohne Duplikate und sofortige Updates bei neuen Angeboten."
+      title="ImmoRadar | Ihr Partner für den Weg ins Eigenheim"
+      description="Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen."
     >
       <Box className={styles.header}>
         <div className={styles.background}></div>
@@ -88,7 +88,7 @@ export default function Home() {
             radius="md"
             component={NextImage}
             src="/imgs/property.jpg"
-            alt="Schreibtisch mit Taschenrechner"
+            alt="Leeres Grundstück von oben"
             height={300}
             width={300}
             w={300}
@@ -131,8 +131,35 @@ export default function Home() {
           />
         </Flex>
       </Box>
+
+      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
+        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
+          <Image
+            radius="md"
+            component={NextImage}
+            src="/imgs/property2.jpg"
+            alt="Grundstück mit Haus"
+            height={300}
+            width={300}
+            w={300}
+          />
+          <Box>
+            <Title order={2} size="h1" mb="lg">
+              Grundstückssuche leicht gemacht
+            </Title>
+            <Text mb="md">
+              Suchen Sie Grundstücke über mehrere Plattformen hinweg an einem Ort.
+              Mit unserer Suchfunktion vereinen wir Angebote von Portalen wie Immowelt, ImmoScout24 und vielen mehr – so finden Sie schnell das ideale Grundstück für Ihr Bauprojekt.
+            </Text>
+            <Text c="gray.6">
+              Demnächst verfügbar
+            </Text>
+          </Box>
+        </Flex>
+      </Box>
     
       <Box pos="relative" py={{ base: "6rem", sm: "10rem" }}>
+        <div className={styles.background}></div>
         <FAQs />
       </Box>
     </Layout>
