@@ -21,9 +21,9 @@ const Imprint = () => {
   
 
   return (
-    <Layout title="Budgetrechner | ImmoRadar" description="Finde heraus, wie viel deine Immobilie kosten kann mit unserem detaillierten Budgetrechner.">
+    <Layout title="Budgetrechner | ImmoRadar" description="Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.">
       <Title order={1} py="xl">Budgetrechner</Title>
-      <Text mb="xl">Finde heraus, wie viel deine Immobilie kosten kann mit unserem detaillierten Budgetrechner.</Text>
+      <Text mb="xl">Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.</Text>
       <Card mb="xl">
         <NumberInput
           size="lg"
