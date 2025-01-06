@@ -1,5 +1,6 @@
 import { Flex, Text, Title, Box, Image, Button } from '@mantine/core';
 import NextImage from 'next/image';
+import NextLink from 'next/link';
 import Layout from '@/components/Layout/Layout'
 import FAQs from '@/components/FAQ/FAQ';
 import FeatureCards from '@/components/FeatureCards/FeatureCards';
@@ -27,9 +28,8 @@ export default function Home() {
           <FeatureCards />
         </Flex>
       </Box>
-      <Box component="section" py="8rem">
-        {/*  todo section - image left, text right, link button */}
-        <Flex>
+      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
+        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
           <Image
             radius="md"
             component={NextImage}
@@ -39,18 +39,102 @@ export default function Home() {
             width={300}
             w={300}
           />
-          <Box ml="xl">
+          <Box>
             <Title order={2} size="h1" mb="lg">
-              Förderungscheck
+              Entdecken Sie Ihre Fördermöglichkeiten
             </Title>
             <Text mb="md">
-              Finden Sie heraus, welche staatlichen Förderungen und Zuschüsse Ihnen für den Hausbau oder -kauf zur Verfahrung stehen.
+              Ermitteln Sie schnell und unkompliziert, welche Förderungen und Zuschüsse für Ihren Hausbau oder Immobilienkauf verfügbar sind.
+              Maximieren Sie Ihr Budget durch staatliche Unterstützung.
+              Mit unserem Förderungscheck entdecken Sie alle relevanten Zuschüsse für Ihr Bauprojekt und nutzen staatliche Förderungen optimal aus.
             </Text>
-            <Button>Förderungen finden</Button>
+            <Button href="/foerderung" component={NextLink}>Förderungen finden</Button>
           </Box>
         </Flex>
       </Box>
-      <FAQs />
+
+      <Box component="section" py={{ base: "6rem", sm: "10rem" }} pos="relative">
+        <div className={styles.background}></div>
+        <Flex direction={{ base: "column-reverse", sm: "row" }} gap="xl">
+          <Box>
+            <Title order={2} size="h1" mb="lg">
+              Ihr persönlicher Assistent für Fertighäuser
+            </Title>
+            <Text mb="md">
+              Unser Assistent führt Sie durch den Angebotsdschungel der Fertighausanbieter.
+              Finden Sie in wenigen Schritten den idealen Anbieter für Ihr Bauprojekt.
+              Erhalten Sie eine Übersicht der besten Anbieter auf dem Markt und können die Angebote vergleichen, die am besten zu Ihnen passen.
+            </Text>
+            <Text c="gray.6">
+              Demnächst verfügbar
+            </Text>
+          </Box>
+
+          <Image
+            radius="md"
+            component={NextImage}
+            src="/imgs/house.jpg"
+            alt="Haus von vorne"
+            height={300}
+            width={300}
+            w={300}
+          />
+        </Flex>
+      </Box>
+
+      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
+        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
+          <Image
+            radius="md"
+            component={NextImage}
+            src="/imgs/property.jpg"
+            alt="Schreibtisch mit Taschenrechner"
+            height={300}
+            width={300}
+            w={300}
+          />
+          <Box>
+            <Title order={2} size="h1" mb="lg">
+              Die Grundstückbörse für Suchende und Verkäufer
+            </Title>
+            <Text mb="md">
+              Egal, ob Sie ein Grundstück kaufen oder verkaufen möchten - unsere Börse bringt Sie mit den richtigen Interessenten zusammen.
+              Käufer finden schnell die passenden Angebote, während Verkäufer ihre Grundstücke einem großen Publikum präsentieren können.
+            </Text>
+            <Button href="/grundstuecke" component={NextLink}>Grundstücke entdecken</Button>
+          </Box>
+        </Flex>
+      </Box>
+
+      <Box component="section" py={{ base: "6rem", sm: "10rem" }} pos="relative">
+        <div className={styles.background}></div>
+        <Flex direction={{ base: "column-reverse", sm: "row" }} gap="xl">
+          <Box>
+            <Title order={2} size="h1" mb="lg">
+              Budgetrechner: So viel können Sie investieren
+            </Title>
+            <Text mb="md">
+              Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf.
+              Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.
+            </Text>
+            <Button href="/budgetrechner" component={NextLink}>Jetzt Berechnen</Button>
+          </Box>
+
+          <Image
+            radius="md"
+            component={NextImage}
+            src="/imgs/calculator2.jpg"
+            alt="Taschenrechner auf Schreibtisch"
+            height={300}
+            width={300}
+            w={300}
+          />
+        </Flex>
+      </Box>
+    
+      <Box pos="relative" py={{ base: "6rem", sm: "10rem" }}>
+        <FAQs />
+      </Box>
     </Layout>
   );
 }

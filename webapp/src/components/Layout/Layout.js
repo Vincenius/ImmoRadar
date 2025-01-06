@@ -9,10 +9,13 @@ import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
-const menu = [/*{
+const menu = [{
   label: 'Grundstückbörse',
   url: '/grundstuecke'
-}*/];
+}, {
+  label: 'Förderungscheck',
+  url: '/foerderung'
+}];
 
 function useCannonical() {
   const router = useRouter();
@@ -155,9 +158,9 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
             </Box>
 
             <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
-              {/* <Box>
+              <Box>
                 <Link href="/budgetrechner"><Text size="sm" c="gray.7" mb="xs">Budgetrechner</Text></Link>
-              </Box> */}
+              </Box>
 
               <Box>
                 <Link href="/imprint"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
