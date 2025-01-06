@@ -65,10 +65,10 @@ export default function Home() {
       title="ImmoRadar Grundstücke Suchen"
       description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
     >
-      <Box className={styles.header}>
+      <Box>
         <div className={styles.background}></div>
 
-        <Flex py="xl" mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
+        <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction={{ base: "column", md: "row" }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
               <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
