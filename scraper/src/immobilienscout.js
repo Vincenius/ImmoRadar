@@ -4,25 +4,9 @@ import { parseFeatures } from './utils/parseFeatures.js';
 
 const parseData = (estates = [], searchUrl) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
-    gallery = Array.isArray(gallery) ? gallery : [gallery]
-
-    const featureMap = {
-        'Balkon/Terrasse': 'BALCONY',
-        'Einbauküche': 'FITTED_KITCHEN',
-        'Garten': 'GARDEN',
-        'Keller': 'BASEMENT',
-        'Aufzug': 'PASSENGER_LIFT',
-        'Stufenlos': 'WHEELCHAIR_ACCESSIBLE',
-        'Gäste-WC': 'GUEST_TOILET',
-        'WG-geeignet': 'FLAT_SHARE_POSSIBLE'
-    };
-
-    const mapFeatures = rawFeatures => rawFeatures.map(feature =>
-        featureMap[feature] || `UNKNOWN_${feature}`
-    )
 
     try {
-        gallery
+        gallery = (Array.isArray(gallery) ? gallery : [gallery])
             .filter(a => a.urls && a.urls.length)
             .map(a => a.urls.map(u => u.url['@href'].replace("%WIDTH%", "420").replace("%HEIGHT%", "315")))
             .flat()
@@ -31,51 +15,27 @@ const parseData = (estates = [], searchUrl) => estates.map(e => {
         console.log('FAILED TO PARSE GALLERY', gallery)
     }
 
-    const features = mapFeatures((e.realEstateTags && e.realEstateTags.tag)
-        ? (typeof e.realEstateTags.tag) === 'string'
-            ? [e.realEstateTags.tag]
-            : e.realEstateTags.tag
-        : [])
-
     const result = {
-        id: e['@id'],
         created_at: new Date(),
-        url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
         provider: "immobilienscout24.de",
+        url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
         searchUrl,
-        date: e['@publishDate'],
         price: {
             value: e['resultlist.realEstate'].price.value,
             currency: e['resultlist.realEstate'].price.currency,
-            additionalInfo: "COLD_RENT"
         },
-        livingSpace: e['resultlist.realEstate'].livingSpace,
-        rooms: e['resultlist.realEstate'].numberOfRooms,
-        // "availabiltiy": "Now",
         address: {
             zipCode: e['resultlist.realEstate'].address.postcode,
             city: e['resultlist.realEstate'].address.city,
             district: e['resultlist.realEstate'].address.quarter,
             street: `${e['resultlist.realEstate'].address.street || ''} ${e['resultlist.realEstate'].address.houseNumber || ''}`.trim(),
-            geolocation: e['resultlist.realEstate'].address.wgs84Coordinate ? {
-                lat: e['resultlist.realEstate'].address.wgs84Coordinate.latitude,
-                lon: e['resultlist.realEstate'].address.wgs84Coordinate.longitude,
-            } : null
         },
         title: e['resultlist.realEstate'].title,
-        gallery: gallery
-            .filter(a => a.urls && a.urls.length)
-            .map(a => a.urls.map(u => u.url['@href'].replace("%WIDTH%", "420").replace("%HEIGHT%", "315")))
-            .flat()
-            .map(u => ({ url: u })),
-        company: e['resultlist.realEstate'].privateOffer === 'true' ? 'Privat' : e['resultlist.realEstate'].contactDetails?.company || null,
-        features,
+        size: e['resultlist.realEstate'].plotArea,
+        gallery,
     }
 
-    return {
-        ...result,
-        features: parseFeatures(result)
-    }
+    return result
 })
 
 const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logEvent, restartBrowser }) => {
@@ -130,7 +90,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
                         await collection.insertMany(newData)
                     }
     
-                    if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
+                    if (type === 'NEW_SCAN' && newData.length < (parsedData.length - 10)) {
                         console.log('Found old entries on page - quit scan');
                         lastPage = currentPage - 1;
                     }
@@ -179,22 +139,22 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
 
 const scrapeUrls = [
     'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=-349.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=350.0-449.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=450.0-509.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=510.0-569.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=570.0-619.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=620.0-679.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=680.0-739.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=800.0-869.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=870.0-959.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=960.0-1059.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1060.0-1229.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1230.0-1499.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1500.0-1999.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=2000.0-3599.99&sorting=2',
-    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=3600.0-&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=350.0-449.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=450.0-509.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=510.0-569.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=570.0-619.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=620.0-679.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=680.0-739.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=800.0-869.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=870.0-959.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=960.0-1059.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1060.0-1229.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1230.0-1499.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1500.0-1999.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=2000.0-3599.99&sorting=2',
+    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=3600.0-&sorting=2',
 ]
 
 const crawler = (type) => {

@@ -51,7 +51,6 @@ const Notifications = ({ filter, query }) => {
     e.preventDefault();
     setIsLoading(true);
 
-    const newFeatures = filter?.features?.split(',') || [];
     const newProviders = filter?.providers?.split(',') || [];
     const newTitleIncludes = filter?.titleIncludes?.split(',') || [];
     const newTitleExcludes = filter?.titleExcludes?.split(',') || [];
@@ -61,9 +60,6 @@ const Notifications = ({ filter, query }) => {
       maxPrice: filter.maxPrice && parseInt(filter.maxPrice),
       minSize: filter.minSize && parseInt(filter.minSize),
       maxSize: filter.maxSize && parseInt(filter.maxSize),
-      minRooms: filter.minRooms && parseInt(filter.minRooms),
-      maxRooms: filter.maxRooms && parseInt(filter.maxRooms),
-      features: newFeatures,
       providers: newProviders,
       titleIncludes: newTitleIncludes,
       titleExcludes: newTitleExcludes,
@@ -169,7 +165,6 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
 
   const applyFilter = (filter) => {
     const query = { ...router.query, ...filter, page: 1 };
-    query.features = query.features.join(',');
     query.providers = query.providers.join(',');
     query.titleIncludes = query.titleIncludes.join(',');
     query.titleExcludes = query.titleExcludes.join(',');
@@ -220,22 +215,6 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
-
-      {/* desktop ad */}
-      <Box display={{ base: 'none', xs: 'block' }}>
-        <a rel="sponsored" href={ad.urlDesktop} data-umami-event="Ad Click" data-umami-event-ad={ad.id}>
-          <Image src={ad.imgDesktop} />
-          <Text size="sm" c="gray.8" align="right" mb="xs">Anzeige</Text>
-        </a>
-      </Box>
-
-      {/* mobile ad */}
-      <Box display={{ base: 'block', xs: 'none' }}>
-        <a rel="sponsored" href={ad.urlMobile} data-umami-event="Ad Click" data-umami-event-ad={ad.id}>
-          <Image src={ad.imgMobile} />
-          <Text size="sm" c="gray.7" align="right" mb="xs">Anzeige</Text>
-        </a>
-      </Box>
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>
@@ -299,14 +278,12 @@ export async function getServerSideProps(context) {
 
   const { estates, pages = 0, count = 0 } = data;
 
-  const newFeatures = filterQuery?.features?.split(',') || [];
   const newProviders = filterQuery?.providers?.split(',') || [];
   const newTitleIncludes = filterQuery?.titleIncludes?.split(',') || [];
   const newTitleExcludes = filterQuery?.titleExcludes?.split(',') || [];
 
   const defaultFilter = {
     ...filterQuery,
-    features: newFeatures,
     providers: newProviders,
     titleIncludes: newTitleIncludes,
     titleExcludes: newTitleExcludes,
