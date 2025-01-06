@@ -22,7 +22,7 @@ const regionData = {
 }
 
 module.exports = {
-    siteUrl: 'https://immoradar.xyz',
+    siteUrl: process.env.BASE_URL,
     generateRobotsTxt: true,
     exclude: exclude,
     sitemapSize: 20000,
