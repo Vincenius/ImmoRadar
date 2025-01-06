@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react';
 import { Flex, NumberInput, Text, Button, Collapse, Checkbox, rem, TagsInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconCurrencyEuro } from '@tabler/icons-react'
-import { featureMap } from '@/utils/featureMap'
 import { providers } from '@/utils/providers'
 
 const eurIcon = <IconCurrencyEuro style={{ width: rem(20), height: rem(20) }} stroke={1.5} />;
@@ -12,11 +11,8 @@ const initFilter = {
   maxPrice: null,
   minSize: null,
   maxSize: null,
-  minRooms: null,
-  maxRooms: null,
   titleIncludes: [],
   titleExcludes: [],
-  features: [],
   providers: [],
 }
 
@@ -75,25 +71,6 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
       />
     </Flex>
 
-    <Flex gap="sm" align="center" mb="sm">
-      <NumberInput
-        label="Min. Zimmer"
-        placeholder="Beliebig"
-        min={0}
-        max={filter.maxRooms || Infinity}
-        value={filter.minRooms}
-        onChange={(value) => setFilter({ ...filter, minRooms: value })}
-      />
-      <Text mt="md">bis</Text>
-      <NumberInput
-        label="Max. Zimmer"
-        placeholder="Beliebig"
-        min={filter.minRooms || 1}
-        value={filter.maxRooms}
-        onChange={(value) => setFilter({ ...filter, maxRooms: value })}
-      />
-    </Flex>
-
     <TagsInput
       label="Titel enthält"
       description='Füge mit "Enter" oder "," hinzu'
@@ -117,58 +94,27 @@ const Filter = ({ defaultFilter, applyFilter, loading }) => {
       clearable
     />
 
-    {!opened &&
-      <Text c="cyan.9" td="underline"onClick={toggle} style={{ cursor: 'pointer' }}>Erweiterte Filter</Text>
-    }
+    <Text size="sm" fw={500} mb="sm">Anbieter</Text>
 
-    <Collapse in={opened}>
-      <Text size="sm" fw={500} mb="sm">Anbieter</Text>
-
-      {providers.map(p => <Checkbox
-        mb="sm"
-        key={p.id}
-        label={p.label}
-        checked={!filter.providers?.includes(p.id)}
-        onChange={(event) => {
-          if (!event.currentTarget.checked) {
-            setFilter((prevFilter) => ({
-              ...prevFilter,
-              providers: [...(prevFilter.providers || []), p.id],
-            }));
-          } else {
-            setFilter((prevFilter) => ({
-              ...prevFilter,
-              providers: prevFilter.providers?.filter((f) => f !== p.id),
-            }));
-          }
-        }}
-      />)}
-
-      <Text size="sm" fw={500} mb="sm">Ausstattung</Text>
-
-      <Flex wrap="wrap" gap="xs">
-        {Object.entries(featureMap).map(([featureKey, featureValue]) => (
-          <Checkbox
-            key={featureKey}
-            label={featureValue}
-            checked={filter.features?.includes(featureKey)}
-            onChange={(event) => {
-              if (event.currentTarget.checked) {
-                setFilter((prevFilter) => ({
-                  ...prevFilter,
-                  features: [...(prevFilter.features || []), featureKey],
-                }));
-              } else {
-                setFilter((prevFilter) => ({
-                  ...prevFilter,
-                  features: prevFilter.features?.filter((f) => f !== featureKey),
-                }));
-              }
-            }}
-          />
-        ))}
-      </Flex>
-    </Collapse>
+    {providers.map(p => <Checkbox
+      mb="sm"
+      key={p.id}
+      label={p.label}
+      checked={!filter.providers?.includes(p.id)}
+      onChange={(event) => {
+        if (!event.currentTarget.checked) {
+          setFilter((prevFilter) => ({
+            ...prevFilter,
+            providers: [...(prevFilter.providers || []), p.id],
+          }));
+        } else {
+          setFilter((prevFilter) => ({
+            ...prevFilter,
+            providers: prevFilter.providers?.filter((f) => f !== p.id),
+          }));
+        }
+      }}
+    />)}
 
     <Button onClick={() => applyFilter(filter)} mt="md" loading={loading} color="cyan.9">
       Filter Anwenden

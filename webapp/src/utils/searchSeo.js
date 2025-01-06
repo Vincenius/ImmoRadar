@@ -3,7 +3,7 @@ import { Text, Title } from '@mantine/core';
 export const getSearchTitle = ({ q, filterQuery, count }) => {
   let title
   let details
-  let description = `Alle verfügbaren Wohnungen in ${q}. Eine gut sortierte Liste mit Wohnungen zur Miete in ${q} von 10 verschiedenen Anbietern ohne Duplikate.`
+  let description = `Alle verfügbaren Grundstücke in ${q}. Eine gut sortierte Liste mit Grundstücken in ${q} von verschiedenen Anbietern ohne Duplikate.`
 
   if (
     count > 1 &&

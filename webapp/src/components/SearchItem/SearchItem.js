@@ -1,6 +1,6 @@
 import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
-import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Skeleton, rem } from '@mantine/core';
+import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Skeleton, rem, NumberFormatter } from '@mantine/core';
 import { Carousel } from '@mantine/carousel'
 import { IconMapPin, IconLink, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import styles from './SearchItem.module.css'
@@ -73,14 +73,21 @@ const SearchItem = ({ item, hidePrice = false, hideLink = false }) => {
           <Flex justify={hidePrice ? "space-between" : "space-between"}>
             {!hidePrice && <Box w="100%">
               <Text size="md" fw="bold">
-                {item.price.value || 'N/A'} €
+                {item.price.value ?
+                  <NumberFormatter
+                    suffix='€'
+                    value={item.price.value}
+                    thousandSeparator=" "
+                    decimalScale={0}
+                  />
+                  : 'N/A'}
               </Text>
               <Text size="sm">Kaufpreis</Text>
             </Box> }
-            {/* <Box w="100%">
-              <Text size="md" fw="bold">{item.livingSpace || 'N/A'} m²</Text>
+            <Box w="100%">
+              <Text size="md" fw="bold">{item.size || 'N/A'} m²</Text>
               <Text size="sm">Fläche</Text>
-            </Box> */}
+            </Box>
           </Flex>
         </Flex>
       </Flex>

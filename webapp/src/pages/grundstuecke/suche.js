@@ -1,16 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, Text, Button, Divider, TextInput, Modal, Pagination, Title, Image } from '@mantine/core';
+import { Box, Card, Flex, Select, Text, Button, Divider, Modal, Pagination, Title } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { notifications } from '@mantine/notifications';
-import { IconAdjustmentsHorizontal, IconBell, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
+// import { notifications } from '@mantine/notifications';
+import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
 import Filter from '@/components/Filter/Filter';
-import SearchPages from '@/components/SearchPages/SearchPages';
 import { fetcher } from '@/utils/fetcher'
-import { getSearchTitle, getDefaultTitle, getSearchPages } from '@/utils/searchSeo'
 import ads from '@/utils/ads'
 
 const PaginationLeftIcon = ({ ...props }) => <IconArrowLeft {...props} aria-label="Zurück" />
@@ -42,114 +40,114 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
   w={{ base: '100%', xs: 'auto' }}
 />
 
-const Notifications = ({ filter, query }) => {
-  const [email, setEmail] = useState('')
-  const [frequency, setFrequency] = useState('1')
-  const [isLoading, setIsLoading] = useState(false)
+// const Notifications = ({ filter, query }) => {
+//   const [email, setEmail] = useState('')
+//   const [frequency, setFrequency] = useState('1')
+//   const [isLoading, setIsLoading] = useState(false)
 
-  const submit = (e) => {
-    e.preventDefault();
-    setIsLoading(true);
+//   const submit = (e) => {
+//     e.preventDefault();
+//     setIsLoading(true);
 
-    const newProviders = filter?.providers?.split(',') || [];
-    const newTitleIncludes = filter?.titleIncludes?.split(',') || [];
-    const newTitleExcludes = filter?.titleExcludes?.split(',') || [];
+//     const newProviders = filter?.providers?.split(',') || [];
+//     const newTitleIncludes = filter?.titleIncludes?.split(',') || [];
+//     const newTitleExcludes = filter?.titleExcludes?.split(',') || [];
 
-    const parsedFilter = {
-      minPrice: filter.minPrice && parseInt(filter.minPrice),
-      maxPrice: filter.maxPrice && parseInt(filter.maxPrice),
-      minSize: filter.minSize && parseInt(filter.minSize),
-      maxSize: filter.maxSize && parseInt(filter.maxSize),
-      providers: newProviders,
-      titleIncludes: newTitleIncludes,
-      titleExcludes: newTitleExcludes,
-    };
+//     const parsedFilter = {
+//       minPrice: filter.minPrice && parseInt(filter.minPrice),
+//       maxPrice: filter.maxPrice && parseInt(filter.maxPrice),
+//       minSize: filter.minSize && parseInt(filter.minSize),
+//       maxSize: filter.maxSize && parseInt(filter.maxSize),
+//       providers: newProviders,
+//       titleIncludes: newTitleIncludes,
+//       titleExcludes: newTitleExcludes,
+//     };
 
-    const filteredFilter = Object.entries(parsedFilter).reduce((acc, [key, value]) => {
-      if (value !== null && value !== undefined && value !== false && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
-        acc[key] = value;
-      }
-      return acc;
-    }, {});
+//     const filteredFilter = Object.entries(parsedFilter).reduce((acc, [key, value]) => {
+//       if (value !== null && value !== undefined && value !== false && value !== '' && (Array.isArray(value) ? value.length > 0 : true)) {
+//         acc[key] = value;
+//       }
+//       return acc;
+//     }, {});
 
-    const manualInput = filter.input === 'manual';
+//     const manualInput = filter.input === 'manual';
 
-    fetch('/api/subscribe', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email,
-        frequency: parseInt(frequency),
-        filter: filteredFilter,
-        query,
-        manualInput
-      }),
-    })
-    .then(res => res.json())
-    .then((res) => {
-      setIsLoading(false);
-      if (res.success) {
-        setEmail('');
-        setFrequency('1');
-        notifications.show({
-          color: 'green',
-          title: 'Erfolgreich abonniert',
-          message: res.newAccount
-            ? 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen'
-            : 'Benauchrichtigungen wurden erfolgreich aktiviert',
-        })
-      } else {
-        notifications.show({
-          color: 'red',
-          title: res.duplicate
-            ? 'Abonnement existiert bereits'
-            : 'Etwas ist schief gelaufen...',
-          message: res.duplicate
-            ? 'Du hast bereits ein Abonnement mit diesen Filtern'
-            : 'Versuche es erneut oder kontaktiere den Support',
-        })
-      }
-    });
-  };
+//     fetch('/api/subscribe', {
+//       method: 'POST',
+//       headers: {
+//         'Content-Type': 'application/json',
+//       },
+//       body: JSON.stringify({
+//         email,
+//         frequency: parseInt(frequency),
+//         filter: filteredFilter,
+//         query,
+//         manualInput
+//       }),
+//     })
+//     .then(res => res.json())
+//     .then((res) => {
+//       setIsLoading(false);
+//       if (res.success) {
+//         setEmail('');
+//         setFrequency('1');
+//         notifications.show({
+//           color: 'green',
+//           title: 'Erfolgreich abonniert',
+//           message: res.newAccount
+//             ? 'Überprüfe deine E-Mails um dein Abonnement zu bestätigen'
+//             : 'Benauchrichtigungen wurden erfolgreich aktiviert',
+//         })
+//       } else {
+//         notifications.show({
+//           color: 'red',
+//           title: res.duplicate
+//             ? 'Abonnement existiert bereits'
+//             : 'Etwas ist schief gelaufen...',
+//           message: res.duplicate
+//             ? 'Du hast bereits ein Abonnement mit diesen Filtern'
+//             : 'Versuche es erneut oder kontaktiere den Support',
+//         })
+//       }
+//     });
+//   };
 
-  return <form onSubmit={submit}>
-    <Card p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7}>
-      <Text size="sm" fs="italic">
-        Erhalte alle neuen Angebote basierend auf deinen Filtern per E-Mail.
-        Bestimme selbst, wie oft du E-Mails erhalten möchtest.
-      </Text>
-    </Card>
+//   return <form onSubmit={submit}>
+//     <Card p="sm" bg="cyan.1" radius="sm" mb="sm" shadow="none" opacity={0.7}>
+//       <Text size="sm" fs="italic">
+//         Erhalte alle neuen Angebote basierend auf deinen Filtern per E-Mail.
+//         Bestimme selbst, wie oft du E-Mails erhalten möchtest.
+//       </Text>
+//     </Card>
 
-    <TextInput
-      label="E-Mail Adresse"
-      placeholder="deine-email@gmail.com"
-      mb="md"
-      value={email}
-      onChange={e => setEmail(e.target.value)}
-      type="email"
-      required
-    />
+//     <TextInput
+//       label="E-Mail Adresse"
+//       placeholder="deine-email@gmail.com"
+//       mb="md"
+//       value={email}
+//       onChange={e => setEmail(e.target.value)}
+//       type="email"
+//       required
+//     />
 
-    <Select
-      label="Intervall"
-      data={[
-        { value: '1', label: 'täglich' },
-        { value: '3', label: 'alle 3 Tage' },
-        { value: '7', label: 'wöchentlich' }
-      ]}
-      required
-      mb="md"
-      value={frequency}
-      onChange={val => setFrequency(val)}
-    />
+//     <Select
+//       label="Intervall"
+//       data={[
+//         { value: '1', label: 'täglich' },
+//         { value: '3', label: 'alle 3 Tage' },
+//         { value: '7', label: 'wöchentlich' }
+//       ]}
+//       required
+//       mb="md"
+//       value={frequency}
+//       onChange={val => setFrequency(val)}
+//     />
 
-    <Button loading={isLoading} type="submit" color="cyan.9">
-      Abonnieren
-    </Button>
-  </form>
-}
+//     <Button loading={isLoading} type="submit" color="cyan.9">
+//       Abonnieren
+//     </Button>
+//   </form>
+// }
 
 export default function Search({ estates, pages, count, defaultFilter, q, sortValue, pageInt, filterQuery, ad }) {
   const router = useRouter();
@@ -158,8 +156,7 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
 
   useEffect(() => {
     if (window && window.umami) {
-      umami.track('search', { q })
-      umami.track('showAd', { ad: ad.id })
+      umami.track('GrundstueckSuche', { q })
     }
   })
 
@@ -183,16 +180,13 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
     router.push({ query: { ...router.query, page: newPage } });
   };
 
-  const { title: generatedTitle, description, details } = getSearchTitle({ q, filterQuery, count, sortValue });
-  const title = generatedTitle || getDefaultTitle(q);
-
   return (
     <Layout
-      title={`${title} | ImmoRadar`}
-      description={description}
-      noindex={!generatedTitle || pageInt > 1 || sortValue !== 'date'}
+      title={`Alle Grundstücke in ${q} | ImmoRadar`}
+      description={`Alle verfügbaren Grundstücke in ${q}. Eine gut sortierte Liste mit Grundstücken in ${q} von verschiedenen Anbietern ohne Duplikate.`}
+      noindex={pageInt > 1 || sortValue !== 'date'}
     >
-      { count > 0 && <Title pt="xl" size="h3" order={1} fw="500" >{count} Ergebnisse | {title}</Title> }
+      { count > 0 && <Title pt="xl" size="h3" order={1} fw="500" >{count} Ergebnisse | Alle Grundstücke in {q}</Title> }
       <Box pt="md" pb="md">
         <SearchBar defaultValue={q} />
       </Box>
@@ -203,15 +197,15 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
           <Button leftSection={<IconAdjustmentsHorizontal size={14} />} variant="default" onClick={openFilterModal}>
             Filter
           </Button>
-          <Button leftSection={<IconBell size={14} />} variant="default" onClick={openNotificationModal}>
+          {/* <Button leftSection={<IconBell size={14} />} variant="default" onClick={openNotificationModal}>
             Benachrichtigungen
-          </Button>
+          </Button> */}
           <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
             <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
           </Modal>
-          <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
+          {/* <Modal opened={notificationModalOpen} onClose={closeNotificationModal} title="Benachrichtigungen">
             <Notifications filter={filterQuery} query={q} />
-          </Modal>
+          </Modal> */}
         </Flex>
         <SortInput sortValue={sortValue} updateSort={updateSort} />
       </Flex>
@@ -233,10 +227,10 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
             <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
           </Card>
 
-          <Card shadow="sm" padding="md" radius="md" withBorder>
+          {/* <Card shadow="sm" padding="md" radius="md" withBorder>
             <Flex gap="sm" align="center" mb="sm"><IconBell size={16} /> <Text fw={500}>Benachrichtigungen</Text></Flex>
             <Notifications filter={filterQuery} query={q} />
-          </Card>
+          </Card> */}
         </Box>
       </Flex>
 
@@ -248,17 +242,6 @@ export default function Search({ estates, pages, count, defaultFilter, q, sortVa
         previousIcon={PaginationLeftIcon}
         nextIcon={PaginationRightIcon}
       /> }
-
-      { details && <>
-        <Divider my="lg" />
-        { details }
-      </> }
-
-      {(estates && estates.length > 0) && <>
-        <Divider my="lg" />
-        <Title order={2} size="h4" mb="md">Beliebte Suchanfragen für {q}</Title>
-        <SearchPages data={getSearchPages(q)} />
-      </>}
     </Layout>
   );
 }
@@ -273,7 +256,7 @@ export async function getServerSideProps(context) {
     .join('&');
 
   const [data] = await Promise.all([
-    fetcher(`${process.env.BASE_URL}/api/search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
+    fetcher(`${process.env.BASE_URL}/api/property-search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
   ]);
 
   const { estates, pages = 0, count = 0 } = data;
