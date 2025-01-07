@@ -9,7 +9,6 @@ const mapPriceType = {
 
 const parseData = (estates, searchUrl) => estates.map(e => {
     const result = {
-        id: e.id,
         created_at: new Date(),
         url: `${e.url}`,
         provider: "immowelt.de",
@@ -35,10 +34,27 @@ const parseData = (estates, searchUrl) => estates.map(e => {
         company: e.provider.intermediaryCard?.title || null,
     }
 
-    return {
-        ...result,
-        features: parseFeatures(result)
-    }
+    // const result = {
+    //     created_at: new Date(),
+    //     provider: "immobilienscout24.de",
+    //     url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
+    //     searchUrl,
+    //     price: {
+    //         value: e['resultlist.realEstate'].price.value,
+    //         currency: e['resultlist.realEstate'].price.currency,
+    //     },
+    //     address: {
+    //         zipCode: e['resultlist.realEstate'].address.postcode,
+    //         city: e['resultlist.realEstate'].address.city,
+    //         district: e['resultlist.realEstate'].address.quarter,
+    //         street: `${e['resultlist.realEstate'].address.street || ''} ${e['resultlist.realEstate'].address.houseNumber || ''}`.trim(),
+    //     },
+    //     title: e['resultlist.realEstate'].title,
+    //     size: e['resultlist.realEstate'].plotArea,
+    //     gallery,
+    // }
+
+    return result
 })
 
 const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
@@ -49,7 +65,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
         let error;
         let data = [];
         let count = 0;
-        const prevEntries = await collection.find({ provider: "immowelt.de", searchUrl }, { projection: { id: 1 } }).toArray();
+        const prevEntries = await collection.find({ provider: "immowelt.de", searchUrl }, { projection: { url: 1 } }).toArray();
 
         while (lastPage && currentPage <= lastPage && !error) {
             console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage, searchUrl);
@@ -74,10 +90,11 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                     if (pageProps.enrichedClassifiedsData && pageProps.classifiedsData) {
                         const estates = Object.values(pageProps.classifiedsData)
                         const parsedData = parseData(estates, searchUrl)
-                        const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
+                        const newData = parsedData.filter(d => !prevEntries.find(p => p.url === d.url))
 
                         if (newData.length) {
-                            await collection.insertMany(newData)
+                            // TODO
+                            // await collection.insertMany(newData)
                         }
 
                         if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
@@ -109,8 +126,8 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
 
         if (type === 'FULL_SCAN' && !error) {
             const toRemove = prevEntries
-                .filter(e => !data.find(d => d.id === e.id))
-                .map(e => e.id);
+                .filter(e => !data.find(d => d.url === e.url))
+                .map(e => e.url);
 
             // Remove multiple entries by _id
             const message = `Immowelt - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
@@ -128,9 +145,9 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     }
 }
 
-// https://www.immowelt.de/classified-search?distributionTypes=Rent&estateTypes=Apartment&locations=AD02DE1&priceMax=299&priceMin=10&order=DateDesc
 const scrapeUrls = [
-    // todo https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&order=DateDesc
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&order=DateDesc'
+    // todo
 ]
 
 const crawler = (type) => {

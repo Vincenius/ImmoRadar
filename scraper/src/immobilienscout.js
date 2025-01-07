@@ -47,7 +47,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
         let data = [];
         let count = 0;
         let retry = 0;
-        const prevEntries = await collection.find({ provider: "immobilienscout24.de", searchUrl }, { projection: { id: 1 } }).toArray();
+        const prevEntries = await collection.find({ provider: "immobilienscout24.de", searchUrl }, { projection: { url: 1 } }).toArray();
     
         while (lastPage && currentPage <= lastPage && !error && retry < 3) {
             const pageQuery = currentPage === 1 ? '' : `&pagenumber=${currentPage}`
@@ -84,7 +84,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
                     const estates = result.resultlistEntries[0].resultlistEntry;
     
                     const parsedData = parseData(estates, searchUrl)
-                    const newData = parsedData.filter(d => !prevEntries.find(p => p.id === d.id))
+                    const newData = parsedData.filter(d => !prevEntries.find(p => p.url === d.url))
     
                     if (newData.length) {
                         await collection.insertMany(newData)
@@ -118,8 +118,8 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
 
         if (type === 'FULL_SCAN' && !error) {
             const toRemove = prevEntries
-                .filter(e => !data.find(d => d.id === e.id))
-                .map(e => e.id);
+                .filter(e => !data.find(d => d.url === e.url))
+                .map(e => e.url);
 
             // Remove multiple entries by _id
             const message = `Immobilienscout24 scraped ${count} new estates and removed ${toRemove.length} old estates.`
@@ -139,22 +139,22 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
 
 const scrapeUrls = [
     'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=-349.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=350.0-449.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=450.0-509.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=510.0-569.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=570.0-619.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=620.0-679.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=680.0-739.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=800.0-869.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=870.0-959.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=960.0-1059.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1060.0-1229.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1230.0-1499.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1500.0-1999.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=2000.0-3599.99&sorting=2',
-    // 'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=3600.0-&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=350.0-449.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=450.0-509.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=510.0-569.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=570.0-619.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=620.0-679.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=680.0-739.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=740.0-799.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=800.0-869.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=870.0-959.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=960.0-1059.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1060.0-1229.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1230.0-1499.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=1500.0-1999.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=2000.0-3599.99&sorting=2',
+    'https://www.immobilienscout24.de/Suche/de/grundstueck-kaufen?plotarea=3600.0-&sorting=2',
 ]
 
 const crawler = (type) => {

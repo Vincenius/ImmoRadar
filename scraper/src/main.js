@@ -14,12 +14,9 @@ const kleinanzeigenScraper = kleinanzeigenCrawler('FULL_SCAN')
 // await wohnungsboerseCrawler('FULL_SCAN')
 
 const allScraper = [
-  ...immoscoutScraper,
-  // ...immoweltScraper,
-  // wgGesuchtScraper,
-  // inBerlinWohnenScraper,
+  // ...immoscoutScraper,
+  ...immoweltScraper,
   // ...kleinanzeigenScraper,
-  // ...ohneMaklerScraper,
 ]
 
 const batches = splitIntoBatches(allScraper, 4)
