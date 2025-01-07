@@ -94,12 +94,12 @@ const Imprint = () => {
           />
         </Text>
 
-        <Link href="/grundstuecke/suchen">
+        <Link href="/grundstuecke/suche">
           <Card radius="md" p="md" bg="cyan.0">
             <Flex justify="space-between" align="center">
               <Box>
                 <Text>Du bist auf der Suche nach einem Grundstück?</Text>
-                <Text fw={500} c="black">Finde ein Perfektes Grundstück mit unserer Grundstückbörse.</Text>
+                <Text fw={500} c="black">Finde ein Perfektes Grundstück mit unserer Grundstücksuche.</Text>
               </Box>
               <IconShare3 c="gray.7"/>
             </Flex>
