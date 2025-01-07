@@ -33,29 +33,30 @@ const FeatureCards = () => {
     return (
         <Flex my="xl" gap="xl" direction={{ base: "column", sm: "row" }}>
             <FeatureCard
+              image={feature3}
+              title="Grundstückssuche"
+              text="Entdecken Sie passende Grundstücke für Ihr Bauprojekt. Unsere Suche kombiniert die Ergebnisse von verschiedenen Immobilienportalen."
+              alt="Grundstück von oben"
+              link="/grundstuecke/suche"
+              linkText="Grundstücke entdecken"
+            /> 
+            <FeatureCard
               image={feature1}
               title="Förderungscheck"
               text="Finden Sie heraus, welche staatlichen Förderungen und Zuschüsse Ihnen für den Hausbau oder -kauf zur Verfügung stehen."
               alt="Taschenrechner und Geld auf einem Tisch"
-              link="/foerderung"
-              linkText="Förderungen finden"
+              // link="/foerderung"
+              // linkText="Förderungen finden"
             />
             <FeatureCard
               image={feature2}
               title="Fertighaus-Anbieter Vergleich"
-              text="Vergleichen Sie Fertighausanbieter schnell und einfach mit unserem Assistenten und entdecken Sie maßgeschneiderte Angebote.."
+              text="Vergleichen Sie Fertighausanbieter schnell und einfach mit unserem Assistenten und entdecken Sie maßgeschneiderte Angebote."
               alt="Fertighaus von vorne"
               // link="/vergleich"
               // linkText="Anbieter vergleichen"
             />
-            <FeatureCard
-              image={feature3}
-              title="Grundstücksbörse"
-              text="Entdecken Sie passende Grundstücke für Ihr Bauprojekt. Unsere Grundstücksbörse verbindet Verkäufer und Käufer."
-              alt="Grundstück von oben"
-              link="/grundstuecke"
-              linkText="Grundstücke entdecken"
-            />  
+             
         </Flex>
     );
 };

@@ -48,7 +48,10 @@ export default function Home() {
               Maximieren Sie Ihr Budget durch staatliche Unterstützung.
               Mit unserem Förderungscheck entdecken Sie alle relevanten Zuschüsse für Ihr Bauprojekt und nutzen staatliche Förderungen optimal aus.
             </Text>
-            <Button href="/foerderung" component={NextLink}>Förderungen finden</Button>
+            {/* <Button href="/foerderung" component={NextLink}>Förderungen finden</Button> */}
+            <Text c="gray.6">
+              Demnächst verfügbar
+            </Text>
           </Box>
         </Flex>
       </Box>
@@ -101,7 +104,10 @@ export default function Home() {
               Egal, ob Sie ein Grundstück kaufen oder verkaufen möchten - unsere Börse bringt Sie mit den richtigen Interessenten zusammen.
               Käufer finden schnell die passenden Angebote, während Verkäufer ihre Grundstücke einem großen Publikum präsentieren können.
             </Text>
-            <Button href="/grundstuecke" component={NextLink}>Grundstücke entdecken</Button>
+            {/* <Button href="/grundstuecke" component={NextLink}>Grundstücke entdecken</Button> */}
+            <Text c="gray.6">
+              Demnächst verfügbar
+            </Text>
           </Box>
         </Flex>
       </Box>
@@ -151,9 +157,7 @@ export default function Home() {
               Suchen Sie Grundstücke über mehrere Plattformen hinweg an einem Ort.
               Mit unserer Suchfunktion vereinen wir Angebote von Portalen wie Immowelt, ImmoScout24 und vielen mehr – so finden Sie schnell das ideale Grundstück für Ihr Bauprojekt.
             </Text>
-            <Text c="gray.6">
-              Demnächst verfügbar
-            </Text>
+            <Button href="/grundstuecke/suche" component={NextLink}>Jetzt Suchen</Button>
           </Box>
         </Flex>
       </Box>
