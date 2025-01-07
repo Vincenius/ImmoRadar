@@ -34,17 +34,19 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
     const handleSearch = ({ value, manual = false }) => {
         const defaultSearchParams = {}
         for (const [key, value] of searchParams.entries()) {
-            defaultSearchParams[key] = value
+            if (key !== 'input') {
+                defaultSearchParams[key] = value
+            }
         }
         const query = showFilter
             ? { q: value, ...filterQuery }
             : { ...defaultSearchParams, q: value, page: 1 }
 
         Object.keys(query).forEach(key => !query[key] && delete query[key])
-        if (manual) {
+        if (manual && !data.find(d => d.name === value)) {
             query.input = 'manual';
         }
-        router.push({ pathname: '/search', query });
+        router.push({ pathname: '/grundstuecke/suche', query });
     }
 
     return (

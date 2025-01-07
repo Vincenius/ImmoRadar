@@ -15,8 +15,8 @@ const kleinanzeigenScraper = kleinanzeigenCrawler('FULL_SCAN')
 
 const allScraper = [
   // ...immoscoutScraper,
-  ...immoweltScraper,
-  // ...kleinanzeigenScraper,
+  // ...immoweltScraper,
+  ...kleinanzeigenScraper,
 ]
 
 const batches = splitIntoBatches(allScraper, 4)

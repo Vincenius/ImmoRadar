@@ -6,9 +6,6 @@ import { splitIntoBatches } from './utils/utils.js'
 import { immoweltCrawler } from "./immowelt.js";
 import { kleinanzeigenCrawler } from "./kleinanzeigen.js";
 import { immobilienscoutCrawler } from "./immobilienscout.js";
-import { wgGesuchtCrawler } from "./wg-gesucht.js";
-import { inberlinwohnenCrawler } from './inberlinwohnen.js'
-import { ohneMaklerCrawler } from './ohne-makler.js'
 
 let isFullScanRunning = false;
 
@@ -16,16 +13,10 @@ const runScan = async (type) => {
   const immoscoutScraper = immobilienscoutCrawler(type);
   const immoweltScraper = immoweltCrawler(type)
   const kleinanzeigenScraper = kleinanzeigenCrawler(type)
-  const wgGesuchtScraper = wgGesuchtCrawler(type)
-  const ohneMaklerScraper = ohneMaklerCrawler(type)
-  const inBerlinWohnenScraper = inberlinwohnenCrawler()
 
   const otherScraper = [
     ...immoweltScraper,
-    wgGesuchtScraper,
-    inBerlinWohnenScraper,
     ...kleinanzeigenScraper,
-    ...ohneMaklerScraper,
   ]
 
   const batches = splitIntoBatches(otherScraper, 4)
@@ -49,7 +40,7 @@ const runScan = async (type) => {
 
 console.log('INIT CRON JOB')
 
-cron.schedule('30 * * * *', () => {
+cron.schedule('45 * * * *', () => {
   if (!isFullScanRunning) {
     console.log(new Date().toISOString(), 'running new scan');
 
@@ -61,7 +52,7 @@ cron.schedule('30 * * * *', () => {
   }
 });
 
-cron.schedule('0 */24 * * *', () => {
+cron.schedule('0 4 * * *', () => {
   console.log(new Date().toISOString(), 'running full scan');
   isFullScanRunning = true;
 

@@ -1,27 +1,15 @@
 import { middleware } from './utils/middleware.js'
-import { parseFeatures } from './utils/parseFeatures.js'
-
-const mapPriceType = {
-    "Kaltmiete zzgl. Nebenkosten": "COLD_RENT",
-    "Warmmiete": "WARM_RENT",
-    "PURCHASE_PRICE": "PURCHASE_PRICE",
-}
 
 const parseData = (estates, searchUrl) => estates.map(e => {
     const result = {
         created_at: new Date(),
-        url: `${e.url}`,
         provider: "immowelt.de",
+        url: `${e.url}`,
         searchUrl,
-        date: e.metadata.creationDate,
         price: {
             value: parseFloat(e.hardFacts.price.value.replace(/[^\d,]/g, '').replace(',', '.')),
             currency: "EUR",
-            additionalInfo: mapPriceType[e.hardFacts.price.additionalInformation || e.hardFacts.price.addition.value],
         },
-        livingSpace: e.hardFacts.facts.find(f => f.type === "livingSpace")?.splitValue || null,
-        rooms: e.hardFacts.facts.find(f => f.type === "numberOfRooms")?.splitValue || null,
-        // availability: e.hardFacts.facts.find(f => f.type === "availability")?.splitValue || "Now",
         address: {
             zipCode: e.location.address.zipCode,
             city: e.location.address.city,
@@ -29,30 +17,9 @@ const parseData = (estates, searchUrl) => estates.map(e => {
             street: e.location.address.street,
         },
         title: e.mainDescription.headline.trim(),
+        size: parseFloat((e.hardFacts?.facts || []).find(f => f.type === "plotSpace")?.splitValue?.replace(',', '.')) || null,
         gallery: e.gallery ? e.gallery.images.map(p => ({ url: p.url, alt: p.alt })) : [],
-        features: [],
-        company: e.provider.intermediaryCard?.title || null,
     }
-
-    // const result = {
-    //     created_at: new Date(),
-    //     provider: "immobilienscout24.de",
-    //     url: `https://www.immobilienscout24.de/expose/${e['@id']}`,
-    //     searchUrl,
-    //     price: {
-    //         value: e['resultlist.realEstate'].price.value,
-    //         currency: e['resultlist.realEstate'].price.currency,
-    //     },
-    //     address: {
-    //         zipCode: e['resultlist.realEstate'].address.postcode,
-    //         city: e['resultlist.realEstate'].address.city,
-    //         district: e['resultlist.realEstate'].address.quarter,
-    //         street: `${e['resultlist.realEstate'].address.street || ''} ${e['resultlist.realEstate'].address.houseNumber || ''}`.trim(),
-    //     },
-    //     title: e['resultlist.realEstate'].title,
-    //     size: e['resultlist.realEstate'].plotArea,
-    //     gallery,
-    // }
 
     return result
 })
@@ -70,7 +37,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
         while (lastPage && currentPage <= lastPage && !error) {
             console.log('Immowelt SCRAPING', currentPage, 'OF', lastPage, searchUrl);
 
-            await page.goto(BASE_URL + `&sp=${currentPage}`);
+            await page.goto(BASE_URL + `&page=${currentPage}`);
             await page.waitForSelector('[data-testid="serp-core-scrollablelistview-testid"]')
 
             const content = await page.content();
@@ -93,11 +60,10 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         const newData = parsedData.filter(d => !prevEntries.find(p => p.url === d.url))
 
                         if (newData.length) {
-                            // TODO
-                            // await collection.insertMany(newData)
+                            await collection.insertMany(newData)
                         }
 
-                        if (type === 'NEW_SCAN' && newData.length < parsedData.length) {
+                        if (type === 'NEW_SCAN' && newData.length < (parsedData.length - 10)) {
                             console.log('Found old entries on page - quit scan');
                             lastPage = currentPage - 1;
                         }
@@ -111,6 +77,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         error = true;
                     }
                 } catch (err) {
+                    console.log(err)
                     const message = `${err} - Failed to parse JSON data`
                     await logEvent({ scraper: 'immowelt.de', success: false, message });
                     console.error(message);
@@ -129,7 +96,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .filter(e => !data.find(d => d.url === e.url))
                 .map(e => e.url);
 
-            // Remove multiple entries by _id
+            await collection.deleteMany({ url: { $in: toRemove } });
             const message = `Immowelt - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'immowelt.de', success: true, message });
             console.log(message);
@@ -146,8 +113,14 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
 }
 
 const scrapeUrls = [
-    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&order=DateDesc'
-    // todo
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=49999&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=69999&priceMin=5000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=119999&priceMin=70000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=189999&priceMin=120000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=269999&priceMin=190000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=389999&priceMin=270000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMax=689999&priceMin=390000&useFor=Mixed,Living&order=DateDesc',
+    'https://www.immowelt.de/classified-search?distributionTypes=Buy,Buy_Auction,Compulsory_Auction&estateTypes=Plot&locations=AD02DE1&priceMin=690000&useFor=Mixed,Living&order=DateDesc'
 ]
 
 const crawler = (type) => {

@@ -1,6 +1,5 @@
 import { middleware } from './utils/middleware.js'
 import { delay } from './utils/utils.js'
-import { parseFeatures } from './utils/parseFeatures.js';
 
 const parseData = (estates = [], searchUrl) => estates.map(e => {
     let gallery = e['resultlist.realEstate'].galleryAttachments?.attachment || []
@@ -121,7 +120,7 @@ const scrapeData = async ({ page: defaultPage, collection, type, searchUrl, logE
                 .filter(e => !data.find(d => d.url === e.url))
                 .map(e => e.url);
 
-            // Remove multiple entries by _id
+            await collection.deleteMany({ url: { $in: toRemove } });
             const message = `Immobilienscout24 scraped ${count} new estates and removed ${toRemove.length} old estates.`
             console.log(message);
             await logEvent({ scraper: 'immobilienscout24.de', success: true, message });

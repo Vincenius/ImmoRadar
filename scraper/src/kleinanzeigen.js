@@ -1,6 +1,5 @@
 import { middleware } from './utils/middleware.js'
-import { parseFeatures } from './utils/parseFeatures.js';
-import { parseCurrencyString, germanDateToIso, germanAltDateToIso } from './utils/utils.js'
+import { parseCurrencyString } from './utils/utils.js'
 
 const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
     try {
@@ -59,24 +58,14 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         rawDetails[key] = value;
                     });
     
-                    const dateElement = document.querySelector('#viewad-extra-info .icon-calendar-gray-simple + span');
-                    pageData.date = dateElement ? dateElement.textContent.trim() : '';
-    
                     const priceElement = document.querySelector('#viewad-price');
                     pageData.price = {
                         value: priceElement ? priceElement.textContent.trim() : '',
                         currency: 'EUR',
-                        additionalInfo: rawDetails['Warmmiete']
-                            ? rawDetails['Warmmiete'] === priceElement.textContent.trim() ? 'WARM_RENT' : 'COLD_RENT'
-                            : null
                     };
     
-                    pageData.livingSpace = parseInt(rawDetails['Wohnfläche'].replace(' m²', ''));
-                    pageData.rooms = parseInt(rawDetails['Zimmer']);
-                    pageData.availabiltiy = rawDetails['Verfügbar ab'];
+                    pageData.size = parseInt(rawDetails['Grundstücksfläche'].replace(' m²', ''));
     
-                    const lat = document.querySelector('meta[property="og:latitude"]')?.content || '';
-                    const lon = document.querySelector('meta[property="og:longitude"]')?.content || '';
                     const rawLocality = document.querySelector('meta[property="og:locality"]')?.content || '';
                     const district = rawLocality.split(" - ")[1] || rawLocality.split(" - ")[0]
                     const streetElement = document.querySelector('#street-address');
@@ -90,10 +79,6 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         zipCode,
                         district,
                         street,
-                        geolocation: {
-                            lat,
-                            lon
-                        }
                     }
     
                     const titleElement = document.querySelector('#viewad-title');
@@ -104,47 +89,6 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                         pageData.gallery.push({ url: imgElement.getAttribute('src'), alt: imgElement.getAttribute('alt') });
                     });
     
-                    pageData.features = [];
-    
-                    const featureMap = {
-                        'Möbliert/Teilmöbliert': 'FULLY_FURNISHED',
-                        'Balkon': 'BALCONY',
-                        'Einbauküche': 'FITTED_KITCHEN',
-                        'Badewanne': 'BATH_WITH_TUB',
-                        'Stufenloser Zugang': 'WHEELCHAIR_ACCESSIBLE',
-                        'Fußbodenheizung': 'UNDERFLOOR_HEATING',
-                        'Neubau': 'NEW_BUILDING',
-                        'Aufzug': 'PASSENGER_LIFT',
-                        'Garage/Stellplatz': 'CAR_PARK',
-                        'Garten/-mitnutzung': 'GARDEN_SHARED',
-                        'Haustiere erlaubt': 'PETS_ALLOWED',
-                        'Gäste WC': 'GUEST_TOILET',
-                        'Keller': 'BASEMENT',
-                        'WG-geeignet': 'FLAT_SHARE_POSSIBLE',
-                        'Altbau': 'OLD_BUILDING',
-                        'Terrasse': 'TERRACE',
-                        'WBS benötigt': 'CERTIFICATE_OF_ELIGIBILITY',
-                        'Dachboden': 'ATTIC'
-                    };
-                    document.querySelectorAll('#viewad-configuration .checktag').forEach(featureElement => {
-                        const feature = featureMap[featureElement.textContent.trim()]
-                        if (!feature) {
-                            console.warn('Could not find feature', featureElement.textContent.trim());
-                        } else {
-                            pageData.features.push(feature);
-                        }
-                    });
-    
-                    const privateElement = document.querySelector('.userprofile-vip-details-text')
-                    const isPrivate = privateElement ? privateElement.textContent === 'Privater Nutzer' : false;
-    
-                    if (isPrivate) {
-                        pageData.company = "Privat"
-                    } else {
-                        const companyElement = document.querySelector('#viewad-bizteaser--title a')
-                        pageData.company = companyElement ? companyElement.textContent : ''
-                    }
-    
                     return pageData;
                 });
     
@@ -152,17 +96,6 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                     subPageData.url = link;
                     subPageData.searchUrl = searchUrl;
                     subPageData.price.value = subPageData.price.value ? parseCurrencyString(subPageData.price.value) : '';
-                    subPageData.availabiltiy = subPageData.availabiltiy ? germanDateToIso(subPageData.availabiltiy) : '';
-    
-                    const date = subPageData.date
-                        ? germanAltDateToIso(subPageData.date)
-                        : new Date(subPageData.created_at)
-                    const useDate = date.toDateString() === new Date(subPageData.created_at).toDateString()
-                        ? new Date(subPageData.created_at) // use crawled at datetime, because kleinanzeigen doesn't provide time
-                        : date;
-    
-                    subPageData.date = useDate.toISOString()
-                    subPageData.features = parseFeatures(subPageData);
     
                     console.log('Scraped data from sub-page', link);
     
@@ -174,7 +107,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 }
             }
     
-            if (type === 'NEW_SCAN' && newLinks.length < (links.length - 5)) { // -5 tolerance because of possible ads on top
+            if (type === 'NEW_SCAN' && newLinks.length < (links.length - 10)) { // -5 tolerance because of possible ads on top
                 console.log('Found old entries on page - quit scan');
                 lastPage = currentPage - 1;
             }
@@ -185,7 +118,7 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
                 .filter(e => data.indexOf(e.url) === -1)
                 .map(e => e.url);
     
-            // Remove multiple entries by _id
+            await collection.deleteMany({ url: { $in: toRemove } });
             const message = `Kleinanzeigen - Scraped ${count} new estates and removed ${toRemove.length} old estates.`;
             await logEvent({ scraper: 'kleinanzeigen.de', success: true, message });
             console.log(message);
@@ -204,7 +137,16 @@ const scrapeData = async ({ page, collection, type, logEvent, searchUrl }) => {
 }
 
 const scrapeUrls = [
-    // todo https://www.kleinanzeigen.de/s-grundstuecke-garten/anzeige:angebote/c207+grundstuecke_garten.art_s:kaufen
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:0:45999/seite:{page}/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:46000:75999/seite:{page}/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:76000:99999/seite:{page}/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:100000:139999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:140000:189999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:190000:249999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:250000:339999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:340000:499999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:500000:999999/seite:2/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck',
+    'https://www.kleinanzeigen.de/s-grundstuecke-garten/baugrundstueck/anzeige:angebote/preis:1000000:/c207+grundstuecke_garten.art_s:kaufen+grundstuecke_garten.type_s:baugrundstueck'
 ]
 
 const crawler = (type) => {
