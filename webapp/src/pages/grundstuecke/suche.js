@@ -1,18 +1,47 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-import { Box, Card, Flex, Select, Text, Button, Divider, Modal, Pagination, Title } from '@mantine/core';
+import { Box, Card, Flex, Select, Text, Button, Divider, Modal, Pagination, Title, Group, ThemeIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight } from '@tabler/icons-react'
+import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight, IconArrowMergeBoth, IconBell, IconList } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
 import Filter from '@/components/Filter/Filter';
 import { fetcher } from '@/utils/fetcher'
+import styles from '@/styles/Home.module.css'
 
 // _____ SEARCH PAGE _____ //
 const SearchPage = () => {
   return <Layout>
-    <SearchBar />
+    <Box>
+      <div className={styles.background}></div>
+
+      <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
+        <Box>
+          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" mb="lg" textWrap="balance">
+            Alle <span className={styles.gradientText}>Grundstücke</span> an einem Ort
+          </Title>
+
+          <Group position="center">
+            <SearchBar showFilter={true} />
+          </Group>
+        </Box>
+        <Flex align={{ base: 'left' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl' }} maw={{ base: "350px", sm: "100%"}}>
+          <Flex align={{ base: 'left'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left' }}>Kombiniert Ergebnisse von <b>verschiedenen Immobilien-Webseiten</b></Text>
+          </Flex>
+          <Flex align={{ base: 'left' }} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left' }}>Eine einzige, gut sortierte Liste <b>ohne Duplikate</b></Text>
+          </Flex>
+          {/* <Flex align={{ base: 'left', sm: 'center'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconBell size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left', sm: 'center'}}><b>Benachrichtigungen</b> bei neuen Angeboten</Text>
+          </Flex> */}
+        </Flex>
+      </Flex>
+    </Box>
   </Layout>
 }
 

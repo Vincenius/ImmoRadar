@@ -13,6 +13,8 @@ import { fetcher } from '@/utils/fetcher';
 import { featureMap } from '@/utils/featureMap';
 import { providers as providerMap } from '@/utils/providers';
 
+// TODO disbale page
+
 const formatFilter = ({ minPrice, maxPrice, minSize, maxSize, minRooms, maxRooms, titleIncludes, titleExcludes, features, providers }) => {
     const result = [];
 

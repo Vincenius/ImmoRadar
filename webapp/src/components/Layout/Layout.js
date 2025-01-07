@@ -9,13 +9,16 @@ import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
-const menu = [{
-  label: 'Grundstückbörse',
-  url: '/grundstuecke'
-}, {
-  label: 'Förderungscheck',
-  url: '/foerderung'
-}];
+const menu = [
+  {
+    label: 'Grundstücksuche',
+    url: '/grundstuecke/suche'
+  },
+  // {
+  //   label: 'Förderungscheck',
+  //   url: '/foerderung'
+  // }
+];
 
 function useCannonical() {
   const router = useRouter();

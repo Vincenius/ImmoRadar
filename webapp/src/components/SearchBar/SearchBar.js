@@ -19,7 +19,6 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
 
     const applyFilter = (filter) => {
         const query = { ...filter }
-        query.features = query.features.join(',')
         query.providers = query.providers.join(',')
         query.titleIncludes = query.titleIncludes.join(',')
         query.titleExcludes = query.titleExcludes.join(',')
