@@ -104,10 +104,7 @@ export default function Home() {
               Egal, ob Sie ein Grundstück kaufen oder verkaufen möchten - unsere Börse bringt Sie mit den richtigen Interessenten zusammen.
               Käufer finden schnell die passenden Angebote, während Verkäufer ihre Grundstücke einem großen Publikum präsentieren können.
             </Text>
-            {/* <Button href="/grundstuecke" component={NextLink}>Grundstücke entdecken</Button> */}
-            <Text c="gray.6">
-              Demnächst verfügbar
-            </Text>
+            <Button href="/grundstueckboerse" component={NextLink}>Grundstückbörse entdecken</Button>
           </Box>
         </Flex>
       </Box>
@@ -123,7 +120,7 @@ export default function Home() {
               Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf.
               Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.
             </Text>
-            <Button href="/budgetrechner" component={NextLink}>Jetzt Berechnen</Button>
+            <Button href="/budgetrechner" component={NextLink}>Budget Berechnen</Button>
           </Box>
 
           <Image
@@ -157,7 +154,7 @@ export default function Home() {
               Suchen Sie Grundstücke über mehrere Plattformen hinweg an einem Ort.
               Mit unserer Suchfunktion vereinen wir Angebote von Portalen wie Immowelt, ImmoScout24 und vielen mehr – so finden Sie schnell das ideale Grundstück für Ihr Bauprojekt.
             </Text>
-            <Button href="/grundstuecke/suche" component={NextLink}>Jetzt Suchen</Button>
+            <Button href="/suche" component={NextLink}>Jetzt Suchen</Button>
           </Box>
         </Flex>
       </Box>

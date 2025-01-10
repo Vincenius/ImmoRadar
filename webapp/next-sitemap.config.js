@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 const exclude = [
     '/deleted', '/profile', '/email-bestaetigt', '/unerwarteter-fehler', '/blog/immo-guesser',
-    '/foerderung', 'foerderung/ergebnis', '/grundstuecke', '/grundstuecke/anbieten', '/grundstuecke/suchen'  // temp
+    '/foerderung', 'foerderung/ergebnis', '/grundstueckboerse', '/grundstueckboerse/anbieten', '/grundstueckboerse/suchen'  // temp
 ]
 
 module.exports = {
@@ -60,9 +60,9 @@ module.exports = {
         const existingZipCodes = zipCodeEstateCount.filter(item => item.count > 1).map(item => item._id)
         const filteredResult = result.filter(loc => loc.zipCodes.some(zip => existingZipCodes.includes(zip)))
 
-        // TODO update to grundstueck-suche
+        // TODO update to suche
         const searchSitemap = await Promise.all(filteredResult.map(async item => {
-            const res = await config.transform(config, encodeURI(`/grundstuecke/suche?q=${item.name}`))
+            const res = await config.transform(config, encodeURI(`/suche?q=${item.name}`))
             return res
         }))
 

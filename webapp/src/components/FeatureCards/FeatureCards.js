@@ -37,7 +37,7 @@ const FeatureCards = () => {
               title="Grundstückssuche"
               text="Entdecken Sie passende Grundstücke für Ihr Bauprojekt. Unsere Suche kombiniert die Ergebnisse von verschiedenen Immobilienportalen."
               alt="Grundstück von oben"
-              link="/grundstuecke/suche"
+              link="/suche"
               linkText="Grundstücke entdecken"
             /> 
             <FeatureCard

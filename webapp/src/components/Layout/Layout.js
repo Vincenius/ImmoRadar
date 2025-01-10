@@ -11,13 +11,17 @@ import styles from './Layout.module.css';
 
 const menu = [
   {
-    label: 'Grundstücksuche',
-    url: '/grundstuecke/suche'
+    label: 'Grundstückbörse',
+    url: '/grundstueckboerse'
   },
   // {
   //   label: 'Förderungscheck',
   //   url: '/foerderung'
   // }
+  {
+    label: 'Suche',
+    url: '/suche'
+  },
 ];
 
 function useCannonical() {

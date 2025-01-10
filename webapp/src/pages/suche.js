@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
+import Link from 'next/link';
 import { Box, Card, Flex, Select, Text, Button, Divider, Modal, Pagination, Title, Group, ThemeIcon } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight, IconArrowMergeBoth, IconBell, IconList } from '@tabler/icons-react'
+import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight, IconArrowMergeBoth, IconShare3, IconList } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
 import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
@@ -75,6 +76,22 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
   w={{ base: '100%', xs: 'auto' }}
 />
 
+const InfoBanner = () => {
+  return (
+    <Link href="/suche">
+      <Card radius="md" p="md" bg="cyan.0" mb="md">
+        <Flex justify="space-between" align="center">
+          <Box>
+            <Text fw={500} c="black">ImmoRadar Grundstückbörse</Text>
+            <Text>Entdecke exklusive Grundstücke, die du sonst nirgendwo findest.</Text>
+          </Box>
+          <IconShare3 c="gray.7"/>
+        </Flex>
+      </Card>
+    </Link>
+  )
+}
+
 function SearchResults({ estates, pages, count, defaultFilter, q, sortValue, pageInt }) {
   const router = useRouter();
   const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
@@ -117,17 +134,21 @@ function SearchResults({ estates, pages, count, defaultFilter, q, sortValue, pag
       </Box>
 
       {/* only mobile design */}
-      <Flex gap="md" direction={{ base: "column-reverse", xs: "row" }} display={{ base: 'flex', md: 'none' }} mb="md" align={{ base: "flex-start", xs: "flex-end" }} justify="space-between">
-        <Flex gap="md">
-          <Button leftSection={<IconAdjustmentsHorizontal size={14} />} variant="default" onClick={openFilterModal}>
-            Filter
-          </Button>
-          <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
-            <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
-          </Modal>
+      <Box display={{ base: 'block', md: 'none' }}>
+        <Flex gap="md" direction={{ base: "column-reverse", xs: "row" }} mb="md" align={{ base: "flex-start", xs: "flex-end" }} justify="space-between">
+          <Flex gap="md">
+            <Button leftSection={<IconAdjustmentsHorizontal size={14} />} variant="default" onClick={openFilterModal}>
+              Filter
+            </Button>
+            <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
+              <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
+            </Modal>
+          </Flex>
+          <SortInput sortValue={sortValue} updateSort={updateSort} />
         </Flex>
-        <SortInput sortValue={sortValue} updateSort={updateSort} />
-      </Flex>
+
+        <InfoBanner />
+      </Box>
 
       <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
         <Box w={{ base: '100%', md: '66%' }}>
@@ -138,6 +159,7 @@ function SearchResults({ estates, pages, count, defaultFilter, q, sortValue, pag
 
         {/* only desktop design */}
         <Box w="34%" display={{ base: 'none', md: 'block'}} mb="xl">
+          <InfoBanner />
           <Card shadow="sm" padding="md" radius="md" mb="md" withBorder>
             <SortInput sortValue={sortValue} updateSort={updateSort} mb="xs"/>
 

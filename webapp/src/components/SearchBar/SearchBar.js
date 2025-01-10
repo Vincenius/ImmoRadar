@@ -45,7 +45,7 @@ const SearchBar = ({ defaultValue = '', city, showFilter }) => {
         if (manual && !data.find(d => d.name === value)) {
             query.input = 'manual';
         }
-        router.push({ pathname: '/grundstuecke/suche', query });
+        router.push({ pathname: '/suche', query });
     }
 
     return (
