@@ -67,7 +67,7 @@ const BudgetCalculator = () => {
 
       <Card mb="xl" ref={scollToRef}>
         <NumberInput
-          label={<CustomLabel label="Eigenkapital" desciption="Welche Summe an Kapital kannst Du in Dein Projekt Traumimmobilie mit einbringen" />}
+          label={<CustomLabel label="Dein Eigenkapital" desciption="Welche Summe an Kapital kannst Du in Dein Projekt Traumimmobilie mit einbringen" />}
           placeholder="50 000€"
           decimalScale={0}
           min={0}
