@@ -14,7 +14,17 @@ const Imprint = () => {
                 10369 Berlin<br />
                 <b>Kontaktaufnahme:</b><br />
                 E-Mail: vincent@immoradar.xyz<br />
+            </p><br/>
+
+            <p>
+                <b>Erlaubnis nach § 34c GewO</b><br/>
+                Aufsichtsbehörde:<br />
+                Industrie- und Handelskammer zu Köln<br />
+                Unter Sachsenhausen 10-26<br />
+                50667 Köln<br />
+                Deutschland
             </p>
+
 
             {/* Umsatzsteuer-ID
             Umsatzsteuer-Identifikationsnummer gem. § 27 a Umsatzsteuergesetz:
@@ -46,7 +56,9 @@ const Imprint = () => {
 
             <p>Die auf unserer Webseite veröffentlichen Inhalte und Werke unterliegen dem deutschen Urheberrecht (http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf) . Die Vervielfältigung, Bearbeitung, Verbreitung und jede Art der Verwertung des geistigen Eigentums in ideeller und materieller Sicht des Urhebers außerhalb der Grenzen des Urheberrechtes bedürfen der vorherigen schriftlichen Zustimmung des jeweiligen Urhebers i.S.d. Urhebergesetzes (http://www.gesetze-im-internet.de/bundesrecht/urhg/gesamt.pdf ). Downloads und Kopien dieser Seite sind nur für den privaten und nicht kommerziellen Gebrauch erlaubt. Sind die Inhalte auf unserer Webseite nicht von uns erstellt wurden, sind die Urheberrechte Dritter zu beachten. Die Inhalte Dritter werden als solche kenntlich gemacht. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte unverzüglich entfernen.</p>
 
+            <br/>
             <p>Dieses Impressum wurde freundlicherweise von jurarat.de zur Verfügung gestellt.</p>
+            <br/><br/>
         </Layout>
     );
 };

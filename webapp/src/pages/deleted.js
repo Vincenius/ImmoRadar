@@ -2,7 +2,7 @@ import React from 'react';
 import Layout from '@/components/Layout/Layout';
 import { Title, Text } from '@mantine/core';
 
-const Imprint = () => {
+const Deleted = () => {
     return (
         <Layout title="ImmoRadar | Account erfolgreich gelöscht">
             <Title order={1} py="xl">Account erfolgreich gelöscht</Title>
@@ -11,4 +11,4 @@ const Imprint = () => {
     );
 };
 
-export default Imprint;
+export default Deleted;

@@ -51,7 +51,7 @@ export default async function handler(req, res) {
       const name = `${Firstname} ${Lastname}`
       await sendEmail({
         to: Email,
-        subject: 'Willkommen bei ImmoRadar - Bestätigen Sie Ihre E-Mail-Adresse',
+        subject: 'Willkommen bei ImmoRadar!',
         html: type === 'search'
           ? confirmSearchTemplate({ confirm_url: `${process.env.BASE_URL}/api/email/confirm-signup?token=${token}`, name })
           : confirmOfferTemplate({ confirm_url: `${process.env.BASE_URL}/api/email/confirm-signup?token=${token}`, name })
