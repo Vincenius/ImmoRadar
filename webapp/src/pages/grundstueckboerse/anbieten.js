@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon } from '@mantine/core';
+import Link from 'next/link';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon, Checkbox } from '@mantine/core';
 import { IconMapPin2, IconHome2, IconUser, IconHomeDollar, IconClockBolt, IconMessage } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
