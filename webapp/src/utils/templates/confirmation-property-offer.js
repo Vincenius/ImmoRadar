@@ -23,9 +23,9 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
           </mj-text>
           <mj-text font-size="15px" color="#000" font-family="helvetica">Hallo ${name},</mj-text>
           
-          <mj-text font-size="15px" color="#000" font-family="helvetica">vielen Dank, dass Sie sich bei ImmoRadar angemeldet haben! Wir freuen uns, Sie auf dem Weg zu Ihrem Traumgrundstück begleiten zu dürfen.</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica">vielen Dank, dass Sie sich für ImmoRadar entschieden haben. Wir freuen uns, Sie dabei zu unterstützen, den perfekten Käufer für Ihr Grundstück zu finden – ganz nach unserer Philosophie: <i>"Wir holen Sie dort ab, wo Sie stehen."</i></mj-text>
           
-          <mj-text font-size="15px" color="#000" font-family="helvetica">Um Ihre Anmeldung abzuschließen und sicherzustellen, dass wir Ihnen Käufern für Ihr Grundstück vermitteln können, bitten wir Sie, Ihre E-Mail-Adresse zu bestätigen. Klicken Sie dazu einfach auf den folgenden Link:</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica"><b>Jetzt starten</b>:</br>Bestätigen Sie bitte Ihre E-Mail-Adresse, damit wir Ihnen die ersten potenziellen Käufer vorstellen können.</mj-text>
           
           <mj-button font-family="Helvetica" background-color="#0b7285" color="white" href="${confirm_url}">
             E-Mail Adresse Bestätigen
@@ -39,7 +39,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
           
           <mj-text font-size="15px" color="#000" font-family="helvetica">Nach der Bestätigung erhalten Sie bald die ersten Vorschläge zu Käufern, die perfekt auf Ihre Grundstück abgestimmt sind.</mj-text>
   
-          <mj-text font-size="15px" color="#000" font-family="helvetica">Falls Sie Fragen haben oder Unterstützung benötigen, stehen wir Ihnen jederzeit gerne zur Verfügung.</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica">Bei Fragen steht Ihnen unser Team jederzeit zur Verfügung.</mj-text>
           
           <mj-text font-size="15px" color="#000" font-family="helvetica">Herzliche Grüße,<br/>Ihr ImmoRadar Team</mj-text>
         </mj-column>
