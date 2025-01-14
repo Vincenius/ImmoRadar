@@ -63,7 +63,7 @@ export default function Home() {
   return (
     <Layout
       title="ImmoRadar Grundstücke Suchen"
-      description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
+      description="Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein. Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist."
     >
       <Box>
         <div className={styles.background}></div>
@@ -72,12 +72,13 @@ export default function Home() {
           <Flex gap="xl" direction={{ base: "column", md: "row" }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
               <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Finden Sie Ihr <span className={styles.gradientText}>Traumgrundstück</span>
+                Finde Dein <span className={styles.gradientText}>Traumgrundstück</span>
               </Title>
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
-                Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden.
+                Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein.
+                Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist.<br/>
+                100% kostenlos und unverbindlich.
               </Text>
-
 
               <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
                 <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
