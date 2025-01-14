@@ -28,7 +28,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
           <mj-text font-size="15px" color="#000" font-family="helvetica"><b>Jetzt starten</b>:</br>Bestätigen Sie bitte Ihre E-Mail-Adresse, damit wir Ihnen die ersten potenziellen Käufer vorstellen können.</mj-text>
           
           <mj-button font-family="Helvetica" background-color="#0b7285" color="white" href="${confirm_url}">
-            E-Mail Adresse Bestätigen
+            E-Mail Adresse bestätigen
           </mj-button>
           
           <mj-text font-size="15px" color="#000" font-family="helvetica">Sollte der Button nicht funktionieren, können Sie auch den folgenden Link in Ihren Browser kopieren:</mj-text>
