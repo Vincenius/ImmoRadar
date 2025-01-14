@@ -1,8 +1,9 @@
 import React, { useState, useRef } from 'react';
+import Link from 'next/link';
 import { useDisclosure } from '@mantine/hooks';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
-import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
+import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, Checkbox, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
 import { IconShare3, IconQuestionMark } from '@tabler/icons-react';
 import styles from '@/styles/Home.module.css'
 
@@ -193,9 +194,14 @@ const ContactModal = () => {
               label="Telefon"
               placeholder="0171 1234567"
               required
-              mb="sm"
+              mb="md"
               name="Phone"
               defaultValue={data.Phone}
+            />
+
+            <Checkbox
+              required
+              label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
             />
 
             <ButtonGroup active={active} setActive={setActive} isLoading={isLoading} />

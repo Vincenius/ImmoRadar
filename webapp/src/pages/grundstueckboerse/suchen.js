@@ -250,9 +250,13 @@ export default function Home() {
                       label="Telefon"
                       placeholder="0171 1234567"
                       required
-                      mb="sm"
+                      mb="md"
                       name="Phone"
                       defaultValue={data.Phone}
+                    />
+                    <Checkbox
+                      required
+                      label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
                     />
 
                     <ButtonGroup active={active} setActive={setActive} isLoading={isLoading} />
