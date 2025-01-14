@@ -17,6 +17,14 @@ const Imprint = () => {
             </p><br/>
 
             <p>
+                Oliver Rausch<br />
+                Sprengelstrasse 1<br />
+                50735 Köln<br />
+                <b>Kontaktaufnahme:</b><br />
+                E-Mail: oliver.rausch@immoradar.xyz<br />
+            </p><br/>
+
+            <p>
                 <b>Erlaubnis nach § 34c GewO</b><br/>
                 Aufsichtsbehörde:<br />
                 Industrie- und Handelskammer zu Köln<br />
