@@ -76,7 +76,10 @@ export default function Home() {
               </Title>
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
                 Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein.
-                Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist.<br/>
+              </Text>
+
+              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+                Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist.
               </Text>
 
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }} fw="bold">
