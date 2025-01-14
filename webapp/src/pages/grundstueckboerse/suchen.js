@@ -85,7 +85,7 @@ export default function Home() {
                   <ThemeIcon variant="outline">
                     <IconHomeSearch style={{ width: '70%', height: '70%' }} />
                   </ThemeIcon>
-                  <Text><b>Individuelle Grundstücksauswahl</b>: Wir filtern passende Grundstücke nach Ihren spezifischen Anforderungen.</Text>
+                  <Text><b>Individuelle Grundstücksauswahl</b>: Wir filtern passende Grundstücke nach Deinen spezifischen Anforderungen.</Text>
                 </Flex>
 
                 <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
