@@ -1,11 +1,18 @@
 import React, { useState, useRef } from 'react';
 import { useDisclosure } from '@mantine/hooks';
-import Link from 'next/link';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
-import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, ActionIcon, Popover, Slider } from '@mantine/core';
+import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
 import { IconShare3, IconQuestionMark } from '@tabler/icons-react';
 import styles from '@/styles/Home.module.css'
+
+const ButtonGroup = ({ active, setActive, isLoading }) => {
+  return <Group justify="space-between" mt="xl">
+    {active === 0 && <div></div>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
+    {active < 2 && <Button type="submit" loading={isLoading}>Weiter</Button>}
+  </Group>
+}
 
 const CustomLabel = ({ label, desciption }) => {
   const [opened, { close, open }] = useDisclosure(false);
@@ -30,6 +37,185 @@ const CustomLabel = ({ label, desciption }) => {
       </Popover.Dropdown>
     </Popover>
   </Flex>
+}
+
+const ContactModal = () => {
+  const [opened, { open, close }] = useDisclosure(false);
+  const [active, setActive] = useState(0);
+  const [data, setData] = useState({})
+  const [isLoading, setIsLoading] = useState(false);
+  const numberFormatElements = ['AmountPeople', 'Age']
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formObject = {};
+    const elements = e.target.elements;
+    for (let element of elements) {
+      if (element.name) {
+        if (numberFormatElements.includes(element.name)) {
+          formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
+        } else {
+          formObject[element.name] = element.value;
+        }
+      }
+    }
+
+    const newData = {
+      ...data,
+      ...formObject
+    }
+
+    console.log(active)
+    if (active === 1) {
+      setIsLoading(true)
+
+      fetch('/api/user-signup', {
+        method: 'POST',
+        body: JSON.stringify({
+          ...newData,
+          type: 'budget-calculator'
+        }),
+      }).then(() => {
+        setActive(active + 1)
+      }).catch((err) => {
+        // todo error handling
+      }).finally(() => {
+        setIsLoading(false)
+      })
+    } else {
+      setData(newData)
+      setActive(active + 1)
+    }
+  }
+
+  return <>
+    <Card radius="md" p="md" bg="cyan.0" onClick={open} style={{ cursor: 'pointer' }} mt="md">
+      <Flex justify="space-between" align="center">
+        <Box>
+          <Text>Du möchtest mehr für Dich rausholen?</Text>
+          <Text>Du möchtest wissen Welche Förderungen Dir konkret zustehen?</Text>
+          <Text fw={500} c="black">100% Kostenlos und unverbindlich!</Text>
+        </Box>
+        <IconShare3 c="gray.7" />
+      </Flex>
+    </Card>
+    <Modal opened={opened} onClose={close} size="md">
+      <Stepper active={active} onStepClick={setActive}>
+        <Stepper.Step>
+          {/* <Title order={2} size="h3" mb="lg">Erzähle uns etwas zu Dir</Title> */}
+
+          <form onSubmit={handleSubmit}>
+            <NumberInput
+              label="Wieviele Personen ziehen in das Haus ein?"
+              placeholder="3"
+              required
+              hideControls
+              mb="sm"
+              name="AmountPeople"
+              min={1}
+              max={15}
+              decimalScale={0}
+              defaultValue={data.AmountPeople}
+            />
+
+            <NativeSelect
+              label="Familienstand"
+              data={[
+                { value: 'ledig', label: 'Ledig' },
+                { value: 'verheiratet', label: 'Verheiratet' },
+              ]}
+              required
+              mb="sm"
+              name="MaritalStatus"
+              defaultValue={data.MaritalStatus}
+            />
+
+            <NumberInput
+              label="Wie alt bist Du?"
+              placeholder="30"
+              required
+              hideControls
+              mb="sm"
+              name="Age"
+              min={18}
+              max={90}
+              decimalScale={0}
+              defaultValue={data.Age}
+            />
+
+            <NativeSelect
+              label="Jahreseinkommen"
+              data={[
+                { value: '<50k', label: 'unter 50 000 Brutto' },
+                { value: '50k-75k', label: '50 000 - 75 000 Brutto' },
+                { value: '>75k', label: 'über 75 000 Brutto' },
+              ]}
+              required
+              mb="sm"
+              name="Income"
+              defaultValue={data.Income}
+            />
+
+            <ButtonGroup active={active} setActive={setActive} />
+          </form>
+        </Stepper.Step>
+        <Stepper.Step>
+          <Title order={2} size="h3" mb="lg">Vielen Dank für Deine Antworten!</Title>
+          <Text mb="md">In einem persönlichen Telefonat besprechen wir konkret wie Deine persönliche Strategie Traumhaus aussehen kann.</Text>
+
+          <form onSubmit={handleSubmit}>
+            <TextInput
+              label="Vorname"
+              placeholder="Max"
+              required
+              mb="sm"
+              name="Firstname"
+              defaultValue={data.Firstname}
+            />
+            <TextInput
+              label="Nachname"
+              placeholder="Musterman"
+              required
+              mb="sm"
+              name="Lastname"
+              defaultValue={data.Lastname}
+            />
+            <TextInput
+              label="Email"
+              placeholder="maxmustermann@example.com"
+              required
+              mb="sm"
+              name="Email"
+              type="email"
+              defaultValue={data.Email}
+            />
+            <TextInput
+              label="Telefon"
+              placeholder="0171 1234567"
+              required
+              mb="sm"
+              name="Phone"
+              defaultValue={data.Phone}
+            />
+
+            <ButtonGroup active={active} setActive={setActive} isLoading={isLoading} />
+          </form>
+        </Stepper.Step>
+        <Stepper.Completed>
+          <Title order={2} size="h3" mb="lg">Vielen Dank für Deine Anfrage!</Title>
+          <Text mb="sm">
+            Wir haben Deine Angaben erhalten und melden uns in Kürze bei Dir.
+          </Text>
+          <Text mb="sm">
+            <b>Bitte bestätigen Deine E-Mail-Adresse</b>, indem Du den Link in der gerade versendeten E-Mail anklickst. Sobald die Bestätigung erfolgt ist, melden wir uns bei Dir.
+          </Text>
+          <Text>
+            Vielen Dank für Dein Vertrauen!
+          </Text>
+        </Stepper.Completed>
+      </Stepper>
+    </Modal>
+  </>
 }
 
 const BudgetCalculator = () => {
@@ -100,11 +286,9 @@ const BudgetCalculator = () => {
               my="xl"
               labelAlwaysOn
               size="xl"
-              decimalScale={0}
               min={100}
               max={5000}
               step={100}
-              thousandSeparator=" "
               suffix="€"
               label={(value) => <NumberFormatter
                 suffix='€'
@@ -122,11 +306,9 @@ const BudgetCalculator = () => {
               my="xl"
               labelAlwaysOn
               size="xl"
-              decimalScale={1}
               min={1}
               max={5}
               step={0.1}
-              thousandSeparator=" "
               suffix="€"
               label={(value) => <NumberFormatter
                 suffix='%'
@@ -143,11 +325,9 @@ const BudgetCalculator = () => {
               my="xl"
               labelAlwaysOn
               size="xl"
-              decimalScale={0}
               min={5}
               max={40}
               step={1}
-              thousandSeparator=" "
               suffix=" Jahren"
               label={(value) => <NumberFormatter
                 suffix=' Jahren'
@@ -160,7 +340,7 @@ const BudgetCalculator = () => {
             />
           </Box>
 
-          <Box w={{ base: "100%", xs: "33%"}} ta={{ base: 'left', xs: 'center' }}>
+          <Box w={{ base: "100%", xs: "33%" }} ta={{ base: 'left', xs: 'center' }}>
             <Image
               component={NextImage}
               src="/imgs/house-logo.png"
@@ -185,18 +365,10 @@ const BudgetCalculator = () => {
 
         </Flex>
 
-        <Link href="/suche">
-          <Card radius="md" p="md" bg="cyan.0">
-            <Flex justify="space-between" align="center">
-              <Box>
-                <Text fw={500} c="black">ImmoRadar Grundstückbörse</Text>
-                <Text>Entdecke exklusive Grundstücke, die du sonst nirgendwo findest.</Text>
-              </Box>
-              <IconShare3 c="gray.7" />
-            </Flex>
-          </Card>
-        </Link>
+        <ContactModal />
       </Card>
+
+
     </Layout>
   );
 };

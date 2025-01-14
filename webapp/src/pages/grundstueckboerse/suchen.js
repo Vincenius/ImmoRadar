@@ -41,7 +41,7 @@ export default function Home() {
     if (active === 2) {
       setIsLoading(true)
 
-      fetch('/api/property-signup', {
+      fetch('/api/user-signup', {
         method: 'POST',
         body: JSON.stringify({
           ...newData,
