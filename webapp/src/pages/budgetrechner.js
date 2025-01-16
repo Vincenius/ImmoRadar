@@ -3,6 +3,7 @@ import Link from 'next/link';
 import { useDisclosure } from '@mantine/hooks';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
+import PhoneInput from '@/components/PhoneInput/PhoneInput';
 import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, Checkbox, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
 import { IconShare3, IconQuestionMark } from '@tabler/icons-react';
 import styles from '@/styles/Home.module.css'
@@ -66,7 +67,8 @@ const ContactModal = () => {
       ...formObject
     }
 
-    console.log(active)
+    console.log(newData)
+
     if (active === 1) {
       setIsLoading(true)
 
@@ -157,6 +159,17 @@ const ContactModal = () => {
               defaultValue={data.Income}
             />
 
+            <PhoneInput
+              label="Telefon"
+              placeholder="1711234567"
+              required
+              mb="md"
+              name="Phone"
+              initialCountryCode="DE"
+              onChange={() => {}}
+              defaultValue={data.Phone}
+            />
+
             <ButtonGroup active={active} setActive={setActive} />
           </form>
         </Stepper.Step>
@@ -190,14 +203,7 @@ const ContactModal = () => {
               type="email"
               defaultValue={data.Email}
             />
-            <TextInput
-              label="Telefon"
-              placeholder="0171 1234567"
-              required
-              mb="md"
-              name="Phone"
-              defaultValue={data.Phone}
-            />
+            {/* TODO PHONE HERE */}
 
             <Checkbox
               required
