@@ -173,7 +173,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-                <Link href="/about"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
+                <Link href="/ueber-uns"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
               </Box>
             </Flex>
           </Flex>
