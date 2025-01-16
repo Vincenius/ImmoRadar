@@ -25,6 +25,7 @@ import {
 import examples from 'libphonenumber-js/mobile/examples';
 import { IMaskInput } from 'react-imask';
 
+countries.registerLocale(de);
 
 function getFlagEmoji(countryCode: string) {
   const codePoints = countryCode
@@ -117,6 +118,7 @@ function PhoneInput({
       initialCountryCode: initialCountryCode,
     }),
   );
+  
   const [country, setCountry] = useState(initialData.current.country);
   const [format, setFormat] = useState(initialData.current.format);
   const [localValue, setLocalValue] = useState(initialData.current.localValue);
@@ -135,7 +137,7 @@ function PhoneInput({
       lastNotifiedValue.current = value;
       onChange(value);
     }
-  }, [country.code, localValue]);
+  }, [country?.code, localValue]);
 
   useEffect(() => {
     if (typeof value !== 'undefined' && value !== lastNotifiedValue.current) {

@@ -4,6 +4,7 @@ import { useDisclosure } from '@mantine/hooks';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
+import { isValidPhoneNumber } from 'libphonenumber-js'
 import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, Checkbox, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
 import { IconShare3, IconQuestionMark } from '@tabler/icons-react';
 import styles from '@/styles/Home.module.css'
@@ -45,6 +46,8 @@ const ContactModal = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
   const [data, setData] = useState({})
+  const [phone, setPhone] = useState('');
+  const [isPhoneError, setIsPhoneError] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const numberFormatElements = ['AmountPeople', 'Age']
   const handleSubmit = (e) => {
@@ -54,7 +57,14 @@ const ContactModal = () => {
     const elements = e.target.elements;
     for (let element of elements) {
       if (element.name) {
-        if (numberFormatElements.includes(element.name)) {
+        if (element.name === 'Phone') {
+          if (isValidPhoneNumber(phone)) {
+            formObject[element.name] = phone;
+          } else {
+            setIsPhoneError(true)
+            return
+          }
+        } else if (numberFormatElements.includes(element.name)) {
           formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
         } else {
           formObject[element.name] = element.value;
@@ -66,8 +76,6 @@ const ContactModal = () => {
       ...data,
       ...formObject
     }
-
-    console.log(newData)
 
     if (active === 1) {
       setIsLoading(true)
@@ -159,17 +167,6 @@ const ContactModal = () => {
               defaultValue={data.Income}
             />
 
-            <PhoneInput
-              label="Telefon"
-              placeholder="1711234567"
-              required
-              mb="md"
-              name="Phone"
-              initialCountryCode="DE"
-              onChange={() => {}}
-              defaultValue={data.Phone}
-            />
-
             <ButtonGroup active={active} setActive={setActive} />
           </form>
         </Stepper.Step>
@@ -203,7 +200,22 @@ const ContactModal = () => {
               type="email"
               defaultValue={data.Email}
             />
-            {/* TODO PHONE HERE */}
+            
+            <PhoneInput
+              label="Telefon"
+              placeholder="1711234567"
+              required
+              mb="md"
+              name="Phone"
+              initialCountryCode="DE"
+              value={phone}
+              onChange={value => {
+                setPhone(value)
+                setIsPhoneError(false)
+              }}
+              defaultValue={phone}
+              error={isPhoneError && 'Bitte gib eine gültige Telefonnummer ein'}
+            />
 
             <Checkbox
               required

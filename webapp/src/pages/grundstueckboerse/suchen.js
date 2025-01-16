@@ -1,9 +1,11 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
+import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
+import PhoneInput from '@/components/PhoneInput/PhoneInput';
+import { isValidPhoneNumber } from 'libphonenumber-js'
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
@@ -19,6 +21,9 @@ export default function Home() {
   const [active, setActive] = useState(0);
   const [data, setData] = useState({})
   const [isLoading, setIsLoading] = useState(false);
+  const [phone, setPhone] = useState('');
+  const [isPhoneError, setIsPhoneError] = useState(false);
+
   const handleSubmit = (e) => {
     e.preventDefault();
     
@@ -26,7 +31,14 @@ export default function Home() {
     const elements = e.target.elements;
     for (let element of elements) {
       if (element.name) {
-        if (numberFormatElements.includes(element.name)) {
+        if (element.name === 'Phone') {
+          if (isValidPhoneNumber(phone)) {
+            formObject[element.name] = phone;
+          } else {
+            setIsPhoneError(true)
+            return
+          }
+        } else if (numberFormatElements.includes(element.name)) {
           formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
         } else {
           formObject[element.name] = element.value;
@@ -247,13 +259,20 @@ export default function Home() {
                       type="email"
                       defaultValue={data.Email}
                     />
-                    <TextInput
+                    <PhoneInput
                       label="Telefon"
-                      placeholder="0171 1234567"
+                      placeholder="1711234567"
                       required
                       mb="md"
                       name="Phone"
-                      defaultValue={data.Phone}
+                      initialCountryCode="DE"
+                      value={phone}
+                      onChange={value => {
+                        setPhone(value)
+                        setIsPhoneError(false)
+                      }}
+                      defaultValue={phone}
+                      error={isPhoneError && 'Bitte gib eine gültige Telefonnummer ein'}
                     />
                     <Checkbox
                       required
