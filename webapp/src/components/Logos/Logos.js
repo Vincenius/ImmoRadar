@@ -34,14 +34,17 @@ const Logos = () => {
       <Carousel.Slide><Image src={immowelt} alt="Immowelt Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={immoscout24} alt="Immobilienscout24 Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={kleinanzeigen} alt="Kleinanzeigen Logo" height={30} width="100%" /></Carousel.Slide>
-      <Carousel.Slide><Image src={wgGesucht} alt="WG Gesucht Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={immowelt} alt="Immowelt Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={immoscout24} alt="Immobilienscout24 Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={kleinanzeigen} alt="Kleinanzeigen Logo" height={30} width="100%" /></Carousel.Slide>
+      {/* <Carousel.Slide><Image src={wgGesucht} alt="WG Gesucht Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={howoge} alt="Howoge Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={ohneMakler} alt="Ohne Makler Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={gesobau} alt="Gesobau Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={degewo} alt="Degewo Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={gewobag} alt="Gewobag Logo" height={30} width="100%" /></Carousel.Slide>
       <Carousel.Slide><Image src={stadtundland} alt="STADT UND LAND Logo" height={30} width="100%" /></Carousel.Slide>
-      <Carousel.Slide><Image src={wbm} alt="wbm Logo" height={30} width="100%" /></Carousel.Slide>
+      <Carousel.Slide><Image src={wbm} alt="wbm Logo" height={30} width="100%" /></Carousel.Slide> */}
 
     </Carousel>
   </Box>

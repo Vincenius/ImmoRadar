@@ -18,9 +18,13 @@ const menu = [
   //   label: 'Förderungscheck',
   //   url: '/foerderung'
   // }
+  // {
+  //   label: 'Suche',
+  //   url: '/suche'
+  // },
   {
-    label: 'Suche',
-    url: '/suche'
+    label: 'Budgetrechner',
+    url: '/budgetrechner'
   },
 ];
 
@@ -130,7 +134,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         <Container>
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
-              <Flex mb="xl" gap="sm" justify={{ base: "center", xs: "flex-start" }}>
+              {/* <Flex mb="xl" gap="sm" justify={{ base: "center", xs: "flex-start" }}>
                 <ActionIcon
                   component="a"
                   href="https://www.facebook.com/profile.php?id=61566536998327"
@@ -158,7 +162,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
                 >
                   <IconBrandLinkedin />
                 </ActionIcon>
-              </Flex>
+              </Flex> */}
               <Flex gap="sm" mt="xl">
                 <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
                 <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>

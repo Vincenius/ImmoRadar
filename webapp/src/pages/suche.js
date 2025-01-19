@@ -9,18 +9,22 @@ import SearchBar from '@/components/SearchBar/SearchBar';
 import SearchItem from '@/components/SearchItem/SearchItem';
 import Filter from '@/components/Filter/Filter';
 import { fetcher } from '@/utils/fetcher'
+import Logos from '@/components/Logos/Logos'
 import styles from '@/styles/Home.module.css'
 
 // _____ SEARCH PAGE _____ //
 const SearchPage = () => {
-  return <Layout>
+  return <Layout title="Alle Grundstücke an einem Ort">
     <Box>
       <div className={styles.background}></div>
 
       <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
-        <Box>
-          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" mb="lg" textWrap="balance">
-            Alle <span className={styles.gradientText}>Grundstücke</span> an einem Ort
+        <Box mb="xl">
+          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
+            Einfach <span className={styles.gradientText}>Finden.</span><br/>
+          </Title>
+          <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+            Alle Grundstücke an einem Ort.
           </Title>
 
           <Group position="center">
@@ -30,7 +34,7 @@ const SearchPage = () => {
         <Flex align={{ base: 'left' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl' }} maw={{ base: "350px", sm: "100%"}}>
           <Flex align={{ base: 'left'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
             <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
-            <Text ta={{ base: 'left' }}>Kombiniert Ergebnisse von <b>verschiedenen Immobilien-Webseiten</b></Text>
+            <Text ta={{ base: 'left' }}>Kombiniert Ergebnisse von den Top <b>3 Immobilien-Portalen</b></Text>
           </Flex>
           <Flex align={{ base: 'left' }} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
             <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
@@ -43,6 +47,7 @@ const SearchPage = () => {
         </Flex>
       </Flex>
     </Box>
+    <Logos />
   </Layout>
 }
 
@@ -78,17 +83,16 @@ const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
 
 const InfoBanner = () => {
   return (
-    <Link href="/suche">
-      <Card radius="md" p="md" bg="cyan.0" mb="md">
-        <Flex justify="space-between" align="center">
-          <Box>
-            <Text fw={500} c="black">ImmoRadar Grundstückbörse</Text>
-            <Text>Entdecke exklusive Grundstücke, die du sonst nirgendwo findest.</Text>
-          </Box>
-          <IconShare3 c="gray.7"/>
-        </Flex>
+    // <Box mb="md">
+    //   <Text mb="sm">Nichts passendes gefunden?</Text>
+    //   <Button>Grundstückbörse</Button>
+    // </Box>
+      <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
+        <Box>
+          <Text fw={500} c="black" mb="sm">Du konntest kein passendes Grundstück für Dich finden?</Text>
+          <Button component={Link} href="/grundstueckboerse/suchen">Nutze jetzt unsere Grundstückbörse</Button>
+        </Box>
       </Card>
-    </Link>
   )
 }
 
@@ -155,6 +159,8 @@ function SearchResults({ estates, pages, count, defaultFilter, q, sortValue, pag
           {estates && estates.length > 0 && estates.map((item) => <SearchItem key={item._id} item={item} />)}
 
           {estates && estates.length === 0 && <Text c="gray" mt="md">Keine Ergebnisse gefunden</Text>}
+
+          <InfoBanner />
         </Box>
 
         {/* only desktop design */}

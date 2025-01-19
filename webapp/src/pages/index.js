@@ -1,168 +1,240 @@
-import { Flex, Text, Title, Box, Image, Button } from '@mantine/core';
-import NextImage from 'next/image';
-import NextLink from 'next/link';
+import { useEffect } from 'react';
+import { useRouter } from 'next/router';
+import Link from 'next/link';
+import { Box, Card, Flex, Select, Text, Button, Divider, Modal, Pagination, Title, Group, ThemeIcon } from '@mantine/core';
+import { useDisclosure } from '@mantine/hooks';
+import { IconAdjustmentsHorizontal, IconArrowLeft, IconArrowRight, IconClock, IconArrowMergeBoth, IconShare3, IconList } from '@tabler/icons-react'
 import Layout from '@/components/Layout/Layout'
-import FAQs from '@/components/FAQ/FAQ';
-import FeatureCards from '@/components/FeatureCards/FeatureCards';
+import SearchBar from '@/components/SearchBar/SearchBar';
+import SearchItem from '@/components/SearchItem/SearchItem';
+import Filter from '@/components/Filter/Filter';
+import { fetcher } from '@/utils/fetcher'
+import Logos from '@/components/Logos/Logos'
 import styles from '@/styles/Home.module.css'
 
-export default function Home() {
+// _____ SEARCH PAGE _____ //
+const SearchPage = () => {
+  return <Layout title="Alle Grundstücke an einem Ort">
+    <Box>
+      <div className={styles.background}></div>
+
+      <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
+        <Box mb="xl">
+          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
+            Einfach <span className={styles.gradientText}>Finden.</span><br/>
+          </Title>
+          <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+            Alle Grundstücke an einem Ort.
+          </Title>
+
+          <Group position="center">
+            <SearchBar showFilter={true} />
+          </Group>
+        </Box>
+        <Flex align={{ base: 'left' }} direction={{ base: 'column', sm: 'row' }} gap={{ base: 'xl' }} maw={{ base: "350px", sm: "100%"}}>
+          <Flex align={{ base: 'left'}} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconArrowMergeBoth size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left' }}>Kombiniert Ergebnisse von den Top <b>3 Immobilien-Portalen</b></Text>
+          </Flex>
+          <Flex align={{ base: 'left' }} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconList size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left' }}>Eine einzige, gut sortierte Liste <b>ohne Duplikate</b></Text>
+          </Flex>
+          <Flex align={{ base: 'left' }} direction={{ base: 'row', sm: 'column' }} gap="sm" maw={{ base: "auto", sm: "250px"}}>
+            <ThemeIcon radius="sm" size="lg" variant="filled"><IconClock size={24} /></ThemeIcon>
+            <Text ta={{ base: 'left' }}><b>Mehr Zeit</b> für die wesentlichen Dinge</Text>
+          </Flex>
+        </Flex>
+      </Flex>
+    </Box>
+    <Logos />
+  </Layout>
+}
+
+// _____ SEARCH RESULTS _____ //
+const PaginationLeftIcon = ({ ...props }) => <IconArrowLeft {...props} aria-label="Zurück" />
+const PaginationRightIcon = ({ ...props }) => <IconArrowRight {...props} aria-label="Weiter" />
+
+const sortOptions = [{
+  label: 'Aktuellste Angebote',
+  value: 'date'
+}, {
+  label: 'Gerinster Preis',
+  value: 'priceAsc'
+}, {
+  label: 'Höchster Preis',
+  value: 'priceDesc'
+}, {
+  label: 'Kleinste Fläche',
+  value: 'sizeAsc'
+}, {
+  label: 'Größte Fläche',
+  value: 'sizeDesc'
+}]
+
+const SortInput = ({ sortValue, updateSort, mb = 0 }) => <Select
+  label="Sortieren nach"
+  data={sortOptions}
+  value={sortValue}
+  onChange={(_sort, option) => updateSort(option.value)}
+  mb={mb}
+  w={{ base: '100%', xs: 'auto' }}
+/>
+
+const InfoBanner = () => {
+  return (
+    <Link href="/suche">
+      <Card radius="md" p="md" bg="cyan.0" mb="md">
+        <Flex justify="space-between" align="center">
+          <Box>
+            <Text fw={500} c="black">ImmoRadar Grundstückbörse</Text>
+            <Text>Entdecke exklusive Grundstücke, die du sonst nirgendwo findest.</Text>
+          </Box>
+          <IconShare3 c="gray.7"/>
+        </Flex>
+      </Card>
+    </Link>
+  )
+}
+
+function SearchResults({ estates, pages, count, defaultFilter, q, sortValue, pageInt }) {
+  const router = useRouter();
+  const [filterModalOpen, { open: openFilterModal, close: closeFilterModal }] = useDisclosure(false);
+
+  useEffect(() => {
+    if (window && window.umami) {
+      umami.track('GrundstueckSuche', { q })
+    }
+  })
+
+  const applyFilter = (filter) => {
+    const query = { ...router.query, ...filter, page: 1 };
+    query.providers = query.providers.join(',');
+    query.titleIncludes = query.titleIncludes.join(',');
+    query.titleExcludes = query.titleExcludes.join(',');
+    Object.keys(query).forEach(key => !query[key] && delete query[key]);
+    if (filterModalOpen) {
+      closeFilterModal();
+    }
+    router.push({ query });
+  };
+
+  const updateSort = (sort) => {
+    router.push({ query: { ...router.query, sort, page: 1 } });
+  };
+
+  const setPage = (newPage) => {
+    router.push({ query: { ...router.query, page: newPage } });
+  };
+
   return (
     <Layout
-      title="ImmoRadar | Ihr Partner für den Weg ins Eigenheim"
-      description="Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen."
+      title={`Alle Grundstücke in ${q} | ImmoRadar`}
+      description={`Alle verfügbaren Grundstücke in ${q}. Eine gut sortierte Liste mit Grundstücken in ${q} von verschiedenen Anbietern ohne Duplikate.`}
+      noindex={pageInt > 1 || sortValue !== 'date'}
     >
-      <Box className={styles.header}>
-        <div className={styles.background}></div>
+      { count > 0 && <Title pt="xl" size="h3" order={1} fw="500" >{count} Ergebnisse | Alle Grundstücke in {q}</Title> }
+      <Box pt="md" pb="md">
+        <SearchBar defaultValue={q} />
+      </Box>
 
-        <Flex direction="column" justify="space-evenly">
-          <Box mb="xl">
-            <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" mb="lg" textWrap="balance">
-              Ihr Partner für den <span className={styles.gradientText}>Weg ins Eigenheim</span>
-            </Title>
-            <Text size="xl">
-              Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen.
-            </Text>
-          </Box>
-          
-          <FeatureCards />
+      {/* only mobile design */}
+      <Box display={{ base: 'block', md: 'none' }}>
+        <Flex gap="md" direction={{ base: "column-reverse", xs: "row" }} mb="md" align={{ base: "flex-start", xs: "flex-end" }} justify="space-between">
+          <Flex gap="md">
+            <Button leftSection={<IconAdjustmentsHorizontal size={14} />} variant="default" onClick={openFilterModal}>
+              Filter
+            </Button>
+            <Modal opened={filterModalOpen} onClose={closeFilterModal} title="Filter">
+              <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
+            </Modal>
+          </Flex>
+          <SortInput sortValue={sortValue} updateSort={updateSort} />
         </Flex>
-      </Box>
-      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
-        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
-          <Image
-            radius="md"
-            component={NextImage}
-            src="/imgs/calculator.jpg"
-            alt="Schreibtisch mit Taschenrechner"
-            height={300}
-            width={300}
-            w={300}
-          />
-          <Box>
-            <Title order={2} size="h1" mb="lg">
-              Entdecken Sie Ihre Fördermöglichkeiten
-            </Title>
-            <Text mb="md">
-              Ermitteln Sie schnell und unkompliziert, welche Förderungen und Zuschüsse für Ihren Hausbau oder Immobilienkauf verfügbar sind.
-              Maximieren Sie Ihr Budget durch staatliche Unterstützung.
-              Mit unserem Förderungscheck entdecken Sie alle relevanten Zuschüsse für Ihr Bauprojekt und nutzen staatliche Förderungen optimal aus.
-            </Text>
-            {/* <Button href="/foerderung" component={NextLink}>Förderungen finden</Button> */}
-            <Text c="gray.6">
-              Demnächst verfügbar
-            </Text>
-          </Box>
-        </Flex>
+
+        <InfoBanner />
       </Box>
 
-      <Box component="section" py={{ base: "6rem", sm: "10rem" }} pos="relative">
-        <div className={styles.background}></div>
-        <Flex direction={{ base: "column-reverse", sm: "row" }} gap="xl">
-          <Box>
-            <Title order={2} size="h1" mb="lg">
-              Ihr persönlicher Assistent für Fertighäuser
-            </Title>
-            <Text mb="md">
-              Unser Assistent führt Sie durch den Angebotsdschungel der Fertighausanbieter.
-              Finden Sie in wenigen Schritten den idealen Anbieter für Ihr Bauprojekt.
-              Erhalten Sie eine Übersicht der besten Anbieter auf dem Markt und können die Angebote vergleichen, die am besten zu Ihnen passen.
-            </Text>
-            <Text c="gray.6">
-              Demnächst verfügbar
-            </Text>
-          </Box>
+      <Flex gap="md" direction={{ base: 'column', md: 'row' }}>
+        <Box w={{ base: '100%', md: '66%' }}>
+          {estates && estates.length > 0 && estates.map((item) => <SearchItem key={item._id} item={item} />)}
 
-          <Image
-            radius="md"
-            component={NextImage}
-            src="/imgs/house.jpg"
-            alt="Haus von vorne"
-            height={300}
-            width={300}
-            w={300}
-          />
-        </Flex>
-      </Box>
+          {estates && estates.length === 0 && <Text c="gray" mt="md">Keine Ergebnisse gefunden</Text>}
+        </Box>
 
-      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
-        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
-          <Image
-            radius="md"
-            component={NextImage}
-            src="/imgs/property.jpg"
-            alt="Leeres Grundstück von oben"
-            height={300}
-            width={300}
-            w={300}
-          />
-          <Box>
-            <Title order={2} size="h1" mb="lg">
-              Die Grundstückbörse für Suchende und Verkäufer
-            </Title>
-            <Text mb="md">
-              Egal, ob Sie ein Grundstück kaufen oder verkaufen möchten - unsere Börse bringt Sie mit den richtigen Interessenten zusammen.
-              Käufer finden schnell die passenden Angebote, während Verkäufer ihre Grundstücke einem großen Publikum präsentieren können.
-            </Text>
-            <Button href="/grundstueckboerse/suchen" component={NextLink}>Grundstückbörse entdecken</Button>
-          </Box>
-        </Flex>
-      </Box>
+        {/* only desktop design */}
+        <Box w="34%" display={{ base: 'none', md: 'block'}} mb="xl">
+          <InfoBanner />
+          <Card shadow="sm" padding="md" radius="md" mb="md" withBorder>
+            <SortInput sortValue={sortValue} updateSort={updateSort} mb="xs"/>
 
-      <Box component="section" py={{ base: "6rem", sm: "10rem" }} pos="relative">
-        <div className={styles.background}></div>
-        <Flex direction={{ base: "column-reverse", sm: "row" }} gap="xl">
-          <Box>
-            <Title order={2} size="h1" mb="lg">
-              Budgetrechner: So viel können Sie investieren
-            </Title>
-            <Text mb="md">
-              Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf.
-              Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.
-            </Text>
-            <Button href="/budgetrechner" component={NextLink}>Budget Berechnen</Button>
-          </Box>
+            <Divider my="md" />
 
-          <Image
-            radius="md"
-            component={NextImage}
-            src="/imgs/calculator2.jpg"
-            alt="Taschenrechner auf Schreibtisch"
-            height={300}
-            width={300}
-            w={300}
-          />
-        </Flex>
-      </Box>
+            <Filter defaultFilter={defaultFilter} applyFilter={applyFilter} />
+          </Card>
+        </Box>
+      </Flex>
 
-      <Box component="section" py={{ base: "6rem", sm: "10rem" }}>
-        <Flex direction={{ base: "column", sm: "row" }} gap="xl">
-          <Image
-            radius="md"
-            component={NextImage}
-            src="/imgs/property2.jpg"
-            alt="Grundstück mit Haus"
-            height={300}
-            width={300}
-            w={300}
-          />
-          <Box>
-            <Title order={2} size="h1" mb="lg">
-              Grundstückssuche leicht gemacht
-            </Title>
-            <Text mb="md">
-              Suchen Sie Grundstücke über mehrere Plattformen hinweg an einem Ort.
-              Mit unserer Suchfunktion vereinen wir Angebote von Portalen wie Immowelt, ImmoScout24 und vielen mehr – so finden Sie schnell das ideale Grundstück für Ihr Bauprojekt.
-            </Text>
-            <Button href="/suche" component={NextLink}>Jetzt Suchen</Button>
-          </Box>
-        </Flex>
-      </Box>
-    
-      <Box pos="relative" py={{ base: "6rem", sm: "10rem" }}>
-        <div className={styles.background}></div>
-        <FAQs />
-      </Box>
+      { pages > 1 && <Pagination
+        total={pages}
+        value={pageInt}
+        onChange={setPage}
+        mt="sm" mb="sm"
+        previousIcon={PaginationLeftIcon}
+        nextIcon={PaginationRightIcon}
+      /> }
     </Layout>
   );
+}
+
+export default function Search ({ estates, pages, count, defaultFilter, q, sortValue, pageInt }) {
+  if (q) {
+    return <SearchResults estates={estates} pages={pages} count={count} defaultFilter={defaultFilter} q={q} sortValue={sortValue} pageInt={pageInt} />
+  } else {
+    return <SearchPage />
+  }
+}
+
+export async function getServerSideProps(context) {
+  const { query } = context;
+  if (query && query.q) {
+    const { q, sort = 'date', page = '1', ...filterQuery } = query;
+    const pageInt = parseInt(page) || 1;
+    const filterString = Object.entries(filterQuery)
+      .filter(([key, value]) => !!value)
+      .map(([key, value]) => `${key}=${value}`)
+      .join('&');
+  
+    const [data] = await Promise.all([
+      fetcher(`${process.env.BASE_URL}/api/property-search?q=${q}&sort=${sort}&${filterString}&page=${pageInt}`),
+    ]);
+  
+    const { estates, pages = 0, count = 0 } = data;
+  
+    const newProviders = filterQuery?.providers?.split(',') || [];
+    const newTitleIncludes = filterQuery?.titleIncludes?.split(',') || [];
+    const newTitleExcludes = filterQuery?.titleExcludes?.split(',') || [];
+  
+    const defaultFilter = {
+      ...filterQuery,
+      providers: newProviders,
+      titleIncludes: newTitleIncludes,
+      titleExcludes: newTitleExcludes,
+    };
+  
+    return {
+      props: {
+        estates,
+        pages,
+        count,
+        defaultFilter,
+        q,
+        sortValue: sort,
+        pageInt,
+        filterQuery,
+      },
+    };
+  } else {
+    return { props: {} }
+  }
 }

@@ -6,8 +6,9 @@ import Layout from '@/components/Layout/Layout';
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
 import { isValidPhoneNumber } from 'libphonenumber-js'
 import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, Checkbox, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
-import { IconShare3, IconQuestionMark } from '@tabler/icons-react';
+import { IconCheck, IconQuestionMark } from '@tabler/icons-react';
 import styles from '@/styles/Home.module.css'
+import Logo from './logo.svg';
 
 const ButtonGroup = ({ active, setActive, isLoading }) => {
   return <Group justify="space-between" mt="xl">
@@ -100,16 +101,22 @@ const ContactModal = () => {
   }
 
   return <>
-    <Card radius="md" p="md" bg="cyan.0" onClick={open} style={{ cursor: 'pointer' }} mt="md">
-      <Flex justify="space-between" align="center">
-        <Box>
-          <Text>Du möchtest mehr für Dich rausholen?</Text>
-          <Text>Du möchtest wissen Welche Förderungen Dir konkret zustehen?</Text>
-          <Text fw={500} c="black">100% Kostenlos und unverbindlich!</Text>
-        </Box>
-        <IconShare3 c="gray.7" />
-      </Flex>
-    </Card>
+    <Button onClick={open} mt="md" w={320} m="2em auto 1em">
+      Du möchtest mehr für Dich herausholen?
+    </Button>
+    <Flex gap="sm" justify="center" align="center" mb="xs">
+      <IconCheck style={{ width: '20px', height: '20px' }} stroke={1.5} />
+      <Text td="italic" align="center">
+        Kostenloser und unverbindlicher Fördercheck
+      </Text>
+    </Flex>
+    <Flex gap="sm" justify="center" align="center">
+      <IconCheck style={{ width: '20px', height: '20px' }} stroke={1.5} />
+      <Text td="italic" align="center">
+        Strategischer Aufbau und Ausbau deines Eigenkapitals
+      </Text>
+    </Flex>
+    
     <Modal opened={opened} onClose={close} size="md">
       <Stepper active={active} onStepClick={setActive}>
         <Stepper.Step>
@@ -175,47 +182,50 @@ const ContactModal = () => {
           <Text mb="md">In einem persönlichen Telefonat besprechen wir konkret wie Deine persönliche Strategie Traumhaus aussehen kann.</Text>
 
           <form onSubmit={handleSubmit}>
-            <TextInput
-              label="Vorname"
-              placeholder="Max"
-              required
-              mb="sm"
-              name="Firstname"
-              defaultValue={data.Firstname}
-            />
-            <TextInput
-              label="Nachname"
-              placeholder="Musterman"
-              required
-              mb="sm"
-              name="Lastname"
-              defaultValue={data.Lastname}
-            />
-            <TextInput
-              label="Email"
-              placeholder="maxmustermann@example.com"
-              required
-              mb="sm"
-              name="Email"
-              type="email"
-              defaultValue={data.Email}
-            />
-            
-            <PhoneInput
-              label="Telefon"
-              placeholder="1711234567"
-              required
-              mb="md"
-              name="Phone"
-              initialCountryCode="DE"
-              value={phone}
-              onChange={value => {
-                setPhone(value)
-                setIsPhoneError(false)
-              }}
-              defaultValue={phone}
-              error={isPhoneError && 'Bitte gib eine gültige Telefonnummer ein'}
-            />
+            <Flex gap="md">
+              <TextInput
+                label="Vorname"
+                placeholder="Max"
+                required
+                mb="sm"
+                name="Firstname"
+                defaultValue={data.Firstname}
+              />
+              <TextInput
+                label="Nachname"
+                placeholder="Musterman"
+                required
+                mb="sm"
+                name="Lastname"
+                defaultValue={data.Lastname}
+              />
+            </Flex>
+            <Flex gap="md">
+              <TextInput
+                label="Email"
+                placeholder="maxmustermann@example.com"
+                required
+                mb="sm"
+                name="Email"
+                type="email"
+                defaultValue={data.Email}
+              />
+              <PhoneInput
+                label="Telefon"
+                placeholder="1711234567"
+                required
+                mb="md"
+                name="Phone"
+                initialCountryCode="DE"
+                value={phone}
+                onChange={value => {
+                  setPhone(value)
+                  setIsPhoneError(false)
+                }}
+                defaultValue={phone}
+                error={isPhoneError && 'Bitte gib eine gültige Telefonnummer ein'}
+              />
+            </Flex>
 
             <Checkbox
               required
@@ -263,23 +273,19 @@ const BudgetCalculator = () => {
     <Layout title="Budgetrechner | ImmoRadar" description="Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.">
       <Flex align="center" gap="xl" direction={{ base: "column-reverse", sm: "row" }} my="3rem">
         <Box p={{ base: "sm", sm: "0" }}>
-          <Title order={1} ta={{ base: 'center', sm: 'left' }} fz={{ base: 34, xs: 42, md: 60 }} fw="bold" mb="lg" textWrap="balance">
-            <span className={styles.gradientText}>Budgetrechner</span>
+          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
+            Einfach <span className={styles.gradientText}>Finden.</span><br/>
+          </Title>
+          <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+            Dein Budgetrechner.
           </Title>
           <Text size="lg" mb="xl" ta={{ base: 'center', sm: 'left' }}>
             Berechne schnell und einfach, wie viel Dich Dein Traumhaus kosten darf.
             Unser Budgetrechner kalkuliert anhand von Eigenkapital, Finanzierungszins und deiner persönlichen Wunschrate.
           </Text>
-          <Button
-            variant="outline"
-            onClick={() => scollToRef.current.scrollIntoView({ behavior: "smooth" })}
-            w={{ base: '100%', sm: 'auto' }}
-          >
-            Jetzt Berechnen
-          </Button>
         </Box>
 
-        <Image
+        {/* <Image
           radius="md"
           component={NextImage}
           src="/imgs/calculator2.jpg"
@@ -287,14 +293,14 @@ const BudgetCalculator = () => {
           height={250}
           width={250}
           w={250}
-        />
+        /> */}
       </Flex>
 
       <Card mb="xl" ref={scollToRef}>
         <Flex justify="space-between" gap="md" direction={{ base: "column", xs: "row" }}>
           <Box w={{ base: "100%", xs: "67%" }}>
             <NumberInput
-              label={<CustomLabel label="Dein Eigenkapital" desciption="Welche Summe an Kapital kannst Du in Dein Projekt Traumimmobilie mit einbringen" />}
+              label={<CustomLabel label="Dein Eigenkapital" desciption='Welche Summe an Kapital kannst Du in Dein Projekt "Traumhaus" mit einbringen?' />}
               placeholder="50 000€"
               decimalScale={0}
               min={0}
@@ -302,10 +308,11 @@ const BudgetCalculator = () => {
               suffix="€"
               mb="md"
               value={equity}
+              hideControls
               onChange={(value) => setEquity(parseInt(value))}
             />
 
-            <CustomLabel label="Deine Wunschrate" desciption="Welche monatlichen „Ab- Sparrate“ für die Finanzierung ist für Dich ideal?" />
+            <CustomLabel label="Deine Wunschrate" desciption="Welche monatliche Rate für die Finanzierung ist für Dich ideal?" />
             <Slider
               my="xl"
               labelAlwaysOn
@@ -325,7 +332,7 @@ const BudgetCalculator = () => {
               onChange={(value) => setInstallment(value)}
             />
 
-            <CustomLabel label="Finanzierungszins" desciption="Hier stellst Du den Zins für die Finanzierung ein." />
+            <CustomLabel label="Finanzierungszins" desciption="Hier stellst Du den Zinssatz für die Finanzierung ein." />
             <Slider
               my="xl"
               labelAlwaysOn
@@ -344,7 +351,7 @@ const BudgetCalculator = () => {
               onChange={(value) => setInterest(value)}
             />
 
-            <CustomLabel label="Schuldenfrei in" desciption="Wann soll Deine Traumimmobilie komplett Dir gehören?" />
+            <CustomLabel label="Schuldenfrei in" desciption="Wann soll Deine Traumhaus komplett Dir gehören?" />
             <Slider
               my="xl"
               labelAlwaysOn
@@ -364,20 +371,20 @@ const BudgetCalculator = () => {
             />
           </Box>
 
-          <Box w={{ base: "100%", xs: "33%" }} ta={{ base: 'left', xs: 'center' }}>
+          <Flex direction="column" justify="center" w={{ base: "100%", xs: "33%" }} ta={{ base: 'left', xs: 'center' }}>
             <Image
               component={NextImage}
-              src="/imgs/house-logo.png"
-              alt="Minimalistisches Haus"
-              height={200}
-              width={200}
-              w={200}
+              src={Logo}
+              alt="ImmoRadar Logo"
+              height={150}
+              width={150}
+              w={150}
               mb="md"
               mx="auto"
               display={{ base: "none", xs: "block" }}
             />
             <Text fw={500} mt="md" mb="sm" size="lg">Gesamtbudget für Dein Projekt „Traumhaus“:</Text>
-            <Text c="green.9" fw={600} size="2.4em" lh="1em" mb="xl" td="underline">
+            <Text c="cyan.7" fw={600} size="2.8em" lh="1em" mb="sm">
               <NumberFormatter
                 suffix='€'
                 value={calculateAnnuity()}
@@ -385,11 +392,11 @@ const BudgetCalculator = () => {
                 decimalScale={0}
               />
             </Text>
-          </Box>
+          </Flex>
 
         </Flex>
 
-        <ContactModal />
+        {/* <ContactModal /> */}
       </Card>
 
 

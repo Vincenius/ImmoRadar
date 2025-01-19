@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox, Blockquote } from '@mantine/core';
 import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
@@ -78,27 +78,34 @@ export default function Home() {
       title="ImmoRadar Grundstücke Suchen"
       description="Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein. Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist."
     >
+      <div className={styles.background}></div>
       <Box>
-        <div className={styles.background}></div>
-
-        <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
+        <Flex pt="6rem" pb="3rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction={{ base: "column", md: "row" }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
-              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Finde Dein <span className={styles.gradientText}>Traumgrundstück</span>
+              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mt={{ base: 'xl', md: 0 }} textWrap="balance">
+                Einfach <span className={styles.gradientText}>Finden.</span>
+              </Title>
+              <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+                Dein Traumgrundstück.
               </Title>
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
-                Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein.
+                Unser Netzwerk besteht aus Projektgesellschaften, Privatpersonen und Kommunen.
+                So sind wir in der Lage, unsere Datenbank stetig weiter zu füllen.
               </Text>
 
               <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
-                Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist.
+                Nutze einfach unseren Service!<br/>
+                <b>100% kostenlos und unverbindlich.</b>
               </Text>
 
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }} fw="bold">
-                100% kostenlos und unverbindlich.
+              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+                Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein.
               </Text>
-              
+
+              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+                Wir gleichen Deine Daten dann mit den Grundstücken in unserer Datenbank ab und melden uns bei Dir sobald ein passendes Grundstück dabei ist.
+              </Text>
 
               {/* <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
                 <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
@@ -127,7 +134,7 @@ export default function Home() {
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">In welcher Region soll Ihr Grundstück liegen?</Title>
+                  <Title order={2} size="h3" mb="lg">In welcher Region soll Dein Grundstück liegen?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <NumberInput
@@ -175,7 +182,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Welche Größe und Eigenschaften sind Ihnen wichtig?</Title>
+                  <Title order={2} size="h3" mb="lg">Welche Größe und Eigenschaften sind Dir wichtig?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <Flex gap="sm">
@@ -207,7 +214,7 @@ export default function Home() {
                     
                     <NumberInput
                       label="Budget"
-                      description="Welche Investition planen Sie für Ihr Grundstück?"
+                      description="Welche Investition planst Du für Dein Grundstück?"
                       placeholder="300.000"
                       required
                       hideControls
@@ -220,7 +227,7 @@ export default function Home() {
                     />
                     <Textarea
                       label="Anmerkungen"
-                      description="Was ist Ihnen in Ihre Nähe noch wichtig?"
+                      description="Was ist Dir in Deiner Nähe noch wichtig?"
                       placeholder="Nähe zu ÖPNV, Soziales Umfeld (Schulen, Kindergärten) ..."
                       name="Comment"
                       defaultValue={data.Comment}
@@ -231,7 +238,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Wie können wir Sie erreichen, um Ihnen passende Grundstücke vorzustellen?</Title>
+                  <Title order={2} size="h3" mb="lg">Wie können wir Dich erreichen, um Dir passende Grundstücke vorzustellen?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <TextInput
@@ -283,24 +290,28 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
-                  <Title order={2} size="h3" mb="lg">Vielen Dank für Ihre Anfrage!</Title>
+                  <Title order={2} size="h3" mb="lg">Vielen Dank für Deine Anfrage!</Title>
                   <Text mb="sm">
-                   Wir haben Ihre Angaben erhalten und suchen jetzt passende Grundstücke für Sie.
+                    Wir haben Deine Angaben erhalten und suchen jetzt passende Grundstücke für Dich.
                   </Text>
                   <Text mb="sm">
-                    <b>Bitte bestätigen Sie Ihre E-Mail-Adresse</b>, indem Sie den Link in der gerade versendeten E-Mail anklicken.
+                    <b>Bitte bestätigen Deine E-Mail-Adresse</b>, indem Du den Link in der gerade versendeten E-Mail anklicken.
                   </Text>
                   <Text mb="sm">
-                    Sobald die Bestätigung erfolgt ist, erhalten Sie die ersten Ergebnisse. Falls wir Rückfragen haben, werden wir uns direkt bei Ihnen melden.
+                    Sobald die Bestätigung erfolgt ist, erhalte die ersten Ergebnisse. Falls wir Rückfragen haben, werden wir uns direkt bei Dir melden.
                   </Text>
                   <Text>
-                    Vielen Dank für Ihr Vertrauen!
+                    Vielen Dank für Dein Vertrauen!
                   </Text>
                 </Stepper.Completed>
               </Stepper>
             </Card>
           </Flex>
         </Flex>
+
+        {/* <Blockquote color="cyan.1" cite="– Josh Billings" mb="xl">
+          Seien Sie wie eine Briefmarke - heften Sie sich an eine Sache, bis Sie Ihr Ziel erreicht haben.
+        </Blockquote> */}
       </Box>
     </Layout>
   );

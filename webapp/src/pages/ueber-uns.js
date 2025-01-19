@@ -29,31 +29,25 @@ const AboutPage = () => {
             <Container py="xl" size="sm">
                 <Title order={1} mb="lg">Über uns</Title>
                 <Text my="md">
-                    Das ImmoRadar-Team hat es sich zur Aufgabe gemacht, Menschen auf dem Weg zu ihrem Eigenheim bestmöglich zu unterstützen.
-                    Mit unseren spezialisierten Tools und Beratungen, wie dem FörderRadar, dem Budgetrechner, dem FertighausRadar und der
-                    Grundstücksbörse, möchten wir den Weg zur Traumimmobilie einfacher und transparenter gestalten.  
-                </Text>
-                <Text my="md">
-                    Unser Ziel ist es, Ihnen die passenden Ressourcen und Informationen an die Hand zu geben, um Ihre
-                    Wünsche erfolgreich zu verwirklichen.
+                    <b>Einfach Finden.</b> Das Team von ImmoRadar beschäftigt sich mit den wichtigsten Themen rund um Dein persönliches Traumhaus.
                 </Text>
 
                 <Title order={2} mb="lg" mt="xl">Unser Team</Title>
                 <Grid mb="3rem">
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="olli.jpg" name="Oliver Rausch" title="Experte für Immobilien"/>
+                        <TeamMember image="olli.jpg" name="Oliver Rausch" title="Experte für Immobilien & Grundstücke"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="dennis.jpg" name="Dennis Kostenko" title="Experte für Förderungen"/>
+                        <TeamMember image="dennis.jpg" name="Dennis Kostenko" title="Maschinenbauingenieur - Technik & Automatisierung"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="felix.jpg" name="Felix Van Huet" title="Experte für Fertighaus-Anbieter"/>
+                        <TeamMember image="felix.jpg" name="Felix Van Huet" title="Bauingenieur - Nachhaltigkeit & Werkstoffe"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="chris.jpg" name="Christof Scholz" title="Projektmanager"/>
+                        <TeamMember image="chris.jpg" name="Christof Scholz" title="Maschinenbauingenieur - Förderungen & Vertragsgestaltung"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="vincent.jpg" name="Vincent Will" title="Webentwickler"/>
+                        <TeamMember image="vincent.jpg" name="Vincent Will" title="Webentwickler - UI & UX"/>
                     </Grid.Col>
                 </Grid>
 
