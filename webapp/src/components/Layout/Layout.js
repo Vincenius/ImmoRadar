@@ -170,9 +170,9 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
             </Box>
 
             <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
-              <Box>
+              {/* <Box>
                 <Link href="/budgetrechner"><Text size="sm" c="gray.7" mb="xs">Budgetrechner</Text></Link>
-              </Box>
+              </Box> */}
 
               <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>

@@ -351,7 +351,7 @@ const BudgetCalculator = () => {
               onChange={(value) => setInterest(value)}
             />
 
-            <CustomLabel label="Schuldenfrei in" desciption="Wann soll Deine Traumhaus komplett Dir gehören?" />
+            <CustomLabel label="Schuldenfrei in" desciption="Wann soll Dein Traumhaus komplett Dir gehören?" />
             <Slider
               my="xl"
               labelAlwaysOn
