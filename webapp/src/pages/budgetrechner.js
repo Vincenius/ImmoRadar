@@ -273,10 +273,10 @@ const BudgetCalculator = () => {
     <Layout title="Budgetrechner | ImmoRadar" description="Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.">
       <Flex align="center" gap="xl" direction={{ base: "column-reverse", sm: "row" }} my="3rem">
         <Box p={{ base: "sm", sm: "0" }}>
-          <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
+          <Title order={1} ta={{ base: 'center', sm: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
             Einfach <span className={styles.gradientText}>Finden.</span><br/>
           </Title>
-          <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+          <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', sm: 'left' }} mb="xl" fw={300}>
             Dein Budgetrechner.
           </Title>
           <Text size="lg" mb="xl" ta={{ base: 'center', sm: 'left' }}>
@@ -297,8 +297,8 @@ const BudgetCalculator = () => {
       </Flex>
 
       <Card mb="xl" ref={scollToRef}>
-        <Flex justify="space-between" gap="md" direction={{ base: "column", xs: "row" }}>
-          <Box w={{ base: "100%", xs: "67%" }}>
+        <Flex justify="space-between" gap="md" direction={{ base: "column", sm: "row" }}>
+          <Box w={{ base: "100%", sm: "67%" }}>
             <NumberInput
               label={<CustomLabel label="Dein Eigenkapital" desciption='Welche Summe an Kapital kannst Du in Dein Projekt "Traumhaus" mit einbringen?' />}
               placeholder="50 000€"
@@ -371,7 +371,7 @@ const BudgetCalculator = () => {
             />
           </Box>
 
-          <Flex direction="column" justify="center" w={{ base: "100%", xs: "33%" }} ta={{ base: 'left', xs: 'center' }}>
+          <Flex direction="column" justify="center" w={{ base: "100%", sm: "33%" }} ta={{ base: 'left', sm: 'center' }}>
             <Image
               component={NextImage}
               src={Logo}
@@ -381,10 +381,10 @@ const BudgetCalculator = () => {
               w={150}
               mb="md"
               mx="auto"
-              display={{ base: "none", xs: "block" }}
+              display={{ base: "none", sm: "block" }}
             />
-            <Text fw={500} mt="md" mb="sm" size="lg">Gesamtbudget für Dein Projekt „Traumhaus“:</Text>
-            <Text c="cyan.7" fw={600} size="2.8em" lh="1em" mb="sm">
+            <Text fw={500} mt="md" mb="sm" size="lg" ta="center">Gesamtbudget für Dein Projekt „Traumhaus“:</Text>
+            <Text c="cyan.7" fw={600} size="2.8em" lh="1em" mb="sm" ta="center">
               <NumberFormatter
                 suffix='€'
                 value={calculateAnnuity()}

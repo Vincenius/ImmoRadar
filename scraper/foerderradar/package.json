@@ -4,11 +4,14 @@
   "description": "",
   "main": "tmp.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node scraper.js"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "json-2-csv": "^5.5.7"
+    "dotenv": "^16.4.7",
+    "json-2-csv": "^5.5.7",
+    "playwright": "^1.49.1"
   }
 }

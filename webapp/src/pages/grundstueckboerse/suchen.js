@@ -89,21 +89,21 @@ export default function Home() {
               <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
                 Dein Traumgrundstück.
               </Title>
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+              <Text size="lg" mb="xl" ta="left">
                 Unser Netzwerk besteht aus Projektgesellschaften, Privatpersonen und Kommunen.
                 So sind wir in der Lage, unsere Datenbank stetig weiter zu füllen.
               </Text>
 
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+              <Text size="lg" mb="xl" ta="left">
                 Nutze einfach unseren Service!<br/>
                 <b>100% kostenlos und unverbindlich.</b>
               </Text>
 
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+              <Text size="lg" mb="xl" ta="left">
                 Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein.
               </Text>
 
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
+              <Text size="lg" mb="xl" ta="left">
                 Wir gleichen Deine Daten dann mit den Grundstücken in unserer Datenbank ab und melden uns bei Dir sobald ein passendes Grundstück dabei ist.
               </Text>
 
