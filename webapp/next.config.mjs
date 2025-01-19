@@ -23,12 +23,12 @@ const nextConfig = {
 
       {
         source: '/grundstueckboerse',
-        destination: '/grundstueckboerse/suchen',
+        destination: '/grundstueckboerse/finden',
         permanent: false,
       },
       {
         source: '/grundstueckboerse/anbieten',
-        destination: '/grundstueckboerse/suchen',
+        destination: '/grundstueckboerse/finden',
         permanent: false,
       },
     ]

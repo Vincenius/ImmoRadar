@@ -12,7 +12,7 @@ import styles from './Layout.module.css';
 const menu = [
   {
     label: 'Grundstückbörse',
-    url: '/grundstueckboerse/suchen'
+    url: '/grundstueckboerse/finden'
   },
   // {
   //   label: 'Förderungscheck',

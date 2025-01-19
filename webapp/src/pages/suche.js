@@ -45,7 +45,7 @@ const InfoBanner = () => {
     <Card shadow="sm" padding="lg" radius="md" withBorder mb="md">
       <Box>
         <Text fw={500} c="black" mb="sm">Du konntest kein passendes Grundstück für Dich finden?</Text>
-        <Button component={Link} href="/grundstueckboerse/suchen" px="sm">
+        <Button component={Link} href="/grundstueckboerse/finden" px="sm">
           Nutze jetzt unsere Grundstückbörse
         </Button>
       </Box>

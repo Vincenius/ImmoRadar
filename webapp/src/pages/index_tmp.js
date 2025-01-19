@@ -104,7 +104,7 @@ export default function Home() {
               Egal, ob Sie ein Grundstück kaufen oder verkaufen möchten - unsere Börse bringt Sie mit den richtigen Interessenten zusammen.
               Käufer finden schnell die passenden Angebote, während Verkäufer ihre Grundstücke einem großen Publikum präsentieren können.
             </Text>
-            <Button href="/grundstueckboerse/suchen" component={NextLink}>Grundstückbörse entdecken</Button>
+            <Button href="/grundstueckboerse/finden" component={NextLink}>Grundstückbörse entdecken</Button>
           </Box>
         </Flex>
       </Box>

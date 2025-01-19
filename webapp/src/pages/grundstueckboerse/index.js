@@ -24,7 +24,7 @@ export default function Home() {
             </Text>
 
             <Flex direction={{ base: 'column', sm: 'row'}} gap="xl" justify={{ base: 'center', md: 'flex-start' }}>
-              <Button size="lg" href="/grundstueckboerse/suchen" component={Link}>Grundstücke entdecken</Button>
+              <Button size="lg" href="/grundstueckboerse/finden" component={Link}>Grundstücke entdecken</Button>
               <Button size="lg" href="/grundstueckboerse/anbieten" component={Link}>Grundstücke anbieten</Button>
             </Flex>
           </Box>
