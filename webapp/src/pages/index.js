@@ -7,7 +7,10 @@ import Logos from '@/components/Logos/Logos'
 import styles from '@/styles/Home.module.css'
 
 export default function Search () {
-  return (<Layout title="Alle Grundstücke an einem Ort">
+  return (<Layout
+    title="Einfach Finden. Alle Grundstücke an einem Ort. | ImmoRadar"
+    description="Ihre Suchmaschine für Grundstücke. Kombiniert Ergebnisse von den Top 3 Immobilien-Portalen und zeigt eine einzige, gut sortierte Liste ohne Duplikate.."
+  >
     <Box>
       <div className={styles.background}></div>
 
