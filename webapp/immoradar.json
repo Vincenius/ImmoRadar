@@ -1,7 +1,7 @@
 {
     "apps": [
         {
-            "name": "immoradar",
+            "name": "immoradar-old",
             "script": "npm",
             "args": "run start",
             "env": {
