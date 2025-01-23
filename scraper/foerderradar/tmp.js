@@ -2,43 +2,57 @@ const fs = require('fs');
 let converter = require('json-2-csv');
 const { chromium } = require('playwright');
 
+const cities = [
+  'München',
+  'Köln',
+  'Berlin',
+]
+
 const main = async () => {
   const browser = await chromium.launch({ headless: false });
   const page = await browser.newPage();
 
-  await page.goto('https://www.bundes-telefonbuch.de/suche?what=it&where=k%C3%B6ln&whereLat=&whereLng=');
-  console.log('wait for scroll...')
-  await page.waitForTimeout(20000); // time for manual scrolling because I'm to lazy to code it
+  for (const city of cities) {
+    await page.goto(`https://www.bundes-telefonbuch.de/suche?what=it&where=${encodeURI(city)}&whereLat=&whereLng=`);
+    page.waitForTimeout(1000) // wait for page to load
 
-  const data = await page.evaluate(() => {
-    const results = [];
-    const contentSections = document.querySelectorAll('.companyBox');
-    
-    contentSections.forEach(section => {
-      const result = {};
+    for (let i = 0; i < 300; i++) { // scroll to bottom
+      await page.mouse.wheel(0, 500);
+      await page.waitForTimeout(10);
+    }
+
+    const data = await page.evaluate(() => {
+      const results = [];
+      const contentSections = document.querySelectorAll('.companyBox');
       
-      const nameElement = section.querySelector('.panel-title');
-      result.Name = nameElement ? nameElement.textContent.trim() : 'N/A';
+      contentSections.forEach(section => {
+        const result = {};
+        
+        const nameElement = section.querySelector('.panel-title');
+        result.Name = nameElement ? nameElement.textContent.trim() : 'N/A';
 
-      const phoneElement = section.querySelector('.detail-phone a');
-      result.Telefonnummer = phoneElement ? phoneElement.textContent.trim() : 'N/A';
+        const phoneElement = section.querySelector('.detail-phone a');
+        result.Telefonnummer = phoneElement ? phoneElement.textContent.trim() : 'N/A';
 
-      const emailElement = section.querySelector('.detail-email');
-      result.Email = emailElement ? emailElement.textContent.trim() : 'N/A';
+        const emailElement = section.querySelector('.detail-email');
+        result.Email = emailElement ? emailElement.textContent.trim() : 'N/A';
 
-      const homepageElement = section.querySelector('.detail-homepage');
-      result.Homepage = homepageElement ? homepageElement.href.trim() : 'N/A';
+        const homepageElement = section.querySelector('.detail-homepage');
+        result.Homepage = homepageElement ? homepageElement.href.trim() : 'N/A';
 
-      results.push(result);
+        results.push(result);
+      });
+
+      return results;
     });
 
-    return results;
-  });
+    console.log(city, 'scraped', data.length)
 
-  console.log(data, data.length)
+    const csv = await converter.json2csv(Object.entries(data), {});
+    fs.writeFileSync(`./${city}-data.csv`, csv)
 
-  const csv = await converter.json2csv(Object.entries(data), {});
-  fs.writeFileSync('./data.csv', csv)
+    await page.close();
+  }
 }
 
 main()
