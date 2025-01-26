@@ -76,7 +76,7 @@ export default function Home() {
   return (
     <Layout
       title="ImmoRadar Grundstücke Anbieten"
-      description="Verkaufe dein Grundstück. Unser Netzwerk umfasst eine Vielzahl Grundstücksuchenden. Dadurch können wir sicherstellen, dass Dein Grundstück in die besten Hände gelangt."
+      description="Verkaufe Dein Grundstück. Unser Netzwerk umfasst eine Vielzahl Grundstücksuchenden. Dadurch können wir sicherstellen, dass Dein Grundstück in die besten Hände gelangt."
     >
       <Box>
         <div className={styles.background}></div>
@@ -88,7 +88,7 @@ export default function Home() {
                 Einfach <span className={styles.gradientText}>Finden.</span>
               </Title>
               <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
-                Verkaufe dein Grundstück.
+                Verkaufe Dein Grundstück.
               </Title>
 
               <Text size="lg" mb="xl" ta="left">
