@@ -75,8 +75,8 @@ export default function Home() {
 
   return (
     <Layout
-      title="ImmoRadar Grundstücke Suchen"
-      description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
+      title="ImmoRadar Grundstücke Anbieten"
+      description="Verkaufe dein Grundstück. Unser Netzwerk umfasst eine Vielzahl Grundstücksuchenden. Dadurch können wir sicherstellen, dass Dein Grundstück in die besten Hände gelangt."
     >
       <Box>
         <div className={styles.background}></div>
@@ -84,34 +84,33 @@ export default function Home() {
         <Flex py="6rem" mih="calc(100vh - 64px - 52px - 16px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction={{ base: "column", md: "row" }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
-              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Verkaufen Sie Ihr <span className={styles.gradientText}>Grundstück</span>
+              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mt={{ base: 'xl', md: 0 }} textWrap="balance">
+                Einfach <span className={styles.gradientText}>Finden.</span>
               </Title>
-              <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
-                Möchten Sie Ihr Grundstück erfolgreich verkaufen? Unsere Grundstücksbörse hilft Ihnen dabei, einen Käufer zu finden.
+              <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+                Verkaufe dein Grundstück.
+              </Title>
+
+              <Text size="lg" mb="xl" ta="left">
+                Unser Netzwerk umfasst eine Vielzahl Grundstücksuchenden.
+                Dadurch können wir sicherstellen, dass Dein Grundstück in die besten Hände gelangt.
               </Text>
 
-              <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }} w="100%">
-                  <ThemeIcon variant="outline">
-                    <IconHomeDollar style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Gezielte Käuferansprache</b>: Erreichen Sie potenzielle Käufer, die aktiv auf der Suche nach Grundstücken in Ihrer Region sind.</Text>
-                </Flex>
+              <Text size="lg" mb="xl" ta="left">
+                Nutze unseren Service, um Dein Grundstück anzubieten!
+                Trage hier einfach die relevanten Informationen zu Deinem Grundstück ein.
+              </Text>
 
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }} w="100%">
-                  <ThemeIcon variant="outline">
-                    <IconClockBolt style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Schnelle und einfache Inserierung</b>: Inserieren Sie Ihr Grundstück in wenigen Schritten.</Text>
-                </Flex>
-              </Flex>
+              <Text size="lg" mb="xl" ta="left">
+                Wir prüfen Dein Angebot und präsentieren es potenziellen Käufern aus unserer umfangreichen Datenbank.
+                Sobald sich ein interessierter Käufer findet, setzen wir uns mit Dir in Verbindung.
+              </Text>
             </Box>
 
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Wo liegt Ihr Grundstück?</Title>
+                  <Title order={2} size="h3" mb="lg">Wo liegt Dein Grundstück?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <TextInput
@@ -146,7 +145,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Welche Details können Sie uns zu Ihrem Grundstück mitteilen?</Title>
+                  <Title order={2} size="h3" mb="lg">Welche Details kannst Du uns zu Deinem Grundstück mitteilen?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <NumberInput
@@ -176,7 +175,7 @@ export default function Home() {
                     />
                     <Textarea
                       label="Anmerkungen"
-                      description="Was sollten wir noch zu Ihrem Grundstück wissen?"
+                      description="Was sollten wir noch zu Deinem Grundstück wissen?"
                       placeholder=""
                       name="Comment"
                       defaultValue={data.Comment}
@@ -187,7 +186,7 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Wie können wir Sie erreichen?</Title>
+                  <Title order={2} size="h3" mb="lg">Wie können wir Dich erreichen?</Title>
 
                   <form onSubmit={handleSubmit}>
                     <TextInput
@@ -239,18 +238,18 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
-                  <Title order={2} size="h3" mb="lg">Vielen Dank für Ihre Anfrage!</Title>
+                  <Title order={2} size="h3" mb="lg">Vielen Dank für Deine Anfrage!</Title>
                   <Text mb="sm">
-                    Wir haben Ihre Angaben erhalten und suchen jetzt passende Käufer für Sie.
+                    Wir haben Deine Angaben erhalten und suchen jetzt passende Käufer für Dich.
                   </Text>
                   <Text mb="sm">
-                    <b>Bitte bestätigen Sie Ihre E-Mail-Adresse</b>, indem Sie den Link in der gerade versendeten E-Mail anklicken.
+                    <b>Bitte bestätige Deine E-Mail-Adresse</b>, indem Du den Link in der gerade versendeten E-Mail anklicken.
                   </Text>
                   <Text mb="sm">
-                    Sobald die Bestätigung erfolgt ist, erhalten Sie die ersten Ergebnisse. Falls wir Rückfragen haben, werden wir uns direkt bei Ihnen melden.
+                    Sobald die Bestätigung erfolgt ist, erhälst Du die ersten Ergebnisse. Falls wir Rückfragen haben, werden wir uns direkt bei Dir melden.
                   </Text>
                   <Text>
-                    Vielen Dank für Ihr Vertrauen!
+                    Vielen Dank für Dein Vertrauen!
                   </Text>
                 </Stepper.Completed>
               </Stepper>

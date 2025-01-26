@@ -20,14 +20,8 @@ const nextConfig = {
         destination: '/search?q=Berlin-Spandau',
         permanent: true,
       },
-
       {
         source: '/grundstueckboerse',
-        destination: '/grundstueckboerse/finden',
-        permanent: false,
-      },
-      {
-        source: '/grundstueckboerse/anbieten',
         destination: '/grundstueckboerse/finden',
         permanent: false,
       },

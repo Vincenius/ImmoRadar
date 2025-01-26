@@ -106,29 +106,6 @@ export default function Home() {
               <Text size="lg" mb="xl" ta="left">
                 Wir gleichen Deine Daten dann mit den Grundstücken in unserer Datenbank ab und melden uns bei Dir sobald ein passendes Grundstück dabei ist.
               </Text>
-
-              {/* <Flex gap={{ base: "sm", sm: "lg" }} direction={{ base: "column", sm: "row" }}>
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
-                  <ThemeIcon variant="outline">
-                    <IconHomeSearch style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Individuelle Grundstücksauswahl</b>: Wir filtern passende Grundstücke nach Deinen spezifischen Anforderungen.</Text>
-                </Flex>
-
-                <Flex gap="md" align={{ base: "center", sm: "start" }} mb="xl" direction={{ base: "row", sm: "column" }}>
-                  <ThemeIcon variant="outline">
-                    <IconClockBolt style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Schneller und unkomplizierter Prozess</b>: Sparen Sie Zeit und Nerven mit unserem einfach zu bedienenden Service.</Text>
-                </Flex>
-
-                <Flex gap="md" align={{ base: "center", sm: "start" }} direction={{ base: "row", sm: "column" }}>
-                  <ThemeIcon variant="outline">
-                    <IconStar style={{ width: '70%', height: '70%' }} />
-                  </ThemeIcon>
-                  <Text><b>Exklusive Grundstücke</b>: Entdecken Sie einmalige Grundstücke, die nur über unsere Plattform verfügbar sind und nirgendwo anders gelistet werden.</Text>
-                </Flex>
-              </Flex> */}
             </Box>
 
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
