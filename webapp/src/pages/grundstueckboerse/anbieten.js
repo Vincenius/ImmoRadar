@@ -2,7 +2,7 @@ import { useState, useRef } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox, SimpleGrid, Image, ActionIcon } from '@mantine/core';
 import { IconMapPin2, IconHome2, IconUser, IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
-import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { Dropzone, IMAGE_MIME_TYPE, PDF_MIME_TYPE } from '@mantine/dropzone';
 import { handleFiles } from '@/utils/fileUpload'
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
@@ -51,9 +51,8 @@ export default function Home() {
       <Image
         key={index}
         radius="md"
-        src={imageUrl}
+        src={file.type === 'application/pdf' ? '/imgs/pdf.png' : imageUrl}
         onLoad={() => URL.revokeObjectURL(imageUrl)}
-
       />
     </Box>
   });
@@ -229,11 +228,11 @@ export default function Home() {
                       mb="sm"
                     />
 
-                    <Text size="sm" fw={500} mb="4px">Bilder hochladen (optional)</Text>
+                    <Text size="sm" fw={500} mb="4px">Bilder / PDF hochladen (optional)</Text>
                     <Dropzone
                       onDrop={newFiles => setFiles([...files, ...newFiles])}
                       maxSize={20 * 1024 ** 2}
-                      accept={IMAGE_MIME_TYPE}
+                      accept={[...IMAGE_MIME_TYPE, ...PDF_MIME_TYPE]}
                       activateOnClick={false}
                       openRef={openRef}
                     >
