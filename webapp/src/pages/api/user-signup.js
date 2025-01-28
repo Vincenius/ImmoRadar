@@ -4,6 +4,14 @@ import confirmSearchTemplate from '@/utils/templates/confirmation-property-searc
 import confirmOfferTemplate from '@/utils/templates/confirmation-property-offer';
 import budgetCalculatorTemplate from '@/utils/templates/confirmation-budget-calculator';
 
+export const config = {
+  api: {
+      bodyParser: {
+          sizeLimit: '20mb'
+      }
+  }
+}
+
 const getOptions = body => ({
   method: 'POST',
   headers: {
@@ -40,6 +48,7 @@ export default async function handler(req, res) {
         Lastname,
         Email,
         Phone,
+        files,
         ...rest
       } = JSON.parse(req.body);
       const token = uuidv4();
@@ -64,6 +73,21 @@ export default async function handler(req, res) {
       const linkOptions = getOptions([{ Id: newSignup.Id }])
       const linkId = linkIds[type]
       await fetch(`https://admin.immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/links/${linkId}/records/${newLead.Id}`, linkOptions)
+
+      if (type === 'property' && files && files.length > 0) {
+        // async upload in the background
+        fetch(process.env.BASE_URL + '/api/upload', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            files: files,
+            linkId: newSignup.Id,
+            api_key: process.env.API_KEY,
+          })
+        })
+      }
 
       const name = `${Firstname} ${Lastname}`
       await sendEmail({

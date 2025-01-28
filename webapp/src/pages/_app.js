@@ -1,6 +1,7 @@
 import '@mantine/core/styles.css';
 import '@mantine/carousel/styles.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/dropzone/styles.css';
 import "@/styles/globals.css";
 
 import { createTheme, MantineProvider, TagsInput, TextInput, Select } from '@mantine/core';

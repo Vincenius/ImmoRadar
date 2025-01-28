@@ -1,7 +1,9 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, ThemeIcon, Checkbox } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser, IconHomeDollar, IconClockBolt, IconMessage } from '@tabler/icons-react';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox, SimpleGrid, Image, ActionIcon } from '@mantine/core';
+import { IconMapPin2, IconHome2, IconUser, IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
+import { Dropzone, IMAGE_MIME_TYPE } from '@mantine/dropzone';
+import { handleFiles } from '@/utils/fileUpload'
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
@@ -11,9 +13,9 @@ const numberFormatElements = ['Size', 'Price', 'Postalcode']
 
 const ButtonGroup = ({ active, setActive, isLoading }) => {
   return <Group justify="space-between" mt="xl">
-    { active === 0 && <div></div>}
-    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading}>Zurück</Button> }
-    { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
+    {active === 0 && <div></div>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading}>Zurück</Button>}
+    {active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button>}
   </Group>
 }
 
@@ -23,8 +25,40 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [phone, setPhone] = useState('');
   const [isPhoneError, setIsPhoneError] = useState(false);
+  const [isFileSizeError, setIsFileSizeError] = useState(false);
+  const [files, setFiles] = useState([]);
+  const openRef = useRef(null);
 
-  const handleSubmit = (e) => {
+  const handleDelete = (index) => {
+    const updatedFiles = files.filter((_, i) => i !== index);
+    setFiles(updatedFiles);
+  };
+
+  const previews = files.map((file, index) => {
+    const imageUrl = URL.createObjectURL(file);
+    return <Box pos="relative">
+      <ActionIcon
+        size="xs"
+        variant="filled"
+        aria-label="Bild löschen"
+        pos="absolute"
+        onClick={() => handleDelete(index)}
+        right={0}
+        color="red"
+      >
+        <IconX style={{ width: '70%', height: '70%' }} stroke={1.5} />
+      </ActionIcon>
+      <Image
+        key={index}
+        radius="md"
+        src={imageUrl}
+        onLoad={() => URL.revokeObjectURL(imageUrl)}
+
+      />
+    </Box>
+  });
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     const formObject = {};
@@ -46,6 +80,16 @@ export default function Home() {
       }
     }
 
+    if (active === 1) {
+      const totalSize = files.reduce((acc, file) => acc + file.size, 0);
+      if (totalSize > 20000000) {
+        setIsFileSizeError(true)
+        return;
+      } else {
+        setIsFileSizeError(false)
+      }
+    }
+
     const newData = {
       ...data,
       ...formObject
@@ -54,10 +98,13 @@ export default function Home() {
     if (active === 2) {
       setIsLoading(true)
 
+      const fileData = await handleFiles(files)
+
       fetch('/api/user-signup', {
         method: 'POST',
         body: JSON.stringify({
           ...newData,
+          files: fileData,
           type: 'property'
         }),
       }).then(() => {
@@ -181,6 +228,41 @@ export default function Home() {
                       defaultValue={data.Comment}
                       mb="sm"
                     />
+
+                    <Text size="sm" fw={500} mb="4px">Bilder hochladen (optional)</Text>
+                    <Dropzone
+                      onDrop={newFiles => setFiles([...files, ...newFiles])}
+                      maxSize={20 * 1024 ** 2}
+                      accept={IMAGE_MIME_TYPE}
+                      activateOnClick={false}
+                      openRef={openRef}
+                    >
+                      <Group justify="center" gap="sm" style={{ pointerEvents: 'all', cursor: 'pointer' }} onClick={() => openRef.current?.()}>
+                        <Dropzone.Accept>
+                          <IconUpload size={52} color="var(--mantine-color-blue-6)" stroke={1.5} />
+                        </Dropzone.Accept>
+                        <Dropzone.Reject>
+                          <IconX size={52} color="var(--mantine-color-red-6)" stroke={1.5} />
+                        </Dropzone.Reject>
+                        <Dropzone.Idle>
+                          <IconPhoto size={52} color="var(--mantine-color-dimmed)" stroke={1.5} />
+                        </Dropzone.Idle>
+
+                        <div>
+                          <Text size="sm" c="dimmed" inline mt={7} ta="center">
+                            Ziehe Bilder hierher oder klicke, um Dateien auszuwählen (max 20 MB).
+                          </Text>
+                        </div>
+                      </Group>
+                    </Dropzone>
+
+                    {previews.length > 0 && <Box bd="calc(0.0625rem * var(--mantine-scale)) dashed var(--mantine-color-gray-4)" p="sm">
+                      <SimpleGrid cols={{ base: 2, sm: 3 }}>
+                        {previews}
+                      </SimpleGrid>
+                    </Box>}
+
+                    { isFileSizeError && <Text size="sm" c="red" mt="sm">Deine Dateien überschreiten die Maximale Größe von 20 MB.</Text> }
 
                     <ButtonGroup active={active} setActive={setActive} />
                   </form>
