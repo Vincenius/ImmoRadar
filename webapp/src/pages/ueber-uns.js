@@ -49,6 +49,9 @@ const AboutPage = () => {
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                         <TeamMember image="vincent.jpg" name="Vincent Will" title="Webentwickler - UI & UX"/>
                     </Grid.Col>
+                    <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                        <TeamMember image="michael.jpg" name="Michael Beuthel" title="Experte für Förderungen"/>
+                    </Grid.Col>
                 </Grid>
 
                 <Title order={2} mb="lg">Kontakt</Title>

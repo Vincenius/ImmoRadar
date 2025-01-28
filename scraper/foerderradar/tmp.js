@@ -1,58 +1,75 @@
 const fs = require('fs');
 let converter = require('json-2-csv');
-const { chromium } = require('playwright');
+const { firefox } = require('playwright');
 
 const cities = [
-  'München',
-  'Köln',
-  'Berlin',
+  'Koeln',
+  // 'Berlin',
 ]
 
 const main = async () => {
-  const browser = await chromium.launch({ headless: false });
+  const browser = await firefox.launch({ headless: false });
   const page = await browser.newPage();
 
   for (const city of cities) {
-    await page.goto(`https://www.bundes-telefonbuch.de/suche?what=it&where=${encodeURI(city)}&whereLat=&whereLng=`);
-    page.waitForTimeout(1000) // wait for page to load
+    await page.goto(`https://www.whofinance.de/berater-finden/finanzberater/${encodeURI(city)}/geldanlage/`);
+    await page.waitForTimeout(2000)
 
-    for (let i = 0; i < 300; i++) { // scroll to bottom
-      await page.mouse.wheel(0, 500);
-      await page.waitForTimeout(10);
+    const pages = await page.evaluate(() => {
+      return document.querySelectorAll('.page-item').length
+    })
+
+    const links = []
+    for (let i = 1; i <= pages; i++) {
+      await page.goto(`https://www.whofinance.de/berater-finden/finanzberater/${encodeURI(city)}/geldanlage/?page=${i}`)
+      await page.waitForTimeout(2000)
+
+      const newLinks = await page.evaluate(() => {
+        const results = []
+        document.querySelectorAll('.container-photo a').forEach(link => results.push(link.href))
+        return results
+      })
+      links.push(newLinks)
     }
 
-    const data = await page.evaluate(() => {
-      const results = [];
-      const contentSections = document.querySelectorAll('.companyBox');
-      
-      contentSections.forEach(section => {
-        const result = {};
-        
-        const nameElement = section.querySelector('.panel-title');
-        result.Name = nameElement ? nameElement.textContent.trim() : 'N/A';
+    const allLinks = links.flat()
+    const allAdvisors = []
 
-        const phoneElement = section.querySelector('.detail-phone a');
-        result.Telefonnummer = phoneElement ? phoneElement.textContent.trim() : 'N/A';
+    for (const link of allLinks) {
+      await page.goto(link)
+      await page.waitForTimeout(2000)
 
-        const emailElement = section.querySelector('.detail-email');
-        result.Email = emailElement ? emailElement.textContent.trim() : 'N/A';
+      const advisor = await page.evaluate(() => {
+        const name = document.querySelector('h1')?.textContent.trim()
+        const office = document.querySelector('.wf-office-name')?.textContent.trim() 
+        const rating = document.querySelector('.rating-text')?.textContent.trim().split(/\s+/).join(' ')
+        const address = document.querySelector('.address-block')?.textContent.trim().split(/\s+/).join(' ')
+        const info = document.querySelector('.berater-list')?.textContent.trim().split(/\s+/).join(' ')
+        const phone = document.querySelector('#consultant-phone')?.href.replace('tel:', '')
+        const mobile = document.querySelector('#consultant-mobile')?.href.replace('tel:', '')
 
-        const homepageElement = section.querySelector('.detail-homepage');
-        result.Homepage = homepageElement ? homepageElement.href.trim() : 'N/A';
+        return {
+          name,
+          office,
+          rating,
+          address,
+          info,
+          phone,
+          mobile
+        }
+      })
 
-        results.push(result);
-      });
+      allAdvisors.push(advisor)
+    }
 
-      return results;
-    });
-
+    console.log(allAdvisors)
     console.log(city, 'scraped', data.length)
 
-    const csv = await converter.json2csv(Object.entries(data), {});
+    const csv = await converter.json2csv(Object.entries(allAdvisors), {});
     fs.writeFileSync(`./${city}-data.csv`, csv)
-
-    await page.close();
   }
+
+  await page.close();
 }
 
 main()
