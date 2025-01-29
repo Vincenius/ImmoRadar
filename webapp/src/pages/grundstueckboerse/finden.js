@@ -1,19 +1,21 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox, Blockquote } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
+import { IconMapPin2, IconHome2, IconUser, IconSearch } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
+import FileUpload from '@/components/FileUpload/FileUpload';
+import { handleFiles } from '@/utils/fileUpload'
 import { isValidPhoneNumber } from 'libphonenumber-js'
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
-const ButtonGroup = ({ active, setActive, isLoading }) => {
+const ButtonGroup = ({ active, setActive, isLoading, disabled }) => {
   return <Group justify="space-between" mt="xl">
-    { active === 0 && <div></div>}
-    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading}>Zurück</Button> }
-    { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
+    {active === 0 && <div></div>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading || disabled}>Zurück</Button>}
+    {active < 4 && <Button type="submit" loading={isLoading} disabled={disabled}>Weiter</Button>}
   </Group>
 }
 
@@ -23,10 +25,18 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false);
   const [phone, setPhone] = useState('');
   const [isPhoneError, setIsPhoneError] = useState(false);
+  const [option, setOption] = useState('')
+  const [isFileSizeError, setIsFileSizeError] = useState(false);
+  const [files, setFiles] = useState([]);
 
-  const handleSubmit = (e) => {
+  const handleOption = (val) => {
+    setOption(val)
+    setActive(1)
+  }
+
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    
+
     const formObject = {};
     const elements = e.target.elements;
     for (let element of elements) {
@@ -51,13 +61,16 @@ export default function Home() {
       ...formObject
     }
 
-    if (active === 2) {
+    if (active === 3) {
       setIsLoading(true)
+
+      const fileData = await handleFiles(files)
 
       fetch('/api/user-signup', {
         method: 'POST',
         body: JSON.stringify({
           ...newData,
+          files: fileData,
           type: 'search'
         }),
       }).then(() => {
@@ -95,7 +108,7 @@ export default function Home() {
               </Text>
 
               <Text size="lg" mb="xl" ta="left">
-                Nutze einfach unseren Service!<br/>
+                Nutze einfach unseren Service!<br />
                 <b>100% kostenlos und unverbindlich.</b>
               </Text>
 
@@ -110,8 +123,20 @@ export default function Home() {
 
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
-                <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">In welcher Region soll Dein Grundstück liegen?</Title>
+                <Stepper.Step icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
+                  <Title order={2} size="h3" mb="xl">Wie dürfen wir Dich unterstützen?</Title>
+
+                  <Button size="lg" mb="xl" fullWidth styles={{ label: { whiteSpace: 'wrap' } }} onClick={() => handleOption('search')}>
+                    Ich bin auf der Suche nach einem passenden Grundstück
+                  </Button>
+                  <Button size="lg" variant="outline" fullWidth styles={{ label: { whiteSpace: 'wrap' } }} onClick={() => handleOption('research')}>
+                    Ich möchte den Besitzer eines mir bekannten Grundstücks ermitteln
+                  </Button>
+
+                </Stepper.Step>
+                <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
+                  {option === 'search' && <Title order={2} size="h3" mb="lg">In welcher Region soll Dein Grundstück liegen?</Title>}
+                  {option === 'research' && <Title order={2} size="h3" mb="lg">Wo befindet sich das Grundstück?</Title>}
 
                   <form onSubmit={handleSubmit}>
                     <NumberInput
@@ -133,62 +158,80 @@ export default function Home() {
                       name="City"
                       defaultValue={data.City}
                     />
-                    <NumberInput
-                      label="Umkreis"
-                      description="In welchem Radius um diesen Ort ist es noch möglich?"
-                      placeholder="200"
-                      required
-                      hideControls
-                      mb="sm"
-                      rightSection="km"
-                      name="Radius"
-                      decimalScale={0}
-                      thousandSeparator=" "
-                      defaultValue={data.Radius}
-                    />
-                    <TextInput
-                      label="Städte ausschließen"
-                      description="Welche Orte sind auf jeden Fall ausgeschlossen?"
-                      placeholder="Leverkusen, Pulheim ..."
-                      mb="sm"
-                      name="ExcludeCity"
-                      defaultValue={data.ExcludeCity}
-                    />
+                    {option === 'search' && <>
+                      <NumberInput
+                        label="Umkreis"
+                        description="In welchem Radius um diesen Ort ist es noch möglich?"
+                        placeholder="200"
+                        required
+                        hideControls
+                        mb="sm"
+                        rightSection="km"
+                        name="Radius"
+                        decimalScale={0}
+                        thousandSeparator=" "
+                        defaultValue={data.Radius}
+                      />
+                      <TextInput
+                        label="Städte ausschließen"
+                        description="Welche Orte sind auf jeden Fall ausgeschlossen?"
+                        placeholder="Leverkusen, Pulheim ..."
+                        mb="sm"
+                        name="ExcludeCity"
+                        defaultValue={data.ExcludeCity}
+                      />
+                    </>}
+                    {option === 'research' && <>
+                      <TextInput
+                        label="Adresse"
+                        description="Wo befindet sich das Grundstück?"
+                        placeholder="Neben der Hauptstraße 29"
+                        mb="sm"
+                        name="Address"
+                        required
+                        defaultValue={data.Address}
+                      />
 
-                    <ButtonGroup active={active} setActive={setActive} />
+                      <FileUpload files={files} setFiles={setFiles} isFileSizeError={isFileSizeError} setIsFileSizeError={setIsFileSizeError} />
+                    </>}
+
+                    <ButtonGroup active={active} setActive={setActive} disabled={isFileSizeError} />
                   </form>
                 </Stepper.Step>
-                <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />}>
-                  <Title order={2} size="h3" mb="lg">Welche Größe und Eigenschaften sind Dir wichtig?</Title>
+                <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
+                  {option === 'search' && <Title order={2} size="h3" mb="lg">Welche Größe und Eigenschaften sind Dir wichtig?</Title>}
+                  {option === 'research' && <Title order={2} size="h3" mb="lg">Welche Eigenschaften sind Dir wichtig?</Title>}
 
                   <form onSubmit={handleSubmit}>
-                    <Flex gap="sm">
-                      <NumberInput
-                        label="Min. Größe des Grundstücks"
-                        placeholder="100"
-                        required
-                        hideControls
-                        mb="sm"
-                        name="MinSize"
-                        rightSection="m²"
-                        thousandSeparator=" "
-                        decimalScale={0}
-                        defaultValue={data.MinSize}
-                      />
-                      <NumberInput
-                        label="Max. Größe des Grundstücks"
-                        placeholder="500"
-                        required
-                        hideControls
-                        mb="sm"
-                        name="MaxSize"
-                        rightSection="m²"
-                        thousandSeparator=" "
-                        decimalScale={0}
-                        defaultValue={data.MaxSize}
-                      />
-                    </Flex>
-                    
+                    {option === 'search' &&
+                      <Flex gap="sm">
+                        <NumberInput
+                          label="Min. Größe des Grundstücks"
+                          placeholder="100"
+                          required
+                          hideControls
+                          mb="sm"
+                          name="MinSize"
+                          rightSection="m²"
+                          thousandSeparator=" "
+                          decimalScale={0}
+                          defaultValue={data.MinSize}
+                        />
+                        <NumberInput
+                          label="Max. Größe des Grundstücks"
+                          placeholder="500"
+                          required
+                          hideControls
+                          mb="sm"
+                          name="MaxSize"
+                          rightSection="m²"
+                          thousandSeparator=" "
+                          decimalScale={0}
+                          defaultValue={data.MaxSize}
+                        />
+                      </Flex>
+                    }
+
                     <NumberInput
                       label="Budget"
                       description="Welche Investition planst Du für Dein Grundstück?"
@@ -204,8 +247,8 @@ export default function Home() {
                     />
                     <Textarea
                       label="Anmerkungen"
-                      description="Was ist Dir in Deiner Nähe noch wichtig?"
-                      placeholder="Nähe zu ÖPNV, Soziales Umfeld (Schulen, Kindergärten) ..."
+                      description={option === 'search' ? "Was ist Dir in Deiner Nähe noch wichtig?" : "Was sollten wir noch Wissen?"}
+                      placeholder={option === 'search' ? "Nähe zu ÖPNV, Soziales Umfeld (Schulen, Kindergärten) ..." : ""}
                       name="Comment"
                       defaultValue={data.Comment}
                       mb="sm"
@@ -214,7 +257,7 @@ export default function Home() {
                     <ButtonGroup active={active} setActive={setActive} />
                   </form>
                 </Stepper.Step>
-                <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />}>
+                <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="lg">Wie können wir Dich erreichen, um Dir passende Grundstücke vorzustellen?</Title>
 
                   <form onSubmit={handleSubmit}>
@@ -260,6 +303,7 @@ export default function Home() {
                     />
                     <Checkbox
                       required
+                      styles={{ body: { alignItems: 'center' } }}
                       label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
                     />
 

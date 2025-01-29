@@ -52,7 +52,10 @@ export default async function handler(req, res) {
   if (req.body.api_key !== process.env.API_KEY) {
     return res.status(401).json({ message: 'Unauthorized' });
   } else {
-    const { files, linkId } = req.body;
+    const { files, recordId, linkId, tableId } = req.body;
+    console.log({
+      recordId, linkId, tableId
+    })
 
     const fileIds = await Promise.all(files.map(async file => {
       const fileUrl = await handleUpload(file)
@@ -66,7 +69,7 @@ export default async function handler(req, res) {
     }))
 
     const linkOptions = getOptions(fileIds)
-    await fetch(`https://admin.immoradar.xyz/api/v2/tables/moztle2smhvqtpb/links/cm5utesjdvpqyg8/records/${linkId}`, linkOptions)
+    await fetch(`https://admin.immoradar.xyz/api/v2/tables/${tableId}/links/${linkId}/records/${recordId}`, linkOptions)
       .then(res => res.json())
 
     res.status(200).json({ message: 'File uploaded successfully' });

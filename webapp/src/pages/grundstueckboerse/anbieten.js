@@ -1,21 +1,22 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox, SimpleGrid, Image, ActionIcon } from '@mantine/core';
-import { IconMapPin2, IconHome2, IconUser, IconUpload, IconPhoto, IconX } from '@tabler/icons-react';
-import { Dropzone, IMAGE_MIME_TYPE, PDF_MIME_TYPE } from '@mantine/dropzone';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox } from '@mantine/core';
+import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
 import { handleFiles } from '@/utils/fileUpload'
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
 import { isValidPhoneNumber } from 'libphonenumber-js'
+import FileUpload from '@/components/FileUpload/FileUpload';
 
 const numberFormatElements = ['Size', 'Price', 'Postalcode']
+const checkboxElements = ['BuildingLicense']
 
-const ButtonGroup = ({ active, setActive, isLoading }) => {
+const ButtonGroup = ({ active, setActive, isLoading, disabled }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
-    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading}>Zurück</Button>}
-    {active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} disabled={isLoading || disabled}>Zurück</Button>}
+    {active < 3 && <Button type="submit" loading={isLoading} disabled={disabled}>Weiter</Button>}
   </Group>
 }
 
@@ -27,35 +28,6 @@ export default function Home() {
   const [isPhoneError, setIsPhoneError] = useState(false);
   const [isFileSizeError, setIsFileSizeError] = useState(false);
   const [files, setFiles] = useState([]);
-  const openRef = useRef(null);
-
-  const handleDelete = (index) => {
-    const updatedFiles = files.filter((_, i) => i !== index);
-    setFiles(updatedFiles);
-  };
-
-  const previews = files.map((file, index) => {
-    const imageUrl = URL.createObjectURL(file);
-    return <Box pos="relative">
-      <ActionIcon
-        size="xs"
-        variant="filled"
-        aria-label="Bild löschen"
-        pos="absolute"
-        onClick={() => handleDelete(index)}
-        right={0}
-        color="red"
-      >
-        <IconX style={{ width: '70%', height: '70%' }} stroke={1.5} />
-      </ActionIcon>
-      <Image
-        key={index}
-        radius="md"
-        src={file.type === 'application/pdf' ? '/imgs/pdf.png' : imageUrl}
-        onLoad={() => URL.revokeObjectURL(imageUrl)}
-      />
-    </Box>
-  });
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -73,19 +45,11 @@ export default function Home() {
           }
         } else if (numberFormatElements.includes(element.name)) {
           formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
+        } else if (checkboxElements.includes(element.name)) {
+          formObject[element.name] = element.checked
         } else {
           formObject[element.name] = element.value;
         }
-      }
-    }
-
-    if (active === 1) {
-      const totalSize = files.reduce((acc, file) => acc + file.size, 0);
-      if (totalSize > 20000000) {
-        setIsFileSizeError(true)
-        return;
-      } else {
-        setIsFileSizeError(false)
       }
     }
 
@@ -155,7 +119,7 @@ export default function Home() {
 
             <Card withBorder radius="md" p="lg" className={styles.searchCard} maw={500} miw={{ base: 300, md: 320 }} mx="auto" w="100%" mb="lg">
               <Stepper active={active} onStepClick={setActive}>
-                <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />}>
+                <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="lg">Wo liegt Dein Grundstück?</Title>
 
                   <form onSubmit={handleSubmit}>
@@ -190,7 +154,7 @@ export default function Home() {
                     <ButtonGroup active={active} setActive={setActive} />
                   </form>
                 </Stepper.Step>
-                <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />}>
+                <Stepper.Step icon={<IconHome2 style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="lg">Welche Details kannst Du uns zu Deinem Grundstück mitteilen?</Title>
 
                   <form onSubmit={handleSubmit}>
@@ -227,46 +191,20 @@ export default function Home() {
                       defaultValue={data.Comment}
                       mb="sm"
                     />
+                    <Checkbox
+                      label="Für das Grundstück liegt eine Baugenehmigung vor."
+                      mb="md"
+                      styles={{ body: { alignItems: 'center' } }}
+                      defaultChecked={data.BuildingLicense !== false}
+                      name="BuildingLicense"
+                    />
 
-                    <Text size="sm" fw={500} mb="4px">Bilder / PDF hochladen (optional)</Text>
-                    <Dropzone
-                      onDrop={newFiles => setFiles([...files, ...newFiles])}
-                      maxSize={20 * 1024 ** 2}
-                      accept={[...IMAGE_MIME_TYPE, ...PDF_MIME_TYPE]}
-                      activateOnClick={false}
-                      openRef={openRef}
-                    >
-                      <Group justify="center" gap="sm" style={{ pointerEvents: 'all', cursor: 'pointer' }} onClick={() => openRef.current?.()}>
-                        <Dropzone.Accept>
-                          <IconUpload size={52} color="var(--mantine-color-blue-6)" stroke={1.5} />
-                        </Dropzone.Accept>
-                        <Dropzone.Reject>
-                          <IconX size={52} color="var(--mantine-color-red-6)" stroke={1.5} />
-                        </Dropzone.Reject>
-                        <Dropzone.Idle>
-                          <IconPhoto size={52} color="var(--mantine-color-dimmed)" stroke={1.5} />
-                        </Dropzone.Idle>
+                    <FileUpload files={files} setFiles={setFiles} isFileSizeError={isFileSizeError} setIsFileSizeError={setIsFileSizeError} />
 
-                        <div>
-                          <Text size="sm" c="dimmed" inline mt={7} ta="center">
-                            Ziehe Bilder hierher oder klicke, um Dateien auszuwählen (max 20 MB).
-                          </Text>
-                        </div>
-                      </Group>
-                    </Dropzone>
-
-                    {previews.length > 0 && <Box bd="calc(0.0625rem * var(--mantine-scale)) dashed var(--mantine-color-gray-4)" p="sm">
-                      <SimpleGrid cols={{ base: 2, sm: 3 }}>
-                        {previews}
-                      </SimpleGrid>
-                    </Box>}
-
-                    { isFileSizeError && <Text size="sm" c="red" mt="sm">Deine Dateien überschreiten die Maximale Größe von 20 MB.</Text> }
-
-                    <ButtonGroup active={active} setActive={setActive} />
+                    <ButtonGroup active={active} setActive={setActive} disabled={isFileSizeError} />
                   </form>
                 </Stepper.Step>
-                <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />}>
+                <Stepper.Step icon={<IconUser style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="lg">Wie können wir Dich erreichen?</Title>
 
                   <form onSubmit={handleSubmit}>
@@ -312,6 +250,7 @@ export default function Home() {
                     />
                     <Checkbox
                       required
+                      styles={{ body: { alignItems: 'center' } }}
                       label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
                     />
 

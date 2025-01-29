@@ -21,16 +21,21 @@ const getOptions = body => ({
   body: JSON.stringify(body)
 })
 
-const tableUrls = {
-  search: 'https://admin.immoradar.xyz/api/v2/tables/m4nb6l1rim33px1/records',
-  property: 'https://admin.immoradar.xyz/api/v2/tables/moztle2smhvqtpb/records',
-  'budget-calculator': 'https://admin.immoradar.xyz/api/v2/tables/me9qgrdqqqqgmg8/records'
+const tableIds = {
+  search: 'm4nb6l1rim33px1',
+  property: 'moztle2smhvqtpb',
+  'budget-calculator': 'me9qgrdqqqqgmg8'
 }
 
 const linkIds = {
   search: 'cg9srtd10w3bp3g',
   property: 'ceuwectxvauw1jc',
   'budget-calculator': 'cl7bcpswx7wexfj'
+}
+
+const fileLinkIds = {
+  search: 'ch1wwt3i5wtb24a',
+  property: 'cm5utesjdvpqyg8',
 }
 
 const templates = {
@@ -65,7 +70,7 @@ export default async function handler(req, res) {
       const newLead = await fetch('https://admin.immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/records', options)
         .then(res => res.json())
 
-      const url = tableUrls[type]
+      const url = `https://admin.immoradar.xyz/api/v2/tables/${tableIds[type]}/records`
 
       const propertyOptions = getOptions(rest)
       const newSignup = await fetch(url, propertyOptions).then(res => res.json())
@@ -74,7 +79,7 @@ export default async function handler(req, res) {
       const linkId = linkIds[type]
       await fetch(`https://admin.immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/links/${linkId}/records/${newLead.Id}`, linkOptions)
 
-      if (type === 'property' && files && files.length > 0) {
+      if (['property', 'search'].includes(type) && files && files.length > 0) {
         // async upload in the background
         fetch(process.env.BASE_URL + '/api/upload', {
           method: 'POST',
@@ -83,7 +88,9 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({
             files: files,
-            linkId: newSignup.Id,
+            recordId: newSignup.Id,
+            linkId: fileLinkIds[type],
+            tableId: tableIds[type],
             api_key: process.env.API_KEY,
           })
         })
