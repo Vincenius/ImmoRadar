@@ -126,7 +126,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 64px - 52px - 16px)">
+      <Container as="main" mih="calc(100vh - 64px - 52px - 16px)" pos="relative">
         {children}
       </Container>
 
