@@ -1,7 +1,5 @@
-import Head from "next/head";
-import { Card, Image, Text, Badge, Button, Group, Container, Flex, Box } from '@mantine/core';
+import { Card, Image, Flex, Box } from '@mantine/core';
 import NextImage from 'next/image';
-
 
 export default function LoginCard({ children }) {
   return (

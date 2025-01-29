@@ -1,5 +1,4 @@
-// Import styles of packages that you've installed.
-// All packages except `@mantine/hooks` require styles imports
+import { SessionProvider } from "next-auth/react"
 import '@mantine/core/styles.css';
 import "@/styles/globals.css";
 
@@ -26,10 +25,12 @@ const theme = createTheme({
     })
   },
 });
-export default function App({ Component, pageProps }) {
+export default function App({ Component,  pageProps: { session, ...pageProps },}) {
   return (
-    <MantineProvider theme={theme}>
-      <Component {...pageProps} />
-    </MantineProvider>
+    <SessionProvider session={session}>
+      <MantineProvider theme={theme}>
+        <Component {...pageProps} />
+      </MantineProvider>
+    </SessionProvider>
   );
 }

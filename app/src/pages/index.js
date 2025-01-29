@@ -1,6 +1,22 @@
+import { useEffect } from "react";
 import Head from "next/head";
+import { useRouter } from 'next/router'
+import { useSession, signIn, signOut } from 'next-auth/react'
 
-export default function Home() {
+export default function Home({ user }) {
+  // const { data: session } = useSession()
+  // const router = useRouter()
+  // useEffect(() => {
+  //   console.log({ session })
+  //   if (!session && router) {
+  //     router.push('/login')
+  //   }
+  // }, [session, router])
+
+  // if (!session && !router) {
+  //   return <>loading...</>
+  // }
+
   return (
     <>
       <Head>
@@ -10,7 +26,7 @@ export default function Home() {
         <link rel="icon" href="/favicon.svg" />
       </Head>
       <main>
-        TODO
+        TODO DASHBOARD
       </main>
     </>
   );
