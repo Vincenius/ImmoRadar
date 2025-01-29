@@ -126,11 +126,11 @@ export default function Home() {
                 <Stepper.Step icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="xl">Wie dürfen wir Dich unterstützen?</Title>
 
-                  <Button size="lg" mb="xl" fullWidth styles={{ label: { whiteSpace: 'wrap' } }} onClick={() => handleOption('search')}>
+                  <Button size="lg" mb="xl" fullWidth styles={{ label: { whiteSpace: 'wrap' }, root: { height: '100%', padding: '10px' } }} onClick={() => handleOption('search')}>
                     Ich bin auf der Suche nach einem passenden Grundstück
                   </Button>
-                  <Button size="lg" variant="outline" fullWidth styles={{ label: { whiteSpace: 'wrap' } }} onClick={() => handleOption('research')}>
-                    Ich möchte den Besitzer eines mir bekannten Grundstücks ermitteln
+                  <Button size="lg" variant="outline" fullWidth styles={{ label: { whiteSpace: 'wrap' }, root: { height: '100%', padding: '10px' } }} onClick={() => handleOption('research')}>
+                    Ich möchte wissen ob auf einem mir bekannten Grundstücks gebaut werden darf
                   </Button>
 
                 </Stepper.Step>

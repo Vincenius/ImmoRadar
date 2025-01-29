@@ -10,7 +10,7 @@ const TeamMember = ({ image, name, title }) => {
             src={`/imgs/team/${image}`}
             height={200}
             width={200}
-            // w="auto"
+            h="auto"
             alt={name}
             radius="xl"
             mb="sm"

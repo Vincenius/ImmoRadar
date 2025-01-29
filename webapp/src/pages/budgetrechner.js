@@ -101,18 +101,18 @@ const ContactModal = () => {
   }
 
   return <>
-    <Button onClick={open} mt="lg" w={320} m="2em auto 1em">
+    <Button onClick={open} mt="md" w={320} m="2em auto 1em">
       Du möchtest mehr für Dich herausholen?
     </Button>
-    <Flex gap="sm" justify="center" align="center" mb="xs">
+    <Flex gap="sm" justify={{ xs: "center", base: "flex-start" }} align="center" mb="xs">
       <IconCheck style={{ width: '20px', height: '20px' }} stroke={1.5} />
-      <Text td="italic" align="center">
+      <Text td="italic" align="left">
         Kostenloser und unverbindlicher Fördercheck
       </Text>
     </Flex>
-    <Flex gap="sm" justify="center" align="center">
+    <Flex gap="sm" justify={{ xs: "center", base: "flex-start" }} align="center">
       <IconCheck style={{ width: '20px', height: '20px' }} stroke={1.5} />
-      <Text td="italic" align="center">
+      <Text td="italic" align="left">
         Strategischer Aufbau und Ausbau deines Eigenkapitals
       </Text>
     </Flex>
@@ -296,8 +296,8 @@ const BudgetCalculator = () => {
         /> */}
       </Flex>
 
-      <Card mb="xl" ref={scollToRef} shadow="md" withBorder>
-        <Flex justify="space-between" gap="md" direction={{ base: "column", sm: "row" }} >
+      <Card mb="xl" ref={scollToRef}>
+        <Flex justify="space-between" gap="md" direction={{ base: "column", sm: "row" }}>
           <Box w={{ base: "100%", sm: "67%" }}>
             <NumberInput
               label={<CustomLabel label="Dein Eigenkapital" desciption='Welche Summe an Kapital kannst Du in Dein Projekt "Traumhaus" mit einbringen?' />}
