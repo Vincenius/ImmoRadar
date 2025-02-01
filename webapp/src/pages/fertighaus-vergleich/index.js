@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, Select, List } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, Select, List, Grid } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
@@ -13,7 +13,7 @@ const ButtonGroup = ({ active, setActive, isLoading }) => {
   return <Group justify="space-between" mt="xl">
     { active === 0 && <div></div>}
     { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
-    { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
+    { active < 10 && <Button onClick={() => setActive(active + 1)} variant="light">Frage überspringen</Button> }
   </Group>
 }
 
@@ -21,6 +21,18 @@ export default function HausanbieterVergleich() {
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
   const [data, setData] = useState({})
+
+  const selectOption = (e) => {
+    let elem = e.target
+    while (!elem.name) {
+      elem = elem.parentElement
+    }
+    setData({ ...data, [elem.name]: elem.value })
+    setActive(active + 1)
+  }
+
+  console.log(data) // TODO remove
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -47,14 +59,14 @@ export default function HausanbieterVergleich() {
 
   return (
     <Layout
-      title="ImmoRadar Förderung"
+      title="ImmoRadar Hausanbieter Vergleich"
       description="todo"
     >
       <Box className={styles.header} py="xl">
         <div className={styles.background}></div>
 
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
-          <Flex gap="xl" direction="column" justify="center" align="center">
+          <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
               <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
                 Der <span className={styles.gradientText}>Fertighausanbieter Vergleich</span>.
@@ -66,18 +78,58 @@ export default function HausanbieterVergleich() {
 
             <Button size="xl" onClick={open}>Fertighausanbieter Vergleich Starten</Button>
 
-            <Modal opened={opened} onClose={close} title="Förderungsrechner" size="lg">
-              <Stepper active={active} onStepClick={setActive}>
+            <Modal opened={opened} onClose={close} title="Hausanbieter Vergleich" size="md">
+              <Stepper active={active} onStepClick={setActive} size="xs">
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">In welchem Bundesland wollen Sie bauen?</Title>
+                  <Title order={2} size="h3" mb="lg">Welcher Haustyp soll erworben werden?</Title>
 
                   <form>
-                  {/* Frage 1: Welcher Haustyp soll erworben werden
-                  1.) Bungalow
-                  2.) EFH
-                  3.) EFH-Einliger Wohnung
-                  4.) Doppelhaus
-                  5.) Mehrfamilienhaus
+                    <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="type" value="bungalow" onClick={selectOption}>Bungalow</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="type" value="efh" onClick={selectOption}>EFH</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="type" value="efh-einliger" onClick={selectOption}>EFH-Einliger Wohnung</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="type" value="doppelhaus" onClick={selectOption}>Doppelhaus</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="type" value="mehrfamilienhaus" onClick={selectOption}>Mehrfamilienhaus</Button>
+                      </Grid.Col>
+                    </Grid>
+
+                    <ButtonGroup active={active} setActive={setActive} formValue="type"/>
+                  </form>
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Wie viele Geschosse sollen gebaut werden?</Title>
+                  <form>
+                    <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="floors" value="1" onClick={selectOption}>1 Geschoss</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="floors" value="1,5" onClick={selectOption}>1,5 Geschosse</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="floors" value="2" onClick={selectOption}>2 Geschosse</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="floors" value="2,5" onClick={selectOption}>2,5 Geschosse</Button>
+                      </Grid.Col>
+                      <Grid.Col span={3}>
+                        <Button size="lg" variant="outline" name="floors" value=">2,5" onClick={selectOption}>Mehr als 2,5 Geschosse</Button>
+                      </Grid.Col>
+                    </Grid>
+
+                    <ButtonGroup active={active} setActive={setActive} formValue="floors" />
+                  </form>
+
+                  {/* 
 
                   Frage 2: Wie viele Geschosse sollen gebaut werden
                   1. 1,0 Geschoss ; 1,5 Geschoss; 2 Geschoss; 2,5 Geschoss;
@@ -114,9 +166,9 @@ export default function HausanbieterVergleich() {
                   Merkmal definiert werden müssen:
                   Im ersten Schritt bitte ankreuzbar bar machen: Grundstück
                   vorhanden ja oder nein; Gesamtprojektsumme als regler
-                  
+
                   Frage 10 : Fördermittel für Ihre Immobilie */}
-                  </form>
+
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Weitere Fragen kommen hier...</Title>
