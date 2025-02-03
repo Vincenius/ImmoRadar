@@ -1,19 +1,23 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, Select, List, Grid } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, RangeSlider, List, Grid, Chip, Checkbox } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import { mainSearches } from '@/utils/searchSeo'
-import Checkout from '@/components/Checkout/Checkout';
+// import Checkout from '@/components/Checkout/Checkout';
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
-const ButtonGroup = ({ active, setActive, isLoading }) => {
+const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, hideSkip }) => {
+  // todo reset data if frage überspringen
   return <Group justify="space-between" mt="xl">
     { active === 0 && <div></div>}
     { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
-    { active < 10 && <Button onClick={() => setActive(active + 1)} variant="light">Frage überspringen</Button> }
+    { active < 10 && <Flex gap="sm">
+      { !hideSkip && <Button onClick={() => setActive(active + 1)} variant="light">Frage überspringen</Button> }
+      { hasSubmit && <Button type="submit" loading={isLoading}>Weiter</Button> }
+    </Flex> }
   </Group>
 }
 
@@ -31,7 +35,7 @@ export default function HausanbieterVergleich() {
     setActive(active + 1)
   }
 
-  console.log(data) // TODO remove
+  // console.log(data) // TODO remove
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -79,136 +83,194 @@ export default function HausanbieterVergleich() {
             <Button size="xl" onClick={open}>Fertighausanbieter Vergleich Starten</Button>
 
             <Modal opened={opened} onClose={close} title="Hausanbieter Vergleich" size="md">
-              <Stepper active={active} onStepClick={setActive} size="xs">
+              <Stepper active={active} onStepClick={setActive} size="md" allowNextStepsSelect={false}>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welcher Haustyp soll erworben werden?</Title>
 
-                  <form>
-                    <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="type" value="bungalow" onClick={selectOption}>Bungalow</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="type" value="efh" onClick={selectOption}>EFH</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="type" value="efh-einliger" onClick={selectOption}>EFH-Einliger Wohnung</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="type" value="doppelhaus" onClick={selectOption}>Doppelhaus</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="type" value="mehrfamilienhaus" onClick={selectOption}>Mehrfamilienhaus</Button>
-                      </Grid.Col>
-                    </Grid>
+                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="type" value="bungalow" onClick={selectOption}>Bungalow</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="type" value="efh" onClick={selectOption}>EFH</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="type" value="efh-einliger" onClick={selectOption}>EFH-Einliger Wohnung</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="type" value="doppelhaus" onClick={selectOption}>Doppelhaus</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="type" value="mehrfamilienhaus" onClick={selectOption}>Mehrfamilienhaus</Button>
+                    </Grid.Col>
+                  </Grid>
 
-                    <ButtonGroup active={active} setActive={setActive} formValue="type"/>
-                  </form>
+                  <ButtonGroup active={active} setActive={setActive} formValue="type"/>
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Wie viele Geschosse sollen gebaut werden?</Title>
-                  <form>
-                    <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="floors" value="1" onClick={selectOption}>1 Geschoss</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="floors" value="1,5" onClick={selectOption}>1,5 Geschosse</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="floors" value="2" onClick={selectOption}>2 Geschosse</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="floors" value="2,5" onClick={selectOption}>2,5 Geschosse</Button>
-                      </Grid.Col>
-                      <Grid.Col span={3}>
-                        <Button size="lg" variant="outline" name="floors" value=">2,5" onClick={selectOption}>Mehr als 2,5 Geschosse</Button>
-                      </Grid.Col>
-                    </Grid>
+                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="floors" value="1" onClick={selectOption}>1 Geschoss</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="floors" value="1,5" onClick={selectOption}>1,5 Geschosse</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="floors" value="2" onClick={selectOption}>2 Geschosse</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="floors" value="2,5" onClick={selectOption}>2,5 Geschosse</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="floors" value=">2,5" onClick={selectOption}>Mehr als 2,5 Geschosse</Button>
+                    </Grid.Col>
+                  </Grid>
 
-                    <ButtonGroup active={active} setActive={setActive} formValue="floors" />
-                  </form>
-
-                  {/* 
-
-                  Frage 2: Wie viele Geschosse sollen gebaut werden
-                  1. 1,0 Geschoss ; 1,5 Geschoss; 2 Geschoss; 2,5 Geschoss;
-                  oder mehr ; weiß nicht
-
-                  Frage 3: Welche Dachform soll erstellt werden
-                  Flachdach; Satteldach;Pultdach; Walmdach; sonstige
-
-                  Frage 4: Welche Hausart wird bevorzugt
-                  Freigeplantes Architektenhaus mit
-                  Änderungesmöglichkeiten;
-                  vorgeplantes Haus mit teilweise der Möglichkeit von
-                  Änderungen
-                  Typenhaus nur geringfügige Änderungen möglich
-
-                  Frage 5: Welche Ausbauart möchten Sie bevorzugen
-                  Basishaus nur Gebäudehülle zum Selbstausbau;
-                  Basishaus + Technikfertig (Oberflächen können selbst
-                  gestaltet werden);
-                  Bezugsfertig komplett
-
-                  Frage 6: Welche Hausgröße in m2
-
-                  Frage 7: Ausstattungsqualität
-                  Standard, gehoben, exklusiv, luxus
-
-                  Frage 8: Was ist Ihnen zudem wichtig ?
-                  Ökologischer Standard (KFW 40); Fußbodenheizung; Kamin/
-                  ofen; Wärmepumpe innen; Wärmepumpe außen;
-                  Lüftungsanlage;PV;Akkuspeicher; Smart home; Wall box
-
-                  Frage 9 : Welche Budgetvorstellung
-                  Hier sind Mark und ich ein wenig hängen geblieben, da eine
-                  Merkmal definiert werden müssen:
-                  Im ersten Schritt bitte ankreuzbar bar machen: Grundstück
-                  vorhanden ja oder nein; Gesamtprojektsumme als regler
-
-                  Frage 10 : Fördermittel für Ihre Immobilie */}
-
+                  <ButtonGroup active={active} setActive={setActive} formValue="floors" />
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Weitere Fragen kommen hier...</Title>
+                  <Title order={2} size="h3" mb="lg">Welche Dachform soll erstellt werden?</Title>
+                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="roof" value="flachdach" onClick={selectOption}>Flachdach</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="roof" value="satteldach" onClick={selectOption}>Satteldach</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="roof" value="pultdach" onClick={selectOption}>Pultdach</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="roof" value="walmdach" onClick={selectOption}>Walmdach</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="roof" value=">sonstige" onClick={selectOption}>Sonstige</Button>
+                    </Grid.Col>
+                  </Grid>
+
+                  <ButtonGroup active={active} setActive={setActive} formValue="roof" />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Welche Hausart wird bevorzugt?</Title>
+                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="architektenhaus" onClick={selectOption}>Freigeplantes Architektenhaus mit Änderungesmöglichkeiten</Button>
+
+                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="vorgeplanteshaus" onClick={selectOption}>vorgeplantes Haus mit teilweise der Möglichkeit von Änderungen</Button>
+
+                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="typenhaus" onClick={selectOption}>Typenhaus nur geringfügige Änderungen möglich</Button>
+
+
+                  <ButtonGroup active={active} setActive={setActive} formValue="changes" />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Welche Ausbauart wird bevorzugt?</Title>
+                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="basishaus-selbstausbau" onClick={selectOption}>Basishaus nur Gebäudehülle zum Selbstausbau</Button>
+
+                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="basishaus-technikfertig" onClick={selectOption}>Basishaus + Technikfertig (Oberflächen können selbst gestaltet werden)</Button>
+
+                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="bezugsfertig" onClick={selectOption}>Bezugsfertig komplett</Button>
+
+                  <ButtonGroup active={active} setActive={setActive} formValue="fitout" />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Welche Hausgröße in m²?</Title>
 
                   <form onSubmit={handleSubmit}>
-                    <NumberInput
-                      label="Budget"
-                      description="Welche Investition planen Sie für Ihr Grundstück?"
-                      placeholder="300.000"
-                      required
-                      hideControls
-                      mb="sm"
-                      name="Budget"
-                      rightSection="€"
-                      thousandSeparator=" "
-                      decimalScale={0}
-                      defaultValue={data.Budget}
+                    <RangeSlider
+                      size="xl"
+                      mt="xl"
+                      mb="xl"
+                      defaultValue={[75, 125]} // todo default
+                      min={50}
+                      max={500}
+                      step={1}
+                      labelAlwaysOn
+                      name="size"
                     />
 
-                    <ButtonGroup active={active} setActive={setActive} />
+                    <ButtonGroup active={active} setActive={setActive} formValue="size" hasSubmit={true} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="md">Sie können eine Förderung in Höhe von 2.000€ erhalten.</Title>
-                  <Text mb="md">Unsere Berechnungen haben anhand Ihrer Angaben ermittelt, dass Sie für <b>2 Förderprojekte</b> in Frage kommen.</Text>
-                  <Text mb="md">Schalten Sie jetzt den vollständigen Report für <b>20€</b> frei</Text>
-                  <Text mb="md">Der Report beinahltet</Text>
+                  <Title order={2} size="h3" mb="lg">Ausstattungsqualität?</Title>
+                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="quality" value="standard" onClick={selectOption}>Standard</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="quality" value="gehoben" onClick={selectOption}>Gehoben</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="quality" value="exklusiv" onClick={selectOption}>Exklusiv</Button>
+                    </Grid.Col>
+                    <Grid.Col span={3}>
+                      <Button size="lg" variant="outline" name="quality" value="luxus" onClick={selectOption}>Luxus</Button>
+                    </Grid.Col>
+                  </Grid>
 
-                  <List>
-                    <List.Item>Erkärungen und Links zu den Förderungen</List.Item>
-                    <List.Item>Kontakt zu unserem Experten für weitere Fragen</List.Item>
-                    <List.Item>Geld zurück Garantie falls keine Förderung erhalten wird</List.Item>
-                  </List>
+                  <ButtonGroup active={active} setActive={setActive} formValue="quality" />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Was ist Dir zudem wichtig?</Title>
+                  <form onSubmit={handleSubmit}>
+                    {/* todo default values */}
+                    <Grid>
+                      <Chip size="lg" value="KFW 40" m="xs" name="features">KFW 40</Chip>
+                      <Chip size="lg" value="Fussbodenheizung" m="xs" name="features">Fussbodenheizung</Chip>
+                      <Chip size="lg" value="Kamin" m="xs" name="features">Kamin</Chip>
+                      <Chip size="lg" value="Ofen" m="xs" name="features">Ofen</Chip>
+                      <Chip size="lg" value="Wärmepumpe innen" m="xs" name="features">Wärmepumpe innen</Chip>
+                      <Chip size="lg" value="Wärmepumpe außen" m="xs" name="features">Wärmepumpe außen</Chip>
+                      <Chip size="lg" value="Lüftungsanlage" m="xs" name="features">Lüftungsanlage</Chip>
+                      <Chip size="lg" value="PV" m="xs" name="features">PV</Chip>
+                      <Chip size="lg" value="Akkuspeicher" m="xs" name="features">Akkuspeicher</Chip>
+                      <Chip size="lg" value="Smart home" m="xs" name="features">Smart Home</Chip>
+                      <Chip size="lg" value="Wall box" m="xs" name="features">Wall box</Chip>
+                    </Grid>
+
+                    <ButtonGroup active={active} setActive={setActive} formValue="features" hideSkip hasSubmit />
+                  </form>
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Wie sind Deine Budgetvorstellungen?</Title>
+                  <form onSubmit={handleSubmit}>
+                    <RangeSlider
+                      size="xl"
+                      mt="xl"
+                      mb="xl"
+                      defaultValue={[500, 900]} // todo default
+                      min={100}
+                      max={2000}
+                      step={10}
+                      label={(value) => value > 1000 ? `${(value / 1000).toFixed(2)} Mio. €` : `${value} Tsd. €`}
+                      labelAlwaysOn
+                      name="budget"
+                    />
+
+                    <Checkbox
+                      label="Grundstück vorhanden"
+                      mb="md"
+                      size="lg"
+                      styles={{ body: { alignItems: 'center' } }}
+                      defaultChecked={data.BuildingLicense !== false}
+                      name="BuildingLicense"
+                    />
+
+                    <ButtonGroup active={active} setActive={setActive} formValue="features" hideSkip hasSubmit />
+                  </form>
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Fördermittel für Deine Immobilie</Title>
 
                   <form onSubmit={handleSubmit}>
-                    <ButtonGroup active={active} setActive={setActive} />
+                    TODO
+
+                    <ButtonGroup active={active} setActive={setActive} hasSubmit />
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
-                  <Checkout />
+                  Fertig! Hier kommt dann der Checkout und danach der Report mit den Hausanbietern
+                  {/* <Checkout /> */}
                 </Stepper.Completed>
               </Stepper>
             </Modal>
