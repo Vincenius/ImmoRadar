@@ -1,10 +1,9 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, RangeSlider, List, Grid, Chip, Checkbox } from '@mantine/core';
+import { Flex, Group, Button, Title, Box, Stepper, Modal, RangeSlider, Grid, Chip } from '@mantine/core';
+import Checkbox from '@/components/Inputs/Checkbox';
 import { useDisclosure } from '@mantine/hooks';
-import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
-import { mainSearches } from '@/utils/searchSeo'
 // import Checkout from '@/components/Checkout/Checkout';
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
@@ -252,7 +251,6 @@ export default function HausanbieterVergleich() {
                       label="Grundstück vorhanden"
                       mb="md"
                       size="lg"
-                      styles={{ body: { alignItems: 'center' } }}
                       defaultChecked={data.BuildingLicense !== false}
                       name="BuildingLicense"
                     />

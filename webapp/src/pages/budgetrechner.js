@@ -5,8 +5,9 @@ import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
 import PhoneInput from '@/components/PhoneInput/PhoneInput';
 import { isValidPhoneNumber } from 'libphonenumber-js'
-import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, Checkbox, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
+import { Title, Text, Card, NumberInput, NumberFormatter, Box, Flex, Image, Button, ActionIcon, Popover, Slider, Modal, Stepper, NativeSelect, Group, TextInput } from '@mantine/core';
 import { IconCheck, IconQuestionMark } from '@tabler/icons-react';
+import Checkbox from '@/components/Inputs/Checkbox';
 import styles from '@/styles/Home.module.css'
 import Logo from './logo.svg';
 
