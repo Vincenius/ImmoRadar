@@ -65,6 +65,7 @@ export default function HausanbieterVergleich() {
     <Layout
       title="ImmoRadar Hausanbieter Vergleich"
       description="todo"
+      noindex={true}
     >
       <Box className={styles.header} py="xl">
         <div className={styles.background}></div>
