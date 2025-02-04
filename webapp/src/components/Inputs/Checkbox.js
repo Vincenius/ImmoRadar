@@ -7,4 +7,4 @@ const Checkbox = (props) => {
   />)
 }
 
-return Checkbox
+export default Checkbox

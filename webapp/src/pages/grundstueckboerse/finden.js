@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
 import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea } from '@mantine/core';
+import MLButton from '@/components/Inputs/ButtonMultiLine';
 import Checkbox from '@/components/Inputs/Checkbox';
 import { IconMapPin2, IconHome2, IconUser, IconSearch } from '@tabler/icons-react';
 import Layout from '@/components/Layout/Layout'
@@ -127,12 +128,12 @@ export default function Home() {
                 <Stepper.Step icon={<IconSearch style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>
                   <Title order={2} size="h3" mb="xl">Wie dürfen wir Dich unterstützen?</Title>
 
-                  <Button size="lg" mb="xl" fullWidth styles={{ label: { whiteSpace: 'wrap' }, root: { height: '100%', padding: '10px' } }} onClick={() => handleOption('search')}>
+                  <MLButton size="lg" mb="xl" fullWidth onClick={() => handleOption('search')}>
                     Ich bin auf der Suche nach einem passenden Grundstück
-                  </Button>
-                  <Button size="lg" variant="outline" fullWidth styles={{ label: { whiteSpace: 'wrap' }, root: { height: '100%', padding: '10px' } }} onClick={() => handleOption('research')}>
+                  </MLButton>
+                  <MLButton size="lg" variant="outline" fullWidth onClick={() => handleOption('research')}>
                     Ich möchte wissen ob auf einem mir bekannten Grundstücks gebaut werden darf
-                  </Button>
+                  </MLButton>
 
                 </Stepper.Step>
                 <Stepper.Step icon={<IconMapPin2 style={{ width: rem(18), height: rem(18) }} />} allowStepSelect={false}>

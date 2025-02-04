@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Flex, Group, Button, Title, Box, Stepper, Modal, RangeSlider, Grid, Chip } from '@mantine/core';
+import MLButton from '@/components/Inputs/ButtonMultiLine';
 import Checkbox from '@/components/Inputs/Checkbox';
 import { useDisclosure } from '@mantine/hooks';
 import Layout from '@/components/Layout/Layout'
@@ -8,13 +9,60 @@ import styles from '@/styles/Home.module.css'
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 
-const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, hideSkip }) => {
-  // todo reset data if frage überspringen
+const SelectButton = ({ children, isMultiLine, ...props }) => {
+  const ButtonComponent = isMultiLine ? MLButton : Button
+  return (
+    <ButtonComponent
+      size="lg"
+      styles={{ root: { flexGrow: 1 } }}
+      variant="outline"
+      {...props}
+    >
+      {children}
+    </ButtonComponent>
+  )
+}
+
+const SelectChip = ({ children, data, setData, value, ...props }) => {
+  const handleChange = () => {
+    setData({
+      ...data,
+      Merkmale: data['Merkmale']?.includes(value)
+        ? data['Merkmale']?.filter((m) => m !== value)
+        : [...(data['Merkmale'] || []), value]
+      })
+  }
+  return (
+    <Chip
+      size="lg"
+      variant="outline"
+      styles={{ root: { flexGrow: 1 }, label: { width: '100%', justifyContent: 'center' } }}
+      checked={data['Merkmale']?.includes(value)}
+      onChange={handleChange}
+      {...props}
+    >
+      {children}
+    </Chip>
+  )
+}
+
+const ButtonGroup = ({ active, setActive, data, setData, formValues, isLoading, hasSubmit, hideSkip }) => {
+  const handleSkip = () => {
+    setActive(active + 1)
+    let newData = data
+    // remove data if skipped
+    for (const formValue of formValues) {
+      const { [formValue]: _, ...updatedData } = (newData || {})
+      newData = updatedData
+    }
+    setData(newData || {})
+  }
+
   return <Group justify="space-between" mt="xl">
     { active === 0 && <div></div>}
     { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
     { active < 10 && <Flex gap="sm">
-      { !hideSkip && <Button onClick={() => setActive(active + 1)} variant="light">Frage überspringen</Button> }
+      { !hideSkip && <Button onClick={handleSkip} variant="light">Frage überspringen</Button> }
       { hasSubmit && <Button type="submit" loading={isLoading}>Weiter</Button> }
     </Flex> }
   </Group>
@@ -23,7 +71,7 @@ const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, hideSkip }) => {
 export default function HausanbieterVergleich() {
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
-  const [data, setData] = useState({})
+  const [data, setData] = useState({ GrundstueckVorhanden: true })
 
   const selectOption = (e) => {
     let elem = e.target
@@ -33,8 +81,6 @@ export default function HausanbieterVergleich() {
     setData({ ...data, [elem.name]: elem.value })
     setActive(active + 1)
   }
-
-  // console.log(data) // TODO remove
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,95 +128,82 @@ export default function HausanbieterVergleich() {
 
             <Button size="xl" onClick={open}>Fertighausanbieter Vergleich Starten</Button>
 
-            <Modal opened={opened} onClose={close} title="Hausanbieter Vergleich" size="md">
-              <Stepper active={active} onStepClick={setActive} size="md" allowNextStepsSelect={false}>
+            <Modal opened={opened} onClose={close} title="Hausanbieter Vergleich" size="md" styles={{ content: { overflowX: 'hidden' } }}>
+              <Stepper
+                active={active}
+                onStepClick={setActive}
+                size="14px"
+                styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' }}}
+                allowNextStepsSelect={false}
+              >
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welcher Haustyp soll erworben werden?</Title>
 
-                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="type" value="bungalow" onClick={selectOption}>Bungalow</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="type" value="efh" onClick={selectOption}>EFH</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="type" value="efh-einliger" onClick={selectOption}>EFH-Einliger Wohnung</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="type" value="doppelhaus" onClick={selectOption}>Doppelhaus</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="type" value="mehrfamilienhaus" onClick={selectOption}>Mehrfamilienhaus</Button>
-                    </Grid.Col>
-                  </Grid>
+                  <Flex wrap="wrap" gap="md">
+                    <SelectButton name="HausTyp" value="Bungalow" onClick={selectOption}>Bungalow</SelectButton>
+                    <SelectButton name="HausTyp" value="EFH" onClick={selectOption}>EFH</SelectButton>
+                    <SelectButton name="HausTyp" value="EFH-Einliger" onClick={selectOption}>EFH-Einliger Wohnung</SelectButton>
+                    <SelectButton name="HausTyp" value="Doppelhaus" onClick={selectOption}>Doppelhaus</SelectButton>
+                    <SelectButton name="HausTyp" value="Mehrfamilienhaus" onClick={selectOption}>Mehrfamilienhaus</SelectButton>
+                  </Flex>
 
-                  <ButtonGroup active={active} setActive={setActive} formValue="type"/>
+                  <ButtonGroup formValues={["HausTyp"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Wie viele Geschosse sollen gebaut werden?</Title>
-                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="floors" value="1" onClick={selectOption}>1 Geschoss</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="floors" value="1,5" onClick={selectOption}>1,5 Geschosse</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="floors" value="2" onClick={selectOption}>2 Geschosse</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="floors" value="2,5" onClick={selectOption}>2,5 Geschosse</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="floors" value=">2,5" onClick={selectOption}>Mehr als 2,5 Geschosse</Button>
-                    </Grid.Col>
-                  </Grid>
+                  <Flex wrap="wrap" gap="md">
+                    <SelectButton name="Geschosse" value="1" onClick={selectOption}>1 Geschoss</SelectButton>
+                    <SelectButton name="Geschosse" value="1,5" onClick={selectOption}>1,5 Geschosse</SelectButton>
+                    <SelectButton name="Geschosse" value="2" onClick={selectOption}>2 Geschosse</SelectButton>
+                    <SelectButton name="Geschosse" value="2,5" onClick={selectOption}>2,5 Geschosse</SelectButton>
+                    <SelectButton name="Geschosse" value=">2,5" onClick={selectOption}>Mehr als 2,5 Geschosse</SelectButton>
+                  </Flex>
 
-                  <ButtonGroup active={active} setActive={setActive} formValue="floors" />
+                  <ButtonGroup formValues={["Geschosse"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Dachform soll erstellt werden?</Title>
-                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="roof" value="flachdach" onClick={selectOption}>Flachdach</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="roof" value="satteldach" onClick={selectOption}>Satteldach</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="roof" value="pultdach" onClick={selectOption}>Pultdach</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="roof" value="walmdach" onClick={selectOption}>Walmdach</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="roof" value=">sonstige" onClick={selectOption}>Sonstige</Button>
-                    </Grid.Col>
-                  </Grid>
+                  <Flex wrap="wrap" gap="md">
+                    <SelectButton name="Dachform" value="Flachdach" onClick={selectOption}>Flachdach</SelectButton>
+                    <SelectButton name="Dachform" value="Satteldach" onClick={selectOption}>Satteldach</SelectButton>
+                    <SelectButton name="Dachform" value="Pultdach" onClick={selectOption}>Pultdach</SelectButton>
+                    <SelectButton name="Dachform" value="Walmdach" onClick={selectOption}>Walmdach</SelectButton>
+                    <SelectButton name="Dachform" value="Sonstige" onClick={selectOption}>Sonstige</SelectButton>
+                  </Flex>
 
-                  <ButtonGroup active={active} setActive={setActive} formValue="roof" />
+                  <ButtonGroup formValues={["Dachform"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Hausart wird bevorzugt?</Title>
-                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="architektenhaus" onClick={selectOption}>Freigeplantes Architektenhaus mit Änderungesmöglichkeiten</Button>
+                  <SelectButton isMultiLine={true} mb="md" name="Hausart" value="Architektenhaus" onClick={selectOption}>
+                    Freigeplantes Architektenhaus mit Änderungesmöglichkeiten
+                  </SelectButton>
 
-                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="vorgeplanteshaus" onClick={selectOption}>vorgeplantes Haus mit teilweise der Möglichkeit von Änderungen</Button>
+                  <SelectButton isMultiLine={true} mb="md" name="Hausart" value="VorgeplantesHaus" onClick={selectOption}>
+                    Vorgeplantes Haus mit teilweise der Möglichkeit von Änderungen
+                  </SelectButton>
 
-                  <Button mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="changes" value="typenhaus" onClick={selectOption}>Typenhaus nur geringfügige Änderungen möglich</Button>
+                  <SelectButton isMultiLine={true} mb="md" name="Hausart" value="Typenhaus" onClick={selectOption}>
+                    Typenhaus nur geringfügige Änderungen möglich
+                  </SelectButton>
 
-
-                  <ButtonGroup active={active} setActive={setActive} formValue="changes" />
+                  <ButtonGroup formValues={["Hausart"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Ausbauart wird bevorzugt?</Title>
-                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="basishaus-selbstausbau" onClick={selectOption}>Basishaus nur Gebäudehülle zum Selbstausbau</Button>
+                  <SelectButton isMultiLine={true} mb="md" name="Ausbauart" value="Basishaus" onClick={selectOption}>
+                    Basishaus nur Gebäudehülle zum Selbstausbau
+                  </SelectButton>
 
-                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="basishaus-technikfertig" onClick={selectOption}>Basishaus + Technikfertig (Oberflächen können selbst gestaltet werden)</Button>
+                  <SelectButton isMultiLine={true} mb="md" name="Ausbauart" value="Technikfertig" onClick={selectOption}>
+                    Basishaus + Technikfertig (Oberflächen können selbst gestaltet werden)
+                  </SelectButton>
 
-                  <Button fullWidth mb="md" styles={{ label: { whiteSpace: 'initial' }, root: { height: 'auto', padding: '15px 10px' } }} size="md" variant="outline" name="fitout" value="bezugsfertig" onClick={selectOption}>Bezugsfertig komplett</Button>
+                  <SelectButton isMultiLine={true} fullWidth mb="md" name="Ausbauart" value="Bezugsfertig" onClick={selectOption}>
+                    Bezugsfertig komplett
+                  </SelectButton>
 
-                  <ButtonGroup active={active} setActive={setActive} formValue="fitout" />
+                  <ButtonGroup formValues={["Ausbauart"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Hausgröße in m²?</Title>
@@ -180,55 +213,49 @@ export default function HausanbieterVergleich() {
                       size="xl"
                       mt="xl"
                       mb="xl"
-                      defaultValue={[75, 125]} // todo default
+                      defaultValue={[
+                        data.Groesse_from ? parseInt(data.Groesse_from) : 75,
+                        data.Groesse_to ? parseInt(data.Groesse_to) : 150]}
                       min={50}
                       max={500}
                       step={1}
+                      label={(value) => `${value}m²`}
                       labelAlwaysOn
-                      name="size"
+                      name="Groesse"
                     />
 
-                    <ButtonGroup active={active} setActive={setActive} formValue="size" hasSubmit={true} />
+                    <ButtonGroup formValues={["Groesse_from", "Groesse_to"]} hasSubmit={true} {...{ data, setData, active, setActive }} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Ausstattungsqualität?</Title>
-                  <Grid columns={{ base: 1, sm: 2, md: 3 }}>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="quality" value="standard" onClick={selectOption}>Standard</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="quality" value="gehoben" onClick={selectOption}>Gehoben</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="quality" value="exklusiv" onClick={selectOption}>Exklusiv</Button>
-                    </Grid.Col>
-                    <Grid.Col span={3}>
-                      <Button size="lg" variant="outline" name="quality" value="luxus" onClick={selectOption}>Luxus</Button>
-                    </Grid.Col>
-                  </Grid>
+                  <Flex gap="md" wrap="wrap">
+                    <SelectButton name="Ausstattung" value="Standard" onClick={selectOption}>Standard</SelectButton>
+                    <SelectButton name="Ausstattung" value="Gehoben" onClick={selectOption}>Gehoben</SelectButton>
+                    <SelectButton name="Ausstattung" value="Exklusiv" onClick={selectOption}>Exklusiv</SelectButton>
+                    <SelectButton name="Ausstattung" value="Luxus" onClick={selectOption}>Luxus</SelectButton>
+                  </Flex>
 
-                  <ButtonGroup active={active} setActive={setActive} formValue="quality" />
+                  <ButtonGroup formValues={["Ausstattung"]} {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Was ist Dir zudem wichtig?</Title>
                   <form onSubmit={handleSubmit}>
-                    {/* todo default values */}
-                    <Grid>
-                      <Chip size="lg" value="KFW 40" m="xs" name="features">KFW 40</Chip>
-                      <Chip size="lg" value="Fussbodenheizung" m="xs" name="features">Fussbodenheizung</Chip>
-                      <Chip size="lg" value="Kamin" m="xs" name="features">Kamin</Chip>
-                      <Chip size="lg" value="Ofen" m="xs" name="features">Ofen</Chip>
-                      <Chip size="lg" value="Wärmepumpe innen" m="xs" name="features">Wärmepumpe innen</Chip>
-                      <Chip size="lg" value="Wärmepumpe außen" m="xs" name="features">Wärmepumpe außen</Chip>
-                      <Chip size="lg" value="Lüftungsanlage" m="xs" name="features">Lüftungsanlage</Chip>
-                      <Chip size="lg" value="PV" m="xs" name="features">PV</Chip>
-                      <Chip size="lg" value="Akkuspeicher" m="xs" name="features">Akkuspeicher</Chip>
-                      <Chip size="lg" value="Smart home" m="xs" name="features">Smart Home</Chip>
-                      <Chip size="lg" value="Wall box" m="xs" name="features">Wall box</Chip>
-                    </Grid>
+                    <Flex gap="sm" wrap="wrap">
+                      <SelectChip value="KFW40" {...{ data, setData } }>KFW 40</SelectChip>
+                      <SelectChip value="Fussbodenheizung" {...{ data, setData } }>Fußbodenheizung</SelectChip>
+                      <SelectChip value="Kamin" {...{ data, setData } }>Kamin</SelectChip>
+                      <SelectChip value="Ofen" {...{ data, setData } }>Ofen</SelectChip>
+                      <SelectChip value="Lueftungsanlage" {...{ data, setData } }>Lüftungsanlage</SelectChip>
+                      <SelectChip value="PV" {...{ data, setData } }>PV</SelectChip>
+                      <SelectChip value="Akkuspeicher" {...{ data, setData } }>Akkuspeicher</SelectChip>
+                      <SelectChip value="SmartHome" {...{ data, setData } }>Smart Home</SelectChip>
+                      <SelectChip value="Wallbox" {...{ data, setData } }>Wallbox</SelectChip>
+                      <SelectChip value="WaermepumpeInnen" {...{ data, setData } }>Wärmepumpe Innen</SelectChip>
+                      <SelectChip value="WaermepumpeAussen" {...{ data, setData } }>Wärmepumpe Außen</SelectChip>
+                    </Flex>
 
-                    <ButtonGroup active={active} setActive={setActive} formValue="features" hideSkip hasSubmit />
+                    <ButtonGroup formValues={["Merkmale"]} hideSkip hasSubmit {...{ data, setData, active, setActive }} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
@@ -238,33 +265,36 @@ export default function HausanbieterVergleich() {
                       size="xl"
                       mt="xl"
                       mb="xl"
-                      defaultValue={[500, 900]} // todo default
+                      defaultValue={[
+                        data.Budget_from ? parseInt(data.Budget_from) : 500,
+                        data.Budget_to ? parseInt(data.Budget_to) : 900]}
                       min={100}
                       max={2000}
                       step={10}
                       label={(value) => value > 1000 ? `${(value / 1000).toFixed(2)} Mio. €` : `${value} Tsd. €`}
                       labelAlwaysOn
-                      name="budget"
+                      name="Budget"
                     />
 
                     <Checkbox
                       label="Grundstück vorhanden"
                       mb="md"
                       size="lg"
-                      defaultChecked={data.BuildingLicense !== false}
-                      name="BuildingLicense"
+                      defaultChecked={data.GrundstueckVorhanden}
+                      onChange={e => setData({ ...data, GrundstueckVorhanden: e.target.checked })}
+                      name="GrundstueckVorhanden"
                     />
 
-                    <ButtonGroup active={active} setActive={setActive} formValue="features" hideSkip hasSubmit />
+                    <ButtonGroup formValues={["Budget_from", "Budget_to"]} hideSkip hasSubmit {...{ data, setData, active, setActive }} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Fördermittel für Deine Immobilie</Title>
 
                   <form onSubmit={handleSubmit}>
-                    TODO
+                    Hier kommt noch etwas zu den Fördermitteln
 
-                    <ButtonGroup active={active} setActive={setActive} hasSubmit />
+                    <ButtonGroup hasSubmit {...{ data, setData, active, setActive }} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Completed>
