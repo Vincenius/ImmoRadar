@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Text, Grid, Image, Card, Flex, Box } from '@mantine/core';
+import { Container, Title, Text, Grid, Image, Card, Flex, Box, Button } from '@mantine/core';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
 
@@ -22,7 +22,9 @@ const Partner = ({ image, name, description, link, linkText }) => {
             <Title order={3} size="h4" mb="sm">{name}</Title>
             <Text fs="italic" mb="xs">{description}</Text>
           </Box>
-          <Text><a href={link} target='_blank' rel="noopener noreferrer">{linkText}</a></Text>
+          <Button component="a" size="sm" mt="md" variant="outline" href={link} target='_blank' rel="noopener noreferrer">
+            {linkText}
+          </Button>
         </Flex>
       </Flex>
     </Card>
@@ -68,11 +70,11 @@ const PartnerPage = () => {
         </Grid>
 
         <Title order={2} mb="sm">Werde Partner!</Title>
-        <Text mb="sm">
+        <Text mb="md">
           Hast du Interesse an einer Zusammenarbeit? Kontaktiere uns und lass uns gemeinsam neue Wege in die Zukunft gehen.
         </Text>
         <Text mb="xl">
-          <a href="mailto:oliver.rausch@immoradar.xyz">oliver.rausch@immoradar.xyz</a>
+          <Button component="a" size="lg" href="mailto:oliver.rausch@immoradar.xyz">Jetzt Kontakt aufnehmen!</Button>
         </Text>
       </Container>
     </Layout>
