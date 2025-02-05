@@ -56,15 +56,15 @@ const PartnerPage = () => {
             name="Andre Lamberti"
             image="swisslife-andre.jpg"
             link="https://swisslife-select.finlink.de/andre-lamberti/start/finance_type?partner=3c37fba5-673b-4fef-bfd9-95c11ae8aa68&partnerCompany=Oliver%20Rausch"
-            linkText="swisslife-select.finlink.de"
-            description="Andre Lamberti ist Berater bei SwissLife Select. Er unterstützt Kunden bei Immobilienfinanzierung und Vermögensplanung, um langfristige finanzielle Sicherheit zu gewährleisten."
+            linkText="Jetzt Anbieter und Konditionen vergleichen!"
+            description="André Lamberti ist Experte für Immobilienfinanzierungen. Mit seiner 20 jährigen Erfahrung unterstützt er Menschen dabei die passende Finanzierung für die persönliche Traumimmobilie zu finden."
           />
 
           <Partner
             name="Baufinanzierung Horn & Rozanski"
             image="hr-baufinanzierung.png"
-            link="https://www.hr-baufinanzierung.de/"
-            linkText="hr-baufinanzierung.de"
+            link="https://finl.ink/ofnji"
+            linkText="Jetzt Anbieter und Konditionen vergleichen!"
             description="Baufinanzierung Horn & Rozanski bietet transparente, maßgeschneiderte Baufinanzierungen und arbeitet mit über 600 Banken zusammen, um Kunden erfolgreich zur Traumimmobilie zu begleiten."
           />
         </Grid>
