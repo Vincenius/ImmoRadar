@@ -42,7 +42,7 @@ const Blog = ({ post }) => {
 
 export async function getStaticPaths() {
   const posts = await api.posts.browse({ limit: 'all' }).catch(e => console.error(e));
-  const paths = posts.map((post) => ({
+  const paths = (posts || []).map((post) => ({
     params: { slug: post.slug },
   }));
 

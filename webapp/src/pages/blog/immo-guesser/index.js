@@ -1,15 +1,6 @@
 import React from 'react';
 import { Container, Title, Text } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
-import { useRouter } from 'next/router';
-import GhostContentAPI from '@tryghost/content-api';
-
-// Initialisiere die Ghost API
-const api = new GhostContentAPI({
-  url: process.env.NEXT_PUBLIC_GHOST_API_URL,
-  key: process.env.NEXT_PUBLIC_GHOST_API_KEY,
-  version: 'v5.0'
-});
 
 const ImmoGuesser = () => {
     return (
