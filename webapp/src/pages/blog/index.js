@@ -22,6 +22,7 @@ const api = new GhostContentAPI({
 // todo https://github.com/ShortTechDE/headless-placeholder
 
 const Blog = ({ posts }) => {
+    if (!posts) { return <></> }
     return (
         <Layout
             title="Blog | ImmoRadar"
@@ -76,7 +77,7 @@ const Blog = ({ posts }) => {
 };
 
 export async function getStaticProps() {
-    const posts = await api.posts.browse({ limit: 'all' });
+    const posts = await api.posts.browse({ limit: 'all' }).catch(e => console.error(e));
   
     return { props: { posts } };
 }

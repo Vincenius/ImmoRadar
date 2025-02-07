@@ -10,37 +10,38 @@ import GhostContentAPI from '@tryghost/content-api';
 
 // Initialisiere die Ghost API
 const api = new GhostContentAPI({
-    url: process.env.NEXT_PUBLIC_GHOST_API_URL,
-    key: process.env.NEXT_PUBLIC_GHOST_API_KEY,
-    version: 'v5.0'
+  url: process.env.NEXT_PUBLIC_GHOST_API_URL,
+  key: process.env.NEXT_PUBLIC_GHOST_API_KEY,
+  version: 'v5.0'
 });
 
 const Blog = ({ post }) => {
-    console.log(post)
-    return (
-        <Layout
-            title={`${post.title} | ImmoRadar`}
-            description={`${post.excerpt}`}
-            image={post.feature_image}
-        >
-            <Container py="6rem" size="md" pos="relative">
-                <div className={styles.background}></div>
-                <Box p={{ base: "sm", sm: "0" }}>
-                    <Text c="gray.7" mb="md" size="xl" ta="center">{new Date(post.created_at).toLocaleString('de-DE', { dateStyle: 'long' })}</Text>
-                    <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
-                        {post.title}
-                    </Title>
-                </Box>
-            </Container>
-            <Container py="3rem" size="sm">
-                {mapToMantineComponents(post.html)}
-            </Container>
-        </Layout>
-    );
+  if (!post) return <></>
+
+  return (
+    <Layout
+      title={`${post.title} | ImmoRadar`}
+      description={`${post.excerpt}`}
+      image={post.feature_image}
+    >
+      <Container py="6rem" size="md" pos="relative">
+        <div className={styles.background}></div>
+        <Box p={{ base: "sm", sm: "0" }}>
+          <Text c="gray.7" mb="md" size="xl" ta="center">{new Date(post.created_at).toLocaleString('de-DE', { dateStyle: 'long' })}</Text>
+          <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
+            {post.title}
+          </Title>
+        </Box>
+      </Container>
+      <Container py="3rem" size="sm">
+        {mapToMantineComponents(post.html)}
+      </Container>
+    </Layout>
+  );
 };
 
 export async function getStaticPaths() {
-  const posts = await api.posts.browse({ limit: 'all' });
+  const posts = await api.posts.browse({ limit: 'all' }).catch(e => console.error(e));
   const paths = posts.map((post) => ({
     params: { slug: post.slug },
   }));

@@ -11,8 +11,7 @@ const api = new GhostContentAPI({
   version: 'v5.0'
 });
 
-const ImmoGuesser = ({ paths }) => {
-    console.log(paths)
+const ImmoGuesser = () => {
     return (
         <Layout
             title="ImmoGuesser ist nicht mehr verfügbar | Immoradar"
@@ -37,14 +36,5 @@ const ImmoGuesser = ({ paths }) => {
         </Layout>
     );
 };
-
-export async function getStaticPaths() {
-    const posts = await api.posts.browse({ limit: 'all' });
-    const paths = posts.map((post) => ({
-      params: { slug: post.slug },
-    }));
-  
-    return { paths, fallback: true };
-}
 
 export default ImmoGuesser;
