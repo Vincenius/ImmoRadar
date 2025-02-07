@@ -22,7 +22,7 @@ const api = new GhostContentAPI({
 // todo https://github.com/ShortTechDE/headless-placeholder
 
 const Blog = ({ posts }) => {
-    if (!posts) { return <></> }
+    if (!posts || !posts.length) { return <></> }
     return (
         <Layout
             title="Blog | ImmoRadar"
