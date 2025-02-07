@@ -1,8 +1,18 @@
 import React from 'react';
 import { Container, Title, Text } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
+import { useRouter } from 'next/router';
+import GhostContentAPI from '@tryghost/content-api';
 
-const ImmoGuesser = () => {
+// Initialisiere die Ghost API
+const api = new GhostContentAPI({
+  url: process.env.NEXT_PUBLIC_GHOST_API_URL,
+  key: process.env.NEXT_PUBLIC_GHOST_API_KEY,
+  version: 'v5.0'
+});
+
+const ImmoGuesser = ({ paths }) => {
+    console.log(paths)
     return (
         <Layout
             title="ImmoGuesser ist nicht mehr verfügbar | Immoradar"
@@ -27,5 +37,14 @@ const ImmoGuesser = () => {
         </Layout>
     );
 };
+
+export async function getStaticPaths() {
+    const posts = await api.posts.browse({ limit: 'all' });
+    const paths = posts.map((post) => ({
+      params: { slug: post.slug },
+    }));
+  
+    return { paths, fallback: true };
+}
 
 export default ImmoGuesser;

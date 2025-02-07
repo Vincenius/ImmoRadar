@@ -1,10 +1,10 @@
 import React from 'react'
 import { LazyLoadImage } from 'react-lazy-load-image-component'
+import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Box, Card, Flex, Image, Title, ThemeIcon, Text, Skeleton, rem, NumberFormatter } from '@mantine/core';
 import { Carousel } from '@mantine/carousel'
 import { IconMapPin, IconLink, IconArrowRight, IconArrowLeft } from '@tabler/icons-react';
 import styles from './SearchItem.module.css'
-import 'react-lazy-load-image-component/src/effects/blur.css';
 
 const GalleryImage = ({ item, image }) => {
   return <Image component={LazyLoadImage}

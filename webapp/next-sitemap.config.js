@@ -5,6 +5,8 @@ const exclude = [
     '/foerderung', 'foerderung/ergebnis', '/grundstueckboerse', '/index-tmp', '/fertighaus-vergleich'  // temp
 ]
 
+// todo add blog posts
+
 module.exports = {
     siteUrl: process.env.BASE_URL,
     generateRobotsTxt: true,
