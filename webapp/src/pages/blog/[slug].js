@@ -1,6 +1,6 @@
 import React from 'react';
 import Link from 'next/link';
-import { LazyLoadImage } from 'react-lazy-load-image-component' // todo use in mapToMantine
+import { LazyLoadImage } from 'react-lazy-load-image-component'
 import 'react-lazy-load-image-component/src/effects/blur.css';
 import { Container, Title, Box, Card, Flex, Image, Text, Skeleton, Button } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
@@ -16,6 +16,8 @@ const api = new GhostContentAPI({
 });
 
 const Blog = ({ post }) => {
+  if (!post) return <></>
+
   return (
     <Layout
       title={`${post.title} | ImmoRadar`}
