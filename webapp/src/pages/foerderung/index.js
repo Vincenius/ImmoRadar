@@ -121,7 +121,10 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  todoooo
+                  <Title order={2} size="h3" mb="lg">Welche Maßnahme planen Sie?</Title>
+                  {/* todo dynamically fetch */}
+
+                  <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
                 </Stepper.Step>
                 {/* <Stepper.Completed>
                   <Checkout />
