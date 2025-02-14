@@ -1,19 +1,20 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, Modal, NumberInput, Select, List } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Checkbox, Stepper, rem, Modal, Select, List } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import { IconMapPin2, IconHome2, IconUser, IconHomeSearch, IconClockBolt, IconStar } from '@tabler/icons-react';
+import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import { mainSearches } from '@/utils/searchSeo'
-import Checkout from '@/components/Checkout/Checkout';
+import CheckboxCard from '@/components/Inputs/CheckboxCard';
+// import Checkout from '@/components/Checkout/Checkout';
 
-const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
-
-const ButtonGroup = ({ active, setActive, isLoading }) => {
+const ButtonGroup = ({ active, setActive, isLoading, hasSubmit }) => {
   return <Group justify="space-between" mt="xl">
-    { active === 0 && <div></div>}
-    { active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> }
-    { active < 3 && <Button type="submit" loading={isLoading}>Weiter</Button> }
+    {active === 0 && <div></div>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
+    {active < 4 && <Flex gap="sm">
+      {hasSubmit && <Button type="submit" loading={isLoading}>Weiter</Button>}
+    </Flex>}
   </Group>
 }
 
@@ -21,6 +22,16 @@ export default function Home() {
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
   const [data, setData] = useState({})
+
+  const selectOption = (e) => {
+    let elem = e.target
+    while (!elem.name) {
+      elem = elem.parentElement
+    }
+    setData({ ...data, [elem.name]: elem.value })
+    setActive(active + 1)
+  }
+
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -54,20 +65,48 @@ export default function Home() {
         <div className={styles.background}></div>
 
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
-          <Flex gap="xl" direction="column" justify="center" align="center">
+          <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
-              <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
-                Jetzt <span className={styles.gradientText}>bis zu 10.000€</span> an Förderung für Ihr Bauvorhaben sichern.
+              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
+                Der <span className={styles.gradientText}>Förder Check</span>.
+              </Title>
+              <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
+                Hausbau leichter finanzieren mit staatlichen Förderungen.
               </Title>
             </Box>
 
-            <Button size="xl" onClick={open}>Förderungsrechner Starten</Button>
+            <Button size="xl" onClick={open}>Förder Check Starten</Button>
 
-            <Modal opened={opened} onClose={close} title="Förderungsrechner" size="lg">
-              <Stepper active={active} onStepClick={setActive}>
+            <Modal opened={opened} onClose={close} title="Förder Check" size="md" styles={{ content: { overflowX: 'hidden' } }}>
+              <Stepper
+                active={active}
+                onStepClick={setActive}
+                size="14px"
+                styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
+                allowNextStepsSelect={false}
+              >
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">In welchem Bundesland wollen Sie bauen?</Title>
+                  <Title order={2} size="h3" mb="lg">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 
+                  <Flex wrap="wrap" gap="md">
+                    <SelectButton name="HausTyp" value="Bestand" onClick={selectOption} fullWidth>Bestand</SelectButton>
+                    <SelectButton name="HausTyp" value="Neubau" onClick={selectOption} fullWidth>Neubau</SelectButton>
+                  </Flex>
+
+                  <ButtonGroup {...{ data, setData, active, setActive }} />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Welche Art der Förderung suchen Sie?</Title>
+                  {/* todo handle data checked */}
+                  <CheckboxCard title="Zuschuss" mb="lg" />
+                  <CheckboxCard title="Kredit" />
+
+                  <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
+                </Stepper.Step>
+                <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Wo befindet sich die Immobilie?</Title>
+
+                  {/* todo */}
                   <form onSubmit={handleSubmit}>
                     <Select
                       label="Bundesland"
@@ -82,45 +121,11 @@ export default function Home() {
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Weitere Fragen kommen hier...</Title>
-
-                  <form onSubmit={handleSubmit}>
-                    <NumberInput
-                      label="Budget"
-                      description="Welche Investition planen Sie für Ihr Grundstück?"
-                      placeholder="300.000"
-                      required
-                      hideControls
-                      mb="sm"
-                      name="Budget"
-                      rightSection="€"
-                      thousandSeparator=" "
-                      decimalScale={0}
-                      defaultValue={data.Budget}
-                    />
-
-                    <ButtonGroup active={active} setActive={setActive} />
-                  </form>
+                  todoooo
                 </Stepper.Step>
-                <Stepper.Step>
-                  <Title order={2} size="h3" mb="md">Sie können eine Förderung in Höhe von 2.000€ erhalten.</Title>
-                  <Text mb="md">Unsere Berechnungen haben anhand Ihrer Angaben ermittelt, dass Sie für <b>2 Förderprojekte</b> in Frage kommen.</Text>
-                  <Text mb="md">Schalten Sie jetzt den vollständigen Report für <b>20€</b> frei</Text>
-                  <Text mb="md">Der Report beinahltet</Text>
-
-                  <List>
-                    <List.Item>Erkärungen und Links zu den Förderungen</List.Item>
-                    <List.Item>Kontakt zu unserem Experten für weitere Fragen</List.Item>
-                    <List.Item>Geld zurück Garantie falls keine Förderung erhalten wird</List.Item>
-                  </List>
-
-                  <form onSubmit={handleSubmit}>
-                    <ButtonGroup active={active} setActive={setActive} />
-                  </form>
-                </Stepper.Step>
-                <Stepper.Completed>
+                {/* <Stepper.Completed>
                   <Checkout />
-                </Stepper.Completed>
+                </Stepper.Completed> */}
               </Stepper>
             </Modal>
           </Flex>

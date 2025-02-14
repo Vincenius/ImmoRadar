@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { Flex, Group, Button, Title, Box, Stepper, Modal, RangeSlider, Grid, Chip } from '@mantine/core';
-import MLButton from '@/components/Inputs/ButtonMultiLine';
+import SelectButton from '@/components/Inputs/SelectButton';
 import Checkbox from '@/components/Inputs/Checkbox';
 import { useDisclosure } from '@mantine/hooks';
 import Layout from '@/components/Layout/Layout'
@@ -8,20 +8,6 @@ import styles from '@/styles/Home.module.css'
 // import Checkout from '@/components/Checkout/Checkout';
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
-
-const SelectButton = ({ children, isMultiLine, ...props }) => {
-  const ButtonComponent = isMultiLine ? MLButton : Button
-  return (
-    <ButtonComponent
-      size="lg"
-      styles={{ root: { flexGrow: 1 } }}
-      variant="outline"
-      {...props}
-    >
-      {children}
-    </ButtonComponent>
-  )
-}
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -118,10 +104,10 @@ export default function HausanbieterVergleich() {
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box p={{ base: "sm", sm: "xl", md: "0" }}>
-              <Title order={1} ta="center" fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
+              <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 60 }} fw="bold" mb="lg" mt={{ base: 'xl', md: 0 }} textWrap="balance">
                 Der <span className={styles.gradientText}>Fertighausanbieter Vergleich</span>.
               </Title>
-              <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', sm: 'left' }} mb="xl" fw={300}>
+              <Title order={2} fz={{ base: 24, xs: 32, sm: 40, md: 48 }} ta={{ base: 'center', md: 'left' }} mb="xl" fw={300}>
                 Nutze unser Tool und spare dir die Stundenlange Recherche.
               </Title>
             </Box>
