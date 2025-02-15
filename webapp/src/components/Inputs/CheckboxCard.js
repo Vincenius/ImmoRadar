@@ -2,15 +2,14 @@ import { useState } from 'react';
 import { Checkbox, Group, Text } from '@mantine/core';
 import classes from './CheckboxCard.module.css';
 
-function CheckboxCard({ title, description, ...props }) {
-  const [checked, setChecked] = useState(false);
+function CheckboxCard({ title, description, handleChange, value, ...props }) {
 
   return (
     <Checkbox.Card
       className={classes.root}
       radius="md"
-      checked={checked}
-      onClick={() => setChecked((c) => !c)}
+      checked={value}
+      onClick={handleChange}
       {...props}
     >
       <Group wrap="nowrap" align="center">

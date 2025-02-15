@@ -1,27 +1,32 @@
 import { useState } from 'react';
-import { Flex, Text, Group, Button, Title, Box, Checkbox, Stepper, rem, Modal, Select, List } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, rem, Modal, NumberInput, Select } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import { mainSearches } from '@/utils/searchSeo'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
+import Checkbox from '@/components/Inputs/Checkbox';
 // import Checkout from '@/components/Checkout/Checkout';
 
-const ButtonGroup = ({ active, setActive, isLoading, hasSubmit }) => {
+const numberFormatElements = ['Postalcode']
+
+const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
     {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
     {active < 4 && <Flex gap="sm">
-      {hasSubmit && <Button type="submit" loading={isLoading}>Weiter</Button>}
+      {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>Weiter</Button>}
     </Flex>}
   </Group>
 }
 
-export default function Home() {
+export default function Foerderung() {
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
-  const [data, setData] = useState({})
+  const [data, setData] = useState({ TypZuschuss: true, TypKredit: true, StandortBekannt: true })
+
+  // todo fetch bundesländer + kreise
 
   const selectOption = (e) => {
     let elem = e.target
@@ -29,6 +34,11 @@ export default function Home() {
       elem = elem.parentElement
     }
     setData({ ...data, [elem.name]: elem.value })
+    setActive(active + 1)
+  }
+
+  const handleSubmitNext = (e) => {
+    e.preventDefault();
     setActive(active + 1)
   }
 
@@ -60,6 +70,7 @@ export default function Home() {
     <Layout
       title="ImmoRadar Förderung"
       description="todo"
+      noindex={true} // todo
     >
       <Box className={styles.header} py="xl">
         <div className={styles.background}></div>
@@ -96,33 +107,65 @@ export default function Home() {
                   <ButtonGroup {...{ data, setData, active, setActive }} />
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Welche Art der Förderung suchen Sie?</Title>
-                  {/* todo handle data checked */}
-                  <CheckboxCard title="Zuschuss" mb="lg" />
-                  <CheckboxCard title="Kredit" />
+                  <form onSubmit={handleSubmitNext}>
+                    <Title order={2} size="h3" mb="lg">Welche Art der Förderung suchen Sie?</Title>
+                    <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss }) } value={data.TypZuschuss} title="Zuschuss" mb="lg" />
+                    <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit }) } value={data.TypKredit} title="Kredit" />
 
-                  <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
+                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
+                  </form>
                 </Stepper.Step>
                 <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Wo befindet sich die Immobilie?</Title>
+                  <Title order={2} size="h3" mb="lg">Wo liegt die Immobilie oder wo planen Sie zu bauen?</Title>
 
-                  {/* todo */}
+                  <Checkbox
+                    size="md"
+                    mb="lg"
+                    label={<Text>Immobilienstandort steht fest</Text>}
+                    checked={data.StandortBekannt}
+                    onChange={() => setData({ ...data, StandortBekannt: !data.StandortBekannt })}
+                  />
                   <form onSubmit={handleSubmit}>
-                    <Select
-                      label="Bundesland"
-                      data={mainSearches.map(s => s.primary.label)}
-                      required
-                      mb="sm"
-                      name="region"
-                      defaultValue={data.region}
-                    />
+                    {!!data.StandortBekannt && (
+                      <NumberInput
+                        label="Postleitzahl"
+                        placeholder="12345"
+                        required
+                        hideControls
+                        mb="sm"
+                        name="Postleitzahl"
+                        decimalScale={0}
+                        maxLength={5}
+                        defaultValue={data.Postleitzahl}
+                      />
+                    )}
+                    {!data.StandortBekannt && (
+                      <>
+                        <Select
+                          label="Bundesland"
+                          data={mainSearches.map(s => s.primary.label)}
+                          required
+                          mb="sm"
+                          name="Bundesland"
+                          defaultValue={data.Bundesland}
+                        />
 
-                    <ButtonGroup active={active} setActive={setActive} />
+                        <Select
+                          label="Kreis/Landkreis (optional)"
+                          data={['hier kommen', 'dynamische kreise', 'für die es förderungen gibt']} // todo dynamisch
+                          mb="sm"
+                          name="Kreis"
+                          defaultValue={data.Kreis}
+                        />
+                      </>
+                    )}
+
+                    <ButtonGroup active={active} setActive={setActive} hasSubmit />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Maßnahme planen Sie?</Title>
-                  {/* todo dynamically fetch */}
+                  Hier kommen die Maßnahmen die es für die angegebenen daten gibt
 
                   <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
                 </Stepper.Step>
