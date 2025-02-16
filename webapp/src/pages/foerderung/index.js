@@ -208,7 +208,7 @@ export default function Foerderung() {
                       description="Für einige Bundesländer gibt es spezifische Förderungen einzelner Kreise/Landkreise."
                     />
 
-                    <ButtonGroup active={active} setActive={setActive} hasSubmit />
+                    <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
@@ -220,7 +220,7 @@ export default function Foerderung() {
                         <SelectChip key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
                       ))}
                     </Flex>
-                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
+                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0}/>
                   </form>
                 </Stepper.Step>
                 <Stepper.Step>
