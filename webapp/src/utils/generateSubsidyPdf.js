@@ -1,10 +1,10 @@
-import pdf from 'html-pdf';
-import showdown from 'showdown'
+import puppeteer from 'puppeteer';
+import showdown from 'showdown';
 import { v4 as uuidv4 } from 'uuid';
 
-const converter = new showdown.Converter()
+const converter = new showdown.Converter();
 
-const generatePdf = (subsidies) => new Promise((resolve, reject) => {
+const generatePdf = async (subsidies) => {
   let html = `
   <html>
     <head>
@@ -63,7 +63,7 @@ const generatePdf = (subsidies) => new Promise((resolve, reject) => {
     }
 
     if (subsidy.Requirements) {
-      html += `<h3>Voraussetzungen</h3>`;;
+      html += `<h3>Voraussetzungen</h3>`;
       html += `<p>${converter.makeHtml(subsidy.Requirements)}</p>`;
     }
 
@@ -80,21 +80,34 @@ const generatePdf = (subsidies) => new Promise((resolve, reject) => {
 
   html += `</body></html>`;
 
-  // PDF mit html-pdf erstellen
+  // PDF mit Puppeteer erstellen
+  const fileName = uuidv4();
+  const browser = await puppeteer.launch();
+  const page = await browser.newPage();
+
+  // Set content of the page
+  await page.setContent(html, { waitUntil: 'networkidle0' });
+
+  // Define PDF options
   const pdfOptions = {
     format: 'A4',
-    "border": {
-      "top": "1in",
-      "right": "0.5in",
-      "bottom": "1in",
-      "left": "0.5in"
+    margin: {
+      top: '1in',
+      right: '0.5in',
+      bottom: '1in',
+      left: '0.5in'
     },
+    path: `./tmp/${fileName}.pdf`, // Save to disk
+    printBackground: true
   };
-  const fileName = uuidv4()
-  pdf.create(html, pdfOptions).toFile(`./tmp/${fileName}.pdf`, (err, res) => {
-    if (err) { reject(err) }
-    resolve(res); // { filename: '/path/to/test.pdf' }
-  });
-})
 
-export default generatePdf
+  // Generate the PDF
+  await page.pdf(pdfOptions);
+
+  await browser.close();
+
+  // Return file path
+  return { filename: `./tmp/${fileName}.pdf` };
+};
+
+export default generatePdf;
