@@ -38,9 +38,6 @@ const AboutPage = () => {
                         <TeamMember image="olli.jpg" name="Oliver Rausch" title="Experte für Immobilien & Grundstücke"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="dennis.jpg" name="Dennis Kostenko" title="Maschinenbauingenieur - Technik & Automatisierung"/>
-                    </Grid.Col>
-                    <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                         <TeamMember image="felix.jpg" name="Felix Van Huet" title="Bauingenieur - Nachhaltigkeit & Werkstoffe"/>
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
@@ -51,6 +48,9 @@ const AboutPage = () => {
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                         <TeamMember image="michael.jpg" name="Michael Beuthel" title="Experte für Förderungen"/>
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                        <TeamMember image="sergey.jpg" name="Sergey Sidorov" title="Rechtsberater"/>
                     </Grid.Col>
                 </Grid>
 
