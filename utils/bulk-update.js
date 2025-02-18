@@ -20,7 +20,7 @@ async function fetchAllRecords() {
 }
 
 // Funktion, um einen einzelnen Eintrag zu aktualisieren
-async function updateRecord(recordId) {
+async function updateRecord(recordId, updates) {
   const response = await fetch(`${baseUrl}/tables/${tableId}/records`, {
     method: 'PATCH',
     headers: {
@@ -29,7 +29,7 @@ async function updateRecord(recordId) {
     },
     body: JSON.stringify({
       Id: recordId,
-      Status: 'Nicht Bearbeitet',
+      ...updates
     }),
   });
 
@@ -47,8 +47,10 @@ async function updateAllRecords() {
     console.log(records.list.length)
 
     for (const record of records.list) {
-      await updateRecord(record.Id); // Aktualisiere jedes Feld mit "status: Nicht Bearbeitet"
-      console.log(`Eintrag ${record.Id} wurde aktualisiert.`);
+      // if (record.Measures.includes('Altersgerechter Umbau & Einbruchschutz')) {
+      //   await updateRecord(record.Id, { Measures: record.Measures.replace('Altersgerechter Umbau & Einbruchschutz', 'Altersgerechter Umbau,Einbruchschutz') });
+      //   console.log(`Eintrag ${record.Id} wurde aktualisiert.`);
+      // }
     }
 
     console.log('Alle Einträge wurden erfolgreich aktualisiert.');

@@ -214,6 +214,19 @@ export default function Foerderung() {
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Welche Maßnahmen planen Sie?</Title>
 
+                  <Chip
+                    checked={data.Measures?.length === measuresData.length}
+                    onChange={() => data.Measures?.length === measuresData.length
+                      ? setData({ ...data, Measures: [] })
+                      : setData({ ...data, Measures: measuresData })
+                    }
+                    size="lg"
+                    mb="md"
+                    styles={{ label: { width: '100%', justifyContent: 'center' } }}
+                  >
+                    Alle auswählen
+                  </Chip>
+
                   <form onSubmit={handleSubmit}>
                     <Flex gap="sm" wrap="wrap">
                       {measuresData.map((m) => (
