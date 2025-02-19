@@ -47,9 +47,9 @@ export default async function handler(req, res) {
             d.Measures?.some(element => userData.Measures?.includes(element)),
           )
 
-          // todo limit for not paid users
+          const result = user.isPaid ? filteredSubsidies : filteredSubsidies.slice(0, 3)
 
-          return res.status(200).json({ subsidies: filteredSubsidies, user: userData })
+          return res.status(200).json({ subsidies: result, user: userData, fullReportLength: filteredSubsidies.length })
         } else {
           return res.status(401).json({ message: 'Unauthorized' });
         }
@@ -100,7 +100,7 @@ export default async function handler(req, res) {
       
       fs.unlinkSync(filename)
       
-      res.status(200).json({});
+      res.status(200).json({ id });
     } else {
       res.status(400).json({})
     }

@@ -23,7 +23,7 @@ const generatePdf = async (id) => {
       left: '1in'
     },
     path: `./tmp/${fileName}.pdf`,
-    printBackground: false,
+    printBackground: true,
     displayHeaderFooter: true,
     headerTemplate: `
       <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin: 0 1in 30px ; padding: 0 0 15px; font-family: 'Arial'; border-bottom: 1px solid  #dee2e5;">

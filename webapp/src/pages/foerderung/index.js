@@ -1,6 +1,7 @@
 import { useState } from 'react';
+import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, rem, Modal, Chip, Select } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Modal, Chip, Select } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -47,6 +48,7 @@ const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
 }
 
 export default function Foerderung() {
+  const router = useRouter()
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
   const [isLoading, setIsLoading] = useState(false);
@@ -128,7 +130,11 @@ export default function Foerderung() {
       method: 'POST',
       body: JSON.stringify({ data, email })
     })
-      .then(() => setActive(active + 1))
+      .then(res => res.json())
+      .then(res => {
+        console.log(res)
+        router.push(`/foerderung/report?id=${res.id}&new=true`)
+      })
       .catch(() => console.log('error')) // todo error handling
       .finally(() => setIsLoading(false))
   }
@@ -233,37 +239,56 @@ export default function Foerderung() {
                         <SelectChip key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
                       ))}
                     </Flex>
-                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0}/>
+                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
                   </form>
                 </Stepper.Step>
-                <Stepper.Step>
-                  {/* TODO keine förderungen gefunden */}
+                <Stepper.Completed>
+                  {/* TODO keine förderungen gefunden ? */}
                   <Title order={2} size="h3" mb="md">
                     Wir konnten {finalData.length} Förderungen für die eingestellten Kriterien finden.
                   </Title>
+                  <Table mb="xl" size="sm" striped>
+                    <Table.Thead>
+                      <Table.Tr>
+                        <Table.Th>Deine Daten</Table.Th>
+                      </Table.Tr>
+                    </Table.Thead>
+                    <Table.Tbody>
+                      <Table.Tr>
+                        <Table.Td>Förderungen für</Table.Td>
+                        <Table.Td>{data.HouseType}</Table.Td>
+                      </Table.Tr>
+                      <Table.Tr>
+                        <Table.Td>Art der Förderung</Table.Td>
+                        <Table.Td>{data.TypZuschuss && data.TypKredit ? 'Zuschuss & Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit'}</Table.Td>
+                      </Table.Tr>
+                      <Table.Tr>
+                        <Table.Td>Immobilienstandort</Table.Td>
+                        <Table.Td>{data.Region}{data.District ? ` - ${data.District}` : ''}</Table.Td>
+                      </Table.Tr>
+                      <Table.Tr>
+                        <Table.Td>Zu Fördernde Maßnahmen</Table.Td>
+                        <Table.Td>{data.Measures?.join(', ')}</Table.Td>
+                      </Table.Tr>
+                    </Table.Tbody>
+                  </Table>
 
-                  <Text mb="md">Erhalte jetzt den vollständigen Report als PDF per E-Mail</Text>
-
+                  <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
                   <form onSubmit={handleSubmitReport}>
                     <TextInput
                       required
                       label="E-Mail Adresse"
                       placeholder="mustermann@example.com"
-                      mb="md"
+                      mb="xl"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
                     />
 
-                    <Button fullWidth type="submit" loading={isLoading}>Report Kaufen</Button>
+                    <Flex gap="md">
+                      <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
+                      <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
+                    </Flex>
                   </form>
-                </Stepper.Step>
-                <Stepper.Completed>
-                  <Title order={2} size="h3" mb="md">
-                    Vielen Dank!
-                  </Title>
-                  <Text>
-                    Der Report wurde erfolgreich erstellt und wird Dir per E-Mail zugesendet.
-                  </Text>
                 </Stepper.Completed>
               </Stepper>
             </Modal>
