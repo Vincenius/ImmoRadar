@@ -5,7 +5,6 @@ import Checkbox from '@/components/Inputs/Checkbox';
 import { useDisclosure } from '@mantine/hooks';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
-// import Checkout from '@/components/Checkout/Checkout';
 
 const numberFormatElements = ['Radius', 'MinSize', 'MaxSize', 'Budget', 'Postalcode']
 

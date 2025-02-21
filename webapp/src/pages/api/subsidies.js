@@ -89,7 +89,6 @@ export default async function handler(req, res) {
       }).then(res => res.json())
 
       const { filename } = await generatePdf(id)
-
       await sendEmail({
         to: email,
         subject: 'ImmoRadar Förderungen Report',
@@ -97,7 +96,6 @@ export default async function handler(req, res) {
         pdfFilePath: filename,
         pdfFileName: 'ImmoRadar Förderung Report.pdf'
       })
-      
       fs.unlinkSync(filename)
       
       res.status(200).json({ id });

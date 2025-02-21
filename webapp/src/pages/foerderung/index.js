@@ -132,8 +132,7 @@ export default function Foerderung() {
     })
       .then(res => res.json())
       .then(res => {
-        console.log(res)
-        router.push(`/foerderung/report?id=${res.id}&new=true`)
+        router.push(`/foerderung/report?id=${res.id}&is_new=true`)
       })
       .catch(() => console.log('error')) // todo error handling
       .finally(() => setIsLoading(false))
