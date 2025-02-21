@@ -31,6 +31,7 @@ export async function getServerSideProps({ resolvedUrl }) {
 
 function ReportCheckout({ id, email }) {
   // todo check if user already paid
+  // todo test & check error path
 
   return (
     <Layout
