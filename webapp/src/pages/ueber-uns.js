@@ -57,7 +57,7 @@ const AboutPage = () => {
                 <Title order={2} mb="lg">Kontakt</Title>
                 <Text my="md">
                     <a href="mailto:oliver.rausch@immoradar.xyz">oliver.rausch@immoradar.xyz</a><br/>
-                    <a href="mailto:vincent@immoradar.xyz">vincent@immoradar.xyz</a><br/>
+                    <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a><br/>
                 </Text>
             </Container>
         </Layout>

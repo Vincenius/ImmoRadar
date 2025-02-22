@@ -22,7 +22,7 @@ const subsidyTemplate = () => mjml2html(`<mjml>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Vertrauen in ImmoRadar!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Im Anhang findest du deinen personalisierten Report mit allen relevanten Fördermöglichkeiten für dein Bauprojekt.</mj-text>
 
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast oder Feedback geben möchtest, erreichst du mich jederzeit unter <a href="mailto:vincent@immoradar.xyz">vincent@immoradar.xyz</a>.</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast oder Feedback geben möchtest, erreichst du mich jederzeit unter <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a>.</mj-text>
         
         <mj-text font-size="15px" color="#000" font-family="helvetica">Viele Grüße,<br>Vincent von ImmoRadar</mj-text>
       </mj-column>
