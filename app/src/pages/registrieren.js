@@ -1,7 +1,8 @@
 import { useState } from 'react'
 import Head from "next/head";
 import Link from "next/link";
-import { Flex, Title, TextInput, Button, Checkbox, Text } from '@mantine/core';
+import { Flex, Title, TextInput, Button, Text } from '@mantine/core';
+import Checkbox from '@/components/Inputs/Checkbox';
 import LoginCard from "@/components/LoginCard";
 
 export default function Register() {

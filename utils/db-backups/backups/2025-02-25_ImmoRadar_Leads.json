@@ -1,0 +1,65 @@
+[
+  {
+    "Id": 35,
+    "Firstname": "Swenja",
+    "CreatedAt": "2025-01-21 12:50:00+00:00",
+    "UpdatedAt": "2025-01-21 12:50:40+00:00",
+    "Lastname": "Hintzen",
+    "Email": "swenjahintzen@web.de",
+    "Phone": "+4915154360563",
+    "Token": "d0bd8d19-4538-4ee2-888f-3fb88fa33dca",
+    "Confirmed": true,
+    "PropertySearches_id": 7,
+    "PropertyOffers_id": null,
+    "BudgetCalculator_id": null,
+    "Status": "New",
+    "PropertyOffers": null,
+    "BudgetCalculator": null,
+    "PropertySearches": {
+      "Id": 7,
+      "City": "Pulheim"
+    }
+  },
+  {
+    "Id": 36,
+    "Firstname": "Sebastian ",
+    "CreatedAt": "2025-01-25 15:53:00+00:00",
+    "UpdatedAt": "2025-01-28 14:12:39+00:00",
+    "Lastname": "Brahtz",
+    "Email": "sebastian.brahtz@gmx.de",
+    "Phone": "+4915730941335",
+    "Token": "f8f41b02-bf68-43cb-b626-865a55d37cd9",
+    "Confirmed": true,
+    "PropertySearches_id": 8,
+    "PropertyOffers_id": null,
+    "BudgetCalculator_id": null,
+    "Status": "New",
+    "PropertyOffers": null,
+    "BudgetCalculator": null,
+    "PropertySearches": {
+      "Id": 8,
+      "City": "Mönchengladbach "
+    }
+  },
+  {
+    "Id": 56,
+    "Firstname": "Fritz",
+    "CreatedAt": "2025-02-22 12:39:24+00:00",
+    "UpdatedAt": "2025-02-22 12:39:33+00:00",
+    "Lastname": "Balzer",
+    "Email": "fritz.balzer@gmx.de",
+    "Phone": "+491721772870",
+    "Token": "b41ada14-b370-4ce2-a268-ed6c3b30c836",
+    "Confirmed": true,
+    "PropertySearches_id": 12,
+    "PropertyOffers_id": null,
+    "BudgetCalculator_id": null,
+    "Status": "New",
+    "PropertyOffers": null,
+    "BudgetCalculator": null,
+    "PropertySearches": {
+      "Id": 12,
+      "City": "Köln"
+    }
+  }
+]

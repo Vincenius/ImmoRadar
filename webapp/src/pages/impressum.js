@@ -13,7 +13,7 @@ const Imprint = () => {
                 Landsberger Allee 171D<br />
                 10369 Berlin<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: vincent@immoradar.xyz<br />
+                E-Mail: vincent.will@immoradar.xyz<br />
             </p><br/>
 
             <p>

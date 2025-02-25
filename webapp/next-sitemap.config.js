@@ -2,8 +2,10 @@ const { MongoClient } = require('mongodb');
 
 const exclude = [
     '/deleted', '/profile', '/email-bestaetigt', '/unerwarteter-fehler', '/blog/immo-guesser',
-    '/foerderung', 'foerderung/ergebnis', '/grundstueckboerse', '/index-tmp'  // temp
+    '/foerderung', 'foerderung/ergebnis', '/grundstueckboerse', '/index-tmp', '/fertighaus-vergleich'  // temp
 ]
+
+// todo add blog posts
 
 module.exports = {
     siteUrl: process.env.BASE_URL,

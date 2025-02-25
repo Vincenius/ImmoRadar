@@ -28,7 +28,7 @@ const confirmTemplate = ({ confirm_url }) => mjml2html(`<mjml>
           <mj-text font-size="15px" color="#000" font-family="helvetica">Falls der Link nicht funktioniert, kopiere ihn bitte und füge ihn in die Adressleiste deines Browsers ein.</mj-text>
           <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Vertrauen in ImmoRadar! Wir freuen uns darauf, dir die besten Angebote für Wohnungen in deiner gewünschten Region zu senden.</mj-text>
   
-          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:vincent@immoradar.xyz">vincent@immoradar.xyz</a> kontaktieren.</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a> kontaktieren.</mj-text>
   
           <mj-text font-size="15px" color="#000" font-family="helvetica">Vincent von ImmoRadar</mj-text>
         </mj-column>

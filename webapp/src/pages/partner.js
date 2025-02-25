@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Title, Text, Grid, Image, Card, Flex, Box } from '@mantine/core';
+import { Container, Title, Text, Grid, Image, Card, Flex, Box, Button } from '@mantine/core';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
 
@@ -22,7 +22,9 @@ const Partner = ({ image, name, description, link, linkText }) => {
             <Title order={3} size="h4" mb="sm">{name}</Title>
             <Text fs="italic" mb="xs">{description}</Text>
           </Box>
-          <Text><a href={link} target='_blank' rel="noopener noreferrer">{linkText}</a></Text>
+          <Button component="a" size="sm" mt="md" variant="outline" href={link} target='_blank' rel="noopener noreferrer">
+            {linkText}
+          </Button>
         </Flex>
       </Flex>
     </Card>
@@ -54,25 +56,25 @@ const PartnerPage = () => {
             name="Andre Lamberti"
             image="swisslife-andre.jpg"
             link="https://swisslife-select.finlink.de/andre-lamberti/start/finance_type?partner=3c37fba5-673b-4fef-bfd9-95c11ae8aa68&partnerCompany=Oliver%20Rausch"
-            linkText="swisslife-select.finlink.de"
-            description="Andre Lamberti ist Berater bei SwissLife Select. Er unterstützt Kunden bei Immobilienfinanzierung und Vermögensplanung, um langfristige finanzielle Sicherheit zu gewährleisten."
+            linkText="Jetzt Anbieter und Konditionen vergleichen!"
+            description="André Lamberti ist Experte für Immobilienfinanzierungen. Mit seiner 20 jährigen Erfahrung unterstützt er Menschen dabei die passende Finanzierung für die persönliche Traumimmobilie zu finden."
           />
 
           <Partner
             name="Baufinanzierung Horn & Rozanski"
             image="hr-baufinanzierung.png"
-            link="https://www.hr-baufinanzierung.de/"
-            linkText="hr-baufinanzierung.de"
+            link="https://finl.ink/ofnji"
+            linkText="Jetzt Anbieter und Konditionen vergleichen!"
             description="Baufinanzierung Horn & Rozanski bietet transparente, maßgeschneiderte Baufinanzierungen und arbeitet mit über 600 Banken zusammen, um Kunden erfolgreich zur Traumimmobilie zu begleiten."
           />
         </Grid>
 
         <Title order={2} mb="sm">Werde Partner!</Title>
-        <Text mb="sm">
+        <Text mb="md">
           Hast du Interesse an einer Zusammenarbeit? Kontaktiere uns und lass uns gemeinsam neue Wege in die Zukunft gehen.
         </Text>
         <Text mb="xl">
-          <a href="mailto:oliver.rausch@immoradar.xyz">oliver.rausch@immoradar.xyz</a>
+          <Button component="a" size="lg" href="mailto:oliver.rausch@immoradar.xyz">Jetzt Kontakt aufnehmen!</Button>
         </Text>
       </Container>
     </Layout>

@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea, Checkbox } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, Card, Stepper, rem, TextInput, NumberInput, Textarea } from '@mantine/core';
+import Checkbox from '@/components/Inputs/Checkbox';
 import { IconMapPin2, IconHome2, IconUser } from '@tabler/icons-react';
 import { handleFiles } from '@/utils/fileUpload'
 import Layout from '@/components/Layout/Layout'
@@ -194,7 +195,6 @@ export default function Home() {
                     <Checkbox
                       label="Für das Grundstück liegt eine Baugenehmigung vor."
                       mb="md"
-                      styles={{ body: { alignItems: 'center' } }}
                       defaultChecked={data.BuildingLicense !== false}
                       name="BuildingLicense"
                     />
@@ -250,7 +250,6 @@ export default function Home() {
                     />
                     <Checkbox
                       required
-                      styles={{ body: { alignItems: 'center' } }}
                       label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
                     />
 
