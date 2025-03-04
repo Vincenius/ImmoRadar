@@ -5,7 +5,7 @@ import Layout from '@/components/Layout/Layout';
 const BlogPost = ({ post, children }) => {
     return (
         <Layout
-            title={`${post.title} | ImmoRadar Blog`}
+            title={`${post.title} | Fertighaus Radar Blog`}
             description={post.description}
             date={post.isoDate}
             // todo meta image

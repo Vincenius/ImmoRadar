@@ -58,7 +58,7 @@ function Mietvertraege() {
   const sharedAssets = data?.SharedAssets || []
 
   return (
-    <Layout title="Mietvertrag Generator | ImmoRadar" noindex={true}>
+    <Layout title="Mietvertrag Generator | Fertighaus Radar" noindex={true}>
       <Title mt="xl" mb="md">Mietvertrag Generator</Title>
       <Text mb="xl">
         Erstelle schnell und unkompliziert individuelle Mietverträge. Einfach Daten eingeben, die Bedingungen anpassen und einen rechtskonformen Mietvertrag erhalten.
@@ -120,7 +120,7 @@ function Mietvertraege() {
                     />
                     <TextInput
                       label="Vertreten durch (optional)"
-                      placeholder="ImmoRadar Property GmbH"
+                      placeholder="Fertighaus Radar Property GmbH"
                       mb="sm"
                       name="LandlordRepresentedBy"
                       defaultValue={data.LandlordRepresentedBy}

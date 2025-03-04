@@ -6,7 +6,7 @@ export default async function handler(req, res) {
     const { token } = req.query;
 
     try {
-        const url = `https://admin.immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/records?where=(Token,eq,${token})`;
+        const url = `https://admin.fertighausradar.de/api/v2/tables/ml7dpwwbdlxn92i/records?where=(Token,eq,${token})`;
         const options = {
             method: 'GET',
             headers: {
@@ -18,7 +18,7 @@ export default async function handler(req, res) {
         const { list } = await fetch(url, options).then(res => res.json())
 
         if (list[0] && list[0].Id) {
-            const url = `https://admin.immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/records`;
+            const url = `https://admin.fertighausradar.de/api/v2/tables/ml7dpwwbdlxn92i/records`;
             const options = {
                 method: 'PATCH',
                 headers: {

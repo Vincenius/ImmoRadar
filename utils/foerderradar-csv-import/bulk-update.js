@@ -1,7 +1,7 @@
 require('dotenv').config()
 
 const apiKey = process.env.NOCODB_KEY; // Dein NocoDB API-Key
-const baseUrl = 'https://admin.immoradar.xyz/api/v2'; // NocoDB URL
+const baseUrl = 'https://admin.fertighausradar.de/api/v2'; // NocoDB URL
 const tableId = 'mnc1qd2t096094t'; // Tabelle-ID oder Name
 
 // Funktion, um alle Einträge zu holen

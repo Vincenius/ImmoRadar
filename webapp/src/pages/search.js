@@ -6,14 +6,14 @@ import Layout from '@/components/Layout/Layout'
 export default function Search() {
   return (
     <Layout
-      title="Die Immobiliensuche wurde eingestellt | ImmoRadar"
+      title="Die Immobiliensuche wurde eingestellt | Fertighaus Radar"
       description=""
       noindex={true}
     >
       <Container py="xl" size="sm">
         <Title order={1} my="xl">Die Immobiliensuche wurde eingestellt</Title>
         <Text mb="md">
-          Vielen Dank für dein Interesse an ImmoRadar. Aufgrund aktueller Entwicklungen haben wir uns entschieden, die Immobiliensuche einzustellen.
+          Vielen Dank für dein Interesse an Fertighaus Radar. Aufgrund aktueller Entwicklungen haben wir uns entschieden, die Immobiliensuche einzustellen.
           Wir arbeiten daran, unsere Dienste und Angebote zu optimieren, um in Zukunft wieder auf deine Bedürfnisse eingehen zu können.
         </Text>
         <Text mb="md">
@@ -22,7 +22,7 @@ export default function Search() {
         </Text>
         <Text>
           Vielen Dank für dein Vertrauen!<br/>
-          Dein ImmoRadar-Team
+          Dein Fertighaus Radar Team
         </Text>
       </Container>
     </Layout>

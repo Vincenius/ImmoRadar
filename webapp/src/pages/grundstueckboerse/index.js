@@ -8,7 +8,7 @@ import styles from '@/styles/Home.module.css'
 export default function Home() {
   return (
     <Layout
-      title="ImmoRadar Grundstückbörse"
+      title="Grundstückbörse | Fertighaus Radar"
       description="Entdecken Sie Grundstücke, die perfekt zu Ihren Wünschen passen. Geben Sie Ihre Anforderungen ein und wir helfen Ihnen, das ideale Grundstück zu finden."
     >
       <Flex py="6rem" direction="column" justify="center" mih="calc(100vh - 64px - 52px - 16px)">
@@ -17,7 +17,7 @@ export default function Home() {
         <Flex align="center" gap="xl" direction={{ base: "column-reverse", md: "row" }}>
           <Box p={{ base: "sm", sm: "xl", md: "0" }}>
             <Title order={1} ta={{ base: 'center', md: 'left' }} fz={{ base: 34, xs: 42, md: 60 }} fw="bold" mb="lg" textWrap="balance">
-              ImmoRadar<br/><span className={styles.gradientText}>Grundstückbörse</span>
+              Fertighaus Radar<br/><span className={styles.gradientText}>Grundstückbörse</span>
             </Title>
             <Text size="lg" mb="xl" ta={{ base: 'center', md: 'left' }}>
               Mit der Grundstückbörse bringen Grundstückssuchende und Verkäufer zusammen. Entdecke exklusive Grundstücke oder finde Käufter für dein Grundstück.

@@ -10,18 +10,18 @@ const getOptions = () => ({
 })
 
 const main = async () => {
-  const url = 'https://admin.immoradar.xyz/api/v2/meta/bases/'
+  const url = 'https://admin.fertighausradar.de/api/v2/meta/bases/'
   const options = getOptions()
   const { list: bases } = await fetch(url, options).then(res => res.json())
   const tables = await Promise.all(bases.map(async base => {
-    const url = `https://admin.immoradar.xyz/api/v2/meta/bases/${base.id}/tables`
+    const url = `https://admin.fertighausradar.de/api/v2/meta/bases/${base.id}/tables`
     const options = getOptions()
     const { list: tables } = await fetch(url, options).then(res => res.json())
     return tables.map(t => ({ ...t, base: base.title }))
   }))
   
   for (const table of tables.flat()) {
-    const url = `https://admin.immoradar.xyz/api/v2/tables/${table.id}/records?limit=1000`
+    const url = `https://admin.fertighausradar.de/api/v2/tables/${table.id}/records?limit=1000`
     const options = getOptions()
     const { list } = await fetch(url, options).then(res => res.json())
     const data = JSON.stringify(list, null, 2)

@@ -63,13 +63,13 @@ export default async function handler(req, res) {
         Filename: file.fileName,
         Url: fileUrl,
       })
-      const newFile = await fetch('https://admin.immoradar.xyz/api/v2/tables/mp3txseo70f4win/records', fileOptions).then(res => res.json())
+      const newFile = await fetch('https://admin.fertighausradar.de/api/v2/tables/mp3txseo70f4win/records', fileOptions).then(res => res.json())
 
       return { Id: newFile.Id }
     }))
 
     const linkOptions = getOptions(fileIds)
-    await fetch(`https://admin.immoradar.xyz/api/v2/tables/${tableId}/links/${linkId}/records/${recordId}`, linkOptions)
+    await fetch(`https://admin.fertighausradar.de/api/v2/tables/${tableId}/links/${linkId}/records/${recordId}`, linkOptions)
       .then(res => res.json())
 
     res.status(200).json({ message: 'File uploaded successfully' });

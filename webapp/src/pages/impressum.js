@@ -4,7 +4,7 @@ import { Title } from '@mantine/core';
 
 const Imprint = () => {
     return (
-        <Layout title="Impressum | ImmoRadar" description="Das Impressum von ImmoRadar">
+        <Layout title="Impressum | Fertighaus Radar" description="Das Impressum von Fertighaus Radar">
             <Title order={1} my="xl">Impressum</Title>
 
             <Title order={2} my="md">Angaben gem. § 5 TMG:</Title>
@@ -13,7 +13,7 @@ const Imprint = () => {
                 Landsberger Allee 171D<br />
                 10369 Berlin<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: vincent.will@immoradar.xyz<br />
+                E-Mail: vincent.will@fertighausradar.de<br />
             </p><br/>
 
             <p>
@@ -21,7 +21,7 @@ const Imprint = () => {
                 Sprengelstrasse 1<br />
                 50735 Köln<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: oliver.rausch@immoradar.xyz<br />
+                E-Mail: oliver.rausch@fertighausradar.de<br />
             </p><br/>
 
             <p>
@@ -54,7 +54,7 @@ const Imprint = () => {
                 Die externen Links wurden zum Zeitpunkt der Linksetzung auf eventuelle Rechtsverstöße überprüft und waren im Zeitpunkt der Linksetzung frei von rechtswidrigen Inhalten. Eine ständige inhaltliche Überprüfung der externen Links ist ohne konkrete Anhaltspunkte einer Rechtsverletzung nicht möglich. Bei direkten oder indirekten Verlinkungen auf die Webseiten Dritter, die außerhalb unseres Verantwortungsbereichs liegen, würde eine Haftungsverpflichtung ausschließlich in dem Fall nur bestehen, wenn wir von den Inhalten Kenntnis erlangen und es uns technisch möglich und zumutbar wäre, die Nutzung im Falle rechtswidriger Inhalte zu verhindern.
             </p>
             <p>
-                Diese Haftungsausschlusserklärung gilt auch innerhalb des eigenen Internetauftrittes „ImmoRadar.xyz“ gesetzten Links und Verweise von Fragestellern, Blogeinträgern, Gästen des Diskussionsforums. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargestellten Informationen entstehen, haftet allein der Diensteanbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.
+                Diese Haftungsausschlusserklärung gilt auch innerhalb des eigenen Internetauftrittes „fertighausradar.de“ gesetzten Links und Verweise von Fragestellern, Blogeinträgern, Gästen des Diskussionsforums. Für illegale, fehlerhafte oder unvollständige Inhalte und insbesondere für Schäden, die aus der Nutzung oder Nichtnutzung solcherart dargestellten Informationen entstehen, haftet allein der Diensteanbieter der Seite, auf welche verwiesen wurde, nicht derjenige, der über Links auf die jeweilige Veröffentlichung lediglich verweist.
             </p>
             <p>
                 Werden uns Rechtsverletzungen bekannt, werden die externen Links durch uns unverzüglich entfernt.

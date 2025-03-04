@@ -140,7 +140,7 @@ export default function Foerderung() {
 
   return (
     <Layout
-      title="ImmoRadar Förderung"
+      title="Förderung | Fertighaus Radar"
       description="todo"
       noindex={true} // todo
     >

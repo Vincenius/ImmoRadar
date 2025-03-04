@@ -64,7 +64,7 @@ export default function Report({ data, baseUrl }) {
 
   return (
     <Layout
-      title="ImmoRadar Förderungen Report"
+      title="Förderungen Report | Fertighaus Radar"
       description="todo."
       noindex={true}
     >

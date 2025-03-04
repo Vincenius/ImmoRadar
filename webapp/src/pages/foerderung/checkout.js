@@ -35,7 +35,7 @@ function ReportCheckout({ id, email }) {
 
   return (
     <Layout
-      title="ImmoRadar Checkout"
+      title="Checkout | Fertighaus Radar"
       description="todo."
       noindex={true}
     >

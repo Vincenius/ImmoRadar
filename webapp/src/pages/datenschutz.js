@@ -4,8 +4,8 @@ import styles from '@/styles/Privacy.module.css';
 
 const Privacy = () => {
     return <Layout
-        title="Datenschutzerklärung | ImmoRadar"
-        description="Datenschutzerklärung von ImmoRadar"
+        title="Datenschutzerklärung | Fertighaus Radar"
+        description="Datenschutzerklärung von Fertighaus Radar"
     >
         <Container className={styles.container}>
             <Title order={1} my="xl">Datenschutzerklärung</Title>
@@ -25,7 +25,7 @@ const Privacy = () => {
                 10369 Berlin</p>
 
             <p>Telefon: &#91;Telefonnummer der verantwortlichen Stelle&#93;<br />
-                E-Mail: vincent.will@immoradar.xyz</p>
+                E-Mail: vincent.will@fertighausradar.de</p>
             <p>Verantwortliche Stelle ist die nat&uuml;rliche oder juristische Person, die allein oder gemeinsam mit anderen &uuml;ber die Zwecke und Mittel der Verarbeitung von personenbezogenen Daten (z.&nbsp;B. Namen, E-Mail-Adressen o. &Auml;.) entscheidet.</p>
 
             <Title order={3} my="md">Speicherdauer</Title> <p>Soweit innerhalb dieser Datenschutzerkl&auml;rung keine speziellere Speicherdauer genannt wurde, verbleiben Ihre personenbezogenen Daten bei uns, bis der Zweck f&uuml;r die Datenverarbeitung entf&auml;llt. Wenn Sie ein berechtigtes L&ouml;schersuchen geltend machen oder eine Einwilligung zur Datenverarbeitung widerrufen, werden Ihre Daten gel&ouml;scht, sofern wir keine anderen rechtlich zul&auml;ssigen Gr&uuml;nde f&uuml;r die Speicherung Ihrer personenbezogenen Daten haben (z.&nbsp;B. steuer- oder handelsrechtliche Aufbewahrungsfristen); im letztgenannten Fall erfolgt die L&ouml;schung nach Fortfall dieser Gr&uuml;nde.</p>

@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   try {
     // handle general get vs get with ?id=
     if (req.method === 'GET') {
-      const allSubsidies = await fetch('https://admin.immoradar.xyz/api/v2/tables/mnc1qd2t096094t/records?limit=1000', {
+      const allSubsidies = await fetch('https://admin.fertighausradar.de/api/v2/tables/mnc1qd2t096094t/records?limit=1000', {
         method: 'GET',
         headers: {
           'xc-token': process.env.NOCODB_KEY,
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
-          const url = `https://admin.immoradar.xyz/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
+          const url = `https://admin.fertighausradar.de/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
           const { list: [user] } = await fetch(url, {
             method: 'GET',
             headers: {
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
       const { email, data } = JSON.parse(req.body)
 
       const id = uuidv4()
-      await fetch('https://admin.immoradar.xyz/api/v2/tables/magkf3njbkwa8yw/records', {
+      await fetch('https://admin.fertighausradar.de/api/v2/tables/magkf3njbkwa8yw/records', {
         method: 'POST',
         headers: {
           'xc-token': process.env.NOCODB_KEY,
@@ -91,10 +91,10 @@ export default async function handler(req, res) {
       const { filename } = await generatePdf(id)
       await sendEmail({
         to: email,
-        subject: 'ImmoRadar Förderungen Report',
+        subject: 'Fertighaus Radar Förderungen Report',
         html: subsidyTemplate(),
         pdfFilePath: filename,
-        pdfFileName: 'ImmoRadar Förderung Report.pdf'
+        pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
       })
       fs.unlinkSync(filename)
       

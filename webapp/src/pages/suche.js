@@ -85,7 +85,7 @@ export default function Search ({ estates, pages, count, defaultFilter, q, sortV
 
   return (
     <Layout
-      title={`Alle Grundstücke in ${q} | ImmoRadar`}
+      title={`Alle Grundstücke in ${q} | Fertighaus Radar`}
       description={`Alle verfügbaren Grundstücke in ${q}. Eine gut sortierte Liste mit Grundstücken in ${q} von verschiedenen Anbietern ohne Duplikate.`}
       noindex={pageInt > 1 || sortValue !== 'date'}
     >

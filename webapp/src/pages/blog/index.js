@@ -24,9 +24,9 @@ const api = new GhostContentAPI({
 const Blog = ({ posts }) => {
     return (
         <Layout
-            title="Blog | ImmoRadar"
+            title="Blog | Fertighaus Radar"
             description="Die Wissensdatenbank rund ums Thema Immobilien"
-            image="https://immoradar.xyz/immo-guesser.jpg"
+            image="https://fertighausradar.de/immo-guesser.jpg"
         >
             <Container py="6rem" size="md" pos="relative">
                 <div className={styles.background}></div>

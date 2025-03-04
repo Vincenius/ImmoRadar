@@ -43,7 +43,7 @@ function useCannonical() {
   }
 
   // Generate the canonical URL
-  const canonicalUrl = new URL(pathname, 'https://immoradar.xyz');
+  const canonicalUrl = new URL(pathname, 'https://fertighausradar.de');
   Object.keys(canonicalQuery).forEach((key) => {
     canonicalUrl.searchParams.append(key, canonicalQuery[key]);
   });
@@ -72,9 +72,9 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="https://immoradar.xyz" />
+      <meta property="og:url" content="https://fertighausradar.de" />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="ImmoRadar" />
+      <meta property="og:site_name" content="Fertighaus Radar" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -96,8 +96,8 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
-                <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" priority />
-                <Text weight={700} size="xl">ImmoRadar</Text>
+                <Image src={Logo} width={40} height={40} alt="Fertighaus Radar Logo" priority />
+                <Text weight={700} size="xl">Fertighaus Radar</Text>
               </Flex>
             </Link>
 
@@ -182,7 +182,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               </Box>
             </Flex>
           </Flex>
-          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} ImmoRadar</Text>
+          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} Fertighaus Radar</Text>
         </Container>
       </Box>
     </div>
