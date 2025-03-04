@@ -26,7 +26,7 @@ const Blog = ({ posts }) => {
         <Layout
             title="Blog | Fertighaus Radar"
             description="Die Wissensdatenbank rund ums Thema Immobilien"
-            image="https://fertighausradar.de/immo-guesser.jpg"
+            image="https://www.fertighausradar.de/immo-guesser.jpg"
         >
             <Container py="6rem" size="md" pos="relative">
                 <div className={styles.background}></div>

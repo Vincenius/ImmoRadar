@@ -218,7 +218,7 @@ const Profile = () => {
                         <Table.Tr key={`table-notification-${index}`}>
                             <Table.Td>
                                 <Flex align="center" gap="sm">
-                                    <Link href={`https://fertighausradar.de/search?${getSearchLink(notification)}`}>{notification.query}</Link>
+                                    <Link href={`https://www.fertighausradar.de/search?${getSearchLink(notification)}`}>{notification.query}</Link>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>

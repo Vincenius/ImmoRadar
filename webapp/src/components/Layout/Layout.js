@@ -43,7 +43,7 @@ function useCannonical() {
   }
 
   // Generate the canonical URL
-  const canonicalUrl = new URL(pathname, 'https://fertighausradar.de');
+  const canonicalUrl = new URL(pathname, 'https://www.fertighausradar.de');
   Object.keys(canonicalQuery).forEach((key) => {
     canonicalUrl.searchParams.append(key, canonicalQuery[key]);
   });
@@ -72,7 +72,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="https://fertighausradar.de" />
+      <meta property="og:url" content="https://www.fertighausradar.de" />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Fertighaus Radar" />
       <meta name="twitter:card" content="summary_large_image" />

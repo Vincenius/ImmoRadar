@@ -12,7 +12,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
       <mj-section>
         <mj-group>
           <mj-column vertical-align="middle">
-            <mj-image href="https://fertighausradar.de" width="300px" src="https://fertighausradar.de/email-header.png"></mj-image>
+            <mj-image href="https://www.fertighausradar.de" width="300px" src="https://www.fertighausradar.de/email-header.png"></mj-image>
           </mj-column>
         </mj-group>
       </mj-section>

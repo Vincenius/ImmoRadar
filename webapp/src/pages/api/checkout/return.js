@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.retrieve(session_id);
       
       if (session.status === 'complete') {
-        const url = `https://admin.fertighausradar.de/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${session.client_reference_id})`;
+        const url = `https://immoradar.xyz/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${session.client_reference_id})`;
         const { list: [user] } = await fetch(url, {
           method: 'GET',
           headers: {

@@ -2,7 +2,7 @@ import mjml2html from 'mjml'
 
 const getEstateElem = ({ gallery, url, title, address, provider, price, livingSpace, rooms }) => `
 <mj-column border="10px solid white" background-color="#f3f3f3">
-  <mj-image href="${url}" height="180px" width="300px" css-class="estate-image" src="${(gallery && gallery[0]) ? gallery[0].url : 'https://fertighausradar.de/fallback.jpg'}" padding="0px" fluid-on-mobile="true" />
+  <mj-image href="${url}" height="180px" width="300px" css-class="estate-image" src="${(gallery && gallery[0]) ? gallery[0].url : 'https://www.fertighausradar.de/fallback.jpg'}" padding="0px" fluid-on-mobile="true" />
 
   <mj-text font-family="Helvetica" padding="0 10px 10px">
     <h2>
@@ -61,7 +61,7 @@ const getTemplate = ({ count, estates, token, emailToken }) => {
       <mj-section>
         <mj-group>
           <mj-column vertical-align="middle">
-            <mj-image href="https://fertighausradar.de" width="300px" src="https://fertighausradar.de/email-header.png"></mj-image>
+            <mj-image href="https://www.fertighausradar.de" width="300px" src="https://www.fertighausradar.de/email-header.png"></mj-image>
           </mj-column>
         </mj-group>
       </mj-section>
@@ -69,7 +69,7 @@ const getTemplate = ({ count, estates, token, emailToken }) => {
         <mj-column>
           <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">${count > 50 ? '50+' : count} neue Wohnungen</mj-text>
           <mj-text font-size="15px" color="#000" font-family="helvetica">
-            <p>Auf Basis deiner  <a href="https://fertighausradar.de/profile?id=${token}">Benachrichtigungseinstellungen</a> haben wir ${count} neue Wohnungen für dich gefunden.${count > 50 ? ' Hier sind die 50 neuesten Angebote.' : ''}</p>
+            <p>Auf Basis deiner  <a href="https://www.fertighausradar.de/profile?id=${token}">Benachrichtigungseinstellungen</a> haben wir ${count} neue Wohnungen für dich gefunden.${count > 50 ? ' Hier sind die 50 neuesten Angebote.' : ''}</p>
             <p style="margin-bottom: 0;">Ich hoffe es ist etwas für dich dabei!</p>
           </mj-text>
         </mj-column>
@@ -93,15 +93,15 @@ const getTemplate = ({ count, estates, token, emailToken }) => {
   
       <mj-section>
         <mj-column>
-          <mj-text font-size="12px" color="#000" font-family="helvetica" align="center"><a href="https://fertighausradar.de/profile?id=${token}">Benachrichtigungen verwalten</a></mj-text>
+          <mj-text font-size="12px" color="#000" font-family="helvetica" align="center"><a href="https://www.fertighausradar.de/profile?id=${token}">Benachrichtigungen verwalten</a></mj-text>
         </mj-column>
         <mj-column>
-          <mj-text font-size="12px" color="#000" font-family="helvetica" align="center"><a href="https://fertighausradar.de/api/unsubscribe?token=${token}">Newsletter Abbestellen</a></mj-text>
+          <mj-text font-size="12px" color="#000" font-family="helvetica" align="center"><a href="https://www.fertighausradar.de/api/unsubscribe?token=${token}">Newsletter Abbestellen</a></mj-text>
         </mj-column>
       </mj-section>
       <mj-section>
         <mj-column vertical-align="middle">
-          <mj-image href="https://fertighausradar.de" src="https://fertighausradar.de/api/email/pixel/${emailToken}" width="10px" height="10px"></mj-image>
+          <mj-image href="https://www.fertighausradar.de" src="https://www.fertighausradar.de/api/email/pixel/${emailToken}" width="10px" height="10px"></mj-image>
         </mj-column>
       </mj-section>
     </mj-body>

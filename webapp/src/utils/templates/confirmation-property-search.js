@@ -12,7 +12,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
     <mj-section>
       <mj-group>
         <mj-column vertical-align="middle">
-          <mj-image href="https://fertighausradar.de" width="300px" src="https://fertighausradar.de/email-header.png"></mj-image>
+          <mj-image href="https://www.fertighausradar.de" width="300px" src="https://www.fertighausradar.de/email-header.png"></mj-image>
         </mj-column>
       </mj-group>
     </mj-section>
@@ -41,7 +41,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
 
         <mj-text font-size="15px" color="#000" font-family="helvetica"><b>Unser Versprechen:</b><br />Wir begleiten dich von der Suche bis zum Finden – effizient, einfach und genau auf deine Bedürfnisse zugeschnitten.</mj-text>
 
-        <mj-text font-size="15px" color="#000" font-family="helvetica"><br />Du weißt nicht, wie viel Budget dir für ein Grundstück zur Verfügung steht? <a href="https://fertighausradar.de/budgetrechner">Nutze jetzt unseren Budgetrechner!</a></mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica"><br />Du weißt nicht, wie viel Budget dir für ein Grundstück zur Verfügung steht? <a href="https://www.fertighausradar.de/budgetrechner">Nutze jetzt unseren Budgetrechner!</a></mj-text>
 
         <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast, steht dir unser Team jederzeit zur Verfügung.</mj-text>
 
