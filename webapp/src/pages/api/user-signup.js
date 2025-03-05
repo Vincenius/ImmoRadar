@@ -67,17 +67,17 @@ export default async function handler(req, res) {
         Phone,
       })
 
-      const newLead = await fetch('https://immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/records', options)
+      const newLead = await fetch(`${NOCODB_URI}/api/v2/tables/ml7dpwwbdlxn92i/records`, options)
         .then(res => res.json())
 
-      const url = `https://immoradar.xyz/api/v2/tables/${tableIds[type]}/records`
+      const url = `${NOCODB_URI}/api/v2/tables/${tableIds[type]}/records`
 
       const propertyOptions = getOptions(rest)
       const newSignup = await fetch(url, propertyOptions).then(res => res.json())
 
       const linkOptions = getOptions([{ Id: newSignup.Id }])
       const linkId = linkIds[type]
-      await fetch(`https://immoradar.xyz/api/v2/tables/ml7dpwwbdlxn92i/links/${linkId}/records/${newLead.Id}`, linkOptions)
+      await fetch(`${NOCODB_URI}/api/v2/tables/ml7dpwwbdlxn92i/links/${linkId}/records/${newLead.Id}`, linkOptions)
 
       if (['property', 'search'].includes(type) && files && files.length > 0) {
         // async upload in the background
