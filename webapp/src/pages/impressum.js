@@ -13,7 +13,7 @@ const Imprint = () => {
                 Landsberger Allee 171D<br />
                 10369 Berlin<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: vincent.will@fertighausradar.de<br />
+                E-Mail: vincent.will@immoradar.xyz<br />
             </p><br/>
 
             <p>
@@ -21,7 +21,7 @@ const Imprint = () => {
                 Sprengelstrasse 1<br />
                 50735 Köln<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: oliver.rausch@fertighausradar.de<br />
+                E-Mail: oliver.rausch@immoradar.xyz<br />
             </p><br/>
 
             <p>

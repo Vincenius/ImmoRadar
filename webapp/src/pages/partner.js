@@ -74,7 +74,7 @@ const PartnerPage = () => {
           Hast du Interesse an einer Zusammenarbeit? Kontaktiere uns und lass uns gemeinsam neue Wege in die Zukunft gehen.
         </Text>
         <Text mb="xl">
-          <Button component="a" size="lg" href="mailto:oliver.rausch@fertighausradar.de">Jetzt Kontakt aufnehmen!</Button>
+          <Button component="a" size="lg" href="mailto:oliver.rausch@immoradar.xyz">Jetzt Kontakt aufnehmen!</Button>
         </Text>
       </Container>
     </Layout>

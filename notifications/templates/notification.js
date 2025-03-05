@@ -85,7 +85,7 @@ const getTemplate = ({ count, estates, token, emailToken }) => {
 
   mjmlCode += `<mj-section background-color="#f3f3f3">
         <mj-column>
-          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:vincent.will@fertighausradar.de">vincent.will@fertighausradar.de</a> kontaktieren.</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a> kontaktieren.</mj-text>
   
           <mj-text font-size="15px" color="#000" font-family="helvetica">Vincent von ImmoRadar</mj-text>
         </mj-column>
