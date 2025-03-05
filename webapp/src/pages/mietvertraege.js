@@ -457,18 +457,77 @@ function Mietvertraege() {
               </form>
             </Stepper.Step>
             <Stepper.Step>
-              {/* Miete (https://www.npmjs.com/package/to-words) */}
-              {/* Höhe */}
-              {/* Kaution */}
-              {/* Neben der Miete werden folgende Betriebskosten im Sinne von § 2 Betriebskostenverordnung umgelegt und durch 
+              <Title order={2} size="h3" mb="lg">Welche Höhe haben die monatliche Miete, und die Kaution?</Title>
+              <form onSubmit={handleSubmit}>
+                <NumberInput
+                  label="Miete"
+                  placeholder="1200"
+                  required
+                  mb="sm"
+                  name="Rent"
+                  defaultValue={data.Rent}
+                  suffix="€"
+                />
+                <NumberInput
+                  label="Kaution"
+                  placeholder="3600"
+                  required
+                  mb="sm"
+                  name="Deposit"
+                  defaultValue={data.Deposit}
+                  suffix="€"
+                />
 
-              □  Vorauszahlungen (mit Abrechnung) oder 
-              □  Pauschalen (ohne Abrechnung) 
+                <TextInput
+                  label="Mietzahlungen Konto"
+                  placeholder="DE01 1234 1234 1234 1234 12"
+                  mb="sm"
+                  name="BankAccount"
+                  required
+                  defaultValue={data.BankAccount}
+                />
 
-              in Höhe von EUR ………………… erhoben:
-              */}
-              {/* Vorauszahlungen auf die Heizkosten  */}
-              {/* Mietzahlungen Konto */}
+                <ButtonGroup {...{ active, setActive }} />
+              </form>
+            </Stepper.Step>
+            <Stepper.Step>
+              <Title order={2} size="h3" mb="lg">Wie hoch sind die Nebenkosten und auf welche Weise werden sie abgerechnet?</Title>
+              <form onSubmit={handleSubmit}>
+                <NumberInput
+                  label="Vorauszahlungen auf die Heizkosten"
+                  placeholder="100"
+                  required
+                  mb="sm"
+                  name="Heating"
+                  defaultValue={data.Heating}
+                  suffix="€"
+                />
+                <NumberInput
+                  label="Betriebskosten"
+                  placeholder="200"
+                  required
+                  mb="sm"
+                  name="Utilities"
+                  defaultValue={data.Utilities}
+                  suffix="€"
+                />
+                <Text mb="md">Wie werden die Betriebskosten umgelegt?</Text>
+                <Checkbox
+                  label="Vorauszahlungen (mit Abrechnung)"
+                  name="UtilitiesType"
+                  checked={data.UtilitiesType === 'Prepayment'}
+                  onChange={(event) => setData({ ...data, UtilitiesType: 'Prepayment' })}
+                  mb="md"
+                />
+                <Checkbox
+                  label="Pauschalen (ohne Abrechnung) "
+                  name="UtilitiesType"
+                  checked={data.UtilitiesType === 'Flat'}
+                  onChange={(event) => setData({ ...data, UtilitiesType: 'Flat' })}
+                  mb="md"
+                />
+                <ButtonGroup {...{ active, setActive }} disabled={!data.UtilitiesType} />
+              </form>
             </Stepper.Step>
             <Stepper.Step>
               {/* <Title order={2} size="h3" mb="lg">Wurde das Objekt vom Mieter besichtigt und falls ja wann?</Title> */}
