@@ -8,7 +8,7 @@ export default async function handler(req, res) {
   try {
     // handle general get vs get with ?id=
     if (req.method === 'GET') {
-      const allSubsidies = await fetch(`${NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/records?limit=1000`, {
+      const allSubsidies = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/records?limit=1000`, {
         method: 'GET',
         headers: {
           'xc-token': process.env.NOCODB_KEY,
@@ -17,7 +17,7 @@ export default async function handler(req, res) {
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
-          const url = `${NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
+          const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
           const { list: [user] } = await fetch(url, {
             method: 'GET',
             headers: {
@@ -69,7 +69,7 @@ export default async function handler(req, res) {
       const { email, data } = JSON.parse(req.body)
 
       const id = uuidv4()
-      await fetch(`${NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records`, {
+      await fetch(`${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records`, {
         method: 'POST',
         headers: {
           'xc-token': process.env.NOCODB_KEY,
