@@ -54,7 +54,67 @@ function Mietvertraege() {
 
   const generateDocument = () => {
     setIsLoading(true)
-    console.log('TODOOO')
+    console.log('TODOOO', data, additionalRooms, additionalRentals, additionalEnclosures)
+    // TODO refactor room data
+    // TODO lowercase
+    // Store in MongoDB
+
+    // {
+    //   "Visited": true,
+    //   "Contract": "Wohnraum",
+    //   "LandlordName": "Vincent",
+    //   "LandlordAddress": "Test 12323",
+    //   "LandlordRepresentedBy": "Testy Gmbh",
+    //   "TenantName": "Testy",
+    //   "TenantAddress": "Test test",
+    //   "Address": "Berlin 23",
+    //   "Level": "3",
+    //   "Location": "links",
+    //   "Rooms": "2",
+    //   "WC": "1",
+    //   "Kitchen": "1",
+    //   "Hall": "1",
+    //   "Bathroom": "1",
+    //   "Hallway": "2",
+    //   "Shower": "2",
+    //   "Garage": true,
+    //   "Carport": true,
+    //   "GarageContract": true,
+    //   "AdditionalContract": true,
+    //   "FlatType": "Dienstwohnung",
+    //   "SharedAssets": [
+    //     "Waschküche",
+    //     "Trockenboden",
+    //     "Aufzug"
+    //   ],
+    //   "Rent": "1200€",
+    //   "Deposit": "3000€",
+    //   "BankAccount": "DE21 121121212121212",
+    //   "UtilitiesType": "Flat",
+    //   "Heating": "100€",
+    //   "Utilities": "200€",
+    //   "VisitedDate": "2025-02-27T23:00:00.000Z",
+    //   "RentStart": "2025-04-04T22:00:00.000Z",
+    //   "Enclosures": [
+    //     "DSGVO",
+    //     "Hausordnung"
+    //   ]
+    // }
+
+    // [
+    //   {
+    //     "name": "Balkon",
+    //     "count": 2
+    //   }
+    // ]
+
+    // [
+    //   "Garten"
+    // ]
+
+    // [
+    //   "Test Protokoll"
+    // ]
     setIsLoading(false)
   }
 
@@ -583,40 +643,40 @@ function Mietvertraege() {
             <Checkbox
               label="Datenschutzerklärung (EU-DSGVO)"
               name="Enclosures"
-              checked={sharedAssets.includes('DSGVO')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'DSGVO'] : enclosures.filter(asset => asset !== 'DSGVO') })}
+              checked={enclosures.includes('DSGVO')}
+              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'DSGVO'] : enclosures.filter(asset => asset !== 'DSGVO') })}
               mb="md"
             />
 
             <Checkbox
               label="Hausordnung"
               name="Enclosures"
-              checked={sharedAssets.includes('Hausordnung')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Hausordnung'] : enclosures.filter(asset => asset !== 'Hausordnung') })}
+              checked={enclosures.includes('Hausordnung')}
+              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Hausordnung'] : enclosures.filter(asset => asset !== 'Hausordnung') })}
               mb="md"
             />
 
             <Checkbox
               label="Informationen zum Heiz- und Lüftungsverhalten"
               name="Enclosures"
-              checked={sharedAssets.includes('Lüftungsverhalten')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Lüftungsverhalten'] : enclosures.filter(asset => asset !== 'Lüftungsverhalten') })}
+              checked={enclosures.includes('Lüftungsverhalten')}
+              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Lüftungsverhalten'] : enclosures.filter(asset => asset !== 'Lüftungsverhalten') })}
               mb="md"
             />
 
             <Checkbox
               label="Informationen zu den gesetzl. Raumtemperaturen"
               name="Enclosures"
-              checked={sharedAssets.includes('Raumtemperaturen')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Raumtemperaturen'] : enclosures.filter(asset => asset !== 'Raumtemperaturen') })}
+              checked={enclosures.includes('Raumtemperaturen')}
+              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Raumtemperaturen'] : enclosures.filter(asset => asset !== 'Raumtemperaturen') })}
               mb="md"
             />
 
             <Checkbox
               label="Wohnungsübergabeprotokoll"
               name="Enclosures"
-              checked={sharedAssets.includes('Wohnungsübergabeprotokoll')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Wohnungsübergabeprotokoll'] : enclosures.filter(asset => asset !== 'Wohnungsübergabeprotokoll') })}
+              checked={enclosures.includes('Wohnungsübergabeprotokoll')}
+              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Wohnungsübergabeprotokoll'] : enclosures.filter(asset => asset !== 'Wohnungsübergabeprotokoll') })}
               mb="md"
             />
 
