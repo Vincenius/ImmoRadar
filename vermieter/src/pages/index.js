@@ -2,26 +2,31 @@ import { useState } from 'react'
 import Layout from '@/components/Layout/Layout'
 import { Flex, Title, Box, Card, Text, Stepper, ThemeIcon, TextInput, Group, Button, NumberInput, Grid } from '@mantine/core'
 import SelectButton from '@/components/Inputs/SelectButton'
-import { IconHomeShare, IconHome, IconHomeStar } from '@tabler/icons-react'
+import { IconHomeShare, IconHome, IconHomeStar, IconPlus } from '@tabler/icons-react'
 import Checkbox from '@/components/Inputs/Checkbox'
+import { DateInput } from '@mantine/dates'
+import dayjs from 'dayjs'
+import customParseFormat from 'dayjs/plugin/customParseFormat'
+
+dayjs.extend(customParseFormat)
 
 const numberFormatElements = []
 
-const ButtonGroup = ({ active, setActive, isLoading, disabled }) => {
+const ButtonGroup = ({ active, setActive, disabled }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
-    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
-    {active < 10 && <Button type="submit" loading={isLoading} disabled={disabled}>Weiter</Button>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)}>Zurück</Button>}
+    <Button type="submit" disabled={disabled}>Weiter</Button>
   </Group>
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(0)
-  const [data, setData] = useState({})
+  const [active, setActive] = useState(9)
+  const [data, setData] = useState({ Visited: true })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
-
-  console.log(data)
+  const [additionalEnclosures, setAdditionalEnclosures] = useState([])
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -47,6 +52,12 @@ function Mietvertraege() {
     setActive(active + 1)
   }
 
+  const generateDocument = () => {
+    setIsLoading(true)
+    console.log('TODOOO')
+    setIsLoading(false)
+  }
+
   const selectOption = (e) => {
     let elem = e.target
     while (!elem.name) {
@@ -57,6 +68,7 @@ function Mietvertraege() {
   }
 
   const sharedAssets = data?.SharedAssets || []
+  const enclosures = data?.Enclosures || []
 
   return (
     <Layout title="Mietvertrag Generator" noindex={true}>
@@ -280,8 +292,8 @@ function Mietvertraege() {
                   </Grid.Col>
                 ))}
                 <Grid.Col span={4}>
-                  <Button mt="1.7em" mb="sm" fullWidth variant="outline" onClick={() => setAdditionalRooms([...additionalRooms, { name: '', count: '' }])}>
-                    +
+                  <Button mt="1.7em" mb="sm" fullWidth leftSection={<IconPlus size={14} />} variant="outline" onClick={() => setAdditionalRooms([...additionalRooms, { name: '', count: '' }])}>
+                    Raum hinzufügen
                   </Button>
                 </Grid.Col>
               </Grid>
@@ -294,14 +306,14 @@ function Mietvertraege() {
             <Checkbox
               label="Garage"
               name="Garage"
-              checked={data.Garage}
+              checked={data.Garage || false}
               onChange={(event) => setData({ ...data, Garage: event.currentTarget.checked })}
               mb="md"
             />
             <Checkbox
               label="Stellplatz"
               name="Carport"
-              checked={data.Carport}
+              checked={data.Carport || false}
               onChange={(event) => setData({ ...data, Carport: event.currentTarget.checked })}
               mb={data.Carport ? "xs" : "md"}
             />
@@ -317,14 +329,14 @@ function Mietvertraege() {
             <Checkbox
               label="nach besonderem Garagen-/Stellplatz-Mietvertrag"
               name="GarageContract"
-              checked={data.GarageContract}
+              checked={data.GarageContract || false}
               onChange={(event) => setData({ ...data, GarageContract: event.currentTarget.checked })}
               mb="md"
             />
             <Checkbox
               label="Die genaue Beschreibung der überlassenen Mietsache des Zubehörs ist in der Wohnungsbeschreibung und Übergabeverhandlung enthalten, die diesen Vertrag ergänzt."
               name="AdditionalContract"
-              checked={data.AdditionalContract}
+              checked={data.AdditionalContract || false}
               onChange={(event) => setData({ ...data, AdditionalContract: event.currentTarget.checked })}
               mb="md"
             />
@@ -344,8 +356,8 @@ function Mietvertraege() {
               />
             ))}
 
-            <Button fullWidth variant="outline" onClick={() => setAdditionalRentals([...additionalRentals, ''])}>
-              +
+            <Button variant="outline" onClick={() => setAdditionalRentals([...additionalRentals, ''])} leftSection={<IconPlus size={14} />}>
+              Mietobjekt hinzufügen
             </Button>
 
             <form onSubmit={handleSubmit}>
@@ -394,7 +406,7 @@ function Mietvertraege() {
               label="Sonstige"
               placeholder="Anderer Wohnungstyp"
               mb="md"
-              value={['Sozialwohnung', 'Dienstwohnung', 'Werkwohnung', 'Eigentumswohnung', 'werkgeförderte Wohnung'].includes(data.FlatType) ? '' : data.FlatType}
+              value={['Sozialwohnung', 'Dienstwohnung', 'Werkwohnung', 'Eigentumswohnung', 'werkgeförderte Wohnung'].includes(data.FlatType) ? '' : data.FlatType || ''}
               onChange={(event) => setData({ ...data, FlatType: event.target.value })}
             />
 
@@ -532,15 +544,105 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            {/* <Title order={2} size="h3" mb="lg">Wurde das Objekt vom Mieter besichtigt und falls ja wann?</Title> */}
-            {/* Weitere infos */}
-            {/* Wurde das Objekt vom Mieter besichtigt */}
-            {/* wann */}
-            {/* Mietdauer */}
-            {/* Bagatellenschäden */}
+            <Title order={2} size="h3" mb="lg">Bitte gib die folgenden Details zum Mietverhältnis an:</Title>
+
+            <Checkbox
+              label="Das Objekt wurde vom Mieter besichtigt"
+              checked={data.Visited || false}
+              onChange={(event) => setData({ ...data, Visited: event.currentTarget.checked })}
+              mb="md"
+            />
+
+            <form onSubmit={handleSubmit}>
+              {data.Visited && <DateInput
+                value={data.VisitedDate}
+                onChange={val => setData({ ...data, VisitedDate: val })}
+                label="Wann wurde das Objekt vom Mieter besichtigt?"
+                placeholder="20.06.2024"
+                valueFormat="DD.MM.YYYY"
+                mb="md"
+                required
+              />}
+
+              <DateInput
+                value={data.RentStart}
+                onChange={val => setData({ ...data, RentStart: val })}
+                label="Wann beginnt das Mietverhältnis?"
+                placeholder="01.01.2026"
+                valueFormat="DD.MM.YYYY"
+                required
+                mb="md"
+              />
+
+              <ButtonGroup {...{ active, setActive }} />
+            </form>
           </Stepper.Step>
           <Stepper.Step>
-            {/* Zusätzliche vereinbarungen und Anlagen */}
+            <Title order={2} size="h3" mb="lg">Welche Anlagen sind dem Mietvertrag beigefügt?</Title>
+
+            <Checkbox
+              label="Datenschutzerklärung (EU-DSGVO)"
+              name="Enclosures"
+              checked={sharedAssets.includes('DSGVO')}
+              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'DSGVO'] : enclosures.filter(asset => asset !== 'DSGVO') })}
+              mb="md"
+            />
+
+            <Checkbox
+              label="Hausordnung"
+              name="Enclosures"
+              checked={sharedAssets.includes('Hausordnung')}
+              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Hausordnung'] : enclosures.filter(asset => asset !== 'Hausordnung') })}
+              mb="md"
+            />
+
+            <Checkbox
+              label="Informationen zum Heiz- und Lüftungsverhalten"
+              name="Enclosures"
+              checked={sharedAssets.includes('Lüftungsverhalten')}
+              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Lüftungsverhalten'] : enclosures.filter(asset => asset !== 'Lüftungsverhalten') })}
+              mb="md"
+            />
+
+            <Checkbox
+              label="Informationen zu den gesetzl. Raumtemperaturen"
+              name="Enclosures"
+              checked={sharedAssets.includes('Raumtemperaturen')}
+              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Raumtemperaturen'] : enclosures.filter(asset => asset !== 'Raumtemperaturen') })}
+              mb="md"
+            />
+
+            <Checkbox
+              label="Wohnungsübergabeprotokoll"
+              name="Enclosures"
+              checked={sharedAssets.includes('Wohnungsübergabeprotokoll')}
+              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...enclosures, 'Wohnungsübergabeprotokoll'] : enclosures.filter(asset => asset !== 'Wohnungsübergabeprotokoll') })}
+              mb="md"
+            />
+
+            {additionalEnclosures.map((rental, index) => (
+              <TextInput
+                key={index}
+                label={`Zusätzliche Anlage ${index + 1}`}
+                placeholder="Protokoll"
+                mb="md"
+                value={rental}
+                onChange={(event) => {
+                  const newEnclousures = [...additionalEnclosures];
+                  newEnclousures[index] = event.target.value;
+                  setAdditionalEnclosures(newEnclousures);
+                }}
+              />
+            ))}
+
+            <Button variant="outline" onClick={() => setAdditionalEnclosures([...additionalEnclosures, ''])} leftSection={<IconPlus size={14} />}>
+              Anlage hinzufügen
+            </Button>
+
+            <Group justify="space-between" mt="xl">
+              <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>
+              <Button type="submit" loading={isLoading} onClick={generateDocument}>Mietvertrag erstellen</Button>
+            </Group>
           </Stepper.Step>
         </Stepper>
       </Card>

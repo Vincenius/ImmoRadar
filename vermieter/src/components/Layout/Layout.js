@@ -81,7 +81,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 200px)" pos="relative" py="xl">
+      <Container as="main" mih="calc(100vh - 140px)" pos="relative" py="xl">
         {children}
       </Container>
 
@@ -90,10 +90,10 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
 
-              <Flex gap="sm" mt="xl">
+              {/* <Flex gap="sm" mt="xl">
                 <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
                 <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
-              </Flex>
+              </Flex> */}
             </Box>
 
             <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
