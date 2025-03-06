@@ -1,0 +1,26 @@
+.header {
+  box-shadow: var(--mantine-shadow-sm);
+  z-index: 1;
+  position: relative;
+  background: #fff;
+}
+
+.headerLink {
+  color: rgb(var(--foreground-rgb));
+  text-decoration: none;
+}
+
+.headerLink:hover {
+  color: rgb(var(--foreground-rgb));
+}
+
+.footer {
+  box-shadow: inset var(--mantine-shadow-sm);
+  z-index: 1;
+  position: relative;
+  background: #fff;
+}
+
+.footer a:hover {
+  opacity: 0.7;
+}
