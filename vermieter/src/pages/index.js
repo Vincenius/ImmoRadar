@@ -21,7 +21,7 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(9)
+  const [active, setActive] = useState(0)
   const [data, setData] = useState({ Visited: true })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
@@ -91,19 +91,19 @@ function Mietvertraege() {
           <Stepper.Step>
             <Title order={2} size="h3" mb="lg">Welche Art von Mietvertrag möchtest du abschließen?</Title>
 
-            <SelectButton name="HausTyp" value="Bungalow" onClick={selectOption} w="100%" mb="md">
+            <SelectButton name="Contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md">
               <ThemeIcon variant="white" mr="sm">
                 <IconHome style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
               Wohnraummietvertrag
             </SelectButton>
-            <SelectButton name="HausTyp" value="Bungalow" onClick={selectOption} w="100%" mb="md">
+            <SelectButton name="Contract" value="Staffel" onClick={selectOption} w="100%" mb="md" disabled>
               <ThemeIcon variant="white" mr="sm">
                 <IconHomeShare style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
               Staffel-Wohnraummietvertrag
             </SelectButton>
-            <SelectButton name="HausTyp" value="Bungalow" onClick={selectOption} w="100%" mb="md">
+            <SelectButton name="Contract" value="Index" onClick={selectOption} w="100%" mb="md" disabled>
               <ThemeIcon variant="white" mr="sm">
                 <IconHomeStar style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
