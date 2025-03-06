@@ -81,7 +81,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 200px)" pos="relative" py="3em">
+      <Container as="main" mih="calc(100vh - 200px)" pos="relative" py="xl">
         {children}
       </Container>
 

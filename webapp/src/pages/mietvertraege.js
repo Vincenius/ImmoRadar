@@ -1,7 +1,6 @@
 import { useState } from 'react'
 import Layout from '@/components/Layout/Layout'
 import { Flex, Title, Box, Card, Text, Stepper, ThemeIcon, TextInput, Group, Button, NumberInput, Grid } from '@mantine/core'
-import React from 'react'
 import SelectButton from '@/components/Inputs/SelectButton'
 import { IconHomeShare, IconHome, IconHomeStar } from '@tabler/icons-react'
 import Checkbox from '@/components/Inputs/Checkbox'
