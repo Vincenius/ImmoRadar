@@ -157,7 +157,7 @@ const PdfReport = ({ data }) => {
         </List>
       </>}
 
-      {data.visitedDate && <Text mt="md">Das Mietobjekt wurde vor Abschluss des Mietvertrages am {new Date(data.visitedDate).toLocaleDateString('de-DE')} eingehend durch den/die Mieter besichtigt.</Text>}
+      {data.visited && visitedDate && <Text mt="md">Das Mietobjekt wurde vor Abschluss des Mietvertrages am {new Date(data.visitedDate).toLocaleDateString('de-DE')} eingehend durch den/die Mieter besichtigt.</Text>}
     </PointFlex>
 
 

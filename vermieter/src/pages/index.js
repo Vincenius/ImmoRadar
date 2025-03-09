@@ -580,7 +580,7 @@ function Mietvertraege() {
             <Checkbox
               label="Das Objekt wurde vom Mieter besichtigt"
               checked={data.visited || false}
-              onChange={(event) => setData({ ...data, Visited: event.currentTarget.checked })}
+              onChange={(event) => setData({ ...data, visited: event.currentTarget.checked })}
               mb="md"
             />
 
