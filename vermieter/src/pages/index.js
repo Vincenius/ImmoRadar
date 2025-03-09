@@ -22,7 +22,7 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 
 function Mietvertraege() {
   const [active, setActive] = useState(0)
-  const [data, setData] = useState({ Visited: true })
+  const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
   const [additionalEnclosures, setAdditionalEnclosures] = useState([])
@@ -53,69 +53,42 @@ function Mietvertraege() {
   }
 
   const generateDocument = () => {
-    setIsLoading(true)
-    console.log('TODOOO', data, additionalRooms, additionalRentals, additionalEnclosures)
-    // TODO refactor room data
-    // TODO lowercase
-    // Store in MongoDB
+    setIsLoading(true) 
 
-    // {
-    //   "Visited": true,
-    //   "Contract": "Wohnraum",
-    //   "LandlordName": "Vincent",
-    //   "LandlordAddress": "Test 12323",
-    //   "LandlordRepresentedBy": "Testy Gmbh",
-    //   "TenantName": "Testy",
-    //   "TenantAddress": "Test test",
-    //   "Address": "Berlin 23",
-    //   "Level": "3",
-    //   "Location": "links",
-    //   "Rooms": "2",
-    //   "WC": "1",
-    //   "Kitchen": "1",
-    //   "Hall": "1",
-    //   "Bathroom": "1",
-    //   "Hallway": "2",
-    //   "Shower": "2",
-    //   "Garage": true,
-    //   "Carport": true,
-    //   "GarageContract": true,
-    //   "AdditionalContract": true,
-    //   "FlatType": "Dienstwohnung",
-    //   "SharedAssets": [
-    //     "Waschküche",
-    //     "Trockenboden",
-    //     "Aufzug"
-    //   ],
-    //   "Rent": "1200€",
-    //   "Deposit": "3000€",
-    //   "BankAccount": "DE21 121121212121212",
-    //   "UtilitiesType": "Flat",
-    //   "Heating": "100€",
-    //   "Utilities": "200€",
-    //   "VisitedDate": "2025-02-27T23:00:00.000Z",
-    //   "RentStart": "2025-04-04T22:00:00.000Z",
-    //   "Enclosures": [
-    //     "DSGVO",
-    //     "Hausordnung"
-    //   ]
-    // }
+    const userData = {
+      ...data,
+      rentals: Object.entries(data.rentals).reduce((acc, [key, value]) => {
+        if (value) {
+          acc.push(key)
+        }
+        return acc
+      }, []),
+      additionalRooms,
+      additionalEnclosures,
+      additionalRentals,
+    }
 
-    // [
-    //   {
-    //     "name": "Balkon",
-    //     "count": 2
-    //   }
-    // ]
-
-    // [
-    //   "Garten"
-    // ]
-
-    // [
-    //   "Test Protokoll"
-    // ]
-    setIsLoading(false)
+    fetch('/api/generate', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({ userData }),
+    }).then(res => res.json())
+    .then(async res => {
+      const response = await fetch(`/api/download?id=${res.insertedId}`);
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', 'Mietvertrag.pdf'); 
+      document.body.appendChild(link);
+      link.click();
+      link.remove();
+    })
+    .finally(() => {
+      setIsLoading(false)
+    })
   }
 
   const selectOption = (e) => {
@@ -127,8 +100,8 @@ function Mietvertraege() {
     setActive(active + 1)
   }
 
-  const sharedAssets = data?.SharedAssets || []
-  const enclosures = data?.Enclosures || []
+  const sharedAssets = data?.sharedAssets || []
+  const enclosures = data?.enclosures || []
 
   return (
     <Layout title="Mietvertrag Generator" noindex={true}>
@@ -151,19 +124,19 @@ function Mietvertraege() {
           <Stepper.Step>
             <Title order={2} size="h3" mb="lg">Welche Art von Mietvertrag möchtest du abschließen?</Title>
 
-            <SelectButton name="Contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md">
+            <SelectButton name="contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md">
               <ThemeIcon variant="white" mr="sm">
                 <IconHome style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
               Wohnraummietvertrag
             </SelectButton>
-            <SelectButton name="Contract" value="Staffel" onClick={selectOption} w="100%" mb="md" disabled>
+            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" disabled>
               <ThemeIcon variant="white" mr="sm">
                 <IconHomeShare style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
               Staffel-Wohnraummietvertrag
             </SelectButton>
-            <SelectButton name="Contract" value="Index" onClick={selectOption} w="100%" mb="md" disabled>
+            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" disabled>
               <ThemeIcon variant="white" mr="sm">
                 <IconHomeStar style={{ width: '70%', height: '70%' }} />
               </ThemeIcon>
@@ -182,23 +155,23 @@ function Mietvertraege() {
                     placeholder="Max Mustermann"
                     required
                     mb="sm"
-                    name="LandlordName"
-                    defaultValue={data.LandlordName}
+                    name="landlordName"
+                    defaultValue={data.landlordName}
                   />
                   <TextInput
                     label="Wohnhaft in"
                     placeholder="Beispielstr. 12, 12345 Musterstadt"
                     required
                     mb="sm"
-                    name="LandlordAddress"
-                    defaultValue={data.LandlordAddress}
+                    name="landlordAddress"
+                    defaultValue={data.landlordAddress}
                   />
                   <TextInput
                     label="Vertreten durch (optional)"
                     placeholder="Fertighaus Radar Property GmbH"
                     mb="sm"
-                    name="LandlordRepresentedBy"
-                    defaultValue={data.LandlordRepresentedBy}
+                    name="landlordRepresentedBy"
+                    defaultValue={data.landlordRepresentedBy}
                   />
                 </Box>
                 <Box w="100%">
@@ -208,16 +181,16 @@ function Mietvertraege() {
                     placeholder="Max Mustermann, Erika Mustermann"
                     required
                     mb="sm"
-                    name="TenantName"
-                    defaultValue={data.TenantName}
+                    name="tenantName"
+                    defaultValue={data.tenantName}
                   />
                   <TextInput
                     label="Wohnhaft in"
                     placeholder="Beispielstr. 12, 12345 Musterstadt"
                     required
                     mb="sm"
-                    name="TenantAddress"
-                    defaultValue={data.TenantAddress}
+                    name="tenantAddress"
+                    defaultValue={data.tenantAddress}
                   />
                 </Box>
               </Flex>
@@ -233,21 +206,21 @@ function Mietvertraege() {
                 placeholder="Beispielstr. 12, 12345 Musterstadt"
                 required
                 mb="sm"
-                name="Address"
+                name="address"
                 defaultValue={data.Address}
               />
               <TextInput
                 label="Geschoss (optional)"
                 placeholder="3"
                 mb="sm"
-                name="Level"
+                name="level"
                 defaultValue={data.Level}
               />
               <TextInput
                 label="Lage im Gebäude (optional)"
                 placeholder="rechts/links/Mitte; Nr. 3 des Geschossplans)"
                 mb="sm"
-                name="Location"
+                name="location"
                 defaultValue={data.Location}
               />
               <ButtonGroup {...{ active, setActive }} />
@@ -263,8 +236,8 @@ function Mietvertraege() {
                     placeholder="2"
                     required
                     mb="sm"
-                    name="Rooms"
-                    defaultValue={data.Rooms}
+                    value={data.rooms.count || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, count: value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -272,8 +245,8 @@ function Mietvertraege() {
                     label="WC"
                     placeholder="0"
                     mb="sm"
-                    name="WC"
-                    defaultValue={data.WC}
+                    value={data.rooms['WC'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'WC': value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -281,8 +254,8 @@ function Mietvertraege() {
                     label="Küche/Kochnische"
                     placeholder="0"
                     mb="sm"
-                    name="Kitchen"
-                    defaultValue={data.Kitchen}
+                    value={data.rooms['Küche/Kochnische'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Küche/Kochnische': value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -290,8 +263,8 @@ function Mietvertraege() {
                     label="Flur"
                     placeholder="0"
                     mb="sm"
-                    name="Hall"
-                    defaultValue={data.Hall}
+                    value={data.rooms['Flur'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Flur': value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -299,8 +272,8 @@ function Mietvertraege() {
                     label="Bad"
                     placeholder="0"
                     mb="sm"
-                    name="Bathroom"
-                    defaultValue={data.Bathroom}
+                    value={data.rooms['Bad'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Bad': value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -308,8 +281,8 @@ function Mietvertraege() {
                     label="Diele"
                     placeholder="0"
                     mb="sm"
-                    name="Hallway"
-                    defaultValue={data.Hallway}
+                    value={data.rooms['Diele'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Diele': value } })}
                   />
                 </Grid.Col>
                 <Grid.Col span={4}>
@@ -317,8 +290,8 @@ function Mietvertraege() {
                     label="Dusche"
                     placeholder="0"
                     mb="sm"
-                    name="Shower"
-                    defaultValue={data.Shower}
+                    value={data.rooms['Dusche'] || ''}
+                    onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Dusche': value } })}
                   />
                 </Grid.Col>
                 {additionalRooms.map((room, index) => (
@@ -365,39 +338,35 @@ function Mietvertraege() {
 
             <Checkbox
               label="Garage"
-              name="Garage"
-              checked={data.Garage || false}
-              onChange={(event) => setData({ ...data, Garage: event.currentTarget.checked })}
+              checked={data.rentals.garage || false}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garage: event.currentTarget.checked }})}
               mb="md"
             />
             <Checkbox
               label="Stellplatz"
-              name="Carport"
-              checked={data.Carport || false}
-              onChange={(event) => setData({ ...data, Carport: event.currentTarget.checked })}
+              checked={data.rentals.carport || false}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, carport: event.currentTarget.checked }})}
               mb={data.Carport ? "xs" : "md"}
             />
-            {data.Carport && (
+            {data.rentals.carport && (
               <TextInput
                 label="Stellplatz Nr."
                 placeholder="1"
                 mb="md"
-                name="CarportNumber"
-                defaultValue={data.CarportNumber}
+                name="carportNumber"
+                defaultValue={data.carportNumber}
               />
             )}
             <Checkbox
               label="nach besonderem Garagen-/Stellplatz-Mietvertrag"
-              name="GarageContract"
-              checked={data.GarageContract || false}
-              onChange={(event) => setData({ ...data, GarageContract: event.currentTarget.checked })}
+              checked={data.rentals.garageContract || false}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garageContract: event.currentTarget.checked }})}
               mb="md"
             />
             <Checkbox
               label="Die genaue Beschreibung der überlassenen Mietsache des Zubehörs ist in der Wohnungsbeschreibung und Übergabeverhandlung enthalten, die diesen Vertrag ergänzt."
-              name="AdditionalContract"
-              checked={data.AdditionalContract || false}
-              onChange={(event) => setData({ ...data, AdditionalContract: event.currentTarget.checked })}
+              checked={data.rentals.additionalContract || false}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, additionalContract: event.currentTarget.checked }})}
               mb="md"
             />
 
@@ -429,49 +398,49 @@ function Mietvertraege() {
 
             <Checkbox
               label="Eine öffentlich geförderte Wohnung (Sozialwohnung) oder eine sonst preisgebundene Wohnung"
-              name="FlatType"
-              checked={data.FlatType === 'Sozialwohnung'}
-              onChange={(event) => setData({ ...data, FlatType: 'Sozialwohnung' })}
+              name="flatType"
+              checked={data.flatType === 'Sozialwohnung'}
+              onChange={(event) => setData({ ...data, flatType: 'Sozialwohnung' })}
               mb="md"
             />
             <Checkbox
               label="Eine Dienstwohnung"
-              name="FlatType"
-              checked={data.FlatType === 'Dienstwohnung'}
-              onChange={(event) => setData({ ...data, FlatType: 'Dienstwohnung' })}
+              name="flatType"
+              checked={data.flatType === 'Dienstwohnung'}
+              onChange={(event) => setData({ ...data, flatType: 'Dienstwohnung' })}
               mb="md"
             />
             <Checkbox
               label="Eine Werkwohnung"
-              name="FlatType"
-              checked={data.FlatType === 'Werkwohnung'}
-              onChange={(event) => setData({ ...data, FlatType: 'Werkwohnung' })}
+              name="flatType"
+              checked={data.flatType === 'Werkwohnung'}
+              onChange={(event) => setData({ ...data, flatType: 'Werkwohnung' })}
               mb="md"
             />
             <Checkbox
               label="Eine Eigentumswohnung"
-              name="FlatType"
-              checked={data.FlatType === 'Eigentumswohnung'}
-              onChange={(event) => setData({ ...data, FlatType: 'Eigentumswohnung' })}
+              name="flatType"
+              checked={data.flatType === 'Eigentumswohnung'}
+              onChange={(event) => setData({ ...data, flatType: 'Eigentumswohnung' })}
               mb="md"
             />
             <Checkbox
               label="Eine werkgeförderte Wohnung"
-              name="FlatType"
-              checked={data.FlatType === 'werkgeförderte Wohnung'}
-              onChange={(event) => setData({ ...data, FlatType: 'werkgeförderte Wohnung' })}
+              name="flatType"
+              checked={data.flatType === 'werkgeförderte Wohnung'}
+              onChange={(event) => setData({ ...data, flatType: 'werkgeförderte Wohnung' })}
               mb="sm"
             />
             <TextInput
               label="Sonstige"
               placeholder="Anderer Wohnungstyp"
               mb="md"
-              value={['Sozialwohnung', 'Dienstwohnung', 'Werkwohnung', 'Eigentumswohnung', 'werkgeförderte Wohnung'].includes(data.FlatType) ? '' : data.FlatType || ''}
-              onChange={(event) => setData({ ...data, FlatType: event.target.value })}
+              value={['Sozialwohnung', 'Dienstwohnung', 'Werkwohnung', 'Eigentumswohnung', 'werkgeförderte Wohnung'].includes(data.flatType) ? '' : data.flatType || ''}
+              onChange={(event) => setData({ ...data, flatType: event.target.value })}
             />
 
             <form onSubmit={handleSubmit}>
-              <ButtonGroup {...{ active, setActive }} disabled={!data.FlatType} />
+              <ButtonGroup {...{ active, setActive }} disabled={!data.flatType} />
             </form>
           </Stepper.Step>
 
@@ -480,51 +449,44 @@ function Mietvertraege() {
 
             <Checkbox
               label="Waschküche"
-              name="SharedAssets"
               checked={sharedAssets.includes('Waschküche')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Waschküche'] : sharedAssets.filter(asset => asset !== 'Waschküche') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Waschküche'] : sharedAssets.filter(asset => asset !== 'Waschküche') })}
               mb="md"
             />
             <Checkbox
               label="Abstellraum/-fläche"
-              name="SharedAssets"
               checked={sharedAssets.includes('Abstellraum/-fläche')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Abstellraum/-fläche'] : sharedAssets.filter(asset => asset !== 'Abstellraum/-fläche') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Abstellraum/-fläche'] : sharedAssets.filter(asset => asset !== 'Abstellraum/-fläche') })}
               mb="md"
             />
             <Checkbox
               label="Trockenboden"
-              name="SharedAssets"
               checked={sharedAssets.includes('Trockenboden')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Trockenboden'] : sharedAssets.filter(asset => asset !== 'Trockenboden') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Trockenboden'] : sharedAssets.filter(asset => asset !== 'Trockenboden') })}
               mb="md"
             />
             <Checkbox
               label="Garten"
-              name="SharedAssets"
               checked={sharedAssets.includes('Garten')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Garten'] : sharedAssets.filter(asset => asset !== 'Garten') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Garten'] : sharedAssets.filter(asset => asset !== 'Garten') })}
               mb="md"
             />
             <Checkbox
               label="Gemeinschaftsantenne"
-              name="SharedAssets"
               checked={sharedAssets.includes('Gemeinschaftsantenne')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Gemeinschaftsantenne'] : sharedAssets.filter(asset => asset !== 'Gemeinschaftsantenne') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Gemeinschaftsantenne'] : sharedAssets.filter(asset => asset !== 'Gemeinschaftsantenne') })}
               mb="md"
             />
             <Checkbox
               label="Hofplatz"
-              name="SharedAssets"
               checked={sharedAssets.includes('Hofplatz')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Hofplatz'] : sharedAssets.filter(asset => asset !== 'Hofplatz') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Hofplatz'] : sharedAssets.filter(asset => asset !== 'Hofplatz') })}
               mb="md"
             />
             <Checkbox
               label="Aufzug"
-              name="SharedAssets"
               checked={sharedAssets.includes('Aufzug')}
-              onChange={(event) => setData({ ...data, SharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Aufzug'] : sharedAssets.filter(asset => asset !== 'Aufzug') })}
+              onChange={(event) => setData({ ...data, sharedAssets: event.currentTarget.checked ? [...sharedAssets, 'Aufzug'] : sharedAssets.filter(asset => asset !== 'Aufzug') })}
               mb="md"
             />
             <form onSubmit={handleSubmit}>
@@ -539,8 +501,8 @@ function Mietvertraege() {
                 placeholder="1200"
                 required
                 mb="sm"
-                name="Rent"
-                defaultValue={data.Rent}
+                name="rent"
+                defaultValue={data.rent}
                 suffix="€"
               />
               <NumberInput
@@ -548,8 +510,8 @@ function Mietvertraege() {
                 placeholder="3600"
                 required
                 mb="sm"
-                name="Deposit"
-                defaultValue={data.Deposit}
+                name="deposit"
+                defaultValue={data.deposit}
                 suffix="€"
               />
 
@@ -557,9 +519,9 @@ function Mietvertraege() {
                 label="Mietzahlungen Konto"
                 placeholder="DE01 1234 1234 1234 1234 12"
                 mb="sm"
-                name="BankAccount"
+                name="bankAccount"
                 required
-                defaultValue={data.BankAccount}
+                defaultValue={data.bankAccount}
               />
 
               <ButtonGroup {...{ active, setActive }} />
@@ -574,8 +536,8 @@ function Mietvertraege() {
                 placeholder="100"
                 required
                 mb="sm"
-                name="Heating"
-                defaultValue={data.Heating}
+                name="heating"
+                defaultValue={data.heating}
                 suffix="€"
               />
               <NumberInput
@@ -583,24 +545,24 @@ function Mietvertraege() {
                 placeholder="200"
                 required
                 mb="sm"
-                name="Utilities"
-                defaultValue={data.Utilities}
+                name="utilities"
+                defaultValue={data.utilities}
                 suffix="€"
               />
               <Text mb="md">Wie werden die Betriebskosten umgelegt?</Text>
               <Checkbox
                 label="Vorauszahlungen (mit Abrechnung)"
-                checked={data.UtilitiesType === 'Prepayment'}
-                onChange={(event) => setData({ ...data, UtilitiesType: 'Prepayment' })}
+                checked={data.utilitiesType === 'Prepayment'}
+                onChange={(event) => setData({ ...data, utilitiesType: 'Prepayment' })}
                 mb="md"
               />
               <Checkbox
-                label="Pauschalen (ohne Abrechnung) "
-                checked={data.UtilitiesType === 'Flat'}
-                onChange={(event) => setData({ ...data, UtilitiesType: 'Flat' })}
+                label="Pauschalen (ohne Abrechnung)"
+                checked={data.utilitiesType === 'Flat'}
+                onChange={(event) => setData({ ...data, utilitiesType: 'Flat' })}
                 mb="md"
               />
-              <ButtonGroup {...{ active, setActive }} disabled={!data.UtilitiesType} />
+              <ButtonGroup {...{ active, setActive }} disabled={!data.utilitiesType} />
             </form>
           </Stepper.Step>
           <Stepper.Step>
@@ -608,15 +570,15 @@ function Mietvertraege() {
 
             <Checkbox
               label="Das Objekt wurde vom Mieter besichtigt"
-              checked={data.Visited || false}
+              checked={data.visited || false}
               onChange={(event) => setData({ ...data, Visited: event.currentTarget.checked })}
               mb="md"
             />
 
             <form onSubmit={handleSubmit}>
-              {data.Visited && <DateInput
-                value={data.VisitedDate}
-                onChange={val => setData({ ...data, VisitedDate: val })}
+              {data.visited && <DateInput
+                value={data.visitedDate}
+                onChange={val => setData({ ...data, visitedDate: val })}
                 label="Wann wurde das Objekt vom Mieter besichtigt?"
                 placeholder="20.06.2024"
                 valueFormat="DD.MM.YYYY"
@@ -625,8 +587,8 @@ function Mietvertraege() {
               />}
 
               <DateInput
-                value={data.RentStart}
-                onChange={val => setData({ ...data, RentStart: val })}
+                value={data.rentStart}
+                onChange={val => setData({ ...data, rentStart: val })}
                 label="Wann beginnt das Mietverhältnis?"
                 placeholder="01.01.2026"
                 valueFormat="DD.MM.YYYY"
@@ -642,41 +604,36 @@ function Mietvertraege() {
 
             <Checkbox
               label="Datenschutzerklärung (EU-DSGVO)"
-              name="Enclosures"
               checked={enclosures.includes('DSGVO')}
-              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'DSGVO'] : enclosures.filter(asset => asset !== 'DSGVO') })}
+              onChange={(event) => setData({ ...data, enclosures: event.currentTarget.checked ? [...enclosures, 'DSGVO'] : enclosures.filter(asset => asset !== 'DSGVO') })}
               mb="md"
             />
 
             <Checkbox
               label="Hausordnung"
-              name="Enclosures"
               checked={enclosures.includes('Hausordnung')}
-              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Hausordnung'] : enclosures.filter(asset => asset !== 'Hausordnung') })}
+              onChange={(event) => setData({ ...data, enclosures: event.currentTarget.checked ? [...enclosures, 'Hausordnung'] : enclosures.filter(asset => asset !== 'Hausordnung') })}
               mb="md"
             />
 
             <Checkbox
               label="Informationen zum Heiz- und Lüftungsverhalten"
-              name="Enclosures"
               checked={enclosures.includes('Lüftungsverhalten')}
-              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Lüftungsverhalten'] : enclosures.filter(asset => asset !== 'Lüftungsverhalten') })}
+              onChange={(event) => setData({ ...data, enclosures: event.currentTarget.checked ? [...enclosures, 'Lüftungsverhalten'] : enclosures.filter(asset => asset !== 'Lüftungsverhalten') })}
               mb="md"
             />
 
             <Checkbox
               label="Informationen zu den gesetzl. Raumtemperaturen"
-              name="Enclosures"
               checked={enclosures.includes('Raumtemperaturen')}
-              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Raumtemperaturen'] : enclosures.filter(asset => asset !== 'Raumtemperaturen') })}
+              onChange={(event) => setData({ ...data, enclosures: event.currentTarget.checked ? [...enclosures, 'Raumtemperaturen'] : enclosures.filter(asset => asset !== 'Raumtemperaturen') })}
               mb="md"
             />
 
             <Checkbox
               label="Wohnungsübergabeprotokoll"
-              name="Enclosures"
               checked={enclosures.includes('Wohnungsübergabeprotokoll')}
-              onChange={(event) => setData({ ...data, Enclosures: event.currentTarget.checked ? [...enclosures, 'Wohnungsübergabeprotokoll'] : enclosures.filter(asset => asset !== 'Wohnungsübergabeprotokoll') })}
+              onChange={(event) => setData({ ...data, enclosures: event.currentTarget.checked ? [...enclosures, 'Wohnungsübergabeprotokoll'] : enclosures.filter(asset => asset !== 'Wohnungsübergabeprotokoll') })}
               mb="md"
             />
 
