@@ -134,7 +134,7 @@ function Mietvertraege() {
               </Flex>
             </SelectButton>
 
-            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
+            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" isMultiLine={true} disabled>
               <Flex gap="sm" align="center">
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
@@ -143,7 +143,7 @@ function Mietvertraege() {
               </Flex>
             </SelectButton>
 
-            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
+            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" isMultiLine={true} disabled>
               <Flex gap="sm" align="center">
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
