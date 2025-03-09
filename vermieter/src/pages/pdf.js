@@ -1,8 +1,6 @@
-import { Title, Text as MantineText, Flex, Box, Table, List, Divider } from '@mantine/core';
+import { Title, Text as MantineText, Flex, Box, List, Divider } from '@mantine/core';
 import { useEffect } from 'react';
 import { toWords } from '@/utils/toWords';
-
-// http://localhost:3000/pdf?id=67caa7d12bc95b3693a95892
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
   const headerValue = req.headers['x-api-key'];

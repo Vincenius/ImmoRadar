@@ -119,35 +119,44 @@ function Mietvertraege() {
           active={active}
           onStepClick={setActive}
           allowNextStepsSelect={false}
-          size="xs"
+          size="14px"
+          styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' }}}
         >
           <Stepper.Step>
             <Title order={2} size="h3" mb="lg">Welche Art von Mietvertrag möchtest du abschließen?</Title>
 
-            <SelectButton name="contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md">
-              <ThemeIcon variant="white" mr="sm">
-                <IconHome style={{ width: '70%', height: '70%' }} />
-              </ThemeIcon>
-              Wohnraummietvertrag
+            <SelectButton name="contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
+              <Flex gap="sm" align="center">
+                <ThemeIcon variant="white">
+                  <IconHome style={{ width: '70%', height: '70%' }} />
+                </ThemeIcon>
+                <Text size="xl" fw="500">Wohnraum<wbr/>mietvertrag</Text>
+              </Flex>
             </SelectButton>
-            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" disabled>
-              <ThemeIcon variant="white" mr="sm">
-                <IconHomeShare style={{ width: '70%', height: '70%' }} />
-              </ThemeIcon>
-              Staffel-Wohnraummietvertrag
+
+            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
+              <Flex gap="sm" align="center">
+                <ThemeIcon variant="white">
+                  <IconHome style={{ width: '70%', height: '70%' }} />
+                </ThemeIcon>
+                <Text size="xl" fw="500">Staffel-Wohnraum<wbr/>mietvertrag</Text>
+              </Flex>
             </SelectButton>
-            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" disabled>
-              <ThemeIcon variant="white" mr="sm">
-                <IconHomeStar style={{ width: '70%', height: '70%' }} />
-              </ThemeIcon>
-              Index-Wohnraummietvertrag
+
+            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
+              <Flex gap="sm" align="center">
+                <ThemeIcon variant="white">
+                  <IconHome style={{ width: '70%', height: '70%' }} />
+                </ThemeIcon>
+                <Text size="xl" fw="500">Index-Wohnraum<wbr/>mietvertrag</Text>
+              </Flex>
             </SelectButton>
           </Stepper.Step>
           <Stepper.Step>
             <Title order={2} size="h3" mb="lg">Wie lauten die vollständigen Angaben für Vermieter und Mieter?</Title>
 
             <form onSubmit={handleSubmit}>
-              <Flex gap="md" justify="space-between">
+              <Flex gap="md" justify="space-between" direction={{ base: "column", xs: "row" }}>
                 <Box w="100%">
                   <Text fw="bold" mb="sm">Vermieter</Text>
                   <TextInput
@@ -230,7 +239,7 @@ function Mietvertraege() {
             <Title order={2} size="h3" mb="lg">Welche Räume umfasst die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <Grid>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Zimmer"
                     placeholder="2"
@@ -240,7 +249,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, count: value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="WC"
                     placeholder="0"
@@ -249,7 +258,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'WC': value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Küche/Kochnische"
                     placeholder="0"
@@ -258,7 +267,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Küche/Kochnische': value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Flur"
                     placeholder="0"
@@ -267,7 +276,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Flur': value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Bad"
                     placeholder="0"
@@ -276,7 +285,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Bad': value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Diele"
                     placeholder="0"
@@ -285,7 +294,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Diele': value } })}
                   />
                 </Grid.Col>
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                   <NumberInput
                     label="Dusche"
                     placeholder="0"
@@ -295,7 +304,7 @@ function Mietvertraege() {
                   />
                 </Grid.Col>
                 {additionalRooms.map((room, index) => (
-                  <Grid.Col span={4} key={index}>
+                  <Grid.Col span={{ base: 12, xs: 6, sm: 4 }} key={index}>
                     <Flex gap="sm">
                       <NumberInput
                         w="33%"
