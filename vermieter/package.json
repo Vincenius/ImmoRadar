@@ -14,6 +14,7 @@
     "@mantine/hooks": "^7.17.1",
     "@tabler/icons-react": "^3.31.0",
     "dayjs": "^1.11.13",
+    "iban": "^0.0.14",
     "mongodb": "^6.14.2",
     "next": "15.2.1",
     "puppeteer": "^24.4.0",

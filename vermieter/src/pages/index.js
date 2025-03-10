@@ -7,6 +7,7 @@ import Checkbox from '@/components/Inputs/Checkbox'
 import { DateInput } from '@mantine/dates'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
+import IBAN from 'iban'
 
 dayjs.extend(customParseFormat)
 
@@ -21,12 +22,13 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(7)
   const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
   const [additionalEnclosures, setAdditionalEnclosures] = useState([])
   const [isLoading, setIsLoading] = useState(false)
+  const [hasIbanError, setHasIbanError] = useState(false)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -43,13 +45,18 @@ function Mietvertraege() {
       }
     }
 
-    const newData = {
-      ...data,
-      ...formObject
+    if (formObject.bankAccount && !IBAN.isValid(formObject.bankAccount)) {
+      setHasIbanError(true)
+    } else {
+      const newData = {
+        ...data,
+        ...formObject
+      }
+  
+      setHasIbanError(false)
+      setData(newData)
+      setActive(active + 1)
     }
-
-    setData(newData)
-    setActive(active + 1)
   }
 
   const generateDocument = () => {
@@ -627,7 +634,7 @@ function Mietvertraege() {
                 name="bankAccount"
                 required
                 defaultValue={data.bankAccount}
-                // todo validate iban
+                error={hasIbanError && 'Iban ist ungültig'}
               />
 
               <ButtonGroup {...{ active, setActive }} />

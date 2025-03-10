@@ -76,7 +76,6 @@ const Text = ({ children, ...props }) => {
 }
 
 const PdfReport = ({ data }) => {
-  console.log(data)
   useEffect(() => {
     document.body.style.backgroundColor = 'white';
 
