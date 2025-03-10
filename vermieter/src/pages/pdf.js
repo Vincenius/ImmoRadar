@@ -116,7 +116,7 @@ const PdfReport = ({ data }) => {
       </Box>
       <Box w="70%">
         <Text>{data.tenantName}</Text>
-        <Text>{data.tenantstreet}</Text>
+        <Text>{data.tenantStreet}</Text>
         <Text>{data.tenantZip} {data.tenantCity}</Text>
       </Box>
     </Flex>
@@ -124,11 +124,11 @@ const PdfReport = ({ data }) => {
     {/* ------------------------------- § 1. Mietsache ------------------------------- */}
     <Text fw="bold" ta="center" my="lg">§ 1. Mietsache</Text>
     <PointFlex count="I">
-      <Text>I.	Der Vermieter vermietet dem Mieter zu Wohnzwecken folgende Wohnung im Hause</Text>
-      <Text>{data.street}</Text>
-      <Text>{data.zip} {data.city}</Text>
-      {(data.level || data.location) && <Text>{data.level && `im ${data.level}. Geschoss`}{data.location && ` ${data.location}`}</Text>}
-      <Text mb="md">bestehend aus</Text>
+      <Text mb="md">I.	Der Vermieter vermietet dem Mieter zu Wohnzwecken folgende Wohnung im Hause</Text>
+      <Text pl="md">{data.street}</Text>
+      <Text pl="md">{data.zip} {data.city}</Text>
+      {(data.level || data.location) && <Text pl="md">{data.level && `im ${data.level}. Geschoss`}{data.location && ` ${data.location}`}</Text>}
+      <Text my="md">bestehend aus</Text>
       <List mb="lg" withPadding>
         <List.Item>{data.rooms.count} {data.rooms.count > 1 ? 'Zimmern' : 'Zimmer'}</List.Item>
         {Object.entries(data.rooms).map(([key, value]) => {
