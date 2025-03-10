@@ -53,7 +53,7 @@ function Mietvertraege() {
   }
 
   const generateDocument = () => {
-    setIsLoading(true) 
+    setIsLoading(true)
 
     const userData = {
       ...data,
@@ -75,20 +75,20 @@ function Mietvertraege() {
       },
       body: JSON.stringify({ userData }),
     }).then(res => res.json())
-    .then(async res => {
-      const response = await fetch(`/api/download?id=${res.insertedId}`);
-      const blob = await response.blob();
-      const url = window.URL.createObjectURL(blob);
-      const link = document.createElement('a');
-      link.href = url;
-      link.setAttribute('download', 'Mietvertrag.pdf'); 
-      document.body.appendChild(link);
-      link.click();
-      link.remove();
-    })
-    .finally(() => {
-      setIsLoading(false)
-    })
+      .then(async res => {
+        const response = await fetch(`/api/download?id=${res.insertedId}`);
+        const blob = await response.blob();
+        const url = window.URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.setAttribute('download', 'Mietvertrag.pdf');
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+      })
+      .finally(() => {
+        setIsLoading(false)
+      })
   }
 
   const selectOption = (e) => {
@@ -120,7 +120,7 @@ function Mietvertraege() {
           onStepClick={setActive}
           allowNextStepsSelect={false}
           size="14px"
-          styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' }}}
+          styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
         >
           <Stepper.Step>
             <Title order={2} size="h3" mb="lg">Welche Art von Mietvertrag möchtest du abschließen?</Title>
@@ -130,7 +130,7 @@ function Mietvertraege() {
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
                 </ThemeIcon>
-                <Text size="xl" fw="500">Wohnraum<wbr/>mietvertrag</Text>
+                <Text size="xl" fw="500">Wohnraum<wbr />mietvertrag</Text>
               </Flex>
             </SelectButton>
 
@@ -139,7 +139,7 @@ function Mietvertraege() {
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
                 </ThemeIcon>
-                <Text size="xl" fw="500">Staffel-Wohnraum<wbr/>mietvertrag</Text>
+                <Text size="xl" fw="500">Staffel-Wohnraum<wbr />mietvertrag</Text>
               </Flex>
             </SelectButton>
 
@@ -148,7 +148,7 @@ function Mietvertraege() {
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
                 </ThemeIcon>
-                <Text size="xl" fw="500">Index-Wohnraum<wbr/>mietvertrag</Text>
+                <Text size="xl" fw="500">Index-Wohnraum<wbr />mietvertrag</Text>
               </Flex>
             </SelectButton>
           </Stepper.Step>
@@ -168,13 +168,34 @@ function Mietvertraege() {
                     defaultValue={data.landlordName}
                   />
                   <TextInput
-                    label="Wohnhaft in"
-                    placeholder="Beispielstr. 12, 12345 Musterstadt"
+                    label="Straße und Hausnummer"
+                    placeholder="Beispielstr. 12"
                     required
                     mb="sm"
-                    name="landlordAddress"
-                    defaultValue={data.landlordAddress}
+                    name="landlordStreet"
+                    defaultValue={data.landlordStreet}
                   />
+                  <Flex gap="sm">
+                    <NumberInput
+                      label="Postleitzahl"
+                      placeholder="12345"
+                      required
+                      mb="sm"
+                      name="landlordZip"
+                      defaultValue={data.landlordZip}
+                      hideControls
+                      decimalScale={0}
+                      maxLength={5}
+                    />
+                    <TextInput
+                      label="Stadt"
+                      placeholder="Musterstadt"
+                      required
+                      mb="sm"
+                      name="landlordCity"
+                      defaultValue={data.landlordCity}
+                    />
+                  </Flex>
                   <TextInput
                     label="Vertreten durch (optional)"
                     placeholder="Fertighaus Radar Property GmbH"
@@ -194,13 +215,34 @@ function Mietvertraege() {
                     defaultValue={data.tenantName}
                   />
                   <TextInput
-                    label="Wohnhaft in"
-                    placeholder="Beispielstr. 12, 12345 Musterstadt"
+                    label="Straße und Hausnummer"
+                    placeholder="Beispielstr. 12"
                     required
                     mb="sm"
-                    name="tenantAddress"
-                    defaultValue={data.tenantAddress}
+                    name="tenantStreet"
+                    defaultValue={data.tenantStreet}
                   />
+                  <Flex gap="sm">
+                    <NumberInput
+                      label="Postleitzahl"
+                      placeholder="12345"
+                      required
+                      mb="sm"
+                      name="tenantZip"
+                      defaultValue={data.tenantZip}
+                      hideControls
+                      decimalScale={0}
+                      maxLength={5}
+                    />
+                    <TextInput
+                      label="Stadt"
+                      placeholder="Musterstadt"
+                      required
+                      mb="sm"
+                      name="tenantCity"
+                      defaultValue={data.tenantCity}
+                    />
+                  </Flex>
                 </Box>
               </Flex>
 
@@ -211,13 +253,36 @@ function Mietvertraege() {
             <Title order={2} size="h3" mb="lg">Wo befindet sie sich die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <TextInput
-                label="Wohnhaft in"
-                placeholder="Beispielstr. 12, 12345 Musterstadt"
+                label="Straße und Hausnummer"
+                placeholder="Beispielstr. 12"
                 required
                 mb="sm"
-                name="address"
-                defaultValue={data.Address}
+                name="street"
+                defaultValue={data.street}
               />
+              <Flex gap="sm" w="100%">
+                <NumberInput
+                  label="Postleitzahl"
+                  placeholder="12345"
+                  required
+                  mb="sm"
+                  name="zip"
+                  defaultValue={data.zip}
+                  w="100%"
+                  hideControls
+                  decimalScale={0}
+                  maxLength={5}
+                />
+                <TextInput
+                  label="Stadt"
+                  placeholder="Musterstadt"
+                  required
+                  mb="sm"
+                  name="city"
+                  defaultValue={data.city}
+                  w="100%"
+                />
+              </Flex>
               <TextInput
                 label="Geschoss (optional)"
                 placeholder="3"
@@ -239,7 +304,7 @@ function Mietvertraege() {
             <Title order={2} size="h3" mb="lg">Welche Räume umfasst die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <Grid>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Zimmer"
                     placeholder="2"
@@ -247,64 +312,78 @@ function Mietvertraege() {
                     mb="sm"
                     value={data.rooms.count || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, count: value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="WC"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['WC'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'WC': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Küche/Kochnische"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['Küche/Kochnische'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Küche/Kochnische': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Flur"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['Flur'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Flur': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Bad"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['Bad'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Bad': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Diele"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['Diele'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Diele': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
-                <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <NumberInput
                     label="Dusche"
                     placeholder="0"
                     mb="sm"
                     value={data.rooms['Dusche'] || ''}
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Dusche': value } })}
+                    hideControls
+                    decimalSeparator=","
                   />
                 </Grid.Col>
                 {additionalRooms.map((room, index) => (
-                  <Grid.Col span={{ base: 12, xs: 6, sm: 4 }} key={index}>
+                  <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }} key={index}>
                     <Flex gap="sm">
                       <NumberInput
                         w="33%"
@@ -312,6 +391,8 @@ function Mietvertraege() {
                         placeholder="2"
                         mb="sm"
                         value={room.count}
+                        hideControls
+                        decimalSeparator=","
                         onChange={(value) => {
                           const newRooms = [...additionalRooms];
                           newRooms[index].count = value;
@@ -333,7 +414,7 @@ function Mietvertraege() {
                     </Flex>
                   </Grid.Col>
                 ))}
-                <Grid.Col span={4}>
+                <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
                   <Button mt="1.7em" mb="sm" fullWidth leftSection={<IconPlus size={14} />} variant="outline" onClick={() => setAdditionalRooms([...additionalRooms, { name: '', count: '' }])}>
                     Raum hinzufügen
                   </Button>
@@ -348,13 +429,13 @@ function Mietvertraege() {
             <Checkbox
               label="Garage"
               checked={data.rentals.garage || false}
-              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garage: event.currentTarget.checked }})}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garage: event.currentTarget.checked } })}
               mb="md"
             />
             <Checkbox
               label="Stellplatz"
               checked={data.rentals.carport || false}
-              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, carport: event.currentTarget.checked }})}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, carport: event.currentTarget.checked } })}
               mb={data.Carport ? "xs" : "md"}
             />
             {data.rentals.carport && (
@@ -369,13 +450,13 @@ function Mietvertraege() {
             <Checkbox
               label="nach besonderem Garagen-/Stellplatz-Mietvertrag"
               checked={data.rentals.garageContract || false}
-              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garageContract: event.currentTarget.checked }})}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garageContract: event.currentTarget.checked } })}
               mb="md"
             />
             <Checkbox
               label="Die genaue Beschreibung der überlassenen Mietsache des Zubehörs ist in der Wohnungsbeschreibung und Übergabeverhandlung enthalten, die diesen Vertrag ergänzt."
               checked={data.rentals.additionalContract || false}
-              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, additionalContract: event.currentTarget.checked }})}
+              onChange={(event) => setData({ ...data, rentals: { ...data.rentals, additionalContract: event.currentTarget.checked } })}
               mb="md"
             />
 
@@ -503,7 +584,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche Höhe haben die monatliche Miete, und die Kaution?</Title>
+            <Title order={2} size="h3" mb="lg">Welche Höhe haben die monatliche Miete und die Kaution?</Title>
             <form onSubmit={handleSubmit}>
               <NumberInput
                 label="Miete"
@@ -513,6 +594,8 @@ function Mietvertraege() {
                 name="rent"
                 defaultValue={data.rent}
                 suffix="€"
+                decimalSeparator=","
+                hideControls
               />
               <NumberInput
                 label="Kaution"
@@ -522,6 +605,8 @@ function Mietvertraege() {
                 name="deposit"
                 defaultValue={data.deposit}
                 suffix="€"
+                decimalSeparator=","
+                hideControls
               />
 
               <TextInput
@@ -531,6 +616,7 @@ function Mietvertraege() {
                 name="bankAccount"
                 required
                 defaultValue={data.bankAccount}
+                // todo validate iban
               />
 
               <ButtonGroup {...{ active, setActive }} />
@@ -548,6 +634,8 @@ function Mietvertraege() {
                 name="heating"
                 defaultValue={data.heating}
                 suffix="€"
+                decimalSeparator=","
+                hideControls
               />
               <NumberInput
                 label="Betriebskosten"
@@ -557,6 +645,8 @@ function Mietvertraege() {
                 name="utilities"
                 defaultValue={data.utilities}
                 suffix="€"
+                decimalSeparator=","
+                hideControls
               />
               <Text mb="md">Wie werden die Betriebskosten umgelegt?</Text>
               <Checkbox

@@ -90,22 +90,24 @@ const PdfReport = ({ data }) => {
 
   return <>
     <Title order={1} size="h2" align="center" fw="500" mb="xl">Wohnraummietvertrag</Title>
-    <Text align="center" mb="md">zwischen</Text>
+    <MantineText align="center" mb="md">zwischen</MantineText>
 
     <Flex mb="md" gap="md">
       <Box w="30%">
         <Text>Vermieter</Text>
         <Text>wohnhaft in</Text>
+        <Text>&nbsp;</Text>
         {data.landlordRepresentedBy && <Text>vertreten durch</Text>}
       </Box>
       <Box w="70%">
         <Text>{data.landlordName}</Text>
-        <Text>{data.landlordAddress}</Text>
+        <Text>{data.landlordStreet}</Text>
+        <Text>{data.landlordZip} {data.landlordCity}</Text>
         {data.landlordRepresentedBy && <Text>{data.landlordRepresentedBy}</Text>}
       </Box>
     </Flex>
 
-    <Text align="center" mb="md">und</Text>
+    <MantineText align="center" my="xl">und</MantineText>
 
     <Flex mb="3em" gap="md">
       <Box w="30%">
@@ -114,7 +116,8 @@ const PdfReport = ({ data }) => {
       </Box>
       <Box w="70%">
         <Text>{data.tenantName}</Text>
-        <Text>{data.tenantAddress}</Text>
+        <Text>{data.tenantstreet}</Text>
+        <Text>{data.tenantZip} {data.tenantCity}</Text>
       </Box>
     </Flex>
 
@@ -122,7 +125,8 @@ const PdfReport = ({ data }) => {
     <Text fw="bold" ta="center" my="lg">§ 1. Mietsache</Text>
     <PointFlex count="I">
       <Text>I.	Der Vermieter vermietet dem Mieter zu Wohnzwecken folgende Wohnung im Hause</Text>
-      <Text>{data.address}</Text>
+      <Text>{data.street}</Text>
+      <Text>{data.zip} {data.city}</Text>
       {(data.level || data.location) && <Text>{data.level && `im ${data.level}. Geschoss`}{data.location && ` ${data.location}`}</Text>}
       <Text mb="md">bestehend aus</Text>
       <List mb="lg" withPadding>
@@ -132,7 +136,7 @@ const PdfReport = ({ data }) => {
             return <List.Item key={key}>{value} {key}</List.Item>
           }
         })}
-        {data.additionalRooms.map(room => <List.Item key={room.name}>{room.count} {room.name}</List.Item>)}
+        {data.additionalRooms.filter(r => r.name && r.count).map(room => <List.Item key={room.name}>{room.count} {room.name}</List.Item>)}
       </List>
 
 
@@ -157,7 +161,7 @@ const PdfReport = ({ data }) => {
         </List>
       </>}
 
-      {data.visited && visitedDate && <Text mt="md">Das Mietobjekt wurde vor Abschluss des Mietvertrages am {new Date(data.visitedDate).toLocaleDateString('de-DE')} eingehend durch den/die Mieter besichtigt.</Text>}
+      {data.visited && data.visitedDate && <Text mt="md">Das Mietobjekt wurde vor Abschluss des Mietvertrages am {new Date(data.visitedDate).toLocaleDateString('de-DE')} eingehend durch den/die Mieter besichtigt.</Text>}
     </PointFlex>
 
 
