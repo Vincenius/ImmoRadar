@@ -314,6 +314,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, count: value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -325,6 +326,8 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'WC': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
+
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -336,6 +339,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Küche/Kochnische': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -347,6 +351,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Flur': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -358,6 +363,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Bad': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -369,6 +375,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Diele': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -380,6 +387,7 @@ function Mietvertraege() {
                     onChange={(value) => setData({ ...data, rooms: { ...data.rooms, 'Dusche': value } })}
                     hideControls
                     decimalSeparator=","
+                    decimalScale={1}
                   />
                 </Grid.Col>
                 {additionalRooms.map((room, index) => (
@@ -393,6 +401,7 @@ function Mietvertraege() {
                         value={room.count}
                         hideControls
                         decimalSeparator=","
+                        decimalScale={1}
                         onChange={(value) => {
                           const newRooms = [...additionalRooms];
                           newRooms[index].count = value;
@@ -596,6 +605,7 @@ function Mietvertraege() {
                 suffix="€"
                 decimalSeparator=","
                 hideControls
+                decimalScale={2}
               />
               <NumberInput
                 label="Kaution"
@@ -607,6 +617,7 @@ function Mietvertraege() {
                 suffix="€"
                 decimalSeparator=","
                 hideControls
+                decimalScale={2}
               />
 
               <TextInput
@@ -636,6 +647,7 @@ function Mietvertraege() {
                 suffix="€"
                 decimalSeparator=","
                 hideControls
+                decimalScale={2}
               />
               <NumberInput
                 label="Betriebskosten"
@@ -647,6 +659,7 @@ function Mietvertraege() {
                 suffix="€"
                 decimalSeparator=","
                 hideControls
+                decimalScale={2}
               />
               <Text mb="md">Wie werden die Betriebskosten umgelegt?</Text>
               <Checkbox
