@@ -1,6 +1,4 @@
 export const toWords = (zahl) => {
-  console.log({ zahl });
-
   let sonderzahlen = {
     11: 'elf',
     12: 'zwölf',
@@ -35,17 +33,20 @@ export const toWords = (zahl) => {
 
   if (zahl === 0) return 'null';
 
-  let zahlString = zahl.toString(); // Convert number to string
-  let blockCount = Math.ceil(zahlString.length / 3); // Number of 3-digit blocks
+  // Split into integer and decimal parts
+  let [integerPart, decimalPart] = zahl.toString().split('.');
+
+  // Handle the integer part
+  let blockCount = Math.ceil(integerPart.length / 3);
 
   for (let i = 0; i < blockCount; i++) {
     if (i > einheiten.length - 1) return 'Zahl nicht unterstützt';
 
     let zahlenblock;
     if (i === 0) {
-      zahlenblock = zahl % trennschritte;
+      zahlenblock = integerPart % trennschritte;
     } else {
-      zahlenblock = Math.floor((zahl % trennschritte) / (trennschritte / 1000));
+      zahlenblock = Math.floor((integerPart % trennschritte) / (trennschritte / 1000));
     }
 
     let einer = zahlenblock % 10;
@@ -85,5 +86,12 @@ export const toWords = (zahl) => {
     trennschritte *= 1000;
   }
 
-  return zahlinworten.trim();
+  if (decimalPart) {
+    zahlinworten += ' Komma';
+    for (let i = 0; i < decimalPart.length; i++) {
+      zahlinworten += ' ' + zahlen[decimalPart[i]];
+    }
+  }
+
+  return zahlinworten;
 };

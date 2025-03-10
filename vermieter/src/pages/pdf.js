@@ -169,7 +169,7 @@ const PdfReport = ({ data }) => {
     <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 2. Miete</Text>
 
     <PointFlex count="I">
-      <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(parseFloat(data.rent.replace('€', '')))}.)</Text>
+      <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(parseFloat(data.rent.replace('€', '').replace(',', '.')))}.)</Text>
     </PointFlex>
 
     <PointFlex count="II">
