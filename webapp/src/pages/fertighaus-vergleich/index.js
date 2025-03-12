@@ -93,7 +93,7 @@ export default function HausanbieterVergleich() {
 
   return (
     <Layout
-      title="ImmoRadar Hausanbieter Vergleich"
+      title="Hausanbieter Vergleich | Fertighaus Radar"
       description="todo"
       noindex={true}
     >

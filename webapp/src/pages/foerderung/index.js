@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Modal, Chip, Select } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Modal, Chip, Select, Radio } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -10,7 +10,6 @@ import { mainSearches } from '@/utils/searchSeo'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import Checkbox from '@/components/Inputs/Checkbox';
 import { fetcher } from '@/utils/fetcher';
-// import Checkout from '@/components/Checkout/Checkout';
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -140,7 +139,7 @@ export default function Foerderung() {
 
   return (
     <Layout
-      title="ImmoRadar Förderung"
+      title="Förderung | Fertighaus Radar"
       description="todo"
       noindex={true} // todo
     >
@@ -168,6 +167,55 @@ export default function Foerderung() {
                 styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
                 allowNextStepsSelect={false}
               >
+                {/* <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Nutzt Du das Investitionsobjekt selbst oder planst Du die unentgeltliche überlassung an Angehörige?</Title>
+                  <Flex wrap="wrap" gap="md">
+                    <SelectButton variant="filled" name="HouseType" value="Bestand" onClick={selectOption} fullWidth>Ja</SelectButton>
+                    <SelectButton variant="light" name="HouseType" value="Neubau" onClick={selectOption} fullWidth>Nein</SelectButton>
+                    <SelectButton variant="outline" name="HouseType" value="Bestand" onClick={selectOption} fullWidth>Frage überspringen</SelectButton>
+                  </Flex>
+                </Stepper.Step> */}
+                {/* <Stepper.Step>
+                  <Title order={2} size="h3" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Title>
+                  <Flex wrap="wrap" gap="md">
+                    <Radio.Group
+                      name="q1"
+                      label="Nutzt Du das Investitionsobjekt selbst oder planst Du die unentgeltliche überlassung an Angehörige?"
+                      withAsterisk
+                    >
+                      <Group mt="xs">
+                        <Radio value="Ja" label="Ja" />
+                        <Radio value="Nein" label="Nein" />
+                        <Radio value="Unklar" label="Keine Angabe" />
+                      </Group>
+                    </Radio.Group>
+
+                    <Radio.Group
+                      name="q2"
+                      label="Ist die Gesamtfinanzierung des Vorhabens gesichert?"
+                      withAsterisk
+                    >
+                      <Group mt="xs">
+                        <Radio value="Ja" label="Ja" />
+                        <Radio value="Nein" label="Nein" />
+                        <Radio value="Unklar" label="Keine Angabe" />
+                      </Group>
+                    </Radio.Group>
+
+                    <Radio.Group
+                      name="q3"
+                      label="Werden die baulichen Vorschriften des Gebäudeenergiegesetztes (GEG) eingehalten?"
+                      withAsterisk
+                    >
+                      <Group mt="xs">
+                        <Radio value="Ja" label="Ja" />
+                        <Radio value="Nein" label="Nein" />
+                        <Radio value="Unklar" label="Keine Angabe" />
+                      </Group>
+                    </Radio.Group>
+                  </Flex>
+                  <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
+                </Stepper.Step> */}
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 

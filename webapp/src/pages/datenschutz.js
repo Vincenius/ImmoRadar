@@ -4,8 +4,8 @@ import styles from '@/styles/Privacy.module.css';
 
 const Privacy = () => {
     return <Layout
-        title="Datenschutzerklärung | ImmoRadar"
-        description="Datenschutzerklärung von ImmoRadar"
+        title="Datenschutzerklärung | Fertighaus Radar"
+        description="Datenschutzerklärung von Fertighaus Radar"
     >
         <Container className={styles.container}>
             <Title order={1} my="xl">Datenschutzerklärung</Title>

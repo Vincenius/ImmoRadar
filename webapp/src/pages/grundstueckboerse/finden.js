@@ -90,7 +90,7 @@ export default function Home() {
 
   return (
     <Layout
-      title="ImmoRadar Grundstücke Suchen"
+      title="Grundstücke Suchen | Fertighaus Radar"
       description="Du konntest kein passendes Grundstück für Dich finden? Trag hier einfach Deinen persönlichen Rahmendaten zu Deinem Traumgrundstück ein. Wir gleichen Deine Daten mit den Grundstücken in unserer Datenbank und melden uns bei Dir sobald etwas passendes dabei ist."
     >
       <div className={styles.background}></div>

@@ -86,7 +86,7 @@ export default function Home() {
 
   return (
     <Layout
-      title="ImmoRadar Grundstücke Anbieten"
+      title="Grundstücke Anbieten | Fertighaus Radar"
       description="Verkaufe Dein Grundstück. Unser Netzwerk umfasst eine Vielzahl Grundstücksuchenden. Dadurch können wir sicherstellen, dass Dein Grundstück in die besten Hände gelangt."
     >
       <Box>

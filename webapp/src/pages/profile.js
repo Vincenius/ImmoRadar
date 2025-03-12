@@ -191,7 +191,7 @@ const Profile = () => {
     const hasAccount = !isLoading && data && data._id;
 
     return (
-        <Layout title="ImmoRadar | Deine Benachrichtigungen" description="Verwalte deine Benachrichtigungen">
+        <Layout title="Deine Benachrichtigungen | Fertighaus Radar" description="Verwalte deine Benachrichtigungen">
             { (isLoading || hasAccount) && <Title pt="xl" mb="xl">Deine Benachrichtigungen</Title> }
 
             { (isLoading || hasAccount) && <Table striped className={classes.table}>
@@ -218,7 +218,7 @@ const Profile = () => {
                         <Table.Tr key={`table-notification-${index}`}>
                             <Table.Td>
                                 <Flex align="center" gap="sm">
-                                    <Link href={`https://immoradar.xyz/search?${getSearchLink(notification)}`}>{notification.query}</Link>
+                                    <Link href={`https://www.fertighausradar.de/search?${getSearchLink(notification)}`}>{notification.query}</Link>
                                 </Flex>
                             </Table.Td>
                             <Table.Td>

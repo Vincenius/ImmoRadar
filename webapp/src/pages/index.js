@@ -8,7 +8,7 @@ import styles from '@/styles/Home.module.css'
 
 export default function Search () {
   return (<Layout
-    title="Einfach Finden. Alle Grundstücke an einem Ort. | ImmoRadar"
+    title="Einfach Finden. Alle Grundstücke an einem Ort. | Fertighaus Radar"
     description="Ihre Suchmaschine für Grundstücke. Kombiniert Ergebnisse von den Top 3 Immobilien-Portalen und zeigt eine einzige, gut sortierte Liste ohne Duplikate.."
   >
     <Box>

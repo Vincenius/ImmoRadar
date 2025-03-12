@@ -34,8 +34,8 @@ const Partner = ({ image, name, description, link, linkText }) => {
 const PartnerPage = () => {
   return (
     <Layout
-      title="Kooperationspartner | ImmoRadar"
-    // TODO description="Willkommen bei ImmoRadar, Ihrer Webseite für die Wohnungssuche in Deutschland. Diese Webseite wurde von mir, Vincent, ins Leben gerufen. Mein Ziel ist es, die Wohnungssuche so einfach und stressfrei wie möglich zu gestalten..."
+      title="Kooperationspartner | Fertighaus Radar"
+    // TODO description="Willkommen bei Fertighaus Radar, Ihrer Webseite für die Wohnungssuche in Deutschland. Diese Webseite wurde von mir, Vincent, ins Leben gerufen. Mein Ziel ist es, die Wohnungssuche so einfach und stressfrei wie möglich zu gestalten..."
     >
       <Container py="xl" size="sm">
         <Title order={1} mb="lg">Kooperations<wbr/>partner</Title>

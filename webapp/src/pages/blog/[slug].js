@@ -20,7 +20,7 @@ const Blog = ({ post }) => {
 
   return (
     <Layout
-      title={`${post.title} | ImmoRadar`}
+      title={`${post.title} | Fertighaus Radar`}
       description={`${post.excerpt}`}
       image={post.feature_image}
     >

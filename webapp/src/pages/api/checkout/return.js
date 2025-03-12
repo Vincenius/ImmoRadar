@@ -14,7 +14,7 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.retrieve(session_id);
       
       if (session.status === 'complete') {
-        const url = `https://admin.immoradar.xyz/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${session.client_reference_id})`;
+        const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${session.client_reference_id})`;
         const { list: [user] } = await fetch(url, {
           method: 'GET',
           headers: {
@@ -35,10 +35,10 @@ export default async function handler(req, res) {
         const { filename } = await generatePdf(session.client_reference_id)
         await sendEmail({
           to: user.Email,
-          subject: 'ImmoRadar Förderungen Report',
+          subject: 'Fertighaus Radar Förderungen Report',
           html: subsidyPaidTemplate(),
           pdfFilePath: filename,
-          pdfFileName: 'ImmoRadar Förderung Report.pdf'
+          pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
         })
         fs.unlinkSync(filename)
 

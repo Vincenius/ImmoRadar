@@ -12,8 +12,8 @@ const FAQ = () => {
               </Accordion.Item>
 
               <Accordion.Item value="frage2">
-                <Accordion.Control><Text fw={500}>Kann ich die Förderungen direkt über ImmoRadar beantragen?</Text></Accordion.Control>
-                <Accordion.Panel>ImmoRadar zeigt Ihnen verfügbare Förderungen auf, jedoch erfolgt der Antrag direkt bei der zuständigen Institution oder Bank. Wir stellen Ihnen die nötigen Informationen zur Verfügung.</Accordion.Panel>
+                <Accordion.Control><Text fw={500}>Kann ich die Förderungen direkt über Fertighaus Radar beantragen?</Text></Accordion.Control>
+                <Accordion.Panel>Fertighaus Radar zeigt Ihnen verfügbare Förderungen auf, jedoch erfolgt der Antrag direkt bei der zuständigen Institution oder Bank. Wir stellen Ihnen die nötigen Informationen zur Verfügung.</Accordion.Panel>
               </Accordion.Item>
 
               <Accordion.Item value="frage3">
@@ -22,7 +22,7 @@ const FAQ = () => {
               </Accordion.Item>
 
               <Accordion.Item value="frage4">
-                <Accordion.Control><Text fw={500}>Wie verkaufe ich mein Grundstück über ImmoRadar?</Text></Accordion.Control>
+                <Accordion.Control><Text fw={500}>Wie verkaufe ich mein Grundstück über Fertighaus Radar?</Text></Accordion.Control>
                 <Accordion.Panel>Verkäufer können ihr Grundstück einfach auf unserer Plattform inserieren. Füllen Sie das Formular mit den wichtigsten Informationen zum Grundstück aus, und Ihr Angebot wird in unserer Börse gelistet.</Accordion.Panel>
               </Accordion.Item>
 
@@ -32,7 +32,7 @@ const FAQ = () => {
               </Accordion.Item>
 
               <Accordion.Item value="frage6">
-                <Accordion.Control><Text fw={500}>Kann ich über ImmoRadar direkt einen Fertighaus-Anbieter kontaktieren?</Text></Accordion.Control>
+                <Accordion.Control><Text fw={500}>Kann ich über Fertighaus Radar direkt einen Fertighaus-Anbieter kontaktieren?</Text></Accordion.Control>
                 <Accordion.Panel>Ja, nachdem Sie Ihren Favoriten ausgewählt haben, stellen wir Ihnen die Kontaktdaten des Anbieters zur Verfügung, damit Sie ihn direkt kontaktieren und weiterführende Informationen anfordern können.</Accordion.Panel>
               </Accordion.Item>
             </Accordion>

@@ -7,7 +7,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
     <Layout
       title="ImmoGuesser ist nicht mehr verfügbar"
       description="Vielen Dank für dein Interesse an ImmoGuesser. Aufgrund aktueller Entwicklungen haben wir uns entschieden, unsere Immobiliensuche einzustellen. Dadurch können die verfügbaren Daten für Immoguesser nicht mehr aktualisert werden."
-      image="https://immoradar.xyz/immo-guesser.jpg"
+      image="https://www.fertighausradar.de/immo-guesser.jpg"
     >
       <Container py="xl" size="sm">
         <Title order={1} my="xl">ImmoGuesser ist nicht mehr verfügbar</Title>
@@ -21,7 +21,7 @@ const ImmoGuesser = ({ data, url, slug }) => {
         </Text>
         <Text>
           Vielen Dank für dein Vertrauen!<br/>
-          Dein ImmoRadar-Team
+          Dein Fertighaus Radar Team
         </Text>
       </Container>
     </Layout>

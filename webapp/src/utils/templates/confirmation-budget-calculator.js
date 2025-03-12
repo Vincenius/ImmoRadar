@@ -12,7 +12,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
     <mj-section>
       <mj-group>
         <mj-column vertical-align="middle">
-          <mj-image href="https://immoradar.xyz" width="300px" src="https://immoradar.xyz/email-header.png"></mj-image>
+          <mj-image href="https://www.fertighausradar.de" width="300px" src="https://www.fertighausradar.de/email-header.png"></mj-image>
         </mj-column>
       </mj-group>
     </mj-section>
@@ -43,7 +43,7 @@ const confirmTemplate = ({ confirm_url, name }) => mjml2html(`<mjml>
 
         <mj-text font-size="15px" color="#000" font-family="helvetica">Bei Fragen stehen wir dir jederzeit zur Verfügung.</mj-text>
         
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Herzliche Grüße,<br/>Dein ImmoRadar Team</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Herzliche Grüße,<br/>Dein Fertighaus Radar Team</mj-text>
       </mj-column>
     </mj-section>
   </mj-body>

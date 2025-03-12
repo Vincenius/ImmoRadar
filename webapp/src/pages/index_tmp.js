@@ -9,8 +9,8 @@ import styles from '@/styles/Home.module.css'
 export default function Home() {
   return (
     <Layout
-      title="ImmoRadar | Ihr Partner für den Weg ins Eigenheim"
-      description="Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen."
+      title="Fertighaus Radar | Ihr Partner für den Weg ins Eigenheim"
+      description="Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – Fertighaus Radar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen."
     >
       <Box className={styles.header}>
         <div className={styles.background}></div>
@@ -21,7 +21,7 @@ export default function Home() {
               Ihr Partner für den <span className={styles.gradientText}>Weg ins Eigenheim</span>
             </Title>
             <Text size="xl">
-              Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – ImmoRadar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen.
+              Ob Sie nach einem passenden Grundstück suchen, Fertighausanbieter vergleichen oder Ihr Budget für den Traum vom Eigenheim kalkulieren möchten – Fertighaus Radar bietet Ihnen die Lösungen, die Sie brauchen, um Ihr Projekt voranzubringen.
             </Text>
           </Box>
           

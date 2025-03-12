@@ -20,7 +20,7 @@ export const sendEmail = async ({ to, subject, html, pdfFilePath, pdfFileName })
     }] : [];
 
     const result = await transporter.sendMail({
-        from: 'ImmoRadar <noreply@immoradar.xyz>',
+        from: 'Fertighaus Radar <noreply@immoradar.xyz>',
         to: `${to} <${to}>`,
         subject,
         html,

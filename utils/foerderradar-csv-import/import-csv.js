@@ -111,7 +111,7 @@ const main = async () => {
     }
   })
 
-  // const url = 'https://admin.immoradar.xyz/api/v2/tables/mnc1qd2t096094t/records'
+  // const url = `${process.env.NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/records`
   // const options = getOptions(formattedData)
   // const newSubstidies = await fetch(url, options).then(res => res.json())
 

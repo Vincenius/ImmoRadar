@@ -68,7 +68,7 @@ export default async function handler(req, res) {
 
           await sendEmail({
             to: email,
-            subject: 'Bitte bestätige deine Anmeldung bei ImmoRadar',
+            subject: 'Bitte bestätige deine Anmeldung bei Fertighaus Radar',
             html: confirmTemplate({ confirm_url: `${process.env.BASE_URL}/api/email/confirm?token=${token}` })
           })
         } catch(error) {

@@ -23,13 +23,13 @@ const TeamMember = ({ image, name, title }) => {
 const AboutPage = () => {
     return (
         <Layout
-            title="Über Uns | ImmoRadar"
-            // TODO description="Willkommen bei ImmoRadar, Ihrer Webseite für die Wohnungssuche in Deutschland. Diese Webseite wurde von mir, Vincent, ins Leben gerufen. Mein Ziel ist es, die Wohnungssuche so einfach und stressfrei wie möglich zu gestalten..."
+            title="Über Uns | Fertighaus Radar"
+            // TODO description="Willkommen bei Fertighaus Radar, Ihrer Webseite für die Wohnungssuche in Deutschland. Diese Webseite wurde von mir, Vincent, ins Leben gerufen. Mein Ziel ist es, die Wohnungssuche so einfach und stressfrei wie möglich zu gestalten..."
         >
             <Container py="xl" size="sm">
                 <Title order={1} mb="lg">Über uns</Title>
                 <Text my="md">
-                    <b>Einfach Finden.</b> Das Team von ImmoRadar beschäftigt sich mit den wichtigsten Themen rund um Dein persönliches Traumhaus.
+                    <b>Einfach Finden.</b> Das Team von Fertighaus Radar beschäftigt sich mit den wichtigsten Themen rund um Dein persönliches Traumhaus.
                 </Text>
 
                 <Title order={2} mb="lg" mt="xl">Unser Team</Title>

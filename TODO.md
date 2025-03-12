@@ -3,7 +3,7 @@
 ## Grundstückbörse
 - Auswahlseite Finden / Anbieten
 - User Login
-  - app.immoradar.xyz
+  - app.fertighausradar.de
   - login
   - registrieren via token oder email matching
   - password reset

@@ -50,7 +50,7 @@ export default function Register() {
               mb="lg"
               required
               name="DataProtection"
-              label={<Text>Ich habe die <Link href="https://immoradar.xyz/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
+              label={<Text>Ich habe die <Link href="https://www.fertighausradar.de/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
             />
 
             <Button size="lg" mb="xl" fullWidth type="submit" loading={isLoading}>Account Erstellen</Button>

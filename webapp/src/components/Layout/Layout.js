@@ -43,7 +43,7 @@ function useCannonical() {
   }
 
   // Generate the canonical URL
-  const canonicalUrl = new URL(pathname, 'https://immoradar.xyz');
+  const canonicalUrl = new URL(pathname, 'https://www.fertighausradar.de');
   Object.keys(canonicalQuery).forEach((key) => {
     canonicalUrl.searchParams.append(key, canonicalQuery[key]);
   });
@@ -72,9 +72,9 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="https://immoradar.xyz" />
+      <meta property="og:url" content="https://www.fertighausradar.de" />
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="ImmoRadar" />
+      <meta property="og:site_name" content="Fertighaus Radar" />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -86,7 +86,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
-        <script defer src="https://analytics.vincentwill.com/script.js" data-website-id="70bfc215-0eff-4c0e-8cf0-eef7202b8af5"></script>
+        <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id="4e1d0600-2257-4c85-a14d-9663199b04f9"></script>
       )}
       <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
@@ -96,8 +96,8 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
-                <Image src={Logo} width={40} height={40} alt="ImmoRadar Logo" priority />
-                <Text weight={700} size="xl">ImmoRadar</Text>
+                <Image src={Logo} width={40} height={40} alt="Fertighaus Radar Logo" priority />
+                <Text weight={700} size="xl">Fertighaus Radar</Text>
               </Flex>
             </Link>
 
@@ -178,10 +178,11 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
                 <Link href="/ueber-uns"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
+                <Link href="/partner"><Text size="sm" c="gray.7" mb="xs">Partner</Text></Link>
               </Box>
             </Flex>
           </Flex>
-          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} ImmoRadar</Text>
+          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} Fertighaus Radar</Text>
         </Container>
       </Box>
     </div>

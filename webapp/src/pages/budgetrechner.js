@@ -271,7 +271,7 @@ const BudgetCalculator = () => {
 
 
   return (
-    <Layout title="Budgetrechner | ImmoRadar" description="Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.">
+    <Layout title="Budgetrechner | Fertighaus Radar" description="Berechnen Sie schnell und einfach, wie viel Ihr Haus kosten darf. Unser Budgetrechner kalkuliert anhand von Eigenkapital, Zinssatz und monatlicher Belastung den maximalen Kaufpreis, den Sie sich leisten können.">
       <Flex align="center" gap="xl" direction={{ base: "column-reverse", sm: "row" }} my="3rem">
         <Box p={{ base: "sm", sm: "0" }}>
           <Title order={1} ta={{ base: 'center', sm: 'left' }} fz={{ base: 34, xs: 42, sm: 60, md: 72 }} fw="bold" textWrap="balance">
@@ -376,7 +376,7 @@ const BudgetCalculator = () => {
             <Image
               component={NextImage}
               src={Logo}
-              alt="ImmoRadar Logo"
+              alt="Fertighaus Radar Logo"
               height={150}
               width={150}
               w={150}
