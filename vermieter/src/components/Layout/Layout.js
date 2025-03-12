@@ -41,7 +41,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
-        <script defer src="https://analytics.vincentwill.com/script.js" data-website-id="70bfc215-0eff-4c0e-8cf0-eef7202b8af5"></script>
+        <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id="acb3ae01-3f15-496f-84f8-0d5050566fc8"></script>
       )}
       <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
