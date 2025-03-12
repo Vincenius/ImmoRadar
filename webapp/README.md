@@ -1,1 +1,1 @@
-for phone validation: https://sundowndev.github.io/phoneinfoga/
+FertighausRadar.de
