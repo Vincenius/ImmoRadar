@@ -22,7 +22,7 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(7)
+  const [active, setActive] = useState(0)
   const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
