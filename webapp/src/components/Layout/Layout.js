@@ -88,7 +88,6 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
         <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id="4e1d0600-2257-4c85-a14d-9663199b04f9"></script>
       )}
-      <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
     <div>
       <Box as="header" height={60} className={styles.header}>
