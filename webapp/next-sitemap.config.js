@@ -2,7 +2,7 @@ const { MongoClient } = require('mongodb');
 
 const exclude = [
     '/deleted', '/profile', '/email-bestaetigt', '/unerwarteter-fehler', '/blog/immo-guesser',
-    '/foerderung', 'foerderung/ergebnis', '/grundstueckboerse', '/index-tmp', '/fertighaus-vergleich', '/mietvertraege'  // temp
+    '/index-tmp', '/fertighaus-vergleich'
 ]
 
 // todo add blog posts
