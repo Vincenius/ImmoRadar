@@ -1,0 +1,38 @@
+{
+  "name": "foerderung",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@mantine/core": "^7.17.1",
+    "@mantine/hooks": "^7.17.1",
+    "@mantine/notifications": "^7.17.1",
+    "@stripe/react-stripe-js": "^3.1.1",
+    "@stripe/stripe-js": "^5.4.0",
+    "@tabler/icons-react": "^3.31.0",
+    "aws-sdk": "^2.1692.0",
+    "mjml": "^4.15.3",
+    "next": "15.2.1",
+    "nodemailer": "^6.10.0",
+    "puppeteer": "24.2.1",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "showdown": "^2.1.0",
+    "stripe": "^17.7.0",
+    "swr": "^2.3.3",
+    "uuid": "^11.1.0"
+  },
+  "devDependencies": {
+    "@eslint/eslintrc": "^3",
+    "eslint": "^9",
+    "eslint-config-next": "15.2.1",
+    "postcss": "^8.5.3",
+    "postcss-preset-mantine": "^1.17.0",
+    "postcss-simple-vars": "^7.0.1"
+  }
+}
