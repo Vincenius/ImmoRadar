@@ -6,7 +6,6 @@ import fs from 'fs';
 
 export default async function handler(req, res) {
   try {
-    // handle general get vs get with ?id=
     if (req.method === 'GET') {
       const allSubsidies = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/records?limit=1000`, {
         method: 'GET',

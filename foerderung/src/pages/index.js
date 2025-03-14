@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Modal, Chip, Select, Radio } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Modal, Chip, Select, Radio, Loader } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -50,6 +50,11 @@ export default function Foerderung() {
   const router = useRouter()
   const [opened, { open, close }] = useDisclosure(false);
   const [active, setActive] = useState(0);
+  const [questionnaireStep, setQuestionnaireStep] = useState(0);
+  const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
+  const [questionnaireData, setQuestionnaireData] = useState([]);
+  const [questionnaireLoading, setQuestionnaireLoading] = useState(false);
+  const [answers, setAnswers] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ TypZuschuss: true, TypKredit: true })
   const [email, setEmail] = useState('')
@@ -93,6 +98,11 @@ export default function Foerderung() {
     setActive(active + 1)
   }
 
+  const handleSubmitQuestionnaire = (e, d) => {
+    e.preventDefault()
+    setQuestionnaireStep(questionnaireStep + 1)
+  }
+
   const districtData = [...new Set(
     subsidyData
       .filter(d => d.Region === data.Region && d.District)
@@ -122,6 +132,23 @@ export default function Foerderung() {
     d.Measures?.some(element => data.Measures?.includes(element))
   )
 
+  const openQuestionaire = () => {
+    setQuestionnaireOpen(true)
+    setQuestionnaireStep(0)
+    setQuestionnaireLoading(true)
+
+    fetch('/api/questions', {
+      method: 'POST',
+      body: JSON.stringify({ ids: finalData.map(d => d.Id) })
+    })
+      .then(res => res.json())
+      .then(res => {
+        setQuestionnaireData(res)
+      })
+      .catch(() => console.log('error')) // todo error handling
+      .finally(() => setQuestionnaireLoading(false))
+  }
+
   const handleSubmitReport = (e) => {
     e.preventDefault()
     setIsLoading(true)
@@ -139,7 +166,7 @@ export default function Foerderung() {
 
   return (
     <Layout
-      title="Förderung | Fertighaus Radar"
+      title="Förderradar"
       description="todo"
       noindex={true} // todo
     >
@@ -160,7 +187,7 @@ export default function Foerderung() {
             <Button size="xl" onClick={open}>Förder Check Starten</Button>
 
             <Modal opened={opened} onClose={close} title="Förder Check" size="md" styles={{ content: { overflowX: 'hidden' } }}>
-              <Stepper
+              {!questionnaireOpen && <Stepper
                 active={active}
                 onStepClick={setActive}
                 size="14px"
@@ -294,7 +321,7 @@ export default function Foerderung() {
                   <Title order={2} size="h3" mb="md">
                     Wir konnten {finalData.length} Förderungen für die eingestellten Kriterien finden.
                   </Title>
-                  <Table mb="xl" size="sm" striped>
+                  <Table mb="lg" size="sm" striped>
                     <Table.Thead>
                       <Table.Tr>
                         <Table.Th>Deine Daten</Table.Th>
@@ -320,6 +347,67 @@ export default function Foerderung() {
                     </Table.Tbody>
                   </Table>
 
+                  <Text mb="lg">
+                    Nun müssen wir nur noch prüfen, für welche Förderungen du die Voraussetzungen erfüllst.
+                    Beantworte dazu bitte die Fragen zu den einzelnen Förderprogrammen.
+                  </Text>
+
+                  <Flex gap="md">
+                    <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
+                    <Button w="70%" onClick={() => openQuestionaire()}>Weiter zu den Fragen</Button>
+                  </Flex>
+                </Stepper.Completed>
+              </Stepper>}
+
+              {questionnaireOpen && <Stepper
+                active={questionnaireStep}
+                onStepClick={questionnaireLoading ? () => { } : (step) => setQuestionnaireStep(step)}
+                size="14px"
+                styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
+                allowNextStepsSelect={false}
+              >
+                {questionnaireLoading && finalData.map((d) => <Stepper.Step key={`questionnaire-mock-${d.Id}`}>
+                  <Flex justify="center" align="center" h="300px" direction="column" gap="md">
+                    <Loader />
+                    <Text c="gray.6">Lade Fragebogen...</Text>
+                  </Flex>
+                </Stepper.Step>)}
+
+                {!questionnaireLoading && questionnaireData.filter(q => q.questions && q.questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+                  <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
+                  <form onSubmit={e => handleSubmitQuestionnaire(e, d)}>
+                    <Flex wrap="wrap" gap="lg" mb="xl">
+                      {d.questions.map((q) =>
+                        <Radio.Group
+                          key={`questionnaire-question-${d.Id}-${q.Id}`}
+                          label={q.Question}
+                          withAsterisk
+                          value={answers[q.Id] || ''}
+                          onChange={val => setAnswers({ ...answers, [q.Id]: val })}
+                          required
+                        >
+                          <Group mt="xs">
+                            <Radio value="Ja" label="Ja" />
+                            <Radio value="Nein" label="Nein" />
+                            <Radio value="Unklar" label="Keine Angabe" />
+                          </Group>
+                        </Radio.Group>
+                      )}
+                    </Flex>
+
+                    <Flex gap="md" justify="space-between">
+                      <Button variant="default" onClick={() => index > 0 ? setQuestionnaireStep(index - 1) : setQuestionnaireOpen(false)}>Zurück</Button>
+                      <Button type="submit" loading={isLoading} disabled={d.questions.some(q => !answers[q.Id])}>
+                        Weiter
+                      </Button>
+                    </Flex>
+                  </form>
+                </Stepper.Step>)}
+
+                <Stepper.Completed>
+                  <Title order={2} size="h3" mb="md">
+                    Du bist berechtigt TODO Förderungen zu erhalten.
+                  </Title>
                   <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
                   <form onSubmit={handleSubmitReport}>
                     <TextInput
@@ -332,12 +420,15 @@ export default function Foerderung() {
                     />
 
                     <Flex gap="md">
-                      <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
+                      <Button
+                        variant="default" w="30%"
+                        onClick={() => questionnaireStep === 0 ? setQuestionnaireOpen(false) : setQuestionnaireStep(questionnaireStep - 1)}
+                      >Zurück</Button>
                       <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
                     </Flex>
                   </form>
                 </Stepper.Completed>
-              </Stepper>
+              </Stepper>}
             </Modal>
           </Flex>
         </Flex>
