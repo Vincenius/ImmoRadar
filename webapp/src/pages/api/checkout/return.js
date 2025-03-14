@@ -1,8 +1,8 @@
 import Stripe from 'stripe';
 import fs from 'fs'
-import generatePdf from '@/utils/generateSubsidyPdf'
+// import generatePdf from '@/utils/generateSubsidyPdf'
 import { sendEmail } from '@/utils/emails';
-import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
+// import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -32,14 +32,14 @@ export default async function handler(req, res) {
           body: JSON.stringify({ Id: user.Id, isPaid: true })
         }).then(res => res.json())
 
-        const { filename } = await generatePdf(session.client_reference_id)
-        await sendEmail({
-          to: user.Email,
-          subject: 'Fertighaus Radar Förderungen Report',
-          html: subsidyPaidTemplate(),
-          pdfFilePath: filename,
-          pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
-        })
+        // const { filename } = await generatePdf(session.client_reference_id)
+        // await sendEmail({
+        //   to: user.Email,
+        //   subject: 'Fertighaus Radar Förderungen Report',
+        //   html: subsidyPaidTemplate(),
+        //   pdfFilePath: filename,
+        //   pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
+        // })
         fs.unlinkSync(filename)
 
         res.json({ success: true, id: session.client_reference_id })
