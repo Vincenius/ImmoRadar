@@ -52,8 +52,6 @@ export default function Foerderung() {
   const [active, setActive] = useState(0);
   const [questionnaireStep, setQuestionnaireStep] = useState(0);
   const [questionnaireOpen, setQuestionnaireOpen] = useState(false);
-  const [questionnaireData, setQuestionnaireData] = useState([]);
-  const [questionnaireLoading, setQuestionnaireLoading] = useState(false);
   const [answers, setAnswers] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ TypZuschuss: true, TypKredit: true })
@@ -132,21 +130,16 @@ export default function Foerderung() {
     d.Measures?.some(element => data.Measures?.includes(element))
   )
 
+  const filteredFinalData = finalData.filter(d => d?.Questions?.every(element => {
+    const userAnswer = answers[element.Id]
+    return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+  }))
+
+  console.log(subsidyData)
+
   const openQuestionaire = () => {
     setQuestionnaireOpen(true)
     setQuestionnaireStep(0)
-    setQuestionnaireLoading(true)
-
-    fetch('/api/questions', {
-      method: 'POST',
-      body: JSON.stringify({ ids: finalData.map(d => d.Id) })
-    })
-      .then(res => res.json())
-      .then(res => {
-        setQuestionnaireData(res)
-      })
-      .catch(() => console.log('error')) // todo error handling
-      .finally(() => setQuestionnaireLoading(false))
   }
 
   const handleSubmitReport = (e) => {
@@ -154,7 +147,7 @@ export default function Foerderung() {
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',
-      body: JSON.stringify({ data, email })
+      body: JSON.stringify({ data, answers, email })
     })
       .then(res => res.json())
       .then(res => {
@@ -194,55 +187,6 @@ export default function Foerderung() {
                 styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
                 allowNextStepsSelect={false}
               >
-                {/* <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Nutzt Du das Investitionsobjekt selbst oder planst Du die unentgeltliche überlassung an Angehörige?</Title>
-                  <Flex wrap="wrap" gap="md">
-                    <SelectButton variant="filled" name="HouseType" value="Bestand" onClick={selectOption} fullWidth>Ja</SelectButton>
-                    <SelectButton variant="light" name="HouseType" value="Neubau" onClick={selectOption} fullWidth>Nein</SelectButton>
-                    <SelectButton variant="outline" name="HouseType" value="Bestand" onClick={selectOption} fullWidth>Frage überspringen</SelectButton>
-                  </Flex>
-                </Stepper.Step> */}
-                {/* <Stepper.Step>
-                  <Title order={2} size="h3" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Title>
-                  <Flex wrap="wrap" gap="md">
-                    <Radio.Group
-                      name="q1"
-                      label="Nutzt Du das Investitionsobjekt selbst oder planst Du die unentgeltliche überlassung an Angehörige?"
-                      withAsterisk
-                    >
-                      <Group mt="xs">
-                        <Radio value="Ja" label="Ja" />
-                        <Radio value="Nein" label="Nein" />
-                        <Radio value="Unklar" label="Keine Angabe" />
-                      </Group>
-                    </Radio.Group>
-
-                    <Radio.Group
-                      name="q2"
-                      label="Ist die Gesamtfinanzierung des Vorhabens gesichert?"
-                      withAsterisk
-                    >
-                      <Group mt="xs">
-                        <Radio value="Ja" label="Ja" />
-                        <Radio value="Nein" label="Nein" />
-                        <Radio value="Unklar" label="Keine Angabe" />
-                      </Group>
-                    </Radio.Group>
-
-                    <Radio.Group
-                      name="q3"
-                      label="Werden die baulichen Vorschriften des Gebäudeenergiegesetztes (GEG) eingehalten?"
-                      withAsterisk
-                    >
-                      <Group mt="xs">
-                        <Radio value="Ja" label="Ja" />
-                        <Radio value="Nein" label="Nein" />
-                        <Radio value="Unklar" label="Keine Angabe" />
-                      </Group>
-                    </Radio.Group>
-                  </Flex>
-                  <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit />
-                </Stepper.Step> */}
                 <Stepper.Step>
                   <Title order={2} size="h3" mb="lg">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 
@@ -361,23 +305,16 @@ export default function Foerderung() {
 
               {questionnaireOpen && <Stepper
                 active={questionnaireStep}
-                onStepClick={questionnaireLoading ? () => { } : (step) => setQuestionnaireStep(step)}
+                onStepClick={setQuestionnaireStep}
                 size="14px"
                 styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
                 allowNextStepsSelect={false}
               >
-                {questionnaireLoading && finalData.map((d) => <Stepper.Step key={`questionnaire-mock-${d.Id}`}>
-                  <Flex justify="center" align="center" h="300px" direction="column" gap="md">
-                    <Loader />
-                    <Text c="gray.6">Lade Fragebogen...</Text>
-                  </Flex>
-                </Stepper.Step>)}
-
-                {!questionnaireLoading && questionnaireData.filter(q => q.questions && q.questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+                {finalData.filter(q => q.Questions && q.Questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
                   <form onSubmit={e => handleSubmitQuestionnaire(e, d)}>
                     <Flex wrap="wrap" gap="lg" mb="xl">
-                      {d.questions.map((q) =>
+                      {d.Questions.map((q) =>
                         <Radio.Group
                           key={`questionnaire-question-${d.Id}-${q.Id}`}
                           label={q.Question}
@@ -397,7 +334,7 @@ export default function Foerderung() {
 
                     <Flex gap="md" justify="space-between">
                       <Button variant="default" onClick={() => index > 0 ? setQuestionnaireStep(index - 1) : setQuestionnaireOpen(false)}>Zurück</Button>
-                      <Button type="submit" loading={isLoading} disabled={d.questions.some(q => !answers[q.Id])}>
+                      <Button type="submit" loading={isLoading} disabled={d.Questions.some(q => !answers[q.Id])}>
                         Weiter
                       </Button>
                     </Flex>
@@ -406,7 +343,7 @@ export default function Foerderung() {
 
                 <Stepper.Completed>
                   <Title order={2} size="h3" mb="md">
-                    Du bist berechtigt TODO Förderungen zu erhalten.
+                    Du bist berechtigt {filteredFinalData.length} Förderungen zu erhalten.
                   </Title>
                   <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
                   <form onSubmit={handleSubmitReport}>

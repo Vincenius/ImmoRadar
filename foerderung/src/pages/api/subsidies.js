@@ -14,6 +14,28 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
+      const { list: allQuestions } = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mhj8dvb0cf3wu6v/records?limit=1000`, {
+        method: 'GET',
+        headers: {
+          'xc-token': process.env.NOCODB_KEY,
+          'Content-Type': 'application/json'
+        },
+      }).then(res => res.json())
+
+      // console.log(allSubsidies)
+      const subsidiesWithQuestions = allSubsidies.list.map((subsidy) => ({
+        ...subsidy,
+        HouseType: subsidy.HouseType.split(','),
+        Type: subsidy.Type.split(','),
+        Measures: subsidy.Measures.split(','),
+        Questions: allQuestions.filter(q => subsidy.Id === q.Subsidies_id).map(q => ({
+          Id: q.Id,
+          Question: q.Question,
+          RequiredAnswer: q.RequiredAnswer
+        }))
+      }))
+      console.log(subsidiesWithQuestions)
+
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
           const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
@@ -30,12 +52,7 @@ export default async function handler(req, res) {
             Measures: user.Measures.split(','),
           }
 
-          const filteredSubsidies = allSubsidies.list.map(d => ({
-            ...d,
-            HouseType: d.HouseType.split(','),
-            Type: d.Type.split(','),
-            Measures: d.Measures.split(','),
-          })).filter(d =>
+          const filteredSubsidies = subsidiesWithQuestions.filter(d =>
             d.HouseType.includes(userData.HouseType) &&
             (d.Region === userData.Region || d.Region === 'Bundesweit') &&
             (d.District === userData.District || !d.District) &&
@@ -43,7 +60,11 @@ export default async function handler(req, res) {
               userData.Type.includes('Zuschuss') && d.Type.includes('Zuschuss') ||
               userData.Type.includes('Kredit') && d.Type.includes('Kredit')
             ) &&
-            d.Measures?.some(element => userData.Measures?.includes(element)),
+            d.Measures?.some(element => userData.Measures?.includes(element)) &&
+            d?.Questions?.every(element => {
+              const userAnswer = userData.Answers[element.Id]
+              return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+            })
           )
 
           const result = user.isPaid ? filteredSubsidies : filteredSubsidies.slice(0, 3)
@@ -53,19 +74,20 @@ export default async function handler(req, res) {
           return res.status(401).json({ message: 'Unauthorized' });
         }
       } else {
-        const mappedResult = allSubsidies.list.map((subsidy) => ({
+        const mappedResult = subsidiesWithQuestions.map((subsidy) => ({
           Id: subsidy.Id,
           Region: subsidy.Region,
           District: subsidy.District,
-          HouseType: subsidy.HouseType.split(','),
-          Type: subsidy.Type.split(','),
-          Measures: subsidy.Measures.split(','),
+          HouseType: subsidy.HouseType,
+          Type: subsidy.Type,
+          Measures: subsidy.Measures,
+          Questions: subsidy.Questions,
         }))
-      
+
         res.status(200).json(mappedResult);
       }
     } else if (req.method === 'POST') {
-      const { email, data } = JSON.parse(req.body)
+      const { email, data, answers } = JSON.parse(req.body)
 
       const id = uuidv4()
       await fetch(`${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records`, {
@@ -82,6 +104,7 @@ export default async function handler(req, res) {
           District: data.District,
           Type: data.TypZuschuss && data.TypKredit ? 'Zuschuss,Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit',
           Measures: data.Measures.join(','),
+          Answers: answers,
           IsDev: process.env.STAGE !== 'prod',
           isPaid: false,
         })
@@ -96,7 +119,7 @@ export default async function handler(req, res) {
         pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
       })
       fs.unlinkSync(filename)
-      
+
       res.status(200).json({ id });
     } else {
       res.status(400).json({})
