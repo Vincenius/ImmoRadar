@@ -7,7 +7,7 @@ function CheckboxCard({ title, description, handleChange, value, ...props }) {
   return (
     <Checkbox.Card
       className={classes.root}
-      radius="md"
+      radius="sm"
       checked={value}
       onClick={handleChange}
       {...props}

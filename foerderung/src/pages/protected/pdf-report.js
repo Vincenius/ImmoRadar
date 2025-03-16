@@ -2,15 +2,12 @@ import { useEffect } from 'react';
 import SubsidyReport from '@/components/SubsidyReport/SubsidyReport';
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
-  // Get the custom header
   const headerValue = req.headers['x-api-key'];
 
-  // Check if the header exists and matches a value
   if (!headerValue || headerValue !== process.env.API_KEY) {
-    // Redirect to a 403 error page or to another page if the header is invalid
     return {
       redirect: {
-        destination: '/foerderung', // Or any other page
+        destination: '/foerdercheck',
         permanent: false,
       },
     };

@@ -13,7 +13,7 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   if (!id) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/foerdercheck',
         permanent: false,
       },
     };

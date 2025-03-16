@@ -22,7 +22,6 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
-      // console.log(allSubsidies)
       const subsidiesWithQuestions = allSubsidies.list.map((subsidy) => ({
         ...subsidy,
         HouseType: subsidy.HouseType.split(','),
@@ -34,7 +33,6 @@ export default async function handler(req, res) {
           RequiredAnswer: q.RequiredAnswer
         }))
       }))
-      console.log(subsidiesWithQuestions)
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {

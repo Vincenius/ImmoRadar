@@ -11,7 +11,7 @@ export async function getServerSideProps({ resolvedUrl }) {
   if (!id) {
     return {
       redirect: {
-        destination: '/',
+        destination: '/foerdercheck',
         permanent: false,
       },
     };
