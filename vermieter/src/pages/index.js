@@ -154,7 +154,7 @@ function Mietvertraege() {
               </Flex>
             </SelectButton>
 
-            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" isMultiLine={true} disabled>
+            <SelectButton name="contract" value="Index" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
               <Flex gap="sm" align="center">
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
@@ -662,10 +662,10 @@ function Mietvertraege() {
 
           </Stepper.Step>}
           <Stepper.Step>
-            {data.contract === 'Wohnraum' && <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Höhe haben die monatliche Miete und die Kaution?</Title>}
+            {data.contract !== 'Staffel' && <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Höhe haben die monatliche Miete und die Kaution?</Title>}
             {data.contract === 'Staffel' && <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wie hoch ist die Kaution und auf welches Konto sollen die Miete und die Kaution überwiesen werden?</Title>}
             <form onSubmit={handleSubmit}>
-              {data.contract === "Wohnraum" && <NumberInput
+              {data.contract !== "Staffel" && <NumberInput
                 label="Miete"
                 placeholder="1200"
                 required
@@ -843,6 +843,8 @@ function Mietvertraege() {
               <Button type="submit" loading={isLoading} onClick={generateDocument}>Mietvertrag erstellen</Button>
             </Group>
           </Stepper.Step>
+
+          {/* todo final step mit download link falls download nicht gestartet wurde */}
         </Stepper>
       </Card>
     </Layout >

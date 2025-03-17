@@ -65,7 +65,7 @@ const enclosureMap = {
 const titleMap = {
   'Wohnraum': 'Wohnraummietvertrag',
   'Staffel': 'Staffel-Wohnraummietvertrag',
-  'Index': 'Index-Wohnraummietvertrag'
+  'Index': 'Wohnraummietvertrag'
 }
 
 const PointFlex = ({ children, count, mb = "lg" }) => {
@@ -93,6 +93,7 @@ const PdfReport = ({ data }) => {
   // 8% of yearly rent
   const maxRepairCosts = (((parseFloat(data.rent.replace('€', '')) * 12) / 100) * 8).toFixed(2)
   const rent = parseFloat(data.rent.replace('€', '').replace(',', '.'))
+  let headlineCount = 1;
 
   return <>
     <Title order={1} size="h2" align="center" fw="500" mb="xl">{titleMap[data.contract]}</Title>
@@ -128,7 +129,7 @@ const PdfReport = ({ data }) => {
     </Flex>
 
     {/* ------------------------------- § 1. Mietsache ------------------------------- */}
-    <Text fw="bold" ta="center" my="lg">§ 1. Mietsache</Text>
+    <Text fw="bold" ta="center" my="lg">§ {headlineCount++}. Mietsache</Text>
     <PointFlex count="I">
       <Text mb="md">I.	Der Vermieter vermietet dem Mieter zu Wohnzwecken folgende Wohnung im Hause</Text>
       <Text pl="md">{data.street}</Text>
@@ -172,18 +173,18 @@ const PdfReport = ({ data }) => {
 
 
     {/* ------------------------------- § 2. Miete ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 2. Miete</Text>
-    { data.contract === 'Wohnraum' && <PointFlex count="I">
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Miete</Text>
+    {data.contract === 'Wohnraum' && <PointFlex count="I">
       <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}.)</Text>
-    </PointFlex> }
+    </PointFlex>}
 
-    { data.contract === 'Staffel' && <PointFlex count="I">
+    {data.contract === 'Staffel' && <PointFlex count="I">
       <Text mb="md">Die Miete beträgt zu Beginn des Mietverhältnisses monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}). Es wird eine Staffelmiete vereinbart. Die Miete erhöht sich </Text>
       {data.rentSteps.map((r, i) => {
-        const rentIncrease = i === 0 ? (r.rent - rent) : (r.rent - data.rentSteps[i-1].rent)
+        const rentIncrease = i === 0 ? (r.rent - rent) : (r.rent - data.rentSteps[i - 1].rent)
         return <Text>ab dem {new Date(r.date).toLocaleDateString('de-DE')} um EUR {rentIncrease} auf EUR {r.rent}</Text>
       })}
-    </PointFlex> }
+    </PointFlex>}
 
     <PointFlex count="II">
       <Text mb="md">Neben der Miete werden folgende Betriebskosten im Sinne von § 2 Betriebskostenverordnung umgelegt und durch {mapUtilitiesType[data.utilitiesType]} in Höhe von EUR {data.utilities.replace('€', '')} erhoben:</Text>
@@ -300,7 +301,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 3. Mietzahlungen ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 3. Mietzahlungen</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Mietzahlungen</Text>
 
     <PointFlex count="I">
       <Text>
@@ -327,8 +328,25 @@ const PdfReport = ({ data }) => {
       </Text>
     </PointFlex>
 
+    {data.contract === 'Index' && <>
+      {/* ------------------------------- § 4. Indexmieterhöhung ------------------------------- */}
+      <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Indexmieterhöhung</Text>
+
+      <PointFlex count="I">
+        <Text mb="md">
+          Die monatliche Grundmiete für Wohnungen, Garage usw. nach § 2 . beträgt insgesamt EUR {data.rent.replace('€', '')}
+        </Text>
+        <Text mb="md">
+          Sie ändert sich, von Erhöhungen nach den §§ 559 bis 560 BGB abgesehen, jeweils frühestens nach Ablauf von 12 Monaten seit Vertragsbeginn bzw. der letzten Änderung entsprechend des vom Statistischen Bundesamt ermittelten Preisindex für die Lebenshaltung aller privaten Haushalte in Deutschland.
+        </Text>
+        <Text>
+          Die Änderung muss durch Erklärung in Textform geltend gemacht werden, wobei die eingetretene Änderung des Preisindexes sowie die jeweilige Miete oder die Erhöhung in einem Geldbetrag anzugeben ist. Die geänderte Miete ist mit Beginn des übernächsten Monat nach dem Zugang der Erklärung zu entrichten. Während der Geltung einer Indexmiete kann eine Erhöhung nach §559  BGB (Modernisierung) nur verlangt werden, soweit der Vermieter bauliche Maßnahmen aufgrund von Umständen durchgeführt hat, die er nicht zu vertreten hat. Eine Erhöhung unter Berufung auf die ortsübliche Vergleichsmiete (§§558ff. BGB) ist ausgeschlossen.
+        </Text>
+      </PointFlex>
+    </>}
+
     {/* ------------------------------- § 4. Kaution ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 4. Kaution</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Kaution</Text>
 
     <PointFlex count="I">
       <Text>
@@ -355,7 +373,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 5. Mietdauer ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 5. Mietdauer</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Mietdauer</Text>
 
     <PointFlex count="I">
       <Text>
@@ -371,7 +389,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 6. Kündigung ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 6. Kündigung</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Kündigung</Text>
 
     <PointFlex count="I">
       <Text>
@@ -403,7 +421,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 7. Schönheitsreparaturen ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 7. Schönheitsreparaturen</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Schönheitsreparaturen</Text>
 
     <PointFlex count="I">
       <Text>
@@ -433,7 +451,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 8. Bagatellschäden ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 8. Bagatellschäden</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Bagatellschäden</Text>
 
     <PointFlex count="I">
       <Text>
@@ -450,7 +468,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 9. Aufrechnung und Zurückbehaltung ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 9. Aufrechnung und Zurückbehaltung</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Aufrechnung und Zurückbehaltung</Text>
 
     <PointFlex count="I">
       <Text>
@@ -471,7 +489,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 10. Zustand der Mieträume ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 10. Zustand der Mieträume</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Zustand der Mieträume</Text>
 
     <PointFlex count="I">
       <Text>
@@ -486,7 +504,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 11. Benutzung der Mietsache ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 11. Benutzung der Mietsache</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Benutzung der Mietsache</Text>
 
     <PointFlex count="I">
       <Text>
@@ -552,7 +570,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 12. Überlassung der Mietsache an Dritte – Untervermietung ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 12. Überlassung der Mietsache an Dritte – Untervermietung</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Überlassung der Mietsache an Dritte – Untervermietung</Text>
 
     <PointFlex count="I">
       <Text>
@@ -573,7 +591,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 13. Haushaltsmaschinen ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 13. Haushaltsmaschinen</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Haushaltsmaschinen</Text>
 
     <PointFlex count="I">
       <Text>
@@ -582,7 +600,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 14. Instandhaltung der Mietsache ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 14. Instandhaltung der Mietsache</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Instandhaltung der Mietsache</Text>
 
     <PointFlex count="I">
       <Text>
@@ -615,7 +633,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 15. Elektrizität, Gas, Wasser ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 15. Elektrizität, Gas, Wasser</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Elektrizität, Gas, Wasser</Text>
 
     <PointFlex count="I">
       <Text>
@@ -642,7 +660,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 16.  Bauliche Veränderungen durch den Vermieter ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 16.  Bauliche Veränderungen durch den Vermieter</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}.  Bauliche Veränderungen durch den Vermieter</Text>
 
     <PointFlex count="I">
       <Text>
@@ -657,7 +675,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 17. Bauliche Änderungen durch den Mieter ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 17. Bauliche Änderungen durch den Mieter</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Bauliche Änderungen durch den Mieter</Text>
 
     <PointFlex count="I">
       <Text>
@@ -672,7 +690,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 18. Betreten der Mietsache durch den Vermieter ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 18. Betreten der Mietsache durch den Vermieter</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Betreten der Mietsache durch den Vermieter</Text>
 
     <PointFlex count="I">
       <Text>
@@ -687,7 +705,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 19. Rückgabe der Mietsache ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 19. Rückgabe der Mietsache</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Rückgabe der Mietsache</Text>
 
     <PointFlex count="I">
       <Text>
@@ -714,7 +732,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 20. Personenmehrheit als Mieter ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 20. Personenmehrheit als Mieter</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Personenmehrheit als Mieter</Text>
 
     <PointFlex count="I">
       <Text>
@@ -729,7 +747,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 21. Hausordnung ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 21. Hausordnung</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Hausordnung</Text>
 
     <PointFlex count="I">
       <Text>
@@ -744,7 +762,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 22. Änderungen des Vertrages ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 22. Änderungen des Vertrages</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Änderungen des Vertrages</Text>
 
     <PointFlex count="I">
       <Text>
@@ -753,7 +771,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     {/* ------------------------------- § 23. Salvatorische Klausel ------------------------------- */}
-    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 23. Salvatorische Klausel</Text>
+    <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Salvatorische Klausel</Text>
 
     <PointFlex count="I">
       <Text>
@@ -763,9 +781,9 @@ const PdfReport = ({ data }) => {
 
     {/* Zusätzliche vereinbarunge hier hin */}
 
-    { (data.enclosures && data.enclosures.length > 0 || data.additionalEnclosures.length > 0) && <>
+    {(data.enclosures && data.enclosures.length > 0 || data.additionalEnclosures.length > 0) && <>
       {/* ------------------------------- § 24. Anlagen ------------------------------- */}
-      <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 24. Anlagen</Text>
+      <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Anlagen</Text>
       <List withPadding>
         {data.enclosures.map((enclosure, index) => <List.Item key={`enclosure-${index}`}>{enclosureMap[enclosure]}</List.Item>)}
         {data.additionalEnclosures.map((enclosure, index) => <List.Item key={`additional-enclosure-${index}`}>{enclosure}</List.Item>)}
@@ -775,13 +793,13 @@ const PdfReport = ({ data }) => {
 
     <Box mt="6em">
       <Divider w="50%" mb="sm" />
-      
+
       <Text>(Ort, Datum, Unterschrift des Vermieters)</Text>
     </Box>
 
     <Box mt="6em">
       <Divider w="50%" mb="sm" />
-      
+
       <Text>(Ort, Datum, Unterschrift des Mieters)</Text>
     </Box>
   </>;
