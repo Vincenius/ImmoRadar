@@ -30,6 +30,7 @@ function Mietvertraege() {
   const [rentSteps, setRentSteps] = useState([{}])
   const [isLoading, setIsLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
+  const [resultId, setResultId] = useState()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -85,6 +86,7 @@ function Mietvertraege() {
       body: JSON.stringify({ userData }),
     }).then(res => res.json())
       .then(async res => {
+        setResultId(res.insertedId)
         const response = await fetch(`/api/download?id=${res.insertedId}`);
         const blob = await response.blob();
         const url = window.URL.createObjectURL(blob);
@@ -94,6 +96,7 @@ function Mietvertraege() {
         document.body.appendChild(link);
         link.click();
         link.remove();
+        setActive(active + 1)
       })
       .finally(() => {
         setIsLoading(false)
@@ -111,8 +114,6 @@ function Mietvertraege() {
 
   const sharedAssets = data?.sharedAssets || []
   const enclosures = data?.enclosures || []
-
-  console.log(data)
 
   return (
     <Layout title="Mietvertrag Generator" noindex={true}>
@@ -261,7 +262,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wo befindet sie sich die Mietsache?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wo befindet sich die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <TextInput
                 label="Straße und Hausnummer"
@@ -844,7 +845,18 @@ function Mietvertraege() {
             </Group>
           </Stepper.Step>
 
-          {/* todo final step mit download link falls download nicht gestartet wurde */}
+          <Stepper.Completed>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Der Mietvertrag wurde erfolgreich erstellt!</Title>
+            <Text mb="md">Vielen Dank, dass du unseren Mietvertrag-Generator genutzt hast!</Text>
+            <Text mb="md">Falls der Download nicht automatisch gestartet ist, kannst du den Mietvertrag über den folgenden Link erneut herunterladen:</Text>
+            <Text mb="xl" ta="center">
+              <Button href={`/api/download?id=${resultId}`} component="a" target="_blank">Mietvertrag herunterladen</Button>
+            </Text>
+            {/* todo account link */}
+            <Text mb="xl">Erstelle jetzt einen Account, um deine Daten zu speichern und Mietverträge unkompliziert zu verwalten.</Text>
+
+            <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>
+          </Stepper.Completed>
         </Stepper>
       </Card>
     </Layout >
