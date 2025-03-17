@@ -27,6 +27,7 @@ function Mietvertraege() {
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
   const [additionalEnclosures, setAdditionalEnclosures] = useState([])
+  const [rentSteps, setRentSteps] = useState([{}])
   const [isLoading, setIsLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
 
@@ -52,7 +53,7 @@ function Mietvertraege() {
         ...data,
         ...formObject
       }
-  
+
       setHasIbanError(false)
       setData(newData)
       setActive(active + 1)
@@ -73,6 +74,7 @@ function Mietvertraege() {
       additionalRooms,
       additionalEnclosures,
       additionalRentals,
+      rentSteps: rentSteps.filter(r => r.date && r.rent),
     }
 
     fetch('/api/generate', {
@@ -110,6 +112,8 @@ function Mietvertraege() {
   const sharedAssets = data?.sharedAssets || []
   const enclosures = data?.enclosures || []
 
+  console.log(data)
+
   return (
     <Layout title="Mietvertrag Generator" noindex={true}>
       <Title mb="md">Mietvertrag Generator</Title>
@@ -130,7 +134,7 @@ function Mietvertraege() {
           styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
         >
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche Art von Mietvertrag möchtest du abschließen?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Art von Mietvertrag möchtest du abschließen?</Title>
 
             <SelectButton name="contract" value="Wohnraum" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
               <Flex gap="sm" align="center">
@@ -141,7 +145,7 @@ function Mietvertraege() {
               </Flex>
             </SelectButton>
 
-            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" isMultiLine={true} disabled>
+            <SelectButton name="contract" value="Staffel" onClick={selectOption} w="100%" mb="md" isMultiLine={true}>
               <Flex gap="sm" align="center">
                 <ThemeIcon variant="white">
                   <IconHome style={{ width: '70%', height: '70%' }} />
@@ -160,7 +164,7 @@ function Mietvertraege() {
             </SelectButton>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Wie lauten die vollständigen Angaben für Vermieter und Mieter?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wie lauten die vollständigen Angaben für Vermieter und Mieter?</Title>
 
             <form onSubmit={handleSubmit}>
               <Flex gap="md" justify="space-between" direction={{ base: "column", xs: "row" }}>
@@ -257,7 +261,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Wo befindet sie sich die Mietsache?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wo befindet sie sich die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <TextInput
                 label="Straße und Hausnummer"
@@ -308,7 +312,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche Räume umfasst die Mietsache?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Räume umfasst die Mietsache?</Title>
             <form onSubmit={handleSubmit}>
               <Grid>
                 <Grid.Col span={{ base: 12, xs: 6, sm: 4, md: 3 }}>
@@ -440,7 +444,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Was wird zusätzlich Mitvermietet?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Was wird zusätzlich Mitvermietet?</Title>
 
             <Checkbox
               label="Garage"
@@ -500,7 +504,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Um welche Art von Wohnung handelt es sich?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Um welche Art von Wohnung handelt es sich?</Title>
 
             <Checkbox
               label="Eine öffentlich geförderte Wohnung (Sozialwohnung) oder eine sonst preisgebundene Wohnung"
@@ -551,7 +555,7 @@ function Mietvertraege() {
           </Stepper.Step>
 
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche gemeinschaftlichen Einrichtungen und Anlagen darf der Mieter gemäß der Hausordnung mitbenutzen?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche gemeinschaftlichen Einrichtungen und Anlagen darf der Mieter gemäß der Hausordnung mitbenutzen?</Title>
 
             <Checkbox
               label="Waschküche"
@@ -599,11 +603,12 @@ function Mietvertraege() {
               <ButtonGroup {...{ active, setActive }} />
             </form>
           </Stepper.Step>
-          <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche Höhe haben die monatliche Miete und die Kaution?</Title>
+          {data.contract === 'Staffel' && <Stepper.Step>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Höhe hat die monatliche Miete?</Title>
+
             <form onSubmit={handleSubmit}>
               <NumberInput
-                label="Miete"
+                label="Miete zu Beginn des Mietverhältnisses "
                 placeholder="1200"
                 required
                 mb="sm"
@@ -614,6 +619,64 @@ function Mietvertraege() {
                 hideControls
                 decimalScale={2}
               />
+
+              {rentSteps.map((step, index) => <>
+                <Text>{index+1}. Mieterhöhung</Text>
+                <Flex mb="md" gap="md" align="flex-end">
+                  <DateInput
+                    value={step.date}
+                    onChange={val => setRentSteps(
+                      rentSteps.map((s, i) =>
+                        i === index ? { ...s, date: val } : s
+                      )
+                    )}
+                    label="Datum der Mieterhöhung"
+                    placeholder="20.06.2024"
+                    valueFormat="DD.MM.YYYY"
+                    w="100%"
+                  />
+                  <NumberInput
+                    label="Neue Miete"
+                    placeholder="1220€"
+                    value={step.rent || ''}
+                    onChange={val => setRentSteps(
+                      rentSteps.map((s, i) =>
+                        i === index ? { ...s, rent: val } : s
+                      )
+                    )}
+                    suffix="€"
+                    decimalSeparator=","
+                    hideControls
+                    decimalScale={2}
+                    w="100%"
+                  />
+                </Flex>
+              </>)}
+
+              <Button variant="outline" onClick={() => setRentSteps([...rentSteps, {}])} leftSection={<IconPlus size={14} />}>
+                Mieterhöhung hinzufügen
+              </Button>
+
+              <ButtonGroup {...{ active, setActive }} />
+            </form>
+
+          </Stepper.Step>}
+          <Stepper.Step>
+            {data.contract === 'Wohnraum' && <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Höhe haben die monatliche Miete und die Kaution?</Title>}
+            {data.contract === 'Staffel' && <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wie hoch ist die Kaution und auf welches Konto sollen die Miete und die Kaution überwiesen werden?</Title>}
+            <form onSubmit={handleSubmit}>
+              {data.contract === "Wohnraum" && <NumberInput
+                label="Miete"
+                placeholder="1200"
+                required
+                mb="sm"
+                name="rent"
+                defaultValue={data.rent}
+                suffix="€"
+                decimalSeparator=","
+                hideControls
+                decimalScale={2}
+              />}
               <NumberInput
                 label="Kaution"
                 placeholder="3600"
@@ -641,7 +704,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Wie hoch sind die Nebenkosten und auf welche Weise werden sie abgerechnet?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Wie hoch sind die Nebenkosten und auf welche Weise werden sie abgerechnet?</Title>
             <form onSubmit={handleSubmit}>
               <Box></Box> {/* hacky way to fix number input default values not being reset */}
               <NumberInput
@@ -685,7 +748,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Bitte gib die folgenden Details zum Mietverhältnis an:</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Bitte gib die folgenden Details zum Mietverhältnis an:</Title>
 
             <Checkbox
               label="Das Objekt wurde vom Mieter besichtigt"
@@ -719,7 +782,7 @@ function Mietvertraege() {
             </form>
           </Stepper.Step>
           <Stepper.Step>
-            <Title order={2} size="h3" mb="lg">Welche Anlagen sind dem Mietvertrag beigefügt?</Title>
+            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Welche Anlagen sind dem Mietvertrag beigefügt?</Title>
 
             <Checkbox
               label="Datenschutzerklärung (EU-DSGVO)"

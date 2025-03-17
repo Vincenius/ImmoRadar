@@ -62,6 +62,12 @@ const enclosureMap = {
   'Wohnungsübergabeprotokoll': 'Wohnungsübergabeprotokoll'
 }
 
+const titleMap = {
+  'Wohnraum': 'Wohnraummietvertrag',
+  'Staffel': 'Staffel-Wohnraummietvertrag',
+  'Index': 'Index-Wohnraummietvertrag'
+}
+
 const PointFlex = ({ children, count, mb = "lg" }) => {
   return <Flex gap="md" mb={mb}>
     <Box w="40px">{count}.</Box>
@@ -86,9 +92,10 @@ const PdfReport = ({ data }) => {
 
   // 8% of yearly rent
   const maxRepairCosts = (((parseFloat(data.rent.replace('€', '')) * 12) / 100) * 8).toFixed(2)
+  const rent = parseFloat(data.rent.replace('€', '').replace(',', '.'))
 
   return <>
-    <Title order={1} size="h2" align="center" fw="500" mb="xl">Wohnraummietvertrag</Title>
+    <Title order={1} size="h2" align="center" fw="500" mb="xl">{titleMap[data.contract]}</Title>
     <MantineText align="center" mb="md">zwischen</MantineText>
 
     <Flex mb="md" gap="md">
@@ -153,7 +160,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     <PointFlex count="III" mb="xl">
-      {(data.sharedAssets.length > 0) && <>
+      {(data.sharedAssets && data.sharedAssets.length > 0) && <>
         <Text mb="xs">Der Mieter ist berechtigt, folgende gemeinschaftliche Einrichtungen und Anlagen nach Maßgabe der Hausordnung mitzubenutzen:</Text>
         <List withPadding>
           {data.sharedAssets.map(asset => <List.Item key={asset}>{asset}</List.Item>)}
@@ -166,10 +173,17 @@ const PdfReport = ({ data }) => {
 
     {/* ------------------------------- § 2. Miete ------------------------------- */}
     <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 2. Miete</Text>
+    { data.contract === 'Wohnraum' && <PointFlex count="I">
+      <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}.)</Text>
+    </PointFlex> }
 
-    <PointFlex count="I">
-      <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(parseFloat(data.rent.replace('€', '').replace(',', '.')))}.)</Text>
-    </PointFlex>
+    { data.contract === 'Staffel' && <PointFlex count="I">
+      <Text mb="md">Die Miete beträgt zu Beginn des Mietverhältnisses monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}). Es wird eine Staffelmiete vereinbart. Die Miete erhöht sich </Text>
+      {data.rentSteps.map((r, i) => {
+        const rentIncrease = i === 0 ? (r.rent - rent) : (r.rent - data.rentSteps[i-1].rent)
+        return <Text>ab dem {new Date(r.date).toLocaleDateString('de-DE')} um EUR {rentIncrease} auf EUR {r.rent}</Text>
+      })}
+    </PointFlex> }
 
     <PointFlex count="II">
       <Text mb="md">Neben der Miete werden folgende Betriebskosten im Sinne von § 2 Betriebskostenverordnung umgelegt und durch {mapUtilitiesType[data.utilitiesType]} in Höhe von EUR {data.utilities.replace('€', '')} erhoben:</Text>
@@ -749,7 +763,7 @@ const PdfReport = ({ data }) => {
 
     {/* Zusätzliche vereinbarunge hier hin */}
 
-    { (data.enclosures.length > 0 || data.additionalEnclosures.length > 0) && <>
+    { (data.enclosures && data.enclosures.length > 0 || data.additionalEnclosures.length > 0) && <>
       {/* ------------------------------- § 24. Anlagen ------------------------------- */}
       <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ 24. Anlagen</Text>
       <List withPadding>

@@ -41,7 +41,8 @@ export default async function handler(req, res) {
         enclosures,
         additionalRooms,
         additionalEnclosures,
-        additionalRentals
+        additionalRentals,
+        rentSteps,
       } = req.body.userData
 
       const result = await collection.insertOne({
@@ -76,7 +77,8 @@ export default async function handler(req, res) {
         enclosures,
         additionalRooms,
         additionalEnclosures,
-        additionalRentals
+        additionalRentals,
+        rentSteps,
       });
 
       res.status(200).json(result);
