@@ -8,8 +8,10 @@ import { DateInput } from '@mantine/dates'
 import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import IBAN from 'iban'
+import 'dayjs/locale/de';
 
 dayjs.extend(customParseFormat)
+dayjs.locale('de');
 
 const numberFormatElements = []
 
@@ -628,6 +630,7 @@ function Mietvertraege() {
                     placeholder="20.06.2024"
                     valueFormat="DD.MM.YYYY"
                     w="100%"
+                    locale="de"
                   />
                   <NumberInput
                     label="Neue Miete"
@@ -760,6 +763,7 @@ function Mietvertraege() {
                 valueFormat="DD.MM.YYYY"
                 mb="md"
                 required
+                locale="de"
               />}
 
               <DateInput
@@ -770,6 +774,7 @@ function Mietvertraege() {
                 valueFormat="DD.MM.YYYY"
                 required
                 mb="md"
+                locale="de"
               />
 
               <ButtonGroup {...{ active, setActive }} />
