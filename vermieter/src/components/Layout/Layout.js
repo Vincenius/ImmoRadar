@@ -2,16 +2,20 @@ import React, { useState } from 'react';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
+import { useSession } from "next-auth/react"
 import { Container, Text, Flex, Box, Burger, Menu } from '@mantine/core'
 // import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
-const menu = [
-  // {
-  //   label: 'Home',
-  //   url: '/home'
-  // },
+const authMenu = [
+  {
+    label: 'Login',
+    url: '/login'
+  }, {
+    label: 'Registrieren',
+    url: '/registrieren'
+  }
 ];
 
 
@@ -19,7 +23,13 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
+  const { data: session, status } = useSession()
 
+  const menu = status === "authenticated" ? [{
+    label: session.user.email,
+    url: '/app'
+  }] : authMenu
+  
   return <>
     <Head>
       <title>{title}</title>
@@ -89,18 +99,17 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
         <Container>
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
-
-              {/* <Flex gap="sm" mt="xl">
+              <Flex gap="sm" mt="sm">
                 <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
                 <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
-              </Flex> */}
+              </Flex>
             </Box>
 
             <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
-              {/* <Box>
+              <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-              </Box> */}
+              </Box>
             </Flex>
           </Flex>
           <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} {process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>

@@ -1,8 +1,11 @@
 import '@mantine/core/styles.css';
 import '@mantine/dates/styles.css';
+import '@mantine/notifications/styles.css';
 import "@/styles/globals.css";
 
 import { createTheme, MantineProvider, TagsInput, TextInput, Select } from '@mantine/core';
+import { Notifications } from '@mantine/notifications';
+import { SessionProvider } from "next-auth/react"
 
 const theme = createTheme({
   primaryColor: 'blue',
@@ -26,10 +29,13 @@ const theme = createTheme({
   },
 });
 
-export default function App({ Component, pageProps }) {
+export default function App({ Component, pageProps: { session, ...pageProps } }) {
   return (
-    <MantineProvider theme={theme} forceColorScheme="light">
-      <Component {...pageProps} />
-    </MantineProvider>
+    <SessionProvider session={session}>
+      <MantineProvider theme={theme} forceColorScheme="light">
+        <Notifications />
+        <Component {...pageProps} />
+      </MantineProvider>
+    </SessionProvider>
   );
 }
