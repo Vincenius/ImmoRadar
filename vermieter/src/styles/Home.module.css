@@ -1,0 +1,23 @@
+.skewed {
+  position: absolute;
+  top: 100%;
+  bottom: 0;
+  right: 0;
+  left: 50%;
+  width: 100vw;
+  height: 200%;
+  background: white;
+  z-index: -1;
+  transform: skewY(6deg) translateX(-50%);
+  transform-origin: top right;
+}
+
+.title {
+  font-size: 4em;
+}
+
+@media (max-width: 48em) {
+  .title {
+    font-size: 2em;
+  }
+}

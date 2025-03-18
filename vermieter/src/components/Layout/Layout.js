@@ -15,7 +15,7 @@ const menu = [
 ];
 
 
-const Layout = ({ children, title, description, date, noindex, image }) => {
+const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
@@ -45,7 +45,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       )}
       <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
-    <div>
+    <div style={{ overflow: 'hidden' }}>
       <Box as="header" height={60} className={styles.header}>
         <Container>
           <Flex justify="space-between" component="nav" py="sm">
@@ -81,7 +81,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 140px)" pos="relative" py="xl">
+      <Container as="main" mih="calc(100vh - 140px)" pos="relative" py={noPadding ? '0' : 'xl'}>
         {children}
       </Container>
 

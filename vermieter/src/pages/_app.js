@@ -5,8 +5,8 @@ import "@/styles/globals.css";
 import { createTheme, MantineProvider, TagsInput, TextInput, Select } from '@mantine/core';
 
 const theme = createTheme({
-  primaryColor: 'cyan',
-  primaryShade: 9,
+  primaryColor: 'blue',
+  primaryShade: 8,
   components: {
     TagsInput: TagsInput.extend({
       styles: {
