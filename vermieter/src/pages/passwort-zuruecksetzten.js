@@ -3,10 +3,13 @@ import Link from "next/link";
 import { Flex, Title, TextInput, Button, Text } from '@mantine/core';
 import LoginCard from "@/components/LoginCard/LoginCard";
 import Layout from '@/components/Layout/Layout';
+import { useRouter } from 'next/router';
 
 export default function ForgotPassword() {
+  const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState();
+  const [error, setError] = useState(null)
   const [isSuccess, setIsSuccess] = useState(false);
 
   const handleSubmit = (e) => {
@@ -21,11 +24,19 @@ export default function ForgotPassword() {
         formObject[element.name] = element.value;
       }
     }
-    fetch('/api/forgot-password', {
+    fetch('/api/reset-password', {
       method: 'POST',
-      body: JSON.stringify(formObject),
+      body: JSON.stringify({
+        ...formObject,
+        token: router.query?.token
+      }),
     }).then(res => {
-      setIsSuccess(true)
+      if (res.status === 200) {
+        setIsSuccess(true)
+      } else {
+        setError('Der Link ist abgelaufen.')
+      }
+      
     }).catch((err) => {
       setUnexpectedError('Ein unerwarteter Fehler ist aufgetreten')
       console.error(err)
@@ -34,26 +45,26 @@ export default function ForgotPassword() {
     })
   }
 
-
   return (
-    <Layout title={`Passwort vergessen | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title={`Passwort zurücksetzten | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
       <LoginCard>
-        <Title ta="center" fw="lighter" mb="xl">Passwort vergessen</Title>
+        <Title ta="center" fw="lighter" mb="xl">Passwort zurücksetzten</Title>
 
         {!isSuccess && <form onSubmit={handleSubmit}>
-          <TextInput name="email" size="md" placeholder="mustermann@example.com" label="E-Mail Adresse" type="email" mb="md" />
+          <TextInput name="password" size="md" label="Neues Passwort" type="password" mb="md" required />
 
           <Button size="lg" mb="xl" fullWidth loading={isLoading} type="submit">Passwort zurücksetzten</Button>
           {unexpectedError && <Text c="red.9" mb="lg">{unexpectedError}</Text>}
         </form> }
 
+        {error && <Text c="red.9" mb="lg">{error}</Text>}
+
         {isSuccess && <Flex direction="column" gap="md" align="center">
-          <Text fw="bold">Dein Account wurde erfolgreich zurückgesetzt</Text>
-          <Text>Bitte prüfe dein E-Mail Konto und nutze den Link um ein neues Passwort zu erstellen.</Text>
+          <Text fw="bold">Dein Passwort wurde erfolgreich zurückgesetzt</Text>
+          <Text>Du kannst dich jetzt mit dem neuen Passwort einloggen.</Text>
         </Flex>}
 
         <Flex gap="md" justify="space-between" mt="md">
-          <Link href="/registrieren">Registrieren</Link>
           <Link href="/login">Einloggen</Link>
         </Flex>
       </LoginCard>

@@ -16,6 +16,7 @@ export default function Register() {
     e.preventDefault();
     setIsLoading(true)
     setEmailError(null)
+    setUnexpectedError(null)
 
     const formObject = {};
     const elements = e.target.elements;
@@ -35,7 +36,7 @@ export default function Register() {
       }
     }).catch((err) => {
       setUnexpectedError('Ein unerwarteter Fehler ist aufgetreten')
-      console.err(err)
+      console.error(err)
     }).finally(() => {
       setIsLoading(false)
     })
