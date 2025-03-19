@@ -1,4 +1,4 @@
-import { Title, Text as MantineText, Flex, Box, List, Divider } from '@mantine/core';
+import { Title, Text as MantineText, Flex, Box, List, Divider, NumberFormatter } from '@mantine/core';
 import { useEffect } from 'react';
 import { toWords } from '@/utils/toWords';
 
@@ -81,6 +81,14 @@ const Text = ({ children, ...props }) => {
   return <MantineText ta="justify" {...props}>{children}</MantineText>
 }
 
+const CurrencyText = ({ value }) => {
+  const number = typeof value === 'string'
+    ? parseFloat(value.replace('€', '').replace(',', '.'))
+    : value
+  const decimalScale = number % 1 === 0 ? 0 : 2
+  return <NumberFormatter decimalScale={decimalScale} value={number} fixedDecimalScale decimalSeparator=','/>
+}
+
 const PdfReport = ({ data }) => {
   useEffect(() => {
     document.body.style.backgroundColor = 'white';
@@ -91,7 +99,7 @@ const PdfReport = ({ data }) => {
   }, []);
 
   // 8% of yearly rent
-  const maxRepairCosts = (((parseFloat(data.rent.replace('€', '')) * 12) / 100) * 8).toFixed(2)
+  const maxRepairCosts = (((parseFloat(data.rent.replace('€', '')) * 12) / 100) * 8)
   const rent = parseFloat(data.rent.replace('€', '').replace(',', '.'))
   let headlineCount = 1;
 
@@ -175,19 +183,19 @@ const PdfReport = ({ data }) => {
     {/* ------------------------------- § 2. Miete ------------------------------- */}
     <Text fw="bold" ta="center" mt="3em" mb="1.5em">§ {headlineCount++}. Miete</Text>
     {data.contract === 'Wohnraum' && <PointFlex count="I">
-      <Text>Die Miete beträgt monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}.)</Text>
+      <Text>Die Miete beträgt monatlich EUR <CurrencyText value={data.rent}/>. (in Worten: EUR {toWords(rent)}.)</Text>
     </PointFlex>}
 
     {data.contract === 'Staffel' && <PointFlex count="I">
-      <Text mb="md">Die Miete beträgt zu Beginn des Mietverhältnisses monatlich EUR {data.rent.replace('€', '')}. (in Worten: EUR {toWords(rent)}). Es wird eine Staffelmiete vereinbart. Die Miete erhöht sich </Text>
+      <Text mb="md">Die Miete beträgt zu Beginn des Mietverhältnisses monatlich EUR <CurrencyText value={data.rent}/>. (in Worten: EUR {toWords(rent)}). Es wird eine Staffelmiete vereinbart. Die Miete erhöht sich </Text>
       {data.rentSteps.map((r, i) => {
         const rentIncrease = i === 0 ? (r.rent - rent) : (r.rent - data.rentSteps[i - 1].rent)
-        return <Text>ab dem {new Date(r.date).toLocaleDateString('de-DE')} um EUR {rentIncrease} auf EUR {r.rent}</Text>
+        return <Text>ab dem {new Date(r.date).toLocaleDateString('de-DE')} um EUR <CurrencyText value={rentIncrease}/> auf EUR  <CurrencyText value={r.rent}/></Text>
       })}
     </PointFlex>}
 
     <PointFlex count="II">
-      <Text mb="md">Neben der Miete werden folgende Betriebskosten im Sinne von § 2 Betriebskostenverordnung umgelegt und durch {mapUtilitiesType[data.utilitiesType]} in Höhe von EUR {data.utilities.replace('€', '')} erhoben:</Text>
+      <Text mb="md">Neben der Miete werden folgende Betriebskosten im Sinne von § 2 Betriebskostenverordnung umgelegt und durch {mapUtilitiesType[data.utilitiesType]} in Höhe von EUR <CurrencyText value={data.utilities}/> erhoben:</Text>
 
       <List withPadding listStyleType="decimal">
         <List.Item>Die laufenden öffentlichen Lasten des Grundstücks, namentlich die Grundsteuer</List.Item>
@@ -236,7 +244,7 @@ const PdfReport = ({ data }) => {
     </PointFlex>
 
     <PointFlex count="III">
-      <Text>Die monatlichen Vorauszahlungen auf die Heizkosten betragen EUR {data.heating.replace('€', '')}	</Text>
+      <Text>Die monatlichen Vorauszahlungen auf die Heizkosten betragen EUR <CurrencyText value={data.heating}/>.</Text>
     </PointFlex>
 
     <PointFlex count="IV">
@@ -334,7 +342,7 @@ const PdfReport = ({ data }) => {
 
       <PointFlex count="I">
         <Text mb="md">
-          Die monatliche Grundmiete für Wohnungen, Garage usw. nach § 2 . beträgt insgesamt EUR {data.rent.replace('€', '')}
+          Die monatliche Grundmiete für Wohnungen, Garage usw. nach § 2 . beträgt insgesamt EUR <CurrencyText value={data.rent}/>
         </Text>
         <Text mb="md">
           Sie ändert sich, von Erhöhungen nach den §§ 559 bis 560 BGB abgesehen, jeweils frühestens nach Ablauf von 12 Monaten seit Vertragsbeginn bzw. der letzten Änderung entsprechend des vom Statistischen Bundesamt ermittelten Preisindex für die Lebenshaltung aller privaten Haushalte in Deutschland.
@@ -350,7 +358,7 @@ const PdfReport = ({ data }) => {
 
     <PointFlex count="I">
       <Text>
-        Der Mieter leistet an den Vermieter zur Sicherung der Erfüllung seiner Verpflichtungen eine Kaution in Höhe von EUR {data.deposit.replace('€', '')}.
+        Der Mieter leistet an den Vermieter zur Sicherung der Erfüllung seiner Verpflichtungen eine Kaution in Höhe von EUR <CurrencyText value={data.deposit}/>.
       </Text>
     </PointFlex>
 
@@ -456,7 +464,7 @@ const PdfReport = ({ data }) => {
     <PointFlex count="I">
       <Text>
         Der Mieter ist verpflichtet, die Kosten für kleinere Reparaturen wie folgt an den
-        Vermieter zu zahlen: Für jede einzelne Reparatur dürfen die Kosten 100 Euro nicht übersteigen und der jährlichen Reparaturaufwand darf nicht mehr als 8 % der Jahresmiete, d. h. EUR {maxRepairCosts} betragen.
+        Vermieter zu zahlen: Für jede einzelne Reparatur dürfen die Kosten 100 Euro nicht übersteigen und der jährlichen Reparaturaufwand darf nicht mehr als 8 % der Jahresmiete, d. h. EUR <CurrencyText value={maxRepairCosts}/> betragen.
       </Text>
     </PointFlex>
 
