@@ -37,6 +37,7 @@ export const toWords = (nummer) => {
     const [ganz, dezimal] = zahl.toFixed(2).split('.');  // Rundet auf 2 Dezimalstellen und trennt sie
     const ganzeZahlInWorten = inWorten(parseInt(ganz, 10));
     const dezimalInWorten = unterHundert(parseInt(dezimal, 10)); // Hier werden auch zweistellige Dezimalzahlen umgewandelt
+    if (dezimal === '00') return ganzeZahlInWorten;
     return ganzeZahlInWorten + ' Komma ' + dezimalInWorten;
   }
 

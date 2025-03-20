@@ -3,6 +3,7 @@ import { Button, Title, Flex, Box, Blockquote, Card, Text, List, Accordion } fro
 import Link from 'next/link'
 import { IconQuote } from '@tabler/icons-react'
 import styles from '@/styles/Home.module.css'
+import Pricing from '@/components/Pricing/Pricing'
 
 const FaqItem = ({ question, answer }) => <Accordion.Item value={question}>
   <Accordion.Control><b>{question}</b></Accordion.Control>
@@ -39,44 +40,10 @@ function Home() {
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl">Preise</Title>
 
-        <Flex gap="xl" direction={{ base: 'column', xs: 'row' }}>
-          <Card shadow="lg" withBorder w="100%">
-            <Card.Section bg="blue.9" p="xl">
-              <Text ta="center" fw="300" c="white">Einmalige Generierung</Text>
-              <Title ta="center" c="white">0,99€</Title>
-            </Card.Section>
-            <Card.Section p="xl" h="100%">
-              <Flex direction="column" justify="space-between" h="100%">
-                <List mb="lg">
-                  <List.Item>individuell angepassten, rechtssicheren Mietvertrag als PDF zum Herunterladen</List.Item>
-                </List>
-                <Box>
-                  <Text fs="italic" mb="xl">Ideal für Vermieter, die nur gelegentlich einen Mietvertrag benötigen.</Text>
-                  <Button variant="outline" fullWidth component={Link} href="/mietvertrag-generator">Jetzt Mietvertrag erstellen</Button>
-                </Box>
-              </Flex>
-            </Card.Section>
-          </Card>
-
-          <Card shadow="lg" withBorder w="100%">
-            <Card.Section bg="blue.9" p="xl">
-              <Text ta="center" fw="300" c="white">Jahresabo</Text>
-              <Title ta="center" c="white">9,52€ / Jahr</Title>
-            </Card.Section>
-            <Card.Section p="xl">
-              <List mb="lg">
-                <List.Item>Unbegrenzte Generierung von Mietverträgen</List.Item>
-                <List.Item>Alle deine Verträge werden sicher in deinem Account gespeichert und sind jederzeit abrufbar</List.Item>
-                <List.Item>Du kannst bestehende Verträge jederzeit anpassen und neu generieren</List.Item>
-              </List>
-              <Box>
-                <Text fs="italic" mb="xl">Ideal für Vermieter mit mehreren Mietverhältnissen oder Immobilienbesitzer, die regelmäßig Verträge erstellen müssen.</Text>
-                <Button variant="outline" fullWidth component={Link} href="/registrieren">Jetzt Registrieren</Button>
-              </Box>
-              <Text fs="italic"></Text>
-            </Card.Section>
-          </Card>
-        </Flex>
+        <Pricing
+          cta1={<Button variant="outline" fullWidth component={Link} href="/mietvertrag-generator">Jetzt Mietvertrag erstellen</Button>}
+          cta2={<Button variant="outline" fullWidth component={Link} href="/registrieren">Jetzt Registrieren</Button>}
+        />
       </Box>
       <Box py="6em" pos="relative">
         <Box className={styles.skewed} bg="var(--mantine-color-gray-0)" top="0" />
@@ -104,15 +71,13 @@ function Home() {
         </Box>
       </Box>
       <Box py="6em" pos="relative">
-        <Box pos="absolute" w="100vw" h="100%" bg="var(--mantine-primary-color-0)" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
+        <Box className={styles.lightPattern}></Box>
         <Box align="center">
           <Title order={2} mb="md">Warum warten? Starte jetzt!</Title>
           <Text mb="xl" fs="italic">Erstelle deinen Mietvertrag in nur wenigen Minuten und spare Zeit und Geld.</Text>
           <Button size="xl" variant="white" component={Link} href="/mietvertrag-generator">Jetzt Mietvertrag erstellen</Button>
         </Box>
-
       </Box>
-
     </Layout >
   )
 }

@@ -79,6 +79,8 @@ export default async function handler(req, res) {
         additionalEnclosures,
         additionalRentals,
         rentSteps,
+        paid: false, // TODO based on user logged in?
+        // todo user optional id
       });
 
       res.status(200).json(result);

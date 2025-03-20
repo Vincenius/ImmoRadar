@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import Layout from '@/components/Layout/Layout'
-import { Flex, Title, Box, Card, Text, Stepper, ThemeIcon, TextInput, Group, Button, NumberInput, Grid } from '@mantine/core'
+import { Flex, Title, Box, Card, Text, Stepper, ThemeIcon, TextInput, Group, Button, NumberInput, Grid, List } from '@mantine/core'
 import SelectButton from '@/components/Inputs/SelectButton'
 import { IconHome, IconPlus } from '@tabler/icons-react'
 import Checkbox from '@/components/Inputs/Checkbox'
@@ -9,6 +9,10 @@ import dayjs from 'dayjs'
 import customParseFormat from 'dayjs/plugin/customParseFormat'
 import IBAN from 'iban'
 import 'dayjs/locale/de';
+import { mockData } from '@/utils/mockData'
+import Link from 'next/link'
+import Pricing from '@/components/Pricing/Pricing'
+import Checkout from '@/components/Checkout/Checkout'
 
 dayjs.extend(customParseFormat)
 dayjs.locale('de');
@@ -24,15 +28,18 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(0)
-  const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
+  const [active, setActive] = useState(11) // TODO REVERT!!!
+  const [data, setData] = useState(mockData) // { visited: true, rooms: {}, rentals: {} } // TODO add user session data (if logged in)
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
   const [additionalEnclosures, setAdditionalEnclosures] = useState([])
   const [rentSteps, setRentSteps] = useState([{}])
   const [isLoading, setIsLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
-  const [resultId, setResultId] = useState()
+  const [resultId, setResultId] = useState('67dbbeff7c0bb6c8d7c6cb30') // TODO remove
+  const [checkoutVariant, setCheckoutVariant] = useState()
+
+  console.log(resultId)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -89,15 +96,15 @@ function Mietvertraege() {
     }).then(res => res.json())
       .then(async res => {
         setResultId(res.insertedId)
-        const response = await fetch(`/api/download?id=${res.insertedId}`);
-        const blob = await response.blob();
-        const url = window.URL.createObjectURL(blob);
-        const link = document.createElement('a');
-        link.href = url;
-        link.setAttribute('download', 'Mietvertrag.pdf');
-        document.body.appendChild(link);
-        link.click();
-        link.remove();
+        // const response = await fetch(`/api/download?id=${res.insertedId}`);
+        // const blob = await response.blob();
+        // const url = window.URL.createObjectURL(blob);
+        // const link = document.createElement('a');
+        // link.href = url;
+        // link.setAttribute('download', 'Mietvertrag.pdf');
+        // document.body.appendChild(link);
+        // link.click();
+        // link.remove();
         setActive(active + 1)
       })
       .finally(() => {
@@ -617,7 +624,7 @@ function Mietvertraege() {
               />
 
               {rentSteps.map((step, index) => <>
-                <Text>{index+1}. Mieterhöhung</Text>
+                <Text>{index + 1}. Mieterhöhung</Text>
                 <Flex mb="md" gap="md" align="flex-end">
                   <DateInput
                     value={step.date}
@@ -844,16 +851,32 @@ function Mietvertraege() {
           </Stepper.Step>
 
           <Stepper.Completed>
-            <Title order={2} size="h3" mb="xl" mt="md" ta="center">Der Mietvertrag wurde erfolgreich erstellt!</Title>
-            <Text mb="md">Vielen Dank, dass du unseren Mietvertrag-Generator genutzt hast!</Text>
-            <Text mb="md">Falls der Download nicht automatisch gestartet ist, kannst du den Mietvertrag über den folgenden Link erneut herunterladen:</Text>
-            <Text mb="xl" ta="center">
-              <Button href={`/api/download?id=${resultId}`} component="a" target="_blank">Mietvertrag herunterladen</Button>
-            </Text>
-            {/* todo account link */}
-            <Text mb="xl">Erstelle jetzt einen Account, um deine Daten zu speichern und Mietverträge unkompliziert zu verwalten.</Text>
+            { !checkoutVariant && <>
+              {/* TODO Check if logged in mit jahresabo */}
+              <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist fertig – Wähle dein Zahlungsmodell</Title>
 
-            <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>
+              <Pricing
+                cta1={<Button fullWidth variant="outline" onClick={() => setCheckoutVariant('single')}>Jetzt kaufen</Button>}
+                cta2={<Button fullWidth onClick={() => setCheckoutVariant('yearly')}>Jetzt abonnieren</Button>}
+              />
+            </> }
+            
+            { checkoutVariant && <Box my="lg">
+              
+              <Checkout variant={checkoutVariant} id={resultId} />
+            </Box> }
+
+            {/* vorschau */}
+            {/* <Box maw="600px" m="0 auto">
+              <Title order={2} size="h3" mb="xl" mt="md" ta="center">Der Mietvertrag wurde erfolgreich erstellt!</Title>
+              <Text mb="md">Vielen Dank, dass du unseren Mietvertrag-Generator genutzt hast!</Text>
+              <Text mb="xl">Falls der Download nicht automatisch gestartet ist, kannst du den Mietvertrag über den folgenden Link erneut herunterladen:</Text>
+              <Text mb="xl" ta="center">
+                <Button href={`/api/download?id=${resultId}`} component="a" target="_blank">Mietvertrag herunterladen</Button>
+              </Text>
+              <Text mb="xl">Erstelle jetzt einen Account, um deine Daten zu speichern und Mietverträge unkompliziert zu verwalten.</Text>
+            </Box>
+            <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> */}
           </Stepper.Completed>
         </Stepper>
       </Card>

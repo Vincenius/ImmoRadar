@@ -7,6 +7,7 @@ import { Container, Text, Flex, Box, Burger, Menu } from '@mantine/core'
 // import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
+import { useRouter } from 'next/router';
 
 const authMenu = [
   {
@@ -20,15 +21,18 @@ const authMenu = [
 
 
 const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
+  const router = useRouter();
+  const { query } = router;
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
   const { data: session, status } = useSession()
+  const stripeId = query?.stripe_id
 
   const menu = status === "authenticated" ? [{
     label: session.user.email,
     url: '/app'
-  }] : authMenu
+  }] : authMenu.map(m => ({ ...m, url: stripeId ? `${m.url}?stripe_id=${stripeId}` : m.url }));
   
   return <>
     <Head>
@@ -38,7 +42,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="TODO" />
+      {/* <meta property="og:url" content="TODO" /> */}
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Fertighaus Radar" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -57,7 +61,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
     </Head>
     <div style={{ overflow: 'hidden' }}>
       <Box as="header" height={60} className={styles.header}>
-        <Container>
+        <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
@@ -91,12 +95,12 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 140px)" pos="relative" py={noPadding ? '0' : 'xl'}>
+      <Container as="main" size={1060} mih="calc(100vh - 140px)" pos="relative" py={noPadding ? '0' : 'xl'}>
         {children}
       </Container>
 
       <Box as="footer" className={styles.footer} p="md" pt="xl" pb="md">
-        <Container>
+        <Container size={1060}>
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
               <Flex gap="sm" mt="sm">

@@ -22,13 +22,11 @@ export default async function handler(req, res) {
             return res.status(404).json({ message: 'User not found' });
         }
 
-        // redirect to profile page
         return res.redirect(`/login?confirmed=true`)
     } catch (error) {
         console.error(error);
         return res.redirect(`/unerwarteter-fehler`)
     } finally {
-        // Close the connection
         client.close();
     }
 }

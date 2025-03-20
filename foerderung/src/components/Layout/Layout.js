@@ -47,7 +47,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
     </Head>
     <div>
       <Box as="header" height={60} className={styles.header}>
-        <Container>
+        <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
@@ -81,12 +81,12 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 200px)" pos="relative">
+      <Container as="main" mih="calc(100vh - 200px)" pos="relative" size={1060}>
         {children}
       </Container>
 
       <Box as="footer" className={styles.footer} p="md" pt="xl" pb="md">
-        <Container>
+        <Container size={1060}>
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
 

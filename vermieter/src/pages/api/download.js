@@ -1,22 +1,27 @@
 import puppeteer from 'puppeteer';
 import fs from 'fs';
+import CryptoJS from 'crypto-js'
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
+    const encrypted = req.query.id.replace(/-/g, '+').replace(/_/g, '/');
+    const decrypted = CryptoJS.AES.decrypt(encrypted, process.env.PASSWORD_HASH_SECRET);
+    const id = decrypted.toString(CryptoJS.enc.Utf8);
+
     // PDF mit Puppeteer erstellen
     const browser = await puppeteer.launch({
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
     await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY });
-    await page.goto(`${process.env.BASE_URL}/pdf?id=${req.query.id}`, { waitUntil: 'networkidle0' });
+    await page.goto(`${process.env.BASE_URL}/pdf?id=${id}`, { waitUntil: 'networkidle0' });
 
     // if tmp directory doesnt exist create it
     if (!fs.existsSync('./tmp')) {
       fs.mkdirSync('./tmp');
     }
 
-    const path = `./tmp/${req.query.id}.pdf`;
+    const path = `./tmp/${id}.pdf`;
 
     // Define PDF options
     const pdfOptions = {
