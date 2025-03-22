@@ -3,35 +3,57 @@ import CryptoJS from 'crypto-js'
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '@/utils/emails';
 import confirmTemplate from '@/utils/templates/confirmation';
+import Stripe from 'stripe';
+
+const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const client = new MongoClient(process.env.MONGODB_URI);
 
     try {
-      const { email, password } = JSON.parse(req.body);
+      const { email, password, token: stripe_id } = JSON.parse(req.body);
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('users');
 
-      const user = await collection.findOne({ email });
+      const [user, stripeUser] = await Promise.all([
+        collection.findOne({ email }),
+        collection.findOne({ stripe_id })
+      ])
 
       if (user) {
-        return res.status(400).json({ message: 'User already exists' });
+        return res.status(400).json({ success: false, message: 'UserExists' });
+      } else if (stripeUser) {
+        return res.status(400).json({ success: false, message: 'StripeUserExists' });
       } else {
         const passHash = CryptoJS.SHA256(password, process.env.PASSWORD_HASH_SECRET).toString(
           CryptoJS.enc.Hex
         )
         const token = uuidv4()
-        await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'free' });
+        let stripe_error = false
+        if (stripe_id) {
+          const session = await stripe.checkout.sessions.retrieve(stripe_id, { expand: ['line_items'] });
+          if (session.status === 'complete' && session.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
+            await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
+          } else {
+            stripe_error = true
+          }
+        } else {
+          await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'free' });
+        }
 
-        await sendEmail({
-          to: email,
-          subject: `Bitte bestätige deine Anmeldung bei ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`,
-          html: confirmTemplate({ confirm_url: `${process.env.BASE_URL}/api/confirm?token=${token}` })
-        })
+        if (!stripe_error) {
+          await sendEmail({
+            to: email,
+            subject: `Bitte bestätige deine E-Mail Addresse | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`,
+            html: confirmTemplate({ confirm_url: `${process.env.BASE_URL}/api/confirm?token=${token}` })
+          })
 
-        res.status(200).json({ success: true });
+          res.status(200).json({ success: true });
+        } else {
+          res.status(400).json({ success: false, message: 'Stripe Error' });
+        }
       }
     } catch (error) {
       console.error(error);

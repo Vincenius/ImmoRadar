@@ -22,11 +22,11 @@ function CheckoutReturn({ session_id }) {
     }).then(res => res.json())
     // Todo success false and error handling
     .then(({ id, stripe_id, isSubscription }) => {
-      console.log(id, stripe_id, isSubscription)
+      // todo handle account already logged in
       if (!isSubscription) {
         window.location.href = `/download?token=${id}`
       } else {
-        window.location.href = `/download-registrieren?token=${id}&stripe_id=${stripe_id}`
+        window.location.href = `/registrieren?token=${stripe_id}`
       }
     })
   })

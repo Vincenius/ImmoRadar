@@ -3,8 +3,10 @@ import Link from "next/link";
 import { Flex, Title, TextInput, Button, Text } from '@mantine/core';
 import LoginCard from "@/components/LoginCard/LoginCard";
 import Layout from '@/components/Layout/Layout';
+import useAuthRedirect from '@/utils/useAuthRedirect';
 
 export default function ForgotPassword() {
+  useAuthRedirect()
   const [isLoading, setIsLoading] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState();
   const [isSuccess, setIsSuccess] = useState(false);

@@ -27,12 +27,12 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
   const { data: session, status } = useSession()
-  const stripeId = query?.stripe_id
+  const token = query?.token
 
   const menu = status === "authenticated" ? [{
     label: session.user.email,
     url: '/app'
-  }] : authMenu.map(m => ({ ...m, url: stripeId ? `${m.url}?stripe_id=${stripeId}` : m.url }));
+  }] : authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }));
   
   return <>
     <Head>

@@ -29,15 +29,6 @@ export default async function handler(req, res) {
     } else {
       return res.status(400).json({ error: true })
     }
-
-    // const hasValidToken = !!user?.resetTokenExpires && (new Date(user?.resetTokenExpires) > new Date());
-
-    // if (user && !hasValidToken) {
-    //   const token = uuidv4()
-    //   await collection.updateOne({ email }, { $set: { resetToken: token, resetTokenExpires: new Date(Date.now() + 3600000 * 24) } });
-    // }
-
-    return res.json({ success: true })
   } catch (error) {
     console.error(error);
     return res.redirect(`/unerwarteter-fehler`)
