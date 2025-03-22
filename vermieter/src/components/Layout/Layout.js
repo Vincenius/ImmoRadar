@@ -29,6 +29,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
   const { data: session, status } = useSession()
   const token = query?.token
 
+  // TODO improve logged in menu stuff
   const menu = status === "authenticated" ? [{
     label: session.user.email,
     url: '/app'
