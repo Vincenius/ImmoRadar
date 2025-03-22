@@ -25,6 +25,8 @@ export default async function handler(req, res) {
       if (session.status === 'complete' && session.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
         const serverSession = await getServerSession(req, res, authOptions);
         const { user } = serverSession;
+
+        // todo check for mapping stripe_id/token to contract_id
         await collection.updateOne({ email: user.email }, { $set: { stripe_id: token, plan: 'year', expires_at: session.expires_at } })
 
         return res.status(200).json({ error: false })

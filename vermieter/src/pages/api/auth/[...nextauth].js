@@ -36,6 +36,7 @@ export const authOptions = {
               ])
 
               if (!stripeUser && stripeSession.status === 'complete' && stripeSession.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
+                // todo check for mapping stripe_id/token to contract_id
                 await collection.updateOne({ email }, { $set: { stripe_id: token, plan: 'year', expires_at: stripeSession.expires_at } })
               }
             }
@@ -56,13 +57,6 @@ export const authOptions = {
     // TODO Google Auth
   ],
   callbacks: {
-    // async jwt({ token, user }) {
-    //   if (user) {
-    //     token.plan = user.plan;
-    //     token.expires_at = user.expires_at;
-    //   }
-    //   return token;
-    // },
     async session({ session, token }) {
       if (session.user.email) {
         const client = new MongoClient(process.env.MONGODB_URI);

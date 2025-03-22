@@ -35,6 +35,7 @@ export default async function handler(req, res) {
         if (stripe_id) {
           const session = await stripe.checkout.sessions.retrieve(stripe_id, { expand: ['line_items'] });
           if (session.status === 'complete' && session.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
+            // todo check for mapping stripe_id to contract_id
             await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
           } else {
             stripe_error = true

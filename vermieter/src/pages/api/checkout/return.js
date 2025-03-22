@@ -32,6 +32,7 @@ export default async function handler(req, res) {
 
         if (isSubscription) {
           // TODO subscription template email
+          // TODO tmp db collection to map session_id to contract_id
         } else {
           await sendEmail({
             to: session.customer_details.email,
