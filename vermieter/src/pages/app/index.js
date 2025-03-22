@@ -60,8 +60,10 @@ function App() {
   return (
      <Layout title="Dashboard" hideLogin={true}>
         <Text mb="md">Hier kommt der Bereich für registrierte Nutzer!</Text>
-        {/* buy abo */}
+        {/* todo abo abschließen */}
         {/* du hast bereits ab? klicke link in email */}
+
+        {/* todo dashboard */}
         <Button onClick={() => signOut()}>Logout</Button>
      </Layout>
   )
