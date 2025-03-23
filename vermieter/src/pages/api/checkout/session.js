@@ -4,7 +4,7 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, variant } = JSON.parse(req.body)
+    const { id, variant, defaultEmail } = JSON.parse(req.body)
 
     const price = variant === 'yearly' ? 'price_1R4m6VKQunG297Xz9FYWpwEM' : 'price_1R4m52KQunG297Xz4ljRKhy6'
     const mode = variant === 'yearly' ? 'subscription' : 'payment'
@@ -13,6 +13,7 @@ export default async function handler(req, res) {
       const session = await stripe.checkout.sessions.create({
         ui_mode: 'embedded',
         client_reference_id: id,
+        customer_email: defaultEmail,
         line_items: [
           {
             price,

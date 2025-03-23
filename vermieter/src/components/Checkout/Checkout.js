@@ -7,12 +7,11 @@ import {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export default function Checkout({ id, variant }) {
+export default function Checkout({ id, variant, defaultEmail }) {
   const fetchClientSecret = useCallback(() => {
-    // Create a Checkout Session
     return fetch("/api/checkout/session", {
       method: "POST",
-      body: JSON.stringify({ id, variant }),
+      body: JSON.stringify({ id, variant, defaultEmail }),
     })
       .then((res) => res.json())
       .then((data) => data.clientSecret);

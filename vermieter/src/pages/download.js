@@ -8,7 +8,7 @@ function Download() {
   const { query } = router;
 
   return (
-    <Layout title={`Mietvertrag Download | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title="Mietvertrag Download">
       <Card withBorder shadow="md" maw="500px" m="0 auto">
         <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist bereit!</Title>
         <Text mb="xl">Klicke auf den Button, um deinen fertigen Mietvertrag als PDF herunterzuladen:</Text>

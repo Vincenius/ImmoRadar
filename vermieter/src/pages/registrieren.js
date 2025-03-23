@@ -55,7 +55,7 @@ export default function Register() {
   }
 
   return (
-    <Layout title={`Registrieren | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title="Registrieren">
       <LoginCard>
         <Title ta="center" fw="lighter" mb="xl">Registrieren</Title>
 

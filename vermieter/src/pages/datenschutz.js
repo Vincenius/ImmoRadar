@@ -4,7 +4,7 @@ import styles from '@/styles/Privacy.module.css';
 
 const Privacy = () => {
     return <Layout
-        title={`Datenschutzerklärung | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}
+        title="Datenschutzerklärung"
         description={`Datenschutzerklärung von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}
     >
         <Container className={styles.container}>

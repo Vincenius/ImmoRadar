@@ -61,7 +61,7 @@ export default function Login() {
 
 
   return (
-    <Layout title={`Login | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title="Login">
       <LoginCard>
         <Title ta="center" fw="lighter" mb="xl">Login</Title>
 

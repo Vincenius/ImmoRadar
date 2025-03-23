@@ -38,7 +38,7 @@ export default function ForgotPassword() {
 
 
   return (
-    <Layout title={`Passwort vergessen | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title="Passwort vergessen">
       <LoginCard>
         <Title ta="center" fw="lighter" mb="xl">Passwort vergessen</Title>
 

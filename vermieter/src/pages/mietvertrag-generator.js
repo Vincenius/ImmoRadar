@@ -10,7 +10,7 @@ import customParseFormat from 'dayjs/plugin/customParseFormat'
 import IBAN from 'iban'
 import 'dayjs/locale/de';
 import { mockData } from '@/utils/mockData'
-import Link from 'next/link'
+import useAuthRedirect from "@/utils/useAuthRedirect";
 import Pricing from '@/components/Pricing/Pricing'
 import Checkout from '@/components/Checkout/Checkout'
 
@@ -28,18 +28,18 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 }
 
 function Mietvertraege() {
-  const [active, setActive] = useState(11) // TODO REVERT!!!
-  const [data, setData] = useState(mockData) // { visited: true, rooms: {}, rentals: {} } // TODO add user session data (if logged in)
+  const [active, setActive] = useState(0)
+  const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
   const [additionalRooms, setAdditionalRooms] = useState([])
   const [additionalRentals, setAdditionalRentals] = useState([])
   const [additionalEnclosures, setAdditionalEnclosures] = useState([])
   const [rentSteps, setRentSteps] = useState([{}])
   const [isLoading, setIsLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
-  const [resultId, setResultId] = useState('67dbbeff7c0bb6c8d7c6cb30') // TODO remove
+  const [resultId, setResultId] = useState()
   const [checkoutVariant, setCheckoutVariant] = useState()
 
-  console.log(resultId)
+  useAuthRedirect('/mietvertrag-generator')
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -852,7 +852,6 @@ function Mietvertraege() {
 
           <Stepper.Completed>
             { !checkoutVariant && <>
-              {/* TODO Check if logged in mit jahresabo */}
               <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist fertig – Wähle dein Zahlungsmodell</Title>
 
               <Pricing

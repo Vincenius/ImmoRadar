@@ -2,7 +2,7 @@ import { useEffect } from "react";
 import { useRouter } from "next/router";
 import { useSession } from "next-auth/react"
 
-export default function useAuthRedirect() {
+export default function useAuthRedirect(path = '') {
   const router = useRouter();
   const { status } = useSession({ required: true, onUnauthenticated() { } })
 
@@ -10,7 +10,7 @@ export default function useAuthRedirect() {
     if (status === "authenticated") {
       const { token } = router.query
       const tokenQuery = token ? `?token=${token}` : '';
-      router.replace(`/app${tokenQuery}`);
+      router.replace(`/app${path}${tokenQuery}`);
     }
   }, [status, router]);
 }

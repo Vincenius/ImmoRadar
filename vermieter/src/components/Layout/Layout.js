@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
-import { useSession } from "next-auth/react"
-import { Container, Text, Flex, Box, Burger, Menu } from '@mantine/core'
+import { useSession, signOut } from "next-auth/react"
+import { Container, Text, Flex, Box, Burger, Menu, Button } from '@mantine/core'
 // import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
@@ -29,15 +29,17 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
   const { data: session, status } = useSession()
   const token = query?.token
 
-  // TODO improve logged in menu stuff
   const menu = status === "authenticated" ? [{
-    label: session.user.email,
+    label: 'Dashboard',
     url: '/app'
+  }, {
+    label: 'Logout',
+    onClick: () => signOut()
   }] : authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }));
-  
+
   return <>
     <Head>
-      <title>{title}</title>
+      <title>{title} | {process.env.NEXT_PUBLIC_WEBSITE_NAME}</title>
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta property="og:title" content={title} />
@@ -50,9 +52,9 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      { date && <meta property="article:published_time" content={date}></meta> }
-      { date && <meta name="author" content="Vincent Will"></meta> }
-      { setNoIndex && <meta name="robots" content="noindex" /> }
+      {date && <meta property="article:published_time" content={date}></meta>}
+      {date && <meta name="author" content="Vincent Will"></meta>}
+      {setNoIndex && <meta name="robots" content="noindex" />}
       <link rel="icon" href="/favicon.svg" />
       {/* only add script if on prod */}
       {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
@@ -73,8 +75,10 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
 
             {/* desktop menu */}
             <Flex justify="flex-end" align="center" gap="xl" display={{ base: "none", xs: "flex" }}>
-              { menu.map(menuItem =>
-                <Link key={menuItem.label} href={menuItem.url}>{menuItem.label}</Link>)
+              {menu.map(menuItem =>
+                menuItem.onClick
+                  ? <Button key={menuItem.label} onClick={menuItem.onClick} variant="outline">{menuItem.label}</Button>
+                  : <Button key={menuItem.label} component={Link} href={menuItem.url} variant="white">{menuItem.label}</Button>)
               }
             </Flex>
 
@@ -84,12 +88,15 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
                 <Burger opened={opened} aria-label="Menü" />
               </Menu.Target>
 
-              <Menu.Dropdown>
-                { menu.map(menuItem =>
-                  <Menu.Item key={menuItem.label}>
-                     <Link href={menuItem.url}>{menuItem.label}</Link>
-                  </Menu.Item>
-                ) }
+              <Menu.Dropdown px="sm">
+                {menu.map(menuItem => {
+                  return menuItem.onClick
+                    ? <Button my="sm" key={menuItem.label} onClick={menuItem.onClick} variant="outline" fullWidth>{menuItem.label}</Button>
+                    : <Menu.Item key={menuItem.label} my="sm">
+                      <Button fullWidth component={Link} href={menuItem.url} variant="transparent">{menuItem.label}</Button>
+                    </Menu.Item>
+                }
+                )}
               </Menu.Dropdown>
             </Menu>
           </Flex>

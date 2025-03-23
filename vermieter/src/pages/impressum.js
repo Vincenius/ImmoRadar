@@ -5,7 +5,7 @@ import { Title } from '@mantine/core';
 const Imprint = () => {
     return (
         <Layout
-        title={`Impressum | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}
+        title="Impressum"
         description={`Das Impressum von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}
     >
             <Title order={1} my="xl">Impressum</Title>

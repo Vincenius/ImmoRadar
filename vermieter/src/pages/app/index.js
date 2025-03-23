@@ -1,12 +1,15 @@
 import Layout from "@/components/Layout/Layout"
-import { useSession, signOut, getToken } from "next-auth/react"
+import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
-import { useEffect } from "react"
-import { Loader, Flex, Text, Button } from "@mantine/core";
+import { useEffect, useState } from "react"
+import { Loader, Flex, Text, Button, Title, Box, Card } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
+import Pricing from "@/components/Pricing/Pricing";
+import Checkout from "@/components/Checkout/Checkout";
 
 function App() {
   const router = useRouter();
+  const [isCheckout, setIsCheckout] = useState();
   const { token } = router.query
   const { data: session, status, update } = useSession({
     required: true,
@@ -42,13 +45,11 @@ function App() {
               position: 'top-center',
             });
           }
-        }) 
+        })
       }
     }
   }, [token, status])
 
-  console.log(session)
-  
   if (status === "loading" || token) {
     return <Layout title="Dashboard">
       <Flex h="70vh" w="100%" align="center" justify="center">
@@ -57,15 +58,32 @@ function App() {
     </Layout>
   }
 
-  return (
-     <Layout title="Dashboard" hideLogin={true}>
-        <Text mb="md">Hier kommt der Bereich für registrierte Nutzer!</Text>
-        {/* todo abo abschließen */}
-        {/* du hast bereits ab? klicke link in email */}
+  const { user } = session
 
-        {/* todo dashboard */}
-        <Button onClick={() => signOut()}>Logout</Button>
-     </Layout>
+  if (user.plan !== 'year') {
+    return (
+      <Layout title="Dasboard">
+        <Title order={1} size="h3" align="center" weight={500} mb="xl">Entdecke alle Funktionen mit unserem Jahresabo!</Title>
+        {!isCheckout && <>
+          <Box maw="500px" m="0 auto" mb="md">
+            <Pricing onlySubscription={true} cta2={<Button onClick={() => setIsCheckout(true)} fullWidth>Jetzt freischalten</Button>} />
+          </Box>
+          <Text c="dimmed" ta="center">Du hast bereits ein Abo abgeschlossen? Nutze den Link in deiner E-Mail.</Text>
+        </>}
+
+        {isCheckout && <Card shadow="lg" withBorder w="100%">
+          <Checkout variant="yearly" defaultEmail={user.email}/>
+        </Card>}
+      </Layout>
+    )
+  }
+
+  return (
+    <Layout title="Dashboard" hideLogin={true}>
+      <Text mb="md">Hier kommt der Bereich für registrierte Nutzer!</Text>
+
+      {/* todo dashboard */}
+    </Layout>
   )
 }
 

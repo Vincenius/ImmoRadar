@@ -46,7 +46,7 @@ export default function ForgotPassword() {
   }
 
   return (
-    <Layout title={`Passwort zurücksetzten | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}>
+    <Layout title="Passwort zurücksetzten">
       <LoginCard>
         <Title ta="center" fw="lighter" mb="xl">Passwort zurücksetzten</Title>
 
