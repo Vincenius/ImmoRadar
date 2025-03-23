@@ -1,4 +1,5 @@
 import Layout from "@/components/Layout/Layout"
+import Link from "next/link";
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react"
@@ -79,9 +80,10 @@ function App() {
   }
 
   return (
-    <Layout title="Dashboard" hideLogin={true}>
+    <Layout title="Deine Verträge">
       <Title order={1} size="h3" weight={500} mb="xl">Deine Verträge</Title>
-      <ContractCards maxContracts={5} />
+      <ContractCards maxContracts={2} />
+      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>
 
       {/* todo deine immobilien */}
     </Layout>

@@ -2,7 +2,7 @@ import Layout from "@/components/Layout/Layout"
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { Loader, Flex, Title } from "@mantine/core";
-import ContractWizard from "@/components/ContractWizard/ContractWizard"
+import ContractCards from "@/components/ContractCards/ContractCards";
 
 function App() {
   const router = useRouter();
@@ -23,10 +23,9 @@ function App() {
   }
 
   return (
-     <Layout title="Mietvertrag Generator">
-        <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title>
-
-        <ContractWizard />
+     <Layout title="Dashboard">
+      <Title order={1} size="h3" weight={500} mb="xl">Deine Verträge</Title>
+      <ContractCards />
      </Layout>
   )
 }

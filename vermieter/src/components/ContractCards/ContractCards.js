@@ -66,7 +66,6 @@ function ContractCards({ maxContracts }) {
           </Card>
         </Grid.Col>
       </Grid>
-      {data.length > maxContracts && <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>}
     </>
   )
 }
