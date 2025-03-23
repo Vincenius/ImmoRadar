@@ -26,7 +26,8 @@ function App() {
      <Layout title="Mietvertrag Generator">
         <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title>
 
-        <ContractWizard />
+        {/* todo pre step select estate */}
+        <ContractWizard isAuthenticated />
      </Layout>
   )
 }

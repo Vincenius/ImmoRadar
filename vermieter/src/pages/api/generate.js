@@ -1,13 +1,28 @@
 import { MongoClient } from 'mongodb';
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
+    const serverSession = await getServerSession(req, res, authOptions);
     const client = new MongoClient(process.env.MONGODB_URI);
+    let isAuthenticated = false;
+    let userId
 
     try {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('contracts');
+
+      if (serverSession && serverSession.user && serverSession.user.email) {
+        const userCollection = db.collection('users');
+        const [user] = await userCollection.find({ email: serverSession.user.email }).toArray();
+
+        if (user && user.plan === 'year') {
+          isAuthenticated = true
+          userId = user._id
+        }
+      }
 
       const {
         visited,
@@ -79,7 +94,8 @@ export default async function handler(req, res) {
         additionalEnclosures,
         additionalRentals,
         rentSteps,
-        paid: false, // todo if user is logged in and has subscription
+        paid: isAuthenticated,
+        user_id: isAuthenticated ? userId : null
       });
 
       res.status(200).json(result);

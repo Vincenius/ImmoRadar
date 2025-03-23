@@ -24,7 +24,7 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
   </Group>
 }
 
-function ContractWizard() {
+function ContractWizard({ isAuthenticated = false }) {
   const [active, setActive] = useState(0)
   const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
   const [additionalRooms, setAdditionalRooms] = useState([])
@@ -833,7 +833,7 @@ function ContractWizard() {
           </Group>
         </Stepper.Step>
 
-        <Stepper.Completed>
+        {!isAuthenticated && <Stepper.Completed>
           {!checkoutVariant && <>
             <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist fertig – Wähle dein Zahlungsmodell</Title>
 
@@ -846,7 +846,20 @@ function ContractWizard() {
           {checkoutVariant && <Box my="lg">
             <Checkout variant={checkoutVariant} id={resultId} />
           </Box>}
-        </Stepper.Completed>
+        </Stepper.Completed>}
+
+        {isAuthenticated && <Stepper.Completed>
+          <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist bereit!</Title>
+          <Box maw="500px" m="0 auto">
+            <Text mb="xl">Klicke auf den Button, um deinen fertigen Mietvertrag als PDF herunterzuladen:</Text>
+
+            <Button mb="sm" href={`/api/download?id=${resultId}`} component="a" target="_blank">
+              Mietvertrag herunterladen
+            </Button>
+            <Text mb="xl" size="xs" fw="italic">Es kann dann ein paar Sekunden dauern, bis die Datei bereit ist. Bitte habe etwas Geduld.</Text>
+          </Box>
+
+        </Stepper.Completed>}
       </Stepper>
     </Card>
   )
