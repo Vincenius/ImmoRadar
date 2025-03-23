@@ -13,7 +13,7 @@ function Download() {
         <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist bereit!</Title>
         <Text mb="xl">Klicke auf den Button, um deinen fertigen Mietvertrag als PDF herunterzuladen:</Text>
 
-        <Button mb="sm" href={`/api/download?id=${query.token}`} component="a" target="_blank">
+        <Button mb="sm" href={`/api/download?token=${query.token}`} component="a" target="_blank">
           Mietvertrag herunterladen
         </Button>
         <Text mb="xl" size="xs" fw="italic">Es kann dann ein paar Sekunden dauern, bis die Datei bereit ist. Bitte habe etwas Geduld.</Text>

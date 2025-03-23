@@ -9,6 +9,7 @@ export default function ForgotPassword() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [unexpectedError, setUnexpectedError] = useState();
+  const [passwordError, setPasswordError] = useState();
   const [error, setError] = useState(null)
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -16,6 +17,8 @@ export default function ForgotPassword() {
     e.preventDefault();
     setIsLoading(true)
     setUnexpectedError(null)
+    setPasswordError(null)
+    setError(null)
 
     const formObject = {};
     const elements = e.target.elements;
@@ -24,6 +27,13 @@ export default function ForgotPassword() {
         formObject[element.name] = element.value;
       }
     }
+
+    if (formObject.password.length < 8) {
+      setPasswordError('Das Passwort muss mindestens 8 Zeichen lang sein')
+      setIsLoading(false)
+      return
+    }
+
     fetch('/api/reset-password', {
       method: 'POST',
       body: JSON.stringify({
@@ -34,7 +44,7 @@ export default function ForgotPassword() {
       if (res.status === 200) {
         setIsSuccess(true)
       } else {
-        setError('Der Link ist abgelaufen.')
+        setError('Der Link ist bereits abgelaufen.')
       }
       
     }).catch((err) => {
@@ -51,7 +61,7 @@ export default function ForgotPassword() {
         <Title ta="center" fw="lighter" mb="xl">Passwort zurücksetzten</Title>
 
         {!isSuccess && <form onSubmit={handleSubmit}>
-          <TextInput name="password" size="md" label="Neues Passwort" type="password" mb="md" required />
+          <TextInput name="password" size="md" label="Neues Passwort" type="password" mb="md" required error={passwordError} />
 
           <Button size="lg" mb="xl" fullWidth loading={isLoading} type="submit">Passwort zurücksetzten</Button>
           {unexpectedError && <Text c="red.9" mb="lg">{unexpectedError}</Text>}

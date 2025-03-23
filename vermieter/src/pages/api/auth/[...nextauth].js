@@ -63,7 +63,6 @@ export const authOptions = {
         return null
       }
     })
-    // TODO Google Auth
   ],
   callbacks: {
     async session({ session, token }) {

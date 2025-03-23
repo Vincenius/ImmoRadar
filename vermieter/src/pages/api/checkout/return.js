@@ -2,6 +2,7 @@ import Stripe from 'stripe';
 import { MongoClient, ObjectId } from 'mongodb';
 import { sendEmail } from '@/utils/emails';
 import downloadTemplate from '@/utils/templates/download';
+import subscriptionTemplate from '@/utils/templates/subscription';
 import CryptoJS from 'crypto-js'
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
@@ -31,8 +32,11 @@ export default async function handler(req, res) {
         encryptedId = encryptedId.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
 
         if (isSubscription) {
-          // TODO subscription template email
-          // TODO tmp db collection to map session_id to contract_id
+          await sendEmail({
+            to: session.customer_details.email,
+            subject: `Dein Zugang ist bereit | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`,
+            html: subscriptionTemplate({ register_url: `${process.env.BASE_URL}/registrieren?token=${session_id}` })
+          })
         } else {
           await sendEmail({
             to: session.customer_details.email,

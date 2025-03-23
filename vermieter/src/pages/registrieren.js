@@ -13,6 +13,7 @@ export default function Register() {
   const router = useRouter();
   const [isLoading, setIsLoading] = useState(false);
   const [emailError, setEmailError] = useState();
+  const [passwordError, setPasswordError] = useState();
   const [error, setError] = useState();
   const { token } = router.query
 
@@ -21,6 +22,7 @@ export default function Register() {
     setIsLoading(true)
     setEmailError(null)
     setError(null)
+    setPasswordError(null)
 
     const formObject = { token };
     const elements = e.target.elements;
@@ -29,6 +31,13 @@ export default function Register() {
         formObject[element.name] = element.value;
       }
     }
+
+    if (formObject.password.length < 8) {
+      setPasswordError('Das Passwort muss mindestens 8 Zeichen lang sein')
+      setIsLoading(false)
+      return
+    }
+
     fetch('/api/register', {
       method: 'POST',
       body: JSON.stringify(formObject),
@@ -67,7 +76,7 @@ export default function Register() {
 
         <form onSubmit={handleSubmit}>
           <TextInput name="email" size="md" placeholder="mustermann@example.com" label="E-Mail Adresse" type="email" mb="md" required error={emailError} />
-          <TextInput name="password" size="md" label="Passwort" type="password" mb="md" required />
+          <TextInput name="password" size="md" label="Passwort" type="password" mb="md" required error={passwordError} />
 
           <Checkbox
             size="md"

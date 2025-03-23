@@ -1,12 +1,51 @@
 import puppeteer from 'puppeteer';
+import { MongoClient } from 'mongodb';
 import fs from 'fs';
 import CryptoJS from 'crypto-js'
+import { getServerSession } from "next-auth";
+import { authOptions } from "./auth/[...nextauth]";
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
-    const encrypted = req.query.id.replace(/-/g, '+').replace(/_/g, '/');
-    const decrypted = CryptoJS.AES.decrypt(encrypted, process.env.PASSWORD_HASH_SECRET);
-    const id = decrypted.toString(CryptoJS.enc.Utf8);
+    const { token, id } = req.query
+    let contractId
+
+    if (id) {
+      // trigered from logged in
+      const serverSession = await getServerSession(req, res, authOptions);
+      if (!serverSession || !serverSession.user || !serverSession.user.email) {
+        return res.status(401).json({ message: 'Unauthorized' });
+      } else {
+        const client = new MongoClient(process.env.MONGODB_URI);
+
+        try {
+          await client.connect();
+          const db = client.db(process.env.MONGODB_DB);
+          const collection = db.collection('contracts');
+          const userCollection = db.collection('users');
+
+          const user = await userCollection.find({ email: serverSession.user.email }).toArray();
+          const contracts = await collection.find({ user_id: user[0]._id }).toArray();
+          const requestedContract = contracts.find(c => c._id.toString() === id)
+
+          if (requestedContract && requestedContract.paid) {
+            contractId = id
+          } else {
+            return res.status(401).json({ message: 'Unauthorized' });
+          }
+        } catch (error) {
+          console.error(error);
+          res.status(500).json({ message: 'Internal Server Error' });
+        } finally {
+          client.close();
+        }
+      }
+    } else {
+      // trigered from logged out
+      const encrypted = token.replace(/-/g, '+').replace(/_/g, '/');
+      const decrypted = CryptoJS.AES.decrypt(encrypted, process.env.PASSWORD_HASH_SECRET);
+      contractId = decrypted.toString(CryptoJS.enc.Utf8);
+    }
 
     // PDF mit Puppeteer erstellen
     const browser = await puppeteer.launch({
@@ -14,14 +53,14 @@ export default async function handler(req, res) {
     });
     const page = await browser.newPage();
     await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY });
-    await page.goto(`${process.env.BASE_URL}/pdf?id=${id}`, { waitUntil: 'networkidle0' });
+    await page.goto(`${process.env.BASE_URL}/pdf?id=${contractId}`, { waitUntil: 'networkidle0' });
 
     // if tmp directory doesnt exist create it
     if (!fs.existsSync('./tmp')) {
       fs.mkdirSync('./tmp');
     }
 
-    const path = `./tmp/${id}.pdf`;
+    const path = `./tmp/${contractId}.pdf`;
 
     // Define PDF options
     const pdfOptions = {

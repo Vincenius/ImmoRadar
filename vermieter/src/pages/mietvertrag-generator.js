@@ -96,15 +96,6 @@ function Mietvertraege() {
     }).then(res => res.json())
       .then(async res => {
         setResultId(res.insertedId)
-        // const response = await fetch(`/api/download?id=${res.insertedId}`);
-        // const blob = await response.blob();
-        // const url = window.URL.createObjectURL(blob);
-        // const link = document.createElement('a');
-        // link.href = url;
-        // link.setAttribute('download', 'Mietvertrag.pdf');
-        // document.body.appendChild(link);
-        // link.click();
-        // link.remove();
         setActive(active + 1)
       })
       .finally(() => {
@@ -864,18 +855,6 @@ function Mietvertraege() {
               
               <Checkout variant={checkoutVariant} id={resultId} />
             </Box> }
-
-            {/* vorschau */}
-            {/* <Box maw="600px" m="0 auto">
-              <Title order={2} size="h3" mb="xl" mt="md" ta="center">Der Mietvertrag wurde erfolgreich erstellt!</Title>
-              <Text mb="md">Vielen Dank, dass du unseren Mietvertrag-Generator genutzt hast!</Text>
-              <Text mb="xl">Falls der Download nicht automatisch gestartet ist, kannst du den Mietvertrag über den folgenden Link erneut herunterladen:</Text>
-              <Text mb="xl" ta="center">
-                <Button href={`/api/download?id=${resultId}`} component="a" target="_blank">Mietvertrag herunterladen</Button>
-              </Text>
-              <Text mb="xl">Erstelle jetzt einen Account, um deine Daten zu speichern und Mietverträge unkompliziert zu verwalten.</Text>
-            </Box>
-            <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button> */}
           </Stepper.Completed>
         </Stepper>
       </Card>

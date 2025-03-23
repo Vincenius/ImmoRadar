@@ -6,6 +6,7 @@ import { Loader, Flex, Text, Button, Title, Box, Card } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import Pricing from "@/components/Pricing/Pricing";
 import Checkout from "@/components/Checkout/Checkout";
+import ContractCards from "@/components/ContractCards/ContractCards";
 
 function App() {
   const router = useRouter();
@@ -20,7 +21,6 @@ function App() {
 
   useEffect(() => {
     if (status === 'authenticated' && token) {
-      console.log(session.user)
       if (session.user.plan === 'year') {
         router.replace('/app')
       } else {
@@ -80,9 +80,10 @@ function App() {
 
   return (
     <Layout title="Dashboard" hideLogin={true}>
-      <Text mb="md">Hier kommt der Bereich für registrierte Nutzer!</Text>
+      <Title order={1} size="h3" weight={500} mb="xl">Deine Verträge</Title>
+      <ContractCards maxContracts={5} />
 
-      {/* todo dashboard */}
+      {/* todo deine immobilien */}
     </Layout>
   )
 }
