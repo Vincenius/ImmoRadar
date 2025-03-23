@@ -1,6 +1,6 @@
 import NextAuth from "next-auth"
 import CryptoJS from 'crypto-js'
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import CredentialsProvider from "next-auth/providers/credentials"
 import Stripe from 'stripe';
 
@@ -26,6 +26,7 @@ export const authOptions = {
           await client.connect();
           const db = client.db(process.env.MONGODB_DB);
           const collection = db.collection('users');
+          const contractCollection = db.collection('contracts');
           const user = await collection.findOne({ email });
 
           if (user && user.password === passHash) {
@@ -36,8 +37,16 @@ export const authOptions = {
               ])
 
               if (!stripeUser && stripeSession.status === 'complete' && stripeSession.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
-                // todo check for mapping stripe_id/token to contract_id
-                await collection.updateOne({ email }, { $set: { stripe_id: token, plan: 'year', expires_at: stripeSession.expires_at } })
+                if (stripeSession.client_reference_id) {
+                  await contractCollection.updateOne({ _id: new ObjectId(stripeSession.client_reference_id) }, { $set: { user_id: user._id, paid: true } })
+                }
+                await collection.updateOne({ email }, {
+                  $set: {
+                    stripe_id: token,
+                    plan: 'year',
+                    expires_at: stripeSession.expires_at,
+                  }
+                })
               }
             }
             return user

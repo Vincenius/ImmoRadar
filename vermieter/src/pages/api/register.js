@@ -1,4 +1,4 @@
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import CryptoJS from 'crypto-js'
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '@/utils/emails';
@@ -16,6 +16,7 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('users');
+      const contractCollection = db.collection('contracts');
 
       const [user, stripeUser] = await Promise.all([
         collection.findOne({ email }),
@@ -35,8 +36,11 @@ export default async function handler(req, res) {
         if (stripe_id) {
           const session = await stripe.checkout.sessions.retrieve(stripe_id, { expand: ['line_items'] });
           if (session.status === 'complete' && session.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
-            // todo check for mapping stripe_id to contract_id
-            await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
+            const newUser = await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
+
+            if (session.client_reference_id) {
+              await contractCollection.updateOne({ _id: new ObjectId(session.client_reference_id) }, { $set: { user_id: newUser.insertedId, paid: true } })
+            }
           } else {
             stripe_error = true
           }
