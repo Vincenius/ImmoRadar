@@ -3,8 +3,10 @@ import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { Loader, Flex, Title } from "@mantine/core";
 import ContractWizard from "@/components/ContractWizard/ContractWizard"
+import useSWR from 'swr'
+import { fetcher } from "@/utils/fetcher";
 
-function App() {
+function MietvertragGenerator() {
   const router = useRouter();
   const { data: session, status, update } = useSession({
     required: true,
@@ -13,23 +15,34 @@ function App() {
     },
   })
 
-  
-  if (status === "loading") {
-    return <Layout title="Dashboard">
+  const { data = [], isLoading } = useSWR('/api/user-contracts', fetcher)
+
+  if (status === "loading" || isLoading) {
+    return <Layout title="Mietvertrag Generator">
       <Flex h="70vh" w="100%" align="center" justify="center">
         <Loader size={30} />
       </Flex>
     </Layout>
   }
 
-  return (
-     <Layout title="Mietvertrag Generator">
-        <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title>
+  const editId = router.query?.edit
+  const defaultData = editId ? data.find(d => d._id === editId) : null
+  const mappedDefaultData = defaultData ? {
+    ...defaultData,
+    rentStart: new Date(defaultData.rentStart),
+    visitedDate: new Date(defaultData.visitedDate),
+    rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null
+  } : {}
 
-        {/* todo pre step select estate */}
-        <ContractWizard isAuthenticated />
-     </Layout>
+  return (
+    <Layout title="Mietvertrag Generator">
+      { !editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title> }
+      { editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Bearbeiten</Title> }
+
+      {/* todo pre step select estate (if not edit view) */}
+      <ContractWizard isAuthenticated defaultData={mappedDefaultData} />
+    </Layout>
   )
 }
 
-export default App
+export default MietvertragGenerator

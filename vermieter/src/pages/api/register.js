@@ -2,8 +2,10 @@ import { MongoClient, ObjectId } from 'mongodb';
 import CryptoJS from 'crypto-js'
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '@/utils/emails';
-import confirmTemplate from '@/utils/templates/confirmation';
+import confirmTemplate from '@/lib/templates/confirmation';
 import Stripe from 'stripe';
+import { createEstateFromContract } from '@/lib/create-estate';
+import { updateContractAfterSubscription } from '@/lib/update-contract-subscription';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -39,7 +41,12 @@ export default async function handler(req, res) {
             const newUser = await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
 
             if (session.client_reference_id) {
-              await contractCollection.updateOne({ _id: new ObjectId(session.client_reference_id) }, { $set: { user_id: newUser.insertedId, paid: true } })
+              // TODO test
+              await updateContractAfterSubscription({
+                userId: newUser.insertedId,
+                contractId: session.client_reference_id,
+                db
+              })
             }
           } else {
             stripe_error = true

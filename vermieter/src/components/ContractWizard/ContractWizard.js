@@ -24,17 +24,30 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
   </Group>
 }
 
-function ContractWizard({ isAuthenticated = false }) {
+function ContractWizard({
+  isAuthenticated = false,
+  defaultData = {}
+}) {
+  const {
+    additionalRooms: defaultAdditionalRooms = [],
+    additionalRentals: defaultAdditionalRentals = [],
+    additionalEnclosures: defaultAdditionalEnclosures = [],
+    rentSteps: defaultRentSteps = [{}],
+    ...rest
+  } = defaultData
+  console.log(rest)
+  const initData = rest._id ? rest : { visited: true, rooms: {}, rentals: {} }
   const [active, setActive] = useState(0)
-  const [data, setData] = useState({ visited: true, rooms: {}, rentals: {} })
-  const [additionalRooms, setAdditionalRooms] = useState([])
-  const [additionalRentals, setAdditionalRentals] = useState([])
-  const [additionalEnclosures, setAdditionalEnclosures] = useState([])
-  const [rentSteps, setRentSteps] = useState([{}])
+  const [data, setData] = useState(initData)
+  const [additionalRooms, setAdditionalRooms] = useState(defaultAdditionalRooms)
+  const [additionalRentals, setAdditionalRentals] = useState(defaultAdditionalRentals)
+  const [additionalEnclosures, setAdditionalEnclosures] = useState(defaultAdditionalEnclosures)
+  const [rentSteps, setRentSteps] = useState(defaultRentSteps)
   const [isLoading, setIsLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
-  const [resultId, setResultId] = useState()
+  const [resultId, setResultId] = useState(defaultData?._id)
   const [checkoutVariant, setCheckoutVariant] = useState()
+  const isEdit = defaultData?._id
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -82,7 +95,8 @@ function ContractWizard({ isAuthenticated = false }) {
       rentSteps: rentSteps.filter(r => r.date && r.rent),
     }
 
-    fetch('/api/generate', {
+    const uri = isEdit ? '/api/update-contract' : '/api/generate'
+    fetch(uri, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -90,7 +104,9 @@ function ContractWizard({ isAuthenticated = false }) {
       body: JSON.stringify({ userData }),
     }).then(res => res.json())
       .then(async res => {
-        setResultId(res.insertedId)
+        if (!isEdit) {
+          setResultId(res.insertedId)
+        }
         setActive(active + 1)
       })
       .finally(() => {
@@ -115,7 +131,7 @@ function ContractWizard({ isAuthenticated = false }) {
       <Stepper
         active={active}
         onStepClick={setActive}
-        allowNextStepsSelect={false}
+        allowNextStepsSelect={isEdit}
         size="14px"
         styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
       >
@@ -285,14 +301,14 @@ function ContractWizard({ isAuthenticated = false }) {
               placeholder="3"
               mb="sm"
               name="level"
-              defaultValue={data.Level}
+              defaultValue={data.level}
             />
             <TextInput
               label="Lage im Gebäude (optional)"
               placeholder="rechts/links/Mitte; Nr. 3 des Geschossplans)"
               mb="sm"
               name="location"
-              defaultValue={data.Location}
+              defaultValue={data.location}
             />
             <ButtonGroup {...{ active, setActive }} />
           </form>
@@ -442,15 +458,15 @@ function ContractWizard({ isAuthenticated = false }) {
             label="Stellplatz"
             checked={data.rentals.carport || false}
             onChange={(event) => setData({ ...data, rentals: { ...data.rentals, carport: event.currentTarget.checked } })}
-            mb={data.Carport ? "xs" : "md"}
+            mb={data.carport ? "xs" : "md"}
           />
           {data.rentals.carport && (
             <TextInput
               label="Stellplatz Nr."
               placeholder="1"
               mb="md"
-              name="carportNumber"
-              defaultValue={data.carportNumber}
+              value={data.carportNumber || ''}
+              onChange={(event) => setData({ ...data, carportNumber: event.target.value })}
             />
           )}
           <Checkbox
@@ -829,7 +845,9 @@ function ContractWizard({ isAuthenticated = false }) {
 
           <Group justify="space-between" mt="xl">
             <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>
-            <Button type="submit" loading={isLoading} onClick={generateDocument}>Mietvertrag erstellen</Button>
+            <Button type="submit" loading={isLoading} onClick={generateDocument}>
+              {isEdit ? 'Mietvertrag aktualisieren' : 'Mietvertrag erstellen'}
+            </Button>
           </Group>
         </Stepper.Step>
 
@@ -849,7 +867,9 @@ function ContractWizard({ isAuthenticated = false }) {
         </Stepper.Completed>}
 
         {isAuthenticated && <Stepper.Completed>
-          <Title order={2} size="h3" mb="xl" mt="md" ta="center">Dein Mietvertrag ist bereit!</Title>
+          <Title order={2} size="h3" mb="xl" mt="md" ta="center">
+            {isEdit ? 'Dein Mietvertrag wurde aktualisiert!' : 'Dein Mietvertrag ist bereit!'}
+          </Title>
           <Box maw="500px" m="0 auto">
             <Text mb="xl">Klicke auf den Button, um deinen fertigen Mietvertrag als PDF herunterzuladen:</Text>
 
@@ -858,7 +878,6 @@ function ContractWizard({ isAuthenticated = false }) {
             </Button>
             <Text mb="xl" size="xs" fw="italic">Es kann dann ein paar Sekunden dauern, bis die Datei bereit ist. Bitte habe etwas Geduld.</Text>
           </Box>
-
         </Stepper.Completed>}
       </Stepper>
     </Card>

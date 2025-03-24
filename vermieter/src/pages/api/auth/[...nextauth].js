@@ -3,6 +3,7 @@ import CryptoJS from 'crypto-js'
 import { MongoClient, ObjectId } from 'mongodb';
 import CredentialsProvider from "next-auth/providers/credentials"
 import Stripe from 'stripe';
+import { updateContractAfterSubscription } from "@/lib/update-contract-subscription";
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -26,7 +27,6 @@ export const authOptions = {
           await client.connect();
           const db = client.db(process.env.MONGODB_DB);
           const collection = db.collection('users');
-          const contractCollection = db.collection('contracts');
           const user = await collection.findOne({ email });
 
           if (user && user.password === passHash) {
@@ -38,7 +38,12 @@ export const authOptions = {
 
               if (!stripeUser && stripeSession.status === 'complete' && stripeSession.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
                 if (stripeSession.client_reference_id) {
-                  await contractCollection.updateOne({ _id: new ObjectId(stripeSession.client_reference_id) }, { $set: { user_id: user._id, paid: true } })
+                  // TODO test
+                  await updateContractAfterSubscription({
+                    userId: user._id,
+                    contractId: stripeSession.client_reference_id,
+                    db
+                  })
                 }
                 await collection.updateOne({ email }, {
                   $set: {

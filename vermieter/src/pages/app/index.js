@@ -8,10 +8,12 @@ import { notifications } from '@mantine/notifications';
 import Pricing from "@/components/Pricing/Pricing";
 import Checkout from "@/components/Checkout/Checkout";
 import ContractCards from "@/components/ContractCards/ContractCards";
+import EstateCards from "@/components/EstateCards/EstateCards";
 
 function App() {
   const router = useRouter();
   const [isCheckout, setIsCheckout] = useState();
+  const [isUpdating, setIsUpdating] = useState(false);
   const { token } = router.query
   const { data: session, status, update } = useSession({
     required: true,
@@ -81,10 +83,13 @@ function App() {
 
   return (
     <Layout title="Deine Verträge">
-      <Title order={1} size="h3" weight={500} mb="xl">Deine Verträge</Title>
+      <Title order={1} size="h3" weight={500} mb="md">Deine Verträge</Title>
       <ContractCards maxContracts={2} />
-      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>
+      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege" mb="xl">Alle Verträge anzeigen</Button>
 
+      <Title order={1} size="h3" weight={500} mb="md">Deine Immobilien</Title>
+      <EstateCards maxCards={2} />
+      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>
       {/* todo deine immobilien */}
     </Layout>
   )

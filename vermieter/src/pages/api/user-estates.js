@@ -14,13 +14,13 @@ export default async function handler(req, res) {
       try {
         await client.connect();
         const db = client.db(process.env.MONGODB_DB);
-        const collection = db.collection('contracts');
+        const collection = db.collection('estates');
         const userCollection = db.collection('users');
 
         const user = await userCollection.find({ email: serverSession.user.email }).toArray();
-        const contracts = await collection.find({ user_id: user[0]._id }).toArray();
+        const estates = await collection.find({ user_id: user[0]._id }).toArray();
 
-        res.status(200).json(contracts);
+        res.status(200).json(estates);
       } catch (error) {
         console.error(error);
         res.status(500).json({ message: 'Internal Server Error' });

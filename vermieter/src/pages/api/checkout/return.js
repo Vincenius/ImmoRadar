@@ -1,8 +1,8 @@
 import Stripe from 'stripe';
 import { MongoClient, ObjectId } from 'mongodb';
 import { sendEmail } from '@/utils/emails';
-import downloadTemplate from '@/utils/templates/download';
-import subscriptionTemplate from '@/utils/templates/subscription';
+import downloadTemplate from '@/lib/templates/download';
+import subscriptionTemplate from '@/lib/templates/subscription';
 import CryptoJS from 'crypto-js'
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
         const collection = db.collection('contracts');
         await collection.findOneAndUpdate(
           { _id: new ObjectId(session.client_reference_id) },
-          { $set: { paid: true } }
+          { $set: { paid: true } },
         );
 
         let encryptedId = CryptoJS.AES.encrypt(session.client_reference_id, process.env.PASSWORD_HASH_SECRET).toString();

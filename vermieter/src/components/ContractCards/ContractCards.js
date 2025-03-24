@@ -2,7 +2,7 @@ import React from 'react'
 import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box } from '@mantine/core'
 import useSWR from 'swr'
 import { fetcher } from '@/utils/fetcher';
-import { IconHome, IconUser, IconCalendar, IconFilePlus } from '@tabler/icons-react';
+import { IconHome, IconUser, IconCalendar, IconFilePlus, IconEdit } from '@tabler/icons-react';
 import Link from 'next/link';
 
 const ContractCard = ({ contract, isLoading }) => {
@@ -10,21 +10,21 @@ const ContractCard = ({ contract, isLoading }) => {
     <Card shadow="md" padding="lg" radius="md" withBorder h="100%">
       <Flex direction="column" justify="space-between" h="100%">
         <Box mb="md">
-          <Flex gap="md" mb="md">
+          <Flex gap="md" mb="md" align="center">
             <ThemeIcon variant="light">
               <IconHome style={{ width: '70%', height: '70%' }} />
             </ThemeIcon>
             {isLoading && <Skeleton height={8} radius="xl" width="250px" />}
             {!isLoading && <Text fw="bold">{contract.street}, {contract.zip} {contract.city}</Text>}
           </Flex>
-          <Flex gap="md" mb="md">
+          <Flex gap="md" mb="md" align="center">
             <ThemeIcon variant="light">
               <IconCalendar style={{ width: '70%', height: '70%' }} />
             </ThemeIcon>
             {isLoading && <Skeleton height={8} radius="xl" w="50%" />}
             {!isLoading && <Text>{new Date(contract.rentStart).toLocaleDateString('de-DE', { dateStyle: 'long' })}</Text>}
           </Flex>
-          <Flex gap="md" mb="md">
+          <Flex gap="md" mb="md" align="center">
             <ThemeIcon variant="light">
               <IconUser style={{ width: '70%', height: '70%' }} />
             </ThemeIcon>
@@ -32,12 +32,24 @@ const ContractCard = ({ contract, isLoading }) => {
             {!isLoading && <Text>{contract.tenantName}</Text>}
           </Flex>
         </Box>
-        {isLoading && <Button variant="outline">
+        {isLoading && <Button variant="outline" mb="md">
           <Skeleton height={8} radius="xl" w="50%" />
         </Button>}
-        {!isLoading && <Button href={`/api/download?id=${contract._id}`} component="a" target="_blank" variant="outline">
+        {!isLoading && <Button href={`/api/download?id=${contract._id}`} component="a" target="_blank" variant="outline" mb="md">
           Mietvertrag herunterladen
         </Button>}
+
+        {isLoading && <Flex gap="md">
+          <Skeleton height={8} radius="xl" w="50%" />
+          <Skeleton height={8} radius="xl" w="50%" />
+        </Flex>}
+
+        {!isLoading && <Flex gap="md">
+          <Button href={`/app/mietvertrag-generator?edit=${contract._id}`} component={Link} target="_blank" variant="default" size="xs" fullWidth>
+            Bearbeiten
+          </Button>
+          <Button onClick={() => { console.log('todo soft delete')}} variant="default" c="red" fullWidth size="xs">Löschen</Button>
+        </Flex>}
       </Flex>
     </Card>
   )

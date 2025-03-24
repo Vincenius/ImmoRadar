@@ -2,6 +2,8 @@ import { MongoClient, ObjectId } from 'mongodb';
 import Stripe from 'stripe';
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+import { createEstateFromContract } from '@/lib/create-estate';
+import { updateContractAfterSubscription } from '@/lib/update-contract-subscription';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -28,7 +30,12 @@ export default async function handler(req, res) {
         const user = await collection.findOne({ email: serverSession.user.email });
 
         if (session.client_reference_id) {
-          await contractCollection.updateOne({ _id: new ObjectId(session.client_reference_id) }, { $set: { user_id: user._id, paid: true } })
+          // TODO test
+          await updateContractAfterSubscription({
+            userId: user._id,
+            contractId: session.client_reference_id,
+            db,
+          })
         }
         await collection.updateOne({ email: user.email }, { $set: { stripe_id: token, plan: 'year', expires_at: session.expires_at } })
 

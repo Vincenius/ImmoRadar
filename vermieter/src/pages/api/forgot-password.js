@@ -1,7 +1,7 @@
 import { MongoClient } from 'mongodb';
 import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '@/utils/emails';
-import resetPasswordTemplate from '@/utils/templates/reset-password';
+import resetPasswordTemplate from '@/lib/templates/reset-password';
 
 export default async function handler(req, res) {
   if (req.method !== 'POST') {
