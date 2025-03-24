@@ -13,7 +13,6 @@ import EstateCards from "@/components/EstateCards/EstateCards";
 function App() {
   const router = useRouter();
   const [isCheckout, setIsCheckout] = useState();
-  const [isUpdating, setIsUpdating] = useState(false);
   const { token } = router.query
   const { data: session, status, update } = useSession({
     required: true,

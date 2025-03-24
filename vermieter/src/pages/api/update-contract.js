@@ -14,7 +14,6 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('contracts');
       const { _id } = req.body.userData
-      console.log(_id)
 
       if (serverSession && serverSession.user && serverSession.user.email) {
         const userCollection = db.collection('users');

@@ -1,11 +1,12 @@
-import React from 'react'
-import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box } from '@mantine/core'
+import React, { useState } from 'react'
+import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box, Modal } from '@mantine/core'
+import { useDisclosure } from '@mantine/hooks';
 import useSWR from 'swr'
 import { fetcher } from '@/utils/fetcher';
 import { IconHome, IconUser, IconCalendar, IconFilePlus, IconEdit } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const ContractCard = ({ contract, isLoading }) => {
+const ContractCard = ({ contract, isLoading, setDeleteData }) => {
   return (
     <Card shadow="md" padding="lg" radius="md" withBorder h="100%">
       <Flex direction="column" justify="space-between" h="100%">
@@ -40,15 +41,15 @@ const ContractCard = ({ contract, isLoading }) => {
         </Button>}
 
         {isLoading && <Flex gap="md">
-          <Skeleton height={8} radius="xl" w="50%" />
-          <Skeleton height={8} radius="xl" w="50%" />
+          <Button variant="default" size="xs" fullWidth><Skeleton height={8} radius="xl" w="50%" /></Button>
+          <Button variant="default" c="red" fullWidth size="xs"><Skeleton height={8} radius="xl" w="50%" /></Button>
         </Flex>}
 
         {!isLoading && <Flex gap="md">
           <Button href={`/app/mietvertrag-generator?edit=${contract._id}`} component={Link} target="_blank" variant="default" size="xs" fullWidth>
             Bearbeiten
           </Button>
-          <Button onClick={() => { console.log('todo soft delete')}} variant="default" c="red" fullWidth size="xs">Löschen</Button>
+          <Button onClick={() => setDeleteData(contract)} variant="default" c="red" fullWidth size="xs">Löschen</Button>
         </Flex>}
       </Flex>
     </Card>
@@ -56,8 +57,19 @@ const ContractCard = ({ contract, isLoading }) => {
 }
 
 function ContractCards({ maxContracts }) {
-  const { data = [], isLoading } = useSWR('/api/user-contracts', fetcher)
+  const [deleteData, setDeleteData] = useState()
+  const [deleteLoading, setDeleteLoading] = useState(false)
+  const { data = [], isLoading, mutate } = useSWR('/api/user-contracts', fetcher)
   const contracts = maxContracts ? data.slice(0, maxContracts) : data
+
+  const deleteContract = () => {
+    setDeleteLoading(true)
+    fetch(`/api/delete-contract?id=${deleteData._id}`, { method: 'DELETE' }).then(() => {
+      setDeleteLoading(false)
+      setDeleteData(null)
+      mutate()
+    })
+  }
 
   if (isLoading) {
     return (
@@ -69,9 +81,19 @@ function ContractCards({ maxContracts }) {
   }
   return (
     <>
+      <Modal opened={deleteData && deleteData._id} onClose={() => setDeleteData(null)} title="Vertrag Löschen">
+        {deleteData && <>
+          <Text mb="md">Bist du dir sicher, dass du folgenden Vertrag löschen willst?</Text>
+          <Text mb="md" fw="bold">{deleteData.street}, {deleteData.zip} {deleteData.city}</Text>
+          <Flex gap="md">
+            <Button variant='outline' w="50%" onClick={() => setDeleteData(null)} disabled={deleteLoading}>Abbrechen</Button>
+            <Button color="red.9" w="50%" onClick={deleteContract} loading={deleteLoading}>Vertrag Löschen</Button>
+          </Flex>
+        </>}
+      </Modal>
       <Grid gap="md">
         {contracts.map(contract => (
-          <Grid.Col key={contract._id} span={{ base: 12, sm: 6, lg: 4 }}><ContractCard contract={contract} /></Grid.Col>
+          <Grid.Col key={contract._id} span={{ base: 12, sm: 6, lg: 4 }}><ContractCard contract={contract} setDeleteData={setDeleteData} /></Grid.Col>
         ))}
         <Grid.Col span={{ base: 12, sm: 6, lg: 4 }}>
           <Card shadow="md" padding="lg" radius="md" withBorder h="100%" component={Link} href="/app/mietvertrag-generator">
