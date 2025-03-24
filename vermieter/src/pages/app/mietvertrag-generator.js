@@ -31,7 +31,7 @@ function MietvertragGenerator() {
     ...defaultData,
     rentStart: new Date(defaultData.rentStart),
     visitedDate: new Date(defaultData.visitedDate),
-    rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null
+    rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null,
   } : {}
 
   return (

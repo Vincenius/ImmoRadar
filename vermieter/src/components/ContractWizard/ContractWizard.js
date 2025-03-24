@@ -35,8 +35,7 @@ function ContractWizard({
     rentSteps: defaultRentSteps = [{}],
     ...rest
   } = defaultData
-  console.log(rest)
-  const initData = rest._id ? rest : { visited: true, rooms: {}, rentals: {} }
+  const initData = rest._id ? rest : { visited: true, rooms: {}, rentals: [] }
   const [active, setActive] = useState(0)
   const [data, setData] = useState(initData)
   const [additionalRooms, setAdditionalRooms] = useState(defaultAdditionalRooms)
@@ -83,12 +82,6 @@ function ContractWizard({
 
     const userData = {
       ...data,
-      rentals: Object.entries(data.rentals).reduce((acc, [key, value]) => {
-        if (value) {
-          acc.push(key)
-        }
-        return acc
-      }, []),
       additionalRooms,
       additionalEnclosures,
       additionalRentals,
@@ -450,17 +443,17 @@ function ContractWizard({
 
           <Checkbox
             label="Garage"
-            checked={data.rentals.garage || false}
-            onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garage: event.currentTarget.checked } })}
+            checked={data.rentals.includes('garage')}
+            onChange={(event) => setData({ ...data, rentals: event.currentTarget.checked ? [...rentals, 'garage'] : rentals.filter(r => r !== 'garage') })}
             mb="md"
           />
           <Checkbox
             label="Stellplatz"
-            checked={data.rentals.carport || false}
-            onChange={(event) => setData({ ...data, rentals: { ...data.rentals, carport: event.currentTarget.checked } })}
+            checked={data.rentals.includes('carport')}
+            onChange={(event) => setData({ ...data, rentals: event.currentTarget.checked ? [...rentals, 'carport'] : rentals.filter(r => r !== 'carport') })}
             mb={data.carport ? "xs" : "md"}
           />
-          {data.rentals.carport && (
+          {data.rentals.includes('carport') && (
             <TextInput
               label="Stellplatz Nr."
               placeholder="1"
@@ -471,14 +464,14 @@ function ContractWizard({
           )}
           <Checkbox
             label="nach besonderem Garagen-/Stellplatz-Mietvertrag"
-            checked={data.rentals.garageContract || false}
-            onChange={(event) => setData({ ...data, rentals: { ...data.rentals, garageContract: event.currentTarget.checked } })}
+            checked={data.rentals.includes('garageContract')}
+            onChange={(event) => setData({ ...data, rentals: event.currentTarget.checked ? [...rentals, 'garageContract'] : rentals.filter(r => r !== 'garageContract') })}
             mb="md"
           />
           <Checkbox
             label="Die genaue Beschreibung der überlassenen Mietsache des Zubehörs ist in der Wohnungsbeschreibung und Übergabeverhandlung enthalten, die diesen Vertrag ergänzt."
-            checked={data.rentals.additionalContract || false}
-            onChange={(event) => setData({ ...data, rentals: { ...data.rentals, additionalContract: event.currentTarget.checked } })}
+            checked={data.rentals.includes('additionalContract')}
+            onChange={(event) => setData({ ...data, rentals: event.currentTarget.checked ? [...rentals, 'additionalContract'] : rentals.filter(r => r !== 'additionalContract') })}
             mb="md"
           />
 
