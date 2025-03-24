@@ -26,7 +26,8 @@ const ButtonGroup = ({ active, setActive, disabled }) => {
 
 function ContractWizard({
   isAuthenticated = false,
-  defaultData = {}
+  defaultData = {},
+  isEdit = false,
 }) {
   const {
     additionalRooms: defaultAdditionalRooms = [],
@@ -46,7 +47,6 @@ function ContractWizard({
   const [hasIbanError, setHasIbanError] = useState(false)
   const [resultId, setResultId] = useState(defaultData?._id)
   const [checkoutVariant, setCheckoutVariant] = useState()
-  const isEdit = defaultData?._id
 
   const handleSubmit = (e) => {
     e.preventDefault();

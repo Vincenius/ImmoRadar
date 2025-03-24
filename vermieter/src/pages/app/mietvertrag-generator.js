@@ -16,8 +16,9 @@ function MietvertragGenerator() {
   })
 
   const { data = [], isLoading } = useSWR('/api/user-contracts', fetcher)
+  const { data: estatesData = [], isLoading: estatesLoading } = useSWR('/api/user-estates', fetcher)
 
-  if (status === "loading" || isLoading) {
+  if (status === "loading" || isLoading || estatesLoading) {
     return <Layout title="Mietvertrag Generator">
       <Flex h="70vh" w="100%" align="center" justify="center">
         <Loader size={30} />
@@ -26,11 +27,17 @@ function MietvertragGenerator() {
   }
 
   const editId = router.query?.edit
-  const defaultData = editId ? data.find(d => d._id === editId) : null
+  const estateId = router.query?.estate
+  const defaultData = editId
+    ? data.find(d => d._id === editId)
+    : estateId
+      ? estatesData.find(e => e._id === estateId)
+      : null
+
   const mappedDefaultData = defaultData ? {
     ...defaultData,
-    rentStart: new Date(defaultData.rentStart),
-    visitedDate: new Date(defaultData.visitedDate),
+    rentStart: defaultData.rentStart ? new Date(defaultData.rentStart) : null,
+    visitedDate: defaultData.visitedDate ? new Date(defaultData.visitedDate) : null,
     rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null,
   } : {}
 
@@ -39,8 +46,7 @@ function MietvertragGenerator() {
       { !editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title> }
       { editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Bearbeiten</Title> }
 
-      {/* todo pre step select estate (if not edit view) */}
-      <ContractWizard isAuthenticated defaultData={mappedDefaultData} />
+      <ContractWizard isAuthenticated defaultData={mappedDefaultData} isEdit={!!editId} />
     </Layout>
   )
 }

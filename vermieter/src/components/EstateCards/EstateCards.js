@@ -21,9 +21,26 @@ const EstateCard = ({ estate, isLoading }) => {
             </Text>}
           </Flex>
         </Box>
-      </Flex>
 
-      {/* TODO bearbeiten und löschen */}
+        {isLoading && <Button variant="outline" mb="md">
+          <Skeleton height={8} radius="xl" w="50%" />
+        </Button>}
+        {!isLoading && <Button href={`/app/mietvertrag-generator?estate=${estate._id}`} component={Link} variant="outline" mb="md">
+          Mietvertrag erstellen
+        </Button>}
+
+        {isLoading && <Flex gap="md">
+          <Button variant="default" size="xs" fullWidth><Skeleton height={8} radius="xl" w="50%" /></Button>
+          <Button variant="default" c="red" fullWidth size="xs"><Skeleton height={8} radius="xl" w="50%" /></Button>
+        </Flex>}
+
+        {!isLoading && <Flex gap="md">
+          <Button href={`/app/immobilie?edit=${estate._id}`} component={Link} target="_blank" variant="default" size="xs" fullWidth>
+            Bearbeiten TODO
+          </Button>
+          <Button onClick={() => console.log('TODO')} variant="default" c="red" fullWidth size="xs">Löschen TODO</Button>
+        </Flex>}
+      </Flex>
     </Card>
   )
 }

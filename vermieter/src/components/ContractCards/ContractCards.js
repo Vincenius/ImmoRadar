@@ -1,9 +1,8 @@
 import React, { useState } from 'react'
 import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box, Modal } from '@mantine/core'
-import { useDisclosure } from '@mantine/hooks';
 import useSWR from 'swr'
 import { fetcher } from '@/utils/fetcher';
-import { IconHome, IconUser, IconCalendar, IconFilePlus, IconEdit } from '@tabler/icons-react';
+import { IconHome, IconUser, IconCalendar, IconFilePlus } from '@tabler/icons-react';
 import Link from 'next/link';
 
 const ContractCard = ({ contract, isLoading, setDeleteData }) => {
