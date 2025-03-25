@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout/Layout"
+import Layout from "@/components/Layout/AppLayout"
 import Link from "next/link";
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
@@ -14,12 +14,7 @@ function App() {
   const router = useRouter();
   const [isCheckout, setIsCheckout] = useState();
   const { token } = router.query
-  const { data: session, status, update } = useSession({
-    required: true,
-    onUnauthenticated() {
-      router.replace('/login')
-    },
-  })
+  const { data: session, status, update } = useSession()
 
   useEffect(() => {
     if (status === 'authenticated' && token) {
@@ -52,7 +47,7 @@ function App() {
     }
   }, [token, status])
 
-  if (status === "loading" || token) {
+  if (status === "loading" || token || !session) {
     return <Layout title="Dashboard">
       <Flex h="70vh" w="100%" align="center" justify="center">
         <Loader size={30} />
@@ -89,7 +84,6 @@ function App() {
       <Title order={1} size="h3" weight={500} mb="md">Deine Immobilien</Title>
       <EstateCards maxCards={2} />
       <Button variant="transparent" mt="md" component={Link} href="/app/immobilien">Alle Immobilien anzeigen</Button>
-      {/* todo deine immobilien */}
     </Layout>
   )
 }

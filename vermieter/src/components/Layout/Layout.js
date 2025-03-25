@@ -1,13 +1,12 @@
 import React, { useState } from 'react';
 import Head from "next/head";
-import Image from 'next/image';
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
 import { Container, Text, Flex, Box, Burger, Menu, Button } from '@mantine/core'
 // import Logo from './logo.svg';
-import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 import { useRouter } from 'next/router';
+import Footer from './Footer';
 
 const authMenu = [
   {
@@ -19,24 +18,14 @@ const authMenu = [
   }
 ];
 
-
 const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
   const router = useRouter();
   const { query } = router;
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
-  const { data: session, status } = useSession()
   const token = query?.token
-  const isLoggedIn = status === "authenticated"
-
-  const menu = isLoggedIn ? [{
-    label: 'Dashboard',
-    url: '/app'
-  }, {
-    label: 'Logout',
-    onClick: () => signOut()
-  }] : authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }));
+  const menu = authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }))
 
   return <>
     <Head>
@@ -67,7 +56,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <Box as="header" height={60} className={styles.header}>
         <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
-            <Link href={isLoggedIn ? '/app' : '/'} className={styles.headerLink}>
+            <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
                 <Text weight={700} size="xl">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
@@ -108,26 +97,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
         {children}
       </Container>
 
-      <Box as="footer" className={styles.footer} p="md" pt="xl" pb="md">
-        <Container size={1060}>
-          <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
-            <Box>
-              <Flex gap="sm" mt="sm">
-                <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
-                <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
-              </Flex>
-            </Box>
-
-            <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
-              <Box>
-                <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
-                <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-              </Box>
-            </Flex>
-          </Flex>
-          <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} {process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
-        </Container>
-      </Box>
+      <Footer />
     </div>
   </>
 }

@@ -1,4 +1,4 @@
-import Layout from "@/components/Layout/Layout"
+import Layout from "@/components/Layout/AppLayout"
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { Loader, Flex, Title } from "@mantine/core";

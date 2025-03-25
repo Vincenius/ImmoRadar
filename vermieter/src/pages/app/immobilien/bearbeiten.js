@@ -1,4 +1,4 @@
-import Layout from '@/components/Layout/Layout'
+import Layout from '@/components/Layout/AppLayout'
 import { Title, Loader, Flex } from '@mantine/core'
 import EstateForm from '@/components/EstateForm/EstateForm'
 import useSWR from 'swr'

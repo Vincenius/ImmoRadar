@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import Layout from '@/components/Layout/Layout'
+import Layout from '@/components/Layout/AppLayout'
 import { useRouter } from 'next/router';
 import { notifications } from '@mantine/notifications';
 import EstateCards from '@/components/EstateCards/EstateCards';
