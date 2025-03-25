@@ -38,7 +38,6 @@ export const authOptions = {
 
               if (!stripeUser && stripeSession.status === 'complete' && stripeSession.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
                 if (stripeSession.client_reference_id) {
-                  // TODO test
                   await updateContractAfterSubscription({
                     userId: user._id,
                     contractId: stripeSession.client_reference_id,

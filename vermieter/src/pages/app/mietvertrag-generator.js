@@ -5,6 +5,7 @@ import { Loader, Flex, Title } from "@mantine/core";
 import ContractWizard from "@/components/ContractWizard/ContractWizard"
 import useSWR from 'swr'
 import { fetcher } from "@/utils/fetcher";
+import { useEffect } from "react";
 
 function MietvertragGenerator() {
   const router = useRouter();
@@ -15,10 +16,22 @@ function MietvertragGenerator() {
     },
   })
 
+  useEffect(() => {
+    if (session && session.user && session.user.plan !== 'year') {
+      router.replace('/mietvertrag-generator')
+    }
+  }, [session])
+
   const { data = [], isLoading } = useSWR('/api/user-contracts', fetcher)
   const { data: estatesData = [], isLoading: estatesLoading } = useSWR('/api/user-estates', fetcher)
+  const { data: userData = {}, isLoading: userDataLoading } = useSWR('/api/user', fetcher)
+  const defaultUserData = {
+    bankAccount: userData.bankAccount, landlordCity: userData.landlordCity,
+    landlordName: userData.landlordName, landlordRepresentedBy: userData.landlordRepresentedBy,
+    landlordStreet: userData.landlordStreet, landlordZip: userData.landlordZip
+  }
 
-  if (status === "loading" || isLoading || estatesLoading) {
+  if (status === "loading" || isLoading || estatesLoading || userDataLoading) {
     return <Layout title="Mietvertrag Generator">
       <Flex h="70vh" w="100%" align="center" justify="center">
         <Loader size={30} />
@@ -31,8 +44,8 @@ function MietvertragGenerator() {
   const defaultData = editId
     ? data.find(d => d._id === editId)
     : estateId
-      ? estatesData.find(e => e._id === estateId)
-      : null
+      ? { ...defaultUserData, ...estatesData.find(e => e._id === estateId) }
+      : defaultUserData
 
   const mappedDefaultData = defaultData ? {
     ...defaultData,
@@ -41,10 +54,12 @@ function MietvertragGenerator() {
     rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null,
   } : {}
 
+  console.log(mappedDefaultData)
+
   return (
     <Layout title="Mietvertrag Generator">
-      { !editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title> }
-      { editId && <Title mb="xl" fw="lighter" size="3em">Mietvertrag Bearbeiten</Title> }
+      {!editId && <Title order={1} size="h3" weight={500} mb="xl">Mietvertrag Generator</Title>}
+      {editId && <Title order={1} size="h3" weight={500} mb="xl">Mietvertrag Bearbeiten</Title>}
 
       <ContractWizard isAuthenticated defaultData={mappedDefaultData} isEdit={!!editId} />
     </Layout>

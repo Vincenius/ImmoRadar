@@ -18,7 +18,6 @@ export default async function handler(req, res) {
       await client.connect();
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('users');
-      const contractCollection = db.collection('contracts');
 
       const [user, stripeUser] = await Promise.all([
         collection.findOne({ email }),
@@ -27,7 +26,8 @@ export default async function handler(req, res) {
 
       if (user) {
         return res.status(400).json({ success: false, message: 'UserExists' });
-      } else if (stripeUser) {
+      } else if (stripe_id && stripeUser) {
+        console.log(stripeUser)
         return res.status(400).json({ success: false, message: 'StripeUserExists' });
       } else {
         const passHash = CryptoJS.SHA256(password, process.env.PASSWORD_HASH_SECRET).toString(
@@ -41,7 +41,6 @@ export default async function handler(req, res) {
             const newUser = await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
 
             if (session.client_reference_id) {
-              // TODO test
               await updateContractAfterSubscription({
                 userId: newUser.insertedId,
                 contractId: session.client_reference_id,

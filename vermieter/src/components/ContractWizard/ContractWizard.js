@@ -36,7 +36,7 @@ function ContractWizard({
     rentSteps: defaultRentSteps = [{}],
     ...rest
   } = defaultData
-  const initData = rest._id ? rest : { visited: true, rooms: {}, rentals: [] }
+  const initData = { visited: true, rooms: {}, rentals: [], ...(rest || {}) }
   const [active, setActive] = useState(0)
   const [data, setData] = useState(initData)
   const [additionalRooms, setAdditionalRooms] = useState(defaultAdditionalRooms)
@@ -118,6 +118,7 @@ function ContractWizard({
 
   const sharedAssets = data?.sharedAssets || []
   const enclosures = data?.enclosures || []
+  const rentals = data?.rentals || []
 
   return (
     <Card withBorder shadow="md">

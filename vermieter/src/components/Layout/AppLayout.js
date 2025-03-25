@@ -22,6 +22,8 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
     },
   })
 
+  const isAuthenticated = session?.user?.plan === 'year'
+
   return <>
     {/* todo move head to separate file */}
     <Head>
@@ -70,13 +72,13 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
           <Button fullWidth leftSection={<IconDashboard size={14} />} component={Link} href="/app" mb="md" variant={router.pathname === '/app' ? 'light' : 'white'}>
             Dashboard
           </Button>
-          <Button fullWidth leftSection={<IconClipboardText size={14} />} component={Link} href="/app/vertraege" mb="md" variant={router.pathname === '/app/vertraege' ? 'light' : 'white'}>
+          <Button fullWidth leftSection={<IconClipboardText size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/vertraege" mb="md" variant={router.pathname === '/app/vertraege' ? 'light' : 'white'} disabled={!isAuthenticated}>
             Mietverträge
           </Button>
-          <Button fullWidth leftSection={<IconHome size={14} />} component={Link} href="/app/immobilien" mb="md" variant={router.pathname === '/app/immobilien' ? 'light' : 'white'}>
+          <Button fullWidth leftSection={<IconHome size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/immobilien" mb="md" variant={router.pathname === '/app/immobilien' ? 'light' : 'white'} disabled={!isAuthenticated}>
             Immobilien
           </Button>
-          <Button fullWidth leftSection={<IconSettings size={14} />} component={Link} href="/app/einstellungen" mb="md" variant={router.pathname === '/app/einstellungen' ? 'light' : 'white'}>
+          <Button fullWidth leftSection={<IconSettings size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/settings" mb="md" variant={router.pathname === '/app/settings' ? 'light' : 'white'} disabled={!isAuthenticated}>
             Einstellungen
           </Button>
           <Button fullWidth leftSection={<IconLogout size={14} />} onClick={() => signOut()} variant="outline" mb="md">

@@ -30,7 +30,6 @@ export default async function handler(req, res) {
         const user = await collection.findOne({ email: serverSession.user.email });
 
         if (session.client_reference_id) {
-          // TODO test
           await updateContractAfterSubscription({
             userId: user._id,
             contractId: session.client_reference_id,
