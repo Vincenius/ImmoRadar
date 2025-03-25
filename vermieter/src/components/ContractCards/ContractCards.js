@@ -45,7 +45,7 @@ const ContractCard = ({ contract, isLoading, setDeleteData }) => {
         </Flex>}
 
         {!isLoading && <Flex gap="md">
-          <Button href={`/app/mietvertrag-generator?edit=${contract._id}`} component={Link} target="_blank" variant="default" size="xs" fullWidth>
+          <Button href={`/app/mietvertrag-generator?edit=${contract._id}`} component={Link} variant="default" size="xs" fullWidth>
             Bearbeiten
           </Button>
           <Button onClick={() => setDeleteData(contract)} variant="default" c="red" fullWidth size="xs">Löschen</Button>

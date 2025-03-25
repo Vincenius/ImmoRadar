@@ -88,7 +88,7 @@ function App() {
 
       <Title order={1} size="h3" weight={500} mb="md">Deine Immobilien</Title>
       <EstateCards maxCards={2} />
-      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>
+      <Button variant="transparent" mt="md" component={Link} href="/app/immobilien">Alle Immobilien anzeigen</Button>
       {/* todo deine immobilien */}
     </Layout>
   )

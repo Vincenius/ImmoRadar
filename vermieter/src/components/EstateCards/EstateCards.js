@@ -1,11 +1,11 @@
-import React from 'react'
-import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box } from '@mantine/core'
+import React, { useState } from 'react'
+import { Card, Flex, ThemeIcon, Text, Button, Skeleton, Grid, Box, Modal } from '@mantine/core'
 import useSWR from 'swr'
 import { fetcher } from '@/utils/fetcher';
 import { IconHome, IconFilePlus } from '@tabler/icons-react';
 import Link from 'next/link';
 
-const EstateCard = ({ estate, isLoading }) => {
+const EstateCard = ({ estate, isLoading, setDeleteData }) => {
   return (
     <Card shadow="md" padding="lg" radius="md" withBorder h="100%">
       <Flex direction="column" justify="space-between" h="100%">
@@ -35,10 +35,10 @@ const EstateCard = ({ estate, isLoading }) => {
         </Flex>}
 
         {!isLoading && <Flex gap="md">
-          <Button href={`/app/immobilie?edit=${estate._id}`} component={Link} target="_blank" variant="default" size="xs" fullWidth>
-            Bearbeiten TODO
+          <Button href={`/app/immobilien/bearbeiten?id=${estate._id}`} component={Link} variant="default" size="xs" fullWidth>
+            Bearbeiten
           </Button>
-          <Button onClick={() => console.log('TODO')} variant="default" c="red" fullWidth size="xs">Löschen TODO</Button>
+          <Button onClick={() => setDeleteData(estate)} variant="default" c="red" fullWidth size="xs">Löschen</Button>
         </Flex>}
       </Flex>
     </Card>
@@ -46,8 +46,18 @@ const EstateCard = ({ estate, isLoading }) => {
 }
 
 function EstateCards({ maxCards }) {
-  const { data = [], isLoading } = useSWR('/api/user-estates', fetcher)
+  const [deleteLoading, setDeleteLoading] = useState()
+  const [deleteData, setDeleteData] = useState()
+  const { data = [], isLoading, mutate } = useSWR('/api/user-estates', fetcher)
   const estates = maxCards ? data.slice(0, maxCards) : data
+  const deleteEstate = () => {
+    setDeleteLoading(true)
+    fetch(`/api/estates?id=${deleteData._id}`, { method: 'DELETE' }).then(() => {
+      setDeleteLoading(false)
+      setDeleteData(null)
+      mutate()
+    })
+  }
 
   if (isLoading) {
     return (
@@ -59,12 +69,24 @@ function EstateCards({ maxCards }) {
   }
   return (
     <>
+      <Modal opened={deleteData && deleteData._id} onClose={() => setDeleteData(null)} title="Immobilie Löschen">
+        {deleteData && <>
+          <Text mb="md">Bist du dir sicher, dass du folgende Immobilie löschen willst?</Text>
+          <Text mb="md" fw="bold">{deleteData.street}, {deleteData.zip} {deleteData.city}</Text>
+          <Flex gap="md">
+            <Button variant='outline' w="50%" onClick={() => setDeleteData(null)} disabled={deleteLoading}>Abbrechen</Button>
+            <Button color="red.9" w="50%" onClick={deleteEstate} loading={deleteLoading}>Immobilie Löschen</Button>
+          </Flex>
+        </>}
+      </Modal>
       <Grid gap="md">
         {estates.map(estate => (
-          <Grid.Col key={estate._id} span={{ base: 12, sm: 6, lg: 4 }}><EstateCard estate={estate} /></Grid.Col>
+          <Grid.Col key={estate._id} span={{ base: 12, sm: 6, lg: 4 }}>
+            <EstateCard estate={estate} setDeleteData={setDeleteData} />
+          </Grid.Col>
         ))}
         <Grid.Col span={{ base: 12, sm: 6, lg: 4 }}>
-          <Card shadow="md" padding="lg" radius="md" withBorder h="100%" component={Link} href="/app/immobilie">
+          <Card shadow="md" padding="lg" radius="md" withBorder h="100%" component={Link} href="/app/immobilien/neu">
             <Flex h="100%" direction="column" align="center" justify="center">
               <IconFilePlus style={{ width: '30px', height: '30px' }} />
               <Text mt="md" fs="italic" ta="center">Neue Immobilie erstellen</Text>

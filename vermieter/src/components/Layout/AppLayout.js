@@ -1,0 +1,1 @@
+// layout with auth check
