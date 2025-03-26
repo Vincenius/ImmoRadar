@@ -18,14 +18,24 @@ const authMenu = [
   }
 ];
 
+
 const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
   const router = useRouter();
   const { query } = router;
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
+  const { data: session, status } = useSession()
   const token = query?.token
-  const menu = authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }))
+  const isLoggedIn = status === "authenticated"
+
+  const menu = isLoggedIn ? [{
+    label: 'Dashboard',
+    url: '/app'
+  }, {
+    label: 'Logout',
+    onClick: () => signOut()
+  }] : authMenu.map(m => ({ ...m, url: token ? `${m.url}?token=${token}` : m.url }));
 
   return <>
     <Head>
@@ -56,7 +66,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <Box as="header" height={60} className={styles.header}>
         <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
-            <Link href="/" className={styles.headerLink}>
+            <Link href={isLoggedIn ? '/app' : '/'} className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
                 <Text weight={700} size="xl">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
