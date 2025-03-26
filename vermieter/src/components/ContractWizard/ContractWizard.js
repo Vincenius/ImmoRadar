@@ -37,7 +37,7 @@ function ContractWizard({
     ...rest
   } = defaultData
   const initData = { visited: true, rooms: {}, rentals: [], ...(rest || {}) }
-  const [active, setActive] = useState(0)
+  const [active, setActive] = useState(isEdit ? 1 : 0)
   const [data, setData] = useState(initData)
   const [additionalRooms, setAdditionalRooms] = useState(defaultAdditionalRooms)
   const [additionalRentals, setAdditionalRentals] = useState(defaultAdditionalRentals)
