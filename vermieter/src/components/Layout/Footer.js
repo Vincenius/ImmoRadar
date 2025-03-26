@@ -21,6 +21,7 @@ function Footer() {
           <Box>
             <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
             <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
+            <Link href="/kontakt"><Text size="sm" c="gray.7" mb="xs">Kontakt</Text></Link>
           </Box>
         </Flex>
       </Flex>

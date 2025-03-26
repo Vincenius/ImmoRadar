@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import Head from "next/head";
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
-import { Container, Text, Flex, Group, Burger, Menu, Button, AppShell, Loader } from '@mantine/core'
+import { Text, Flex, Group, Burger, Box, Button, AppShell, Loader } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 // import Logo from './logo.svg';
 import styles from './Layout.module.css';
@@ -93,8 +93,10 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
             : children
           }
         </AppShell.Main>
-        <Footer />
       </AppShell>
+      <Box pos="relative" style={{ zIndex: 1000 }} w="100%">
+        <Footer />
+      </Box>
     </div>
   </>
 }
