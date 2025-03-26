@@ -18,22 +18,18 @@ export default async function handler(req, res) {
       const [user] = await userCollection.find({ email: serverSession.user.email }).toArray();
 
       if (req.method === 'GET') {
-        const { _id, confirmed, password, stripe_id, subscription_id, token, ...result } = user // filter some fields
-        const subscription = await stripe.subscriptions.retrieve(subscription_id);
-        const userResult = {
-          ...result,
-          susbcription_start_date: subscription.start_date,
-          subscription_end_date: subscription.cancel_at_period_end ? subscription.cancel_at : null
+        const { type } = req.query
+        if (type === 'cancel') {
+          await stripe.subscriptions.update(
+            user.subscription_id,
+            { cancel_at_period_end: true }
+          );
+        } else {
+          await stripe.subscriptions.update(
+            user.subscription_id,
+            { cancel_at_period_end: false }
+          );
         }
-
-        res.status(200).json(userResult);
-      } else if (req.method === 'PUT') {
-        const update = JSON.parse(req.body)
-
-        await userCollection.findOneAndUpdate(
-          { _id: user._id },
-          { $set: update }
-        )
 
         res.status(200).json({});
       } else {

@@ -38,7 +38,7 @@ export default async function handler(req, res) {
         if (stripe_id) {
           const session = await stripe.checkout.sessions.retrieve(stripe_id, { expand: ['line_items'] });
           if (session.status === 'complete' && session.line_items.data[0].price.product === 'prod_RyjZPnfnRrWm2N') {
-            const newUser = await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', expires_at: session.expires_at, stripe_id });
+            const newUser = await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'year', subscription_id: session.subscription, stripe_id });
 
             if (session.client_reference_id) {
               await updateContractAfterSubscription({

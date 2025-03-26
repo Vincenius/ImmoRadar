@@ -36,7 +36,7 @@ export default async function handler(req, res) {
             db,
           })
         }
-        await collection.updateOne({ email: user.email }, { $set: { stripe_id: token, plan: 'year', expires_at: session.expires_at } })
+        await collection.updateOne({ email: user.email }, { $set: { stripe_id: token, plan: 'year', subscription_id: session.subscription } })
 
         return res.status(200).json({ error: false })
       } else {

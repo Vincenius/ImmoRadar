@@ -9,6 +9,7 @@ import IBAN from 'iban'
 function Settings() {
   const { data = {}, isLoading, mutate } = useSWR('/api/user', fetcher)
   const [submitLoading, setSubmitLoading] = useState(false)
+  const [cancelLoading, setCancelLoading] = useState(false)
   const [hasIbanError, setHasIbanError] = useState(false)
 
   const handleSubmit = (e) => {
@@ -41,6 +42,25 @@ function Settings() {
         })
     }
   }
+
+  const cancelSubscription = (type) => {
+    setCancelLoading(true)
+
+    fetch(`/api/end-subscription?type=${type}`).then(() => {
+      mutate()
+      setCancelLoading(false)
+      
+      notifications.show({
+        title: type === 'cancel' ? 'Abo gekündigt' : 'Kündigung rückgängig gemacht',
+        message: type === 'cancel' ? 'Deine Abo erfolgreich gekündigt.' : 'Dein Abo ist wieder aktiv.',
+        color: 'green',
+        position: 'top-center',
+      });
+    })
+  }
+
+  const subEndDate = new Date(data?.susbcription_start_date * 1000)
+  subEndDate.setFullYear(subEndDate.getFullYear() + 1)
 
   return (
     <Layout title="Einstellungen">
@@ -120,7 +140,17 @@ function Settings() {
           </form>
         </Card>
 
-        {/* TODO abo beenden */}
+        <Card withBorder shadow="md" mb="md">
+          <Title order={2} size="h5">Deine Abo</Title>
+          {!data.subscription_end_date && <>
+            <Text fs="italic" mb="md">Wird automatisch am {subEndDate.toLocaleDateString('DE-de', { dateStyle: 'long' })} erneuert.</Text>
+            <Button color="red.9" loading={cancelLoading} onClick={() => cancelSubscription('cancel')}>Abo zum Ende der Laufzeit kündigen</Button>
+          </>}
+          {data.subscription_end_date && <>
+            <Text fs="italic" mb="md" c="red.9">Dein Abo endet am {new Date(data.subscription_end_date * 1000).toLocaleDateString('DE-de', { dateStyle: 'long' })}.</Text>
+            <Button variant="outline" loading={cancelLoading} onClick={() => cancelSubscription('revert')}>Abo Kündigung rückgängig machen</Button>
+          </>}
+        </Card>
       </>}
     </Layout>
   )

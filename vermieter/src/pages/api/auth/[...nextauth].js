@@ -48,7 +48,7 @@ export const authOptions = {
                   $set: {
                     stripe_id: token,
                     plan: 'year',
-                    expires_at: stripeSession.expires_at,
+                    subscription_id: stripeSession.subscription,
                   }
                 })
               }
@@ -79,7 +79,7 @@ export const authOptions = {
           const user = await collection.findOne({ email: session.user.email });
           if (user) {
             session.user.plan = user.plan;
-            session.user.expires_at = user.expires_at;
+            session.user.subscription_id = user.subscription_id;
             session.user.confirmed = user.confirmed;
           }
         } catch (error) {
