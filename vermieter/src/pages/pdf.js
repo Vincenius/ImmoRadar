@@ -18,11 +18,16 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   const id = params.get('id');
   const baseUrl = process.env.BASE_URL
 
+  const headers = {
+    'x-api-key': process.env.API_KEY
+  }
+  if (process.env.PROTECTION) {
+    headers['Authorization'] = `Basic ${process.env.PROTECTION}`;
+  }
+  
   const data = await fetch(`${baseUrl}/api/contract?id=${id}`, {
     method: 'GET',
-    headers: {
-      'x-api-key': process.env.API_KEY
-    }
+    headers,
   }).then(res => res.json())
 
   return {

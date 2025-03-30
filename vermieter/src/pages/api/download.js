@@ -52,7 +52,13 @@ export default async function handler(req, res) {
       args: ['--no-sandbox', '--disable-setuid-sandbox']
     });
     const page = await browser.newPage();
-    await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY });
+    const headers = {
+      'x-api-key': process.env.API_KEY
+    }
+    if (process.env.PROTECTION) {
+      headers['Authorization'] = `Basic ${process.env.PROTECTION}`;
+    }
+    await page.setExtraHTTPHeaders(headers);
     await page.goto(`${process.env.BASE_URL}/pdf?id=${contractId}`, { waitUntil: 'networkidle0' });
 
     // if tmp directory doesnt exist create it
