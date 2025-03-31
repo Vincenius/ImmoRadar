@@ -76,7 +76,7 @@ export default function Register() {
 
         <form onSubmit={handleSubmit}>
           <TextInput name="email" size="md" placeholder="mustermann@example.com" label="E-Mail Adresse" type="email" mb="md" required error={emailError} />
-          <TextInput name="password" size="md" label="Passwort" type="password" mb="md" required error={passwordError} />
+          <TextInput name="password" size="md" label="Passwort" type="password" mb="md" required error={passwordError} placeholder="mind. 8 Zeichen" />
 
           <Checkbox
             size="md"

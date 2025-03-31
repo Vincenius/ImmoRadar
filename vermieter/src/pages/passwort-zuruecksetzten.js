@@ -61,7 +61,7 @@ export default function ForgotPassword() {
         <Title ta="center" fw="lighter" mb="xl">Passwort zurücksetzten</Title>
 
         {!isSuccess && <form onSubmit={handleSubmit}>
-          <TextInput name="password" size="md" label="Neues Passwort" type="password" mb="md" required error={passwordError} />
+          <TextInput name="password" size="md" label="Neues Passwort" type="password" mb="md" required error={passwordError} placeholder="mind. 8 Zeichen" />
 
           <Button size="lg" mb="xl" fullWidth loading={isLoading} type="submit">Passwort zurücksetzten</Button>
           {unexpectedError && <Text c="red.9" mb="lg">{unexpectedError}</Text>}
