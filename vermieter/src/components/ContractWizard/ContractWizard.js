@@ -85,7 +85,7 @@ function ContractWizard({
       additionalRooms,
       additionalEnclosures,
       additionalRentals,
-      rentSteps: rentSteps.filter(r => r.date && r.rent),
+      rentSteps: rentSteps.filter(r => r.date && r.rent), // here
     }
 
     const uri = isEdit ? '/api/update-contract' : '/api/generate'

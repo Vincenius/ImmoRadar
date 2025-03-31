@@ -8,7 +8,7 @@ function Mietvertraege() {
     <Layout title="Mietvertrag Generator" noindex={true}>
       <Title mb="xl" fw="lighter" size="3em">Mietvertrag Generator</Title>
 
-      <ContractWizard />
+      <ContractWizard isAuthenticated={process.env.NEXT_PUBLIC_DISABLE_STRIPE === 'true'} />
     </Layout >
   )
 }

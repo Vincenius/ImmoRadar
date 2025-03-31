@@ -53,15 +53,16 @@ function MietvertragGenerator() {
     visitedDate: defaultData.visitedDate ? new Date(defaultData.visitedDate) : null,
     rentSteps: defaultData.rentSteps ? defaultData.rentSteps.map(r => ({ ...r, date: new Date(r.date) })) : null,
   } : {}
-
-  console.log(mappedDefaultData)
+  const filteredDefaultData = Object.fromEntries(
+    Object.entries(mappedDefaultData).filter(([key, value]) => value !== undefined && value !== null)
+  );
 
   return (
     <Layout title="Mietvertrag Generator">
       {!editId && <Title order={1} size="h3" weight={500} mb="xl">Mietvertrag Generator</Title>}
       {editId && <Title order={1} size="h3" weight={500} mb="xl">Mietvertrag Bearbeiten</Title>}
 
-      <ContractWizard isAuthenticated defaultData={mappedDefaultData} isEdit={!!editId} />
+      <ContractWizard isAuthenticated defaultData={filteredDefaultData} isEdit={!!editId} />
     </Layout>
   )
 }

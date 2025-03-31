@@ -51,7 +51,8 @@ export default async function handler(req, res) {
             stripe_error = true
           }
         } else {
-          await collection.insertOne({ email, password: passHash, confirmed: false, token, plan: 'free' });
+          const plan = process.env.NEXT_PUBLIC_DISABLE_STRIPE === 'true' ? 'year' : 'free'
+          await collection.insertOne({ email, password: passHash, confirmed: false, token, plan });
         }
 
         if (!stripe_error) {

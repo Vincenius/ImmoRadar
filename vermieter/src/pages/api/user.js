@@ -19,7 +19,7 @@ export default async function handler(req, res) {
 
       if (req.method === 'GET') {
         const { _id, confirmed, password, stripe_id, subscription_id, token, ...result } = user // filter some fields
-        const subscription = await stripe.subscriptions.retrieve(subscription_id);
+        const subscription = process.env.NEXT_PUBLIC_DISABLE_STRIPE === 'true' ? {} : await stripe.subscriptions.retrieve(subscription_id);
         const userResult = {
           ...result,
           susbcription_start_date: subscription.start_date,

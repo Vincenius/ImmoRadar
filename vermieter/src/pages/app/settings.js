@@ -140,7 +140,7 @@ function Settings() {
           </form>
         </Card>
 
-        <Card withBorder shadow="md" mb="md">
+        {process.env.NEXT_PUBLIC_DISABLE_STRIPE !== 'true' && <Card withBorder shadow="md" mb="md">
           <Title order={2} size="h5">Deine Abo</Title>
           {!data.subscription_end_date && <>
             <Text fs="italic" mb="md">Wird automatisch am {subEndDate.toLocaleDateString('DE-de', { dateStyle: 'long' })} erneuert.</Text>
@@ -150,7 +150,7 @@ function Settings() {
             <Text fs="italic" mb="md" c="red.9">Dein Abo endet am {new Date(data.subscription_end_date * 1000).toLocaleDateString('DE-de', { dateStyle: 'long' })}.</Text>
             <Button variant="outline" loading={cancelLoading} onClick={() => cancelSubscription('revert')}>Abo Kündigung rückgängig machen</Button>
           </>}
-        </Card>
+        </Card>}
       </>}
     </Layout>
   )
