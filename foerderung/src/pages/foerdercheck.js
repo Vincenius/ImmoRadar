@@ -330,7 +330,9 @@ export default function Foerderung() {
             >
               {finalData.filter(q => q.Questions && q.Questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
+                  <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
                   <Text fw="bold" mb="lg" ta="center">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
+                  {/* todo timeline https://mantine.dev/core/timeline/ */}
                   <form onSubmit={e => handleSubmitQuestionnaire(e, d)}>
                     <Table mb="lg" size="sm" striped display={{ base: 'none', xs: 'table' }}>
                       <Table.Thead>

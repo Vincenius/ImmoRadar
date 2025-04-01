@@ -167,9 +167,8 @@ Es werden auch notwendige Umfeldmaßnahmen gefördert, die für die Umsetzung de
 3. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
 
-4. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ja  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 5. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
    ✅ Ja  
@@ -240,9 +239,12 @@ Erfüllung des Standards „KlimaGebäude.NRW“
 5. **Wird die BIM-Methode (Building Information Modeling) in den Planungsprozess integriert?**  
    ✅ Ja  
 
-6. **Wird der Standard „KlimaGebäude.NRW“ erfüllt?** *(Unterscheidung nach Neubau oder Bestand notwendig.)*  
-   ✅ Ja, für **Neubauten**: Wärmebezogene CO₂-Emissionen ≤ 5 kg/m²/Jahr & Transmissionswärmeverlust ≤ 0,30 W/m²K  
-   ✅ Ja, für **Bestandsgebäude**: Wärmebezogene CO₂-Emissionen ≤ 10 kg/m²/Jahr & Transmissionswärmeverlust ≤ 0,38 W/m²K  
+6. Erfüllt das Gebäude – je nach Art – die Anforderungen des Standards „KlimaGebäude.NRW“, also entweder:
+
+bei Neubauten: CO₂-Emissionen ≤ 5 kg/m²/Jahr & Transmissionswärmeverlust ≤ 0,30 W/m²K,
+
+oder bei Bestandsgebäuden: CO₂-Emissionen ≤ 10 kg/m²/Jahr & Transmissionswärmeverlust ≤ 0,38 W/m²K?
+✅ Ja
 
 7. **Liegt ein Nachweis der Erfüllung der Anforderungen durch einen Bauvorlageberechtigten sowie eine gesonderte CO₂-Berechnung vor?**  
    ✅ Ja   
@@ -519,9 +521,8 @@ Zudem: Fachplanungs- und Baubegleitungsleistungen (siehe KfW Wohngebäude – En
 - Für den Kredit sind bankübliche Sicherheiten zu stellen. Form und Umfang der Besicherung vereinbaren Sie im Rahmen der Kreditverhandlungen mit Ihrem Finanzierungspartner.
 - Um den Tilgungszuschuss zu erhalten, muss die „Bestätigung nach Durchführung“ mindestens vier Monate vor dem jeweiligen Verrechnungszeitpunkt bei der KfW eingereicht werden
 - Der programmgemäße Einsatz der Mittel ist innerhalb von 54 Monaten nach Zusage des Kredits gegenüber der Hausbank zu belegen. 
-","1. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja    
-   ✅ Ich bin Eigentümer:in  
+","1. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 2. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja   
@@ -688,9 +689,8 @@ a,rec35UToq3KfuGQfE,undefined,10/21/2024,EIF - Teil B: Diversifizierungsförderu
 2. **Stammen mindestens 25 % der Umsatzerlöse aus Bodenbewirtschaftung oder bodengebundener Tierhaltung?**  
    ✅ Ja  
 
-3. **Liegt das zu versteuernde Einkommen gemäß Einkommensteuerbescheid unter folgenden Grenzen?**  
-   ✅ Ja, **bei Ledigen unter 140.000 €**  
-   ✅ Ja, **bei Verheirateten unter 170.000 €**  
+3. Liegt Ihr zu versteuerndes Einkommen laut Einkommensteuerbescheid unter der Einkommensgrenze – also unter 140.000 € bei Ledigen bzw. unter 170.000 € bei Verheirateten?
+✅ Ja
 
 4. **Beträgt das geplante Investitionsvolumen mindestens 10.000 Euro und maximal 800.000 Euro?**  
    ✅ Ja  
@@ -914,12 +914,10 @@ a,rec3hW4IQ8YDb5BNr,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 3. **Wird ein Energiezähler zur Erfassung relevanter Messgrößen installiert?**  
    ✅ Ja  
 
-4. **Handelt es sich um Maßnahmen an einem eingetragenen Baudenkmal oder in einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-   ✅ Nein  
-
-4b. **Falls Ja: Liegt eine Genehmigung der Unteren Denkmalbehörde für die Maßnahme vor?**  
-   ✅ Ja  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 5. **Werden alle Arbeiten ausschließlich durch Fachunternehmen durchgeführt?**  
    ✅ Ja  
@@ -1110,13 +1108,11 @@ a,rec4ICDRk35GvYvh1,"
 3. **Erfolgt der Einbau der neuen Anlage in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Wird für die Antragstellung einer anderen Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
-   ✅ Ja  
-   ✅ Nein  
+4. Wird entweder ein Energieeffizienz-Experte bzw. eine Energieeffizienz-Expertin für die Antragstellung einer anderen Anlage zur Wärmeerzeugung eingebunden – oder bewusst auf die (optionale) Einbindung verzichtet, da sie nicht verpflichtend ist?
+✅ Ja
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ja  
-   ✅ Ich bin Eigentümer:in  
+5. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -1626,9 +1622,8 @@ a,rec9QnmLWRWAEbgcM,"Die Förderung durch die Stadt Oldenburg durch das Förderp
 ","1. **Ist das zu fördernde Gebäude älter als 10 Jahre?**  
    ✅ Ja  
 
-2. **Wurde mit dem Vorhaben bereits begonnen? Falls ja: Liegt eine textliche Zustimmung der Stadt zum vorzeitigen Beginn vor?**  
-   ✅ Ja, aber es liegt eine textliche Zustimmung der Stadt vor
-   ✅ Nein  
+2. Wurde mit dem Vorhaben entweder noch nicht begonnen – oder, falls doch, liegt eine textliche Zustimmung der Stadt zum vorzeitigen Maßnahmenbeginn vor?
+✅ Ja
 
 3. **Wird das Datum des Durchführungsbeginns durch eine Fachunternehmererklärung nachgewiesen?**  
    ✅ Ja  
@@ -1636,12 +1631,8 @@ a,rec9QnmLWRWAEbgcM,"Die Förderung durch die Stadt Oldenburg durch das Förderp
 4. **Entspricht die Maßnahme den Anforderungen der Anlage „Technische Mindestanforderungen“ und ist sie baurechtlich zulässig?**  
    ✅ Ja  
 
-5. **Wird die Durchführung der Sanierungsmaßnahmen ausschließlich durch Fachbetriebe vorgenommen?**  
-   ✅ Ja 
-   ✅ Nein, Eigenleistung
-
-6. **Falls Eigenleistung erbracht wird: Wird die fachgerechte Durchführung durch einen Energie-Effizienz-Experten für die Förderprogramme des Bundes textlich bestätigt?**  
-   ✅ Ja  
+5. Werden die Sanierungsmaßnahmen entweder vollständig durch Fachbetriebe durchgeführt – oder, falls in Eigenleistung, durch einen Energieeffizienz-Experten bzw. eine Energieeffizienz-Expertin fachlich begleitet und schriftlich bestätigt?
+✅ Ja
 
 7. **Werden alle Angebote und Zahlungen in der Währung Euro vorgelegt und abgewickelt?**  
    ✅ Ja  
@@ -1704,9 +1695,8 @@ a,rec9Rdk5LxlAxWX8D,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 3. **Erfolgt der Einbau der neuen Anlage in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ja  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 5. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -1870,11 +1860,10 @@ a,recAPxkBj4h0nJttZ,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 - Das förderfähige Mindestinvestitionsvolumen für die förderfähige Maßnahme beträgt € 2.000 brutto.
 - Die technischen Mindestanforderungen aus dem Richtlinienheft sind einzuhalten und nachzuweisen
 
-","1. **Handelt es sich bei der Maßnahme um ein eingetragenes Baudenkmal oder ein Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-
-2. **Falls Ja: Liegt eine Genehmigung der Unteren Denkmalbehörde für die Maßnahme vor?**  
-   ✅ Ja  
+","4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 3. **Wird die Maßnahme von einem gelisteten Energieberater für Baudenkmäler begleitet?**  
    ✅ Ja  
@@ -2339,34 +2328,28 @@ a,recCYtI4pRf5zTOHr,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 - Alle technischen Mindestanforderungen nach der Förderrichtlinie werden eingehalten (Diese findest du im aktuellen Bundesanzeiger ""Richtlinie für die Bundesförderung für effiziente Gebäude – Einzelmaßnahmen (BEG EM)"" in der Anlage ""Technische Mindestanforderungen"" in Kapitel 3.1 und 3.3: <https://www.energiewechsel.de/KAENEF/Redaktion/DE/FAQ/FAQ-Uebersicht/Richtlinien/bundesfoerderung-fuer-effiziente-gebaeude-beg.html>).
 - u.a.: Bei Errichtung von sowie Nachrüstung mit Biomasseheizungen, Wärmepumpen, Brennstoffzellenheizungen, wasserstofffähigen Heizungen und/oder innovativer Heiztechnik zur Raumheizung inklusive der Nachrüstung bivalenter Systeme müssen die durch die Anlagen versorgten Wohneinheiten oder Flächen nach Durchführung der Maßnahme zu mindestens 65 % durch erneuerbare Energien beheizt werden.
 
-","1. **Handelt es sich bei dem Gebäude um ein Bestandsgebäude, das mindestens 5 Jahre alt ist?**  
+","1. **Ist das Gebäude mindestens 5 Jahre alt?**  
    ✅ Ja  
 
-2. **Führt die Maßnahme zu einer Erhöhung der Energieeffizienz des Gebäudes und/oder zu einem höheren Anteil erneuerbarer Energien am Endenergieverbrauch?**  
+2. **Wird für die Antragstellung ein Energieeffizienz-Experte eingebunden?** *(Hinweis: Dies ist Voraussetzung für die Förderung.)*  
    ✅ Ja  
 
-3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
+3. **Wird zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
 
-4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
+
+5. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ich bin Eigentümer:in  
-
-6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
+6. **Trägt die geförderte Maßnahme zur Verbesserung des energetischen Niveaus des Gebäudes bei?**  
    ✅ Ja  
 
-7. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
+7. **Werden die geförderten Anlagen oder energetisch optimierten Gebäudeteile mindestens 10 Jahre zweckentsprechend genutzt?** *(Hinweis: Eine kürzere Nutzung kann zur Rückforderung der Förderung führen.)*  
    ✅ Ja  
 
-8. **Werden die geförderten Anlagen oder energetisch optimierten Gebäudeteile mindestens 10 Jahre zweckentsprechend genutzt?**  
-   ✅ Ja  
-
-9. **Werden alle technischen Mindestanforderungen gemäß der Förderrichtlinie eingehalten?**  
-   ✅ Ja  
-
-10. **Werden die durch die geförderten Anlagen versorgten Wohneinheiten oder Flächen nach Durchführung der Maßnahme zu mindestens 65 % durch erneuerbare Energien beheizt?**  
+8. **Werden alle technischen Mindestanforderungen gemäß der Förderrichtlinie eingehalten?** *(Hinweis: Diese sind in der BEG-EM-Richtlinie festgelegt.)*  
    ✅ Ja  ","Privatperson, Unternehmen, Contractor, Gemeinnützige Organisation, Kommune, WEG","Die Förderung im Rahmen der BEG-Einzelmaßnahme zielt darauf ab, den Übergang zu energieeffizienten Wohngebäuden zu erleichtern, indem sie Eigentümer bei der Umsetzung von Modernisierungsmaßnahmen unterstützt, die den Energieverbrauch senken.",Bestand,BEG-Einzelmaßnahme-Förderung für energieeffiziente Wohngebäude,Bund,1,Biomasse,Wohngebäude,,BEG-Einzelmaßnahme-Förderung-für-Wohngebäude,recCYtI4pRf5zTOHr,"Mögliche **Boni**:
 1. Klimageschwindigkeitsbonus: Der Bonus in Höhe von 20 % wird selbstnutzenden Eigentümern nur für die selbstgenutzte Wohneinheit gewährt. Bedingung ist der Austausch von funktionstüchtigen Öl-, Kohle-, Gas-Etagen- und Nachtspeicherheizungen (ohne Anforderung an den Zeitpunkt der Inbetriebnahme) oder von funktionstüchtigen Gasheizungen oder Biomasseheizungen, wenn die Inbetriebnahme zum Zeitpunkt der Antragstellung mindestens 20 Jahre zurückliegt. Voraussetzung für die Gewährung des Bonus ist eine fachgerechte Demontage und Entsorgung der ausgetauschten, für den Bonus berechtigten Heizung. Für die Errichtung von Biomasseheizungen wird der Bonus nur gewährt, wenn diese mit einer solarthermischen Anlage oder einer Anlage zur Erzeugung von Strom aus solarer Strahlungsenergie zur elektrischen Warmwasserbereitung oder einer Wärmepumpe zur Warmwasserbereitung und/oder Raumheizungsunterstützung kombiniert werden. Diese Anlagen sind mindestens so zu dimensionieren, dass sie die Trinkwassererwärmung bilanziell vollständig decken könnten. Nach dem Austausch dürfen die versorgten Wohneinheiten oder Flächen nicht mehr von fossilen oder mit Gas betriebenen Heizungen im Gebäude oder gebäudenah versorgt werden. Davon ausgenommen sind gasbetriebene Brennstoffzellenheizungen und wasserstofffähige Heizungen. In Gebäuden mit mehr als einer Wohneinheit wird der Bonus nur anteilig für die gesamten geförderten Ausgaben gewährt. Der anzusetzende Anteil entspricht dem Anteil der in dem Gebäude durch verschiedene Eigentümer nachweislich selbstgenutzten Wohneinheiten. Der Bonus greift nur bei Anlagen zur Wärmeerzeugung.
 2. Einkommensbonus: Der Bonus von 30 % wird selbstnutzenden Eigentümern mit einem zu versteuernden Haushaltsjahreseinkommen von bis zu 40 000 Euro nur für die selbstgenutzte Wohneinheit gewährt. Der Bonus greift nur bei Anlagen zur Wärmeerzeugung.
@@ -2497,31 +2480,28 @@ a,recDFyPRq15qbWg9O,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 - Ihr Investitionsvorhaben führen Sie auf dem Gebiet der Bundesrepublik Deutschland durch.
 - Die geförderten Anlagen oder die energetisch optimierten Gebäudeteile sind mindestens 10 Jahre zweckentsprechend zu nutzen.
 - Alle technischen Mindestanforderungen nach der Förderrichtlinie werden eingehalten (Diese findest du im aktuellen Bundesanzeiger ""Richtlinie für die Bundesförderung für effiziente Gebäude – Einzelmaßnahmen (BEG EM)"" in der Anlage ""Technische Mindestanforderungen"" in Kapitel 3.1 und 3.2: <https://www.energiewechsel.de/KAENEF/Redaktion/DE/FAQ/FAQ-Uebersicht/Richtlinien/bundesfoerderung-fuer-effiziente-gebaeude-beg.html>).
-","1. **Handelt es sich bei dem Gebäude um ein Bestandsgebäude, das mindestens 5 Jahre alt ist?**  
+","1. **Ist das Gebäude mindestens 5 Jahre alt?**  
    ✅ Ja  
 
-2. **Führt die Maßnahme zu einer Erhöhung der Energieeffizienz des Gebäudes und/oder zu einem höheren Anteil erneuerbarer Energien am Endenergieverbrauch?**  
+2. **Wird für die Antragstellung ein Energieeffizienz-Experte eingebunden?** *(Hinweis: Dies ist Voraussetzung für die Förderung.)*  
    ✅ Ja  
 
-3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
+3. **Wird zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
 
-4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
+
+5. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ich bin Eigentümer:in  
-
-6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
+6. **Trägt die geförderte Maßnahme zur Verbesserung des energetischen Niveaus des Gebäudes bei?**  
    ✅ Ja  
 
-7. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
+7. **Werden die geförderten Anlagen oder energetisch optimierten Gebäudeteile mindestens 10 Jahre zweckentsprechend genutzt?** *(Hinweis: Eine kürzere Nutzung kann zur Rückforderung der Förderung führen.)*  
    ✅ Ja  
 
-8. **Werden die geförderten Anlagen oder energetisch optimierten Gebäudeteile mindestens 10 Jahre zweckentsprechend genutzt?**  
-   ✅ Ja  
-
-9. **Werden alle technischen Mindestanforderungen gemäß der Förderrichtlinie eingehalten?**  
+8. **Werden alle technischen Mindestanforderungen gemäß der Förderrichtlinie eingehalten?** *(Hinweis: Diese sind in der BEG-EM-Richtlinie festgelegt.)*  
    ✅ Ja  ","Privatperson, Unternehmen, Contractor, Gemeinnützige Organisation, Kommune, WEG","Mit der BEG-Einzelmaßnahme-Förderung für energieeffiziente Wohngebäude werden Eigentümer finanziell unterstützt, um ihre Wohnimmobilien mit energiesparenden Technologien und Materialien auszustatten und somit den Energieverbrauch zu reduzieren.",Bestand,BEG-Einzelmaßnahme-Förderung für energieeffiziente Wohngebäude,Bund,1,Solarthermie,Wohngebäude,,BEG-Einzelmaßnahme-Förderung-für-Wohngebäude,recDFyPRq15qbWg9O,"Mögliche **Boni**:
 1. Klimageschwindigkeitsbonus: Der Bonus in Höhe von 20 % wird selbstnutzenden Eigentümern nur für die selbstgenutzte Wohneinheit gewährt. Bedingung ist der Austausch von funktionstüchtigen Öl-, Kohle-, Gas-Etagen- und Nachtspeicherheizungen (ohne Anforderung an den Zeitpunkt der Inbetriebnahme) oder von funktionstüchtigen Gasheizungen oder Biomasseheizungen, wenn die Inbetriebnahme zum Zeitpunkt der Antragstellung mindestens 20 Jahre zurückliegt. Voraussetzung für die Gewährung des Bonus ist eine fachgerechte Demontage und Entsorgung der ausgetauschten, für den Bonus berechtigten Heizung. Nach dem Austausch dürfen die versorgten Wohneinheiten oder Flächen nicht mehr von fossilen oder mit Gas betriebenen Heizungen im Gebäude oder gebäudenah versorgt werden. Davon ausgenommen sind gasbetriebene Brennstoffzellenheizungen und wasserstofffähige Heizungen. In Gebäuden mit mehr als einer Wohneinheit wird der Bonus nur anteilig für die gesamten geförderten Ausgaben gewährt. Der anzusetzende Anteil entspricht dem Anteil der in dem Gebäude durch verschiedene Eigentümer nachweislich selbstgenutzten Wohneinheiten.
 2. Einkommensbonus: Der Bonus von 30 % wird selbstnutzenden Eigentümern mit einem zu versteuernden Haushaltsjahreseinkommen von bis zu 40 000 Euro nur für die selbstgenutzte Wohneinheit gewährt. Der Bonus greift nur bei Anlagen zur Wärmeerzeugung.
@@ -2551,23 +2531,28 @@ a,recDlAet2GAhpoZX2,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 - Maßnahmen an (eingetragenen) Baudenkmalen und Gebäuden im örtlichen Geltungsbereich einer Denkmalbereichssatzung können gefördert werden, sofern eine Genehmigung der Unteren Denkmalbehörde vorliegt;  
 - Eigenleistungen und dabei entstandene Materialkosten sind aufgrund der notwendigen Qualitätssicherung nicht förderfähig. Es werden ausschließlich Leistungen von Fachunternehmen und die diesen Leistungen zuzuordnenden Materialkosten berücksichtigt. Eine private Durchführung der zur Förderung beantragten Maßnahmen von Fachhandwerkern in deren Eigentum ist möglich, wobei lediglich Materialkosten geltend gemacht werden können; 
 - Die Verwendung gebrauchter Produkte ist aufgrund der notwendigen Qualitätssicherung nicht förderfähig; 
-","1. **Erreicht die geplante Maßnahme einen Wärmebereitstellungsgrad von mindestens 75 %?**  
+","4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
+
+3. **Wird die Maßnahme von einem gelisteten Energieberater für Baudenkmäler begleitet?**  
    ✅ Ja  
 
-2. **Handelt es sich um eine Maßnahme an einem eingetragenen Baudenkmal oder einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-
-3. **Falls Ja: Liegt eine Genehmigung der Unteren Denkmalbehörde für die Maßnahme vor?**  
-   ✅ Ja  
-
-4. **Werden alle Arbeiten ausschließlich von Fachunternehmen durchgeführt?**  
+4. **Werden alle Arbeiten ausschließlich von Fachunternehmen durchgeführt?** *(Hinweis: Eigenleistungen sind nicht förderfähig, es sei denn, sie werden von Fachhandwerkern in deren eigenem Eigentum durchgeführt, wobei nur Materialkosten geltend gemacht werden können.)*  
    ✅ Ja  
 
 5. **Falls eine private Durchführung durch einen Fachhandwerker im eigenen Eigentum erfolgt: Werden ausschließlich Materialkosten geltend gemacht?**  
    ✅ Ja  
 
-6. **Werden ausschließlich neue Produkte verwendet?**  
-   ✅ Ja  ","Unternehmen, WEG, Privatperson, Gemeinnützige Organisation","Düsseldorf fördert die Installation von Ladeinfrastruktur für Elektroautos, um die Elektromobilität zu unterstützen und den Ausstoß von Schadstoffen zu verringern.",Bestand,Klimafreundliches Wohnen und Arbeiten in Bestandsgebäuden: Lüftungsanlagen mit Wärmerückgewinnung in Düsseldorf,Stadt/Kommune/Gemeinde,1,Lüftung,"Wohngebäude, Nichtwohngebäude",,Klimafreundliches-Wohnen-und-Arbeiten-Bestandsgebäude:-Lüftungsanlagen-mit-Wärmerückgewinnung-Düsseldorf,recDlAet2GAhpoZX2,"Die Förderung beträgt:
+6. **Werden ausschließlich neue Produkte verwendet?** *(Hinweis: Gebrauchte Produkte sind aufgrund der notwendigen Qualitätssicherung nicht förderfähig.)*  
+   ✅ Ja  
+
+7. **Beträgt das förderfähige Mindestinvestitionsvolumen für die Maßnahme mindestens 2.000 € brutto?** *(Hinweis: Maßnahmen unterhalb dieser Grenze sind nicht förderfähig.)*  
+   ✅ Ja  
+
+8. **Werden die technischen Mindestanforderungen aus dem Richtlinienheft eingehalten und nachgewiesen?**  
+   ✅ Ja","Unternehmen, WEG, Privatperson, Gemeinnützige Organisation","Düsseldorf fördert die Installation von Ladeinfrastruktur für Elektroautos, um die Elektromobilität zu unterstützen und den Ausstoß von Schadstoffen zu verringern.",Bestand,Klimafreundliches Wohnen und Arbeiten in Bestandsgebäuden: Lüftungsanlagen mit Wärmerückgewinnung in Düsseldorf,Stadt/Kommune/Gemeinde,1,Lüftung,"Wohngebäude, Nichtwohngebäude",,Klimafreundliches-Wohnen-und-Arbeiten-Bestandsgebäude:-Lüftungsanlagen-mit-Wärmerückgewinnung-Düsseldorf,recDlAet2GAhpoZX2,"Die Förderung beträgt:
 - für dezentrale Lüftungsanlagen: € 200 pro dezentrales Lüftungsgerät bzw. pro Gerätepaar, maximal jedoch € 1.000 pro Nutzungseinheit;
 - für zentrale Lüftungsanlagen: € 1.200 pro lüftungstechnisch versorgte Nutzungseinheit.
 ",https://www.foerderradar.de/foerder-details-kunde/klimafreundliches-wohnen-und-arbeiten-bestandsgeb%C3%A4ude%3A-l%C3%BCftungsanlagen-mit-w%C3%A4rmer%C3%BCckgewinnung-d%C3%BCsseldorf/r/recDlAet2GAhpoZX2,undefined,undefined,undefined,undefined
@@ -3257,8 +3242,8 @@ a,recGIZuN2i8E1RlNM,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -4118,9 +4103,8 @@ a,recKBzE5NpM9VbGyP,"
 
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
    ✅ Ja  
-
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -4407,11 +4391,10 @@ Technische Voraussetzungen:
 ","1. **Wird das Vorhaben im Land Bremen durchgeführt?** *(Hinweis: Maßgeblich ist die örtliche Lage des Gebäudes.)*  
    ✅ Ja  
 
-2. **Wurde mit dem Vorhaben bereits begonnen?** *(Hinweis: Ein Vorhaben gilt als begonnen, sobald Lieferungs- oder Leistungsverträge abgeschlossen wurden. Planung und Kostenvoranschläge gelten nicht als Beginn.)*  
-   ✅ Nein  
-
-3. **Falls Ja: Liegt eine Zustimmung der Bewilligungsstelle für einen vorzeitigen Vorhabenbeginn vor?** *(Hinweis: Ohne Zustimmung ist eine Förderung ausgeschlossen.)*  
-   ✅ N/A  
+2. Wurde mit dem Vorhaben entweder 
+a) noch nicht begonnen 
+b) oder, falls doch, liegt eine Zustimmung der Bewilligungsstelle für einen vorzeitigen Vorhabenbeginn vor (Lieferungs- oder Leistungsverträge erst nach Genehmigung oder mit ausdrücklicher Zustimmung abgeschlossen)?
+✅ Ja
 
 4. **Werden alle technischen Voraussetzungen gemäß Punkt 4.2. der Richtlinie eingehalten?**  
    ✅ Ja  ",Privatperson,"Bremen fördert den Wärmeschutz im Wohngebäudebestand, um den Energieverbrauch zu senken und den Wohnkomfort zu verbessern.",Bestand,Wärmeschutz im Wohngebäudebestand in Bremen,"Bundesland, Stadt/Kommune/Gemeinde",1,Dämmung,Wohngebäude,,Wärmeschutz-im-Wohngebäudebestand-Bremen,recLCviVuAD5SQhfk,"Die Höhe des Zuschusses hängt von der Art der Maßnahme ab. Entnehmen Sie die Zuschusshöhe ihres Vorhabens unter Punkt 5. der Richtlinie.
@@ -4484,11 +4467,10 @@ Der Antrag ist vor Beginn des Vorhabens bei der KfW über einen Finanzierungspar
 - Ihr Investitionsvorhaben führen Sie auf dem Gebiet der Bundesrepublik Deutschland durch.
 - Die geförderten Anlagen oder die energetisch optimierten Gebäudeteile sind mindestens 10 Jahre zweckentsprechend zu nutzen.
 - Alle technischen Mindestanforderungen nach der Förderrichtlinie werden eingehalten.
-","1. **Sind Sie Eigentümer:in, Pächter:in oder Mieter:in des Grundstücks, Grundstücksteils, Gebäudes oder Gebäudeteils, auf oder in dem die Maßnahme umgesetzt werden soll?**  
-   ✅ Ja  
-
-2. **Falls Sie nicht Eigentümer:in sind: Liegt eine schriftliche Erlaubnis der Eigentümerin oder des Eigentümers für die Maßnahme vor?**  
-   ✅ Ja  
+","1. Sind Sie entweder 
+a) selbst Eigentümer:in des Grundstücks, Gebäudes oder Gebäudeteils 
+b) oder, falls Sie Pächter:in oder Mieter:in sind, liegt eine schriftliche Erlaubnis der Eigentümerin oder des Eigentümers für die Umsetzung der Maßnahme vor?
+✅ Ja
 
 3. **Wird zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -4717,8 +4699,8 @@ a,recM1DPKNC65Vl9Ow,"
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -5381,11 +5363,10 @@ a,recOgwp5GokAWDjcf,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 4. **Wird der hydraulische Abgleich durchgeführt?**  
    ✅ Ja  
 
-5. **Handelt es sich bei dem Gebäude um ein eingetragenes Baudenkmal oder ein Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-
-6. **Falls es sich um ein Baudenkmal handelt: Liegt eine Genehmigung der Unteren Denkmalbehörde vor?**  
-   ✅ Ja  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja 
 
 7. **Werden alle Arbeiten ausschließlich von Fachunternehmen durchgeführt?**  
    ✅ Ja  
@@ -5444,8 +5425,8 @@ a,recP4mLD13pHQwXZ8,"
 3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Förderhöhe informiert?**  
-   ✅ Ja  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 5. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -5687,8 +5668,8 @@ a,recPazddR2Cabp9FB,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 2. **Wurde für die Antragstellung ein Energieeffizienz-Experte eingebunden?**  
    ✅ Ja  
 
-3. **Falls Sie nicht Eigentümer:in des Gebäudes sind: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 4. **Wurde ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -5945,11 +5926,10 @@ a,recQJNLx3Bbth501J,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 2. **Werden die aktuell gültigen Vorgaben zur Anmeldung einer steckerfertigen PV-Anlage eingehalten?**  
    ✅ Ja  
 
-3. **Handelt es sich um eine Maßnahme an einem eingetragenen Baudenkmal oder einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Nein  
-
-4. **Falls es sich um ein Baudenkmal handelt: Liegt eine Genehmigung der Unteren Denkmalbehörde vor?**  
-   ✅ Nein  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 5. **Werden ausschließlich neue Produkte verwendet?**  
    ✅ Ja  ","Unternehmen, WEG, Privatperson, Gemeinnützige Organisation","Düsseldorf fördert den Einbau von Lüftungsanlagen mit Wärmerückgewinnung, um den Energieverbrauch zu senken und den Wohnkomfort zu verbessern.","Bestand, Neubau",Klimafreundliches Wohnen und Arbeiten: Technische Anlagen zur Nutzung der Solarenergie in Düsseldorf,Stadt/Kommune/Gemeinde,1,"Photovoltaik, Erneuerbare Energien","Wohngebäude, Nichtwohngebäude",,Klimafreundliches-Wohnen-und-Arbeiten-Technische-Anlagen-zur-Nutzung-der-Solarenergie-Düsseldorf,recQJNLx3Bbth501J,"1) Die Förderung beträgt: 
@@ -6037,9 +6017,8 @@ a,recR891YQYWDQXax0,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Falls Sie nicht Eigentümer:in des Gebäudes sind: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 5. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -6107,9 +6086,8 @@ a,recRBYRL6jFnWB8cR,"
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?** *(Hinweis: Dies ist optional, aber empfohlen.)*  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -6430,8 +6408,10 @@ Erweiterung einer PV-Anlage:
 2. **Werden die technischen Vorgaben nach §9 EEG in der jeweils gültigen Fassung eingehalten?**  
    ✅ Ja  
 
-3. **Falls die Maßnahme an einem eingetragenen Baudenkmal oder einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung erfolgt: Liegt eine Genehmigung der Unteren Denkmalbehörde vor?**  
-   ✅ Ja  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 4. **Werden die Arbeiten vollständig von Fachunternehmen durchgeführt, ohne Eigenleistungen?**  
    ✅ Ja  
@@ -6495,8 +6475,8 @@ a,recSPlhVVZaFjvKiL,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ich bin Eigentümer:in  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -7230,9 +7210,8 @@ förderfähige Leistungen: <https://www.kfw.de/PDF/Download-Center/F%C3%B6rderpr
 
 2. **Wird ein Energieeffizienz-Experte für die Antragstellung eingebunden?**  
    ✅ Ja  
-
-3. **Falls Sie nicht selbst Eigentümer:in des Gebäudes sind: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 4. **Werden alle Anforderungen an die Leistung des Energieeffizienz-Experten gemäß Förderrichtlinie eingehalten?**  
    ✅ Ja  
@@ -7452,9 +7431,8 @@ a,recWrUlieBp8BduGZ,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?** *(Hinweis: Dies ist optional, aber empfohlen.)*  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Ich bin Eigentümer:in (falls zutreffend)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -7585,9 +7563,8 @@ a,recXEkrXw1gP5jCTT,"Oft kumulierbar mit lokalen Förderprogrammen (z.B. FKG in 
 4. **Wird für die Antragstellung einer Anlage zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?** *(Hinweis: Dies ist optional, aber empfohlen.)*  
    ✅ Ja  
 
-5. **Sind Sie nicht Eigentümer:in des Gebäudes? Falls ja: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls zutreffend)  
-   ⬜ Ich bin Eigentümer:in (falls zutreffend)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 6. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -7702,9 +7679,8 @@ a,recXRzdDxUuSrojIY,"
 3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich der Durchführung des hydraulischen Abgleichs bzw. der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Falls Sie nicht Eigentümer:in des Gebäudes sind: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Ich bin Eigentümer:in (falls zutreffend)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 5. **Wird ein Contractingvertrag zwischen Contractor und Contractingnehmer geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -7749,9 +7725,10 @@ Der/die Antragsteller\_in ist verpflichtet, Beauftragten der Stadt zu ermöglich
 2. **Sind die bei den Maßnahmen verwendeten Bauteile marktreif?**  
    ✅ Ja  
 
-3. **Falls das Gebäude als Kulturdenkmal eingestuft ist: Liegt bei der Antragstellung eine denkmalschutzrechtliche Genehmigung vor?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nein (falls nicht zutreffend)  
+4. Handelt es sich bei den geplanten Maßnahmen um Arbeiten
+a) an einem eingetragenen Baudenkmal
+b) oder an einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung – und liegt dafür eine Genehmigung der Unteren Denkmalbehörde vor?
+✅ Ja
 
 4. **Wird der zum Zeitpunkt der Antragstellung gültige KfW-Standard eingehalten?**  
    ✅ Ja  
@@ -8044,9 +8021,10 @@ a,recZyvnUXUzdcBMWU,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 ","1. **Wurde ein hydraulischer Abgleich durchgeführt und kann dies nachgewiesen werden?**  
    ✅ Ja  
 
-2. **Handelt es sich um Maßnahmen an einem eingetragenen Baudenkmal oder einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?** *(Hinweis: Wenn ja, ist eine Genehmigung der Unteren Denkmalbehörde erforderlich.)*  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nein (falls nicht zutreffend)  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 3. **Werden die Maßnahmen vollständig von Fachunternehmen ausgeführt?** *(Hinweis: Eigenleistungen sind nicht förderfähig.)*  
    ✅ Ja  
@@ -8175,9 +8153,10 @@ Der/die Antragsteller\_in ist verpflichtet, Beauftragten der Stadt zu ermöglich
 2. **Sind die bei den jeweiligen Maßnahmen verwendeten Bauteile marktreif?**  
    ✅ Ja  
 
-3. **Falls das Gebäude als Kulturdenkmal eingestuft ist: Liegt eine denkmalschutzrechtliche Genehmigung vor?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nein (falls nicht zutreffend)  
+4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 4. **Wird der zum Zeitpunkt der Antragstellung gültige KfW-Standard eingehalten?**  
    ✅ Ja  
@@ -8501,11 +8480,10 @@ a,recdQCIPvcotMp5LC,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 - Die Verwendung gebrauchter Produkte ist aufgrund der notwendigen Qualitätssicherung nicht förderfähig;
 - Die technischen Mindestanforderungen aus dem Richtlinienheft sind einzuhalten und nachzuweisen
 
-","1. **Handelt es sich um Maßnahmen an einem eingetragenen Baudenkmal oder einem Gebäude im örtlichen Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-
-2. **Liegt eine Genehmigung der Unteren Denkmalbehörde für das Vorhaben vor?**  
-   ✅ Ja  
+","4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 3. **Werden ausschließlich Leistungen von Fachunternehmen in Anspruch genommen, und werden dabei keine Eigenleistungen geltend gemacht?** *(Hinweis: Eigenleistungen und deren Materialkosten sind nicht förderfähig.)*  
    ✅ Ja  
@@ -8735,9 +8713,8 @@ a,recfaNZNYyDWN6w1r,"
 2. **Wurde ein Energieeffizienz-Experte in die Antragstellung einbezogen?**  
    ✅ Ja  
 
-3. **Falls Sie nicht Eigentümer:in des Gebäudes sind: Wurde die Gebäudeeigentümerin oder der Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Ich bin Eigentümer:in (falls zutreffend)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
 4. **Haben Contractor und Contractingnehmer einen Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?**  
    ✅ Ja  
@@ -9343,9 +9320,10 @@ Bagatellgrenze: 25.000€",Nordrhein-Westfalen,15%,undefined,Zuschuss,https://up
 - Erprobungs- und Versuchsinfrastrukturen, für die Sie eine Förderung erhalten, müssen mehreren Nutzerinnen und Nutzern auf transparente und diskriminierungsfreie Weise und zu marktüblichen Bedingungen zugänglich sein; die Nutzung muss überwiegend durch Unternehmen, insbesondere KMU, erfolgen.
 - Für Reparatur- oder Ersatzteilbeschaffungen sowie gesetzlich vorgeschriebene oder behördlich angeordnete Maßnahmen erhalten Sie keine Förderung.
 
-","1. **Handelt es sich bei Ihrem Vorhaben um ein Kooperationsprojekt?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nein  
+","1. Handelt es sich bei Ihrem Vorhaben entweder 
+a) nicht um ein Kooperationsprojekt – 
+b( oder, falls doch, sind die Rechte und Pflichten aller Projektpartner:innen in einem Kooperationsvertrag geregelt?
+✅ Ja
 
 2. **Führen Sie Ihr Vorhaben überwiegend in Nordrhein-Westfalen durch?**  
    ✅ Ja  
@@ -9353,17 +9331,15 @@ Bagatellgrenze: 25.000€",Nordrhein-Westfalen,15%,undefined,Zuschuss,https://up
 3. **Hat Ihr Vorhaben einen klar erkennbaren Innovationscharakter?**  
    ✅ Ja  
 
-4. **Falls es sich um ein Kooperationsprojekt handelt: Wurden Rechte und Pflichten der Projektpartner:innen in einem Kooperationsvertrag geregelt?**  
-   ✅ Ja (falls Kooperationsprojekt)  
-   ✅ Kein Kooperationsprojekt  
+2. Handelt es sich bei Ihrem Vorhaben entweder 
+a) nicht um ein innovatives Kurzprojekt – 
+b) oder, falls doch, erfüllt es die Bedingungen eines Einzelvorhabens mit einer Laufzeit von maximal 12 Monaten und einer Fördersumme von höchstens 300.000 €?
+✅ Ja 
 
-5. **Ist Ihr Vorhaben ein innovatives Kurzprojekt (Einzelvorhaben mit einer Laufzeit von maximal 12 Monaten und einer Fördersumme von maximal EUR 300.000)?**  
-   ✅ Ja (falls Kurzprojekt)  
-   ✅ Kein Kurzprojekt  
-
-6. **Falls es sich um eine Prozessinnovation handelt: Arbeiten Sie mit KMU zusammen, und tragen diese mindestens 30 Prozent der beihilfefähigen Ausgaben?** *(Hinweis: Große Unternehmen können nur unter dieser Bedingung gefördert werden.)*  
-   ✅ Ja (falls Prozessinnovation und Zusammenarbeit mit KMU)  
-   ✅ Keine Prozessinnovation  
+3. Handelt es sich entweder 
+a) nicht um eine Prozessinnovation – 
+b) oder, falls doch, arbeiten Sie mit kleinen oder mittleren Unternehmen (KMU) zusammen, die mindestens 30 % der beihilfefähigen Ausgaben übernehmen (wie für große Unternehmen erforderlich)?
+✅ Ja
 
 7. **Wird eine geförderte Erprobungs- und Versuchsinfrastruktur mehreren Nutzer:innen auf transparente und diskriminierungsfreie Weise sowie zu marktüblichen Bedingungen zugänglich gemacht?** *(Hinweis: Die Nutzung muss überwiegend durch Unternehmen, insbesondere KMU, erfolgen.)*  
    ✅ Ja  
@@ -9444,12 +9420,10 @@ a,recj3CoXLHTHLD2fS,undefined,10/22/2024,Förderung von Unternehmensberatungen f
 5. **Bezieht sich der Bericht auf die bereichsübergreifenden Grundsätze des Europäischen Sozialfonds (Gleichstellung, Chancengleichheit, Nichtdiskriminierung, ökologische Nachhaltigkeit)?**  
    ✅ Ja  
 
-6. **Ist die Beraterin/der Berater beim Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) registriert und erfüllt die Voraussetzungen, als selbständige:r Berater:in mehr als 50 % des Umsatzes mit entgeltlicher Unternehmensberatung zu erzielen?**  
-   ✅ Ja  
-
-7. **Falls nicht registriert: Wurde eine Ausnahmegenehmigung von der Bewilligungsbehörde erteilt?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls registriert)  
+6. Ist die Beraterin bzw. der Berater entweder
+a) beim Bundesamt für Wirtschaft und Ausfuhrkontrolle (BAFA) registriert und erfüllt die Voraussetzung, mehr als 50 % des Umsatzes mit entgeltlicher Unternehmensberatung zu erzielen – 
+b) oder, falls nicht registriert, liegt eine Ausnahmegenehmigung der Bewilligungsbehörde vor?
+✅ Ja
 
 8. **Wurden der Bewilligungsbehörde die folgenden Nachweise vorgelegt?**  
    - Aufschlüsselung des Umsatzes und Darlegung der Beteiligungsverhältnisse  
@@ -9514,9 +9488,10 @@ Für die „Serielle Sanierung“ (SerSan) wird für folgende Effizienzhaus-Stuf
 2. **Werden ausschließlich Wärmeerzeuger auf Basis Erneuerbarer Energien eingesetzt?** *(Hinweis: Mit Gas betriebene Wärmeerzeuger sowie deren Umfeldmaßnahmen sind nicht förderfähig.)*  
    ✅ Ja  
 
-3. **Falls eine frisch sanierte Immobilie erworben wurde: Sind die Kosten für die energetischen Sanierungsmaßnahmen gesondert ausgewiesen (z. B. im Kaufvertrag)?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls keine frisch sanierte Immobilie erworben)  
+3. Wurde entweder 
+a) keine frisch sanierte Immobilie erworben – 
+b) oder, falls doch, sind die Kosten für die energetischen Sanierungsmaßnahmen gesondert ausgewiesen (z. B. im Kaufvertrag)?
+✅ Ja
 
 4. **Erfüllt das Vorhaben die in Deutschland geltenden umwelt- und sozialrechtlichen Anforderungen und Standards?**  
    ✅ Ja  
@@ -9524,9 +9499,10 @@ Für die „Serielle Sanierung“ (SerSan) wird für folgende Effizienzhaus-Stuf
 5. **Wird ein Energieeffizienz-Experte aus der Bundesliste für Förderprogramme des Bundes in der Kategorie „Bundesförderung für effiziente Gebäude: Wohngebäude“ eingebunden?** *(Hinweis: Eine Expertenliste ist unter [www.energie-effizienz-experten.de](http://www.energie-effizienz-experten.de) abrufbar.)*  
    ✅ Ja  
 
-6. **Hat der Zuschussempfänger die KfW über eine mögliche Überschreitung der maximalen Förderquote von 90 % informiert?** *(Hinweis: Falls die Förderquote aus öffentlichen Mitteln mehr als 90 % beträgt, ist die BEG-Förderung entsprechend zu kürzen.)*  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls keine Überschreitung der Förderquote stattfindet)",Kommune,"München fördert die Nutzung von Stecker-Solargeräten, insbesondere Balkonkraftwerke, um Bürgerinnen und Bürger zur eigenen Energieerzeugung zu ermutigen.",Bestand,KfW: Zuschussprogramm für kommunale Wohngebäude,Bund,1,Effizienzhaus,Wohngebäude,,KfW-Kommunen-Zuschuss-Wohngebäude,recj54Eh48Fogzua7,"Die Förderung erfolgt durch einen Investitionszuschuss, der mit Nachweis der erreichten Effizienzgebäude/Effizienzhaus-Stufen ausgezahlt wird.
+6. Wurde entweder 
+a) keine Überschreitung der maximalen Förderquote von 90 % festgestellt – 
+b) oder, falls doch, die KfW rechtzeitig darüber informiert?
+✅ Ja",Kommune,"München fördert die Nutzung von Stecker-Solargeräten, insbesondere Balkonkraftwerke, um Bürgerinnen und Bürger zur eigenen Energieerzeugung zu ermutigen.",Bestand,KfW: Zuschussprogramm für kommunale Wohngebäude,Bund,1,Effizienzhaus,Wohngebäude,,KfW-Kommunen-Zuschuss-Wohngebäude,recj54Eh48Fogzua7,"Die Förderung erfolgt durch einen Investitionszuschuss, der mit Nachweis der erreichten Effizienzgebäude/Effizienzhaus-Stufen ausgezahlt wird.
 - Förderfähige Kosten: maximal 120.000 Euro pro Wohneinheit
 - für „Effizienzhaus EE“-Klasse und NH-Klasse: Förderfähige Kosten maximal 150.000 Euro pro Wohneinheit
 
@@ -10112,17 +10088,18 @@ a,recleZi9q7hWDinXR,"
 3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich eines hydraulischen Abgleichs und der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Wird für die Antragstellung anderer Anlagen zur Wärmeerzeugung ein Energieeffizienz-Experte eingebunden?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls keine anderen Anlagen zur Wärmeerzeugung betroffen sind)  
+4. Wird bei der Antragstellung für eine andere Anlage zur Wärmeerzeugung entweder
+a) freiwillig ein Energieeffizienz-Experte bzw. eine Energieeffizienz-Expertin eingebunden 
+b) oder bewusst auf die (optionale) Einbindung verzichtet, da sie nicht verpflichtend ist?
+✅ Ja
 
-5. **Haben Antragstellende, die nicht Eigentümer:in des Gebäudes sind, die Gebäudeeigentümer:in vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls nicht Eigentümer:in)  
-   ✅ Nicht zutreffend (falls selbst Eigentümer:in)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
-6. **Haben Contractor und Contractingnehmer einen Contractingvertrag geschlossen, der den Vorgaben gemäß der Richtlinie entspricht?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls kein Contracting-Modell genutzt wird)  
+6. Wird entweder 
+a) kein Contracting-Modell genutzt 
+b) oder, falls doch, wurde zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?
+✅ Ja
 
 7. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
    ✅ Ja  
@@ -10244,26 +10221,33 @@ a,recmHMC9aKpsE6DZ0,"- Das Darlehen kann nicht zusammen mit dem KfW-Wohneigentu
 - Kauf mit Modernisierung einer Immobilie in Schleswig-Holstein, die innerhalb von 12 Monaten nach Vollauszahlung mindestens beim Jahresprimärenergiebedarf QP und Transmissionswärmeverlust H´T  den Standard EffizienzhausSH 100 erreicht.
 
 ","Die Antragstellenden sind Eigentümer der fördernden Immobilie und nutzen sie selbst.
+
 Beim Neubau oder Neubaukauf muss die Immobilie bei Jahresprimärenergiebedarf und Transmissionswärmeverlust die Werte des aktuellen Gebäudeenergiegesetzees (GEG) um mindestens 10 Prozent unterschreiten.
+
 Beim Kauf einer Bestandsimmobilie muss diese mindestens den Energiestandard EffizienzhausSH 100 einhalten.
+
 Beim Kauf mit Modernisierung einer Immobilie muss diese innerhalb von 12 Monaten nach Vollauszahlung mindestens beim Jahresprimärenergiebedarf und Transmissionswärmeverlust den Standard EffizienzhausSH 100 erreichen.
+
 Die Antragstellenden müssen eine Eigenbeteiligung von mindestens 7,5 Prozent der Gesamtkosten als Eigenkapital und/oder Arbeitsleistung erbringen.
 Das Darlehen wird durch eine Grundschuld im Rang nach dem Finanzierungspartner abgesichert.
 Nicht gefördert werden Ferienwohnungen und Zweitwohnsitze.
 ","1. **Sind Sie Eigentümer der Immobilie und nutzen diese selbst?**  
    ✅ Ja  
 
-2. **Erfüllt die Neubau- oder Neubaukaufimmobilie den aktuellen GEG-Standard, unterschreitet den Jahresprimärenergiebedarf und Transmissionswärmeverlust um mindestens 10 Prozent?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls nicht Neubau oder Neubaukauf)  
+2. Handelt es sich entweder
+a)  nicht um einen Neubau oder Neubaukauf 
+b) oder, falls doch, erfüllt die Immobilie den aktuellen GEG-Standard und unterschreitet den Jahresprimärenergiebedarf sowie den Transmissionswärmeverlust um mindestens 10 %?
+✅ Ja
 
-3. **Erfüllt die Bestandsimmobilie mindestens den Energiestandard EffizienzhausSH 100?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls nicht Bestandsimmobilie)  
+3. Handelt es sich entweder
+a) nicht um eine Bestandsimmobilie 
+b) oder, falls doch, erfüllt sie mindestens den Energiestandard EffizienzhausSH 100?
+✅ Ja
 
-4. **Wird bei Kauf mit Modernisierung der Energiestandard EffizienzhausSH 100 innerhalb von 12 Monaten nach Vollauszahlung erreicht?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls kein Kauf mit Modernisierung)  
+4. Handelt es sich entweder
+a) nicht um einen Kauf mit geplanter Modernisierung  
+b) oder, falls doch, wird der Energiestandard EffizienzhausSH 100 innerhalb von 12 Monaten nach Vollauszahlung erreicht?
+✅ Ja
 
 5. **Erbringen Sie eine Eigenbeteiligung von mindestens 7,5 Prozent der Gesamtkosten als Eigenkapital und/oder Arbeitsleistung?**  
    ✅ Ja  
@@ -10376,15 +10360,14 @@ Nach Abschluss der Baumaßnahmen sind der IFB Hamburg Nachweise über Umfang und
 3. **Wurde die Qualitätssicherung gemäß den festgelegten Verfahren beauftragt und durchgeführt?**  
    ✅ Ja  
 
-4. **Können nach Abschluss der Baumaßnahmen Nachweise über den Umfang und die Qualität der durchgeführten Maßnahmen vorgelegt werden?**  
-   ✅ Ja  
+4. Wird nach Abschluss der Baumaßnahmen der IFB Hamburg der erforderliche Nachweis über Umfang und Qualität der durchgeführten Maßnahmen fristgerecht vorgelegt?
+✅ Ja
 
-5. **Liegen die ausführlichen Berechnungsunterlagen (außer bei Einzelmaßnahme Dachgeschossausbau und Aufstockung) vor?**  
-   ✅ Ja (außer bei Dachgeschossausbau und Aufstockung)  
-   ✅ Nicht zutreffend (falls Dachgeschossausbau oder Aufstockung)  
+5. Werden – mit Ausnahme bei Einzelmaßnahmen wie Dachgeschossausbau oder Aufstockung – die ausführlichen Berechnungsunterlagen vollständig eingereicht?
+✅ Ja
 
-6. **Wurde der positive Schlussbericht der Qualitätssicherung Energie erstellt und ist er zur Vorlage bereit?**  
-   ✅ Ja",Privatperson,"Als zweiten Förderweg unterstützt Hamburg die Modernisierung von Mietwohnungen, um die Energieeffizienz zu steigern und den Wohnstandard zu erhöhen.",Bestand,Modernisierung von Mietwohnungen - 2. Förderweg in Hamburg,"Bundesland, Stadt/Kommune/Gemeinde",1,"Effizienzhaus, Holzbau, Wärmespeicher, Ladestation, Lüftung, Fenster / Haustür, Solarthermie, Wärmepumpe, Sonstige Heizungen, Biomasse, Heizungsoptimierung, Fernwärme, Energieberatung, Dämmung",Wohngebäude,,Modernisierung-von-Mietwohnungen-2.-Förderweg-Hamburg,recmKUqvETP0DvwZv,"**Wie wird gefördert?**
+6. Wird der positive Schlussbericht der Qualitätssicherung Energie nach Abschluss erstellt und zur Vorlage bereitgestellt?
+✅ Ja",Privatperson,"Als zweiten Förderweg unterstützt Hamburg die Modernisierung von Mietwohnungen, um die Energieeffizienz zu steigern und den Wohnstandard zu erhöhen.",Bestand,Modernisierung von Mietwohnungen - 2. Förderweg in Hamburg,"Bundesland, Stadt/Kommune/Gemeinde",1,"Effizienzhaus, Holzbau, Wärmespeicher, Ladestation, Lüftung, Fenster / Haustür, Solarthermie, Wärmepumpe, Sonstige Heizungen, Biomasse, Heizungsoptimierung, Fernwärme, Energieberatung, Dämmung",Wohngebäude,,Modernisierung-von-Mietwohnungen-2.-Förderweg-Hamburg,recmKUqvETP0DvwZv,"**Wie wird gefördert?**
 
 - **Option 1: Förderung als Zuschuss**
 Förderung durch laufende Zuschüsse in Höhe von 40 % auf die maximal förderfähigen anerkannten Modernisierungskosten über 10 Jahre
@@ -10456,17 +10439,16 @@ Förderfähige Maßnahmen: <https://www.bafa.de/SharedDocs/Downloads/DE/Energie/
 3. **Erfolgt der Einbau in Verbindung mit einer Optimierung des gesamten Heizungsverteilsystems, einschließlich eines hydraulischen Abgleichs und der Anpassung der Luftvolumenströme?**  
    ✅ Ja  
 
-4. **Wird bei der Errichtung, dem Umbau oder der Erweiterung eines Gebäudenetzes ein Energieeffizienz-Experte eingebunden?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls kein Gebäudenetz betroffen ist)  
+4. **Wird ein Energieeffizienz-Experte eingebunden?**  
+   ✅ Ja
 
-5. **Haben Antragstellende, die nicht Eigentümer:in des Gebäudes sind, die Gebäudeeigentümer:in vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrages informiert?**  
-   ✅ Ja (falls nicht Eigentümer:in)  
-   ✅ Nicht zutreffend (falls selbst Eigentümer:in)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
-6. **Haben Contractor und Contractingnehmer einen Contractingvertrag geschlossen, der den Vorgaben gemäß der Richtlinie entspricht?**  
-   ✅ Ja (falls ein Contractingvertrag besteht)  
-   ✅ Nicht zutreffend (falls kein Contracting-Modell genutzt wird)  
+6. Wird entweder 
+a) kein Contracting-Modell genutzt 
+b) oder, falls doch, wurde zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?
+✅ Ja 
 
 7. **Wird das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt?**  
    ✅ Ja  
@@ -10563,17 +10545,16 @@ Förderfähige Maßnahmen: <https://www.bafa.de/SharedDocs/Downloads/DE/Energie/
 3. **Wird die Maßnahme mit einer Optimierung des Heizungsverteilsystems, einschließlich eines hydraulischen Abgleichs und der Anpassung der Luftvolumenströme, verbunden?**  
    ✅ Ja  
 
-4. **Wird bei Errichtung, Umbau oder Erweiterung eines Gebäudenetzes ein Energieeffizienz-Experte einbezogen?**  
-   ✅ Ja (falls zutreffend)  
-   ✅ Nicht zutreffend (falls kein Gebäudenetz betroffen ist)  
+4. Wird entweder kein Gebäudenetz errichtet, umgebaut oder erweitert – oder, falls doch, ein Energieeffizienz-Experte bzw. eine Energieeffizienz-Expertin in das Vorhaben eingebunden?
+✅ Ja
 
-5. **Haben Sie als Antragstellende die Eigentümer:in über die Förderung und die maximale Höhe des Förderbetrages informiert (falls nicht selbst Eigentümer:in)?**  
-   ✅ Ja (falls nicht Eigentümer:in)  
-   ✅ Nicht zutreffend (falls selbst Eigentümer:in)  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
-6. **Haben Contractor und Contractingnehmer einen Contractingvertrag abgeschlossen, der den Vorgaben der Richtlinie entspricht?**  
-   ✅ Ja (falls ein Contractingvertrag besteht)  
-   ✅ Nicht zutreffend (falls kein Contracting-Modell genutzt wird)  
+6. Wird entweder 
+a) kein Contracting-Modell genutzt 
+b) oder, falls doch, wurde zwischen Contractor und Contractingnehmer ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?
+✅ Ja
 
 7. **Wird das Investitionsvorhaben in Deutschland durchgeführt?**  
    ✅ Ja  
@@ -11233,9 +11214,8 @@ d) **Biogasleitungen** im Zusammenhang mit der Errichtung einer Biogas- oder Bio
 3. **Erfüllen Sie die Anforderungen des Erneuerbare-Energien-Gesetzes (EEG)?**  
    ✅ Ja  
 
-4. **Wenn Sie eine natürliche Person oder gemeinnützige Einrichtung sind: Speisen Sie einen Teil des erzeugten Stroms ein oder verkaufen Sie erzeugte Wärme?**  
-   ✅ Ja  
-   ✅ **Nicht zutreffend** (wenn keine natürliche Person oder gemeinnützige Einrichtung)  
+4. Handelt es sich entweder nicht um eine natürliche Person oder gemeinnützige Einrichtung – oder, falls doch, wird ein Teil des erzeugten Stroms eingespeist oder erzeugte Wärme verkauft?
+✅ Ja
 
 5. **Sind Sie bereit, für den Kredit bankübliche Sicherheiten zu stellen und diese mit Ihrem Finanzierungspartner zu vereinbaren?**  
    ✅ Ja  
@@ -11414,9 +11394,10 @@ Verlängerung der Laufzeit des Antrags: Wird bei der Bundesförderung eine Verl�
 2. **Ist das Vorhaben Teil einer energetischen Sanierungsberatung gemäß FKG, die mindestens den Energiestandard EH55 erreicht?**  
    ✅ Ja  
 
-3. **Für denkmalgeschützte Gebäude: Werden die Anforderungen der BEG EM erfüllt?**  
-   ✅ Ja  
-   ✅ **Nicht anwendbar (kein denkmalgeschütztes Gebäude)**  
+3. Handelt es sich entweder
+a) nicht um ein denkmalgeschütztes Gebäude 
+b) oder, falls doch, werden die Anforderungen der BEG EM erfüllt?
+✅ Ja
 
 4. **Wurde ein positiver Förderbescheid für die energetische Sanierungsberatung im FKG erstellt?**  
    ✅ Ja  
@@ -11487,9 +11468,10 @@ Verlängerung der Laufzeit des Antrags: Wird bei der Bundesförderung eine Verl�
 2. **Ist das Vorhaben Teil einer im FKG beantragbaren energetischen Sanierungsberatung, die eine Schritt-für-Schritt Sanierung zur Erreichung des Standards EH55 darstellt?**  
    ✅ Ja  
 
-3. **Für denkmalgeschützte Gebäude: Werden die Anforderungen der BEG EM erfüllt?**  
-   ✅ Ja  
-   ✅ **Nicht anwendbar (kein denkmalgeschütztes Gebäude)**  
+3. Handelt es sich entweder
+a) nicht um ein denkmalgeschütztes Gebäude 
+b) oder, falls doch, werden die Anforderungen der BEG EM erfüllt?
+✅ Ja 
 
 4. **Wurde ein positiver Förderbescheid für die energetische Sanierungsberatung im FKG erstellt?**  
    ✅ Ja  
@@ -11593,11 +11575,10 @@ a,recs70h28SnKk9bGW,"Eine Kumulierbarkeit mit anderen Förder- und Zuschussprogr
 - Eigenleistungen und dabei entstandene Materialkosten sind aufgrund der notwendigen Qualitätssicherung nicht förderfähig. Es werden ausschließlich Leistungen von Fachunternehmen und die diesen Leistungen zuzuordnenden Materialkosten berücksichtigt. Eine private Durchführung der zur Förderung beantragten Maßnahmen von Fachhandwerkern in deren Eigentum ist möglich, wobei lediglich Materialkosten geltend gemacht werden können; 
 - Die Verwendung gebrauchter Produkte ist aufgrund der notwendigen Qualitätssicherung nicht förderfähig; 
 
-","1. **Handelt es sich bei dem Gebäude um ein eingetragenes Baudenkmal oder liegt es im Geltungsbereich einer Denkmalbereichssatzung?**  
-   ✅ Ja  
-
-2. **Liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?**  
-   ✅ Ja  
+","4. Handelt es sich entweder
+a) nicht um ein eingetragenes Baudenkmal bzw. um ein Gebäude im Geltungsbereich einer Denkmalbereichssatzung, oder
+b) doch, und es liegt eine Genehmigung der Unteren Denkmalbehörde für die geplanten Maßnahmen vor?
+✅ Ja
 
 3. **Werden die Maßnahmen von einem Fachunternehmen ausgeführt?**  
    ✅ Ja  
@@ -11836,9 +11817,10 @@ Im Fall von Anlagen, die bei den Antragsberechtigten errichtet werden sollen, si
 ","1. **Führen Sie Ihr Vorhaben in Hessen durch?**  
    ✅ Ja  
 
-2. **Liegt ein besonderes Landesinteresse an Maßnahmen außerhalb Hessens vor?**  
-   ✅ Ja (Falls das Vorhaben außerhalb Hessens durchgeführt wird, aber ein besonderes Landesinteresse besteht)  
-   ✅ Nein (Falls das Vorhaben in Hessen durchgeführt wird)  
+2. Wird das Vorhaben entweder
+a) in Hessen durchgeführt 
+b) oder, falls außerhalb Hessens, liegt ein besonderes Landesinteresse an den Maßnahmen vor?
+✅ Ja
 ","Privatperson, Unternehmen, Kommune","Hessen fördert Biomassefeuerungsanlagen, um den Einsatz von erneuerbaren Energien im Wärmesektor zu erhöhen und die Abhängigkeit von fossilen Brennstoffen zu verringern.","Bestand, Neubau",Förderung von Biomassefeuerungsanlagen in Hessen,Bundesland,1,"Erneuerbare Energien, Biomasse","Wohngebäude, Nichtwohngebäude",,Förderung-der-energetischen-und-stofflichen-Nutzung-nachwachsender-Rohstoffe:-Biomassefeuerungsanlage-Hessen,rectxPewzfm7bGMIM,"**Biomassefeuerungsanlagen bis einschließlich 100 kW:**
 Anlagen mit einer Nennwärmeleistung bis 100 kW werden mit Festbeträgen wie folgt gefördert:
 - Pelletkessel mit neu errichtetem Pufferspeicher und einem Mindestspeichervolumen von 30 Litern/kW: 80 Euro/kW.
@@ -11949,8 +11931,10 @@ Förderfähig sind die gesamten **Bauwerkskosten**, Kosten für **Fachplanungs-*
 5. **Haben Sie einen Energieeffizienz-Experten oder eine Energieeffizienz-Expertin aus der Expertenliste des Bundes eingebunden?**  
    ✅ Ja  
 
-6. **Für das Klimafreundliche Wohngebäude mit QNG: Haben Sie einen QNG-Nachhaltigkeits-Berater und eine QNG-Zertifizierungsstelle einbezogen?**  
-   ✅ Ja / ✅ Nein (nur erforderlich für QNG-Förderung)  
+6. Wird entweder
+a) keine QNG-Förderung beantragt 
+b) oder, falls doch, sind ein QNG-Nachhaltigkeits-Berater sowie eine QNG-Zertifizierungsstelle einbezogen worden?
+✅ Ja
 
 7. **Können Sie bankübliche Sicherheiten für den Kredit stellen?**  
    ✅ Ja  
@@ -12028,8 +12012,10 @@ Anlagen über 1000 kWp müssen an dem Ausschreibungsverfahren für Anlagen des e
 3. **Ist Ihre Freiflächen- oder Agri PV-Anlage größer als 1000 kWp, und wird sie am Ausschreibungsverfahren der Bundesnetzagentur teilnehmen?**  
    ✅ Ja  
 
-4. **Handelt es sich bei der geplanten Anlage um eine Bürgerenergiegesellschaft gemäß § 3 Nr. 15 EEG?**  
-   ✅ Ja / ✅ Nein (abhängig von der Organisationsstruktur)  
+4. Handelt es sich entweder
+a) nicht um eine Bürgerenergiegesellschaft gemäß § 3 Nr. 15 EEG 
+b) oder, falls doch, erfüllt die geplante Anlage die entsprechenden Anforderungen?
+✅ Ja
 
 5. **Wenn es sich um eine Bürgerenergiegesellschaft handelt:**  
    a. **Hat die Gesellschaft mindestens 50 natürliche Personen als stimmberechtigte Mitglieder?**  
@@ -12151,39 +12137,17 @@ a,recv5CWjmQQDZeAcG,"
 - Die geförderten Anlagen oder die energetisch optimierten Gebäudeteile sind mindestens 10 Jahre zweckentsprechend zu nutzen.
 - Alle technischen Mindestanforderungen nach der Förderrichtlinie werden eingehalten (Diese findest du im aktuellen Bundesanzeiger ""Richtlinie für die Bundesförderung für effiziente Gebäude – Einzelmaßnahmen (BEG EM)"" in der Anlage ""Technische Mindestanforderungen"" in Kapitel 3.1 und 3.7: <https://www.energiewechsel.de/KAENEF/Redaktion/DE/FAQ/FAQ-Uebersicht/Richtlinien/bundesfoerderung-fuer-effiziente-gebaeude-beg.html>).
 
-","1. **Handelt es sich um ein Bestandsgebäude, das mindestens 5 Jahre alt ist?**  
+","1. **Wird die Förderung im Zusammenhang mit einer der genannten Einzelmaßnahmen (Gebäudehülle, Anlagentechnik, Heiztechnik, Heizungsoptimierung) beantragt?**  
    ✅ Ja  
 
-2. **Soll mit der Maßnahme die Energieeffizienz des Gebäudes und/oder der Anteil erneuerbarer Energien am Endenergieverbrauch erhöht werden?**  
+2. **Haben Sie einen Energieeffizienz-Experten eingebunden?**  
    ✅ Ja  
 
-3. **Wird der Einbau mit einer Optimierung des gesamten Heizungsverteilsystems verbunden?**  
-   ✅ Ja  
+4. Sind Sie selbst Eigentümer:in des Gebäudes, oder – falls nicht – haben Sie vor Antragstellung die Gebäudeeigentümerin bzw. den Gebäudeeigentümer über die Förderung und die maximale Förderhöhe informiert?
+✅ Ja
 
-4. **Soll ein hydraulischer Abgleich oder eine Anpassung der Luftvolumenströme durchgeführt werden?**  
-   ✅ Ja  
-
-5. **Ist für die Antragstellung die Einbindung eines Energieeffizienz-Experten vorgesehen?**  
-   ✅ Ja  
-
-6. **Falls die Antragstellenden nicht Eigentümerinnen oder Eigentümer des Gebäudes sind:**  
-   a. **Werden die Gebäudeeigentümerinnen oder Gebäudeeigentümer vor Antragstellung über die Förderung und die maximale Höhe des Förderbetrags informiert?**  
-      ✅ Ja  
-   b. **Ist die Gebäudeeigentümerin oder der Gebäudeeigentümer antragsberechtigt?**  
-      ✅ Ja  
-
-7. **Wird bei einem Contracting-Verhältnis ein Contractingvertrag geschlossen, der den Vorgaben der Richtlinie entspricht?**  
-   ✅ Ja  
-
-8. **Soll das Investitionsvorhaben auf dem Gebiet der Bundesrepublik Deutschland durchgeführt werden?**  
-   ✅ Ja  
-
-9. **Werden die geförderten Anlagen oder energetisch optimierten Gebäudeteile mindestens 10 Jahre zweckentsprechend genutzt?**  
-   ✅ Ja  
-
-10. **Werden alle technischen Mindestanforderungen der Förderrichtlinie eingehalten?**  
-   ✅ Ja  
-","Privatperson, Unternehmen, Contractor, Gemeinnützige Organisation, Kommune, WEG","Unternehmen und öffentliche Einrichtungen erhalten durch die BEG-Einzelmaßnahme-Förderung für Nichtwohngebäude finanzielle Unterstützung, um energieeffiziente Lösungen umzusetzen und damit langfristig Betriebskosten zu senken und die Umwelt zu schonen.",Bestand,BEG-Einzelmaßnahme-Förderung für Nichtwohngebäude: Investition in Energieeffizienz,Bund,1,Sonstige Heizungen,Nichtwohngebäude,,BEG-Einzelmaßnahme-Förderung-für-Nichtwohngebäude,recv5CWjmQQDZeAcG,"Die **Höchstgrenze** der förderfähigen Kosten für **Nichtwohngebäude** beträgt:
+4. **Werden alle Anforderungen an die Leistung des Energieeffizienz-Experten gemäß Förderrichtlinie eingehalten?**  
+   ✅ Ja  ","Privatperson, Unternehmen, Contractor, Gemeinnützige Organisation, Kommune, WEG","Unternehmen und öffentliche Einrichtungen erhalten durch die BEG-Einzelmaßnahme-Förderung für Nichtwohngebäude finanzielle Unterstützung, um energieeffiziente Lösungen umzusetzen und damit langfristig Betriebskosten zu senken und die Umwelt zu schonen.",Bestand,BEG-Einzelmaßnahme-Förderung für Nichtwohngebäude: Investition in Energieeffizienz,Bund,1,Sonstige Heizungen,Nichtwohngebäude,,BEG-Einzelmaßnahme-Förderung-für-Nichtwohngebäude,recv5CWjmQQDZeAcG,"Die **Höchstgrenze** der förderfähigen Kosten für **Nichtwohngebäude** beträgt:
 - Gebäude bis 150 m² Nettogrundfläche: 30.000 €
 - Gebäude von 150 m² bis 400 m² Nettogrundfläche: 200 € pro m²
 - Gebäude von 400 m² bis 1.000 m² Nettogrundfläche: 120 € pro m²
@@ -13391,11 +13355,15 @@ Förderfähige Maßnahmen: <https://www.bafa.de/SharedDocs/Downloads/DE/Energie/
 2. Hat das Gebäude höchstens fünf Wohneinheiten oder eine beheizte Fläche von maximal 1.000 Quadratmetern (bei Nichtwohngebäuden)?  
    ✅ Ja  
 
-3. Wurde bei einem wassergeführten Heizungssystem ein hydraulischer Abgleich nach Verfahren B gemäß Formular der VdZ-Wirtschaftsvereinigung Gebäude und Energie e. V. durchgeführt?  
-   ✅ Ja *(falls zutreffend)* / ✅ Nein *(falls nicht zutreffend)*  
+3. Handelt es sich entweder
+a) nicht um ein wassergeführtes Heizungssystem 
+b) oder, falls doch, wurde ein hydraulischer Abgleich nach Verfahren B gemäß dem VdZ-Formular durchgeführt?
+✅ Ja
 
-4. Wurde bei einem luftheizenden System in der Fachunternehmererklärung bestätigt, dass die Luftvolumenströme gemäß den rechnerisch ermittelten Einstellwerten einreguliert wurden?  
-   ✅ Ja *(falls zutreffend)* / ✅ Nein *(falls nicht zutreffend)*  
+4. Handelt es sich entweder
+a) nicht um ein luftheizendes System 
+b) oder, falls doch, wurde in der Fachunternehmererklärung bestätigt, dass die Luftvolumenströme gemäß den rechnerisch ermittelten Einstellwerten einreguliert wurden?
+✅ Ja
 
 5. Ist ein Energieeffizienz-Experte in die Antragstellung eingebunden worden?  
    ✅ Ja *(empfohlen, aber nicht zwingend erforderlich)*  
@@ -13429,8 +13397,10 @@ a,rec87ncVjMMwsLRnw,"Eine Kumulation mit anderen Förderprogrammen ist grundsät
 5. Ist die Regierung der Oberpfalz über den Antrag informiert worden?  
    ✅ Ja  
 
-6. Handelt es sich um eine besondere städtebauliche Gebäudemaßnahme, die eine Vorabstimmung mit der Regierung der Oberpfalz erfordert?  
-   ✅ Ja *(falls zutreffend)* / ✅ Nein *(falls nicht zutreffend)*  
+6. Handelt es sich entweder
+a) nicht um eine besondere städtebauliche Gebäudemaßnahme 
+b) oder, falls doch, wurde eine Vorabstimmung mit der Regierung der Oberpfalz vorgenommen, wie erforderlich?
+✅ Ja
 ","Privatperson, Kommune, Gemeinnützige Organisation",,Bestand,,Stadt/Kommune/Gemeinde,,"Fenster / Haustür, Baubegleitung","Nichtwohngebäude, Wohngebäude",,,rec87ncVjMMwsLRnw,"- Bei Leerstandssanierung Verdoppelung des Höchstbetrages auf max. 25.000,00 €. 
 - Bei einer Abwicklung in mehreren Bauabschnitten darf innerhalb von 10 Jahren der oben genannte Höchstförderbetrag von 12.500,00 € bzw. 25.000,00 € nicht überschritten werden. 
 ",undefined,undefined,undefined,undefined,undefined
@@ -14087,8 +14057,10 @@ Arbeiten in Eigenbauleistung müssen bei der Antragstellung angegeben werden und
    - Faserhaltige Dämmstoffe, die in Anhang IV, Nr. 22 (1) der Gefahrstoffverordnung aufgeführt sind?  
    ✅ Nein  
 
-7. Planen Sie Arbeiten in Eigenbauleistung?  
-   ✅/**✅ Ja oder Nein** *(Eigenbauleistungen sind möglich, müssen aber korrekt angegeben werden.)*  
+7. Werden entweder 
+a) keine Eigenbauleistungen geplant 
+b) oder, falls doch, diese korrekt angegeben und berücksichtigt, wie im Förderverfahren vorgesehen?
+✅ Ja
 
 8. Falls ja, sind Sie bereit, die Eigenbauleistung bei der Antragstellung anzugeben und fotografisch zu dokumentieren?  
    ✅ Ja *(falls Eigenbauleistungen geplant sind, muss dies dokumentiert werden)*  

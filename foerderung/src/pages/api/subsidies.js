@@ -14,25 +14,41 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
-      const { list: allQuestions } = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mhj8dvb0cf3wu6v/records?limit=1000`, {
-        method: 'GET',
-        headers: {
-          'xc-token': process.env.NOCODB_KEY,
-          'Content-Type': 'application/json'
-        },
-      }).then(res => res.json())
+      let allQuestions = []
+      let isLastPage = false
+      let page = 0
+      let maxTries = 0
 
-      const subsidiesWithQuestions = allSubsidies.list.map((subsidy) => ({
-        ...subsidy,
-        HouseType: subsidy.HouseType.split(','),
-        Type: subsidy.Type.split(','),
-        Measures: subsidy.Measures.split(','),
-        Questions: allQuestions.filter(q => subsidy.Id === q.Subsidies_id).map(q => ({
-          Id: q.Id,
-          Question: q.Question,
-          RequiredAnswer: q.RequiredAnswer
+      while (!isLastPage || maxTries > 10) {
+        maxTries++ // prevent endless loop
+        const res = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mhj8dvb0cf3wu6v/records?limit=1000&offset=${page * 1000}`, {
+          method: 'GET',
+          headers: {
+            'xc-token': process.env.NOCODB_KEY,
+            'Content-Type': 'application/json'
+          },
+        }).then(res => res.json())
+
+        const { pageInfo, list } = res
+
+        allQuestions = [...allQuestions, ...list]
+        isLastPage = pageInfo.isLastPage
+        page = page + 1
+      }
+
+      const subsidiesWithQuestions = allSubsidies.list
+        .filter(s => s.FirstFinished && s.Done)
+        .map((subsidy) => ({
+          ...subsidy,
+          HouseType: subsidy.HouseType.split(','),
+          Type: subsidy.Type.split(','),
+          Measures: subsidy.Measures.split(','),
+          Questions: allQuestions.filter(q => subsidy.Id === q.Subsidies_id).map(q => ({
+            Id: q.Id,
+            Question: q.Question,
+            RequiredAnswer: q.RequiredAnswer
+          }))
         }))
-      }))
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
@@ -50,6 +66,7 @@ export default async function handler(req, res) {
             Measures: user.Measures.split(','),
           }
 
+          // todo limit fields if user.isPaid === false
           const filteredSubsidies = subsidiesWithQuestions.filter(d =>
             d.HouseType.includes(userData.HouseType) &&
             (d.Region === userData.Region || d.Region === 'Bundesweit') &&
@@ -65,7 +82,7 @@ export default async function handler(req, res) {
             })
           )
 
-          const result = user.isPaid ? filteredSubsidies : filteredSubsidies.slice(0, 3)
+          const result = filteredSubsidies
 
           return res.status(200).json({ subsidies: result, user: userData, fullReportLength: filteredSubsidies.length })
         } else {
@@ -74,6 +91,7 @@ export default async function handler(req, res) {
       } else {
         const mappedResult = subsidiesWithQuestions.map((subsidy) => ({
           Id: subsidy.Id,
+          Name: subsidy.Name,
           Region: subsidy.Region,
           District: subsidy.District,
           HouseType: subsidy.HouseType,
