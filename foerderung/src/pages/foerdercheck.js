@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox } from '@mantine/core';
-import { IconHome, IconProgressHelp, IconBackhoe } from '@tabler/icons-react'
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline } from '@mantine/core';
+import { IconHome, IconProgressHelp, IconBackhoe, IconCheck, IconX } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
@@ -50,6 +50,8 @@ export default function Foerderung() {
   const [questionnaireStep, setQuestionnaireStep] = useState(0);
   const [checkStep, setCheckStep] = useState(0);
   const [answers, setAnswers] = useState({});
+  const [activeQuestion, setActiveQuestion] = useState(0);
+  const [falseAnswer, setFalseAnswer] = useState(null);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ TypZuschuss: true, TypKredit: true })
   const [email, setEmail] = useState('')
@@ -93,9 +95,10 @@ export default function Foerderung() {
     setActive(active + 1)
   }
 
-  const handleSubmitQuestionnaire = (e, d) => {
-    e.preventDefault()
+  const nextQuestionaireStep = () => {
     setQuestionnaireStep(questionnaireStep + 1)
+    setActiveQuestion(0)
+    setFalseAnswer(null)
   }
 
   const districtData = [...new Set(
@@ -132,9 +135,23 @@ export default function Foerderung() {
     return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
 
+  const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
+
   const openQuestionaire = () => {
     setCheckStep(1)
     setQuestionnaireStep(0)
+  }
+
+  const answerQuestion = (id, answer) => {
+    const question = allQuestions.find(q => q.Id === id)
+    const isWrongAnswer = answer !== 'Unklar' && (answer === 'Ja' && !question.RequiredAnswer || answer === 'Nein' && question.RequiredAnswer)
+    setAnswers({ ...answers, [id]: answer })
+
+    if (isWrongAnswer) {
+      setFalseAnswer(activeQuestion)
+    } else {
+      setActiveQuestion(activeQuestion + 1)
+    }
   }
 
   const handleSubmitReport = (e) => {
@@ -331,90 +348,62 @@ export default function Foerderung() {
               {finalData.filter(q => q.Questions && q.Questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
                   <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
-                  <Text fw="bold" mb="lg" ta="center">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
-                  {/* todo timeline https://mantine.dev/core/timeline/ */}
-                  <form onSubmit={e => handleSubmitQuestionnaire(e, d)}>
-                    <Table mb="lg" size="sm" striped display={{ base: 'none', xs: 'table' }}>
-                      <Table.Thead>
-                        <Table.Tr>
-                          <Table.Th w="70%">Frage</Table.Th>
-                          <Table.Th w="10%">Ja</Table.Th>
-                          <Table.Th w="10%">Nein</Table.Th>
-                          <Table.Th w="10%">Keine Angabe</Table.Th>
-                        </Table.Tr>
-                      </Table.Thead>
-                      <Table.Tbody>
-                        {d.Questions.map((q) =>
-                          <Table.Tr key={`questionnaire-question-${d.Id}-${q.Id}`}>
-                            <Table.Td><Text>{q.Question}</Text></Table.Td>
-                            <Table.Td><Checkbox checked={answers[q.Id] === 'Ja'} onChange={e => setAnswers({ ...answers, [q.Id]: e.target.checked ? 'Ja' : '' })} /></Table.Td>
-                            <Table.Td><Checkbox checked={answers[q.Id] === 'Nein'} onChange={e => setAnswers({ ...answers, [q.Id]: e.target.checked ? 'Nein' : '' })} /></Table.Td>
-                            <Table.Td><Checkbox checked={answers[q.Id] === 'Unklar'} onChange={e => setAnswers({ ...answers, [q.Id]: e.target.checked ? 'Unklar' : '' })} /></Table.Td>
-                          </Table.Tr>
-                        )}
-                      </Table.Tbody>
-                    </Table>
+                  <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
-                    <Flex wrap="wrap" gap="lg" mb="xl" display={{ base: 'flex', xs: 'none' }}>
-                      {d.Questions.map((q) =>
-                        <Box key={`questionnaire-question-${d.Id}-${q.Id}`}>
-                          <Text mb="sm" fw="500">{q.Question}</Text>
-                          <Flex gap="sm">
-                            <Radio.Card
-                              radius="sm"
-                              onClick={() => setAnswers({ ...answers, [q.Id]: 'Ja' })}
-                              style={{
-                                borderColor: answers[q.Id] === 'Ja' ? 'var(--mantine-primary-color-filled)' : '',
-                                borderWidth: '2px',
-                              }}
-                            >
-                              <Group wrap="nowrap" p="xs" justify="center">
-                                <Text ta="center">Ja</Text>
-                              </Group>
-                            </Radio.Card>
-                            <Radio.Card
-                              radius="sm"
-                              onClick={() => setAnswers({ ...answers, [q.Id]: 'Nein' })}
-                              style={{
-                                borderColor: answers[q.Id] === 'Nein' ? 'var(--mantine-primary-color-filled)' : '',
-                                borderWidth: '2px',
-                              }}
-                            >
-                              <Group wrap="nowrap" p="xs" justify="center">
-                                <Text ta="center">Nein</Text>
-                              </Group>
-                            </Radio.Card>
-                            <Radio.Card
-                              radius="sm"
-                              onClick={() => setAnswers({ ...answers, [q.Id]: 'Unklar' })}
-                              style={{
-                                borderColor: answers[q.Id] === 'Unklar' ? 'var(--mantine-primary-color-filled)' : '',
-                                borderWidth: '2px',
-                              }}
-                            >
-                              <Group wrap="nowrap" p="xs" justify="center">
-                                <Text ta="center">Keine Angabe</Text>
-                              </Group>
-                            </Radio.Card>
-                          </Flex>
+                  <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
+                    {d.Questions.map((q, i) => <Timeline.Item color={falseAnswer === i ? 'red.9' : ''}
+                      bullet={i < activeQuestion
+                        ? <IconCheck size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
+                        : falseAnswer === i
+                          ? <IconX size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
+                          : (i + 1)}
+                      key={`question-${i}`}
+                      lineVariant={i <= activeQuestion ? 'solid' : 'dashed'}
+                    >
+                      <Text c="dimmed" size="sm">Frage {i + 1} / {d.Questions.length}</Text>
+                      {activeQuestion === i && falseAnswer !== i && <>
+                        <Text mt={4} mb="md">{q.Question}</Text>
 
-                        </Box>
-                      )}
-                    </Flex>
+                        <Flex gap="md" direction={{ base: "column", xs: "row" }}>
+                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Ja')}>Ja</Button>
+                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Nein')}>Nein</Button>
+                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Unklar')}>Frage Überspringen</Button>
+                        </Flex>
+                      </>}
+                      {falseAnswer === i && <>
+                        <Text mb="md">Du erfüllst leider nicht die Voraussetzungen für diese Förderung.</Text>
+                        <Flex gap="md">
+                          <Button variant="default" onClick={() => setFalseAnswer(null)}>Zurück</Button>
+                          <Button variant="outline" onClick={() => nextQuestionaireStep()}>
+                            {finalData.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'}
+                          </Button>
+                        </Flex>
+                      </>}
+                    </Timeline.Item>)}
+                  </Timeline>
 
-                    <Flex gap="md" justify="space-between">
-                      <Button variant="default" onClick={() => index > 0 ? setQuestionnaireStep(index - 1) : setCheckStep(0)}>Zurück</Button>
-                      <Button type="submit" loading={isLoading} disabled={d.Questions.some(q => !answers[q.Id])}>
-                        Weiter
-                      </Button>
-                    </Flex>
-                  </form>
+                  {activeQuestion === d.Questions.length && falseAnswer === null && <Box mt="md">
+                    <Text mb="md">Du erfüllst die Voraussetzungen für diese Förderung.</Text>
+                    <Button onClick={() => nextQuestionaireStep()}>
+                      {finalData.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'}
+                    </Button>
+                  </Box>}
                 </Box>
               </Stepper.Step>)}
 
               <Stepper.Completed>
-                {/* todo 0 förderungen */}
-                <Box p="xl">
+                {filteredFinalData.length === 0 && <Box p="xl">
+                  <Title order={2} size="h3" mb="xl" align="center">
+                    Es wurden leider keine Förderungen für deine Eingaben gefunden.
+                  </Title>
+                  <Flex justify="center">
+                    <Button
+                      variant="default" w="30%"
+                      onClick={() => questionnaireStep === 0 ? setCheckStep(0) : setQuestionnaireStep(questionnaireStep - 1)}
+                    >Zurück</Button>
+                  </Flex>
+                </Box>}
+                {filteredFinalData.length > 0 && <Box p="xl">
                   <Title order={2} size="h3" mb="xl" align="center">
                     Du bist berechtigt {filteredFinalData.length} Förderungen zu erhalten.
                   </Title>
@@ -437,7 +426,7 @@ export default function Foerderung() {
                       <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
                     </Flex>
                   </form>
-                </Box>
+                </Box>}
               </Stepper.Completed>
             </Stepper>
           </Card>
