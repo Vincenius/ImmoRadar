@@ -77,8 +77,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
 
             {user.isPaid && subsidy.Requirements && <Box mb="md">
               <Title order={3} size="h3" mb="md">Voraussetzungen:</Title>
-              { mapToMantineComponents(converter.makeHtml(subsidy.Guidance)) }
-              {/* <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Requirements) }}></div> */}
+              { mapToMantineComponents(converter.makeHtml(subsidy.Requirements)) }
             </Box>}
 
             {user.isPaid && subsidy.Measures && <>
@@ -94,7 +93,6 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
             {user.isPaid && subsidy.Guidance && <>
               <SectionDivider isPdf={isPdf} />
               { mapToMantineComponents(converter.makeHtml(subsidy.Guidance)) }
-              {/* <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Guidance) }}></div> */}
             </>}
           </Box>
         )
