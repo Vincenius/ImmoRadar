@@ -4,6 +4,8 @@ import { Box, Title, Text, Button, Image, List } from '@mantine/core';
 
 // Function to map HTML elements to Mantine components
 export const mapToMantineComponents = (htmlString) => {
+  let listDepth = 0;
+
   const options = {
     replace: (domNode) => {
       if (domNode.type === 'tag') {
@@ -49,7 +51,7 @@ export const mapToMantineComponents = (htmlString) => {
             );
           case 'p':
             return (
-              <Text my="md">
+              <Text my={listDepth > 0 ? 0 : 'md'}>
                 {domToReact(children, options)}
               </Text>
             );
@@ -71,20 +73,15 @@ export const mapToMantineComponents = (htmlString) => {
               />
             );
           case 'ol':
-            return (
-              <List type="ordered">
-                {domToReact(children, options)}
-              </List>
-            );
-          case 'ol':
-            return (
-              <List type="unordered">
-                {domToReact(children, options)}
-              </List>
-            );
+          case 'ul': {
+            listDepth++;
+            const list = <List type={name === 'ol' ? 'ordered' : 'unordered'}>{domToReact(children, options)}</List>;
+            listDepth--;
+            return list;
+          }
           case 'li':
             return (
-              <List.Item>
+              <List.Item mb={listDepth === 1 ? 'md' : 0}>
                 {domToReact(children, options)}
               </List.Item>
             );
