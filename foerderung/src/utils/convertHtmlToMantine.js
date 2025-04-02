@@ -21,31 +21,31 @@ export const mapToMantineComponents = (htmlString) => {
             );
           case 'h1':
             return (
-              <Title order={1}>
+              <Title order={1} my="md">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h2':
             return (
-              <Title order={2}>
+              <Title order={2} my="md">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h3':
             return (
-              <Title order={3}>
+              <Title order={3} my="md">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h4':
             return (
-              <Title order={4}>
+              <Title order={4} my="md">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h5':
             return (
-              <Title order={5}>
+              <Title order={5} my="md">
                 {domToReact(children, options)}
               </Title>
             );
