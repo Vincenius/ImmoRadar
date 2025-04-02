@@ -16,6 +16,7 @@
     "@stripe/stripe-js": "^5.4.0",
     "@tabler/icons-react": "^3.31.0",
     "aws-sdk": "^2.1692.0",
+    "html-react-parser": "^5.2.3",
     "mjml": "^4.15.3",
     "next": "15.2.1",
     "nodemailer": "^6.10.0",

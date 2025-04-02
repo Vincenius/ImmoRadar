@@ -1,6 +1,6 @@
 import React from 'react';
 import parse, { domToReact } from 'html-react-parser';
-import { Box, Title, Text, Button, Image } from '@mantine/core';
+import { Box, Title, Text, Button, Image, List } from '@mantine/core';
 
 // Function to map HTML elements to Mantine components
 export const mapToMantineComponents = (htmlString) => {
@@ -69,6 +69,24 @@ export const mapToMantineComponents = (htmlString) => {
                 fit="cover"
                 radius="md"
               />
+            );
+          case 'ol':
+            return (
+              <List type="ordered">
+                {domToReact(children, options)}
+              </List>
+            );
+          case 'ol':
+            return (
+              <List type="unordered">
+                {domToReact(children, options)}
+              </List>
+            );
+          case 'li':
+            return (
+              <List.Item>
+                {domToReact(children, options)}
+              </List.Item>
             );
 
           // Add more cases as needed for other HTML elements

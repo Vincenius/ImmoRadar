@@ -2,6 +2,7 @@ import React from 'react'
 import Link from 'next/link'
 import { Box, Title, Text, Table, List, Divider, Button, Card } from "@mantine/core";
 import showdown from 'showdown';
+import { mapToMantineComponents } from '@/utils/convertHtmlToMantine';
 
 const converter = new showdown.Converter();
 
@@ -76,7 +77,8 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
 
             {user.isPaid && subsidy.Requirements && <Box mb="md">
               <Title order={3} size="h3" mb="md">Voraussetzungen:</Title>
-              <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Requirements) }}></div>
+              { mapToMantineComponents(converter.makeHtml(subsidy.Guidance)) }
+              {/* <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Requirements) }}></div> */}
             </Box>}
 
             {user.isPaid && subsidy.Measures && <>
@@ -91,7 +93,8 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
 
             {user.isPaid && subsidy.Guidance && <>
               <SectionDivider isPdf={isPdf} />
-              <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Guidance) }}></div>
+              { mapToMantineComponents(converter.makeHtml(subsidy.Guidance)) }
+              {/* <div dangerouslySetInnerHTML={{ __html: converter.makeHtml(subsidy.Guidance) }}></div> */}
             </>}
           </Box>
         )
