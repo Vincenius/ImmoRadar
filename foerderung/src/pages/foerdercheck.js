@@ -132,7 +132,7 @@ export default function Foerderung() {
 
   const filteredFinalData = finalData.filter(d => d?.Questions?.every(element => {
     const userAnswer = answers[element.Id]
-    return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+    return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
 
   const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
@@ -327,6 +327,7 @@ export default function Foerderung() {
                     Beantworte dazu bitte die Fragen zu den einzelnen Förderprogrammen.
                   </Text>
 
+
                   <Flex gap="md">
                     <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
                     <Button w="70%" onClick={() => openQuestionaire()}>Weiter zu den Fragen</Button>
@@ -345,7 +346,7 @@ export default function Foerderung() {
               styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
               allowNextStepsSelect={false}
             >
-              {finalData.filter(q => q.Questions && q.Questions.length > 0).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+              {finalData.filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit')).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
                   <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>

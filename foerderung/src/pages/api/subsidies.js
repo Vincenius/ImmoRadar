@@ -37,7 +37,7 @@ export default async function handler(req, res) {
       }
 
       const subsidiesWithQuestions = allSubsidies.list
-        .filter(s => s.FirstFinished && s.Done)
+        .filter(s => s.FirstFinished && s.Done && !(s.Type.includes('Zuschuss') && s.Type.includes('Kredit')))
         .map((subsidy) => ({
           ...subsidy,
           HouseType: subsidy.HouseType.split(','),
@@ -47,7 +47,8 @@ export default async function handler(req, res) {
             Id: q.Id,
             Question: q.Question,
             RequiredAnswer: q.RequiredAnswer
-          }))
+          })),
+          ConsultantNeeded: subsidy.ConsultantNeeded === 'YES',
         }))
 
       if (req.query.id) {
@@ -66,7 +67,6 @@ export default async function handler(req, res) {
             Measures: user.Measures.split(','),
           }
 
-          // todo limit fields if user.isPaid === false
           const filteredSubsidies = subsidiesWithQuestions.filter(d =>
             d.HouseType.includes(userData.HouseType) &&
             (d.Region === userData.Region || d.Region === 'Bundesweit') &&
@@ -76,13 +76,22 @@ export default async function handler(req, res) {
               userData.Type.includes('Kredit') && d.Type.includes('Kredit')
             ) &&
             d.Measures?.some(element => userData.Measures?.includes(element)) &&
-            d?.Questions?.every(element => {
+            (d.Type.includes('Kredit') || d?.Questions?.every(element => {
               const userAnswer = userData.Answers[element.Id]
               return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
-            })
+            }))
           )
 
-          const result = filteredSubsidies
+          const result = user.isPaid 
+            ? filteredSubsidies
+            : filteredSubsidies.map((subsidy) => ({
+              Id: subsidy.Id,
+              Name: subsidy.Name,
+              Type: subsidy.Type,
+              ConsultantNeeded: subsidy.ConsultantNeeded,
+              ApplicationDeadline: subsidy.ApplicationDeadline,
+              Website: subsidy.Website
+            }))
 
           return res.status(200).json({ subsidies: result, user: userData, fullReportLength: filteredSubsidies.length })
         } else {

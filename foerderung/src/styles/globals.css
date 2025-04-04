@@ -54,7 +54,7 @@ body {
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: var(--mantine-color-gray-1);
+  background: var(--mantine-color-gray-0);
 }
 
 a {
