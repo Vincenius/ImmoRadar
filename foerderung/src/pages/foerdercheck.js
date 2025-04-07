@@ -1,8 +1,8 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline } from '@mantine/core';
-import { IconHome, IconProgressHelp, IconBackhoe, IconCheck, IconX } from '@tabler/icons-react'
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline, ThemeIcon, Popover } from '@mantine/core';
+import { IconHome, IconProgressHelp, IconBackhoe, IconCheck, IconX, IconQuestionMark } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
@@ -363,7 +363,19 @@ export default function Foerderung() {
                     >
                       <Text c="dimmed" size="sm">Frage {i + 1} / {d.Questions.length}</Text>
                       {activeQuestion === i && falseAnswer !== i && <>
-                        <Text mt={4} mb="md">{q.Question}</Text>
+                        <Flex gap="md">
+                          <Text mt={4} mb="md">{q.Question}</Text>
+                          {q.Question.Infotext && <Popover width={200} position="bottom" withArrow shadow="md">
+                            <Popover.Target>
+                              <ThemeIcon variant="outline" radius="xl" size="xs" mt="0.45em" style={{ cursor: 'pointer' }}>
+                                <IconQuestionMark style={{ width: '80%', height: '80%' }} />
+                              </ThemeIcon>
+                            </Popover.Target>
+                            <Popover.Dropdown>
+                              <Text size="xs">{q.Question.Infotext}</Text>
+                            </Popover.Dropdown>
+                          </Popover>}
+                        </Flex>
 
                         <Flex gap="md" direction={{ base: "column", xs: "row" }}>
                           <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Ja')}>Ja</Button>
