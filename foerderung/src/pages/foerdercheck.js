@@ -44,6 +44,34 @@ const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
   </Group>
 }
 
+const DataTable = ({ data }) => {
+  return <Table mb="lg" size="sm" striped>
+    <Table.Thead>
+      <Table.Tr>
+        <Table.Th>Deine Daten</Table.Th>
+      </Table.Tr>
+    </Table.Thead>
+    <Table.Tbody>
+      <Table.Tr>
+        <Table.Td>Förderungen für</Table.Td>
+        <Table.Td>{data.HouseType}</Table.Td>
+      </Table.Tr>
+      <Table.Tr>
+        <Table.Td>Art der Förderung</Table.Td>
+        <Table.Td>{data.TypZuschuss && data.TypKredit ? 'Zuschuss & Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit'}</Table.Td>
+      </Table.Tr>
+      <Table.Tr>
+        <Table.Td>Immobilienstandort</Table.Td>
+        <Table.Td>{data.Region}{data.District ? ` - ${data.District}` : ''}</Table.Td>
+      </Table.Tr>
+      <Table.Tr>
+        <Table.Td>Zu Fördernde Maßnahmen</Table.Td>
+        <Table.Td>{data.Measures?.join(', ')}</Table.Td>
+      </Table.Tr>
+    </Table.Tbody>
+  </Table>
+}
+
 export default function Foerderung() {
   const router = useRouter()
   const [active, setActive] = useState(0);
@@ -68,30 +96,6 @@ export default function Foerderung() {
 
   const handleSubmitNext = (e) => {
     e.preventDefault();
-    setActive(active + 1)
-  }
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const formObject = {};
-    const elements = e.target.elements;
-    for (let element of elements) {
-      if (element.name) {
-        if (numberFormatElements.includes(element.name)) {
-          formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
-        } else {
-          formObject[element.name] = element.value;
-        }
-      }
-    }
-
-    const newData = {
-      ...data,
-      ...formObject
-    }
-
-    setData(newData)
     setActive(active + 1)
   }
 
@@ -135,7 +139,37 @@ export default function Foerderung() {
     return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
 
+  const finalDataQuestions = finalData.filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
   const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    const formObject = {};
+    const elements = e.target.elements;
+    for (let element of elements) {
+      if (element.name) {
+        if (numberFormatElements.includes(element.name)) {
+          formObject[element.name] = parseInt(element.value.replaceAll(' ', ''));
+        } else {
+          formObject[element.name] = element.value;
+        }
+      }
+    }
+
+    const newData = {
+      ...data,
+      ...formObject
+    }
+
+    setData(newData)
+
+    if (active === 3 && finalDataQuestions.length === 0) {
+      openQuestionaire()
+    } else {
+      setActive(active + 1)
+    }
+  }
 
   const openQuestionaire = () => {
     setCheckStep(1)
@@ -296,31 +330,7 @@ export default function Foerderung() {
                   <Title order={2} size="h3" mb="xl" ta="center">
                     Wir konnten {finalData.length} Förderungen für die eingestellten Kriterien finden.
                   </Title>
-                  <Table mb="lg" size="sm" striped>
-                    <Table.Thead>
-                      <Table.Tr>
-                        <Table.Th>Deine Daten</Table.Th>
-                      </Table.Tr>
-                    </Table.Thead>
-                    <Table.Tbody>
-                      <Table.Tr>
-                        <Table.Td>Förderungen für</Table.Td>
-                        <Table.Td>{data.HouseType}</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>Art der Förderung</Table.Td>
-                        <Table.Td>{data.TypZuschuss && data.TypKredit ? 'Zuschuss & Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit'}</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>Immobilienstandort</Table.Td>
-                        <Table.Td>{data.Region}{data.District ? ` - ${data.District}` : ''}</Table.Td>
-                      </Table.Tr>
-                      <Table.Tr>
-                        <Table.Td>Zu Fördernde Maßnahmen</Table.Td>
-                        <Table.Td>{data.Measures?.join(', ')}</Table.Td>
-                      </Table.Tr>
-                    </Table.Tbody>
-                  </Table>
+                  <DataTable data={data} />
 
                   <Text mb="lg" fs="italic">
                     Nun müssen wir nur noch prüfen, für welche Förderungen du die Voraussetzungen erfüllst.<br />
@@ -346,7 +356,7 @@ export default function Foerderung() {
               styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
               allowNextStepsSelect={false}
             >
-              {finalData.filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit')).map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+              {finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
                   <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
@@ -420,6 +430,7 @@ export default function Foerderung() {
                   <Title order={2} size="h3" mb="xl" align="center">
                     Du bist berechtigt {filteredFinalData.length} Förderungen zu erhalten.
                   </Title>
+                  {finalDataQuestions.length === 0 && <DataTable data={data} /> }
                   <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
                   <form onSubmit={handleSubmitReport}>
                     <TextInput

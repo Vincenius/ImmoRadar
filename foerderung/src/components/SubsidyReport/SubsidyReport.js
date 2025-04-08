@@ -97,7 +97,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
 
       <Title order={2} size="h2" mb="sm">Deine Förderungen ({subsidies.length})</Title>
       <List withPadding>
-        {subsidies.map((subsidy, index) => (
+        {[...selfSubsidies, ...consultantSubsidies, ...creditSubsidies].map((subsidy, index) => (
           <List.Item key={subsidy.Name}><a href={`#headline-${index}`}>{subsidy.Name}</a></List.Item>
         ))}
       </List>

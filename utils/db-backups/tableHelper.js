@@ -39,13 +39,47 @@ const main = async () => {
         page = page + 1
       }
 
-      // SubsidyFundingRates
-      // --
-      // Subsidy
-      // Website
-      // BaseFunding
-      // All Measures
-      console.log(data)
+      let i = 0
+      for (const d of data) {
+        i++;
+        // if (i === 1) {
+        console.log('update', i, 'of', data.length)
+        const res = await fetch(`${process.env.NOCODB_URI}/api/v2/tables/${table.id}/records`, {
+          method: 'PATCH',
+          headers: {
+            'xc-token': process.env.NOCODB_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            Id: d.Id, FundingDetails: {
+              "Altersgerechter Umbau": 0,
+              "Batteriespeicher": 0,
+              "Baubegleitung": 0,
+              "Biomasse": 0,
+              "Dämmung": 0,
+              "Effizienzhaus": 0,
+              "Einbruchschutz": 0,
+              "Energieberatung": 0,
+              "Erneuerbare Energien": 0,
+              "Fenster / Haustür": 0,
+              "Fernwärme": 0,
+              "Heizungsoptimierung": 0,
+              "Holzbau": 0,
+              "Ladestation": 0,
+              "Lüftung": 0,
+              "Passivhaus": 0,
+              "Photovoltaik": 0,
+              "Smart Home": 0,
+              "Solarthermie": 0,
+              "Sonstige Heizungen": 0,
+              "Sonstiges": 0,
+              "Wärmepumpe": 0,
+              "Wärmespeicher": 0
+            }
+          })
+        }).then(res => res.json())
+        // }
+      }
     }
   }
 }
