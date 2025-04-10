@@ -49,6 +49,7 @@ export default async function handler(req, res) {
             RequiredAnswer: q.RequiredAnswer
           })),
           ConsultantNeeded: subsidy.ConsultantNeeded === 'YES',
+          FundingDetails: subsidy.FundingDetails,
         }))
 
       if (req.query.id) {
@@ -107,6 +108,7 @@ export default async function handler(req, res) {
           Type: subsidy.Type,
           Measures: subsidy.Measures,
           Questions: subsidy.Questions,
+          FundingDetails: subsidy.FundingDetails,
         }))
 
         res.status(200).json(mappedResult);

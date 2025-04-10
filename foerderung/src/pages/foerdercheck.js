@@ -1,13 +1,14 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation'
 import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline, ThemeIcon, Popover } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline, ThemeIcon, Popover, NumberFormatter } from '@mantine/core';
 import { IconHome, IconProgressHelp, IconBackhoe, IconCheck, IconX, IconQuestionMark } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import { fetcher } from '@/utils/fetcher';
+import { accessedDynamicData } from 'next/dist/server/app-render/dynamic-rendering';
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -134,12 +135,26 @@ export default function Foerderung() {
     d.Measures?.some(element => data.Measures?.includes(element))
   )
 
+  const finalDataAmount = finalData.reduce((acc, curr) => {
+    const subAmount = data.Measures.reduce((subAcc, subCurr) => {
+      return subAcc + curr.FundingDetails[subCurr]
+    }, 0)
+    return acc + subAmount
+  }, 0)
+
   const filteredFinalData = finalData.filter(d => d?.Questions?.every(element => {
     const userAnswer = answers[element.Id]
     return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
 
-  const finalDataQuestions = finalData.filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
+  const finalDataQuestions = finalData
+    .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
+    .map(q => ({
+      ...q, 
+      Amount: data.Measures.reduce((acc, curr) => {
+        return acc + q.FundingDetails[curr]
+      }, 0)
+    }))
   const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
 
   const handleSubmit = (e) => {
@@ -327,8 +342,8 @@ export default function Foerderung() {
               </Stepper.Step>
               <Stepper.Step>
                 <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">
-                    Wir konnten {finalData.length} Förderungen für die eingestellten Kriterien finden.
+                  <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
+                    Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix=" €" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
                   </Title>
                   <DataTable data={data} />
 
@@ -358,7 +373,7 @@ export default function Foerderung() {
             >
               {finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
+                  <Title order={2} size="h3" mb="xl" ta="center">Förderung 1. mit einer Fördersumme von <NumberFormatter suffix=" €" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Title>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
                   <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
