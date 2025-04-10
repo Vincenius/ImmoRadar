@@ -147,6 +147,13 @@ export default function Foerderung() {
     return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
 
+  const filteredFinalDataAmount = filteredFinalData.reduce((acc, curr) => {
+    const subAmount = data.Measures.reduce((subAcc, subCurr) => {
+      return subAcc + curr.FundingDetails[subCurr]
+    }, 0)
+    return acc + subAmount
+  }, 0)
+
   const finalDataQuestions = finalData
     .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
     .map(q => ({
@@ -443,7 +450,7 @@ export default function Foerderung() {
                 </Box>}
                 {filteredFinalData.length > 0 && <Box p="xl">
                   <Title order={2} size="h3" mb="xl" align="center">
-                    Du bist berechtigt {filteredFinalData.length} Förderungen zu erhalten.
+                    Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix=" €" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
                   </Title>
                   {finalDataQuestions.length === 0 && <DataTable data={data} /> }
                   <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
