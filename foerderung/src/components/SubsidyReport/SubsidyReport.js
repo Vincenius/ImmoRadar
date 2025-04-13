@@ -6,36 +6,37 @@ import { mapToMantineComponents } from '@/utils/convertHtmlToMantine';
 
 const converter = new showdown.Converter();
 
-const SubsidyItem = ({ subsidy, isPdf = false, index, user }) => {
+const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
   const url = new URL(subsidy.Website);
   const baseUrl = url.origin;
+  const isPaid = user.Variant !== 'free'
   return (
     <Box>
       {index > 0 && <SectionDivider isPdf={isPdf} />}
-      <Title order={3} size="h3" mb="md" id={`headline-${index}`}>{subsidy.Name}</Title>
+      <Title order={3} size="h3" mb="md" id={`headline-${type}-${index}`}>{subsidy.Name}</Title>
 
       {user.Type.length > 1 && <Text><strong>Art der Förderung:</strong> {subsidy.Type.join(', ')}</Text>}
-      {user.isPaid && subsidy.MaxFundingRate && <Text><strong>Maximale Förderrate:</strong> {subsidy.MaxFundingRate}</Text>}
-      {user.isPaid && subsidy.BaseFundingRate && <Text><strong>Basisförderrate:</strong> {subsidy.BaseFundingRate}</Text>}
+      {isPaid && subsidy.MaxFundingRate && <Text><strong>Maximale Förderrate:</strong> {subsidy.MaxFundingRate}</Text>}
+      {isPaid && subsidy.BaseFundingRate && <Text><strong>Basisförderrate:</strong> {subsidy.BaseFundingRate}</Text>}
       {subsidy.ApplicationDeadline && <Text><strong>Antragsfristen:</strong> {subsidy.ApplicationDeadline}</Text>}
       <Text mb="md"><strong>Offizielle Webseite:</strong> <a href={subsidy.Website}>{baseUrl}</a></Text>
 
-      {user.isPaid && subsidy.Requirements && <Box mb="md">
+      {isPaid && subsidy.Requirements && <Box mb="md">
         <Title order={3} size="h3" mb="md">Voraussetzungen:</Title>
         {mapToMantineComponents(converter.makeHtml(subsidy.Requirements))}
       </Box>}
 
-      {user.isPaid && subsidy.Measures && <>
+      {isPaid && subsidy.Measures && <>
         <Title order={3} size="h4" mb="md">Förderfähige Maßnahmen:</Title>
         <Text mb="md">{subsidy.Measures.filter(m => user.Measures.includes(m)).join(', ')}</Text>
       </>}
 
-      {user.isPaid && subsidy.Accumulation && <>
+      {isPaid && subsidy.Accumulation && <>
         <Title order={3} size="h4" mb="md">Kumulierung mit anderen Programmen:</Title>
         <Text mb="md">{subsidy.Accumulation}</Text>
       </>}
 
-      {user.isPaid && subsidy.Guidance && <>
+      {isPaid && subsidy.Guidance && <>
         <SectionDivider isPdf={isPdf} />
         {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
       </>}
@@ -48,7 +49,8 @@ const SectionDivider = ({ isPdf }) => isPdf
   : <Divider my="lg" />
 
 function SubsidyReport({ data, isPdf = false, baseUrl }) {
-  const { user, subsidies } = data
+  const { user, subsidies, noConsultantCount, consultantCount } = data
+  const isPaid = user.Variant !== 'free'
   const checkoutLink = isPdf ? `${baseUrl}/checkout?id=${user.uuid}` : `/checkout?id=${user.uuid}`
 
   const selfSubsidies = subsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === false)
@@ -83,7 +85,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         </Table.Tbody>
       </Table>
 
-      {!user.isPaid && <Box mb="xl">
+      {!isPaid && <Box mb="xl">
         <SectionDivider isPdf={isPdf} />
 
         <Card shadow="md" p="lg">
@@ -97,8 +99,17 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
 
       <Title order={2} size="h2" mb="sm">Deine Förderungen ({subsidies.length})</Title>
       <List withPadding>
-        {[...selfSubsidies, ...consultantSubsidies, ...creditSubsidies].map((subsidy, index) => (
-          <List.Item key={subsidy.Name}><a href={`#headline-${index}`}>{subsidy.Name}</a></List.Item>
+        {selfSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold">Direkt beantragbare Förderungen</Text></List.Item>}
+        {selfSubsidies.map((subsidy, index) => (
+          <List.Item key={subsidy.Name}><a href={`#headline-self-${index}`}>{subsidy.Name}</a></List.Item>
+        ))}
+        {consultantSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold">Förderungen mit Energieberater</Text></List.Item>}
+        {consultantSubsidies.map((subsidy, index) => (
+          <List.Item key={subsidy.Name}><a href={`#headline-consultant-${index}`}>{subsidy.Name}</a></List.Item>
+        ))}
+        {creditSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold">Kredite mit Finanzierungspartner</Text></List.Item>}
+        {creditSubsidies.map((subsidy, index) => (
+          <List.Item key={subsidy.Name}><a href={`#headline-credit-${index}`}>{subsidy.Name}</a></List.Item>
         ))}
       </List>
 
@@ -106,21 +117,45 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         <SectionDivider isPdf={isPdf} />
         <Title order={2} size="h2" mt="xl">Direkt beantragbare Förderungen</Title>
         <Text mb="xl" fs="italic">Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung.</Text>
-        {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} />)}
+        {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="self" />)}
+
+        {!isPaid && noConsultantCount > 3 && <>
+          <SectionDivider isPdf={isPdf} />
+
+          <Card shadow="md" p="lg">
+            <Title order={3} mb="md" id="full-report">{noConsultantCount - 3} weitere direkt beantragbare Förderungen verfügbar</Title>
+            <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte Zugriff auf alle Förderungen die direkt beantragt werden können sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel!</Text>
+            <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
+              Vollständigen Report Kaufen
+            </Button>
+          </Card>
+        </>}
       </>}
 
       {consultantSubsidies.length > 0 && <>
         <SectionDivider isPdf={isPdf} />
         <Title order={2} size="h2" mt="xl">Förderungen mit Energieberater</Title>
         <Text mb="xl" fs="italic">Für diese Fördermittel ist die Einbindung eines zertifizierten Energieberaters erforderlich.</Text>
-        {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} />)}
+        {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="consultant" />)}
       </>}
 
       {creditSubsidies.length > 0 && <>
         <SectionDivider isPdf={isPdf} />
         <Title order={2} size="h2" mt="xl">Kredite mit Finanzierungspartner</Title>
         <Text mb="xl" fs="italic">Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank.</Text>
-        {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} />)}
+        {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="credit" />)}
+      </>}
+
+      {consultantCount > 0 && <>
+        <SectionDivider isPdf={isPdf} />
+
+        <Card shadow="md" p="lg" mb="xl">
+          <Title order={3} mb="md" id="full-report">{consultantCount} Förderungen mit Energieberater verfügbar</Title>
+          <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte Zugriff auf alle Förderungen die mithilfe von einem Energieberater beantragt werden können!</Text>
+          <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
+            {user.Variant === 'free' ? 'Vollständigen Report Kaufen' : 'Report upgraden'}
+          </Button>
+        </Card>
       </>}
     </Box>
   )

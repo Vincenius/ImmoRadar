@@ -2,17 +2,39 @@ import Stripe from 'stripe';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
+const priceMap = {
+  'premium': 'price_1QutGsKQunG297XzrH9slJ2f',
+  'professional': 'price_1RCwx1KQunG297XzES3V5w8n',
+  'professional_upgrade': 'price_1RDRqvKQunG297Xzkk2ciXQ0'
+}
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, email } = JSON.parse(req.body)
+    const { id, email, variant } = JSON.parse(req.body)
     try {
+      let isUpgrade = false
+
+      if (variant === 'professional') {
+        const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
+        const { list: [user] } = await fetch(url, {
+          method: 'GET',
+          headers: {
+            'xc-token': process.env.NOCODB_KEY,
+          },
+        }).then(res => res.json())
+        if (user.Variant === 'premium') {
+          isUpgrade = true
+        }
+      }
+
+      const price = isUpgrade ? 'price_1RDRqvKQunG297Xzkk2ciXQ0' : priceMap[variant]
       const session = await stripe.checkout.sessions.create({
         ui_mode: 'embedded',
         customer_email: email,
         client_reference_id: id,
         line_items: [
           {
-            price: 'price_1QutGsKQunG297XzrH9slJ2f',
+            price,
             quantity: 1,
           },
         ],

@@ -1,5 +1,4 @@
 import { useCallback } from "react";
-import Layout from '@/components/Layout/Layout'
 import { loadStripe } from '@stripe/stripe-js';
 import {
   EmbeddedCheckoutProvider,
@@ -8,12 +7,12 @@ import {
 
 const stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
-export default function Checkout({ id, email }) {
+export default function Checkout({ id, email, variant }) {
   const fetchClientSecret = useCallback(() => {
     // Create a Checkout Session
     return fetch("/api/checkout/session", {
       method: "POST",
-      body: JSON.stringify({ id, email }),
+      body: JSON.stringify({ id, email, variant }),
     })
       .then((res) => res.json())
       .then((data) => data.clientSecret);

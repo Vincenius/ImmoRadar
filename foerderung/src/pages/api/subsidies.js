@@ -68,6 +68,8 @@ export default async function handler(req, res) {
             Measures: user.Measures.split(','),
           }
 
+          let count = 0
+          let consultantCount = 0
           const filteredSubsidies = subsidiesWithQuestions.filter(d =>
             d.HouseType.includes(userData.HouseType) &&
             (d.Region === userData.Region || d.Region === 'Bundesweit') &&
@@ -81,9 +83,29 @@ export default async function handler(req, res) {
               const userAnswer = userData.Answers[element.Id]
               return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
             }))
-          )
+          ).filter(d => {
+            if (
+              (user.Variant === 'professional') || // all for professional users
+              (user.Variant === 'premium' && (d.Type.includes('Kredit') || d.ConsultantNeeded === false)) || // credit & no consultant for premium
+              (user.Variant === 'free' && d.Type.includes('Kredit')) // credit for free
+            ) {
+              return true
+            } else if (user.Variant === 'free' && d.ConsultantNeeded === false) {
+              count++
+              if (count <= 3) { // 3 no consultant for free
+                return true
+              } else {
+                return false
+              }
+            } else if (d.ConsultantNeeded === true) {
+              consultantCount++
+              return false
+            } else {
+              return false
+            }
+          })
 
-          const result = user.isPaid 
+          const result = user.Variant !== 'free'
             ? filteredSubsidies
             : filteredSubsidies.map((subsidy) => ({
               Id: subsidy.Id,
@@ -94,7 +116,7 @@ export default async function handler(req, res) {
               Website: subsidy.Website
             }))
 
-          return res.status(200).json({ subsidies: result, user: userData, fullReportLength: filteredSubsidies.length })
+          return res.status(200).json({ subsidies: result, user: userData, noConsultantCount: count, consultantCount });
         } else {
           return res.status(401).json({ message: 'Unauthorized' });
         }
@@ -133,7 +155,7 @@ export default async function handler(req, res) {
           Measures: data.Measures.join(','),
           Answers: answers,
           IsDev: process.env.STAGE !== 'prod',
-          isPaid: false,
+          Variant: 'free',
         })
       }).then(res => res.json())
 

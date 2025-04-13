@@ -6,14 +6,22 @@ import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
+const priceMap = {
+  'price_1QutGsKQunG297XzrH9slJ2f': 'premium',
+  'price_1RCwx1KQunG297XzES3V5w8n': 'professional',
+  'price_1RDRqvKQunG297Xzkk2ciXQ0': 'professional' // upgrade from premium
+}
+
+
 export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { session_id } = JSON.parse(req.body)
-    console.log(session_id)
+
     try {
-      const session = await stripe.checkout.sessions.retrieve(session_id);
+      const session = await stripe.checkout.sessions.retrieve(session_id, { expand: ['line_items'] });
       
       if (session.status === 'complete') {
+        const price = session.line_items.data[0].price.id
         const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${session.client_reference_id})`;
         const { list: [user] } = await fetch(url, {
           method: 'GET',
@@ -29,16 +37,16 @@ export default async function handler(req, res) {
               'xc-token': process.env.NOCODB_KEY,
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ Id: user.Id, isPaid: true })
+          body: JSON.stringify({ Id: user.Id, Variant: priceMap[price] })
         }).then(res => res.json())
 
         const { filename } = await generatePdf(session.client_reference_id)
         await sendEmail({
           to: user.Email,
-          subject: 'Fertighaus Radar Förderungen Report',
+          subject: 'Dein Förderungen Report',
           html: subsidyPaidTemplate(),
           pdfFilePath: filename,
-          pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
+          pdfFileName: 'Förderung Report.pdf'
         })
         fs.unlinkSync(filename)
 

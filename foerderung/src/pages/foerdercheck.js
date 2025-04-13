@@ -8,7 +8,6 @@ import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import { fetcher } from '@/utils/fetcher';
-import { accessedDynamicData } from 'next/dist/server/app-render/dynamic-rendering';
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -100,12 +99,6 @@ export default function Foerderung() {
     setActive(active + 1)
   }
 
-  const nextQuestionaireStep = () => {
-    setQuestionnaireStep(questionnaireStep + 1)
-    setActiveQuestion(0)
-    setFalseAnswer(null)
-  }
-
   const districtData = [...new Set(
     subsidyData
       .filter(d => d.Region === data.Region && d.District)
@@ -157,12 +150,39 @@ export default function Foerderung() {
   const finalDataQuestions = finalData
     .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
     .map(q => ({
-      ...q, 
+      ...q,
       Amount: data.Measures.reduce((acc, curr) => {
         return acc + q.FundingDetails[curr]
       }, 0)
     }))
   const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
+
+  const nextQuestionaireStep = () => {
+    setQuestionnaireStep(questionnaireStep + 1)
+    setActiveQuestion(0)
+    setFalseAnswer(null)
+  }
+
+  const prevQuestionaireStep = () => {
+    if (questionnaireStep === 0) {
+      setCheckStep(0)
+    } else {
+      let initQuestion = 0
+      let initFalseAnswer = null
+
+      finalDataQuestions[questionnaireStep - 1].Questions.forEach(q => {
+        if (answers[q.Id] === 'Unklar' || answers[q.Id] === 'Ja' && q.RequiredAnswer || answers[q.Id] === 'Nein' && !q.RequiredAnswer) {
+          initQuestion++
+        } else {
+          initFalseAnswer = initQuestion
+        }
+      })
+
+      setQuestionnaireStep(questionnaireStep - 1)
+      setActiveQuestion(initQuestion)
+      setFalseAnswer(initFalseAnswer)
+    }
+  }
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -350,7 +370,7 @@ export default function Foerderung() {
               <Stepper.Step>
                 <Box p="xl">
                   <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                    Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix=" €" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
+                    Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
                   </Title>
                   <DataTable data={data} />
 
@@ -380,7 +400,7 @@ export default function Foerderung() {
             >
               {finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">Förderung 1. mit einer Fördersumme von <NumberFormatter suffix=" €" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Title>
+                  <Title order={2} size="h3" mb="xl" ta="center">Förderung {index + 1}. mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Title>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
                   <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
@@ -433,6 +453,8 @@ export default function Foerderung() {
                       {finalData.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'}
                     </Button>
                   </Box>}
+
+                  <Button mt="lg" variant="outline" onClick={prevQuestionaireStep}>{index === 0 ? 'Zurück' : 'Vorherige Förderung'}</Button>
                 </Box>
               </Stepper.Step>)}
 
@@ -450,9 +472,9 @@ export default function Foerderung() {
                 </Box>}
                 {filteredFinalData.length > 0 && <Box p="xl">
                   <Title order={2} size="h3" mb="xl" align="center">
-                    Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix=" €" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
+                    Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
                   </Title>
-                  {finalDataQuestions.length === 0 && <DataTable data={data} /> }
+                  {finalDataQuestions.length === 0 && <DataTable data={data} />}
                   <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
                   <form onSubmit={handleSubmitReport}>
                     <TextInput
