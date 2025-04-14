@@ -32,7 +32,7 @@ export default function Foerderung() {
               </Title>
             </Box>
 
-            <Button size="xl" component={Link} href="/foerdercheck">Jetzt den FörderCheck starten!</Button>
+            <Button size="xl" component={Link} href="/foerdercheck">Jetzt FörderCheck starten!</Button>
           </Flex>
         </Flex>
       </Box>
@@ -40,7 +40,7 @@ export default function Foerderung() {
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl" size="h1">So funktioniert's</Title>
 
-        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800}>
+        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800} direction={{ base: "column-reverse", sm: "row" }}>
           <Box>
             <Title order={3} mb="md">Fragebogen ausfüllen</Title>
             <Text>Teile uns ein paar Informationen zu deinem Vorhaben mit und beantworte gezielte Fragen. So stellen wir sicher, dass du nur passende Förderprogramme erhältst.</Text>
@@ -52,12 +52,12 @@ export default function Foerderung() {
             alt="Illustration Fragebogen"
             height={200}
             width={400}
-            w="auto"
+            w={{ base: 200, sm: "auto" }}
             h={200}
           />
         </Flex>
 
-        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800}>
+        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800} direction={{ base: "column", sm: "row" }}>
           <Image
             radius="md"
             component={NextImage}
@@ -65,7 +65,7 @@ export default function Foerderung() {
             alt="Illustration Fragebogen"
             height={200}
             width={400}
-            w="auto"
+            w={{ base: 200, sm: "auto" }}
             h={200}
           />
           <Box>
@@ -73,7 +73,7 @@ export default function Foerderung() {
             <Text>Du bekommst kostenlos eine Übersicht relevanter Zuschüsse und Förderkredite, individuell abgestimmt auf dein Projekt und deine Region.</Text>
           </Box>
         </Flex>
-        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800}>
+        <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800} direction={{ base: "column-reverse", sm: "row" }}>
           <Box>
             <Title order={3} mb="md">Anleitung zur Antragstellung</Title>
             <Text>Mit unserer Premium-Variante erhältst du Zugang zu weiteren Förderprogrammen sowie einer detaillierten Schritt-für-Schritt-Anleitung für deinen Förderantrag.</Text>
@@ -85,7 +85,7 @@ export default function Foerderung() {
             alt="Illustration Fragebogen"
             height={200}
             width={400}
-            w="auto"
+            w={{ base: 200, sm: "auto" }}
             h={200}
           />
         </Flex>
@@ -137,7 +137,7 @@ export default function Foerderung() {
         <Box align="center">
           <Title order={2} ta="center" mb="md" size="h1">Unverbindlich ausprobieren</Title>
           <Text mb="3em" fs="italic">Finde kostenlos und unkompliziert heraus, welche Fördermittel dir zustehen</Text>
-          <Button size="xl" component={Link} href="/foerdercheck">Jetzt den FörderCheck Starten!</Button>
+          <Button size="xl" component={Link} href="/foerdercheck">Jetzt FörderCheck Starten!</Button>
         </Box>
       </Box>
 
