@@ -91,17 +91,14 @@ export default function Foerderung() {
         </Flex>
       </Box>
 
-      <Box py="6em" pos="relative">
+      <Box pt="6em" pb="12em" pos="relative">
         <Title order={2} ta="center" mb="xl" size="h1">Preise</Title>
 
         <Pricing showFree plan="free" />
       </Box>
 
-      <Box py="6em" pos="relative">
-        <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
-        <Title order={2} ta="center" mb="xl" size="h1">Das sagen unsere Nutzer</Title>
-
-        <Flex gap="4em" direction={{ base: 'column', xs: 'row' }}>
+      <Box py="8em" pos="relative">
+        <Flex mt="-14em" mb="6em" gap="4em" direction={{ base: 'column', xs: 'row' }}>
           <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Stefan W." w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
             Dank dem FörderCheck habe ich eine Förderung von 20.000€ entdeckt, die mir vorher nicht bekannt war. Super einfache Anwendung!
           </Blockquote>
@@ -110,9 +107,6 @@ export default function Foerderung() {
             Ich wusste nicht, dass es so viele Möglichkeiten gibt! Die Premium-Version hat mir sehr geholfen, den Antrag richtig auszufüllen.
           </Blockquote>
         </Flex>
-      </Box>
-
-      <Box py="8em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl" size="h1">Häufig gestellte Fragen</Title>
 
