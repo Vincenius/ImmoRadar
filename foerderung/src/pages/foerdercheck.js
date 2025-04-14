@@ -247,7 +247,7 @@ export default function Foerderung() {
 
   return (
     <Layout
-      title="Förderradar"
+      title={process.env.NEXT_PUBLIC_WEBSITE_NAME}
       description="todo"
       noindex={true} // todo
     >
