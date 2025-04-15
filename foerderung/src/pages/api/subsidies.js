@@ -36,6 +36,9 @@ export default async function handler(req, res) {
         page = page + 1
       }
 
+      const flatQuestions = allQuestions.map(q => q['_nc_m2m_Subsidies_SubsidyQuestions']).flat()
+
+      let usedQuestions = []
       const subsidiesWithQuestions = allSubsidies.list
         .filter(s => s.FirstFinished && s.Done && !(s.Type.includes('Zuschuss') && s.Type.includes('Kredit')))
         .map((subsidy) => ({
@@ -43,11 +46,18 @@ export default async function handler(req, res) {
           HouseType: subsidy.HouseType.split(','),
           Type: subsidy.Type.split(','),
           Measures: subsidy.Measures.split(','),
-          Questions: allQuestions.filter(q => subsidy.Id === q.Subsidies_id).map(q => ({
-            Id: q.Id,
-            Question: q.Question,
-            RequiredAnswer: q.RequiredAnswer
-          })),
+          Questions: flatQuestions.filter(q => subsidy.Id === q.Subsidies_id).map(q => {
+            if (usedQuestions.includes(q.SubsidyQuestions.Id)) { // prevent duplicate questions
+              return null
+            } else {
+              usedQuestions.push(q.SubsidyQuestions.Id)
+              return {
+                Id: q.SubsidyQuestions.Id,
+                Question: q.SubsidyQuestions.Question,
+                RequiredAnswer: q.SubsidyQuestions.RequiredAnswer
+              }
+            }
+          }).filter(Boolean),
           ConsultantNeeded: subsidy.ConsultantNeeded === 'YES',
           FundingDetails: subsidy.FundingDetails,
         }))

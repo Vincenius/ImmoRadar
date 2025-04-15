@@ -92,7 +92,7 @@ const main = async () => {
   //     qIds.push(result)
   //   }
 
-  //   const url = `${process.env.NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/links/ck9eh3qfu1mgmgo/records/${sub.Id}`
+  //   const url = `${process.env.NOCODB_URI}/api/v2/tables/mnc1qd2t096094t/links/c22h2roi2cpbwi6/records/${sub.Id}`
   //   const options = getOptions(qIds)
   //   const test = await fetch(url, options).then(res => res.json())
   //   console.log(test)
