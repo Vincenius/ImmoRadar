@@ -40,19 +40,19 @@ const runScan = async (type) => {
 
 console.log('INIT CRON JOB')
 
-cron.schedule('45 * * * *', () => {
-  if (!isFullScanRunning) {
-    console.log(new Date().toISOString(), 'running new scan');
+// cron.schedule('45 */6 * * *', () => {
+//   if (!isFullScanRunning) {
+//     console.log(new Date().toISOString(), 'running new scan');
 
-    runScan('NEW_SCAN').then(() => {
-      console.log(new Date().toISOString(), 'new scan finished');
-    })
-  } else {
-    console.log(new Date().toISOString(), 'skipping new scan because full scan is running');
-  }
-});
+//     runScan('NEW_SCAN').then(() => {
+//       console.log(new Date().toISOString(), 'new scan finished');
+//     })
+//   } else {
+//     console.log(new Date().toISOString(), 'skipping new scan because full scan is running');
+//   }
+// });
 
-cron.schedule('0 4 * * *', () => {
+cron.schedule('0 9 * * *', () => {
   console.log(new Date().toISOString(), 'running full scan');
   isFullScanRunning = true;
 
