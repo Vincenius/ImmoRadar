@@ -88,17 +88,17 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Flex direction={{ base: "column-reverse", xs: "row" }} justify="space-between" align={{ base: "center", xs: "flex-start" }} gap="md">
             <Box>
 
-              <Flex gap="sm" mt="xl">
+              <Flex gap="sm">
                 <Image src={GreenEnergyLogo} width={40} height={40} alt="Erneuerbare Energien Logo" />
                 <Text weight={700} size="xs" c="gray.7" maw="200px">Diese Webseite wird mit erneuerbarer Energie betrieben.</Text>
               </Flex>
             </Box>
 
             <Flex gap="xl" direction={{ base: "column", xs: "row" }}>
-              {/* <Box>
+              <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-              </Box> */}
+              </Box>
             </Flex>
           </Flex>
           <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} {process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
