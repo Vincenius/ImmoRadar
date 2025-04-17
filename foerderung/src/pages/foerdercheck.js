@@ -250,9 +250,8 @@ export default function Foerderung() {
 
   return (
     <Layout
-      title={process.env.NEXT_PUBLIC_WEBSITE_NAME}
-      description="todo"
-      noindex={true} // todo
+      title="Dein FörderCheck"
+      description="Teile uns ein paar Informationen zu deinem Vorhaben mit und beantworte gezielte Fragen. So stellen wir sicher, dass du nur passende Förderprogramme erhältst."
     >
       <Stepper
         my="3em"

@@ -14,9 +14,8 @@ const FaqItem = ({ question, answer }) => <Accordion.Item value={question}>
 export default function Foerderung() {
   return (
     <Layout
-      title={process.env.NEXT_PUBLIC_WEBSITE_NAME}
-      description="todo"
-      noindex={true} // todo
+      title="Finde die besten Zuschüsse und Kredite für dein Bau- oder Sanierungsprojekt"
+      description=" Bekommst kostenlos eine Übersicht aller relevanten Zuschüsse und Förderkredite, individuell abgestimmt auf dein Projekt und deine Region."
     >
       <Box className={styles.header} py="xl">
         <div className={styles.background}></div>

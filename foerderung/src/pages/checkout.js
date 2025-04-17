@@ -44,11 +44,7 @@ function ReportCheckout({ id, email, plan }) {
   const [variant, setVariant] = useState()
 
   return (
-    <Layout
-      title="Checkout | Fertighaus Radar"
-      description="todo."
-      noindex={true}
-    >
+    <Layout title="Checkout" noindex={true}>
       <Title order={1} mt="xl" mb="lg">Checkout</Title>
       {!variant && <Pricing
         plan={plan}

@@ -22,7 +22,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
 
   return <>
     <Head>
-      <title>{title}</title>
+      <title>{`${title} | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`}</title>
       <meta name="description" content={description} />
       <meta name="viewport" content="width=device-width, initial-scale=1" />
       <meta property="og:title" content={title} />

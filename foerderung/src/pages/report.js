@@ -64,12 +64,11 @@ export default function Report({ data, baseUrl }) {
 
   return (
     <Layout
-      title="Förderungen Report | Fertighaus Radar"
-      description="todo."
+      title="Deine FörderCheck Ergebnis"
       noindex={true}
     >
       <Container size="sm">
-        <Title order={1} my="xl">Dein Förderungen Report</Title>
+        <Title order={1} my="xl">Deine FörderCheck Ergebnis</Title>
         
         <SubsidyReport data={data} baseUrl={baseUrl} />
       </Container>
