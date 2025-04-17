@@ -28,7 +28,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
       <meta property="og:image" content={ogImage} />
-      <meta property="og:url" content="TODO" />
+      <meta property="og:url" content={process.env.NEXT_PUBLIC_BASE_URL} />
       <meta property="og:type" content="website" />
       <meta property="og:site_name" content="Fertighaus Radar" />
       <meta name="twitter:card" content="summary_large_image" />
@@ -98,6 +98,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
+                <Link href="/kontakt"><Text size="sm" c="gray.7" mb="xs">Kontakt</Text></Link>
               </Box>
             </Flex>
           </Flex>
