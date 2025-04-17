@@ -8,6 +8,7 @@ import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import { fetcher } from '@/utils/fetcher';
+import trackEvent from '@/utils/trackEvent';
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -214,6 +215,7 @@ export default function Foerderung() {
   }
 
   const openQuestionaire = () => {
+    trackEvent('foerdercheck-first-step-complete')
     setCheckStep(1)
     setQuestionnaireStep(0)
   }
@@ -232,6 +234,7 @@ export default function Foerderung() {
 
   const handleSubmitReport = (e) => {
     e.preventDefault()
+    trackEvent('foerdercheck-generate-report')
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',

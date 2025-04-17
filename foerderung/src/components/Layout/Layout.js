@@ -39,11 +39,9 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       { date && <meta name="author" content="Vincent Will"></meta> }
       { setNoIndex && <meta name="robots" content="noindex" /> }
       <link rel="icon" href="/favicon.svg" />
-      {/* only add script if on prod */}
-      {process.env.NEXT_PUBLIC_ENABLE_ANALYTICS === 'true' && (
-        <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id="c571c289-ffcf-4801-9d6f-df6d378dc8e6"></script>
+      {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
+        <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}></script>
       )}
-      <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
     <div>
       <Box as="header" height={60} className={styles.header}>
