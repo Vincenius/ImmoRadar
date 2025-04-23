@@ -81,6 +81,7 @@ export default function Foerderung() {
   const [answers, setAnswers] = useState({});
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [falseAnswer, setFalseAnswer] = useState(null);
+  const [skipQuestions, setSkipQuestions] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({ TypZuschuss: true, TypKredit: true })
   const [email, setEmail] = useState('')
@@ -136,10 +137,12 @@ export default function Foerderung() {
     return acc + subAmount
   }, 0)
 
-  const filteredFinalData = finalData.filter(d => d?.Questions?.every(element => {
-    const userAnswer = answers[element.Id]
-    return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
-  }))
+  const filteredFinalData = skipQuestions
+    ? finalData
+    : finalData.filter(d => d?.Questions?.every(element => {
+      const userAnswer = answers[element.Id]
+      return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+    }))
 
   const filteredFinalDataAmount = filteredFinalData.reduce((acc, curr) => {
     const subAmount = data.Measures.reduce((subAcc, subCurr) => {
@@ -220,6 +223,12 @@ export default function Foerderung() {
     setQuestionnaireStep(0)
   }
 
+  const skipQuestionaire = () => {
+    trackEvent('foerdercheck-first-step-complete')
+    setCheckStep(1)
+    setSkipQuestions(true)
+  }
+
   const answerQuestion = (id, answer) => {
     const question = allQuestions.find(q => q.Id === id)
     const isWrongAnswer = answer !== 'Unklar' && (answer === 'Ja' && !question.RequiredAnswer || answer === 'Nein' && question.RequiredAnswer)
@@ -238,7 +247,7 @@ export default function Foerderung() {
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',
-      body: JSON.stringify({ data, answers, email })
+      body: JSON.stringify({ data, answers, email, skipQuestions })
     })
       .then(res => res.json())
       .then(res => {
@@ -374,17 +383,22 @@ export default function Foerderung() {
                   <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
                     Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
                   </Title>
-                  <DataTable data={data} />
 
-                  <Text mb="lg" fs="italic">
-                    Nun müssen wir nur noch prüfen, für welche Förderungen du die Voraussetzungen erfüllst.<br />
-                    Beantworte dazu bitte die Fragen zu den einzelnen Förderprogrammen.
+                  <Text mb="md" fs="italic">
+                    Jetzt kannst du prüfen, für welche Förderprogramme du die Voraussetzungen erfüllst, indem du dazu einfach ein paar Fragen beantwortest.
                   </Text>
+                  <Text mb="lg" fs="italic">
+                    Alternativ kannst du die Fragen überspringen und dir alle Förderprogramme anzeigen lassen.
+                  </Text>
+
+                  <Flex gap="lg" mb="lg" direction={{ base: 'column-reverse', sm: 'row' }}>
+                    <Button w="100%" onClick={() => skipQuestionaire()} variant="outline">Fragen Überspringen</Button>
+                    <Button w="100%" onClick={() => openQuestionaire()}>Weiter zu den Fragen</Button>
+                  </Flex>
 
 
                   <Flex gap="md">
                     <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
-                    <Button w="70%" onClick={() => openQuestionaire()}>Weiter zu den Fragen</Button>
                   </Flex>
                 </Box>
               </Stepper.Step>
@@ -400,7 +414,7 @@ export default function Foerderung() {
               styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
               allowNextStepsSelect={false}
             >
-              {finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+              {!skipQuestions && finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
                 <Box p="xl">
                   <Title order={2} size="h3" mb="xl" ta="center">Förderung {index + 1}. mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Title>
                   <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
