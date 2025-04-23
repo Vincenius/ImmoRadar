@@ -219,6 +219,7 @@ export default function Foerderung() {
 
   const openQuestionaire = () => {
     trackEvent('foerdercheck-first-step-complete')
+    setSkipQuestions(false)
     setCheckStep(1)
     setQuestionnaireStep(0)
   }

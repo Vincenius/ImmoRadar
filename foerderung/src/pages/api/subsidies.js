@@ -89,7 +89,7 @@ export default async function handler(req, res) {
               userData.Type.includes('Kredit') && d.Type.includes('Kredit')
             ) &&
             d.Measures?.some(element => userData.Measures?.includes(element)) &&
-            (userData.SkipQuestions ||d.Type.includes('Kredit') || d?.Questions?.every(element => {
+            (userData.SkipQuestions || d.Type.includes('Kredit') || d?.Questions?.every(element => {
               const userAnswer = userData.Answers[element.Id]
               return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
             }))
