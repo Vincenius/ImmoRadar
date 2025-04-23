@@ -28,9 +28,10 @@ export default async function handler(req, res) {
       }
 
       const price = isUpgrade ? 'price_1RDRqvKQunG297Xzkk2ciXQ0' : priceMap[variant]
+      const optionalParams = email ? { customer_email: email } : {}
       const session = await stripe.checkout.sessions.create({
         ui_mode: 'embedded',
-        customer_email: email,
+        ...optionalParams,
         client_reference_id: id,
         line_items: [
           {

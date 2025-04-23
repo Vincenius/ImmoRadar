@@ -31,18 +31,20 @@ export default async function handler(req, res) {
           },
         }).then(res => res.json())
 
+        const emailUpdate = user.Email ? {} : { Email: session.customer_details.email }
+
         await fetch(url, {
           method: 'PATCH',
           headers: {
               'xc-token': process.env.NOCODB_KEY,
               'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ Id: user.Id, Variant: priceMap[price] })
+          body: JSON.stringify({ Id: user.Id, Variant: priceMap[price], ...emailUpdate })
         }).then(res => res.json())
 
         const { filename } = await generatePdf(session.client_reference_id)
         await sendEmail({
-          to: user.Email,
+          to: user.Email || session.customer_details.email,
           subject: 'Dein Förderungen Report',
           html: subsidyPaidTemplate(),
           pdfFilePath: filename,

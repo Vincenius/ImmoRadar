@@ -3,8 +3,9 @@ import { Flex, Card, Box, Title, Text, List, ThemeIcon, Button } from '@mantine/
 import { IconCheck } from '@tabler/icons-react';
 import Link from 'next/link';
 
-function Pricing({ CtaPremium, CtaProfessional, showFree, plan }) {
+function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
   const dir = showFree ? { base: "column", md: "row" } : { base: "column", sm: "row" }
+
   return (
     <Flex mb="xl" gap="xl" direction={dir}>
       {showFree && <Card bg="white" p="md" radius="md" withBorder w="100%" shadow="md">
@@ -27,7 +28,8 @@ function Pricing({ CtaPremium, CtaProfessional, showFree, plan }) {
             </List>
           </Box>
 
-          <Button mt="lg" size="md" component={Link} href="/foerdercheck">Jetzt kostenlos starten!</Button>
+          {!CtaFree && <Button mt="lg" size="md" component={Link} href="/foerdercheck">Jetzt kostenlos starten!</Button>}
+          {CtaFree}
         </Flex>
       </Card>}
       <Card bg="white" p="md" radius="md" withBorder w="100%" bd="1px solid cyan.9" shadow="md">

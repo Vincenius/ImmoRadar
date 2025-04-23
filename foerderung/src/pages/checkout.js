@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import Layout from '@/components/Layout/Layout'
-import { Title, Card, Flex, List, ThemeIcon, Box, Button, Text } from '@mantine/core';
+import { Title, Card, Button } from '@mantine/core';
 import Checkout from '@/components/Checkout/Checkout';
 import Pricing from '@/components/Pricing/Pricing';
-import { IconCheck, IconCircleCheck } from '@tabler/icons-react';
+import { IconCircleCheck } from '@tabler/icons-react';
+import { useRouter } from 'next/router';
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
   const id = params.get('id');
+  const plan = params.get('plan');
   const baseUrl = process.env.BASE_URL
 
   if (!id) {
@@ -36,12 +38,20 @@ export async function getServerSideProps({ resolvedUrl }) {
   }
 
   return {
-    props: { id, email: data?.user?.Email, plan: data?.user?.Variant },
+    props: { id, email: data?.user?.Email, plan: data?.user?.Variant, defaultPlan: plan },
   };
 }
 
-function ReportCheckout({ id, email, plan }) {
-  const [variant, setVariant] = useState()
+function ReportCheckout({ id, email, plan, defaultPlan }) {
+  const router = useRouter()
+  const [variant, setVariant] = useState(defaultPlan)
+  const goBack = () => {
+    if (!defaultPlan) {
+      setVariant(null)
+    } else {
+      router.push(`/foerdercheck?id=${id}`)
+    }
+  }
 
   return (
     <Layout title="Checkout" noindex={true}>
@@ -57,7 +67,7 @@ function ReportCheckout({ id, email, plan }) {
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">
         <Checkout email={email} id={id} variant={variant} />
-        <Button mt="lg" variant="outline" onClick={() => setVariant(null)} w="150px">Zurück</Button>
+        <Button mt="lg" variant="outline" onClick={() => goBack()} w="150px">Zurück</Button>
       </Card>}
     </Layout>
   )

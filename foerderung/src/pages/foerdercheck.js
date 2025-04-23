@@ -9,6 +9,44 @@ import { bundeslaender } from '@/utils/bundeslaender'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import { fetcher } from '@/utils/fetcher';
 import trackEvent from '@/utils/trackEvent';
+import Pricing from '@/components/Pricing/Pricing';
+
+export async function getServerSideProps({ resolvedUrl }) {
+  const params = new URLSearchParams(resolvedUrl.split('?')[1]);
+  const id = params.get('id');
+  const baseUrl = process.env.BASE_URL
+
+  if (!id) {
+    const subsidyData = await fetch(`${baseUrl}/api/subsidies`, {
+      method: 'GET',
+      headers: {
+        'x-api-key': process.env.API_KEY
+      }
+    }).then(res => res.json())
+    return {
+      props: { subsidyData },
+    };
+  }
+
+  const [data, subsidyData] = await Promise.all([
+    fetch(`${baseUrl}/api/subsidies?id=${id}`, {
+      method: 'GET',
+      headers: {
+        'x-api-key': process.env.API_KEY
+      }
+    }).then(res => res.json()),
+    fetch(`${baseUrl}/api/subsidies`, {
+      method: 'GET',
+      headers: {
+        'x-api-key': process.env.API_KEY
+      }
+    }).then(res => res.json()),
+  ])
+
+  return {
+    props: { defaultData: data, subsidyData },
+  };
+}
 
 const SelectChip = ({ children, data, setData, value, ...props }) => {
   const handleChange = () => {
@@ -45,47 +83,30 @@ const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
   </Group>
 }
 
-const DataTable = ({ data }) => {
-  return <Table mb="lg" size="sm" striped>
-    <Table.Thead>
-      <Table.Tr>
-        <Table.Th>Deine Daten</Table.Th>
-      </Table.Tr>
-    </Table.Thead>
-    <Table.Tbody>
-      <Table.Tr>
-        <Table.Td>Förderungen für</Table.Td>
-        <Table.Td>{data.HouseType}</Table.Td>
-      </Table.Tr>
-      <Table.Tr>
-        <Table.Td>Art der Förderung</Table.Td>
-        <Table.Td>{data.TypZuschuss && data.TypKredit ? 'Zuschuss & Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit'}</Table.Td>
-      </Table.Tr>
-      <Table.Tr>
-        <Table.Td>Immobilienstandort</Table.Td>
-        <Table.Td>{data.Region}{data.District ? ` - ${data.District}` : ''}</Table.Td>
-      </Table.Tr>
-      <Table.Tr>
-        <Table.Td>Zu Fördernde Maßnahmen</Table.Td>
-        <Table.Td>{data.Measures?.join(', ')}</Table.Td>
-      </Table.Tr>
-    </Table.Tbody>
-  </Table>
-}
+export default function Foerderung({ defaultData = {}, subsidyData }) {
+  const defaultUser = defaultData?.user
+  const hasDefaultData = !!defaultUser?.uuid
 
-export default function Foerderung() {
   const router = useRouter()
-  const [active, setActive] = useState(0);
+  const [active, setActive] = useState(hasDefaultData ? 4 : 0);
   const [questionnaireStep, setQuestionnaireStep] = useState(0);
-  const [checkStep, setCheckStep] = useState(0);
-  const [answers, setAnswers] = useState({});
+  const [checkStep, setCheckStep] = useState(hasDefaultData ? 1 : 0);
+  const [answers, setAnswers] = useState(defaultUser?.Answers || {});
   const [activeQuestion, setActiveQuestion] = useState(0);
   const [falseAnswer, setFalseAnswer] = useState(null);
-  const [skipQuestions, setSkipQuestions] = useState(false);
+  const [skipQuestions, setSkipQuestions] = useState(hasDefaultData || false);
   const [isLoading, setIsLoading] = useState(false);
-  const [data, setData] = useState({ TypZuschuss: true, TypKredit: true })
-  const [email, setEmail] = useState('')
-  const { data: subsidyData = [] } = useSWR('/api/subsidies', fetcher)
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [data, setData] = useState({
+    TypZuschuss: defaultUser?.Types?.includes('Zuschuss') || true,
+    TypKredit: defaultUser?.Types?.includes('Kredit') || true,
+    HouseType: defaultUser?.HouseType || null,
+    Region: defaultUser?.Region || null,
+    District: defaultUser?.District || null,
+    Measures: defaultUser?.Measures || []
+  })
+  const [email, setEmail] = useState(defaultUser?.Email || '')
+  const [isFreePlan, setIsFreePlan] = useState(false)
 
   const selectOption = (e) => {
     let elem = e.target
@@ -242,9 +263,29 @@ export default function Foerderung() {
     }
   }
 
+  const usePlan = plan => {
+    trackEvent(`select-plan-${plan}`)
+    if (plan === 'free') {
+      setIsFreePlan(true)
+    } else {
+      setPaymentLoading(true)
+
+      fetch('/api/subsidies', {
+        method: 'POST',
+        body: JSON.stringify({ data, answers, email, skipQuestions })
+      })
+        .then(res => res.json())
+        .then(res => {
+          router.push(`/checkout?id=${res.id}&plan=${plan}`)
+        })
+        .catch(() => console.log('error')) // todo error handling
+        .finally(() => setPaymentLoading(false))
+    }
+  }
+
   const handleSubmitReport = (e) => {
     e.preventDefault()
-    trackEvent('foerdercheck-generate-report')
+    trackEvent('foerdercheck-generate-free-report')
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',
@@ -393,8 +434,8 @@ export default function Foerderung() {
                   </Text>
 
                   <Flex gap="lg" mb="lg" direction={{ base: 'column-reverse', sm: 'row' }}>
-                    <Button w="100%" onClick={() => skipQuestionaire()} variant="outline">Fragen Überspringen</Button>
-                    <Button w="100%" onClick={() => openQuestionaire()}>Weiter zu den Fragen</Button>
+                    <Button w="100%" onClick={() => skipQuestionaire()} variant="outline" size="lg">Fragen Überspringen</Button>
+                    <Button w="100%" onClick={() => openQuestionaire()} size="lg">Weiter zu den Fragen</Button>
                   </Flex>
 
 
@@ -488,29 +529,50 @@ export default function Foerderung() {
                   </Flex>
                 </Box>}
                 {filteredFinalData.length > 0 && <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" align="center">
-                    Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
-                  </Title>
-                  {finalDataQuestions.length === 0 && <DataTable data={data} />}
-                  <Text mb="md" fs="italic">Erhalte jetzt deinen Report als PDF per E-Mail</Text>
-                  <form onSubmit={handleSubmitReport}>
-                    <TextInput
-                      required
-                      label="E-Mail Adresse"
-                      placeholder="mustermann@example.com"
-                      mb="xl"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
+                  {!isFreePlan && <>
+                    {!skipQuestions && <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
+                      Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
+                    </Title>}
+                    {skipQuestions && <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
+                      Für deine Auswahl gibt es {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} />.
+                    </Title>}
+                    <Pricing
+                      showFree={true}
+                      CtaFree={<Button mt="lg" variant="outline" onClick={() => usePlan('free')} loading={paymentLoading}>Kostenlos testen</Button>}
+                      CtaPremium={<Button mt="lg" variant="filled" onClick={() => usePlan('premium')} loading={paymentLoading}>Premium kaufen</Button>}
+                      CtaProfessional={<Button mt="lg" variant="outline" onClick={() => usePlan('professional')} loading={paymentLoading}>Professional kaufen</Button>}
                     />
 
-                    <Flex gap="md">
-                      <Button
-                        variant="default" w="30%"
-                        onClick={() => questionnaireStep === 0 ? setCheckStep(0) : setQuestionnaireStep(questionnaireStep - 1)}
-                      >Zurück</Button>
-                      <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
-                    </Flex>
-                  </form>
+                    <Button
+                      variant="default" w="30%"
+                      onClick={() => questionnaireStep === 0 ? setCheckStep(0) : setQuestionnaireStep(questionnaireStep - 1)}
+                    >Zurück</Button>
+                  </>}
+
+                  {isFreePlan && <>
+                    <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
+                      Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail
+                    </Title>
+                    <form onSubmit={handleSubmitReport}>
+                      <TextInput
+                        required
+                        label="E-Mail Adresse"
+                        placeholder="mustermann@example.com"
+                        mb="xl"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                      />
+                      {/* todo telefon (optional) */}
+
+                      <Flex gap="md">
+                        <Button
+                          variant="default" w="30%"
+                          onClick={() => setIsFreePlan(false)}
+                        >Zurück</Button>
+                        <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
+                      </Flex>
+                    </form>
+                  </>}
                 </Box>}
               </Stepper.Completed>
             </Stepper>

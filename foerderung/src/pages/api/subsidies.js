@@ -170,15 +170,17 @@ export default async function handler(req, res) {
         })
       }).then(res => res.json())
 
-      const { filename } = await generatePdf(id)
-      await sendEmail({
-        to: email,
-        subject: 'Fertighaus Radar Förderungen Report',
-        html: subsidyTemplate(),
-        pdfFilePath: filename,
-        pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
-      })
-      fs.unlinkSync(filename)
+      if (email) {
+        const { filename } = await generatePdf(id)
+        await sendEmail({
+          to: email,
+          subject: 'Fertighaus Radar Förderungen Report',
+          html: subsidyTemplate(),
+          pdfFilePath: filename,
+          pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
+        })
+        fs.unlinkSync(filename)
+      }
 
       res.status(200).json({ id });
     } else {
