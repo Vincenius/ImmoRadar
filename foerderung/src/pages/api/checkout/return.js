@@ -46,7 +46,7 @@ export default async function handler(req, res) {
         await sendEmail({
           to: user.Email || session.customer_details.email,
           subject: 'Dein Förderungen Report',
-          html: subsidyPaidTemplate(),
+          html: subsidyPaidTemplate(session.client_reference_id),
           pdfFilePath: filename,
           pdfFileName: 'Förderung Report.pdf'
         })

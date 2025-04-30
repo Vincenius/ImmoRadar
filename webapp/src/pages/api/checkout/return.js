@@ -40,7 +40,7 @@ export default async function handler(req, res) {
         //   pdfFilePath: filename,
         //   pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
         // })
-        fs.unlinkSync(filename)
+        // fs.unlinkSync(filename)
 
         res.json({ success: true, id: session.client_reference_id })
       } else {
