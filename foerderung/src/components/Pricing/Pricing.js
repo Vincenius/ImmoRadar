@@ -23,7 +23,8 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
                 </ThemeIcon>
               }
             >
-              <List.Item>3 Fördermittel, die du selbst beantragen kannst</List.Item>
+              <List.Item>Alle Zuschüsse, die du selbst beantragen kannst</List.Item>
+              <List.Item>Alle Zuschüsse, die du mit Hilfe eines Energieberaters beantragen kannst</List.Item>
               <List.Item>Alle Kredite, die über Finanzierungspartner beantragt werden können</List.Item>
             </List>
           </Box>
@@ -47,10 +48,10 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
                 </ThemeIcon>
               }
             >
-              <List.Item>Alle Fördermittel, die du selbst beantragen kannst</List.Item>
-              <List.Item>Alle Kredite, die über Finanzierungspartner beantragt werden können</List.Item>
+              <List.Item>Alles aus der kostenfreien Version</List.Item>
               <List.Item>Detaillierte Informationen zu deinen Förderungen</List.Item>
               <List.Item>Schritt-für-Schritt-Anleitungen zur Beantragung</List.Item>
+              <List.Item>Kurze Fragebögen, für alle Zuschüsse, die du selbst beantragen kannst, die dir sofort zeigen, ob du für die Förderung berechtigt bist.</List.Item>
             </List>
           </Box>
 
@@ -76,11 +77,8 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
                 </ThemeIcon>
               }
             >
-              <List.Item>Alle Fördermittel, die du selbst beantragen kannst</List.Item>
-              <List.Item>Alle Kredite, die über Finanzierungspartner beantragt werden können</List.Item>
-              <List.Item>Detaillierte Informationen zu deinen Förderungen</List.Item>
-              <List.Item>Schritt-für-Schritt-Anleitungen zur Beantragung</List.Item>
-              <List.Item>Alle Zuschüsse, die mit einem Energieberater beantragt werden können</List.Item>
+              <List.Item>Alles aus der Premium Version</List.Item>
+              <List.Item>Kurze Fragebögen, für alle Zuschüsse, die du mit Hilfe eines Energieberaters beantragen kannst, die dir sofort zeigen, ob du für die Förderung berechtigt bist.</List.Item>
             </List>
           </Box>
 

@@ -90,9 +90,9 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       </Table>
 
       {!isPaid && <Box mb="xl">
-        <Card shadow="md" p="lg">
+        <Card withBorder p="lg">
           <Title order={3} mb="md" id="full-report">Vollständigen Report freischalten</Title>
-          <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte eine detaillierte Übersicht sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel!</Text>
+          <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte eine detaillierte Übersicht sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel. Außerdem erhältst du kurze Fragebögen, die dir sofort zeigen, ob du für die Förderung berechtigt bist!</Text>
           <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
             Vollständigen Report Kaufen
           </Button>
