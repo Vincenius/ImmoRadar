@@ -89,31 +89,11 @@ export default async function handler(req, res) {
               userData.Type.includes('Kredit') && d.Type.includes('Kredit')
             ) &&
             d.Measures?.some(element => userData.Measures?.includes(element)) &&
-            (userData.SkipQuestions || d.Type.includes('Kredit') || d?.Questions?.every(element => {
+            (userData.SkipQuestions || !userData.Answers || d.Type.includes('Kredit') || d?.Questions?.every(element => {
               const userAnswer = userData.Answers[element.Id]
               return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
             }))
-          ).filter(d => {
-            if (
-              (user.Variant === 'professional') || // all for professional users
-              (user.Variant === 'premium' && (d.Type.includes('Kredit') || d.ConsultantNeeded === false)) || // credit & no consultant for premium
-              (user.Variant === 'free' && d.Type.includes('Kredit')) // credit for free
-            ) {
-              return true
-            } else if (user.Variant === 'free' && d.ConsultantNeeded === false) {
-              count++
-              if (count <= 3) { // 3 no consultant for free
-                return true
-              } else {
-                return false
-              }
-            } else if (d.ConsultantNeeded === true) {
-              consultantCount++
-              return false
-            } else {
-              return false
-            }
-          })
+          )
 
           const result = user.Variant !== 'free'
             ? filteredSubsidies
@@ -139,7 +119,7 @@ export default async function handler(req, res) {
           HouseType: subsidy.HouseType,
           Type: subsidy.Type,
           Measures: subsidy.Measures,
-          Questions: subsidy.Questions,
+          Website: subsidy.Website,
           FundingDetails: subsidy.FundingDetails,
         }))
 
@@ -174,10 +154,10 @@ export default async function handler(req, res) {
         const { filename } = await generatePdf(id)
         await sendEmail({
           to: email,
-          subject: 'Fertighaus Radar Förderungen Report',
+          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
           html: subsidyTemplate(),
           pdfFilePath: filename,
-          pdfFileName: 'Fertighaus Radar Förderung Report.pdf'
+          pdfFileName: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Radar Förderung Report.pdf`
         })
         fs.unlinkSync(filename)
       }

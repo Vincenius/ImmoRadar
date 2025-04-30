@@ -67,7 +67,7 @@ export default function Report({ data, baseUrl }) {
       title="Deine FörderCheck Ergebnis"
       noindex={true}
     >
-      <Container size="sm">
+      <Container size="sm" pb="lg">
         <Title order={1} my="xl">Deine FörderCheck Ergebnis</Title>
         
         <SubsidyReport data={data} baseUrl={baseUrl} />

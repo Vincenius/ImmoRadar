@@ -1,15 +1,16 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation'
-import useSWR from 'swr'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Radio, Card, Checkbox, Timeline, ThemeIcon, Popover, NumberFormatter } from '@mantine/core';
-import { IconHome, IconProgressHelp, IconBackhoe, IconCheck, IconX, IconQuestionMark } from '@tabler/icons-react'
+import NextImage from 'next/image';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Card, NumberFormatter, Image } from '@mantine/core';
+import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
 import { bundeslaender } from '@/utils/bundeslaender'
 import CheckboxCard from '@/components/Inputs/CheckboxCard';
-import { fetcher } from '@/utils/fetcher';
 import trackEvent from '@/utils/trackEvent';
 import Pricing from '@/components/Pricing/Pricing';
+import Checkout from '@/components/Checkout/Checkout';
+import { showNotification } from '@mantine/notifications';
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -44,7 +45,7 @@ export async function getServerSideProps({ resolvedUrl }) {
   ])
 
   return {
-    props: { defaultData: data, subsidyData },
+    props: { defaultData: data, subsidyData, baseUrl },
   };
 }
 
@@ -78,25 +79,20 @@ const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
     {active === 0 && <div></div>}
     {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
     {active < 4 && <Flex gap="sm">
-      {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>Weiter</Button>}
+      {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>
+        {active === 3 ? 'Ergebnis anzeigen' : 'Weiter'}
+      </Button>}
     </Flex>}
   </Group>
 }
 
-export default function Foerderung({ defaultData = {}, subsidyData }) {
+export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const defaultUser = defaultData?.user
   const hasDefaultData = !!defaultUser?.uuid
 
   const router = useRouter()
   const [active, setActive] = useState(hasDefaultData ? 4 : 0);
-  const [questionnaireStep, setQuestionnaireStep] = useState(0);
-  const [checkStep, setCheckStep] = useState(hasDefaultData ? 1 : 0);
-  const [answers, setAnswers] = useState(defaultUser?.Answers || {});
-  const [activeQuestion, setActiveQuestion] = useState(0);
-  const [falseAnswer, setFalseAnswer] = useState(null);
-  const [skipQuestions, setSkipQuestions] = useState(hasDefaultData || false);
   const [isLoading, setIsLoading] = useState(false);
-  const [paymentLoading, setPaymentLoading] = useState(false);
   const [data, setData] = useState({
     TypZuschuss: defaultUser?.Types?.includes('Zuschuss') || true,
     TypKredit: defaultUser?.Types?.includes('Kredit') || true,
@@ -106,7 +102,10 @@ export default function Foerderung({ defaultData = {}, subsidyData }) {
     Measures: defaultUser?.Measures || []
   })
   const [email, setEmail] = useState(defaultUser?.Email || '')
-  const [isFreePlan, setIsFreePlan] = useState(false)
+  const [showCheckout, setShowCheckout] = useState(false)
+  const [variant, setVariant] = useState()
+  const [checkoutId, setCheckoutId] = useState()
+  const [emailSuccess, setEmailSuccess] = useState(false)
 
   const selectOption = (e) => {
     let elem = e.target
@@ -158,57 +157,6 @@ export default function Foerderung({ defaultData = {}, subsidyData }) {
     return acc + subAmount
   }, 0)
 
-  const filteredFinalData = skipQuestions
-    ? finalData
-    : finalData.filter(d => d?.Questions?.every(element => {
-      const userAnswer = answers[element.Id]
-      return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
-    }))
-
-  const filteredFinalDataAmount = filteredFinalData.reduce((acc, curr) => {
-    const subAmount = data.Measures.reduce((subAcc, subCurr) => {
-      return subAcc + curr.FundingDetails[subCurr]
-    }, 0)
-    return acc + subAmount
-  }, 0)
-
-  const finalDataQuestions = finalData
-    .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
-    .map(q => ({
-      ...q,
-      Amount: data.Measures.reduce((acc, curr) => {
-        return acc + q.FundingDetails[curr]
-      }, 0)
-    }))
-  const allQuestions = finalData.map(d => d.Questions).flat().filter(Boolean)
-
-  const nextQuestionaireStep = () => {
-    setQuestionnaireStep(questionnaireStep + 1)
-    setActiveQuestion(0)
-    setFalseAnswer(null)
-  }
-
-  const prevQuestionaireStep = () => {
-    if (questionnaireStep === 0) {
-      setCheckStep(0)
-    } else {
-      let initQuestion = 0
-      let initFalseAnswer = null
-
-      finalDataQuestions[questionnaireStep - 1].Questions.forEach(q => {
-        if (answers[q.Id] === 'Unklar' || answers[q.Id] === 'Ja' && q.RequiredAnswer || answers[q.Id] === 'Nein' && !q.RequiredAnswer) {
-          initQuestion++
-        } else {
-          initFalseAnswer = initQuestion
-        }
-      })
-
-      setQuestionnaireStep(questionnaireStep - 1)
-      setActiveQuestion(initQuestion)
-      setFalseAnswer(initFalseAnswer)
-    }
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
@@ -230,57 +178,7 @@ export default function Foerderung({ defaultData = {}, subsidyData }) {
     }
 
     setData(newData)
-
-    if (active === 3 && finalDataQuestions.length === 0) {
-      openQuestionaire()
-    } else {
-      setActive(active + 1)
-    }
-  }
-
-  const openQuestionaire = () => {
-    trackEvent('foerdercheck-first-step-complete')
-    setSkipQuestions(false)
-    setCheckStep(1)
-    setQuestionnaireStep(0)
-  }
-
-  const skipQuestionaire = () => {
-    trackEvent('foerdercheck-first-step-complete')
-    setCheckStep(1)
-    setSkipQuestions(true)
-  }
-
-  const answerQuestion = (id, answer) => {
-    const question = allQuestions.find(q => q.Id === id)
-    const isWrongAnswer = answer !== 'Unklar' && (answer === 'Ja' && !question.RequiredAnswer || answer === 'Nein' && question.RequiredAnswer)
-    setAnswers({ ...answers, [id]: answer })
-
-    if (isWrongAnswer) {
-      setFalseAnswer(activeQuestion)
-    } else {
-      setActiveQuestion(activeQuestion + 1)
-    }
-  }
-
-  const usePlan = plan => {
-    trackEvent(`select-plan-${plan}`)
-    if (plan === 'free') {
-      setIsFreePlan(true)
-    } else {
-      setPaymentLoading(true)
-
-      fetch('/api/subsidies', {
-        method: 'POST',
-        body: JSON.stringify({ data, answers, email, skipQuestions })
-      })
-        .then(res => res.json())
-        .then(res => {
-          router.push(`/checkout?id=${res.id}&plan=${plan}`)
-        })
-        .catch(() => console.log('error')) // todo error handling
-        .finally(() => setPaymentLoading(false))
-    }
+    setActive(active + 1)
   }
 
   const handleSubmitReport = (e) => {
@@ -289,11 +187,37 @@ export default function Foerderung({ defaultData = {}, subsidyData }) {
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',
-      body: JSON.stringify({ data, answers, email, skipQuestions })
+      body: JSON.stringify({ data, email })
     })
       .then(res => res.json())
       .then(res => {
-        router.push(`/report?id=${res.id}&is_new=true`)
+        showNotification({
+          title: 'Report erfolgreich zugestellt!',
+          message: 'Dein Report wurde erstellt und dir als PDF per E-Mail zugesendet.',
+          color: 'green',
+          position: 'top-center'
+        });
+        setEmailSuccess(true)
+      })
+      .catch(() => console.log('error')) // todo error handling
+      .finally(() => setIsLoading(false))
+  }
+
+  const goToCheckout = () => {
+    trackEvent('foerdercheck-go-to-checkout')
+    setShowCheckout(true)
+  }
+
+  const goToPayment = (newVariant) => {
+    setVariant(newVariant)
+    setIsLoading(true)
+    fetch('/api/subsidies', {
+      method: 'POST',
+      body: JSON.stringify({ data })
+    })
+      .then(res => res.json())
+      .then(res => {
+        setCheckoutId(res.id)
       })
       .catch(() => console.log('error')) // todo error handling
       .finally(() => setIsLoading(false))
@@ -304,281 +228,243 @@ export default function Foerderung({ defaultData = {}, subsidyData }) {
       title="Dein FörderCheck"
       description="Teile uns ein paar Informationen zu deinem Vorhaben mit und beantworte gezielte Fragen. So stellen wir sicher, dass du nur passende Förderprogramme erhältst."
     >
-      <Stepper
-        my="3em"
-        active={checkStep}
-        onStepClick={setCheckStep}
-        size="xl"
-        allowNextStepsSelect={false}
-      >
-        <Stepper.Step icon={<IconHome size={24} />}>
-          <Card my="xl" p="0">
-            <Stepper
-              active={active}
-              onStepClick={setActive}
-              size="1px"
-              styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
-              allowNextStepsSelect={false}
-            >
-              <Stepper.Step>
-                <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
+      <Card my="xl" p="0">
+        <Stepper
+          active={active}
+          onStepClick={setActive}
+          size="1px"
+          styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
+          allowNextStepsSelect={false}
+        >
+          <Stepper.Step>
+            <Box p="xl">
+              <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 
-                  <Flex gap="md">
-                    <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
-                      <Flex direction="column" gap="sm" align="center">
-                        <IconHome size="2em" />
-                        <Text fw="600" size="lg">Bestand</Text>
-                      </Flex>
-                    </SelectButton>
-                    <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
-                      <Flex direction="column" gap="sm" align="center">
-                        <IconBackhoe size="2em" />
-                        <Text fw="600" size="lg">Neubau</Text>
-                      </Flex>
-                    </SelectButton>
+              <Flex gap="md">
+                <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
+                  <Flex direction="column" gap="sm" align="center">
+                    <IconHome size="2em" />
+                    <Text fw="600" size="lg">Bestand</Text>
                   </Flex>
+                </SelectButton>
+                <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
+                  <Flex direction="column" gap="sm" align="center">
+                    <IconBackhoe size="2em" />
+                    <Text fw="600" size="lg">Neubau</Text>
+                  </Flex>
+                </SelectButton>
+              </Flex>
 
-                  <ButtonGroup {...{ data, setData, active, setActive }} />
-                </Box>
-              </Stepper.Step>
-              <Stepper.Step>
-                <Box p="xl">
-                  <form onSubmit={handleSubmitNext}>
-                    <Title order={2} size="h3" mb="xl" ta="center">Welche Art der Förderung suchen Sie?</Title>
-                    <Flex gap="md" direction={{ base: 'column', xs: 'row' }}>
-                      <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
-                      <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
-                    </Flex>
-                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
-                  </form>
-                </Box>
-              </Stepper.Step>
-              <Stepper.Step>
-                <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">Wo liegt die Immobilie oder wo planen Sie zu bauen?</Title>
+              <ButtonGroup {...{ data, setData, active, setActive }} />
+            </Box>
+          </Stepper.Step>
+          <Stepper.Step>
+            <Box p="xl">
+              <form onSubmit={handleSubmitNext}>
+                <Title order={2} size="h3" mb="xl" ta="center">Welche Art der Förderung suchen Sie?</Title>
+                <Flex gap="md" direction={{ base: 'column', xs: 'row' }}>
+                  <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
+                  <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
+                </Flex>
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
+              </form>
+            </Box>
+          </Stepper.Step>
+          <Stepper.Step>
+            <Box p="xl">
+              <Title order={2} size="h3" mb="xl" ta="center">Wo liegt die Immobilie oder wo planen Sie zu bauen?</Title>
 
-                  <form onSubmit={handleSubmit}>
-                    <Flex gap="md" direction={{ base: 'column', xs: 'row' }} align="flex-start">
-                      <Select
-                        label="Bundesland"
-                        data={bundeslaender}
-                        required
-                        mb="sm"
-                        name="Region"
-                        onChange={(value) => setData({ ...data, Region: value, District: null })}
-                        value={data.Region}
-                        size="lg"
-                        w="100%"
-                      />
-
-                      <Box w="100%">
-                        <Select
-                          label="Kreis/Landkreis (optional)"
-                          data={districtData || []}
-                          placeholder={!data.Region ? 'Zuerst Bundesland auswählen' : !districtData || !districtData.length ? 'Keine Kreise vorhanden' : 'Kreis auswählen'}
-                          mb="xs"
-                          name="District"
-                          onChange={(value) => setData({ ...data, District: value })}
-                          value={data.District}
-                          disabled={!districtData || !districtData.length}
-                          size="lg"
-                        />
-                        <Text c="gray.7" size="sm">Für einige Bundesländer gibt es spezifische Förderungen einzelner Kreise/Landkreise.</Text>
-                      </Box>
-                    </Flex>
-
-                    <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
-                  </form>
-                </Box>
-              </Stepper.Step>
-              <Stepper.Step>
-                <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">Welche Maßnahmen planen Sie?</Title>
-
-                  <Chip
-                    checked={data.Measures?.length === measuresData.length}
-                    onChange={() => data.Measures?.length === measuresData.length
-                      ? setData({ ...data, Measures: [] })
-                      : setData({ ...data, Measures: measuresData })
-                    }
+              <form onSubmit={handleSubmit}>
+                <Flex gap="md" direction={{ base: 'column', xs: 'row' }} align="flex-start">
+                  <Select
+                    label="Bundesland"
+                    data={bundeslaender}
+                    required
+                    mb="sm"
+                    name="Region"
+                    onChange={(value) => setData({ ...data, Region: value, District: null })}
+                    value={data.Region}
                     size="lg"
-                    mb="md"
-                    radius="sm"
-                    styles={{ label: { width: '100%', justifyContent: 'center' } }}
-                  >
-                    Alle auswählen
-                  </Chip>
+                    w="100%"
+                  />
 
-                  <form onSubmit={handleSubmit}>
-                    <Flex gap="sm" wrap="wrap">
-                      {measuresData.map((m) => (
-                        <SelectChip radius="sm" key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
-                      ))}
-                    </Flex>
-                    <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
-                  </form>
-                </Box>
-              </Stepper.Step>
-              <Stepper.Step>
-                <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                    Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
-                  </Title>
-
-                  <Text mb="md" fs="italic">
-                    Jetzt kannst du prüfen, für welche Förderprogramme du die Voraussetzungen erfüllst, indem du dazu einfach ein paar Fragen beantwortest.
-                  </Text>
-                  <Text mb="lg" fs="italic">
-                    Alternativ kannst du die Fragen überspringen und dir alle Förderprogramme anzeigen lassen.
-                  </Text>
-
-                  <Flex gap="lg" mb="lg" direction={{ base: 'column-reverse', sm: 'row' }}>
-                    <Button w="100%" onClick={() => skipQuestionaire()} variant="outline" size="lg">Fragen Überspringen</Button>
-                    <Button w="100%" onClick={() => openQuestionaire()} size="lg">Weiter zu den Fragen</Button>
-                  </Flex>
-
-
-                  <Flex gap="md">
-                    <Button variant="default" w="30%" onClick={() => setActive(active - 1)}>Zurück</Button>
-                  </Flex>
-                </Box>
-              </Stepper.Step>
-            </Stepper>
-          </Card>
-        </Stepper.Step>
-        <Stepper.Step icon={<IconProgressHelp size={24} />}>
-          <Card my="xl" p="0">
-            <Stepper
-              active={questionnaireStep}
-              onStepClick={setQuestionnaireStep}
-              size="1px"
-              styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
-              allowNextStepsSelect={false}
-            >
-              {!skipQuestions && finalDataQuestions.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
-                <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" ta="center">Förderung {index + 1}. mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Title>
-                  <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
-
-                  <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
-                    {d.Questions.map((q, i) => <Timeline.Item color={falseAnswer === i ? 'red.9' : ''}
-                      bullet={i < activeQuestion
-                        ? <IconCheck size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
-                        : falseAnswer === i
-                          ? <IconX size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
-                          : (i + 1)}
-                      key={`question-${i}`}
-                      lineVariant={i <= activeQuestion ? 'solid' : 'dashed'}
-                    >
-                      <Text c="dimmed" size="sm">Frage {i + 1} / {d.Questions.length}</Text>
-                      {activeQuestion === i && falseAnswer !== i && <>
-                        <Flex gap="md">
-                          <Text mt={4} mb="md">{q.Question}</Text>
-                          {q.Question.Infotext && <Popover width={200} position="bottom" withArrow shadow="md">
-                            <Popover.Target>
-                              <ThemeIcon variant="outline" radius="xl" size="xs" mt="0.45em" style={{ cursor: 'pointer' }}>
-                                <IconQuestionMark style={{ width: '80%', height: '80%' }} />
-                              </ThemeIcon>
-                            </Popover.Target>
-                            <Popover.Dropdown>
-                              <Text size="xs">{q.Question.Infotext}</Text>
-                            </Popover.Dropdown>
-                          </Popover>}
-                        </Flex>
-
-                        <Flex gap="md" direction={{ base: "column", xs: "row" }}>
-                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Ja')}>Ja</Button>
-                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Nein')}>Nein</Button>
-                          <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Unklar')}>Frage Überspringen</Button>
-                        </Flex>
-                      </>}
-                      {falseAnswer === i && <>
-                        <Text mb="md">Du erfüllst leider nicht die Voraussetzungen für diese Förderung.</Text>
-                        <Flex gap="md">
-                          <Button variant="default" onClick={() => setFalseAnswer(null)}>Zurück</Button>
-                          <Button variant="outline" onClick={() => nextQuestionaireStep()}>
-                            {finalData.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'}
-                          </Button>
-                        </Flex>
-                      </>}
-                    </Timeline.Item>)}
-                  </Timeline>
-
-                  {activeQuestion === d.Questions.length && falseAnswer === null && <Box mt="md">
-                    <Text mb="md">Du erfüllst die Voraussetzungen für diese Förderung.</Text>
-                    <Button onClick={() => nextQuestionaireStep()}>
-                      {finalData.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'}
-                    </Button>
-                  </Box>}
-
-                  <Button mt="lg" variant="outline" onClick={prevQuestionaireStep}>{index === 0 ? 'Zurück' : 'Vorherige Förderung'}</Button>
-                </Box>
-              </Stepper.Step>)}
-
-              <Stepper.Completed>
-                {filteredFinalData.length === 0 && <Box p="xl">
-                  <Title order={2} size="h3" mb="xl" align="center">
-                    Es wurden leider keine Förderungen für deine Eingaben gefunden.
-                  </Title>
-                  <Flex justify="center">
-                    <Button
-                      variant="default" w="30%"
-                      onClick={() => questionnaireStep === 0 ? setCheckStep(0) : setQuestionnaireStep(questionnaireStep - 1)}
-                    >Zurück</Button>
-                  </Flex>
-                </Box>}
-                {filteredFinalData.length > 0 && <Box p="xl">
-                  {!isFreePlan && <>
-                    {!skipQuestions && <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
-                      Du bist berechtigt {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> zu erhalten.
-                    </Title>}
-                    {skipQuestions && <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
-                      Für deine Auswahl gibt es {filteredFinalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={filteredFinalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} />.
-                    </Title>}
-                    <Pricing
-                      showFree={true}
-                      CtaFree={<Button mt="lg" variant="outline" onClick={() => usePlan('free')} loading={paymentLoading}>Kostenlos testen</Button>}
-                      CtaPremium={<Button mt="lg" variant="filled" onClick={() => usePlan('premium')} loading={paymentLoading}>Premium kaufen</Button>}
-                      CtaProfessional={<Button mt="lg" variant="outline" onClick={() => usePlan('professional')} loading={paymentLoading}>Professional kaufen</Button>}
+                  <Box w="100%">
+                    <Select
+                      label="Kreis/Landkreis (optional)"
+                      data={districtData || []}
+                      placeholder={!data.Region ? 'Zuerst Bundesland auswählen' : !districtData || !districtData.length ? 'Keine Kreise vorhanden' : 'Kreis auswählen'}
+                      mb="xs"
+                      name="District"
+                      onChange={(value) => setData({ ...data, District: value })}
+                      value={data.District}
+                      disabled={!districtData || !districtData.length}
+                      size="lg"
                     />
+                    <Text c="gray.7" size="sm">Für einige Bundesländer gibt es spezifische Förderungen einzelner Kreise/Landkreise.</Text>
+                  </Box>
+                </Flex>
 
-                    <Button
-                      variant="default" w="30%"
-                      onClick={() => questionnaireStep === 0 ? setCheckStep(0) : setQuestionnaireStep(questionnaireStep - 1)}
-                    >Zurück</Button>
-                  </>}
+                <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
+              </form>
+            </Box>
+          </Stepper.Step>
+          <Stepper.Step>
+            <Box p="xl">
+              <Title order={2} size="h3" mb="xl" ta="center">Welche Maßnahmen planen Sie?</Title>
 
-                  {isFreePlan && <>
-                    <Title order={2} size="h3" mb="xl" align="center" textWrap="balance">
-                      Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail
-                    </Title>
+              <Chip
+                checked={data.Measures?.length === measuresData.length}
+                onChange={() => data.Measures?.length === measuresData.length
+                  ? setData({ ...data, Measures: [] })
+                  : setData({ ...data, Measures: measuresData })
+                }
+                size="lg"
+                mb="md"
+                radius="sm"
+                styles={{ label: { width: '100%', justifyContent: 'center' } }}
+              >
+                Alle auswählen
+              </Chip>
+
+              <form onSubmit={handleSubmit}>
+                <Flex gap="sm" wrap="wrap">
+                  {measuresData.map((m) => (
+                    <SelectChip radius="sm" key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
+                  ))}
+                </Flex>
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
+              </form>
+            </Box>
+          </Stepper.Step>
+          <Stepper.Completed>
+            <Box p="md">
+              {!showCheckout && <>
+                <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
+                  Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
+                </Title>
+
+                <Table mb="xl" striped>
+                  <Table.Tbody>
+                    <Table.Tr>
+                      <Table.Th>Förderung & Webseite</Table.Th>
+                      {data.TypZuschuss && data.TypKredit && <Table.Th>Art der Förderung</Table.Th>}
+                      <Table.Th>Maßnahmen</Table.Th>
+                    </Table.Tr>
+                    {finalData.map((d, index) => (
+                      <Table.Tr key={d.Id}>
+                        <Table.Td><a href={d.Website} target="_blank" rel="noopener noreferrer">{d.Name}</a></Table.Td>
+                        {data.TypZuschuss && data.TypKredit && <Table.Td>{d.Type.join(', ')}</Table.Td>}
+                        <Table.Td>{d.Measures.filter(m => data.Measures.includes(m)).join(', ')}</Table.Td>
+                      </Table.Tr>
+                    ))}
+                  </Table.Tbody>
+                </Table>
+
+                <Card p="md" withBorder>
+                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
+                    <Image
+                      radius="md"
+                      component={NextImage}
+                      src="/imgs/illustration-document.png"
+                      alt="Illustration Dokument"
+                      height={200}
+                      width={400}
+                      w={{ base: 200, sm: "auto" }}
+                      h={200}
+                      mx="auto"
+                    />
+                    <Box>
+                      <Title size="h4" order={3} mb="md">Erspare dir stundenlange Recherche mit unserem Premium-Report</Title>
+                      <Text mb="lg" fs="italic">Im Premium-Report findest du alle wichtigen Details zu Förderungen und kurze Fragebögen, die dir sofort zeigen, ob du für die Förderung berechtigt bist.</Text>
+                      <Button variant="light" onClick={goToCheckout}>
+                        Mehr erfahren
+                      </Button>
+                    </Box>
+                  </Flex>
+                </Card>
+
+                <Text ta="center" my="md">- oder -</Text>
+
+                <Card p="md" withBorder mb="xl">
+                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
+                    <Image
+                      radius="md"
+                      component={NextImage}
+                      src="/imgs/illustration-email.png"
+                      alt="Illustration Dokument"
+                      height={200}
+                      width={400}
+                      w={{ base: 200, sm: "auto" }}
+                      h={200}
+                      mx="auto"
+                    />
                     <form onSubmit={handleSubmitReport}>
-                      <TextInput
-                        required
-                        label="E-Mail Adresse"
-                        placeholder="mustermann@example.com"
-                        mb="xl"
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                      />
-                      {/* todo telefon (optional) */}
+                      <Title size="h4" order={3} mb="md">Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
 
-                      <Flex gap="md">
-                        <Button
-                          variant="default" w="30%"
-                          onClick={() => setIsFreePlan(false)}
-                        >Zurück</Button>
-                        <Button w="70%" type="submit" loading={isLoading}>Report Erstellen</Button>
+                      <Flex
+                        align={{ base: "flex-start", sm: "center" }}
+                        gap="md"
+                        direction={{ base: "column", sm: "row" }}
+                        mb={{ base: "md", sm: "0" }}
+                      >
+                        <TextInput
+                          required
+                          label="E-Mail Adresse"
+                          placeholder="mustermann@example.com"
+                          mb={{ base: "0", sm: "md" }}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          miw={{ base: "100%", sm: "250px" }}
+                        />
+
+                        <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
+                          {emailSuccess ? <IconCheck /> : "Report zusenden"}
+                        </Button>
                       </Flex>
+                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer Datenschutzerklärung zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                     </form>
-                  </>}
-                </Box>}
-              </Stepper.Completed>
-            </Stepper>
-          </Card>
-        </Stepper.Step>
-      </Stepper>
+                  </Flex>
+                </Card>
+
+                <Button
+                  variant="default" w="30%"
+                  onClick={() => setActive(active - 1)}
+                >Zurück</Button>
+              </>}
+
+
+              {showCheckout && <>
+                <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
+                  Premium Report kaufen
+                </Title>
+                {(!variant || !checkoutId) && <>
+                  <Pricing
+                    plan="free"
+                    CtaPremium={<Button mt="lg" onClick={() => goToPayment('premium')} loading={isLoading}>
+                      Jetzt Kaufen
+                    </Button>}
+                    CtaProfessional={<Button mt="lg" variant="outline" onClick={() => goToPayment('professional')} loading={isLoading}>
+                      Jetzt Kaufen
+                    </Button>}
+                  />
+
+                  <Button
+                    variant="default" w="30%"
+                    onClick={() => setShowCheckout(false)}
+                  >Zurück</Button>
+                </>}
+                {(variant && checkoutId) && <>
+                  <Checkout variant={variant} id={checkoutId} />
+                  <Button mt="lg" variant="outline" onClick={() => {
+                    setVariant(null)
+                    setCheckoutId(null)
+                  }} w="150px">Zurück</Button>
+                </>}
+              </>}
+            </Box>
+          </Stepper.Completed>
+        </Stepper>
+      </Card>
     </Layout>
   );
 }

@@ -11,42 +11,46 @@ const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
   const baseUrl = url.origin;
   const isPaid = user.Variant !== 'free'
   return (
-    <Box>
-      {index > 0 && <SectionDivider isPdf={isPdf} />}
-      <Title order={3} size="h3" mb="md" id={`headline-${type}-${index}`}>{subsidy.Name}</Title>
+    <>
+      {index > 0 && <Box my="md"></Box>}
+      <Card withBorder>
 
-      {user.Type.length > 1 && <Text><strong>Art der Förderung:</strong> {subsidy.Type.join(', ')}</Text>}
-      {isPaid && subsidy.MaxFundingRate && <Text><strong>Maximale Förderrate:</strong> {subsidy.MaxFundingRate}</Text>}
-      {isPaid && subsidy.BaseFundingRate && <Text><strong>Basisförderrate:</strong> {subsidy.BaseFundingRate}</Text>}
-      {subsidy.ApplicationDeadline && <Text><strong>Antragsfristen:</strong> {subsidy.ApplicationDeadline}</Text>}
-      <Text mb="md"><strong>Offizielle Webseite:</strong> <a href={subsidy.Website}>{baseUrl}</a></Text>
+        <Title order={3} size="h3" mb="md" id={`headline-${type}-${index}`}>{subsidy.Name}</Title>
 
-      {isPaid && subsidy.Requirements && <Box mb="md">
-        <Title order={3} size="h3" mb="md">Voraussetzungen:</Title>
-        {mapToMantineComponents(converter.makeHtml(subsidy.Requirements))}
-      </Box>}
+        {user.Type.length > 1 && <Text><strong>Art der Förderung:</strong> {subsidy.Type.join(', ')}</Text>}
+        {isPaid && subsidy.MaxFundingRate && <Text><strong>Maximale Förderrate:</strong> {subsidy.MaxFundingRate}</Text>}
+        {isPaid && subsidy.BaseFundingRate && <Text><strong>Basisförderrate:</strong> {subsidy.BaseFundingRate}</Text>}
+        {subsidy.ApplicationDeadline && <Text><strong>Antragsfristen:</strong> {subsidy.ApplicationDeadline}</Text>}
+        <Text mb="md"><strong>Offizielle Webseite:</strong> <a href={subsidy.Website}>{baseUrl}</a></Text>
 
-      {isPaid && subsidy.Measures && <>
-        <Title order={3} size="h4" mb="md">Förderfähige Maßnahmen:</Title>
-        <Text mb="md">{subsidy.Measures.filter(m => user.Measures.includes(m)).join(', ')}</Text>
-      </>}
+        {isPaid && subsidy.Requirements && <Box mb="md">
+          <Title order={3} size="h3" mb="md">Voraussetzungen:</Title>
+          {mapToMantineComponents(converter.makeHtml(subsidy.Requirements))}
+        </Box>}
 
-      {isPaid && subsidy.Accumulation && <>
-        <Title order={3} size="h4" mb="md">Kumulierung mit anderen Programmen:</Title>
-        <Text mb="md">{subsidy.Accumulation}</Text>
-      </>}
+        {isPaid && subsidy.Measures && <>
+          <Title order={3} size="h4" mb="md">Förderfähige Maßnahmen:</Title>
+          <Text mb="md">{subsidy.Measures.filter(m => user.Measures.includes(m)).join(', ')}</Text>
+        </>}
 
-      {isPaid && subsidy.Guidance && <>
-        <SectionDivider isPdf={isPdf} />
-        {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
-      </>}
-    </Box>
+        {isPaid && subsidy.Accumulation && <>
+          <Title order={3} size="h4" mb="md">Kumulierung mit anderen Programmen:</Title>
+          <Text>{subsidy.Accumulation}</Text>
+        </>}
+
+        {isPaid && subsidy.Guidance && <Box mt="md">
+          {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
+        </Box>}
+      </Card >
+    </>
+
+
   )
 }
 
 const SectionDivider = ({ isPdf }) => isPdf
   ? <div style={{ pageBreakBefore: 'always' }}></div>
-  : <Divider my="lg" />
+  : <Box my="md"></Box>
 
 function SubsidyReport({ data, isPdf = false, baseUrl }) {
   const { user, subsidies, noConsultantCount, consultantCount } = data
@@ -86,8 +90,6 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       </Table>
 
       {!isPaid && <Box mb="xl">
-        <SectionDivider isPdf={isPdf} />
-
         <Card shadow="md" p="lg">
           <Title order={3} mb="md" id="full-report">Vollständigen Report freischalten</Title>
           <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte eine detaillierte Übersicht sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel!</Text>
@@ -118,18 +120,6 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         <Title order={2} size="h2" mt="xl">Direkt beantragbare Förderungen</Title>
         <Text mb="xl" fs="italic">Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung.</Text>
         {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="self" />)}
-
-        {!isPaid && noConsultantCount > 3 && <>
-          <SectionDivider isPdf={isPdf} />
-
-          <Card shadow="md" p="lg">
-            <Title order={3} mb="md" id="full-report">{noConsultantCount - 3} weitere direkt beantragbare Förderungen verfügbar</Title>
-            <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte Zugriff auf alle Förderungen die direkt beantragt werden können sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel!</Text>
-            <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
-              Vollständigen Report Kaufen
-            </Button>
-          </Card>
-        </>}
       </>}
 
       {consultantSubsidies.length > 0 && <>
@@ -144,18 +134,6 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         <Title order={2} size="h2" mt="xl">Kredite mit Finanzierungspartner</Title>
         <Text mb="xl" fs="italic">Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank.</Text>
         {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="credit" />)}
-      </>}
-
-      {consultantCount > 0 && <>
-        <SectionDivider isPdf={isPdf} />
-
-        <Card shadow="md" p="lg" mb="xl">
-          <Title order={3} mb="md" id="full-report">{consultantCount} Förderungen mit Energieberater verfügbar</Title>
-          <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte Zugriff auf alle Förderungen die mithilfe von einem Energieberater beantragt werden können!</Text>
-          <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
-            {user.Variant === 'free' ? 'Vollständigen Report Kaufen' : 'Report upgraden'}
-          </Button>
-        </Card>
       </>}
     </Box>
   )
