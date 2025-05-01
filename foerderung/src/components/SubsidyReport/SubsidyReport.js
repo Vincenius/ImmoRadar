@@ -56,6 +56,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
   const { user, subsidies, noConsultantCount, consultantCount } = data
   const isPaid = user.Variant !== 'free'
   const checkoutLink = isPdf ? `${baseUrl}/checkout?id=${user.uuid}` : `/checkout?id=${user.uuid}`
+  const questionnaireLink = isPdf ? `${baseUrl}/fragebogen?id=${user.uuid}` : `/fragebogen?id=${user.uuid}`
 
   const selfSubsidies = subsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === false)
   const consultantSubsidies = subsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === true)
@@ -89,15 +90,21 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         </Table.Tbody>
       </Table>
 
-      {!isPaid && <Box mb="xl">
-        <Card withBorder p="lg">
-          <Title order={3} mb="md" id="full-report">Vollständigen Report freischalten</Title>
-          <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte eine detaillierte Übersicht sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel. Außerdem erhältst du kurze Fragebögen, die dir sofort zeigen, ob du für die Förderung berechtigt bist!</Text>
-          <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
-            Vollständigen Report Kaufen
-          </Button>
-        </Card>
-      </Box>}
+      {!isPaid && <Card mb="xl" withBorder p="lg">
+        <Title order={3} mb="md" id="full-report">Vollständigen Report freischalten</Title>
+        <Text mb="md">Hol dir jetzt den vollständigen Report und erhalte eine detaillierte Übersicht sowie eine Schritt-für-Schritt-Anleitung zur Beantragung der Fördermittel. Außerdem erhältst du kurze Fragebögen, die dir sofort zeigen, ob du für die Förderung berechtigt bist!</Text>
+        <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
+          Vollständigen Report Kaufen
+        </Button>
+      </Card>}
+
+      {isPaid && <Card mb="xl" withBorder p="lg">
+        <Title order={3} mb="md" id="full-report">Jetzt den Fragebogen starten</Title>
+        <Text mb="md">Fülle jetzt den kurzen Fragenbogen aus um sofort zu sehen, für welche Förderungen du berechtigt bist!</Text>
+        <Button href={questionnaireLink} component={isPdf ? 'a' : Link}>
+          Fragebogen starten
+        </Button>
+      </Card>}
 
       <Title order={2} size="h2" mb="sm">Deine Förderungen ({subsidies.length})</Title>
       <List withPadding>
@@ -135,6 +142,14 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
         <Text mb="xl" fs="italic">Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank.</Text>
         {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="credit" />)}
       </>}
+
+      {user.Variant === 'premium' && <Card mb="xl" withBorder p="lg" mt="xl">
+        <Title order={3} mb="md" id="full-report">Report upgraden</Title>
+        <Text mb="md">Hol dir jetzt das Upgade auf Professional um auch Fragebögen für die Zuschüsse zu erhalten, für die ein zertifizierten Energieberater erforderlich ist.</Text>
+        <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
+          Report upgraden
+        </Button>
+      </Card>}
     </Box>
   )
 }
