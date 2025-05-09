@@ -53,14 +53,19 @@ const SectionDivider = ({ isPdf }) => isPdf
   : <Box my="md"></Box>
 
 function SubsidyReport({ data, isPdf = false, baseUrl }) {
-  const { user, subsidies, noConsultantCount, consultantCount } = data
+  const { user, subsidies } = data
   const isPaid = user.Variant !== 'free'
   const checkoutLink = isPdf ? `${baseUrl}/checkout?id=${user.uuid}` : `/checkout?id=${user.uuid}`
   const questionnaireLink = isPdf ? `${baseUrl}/fragebogen?id=${user.uuid}` : `/fragebogen?id=${user.uuid}`
+  const answeredQuestions = user.Answers && Object.keys(user.Answers).length
+  const filteredSubsidies = !answeredQuestions ? subsidies : subsidies.filter(d => d?.Questions?.every(element => {
+    const userAnswer = user.Answers[element.Id]
+    return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+  }))
 
-  const selfSubsidies = subsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === false)
-  const consultantSubsidies = subsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === true)
-  const creditSubsidies = subsidies.filter(s => s.Type.includes('Kredit'))
+  const selfSubsidies = filteredSubsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === false)
+  const consultantSubsidies = filteredSubsidies.filter(s => s.Type.includes('Zuschuss') && s.ConsultantNeeded === true)
+  const creditSubsidies = filteredSubsidies.filter(s => s.Type.includes('Kredit'))
 
   return (
     <Box p={isPdf ? 'xs' : 0}>
@@ -68,23 +73,23 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       <Table mb="xl" striped>
         <Table.Tbody>
           <Table.Tr>
-            <Table.Td>E-Mail</Table.Td>
+            <Table.Td><b>E-Mail</b></Table.Td>
             <Table.Td>{user.Email}</Table.Td>
           </Table.Tr>
           <Table.Tr>
-            <Table.Td>Förderungen für</Table.Td>
+            <Table.Td><b>Förderungen für</b></Table.Td>
             <Table.Td>{user.HouseType}</Table.Td>
           </Table.Tr>
           <Table.Tr>
-            <Table.Td>Art der Förderung</Table.Td>
+            <Table.Td><b>Art der Förderung</b></Table.Td>
             <Table.Td>{user.Type.join(', ')}</Table.Td>
           </Table.Tr>
           <Table.Tr>
-            <Table.Td>Immobilienstandort</Table.Td>
+            <Table.Td><b>Immobilienstandort</b></Table.Td>
             <Table.Td>{user.Region}{user.District ? ` - ${user.District}` : ''}</Table.Td>
           </Table.Tr>
           <Table.Tr>
-            <Table.Td>Zu Fördernde Maßnahmen</Table.Td>
+            <Table.Td><b>Zu Fördernde Maßnahmen</b></Table.Td>
             <Table.Td>{user.Measures.join(', ')}</Table.Td>
           </Table.Tr>
         </Table.Tbody>
@@ -99,14 +104,14 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       </Card>}
 
       {isPaid && <Card mb="xl" withBorder p="lg">
-        <Title order={3} mb="md" id="full-report">Jetzt den Fragebogen starten</Title>
+        <Title order={3} mb="md" id="full-report">Jetzt den Fragebogen {answeredQuestions ? 'erneut ' : ''}starten</Title>
         <Text mb="md">Fülle jetzt den kurzen Fragenbogen aus um sofort zu sehen, für welche Förderungen du berechtigt bist!</Text>
         <Button href={questionnaireLink} component={isPdf ? 'a' : Link}>
           Fragebogen starten
         </Button>
       </Card>}
 
-      <Title order={2} size="h2" mb="sm">Deine Förderungen ({subsidies.length})</Title>
+      <Title order={2} size="h2" mb="sm">Deine Förderungen ({filteredSubsidies.length})</Title>
       <List withPadding>
         {selfSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold">Direkt beantragbare Förderungen</Text></List.Item>}
         {selfSubsidies.map((subsidy, index) => (

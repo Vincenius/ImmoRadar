@@ -35,28 +35,28 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={ogImage} />
-      { date && <meta property="article:published_time" content={date}></meta> }
-      { date && <meta name="author" content="Vincent Will"></meta> }
-      { setNoIndex && <meta name="robots" content="noindex" /> }
+      {date && <meta property="article:published_time" content={date}></meta>}
+      {date && <meta name="author" content="Vincent Will"></meta>}
+      {setNoIndex && <meta name="robots" content="noindex" />}
       <link rel="icon" href="/favicon.svg" />
       {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}></script>
       )}
     </Head>
-    <div>
+    <Flex direction="column" mih="100vh" h="100%" justify="space-between">
       <Box as="header" height={60} className={styles.header}>
         <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
-                <Text weight={700} size="xl">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
+                <Text weight={700} size="xl" className={styles.gradientText} fw="bold">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>
 
             {/* desktop menu */}
             <Flex justify="flex-end" align="center" gap="xl" display={{ base: "none", xs: "flex" }}>
-              { menu.map(menuItem =>
+              {menu.map(menuItem =>
                 <Link key={menuItem.label} href={menuItem.url}>{menuItem.label}</Link>)
               }
             </Flex>
@@ -68,18 +68,18 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
               </Menu.Target>
 
               <Menu.Dropdown>
-                { menu.map(menuItem =>
+                {menu.map(menuItem =>
                   <Menu.Item key={menuItem.label}>
-                     <Link href={menuItem.url}>{menuItem.label}</Link>
+                    <Link href={menuItem.url}>{menuItem.label}</Link>
                   </Menu.Item>
-                ) }
+                )}
               </Menu.Dropdown>
             </Menu>
           </Flex>
         </Container>
       </Box>
 
-      <Container as="main" mih="calc(100vh - 200px)" pos="relative" size={1060}>
+      <Container as="main" pos="relative" size={1060} w="100%">
         {children}
       </Container>
 
@@ -105,7 +105,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Text size="sm" c="gray.7" align="center" mt="md">© {new Date().getFullYear()} {process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
         </Container>
       </Box>
-    </div>
+    </Flex>
   </>
 }
 

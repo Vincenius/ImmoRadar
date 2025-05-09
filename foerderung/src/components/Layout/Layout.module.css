@@ -24,3 +24,9 @@
 .footer a:hover {
   opacity: 0.7;
 }
+
+.gradientText {
+  background: linear-gradient(90deg, var(--mantine-color-cyan-5), var(--mantine-color-cyan-9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

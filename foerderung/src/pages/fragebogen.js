@@ -3,6 +3,8 @@ import { useRouter } from 'next/router'
 import Layout from "@/components/Layout/Layout";
 import { Box, Button, Card, Flex, NumberFormatter, Popover, Stepper, Timeline, Title, Text, Table } from "@mantine/core";
 import { IconCheck, IconX } from "@tabler/icons-react";
+import Link from "next/link";
+import ResultTable from "@/components/ResultTable/ResultTable";
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -18,7 +20,7 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
     };
   }
 
-  const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
+  const data = await fetch(`${baseUrl}/api/subsidies?id=${id}&ignoreQuestions=true`, {
     method: 'GET',
     headers: {
       'x-api-key': process.env.API_KEY
@@ -40,6 +42,8 @@ export default function Report({ data, baseUrl, id }) {
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [falseAnswer, setFalseAnswer] = useState(null)
   const [answers, setAnswers] = useState({});
+  const [pdfLoading, setPdfLoading] = useState(false);
+  const [pdfSuccess, setPdfSuccess] = useState(false);
 
   const allSubsidies = subsidies
     .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
@@ -58,7 +62,10 @@ export default function Report({ data, baseUrl, id }) {
   const nextQuestionaireStep = async () => {
     const nextStep = questionnaireStep + 1
 
-    // todo store answers
+    fetch('/api/answers', {
+      method: 'POST',
+      body: JSON.stringify({ id, answers })
+    })
     // todo set default ansers from previously filled
 
     setQuestionnaireStep(nextStep)
@@ -97,6 +104,22 @@ export default function Report({ data, baseUrl, id }) {
     } else {
       setActiveQuestion(activeQuestion + 1)
     }
+  }
+
+  const sendPdf = () => {
+    setPdfLoading(true)
+    fetch('/api/pdf', {
+      method: 'POST',
+      body: JSON.stringify({ id })
+    })
+      .then(() => {
+        // todo show pdf success
+        setPdfSuccess(true)
+      })
+      .catch(error => {
+        // todo show pdf error
+      })
+      .finally(() => setPdfLoading(false))
   }
 
   return <Layout title="Fragebogen für Förderungen">
@@ -174,35 +197,23 @@ export default function Report({ data, baseUrl, id }) {
 
         <Stepper.Completed>
           <Box p="xl">
-            {filteredSubsidies.length > 0 && <><Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-              Basierend auf deinen Antworten kannst du {filteredSubsidies.length} Förderungen erhalten.
-            </Title>
-              <Table mb="xl" striped>
-                <Table.Tbody>
-                  <Table.Tr>
-                    <Table.Th>Förderung & Webseite</Table.Th>
-                    {user.TypZuschuss && user.TypKredit && <Table.Th>Art der Förderung</Table.Th>}
-                    <Table.Th>Maßnahmen</Table.Th>
-                  </Table.Tr>
-                  {filteredSubsidies.map((d, index) => (
-                    <Table.Tr key={d.Id}>
-                      <Table.Td><a href={d.Website} target="_blank" rel="noopener noreferrer">{d.Name}</a></Table.Td>
-                      {user.TypZuschuss && user.TypKredit && <Table.Td>{d.Type.join(', ')}</Table.Td>}
-                      <Table.Td>{d.Measures.filter(m => user.Measures.includes(m)).join(', ')}</Table.Td>
-                    </Table.Tr>
-                  ))}
-                </Table.Tbody>
-              </Table>
-
-              <Text mb="md">Hier soll noch ein CTA "zurück zunm report" kommen und noch ein CTA zum "PDF erneut per email senden"</Text>
+            {filteredSubsidies.length > 0 && <>
+              <ResultTable data={filteredSubsidies} showType={user.TypZuschuss && user.TypKredit} measures={user.Measures} />
+              <Flex mb="xl" gap="md">
+                <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
+                <Button variant="outline" onClick={sendPdf} loading={pdfLoading} disabled={pdfSuccess}>PDF erneut per Email senden</Button>
+              </Flex>
+              {pdfSuccess && <Text c="green.9" mb="xl">Die PDF wurde erfolgreich per Email versendet.</Text>}
             </>}
 
-            {filteredSubsidies.length === 0 && <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-              Basierend auf deinen Antworten kannst leider keine Förderungen erhalten.
-            </Title>}
+            {filteredSubsidies.length === 0 && <Box mb="xl" >
+              <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
+                Basierend auf deinen Antworten kannst leider keine Förderungen erhalten.
+              </Title>
 
-            {/* todo cta button zurück zum report / report erneut per email senden
-          todo no subsidies found */}
+              <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
+            </Box>}
+
             <Button variant="outline" onClick={prevQuestionaireStep}>Zurück</Button>
           </Box>
         </Stepper.Completed>

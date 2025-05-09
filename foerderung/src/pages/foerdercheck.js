@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation'
+import { useRouter } from 'next/router'
 import NextImage from 'next/image';
 import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Card, NumberFormatter, Image } from '@mantine/core';
 import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
@@ -10,7 +10,7 @@ import CheckboxCard from '@/components/Inputs/CheckboxCard';
 import trackEvent from '@/utils/trackEvent';
 import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
-import { showNotification } from '@mantine/notifications';
+import ResultTable from '@/components/ResultTable/ResultTable';
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -74,10 +74,10 @@ const SelectChip = ({ children, data, setData, value, ...props }) => {
 
 const numberFormatElements = ['Postalcode']
 
-const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
+const ButtonGroup = ({ active, goToStep, isLoading, hasSubmit, disabled }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
-    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
+    {active > 0 && <Button variant="default" onClick={() => goToStep(active - 1)} loading={isLoading}>Zurück</Button>}
     {active < 4 && <Flex gap="sm">
       {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>
         {active === 3 ? 'Ergebnis anzeigen' : 'Weiter'}
@@ -91,7 +91,8 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const hasDefaultData = !!defaultUser?.uuid
 
   const router = useRouter()
-  const [active, setActive] = useState(hasDefaultData ? 4 : 0);
+  const currentStep = parseInt(router?.query?.step) || 0;
+  const [active, setActive] = useState(hasDefaultData ? 4 : currentStep);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     TypZuschuss: defaultUser?.Types?.includes('Zuschuss') || true,
@@ -107,18 +108,38 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const [checkoutId, setCheckoutId] = useState()
   const [emailSuccess, setEmailSuccess] = useState(false)
 
+  useEffect(() => {
+    const newStep = parseInt(router?.query?.step);
+    if (!isNaN(newStep)) {
+      setActive(newStep);
+    } else {
+      setActive(0)
+    }
+  }, [router?.query?.step]);
+
+  const goToStep = (newStep) => {
+    router.push(
+      {
+        pathname: router.pathname,
+        query: { ...router.query, step: newStep },
+      },
+      undefined,
+      { shallow: true }
+    );
+  };
+
   const selectOption = (e) => {
     let elem = e.target
     while (!elem.name) {
       elem = elem.parentElement
     }
     setData({ ...data, [elem.name]: elem.value })
-    setActive(active + 1)
+    goToStep(active + 1)
   }
 
   const handleSubmitNext = (e) => {
     e.preventDefault();
-    setActive(active + 1)
+    goToStep(active + 1)
   }
 
   const districtData = [...new Set(
@@ -178,7 +199,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     }
 
     setData(newData)
-    setActive(active + 1)
+    goToStep(active + 1)
   }
 
   const handleSubmitReport = (e) => {
@@ -191,12 +212,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     })
       .then(res => res.json())
       .then(res => {
-        showNotification({
-          title: 'Report erfolgreich zugestellt!',
-          message: 'Dein Report wurde erstellt und dir als PDF per E-Mail zugesendet.',
-          color: 'green',
-          position: 'top-center'
-        });
         setEmailSuccess(true)
       })
       .catch(() => console.log('error')) // todo error handling
@@ -231,7 +246,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
       <Card my="xl" p="0">
         <Stepper
           active={active}
-          onStepClick={setActive}
+          onStepClick={goToStep}
           size="1px"
           styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
           allowNextStepsSelect={false}
@@ -255,7 +270,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 </SelectButton>
               </Flex>
 
-              <ButtonGroup {...{ data, setData, active, setActive }} />
+              <ButtonGroup {...{ data, setData, active, goToStep }} />
             </Box>
           </Stepper.Step>
           <Stepper.Step>
@@ -266,7 +281,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
                   <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
+                <ButtonGroup {...{ data, setData, active, goToStep }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
               </form>
             </Box>
           </Stepper.Step>
@@ -304,7 +319,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </Box>
                 </Flex>
 
-                <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
+                <ButtonGroup active={active} goToStep={goToStep} hasSubmit disabled={!data.Region} />
               </form>
             </Box>
           </Stepper.Step>
@@ -332,35 +347,61 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     <SelectChip radius="sm" key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
                   ))}
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
+                <ButtonGroup {...{ data, setData, active, goToStep }} hasSubmit disabled={(data.Measures || []).length === 0} />
               </form>
             </Box>
           </Stepper.Step>
           <Stepper.Completed>
             <Box p="md">
               {!showCheckout && <>
-                <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                  Wir konnten {finalData.length} Förderungen mit einer maximalen Fördersumme von <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> für die eingestellten Kriterien finden.
-                </Title>
-
-                <Table mb="xl" striped>
-                  <Table.Tbody>
-                    <Table.Tr>
-                      <Table.Th>Förderung & Webseite</Table.Th>
-                      {data.TypZuschuss && data.TypKredit && <Table.Th>Art der Förderung</Table.Th>}
-                      <Table.Th>Maßnahmen</Table.Th>
-                    </Table.Tr>
-                    {finalData.map((d, index) => (
-                      <Table.Tr key={d.Id}>
-                        <Table.Td><a href={d.Website} target="_blank" rel="noopener noreferrer">{d.Name}</a></Table.Td>
-                        {data.TypZuschuss && data.TypKredit && <Table.Td>{d.Type.join(', ')}</Table.Td>}
-                        <Table.Td>{d.Measures.filter(m => data.Measures.includes(m)).join(', ')}</Table.Td>
-                      </Table.Tr>
-                    ))}
-                  </Table.Tbody>
-                </Table>
+                <ResultTable data={finalData} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
                 <Card p="md" withBorder>
+                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
+                    <Image
+                      radius="md"
+                      component={NextImage}
+                      src="/imgs/illustration-email.png"
+                      alt="Illustration Dokument"
+                      height={200}
+                      width={400}
+                      w={{ base: 200, sm: "auto" }}
+                      h={200}
+                      mx="auto"
+                    />
+                    <form onSubmit={handleSubmitReport}>
+                      <Title size="h4" order={3}>Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
+                      <Text mb="md" fs="sm">Der kostenlose Report enthält die Links zu den gefundenen Fördernungen und weitere hilfreiche Informationen.</Text>
+
+                      <Flex
+                        align={{ base: "flex-start", sm: "center" }}
+                        gap="md"
+                        direction={{ base: "column", sm: "row" }}
+                        mb={{ base: "md", sm: "0" }}
+                      >
+                        <TextInput
+                          required
+                          label="E-Mail Adresse"
+                          placeholder="mustermann@example.com"
+                          mb={{ base: "0", sm: "md" }}
+                          value={email}
+                          onChange={(e) => setEmail(e.target.value)}
+                          miw={{ base: "100%", sm: "250px" }}
+                        />
+
+                        <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
+                          {emailSuccess ? <IconCheck /> : "Report zusenden"}
+                        </Button>
+                      </Flex>
+                      {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
+                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer Datenschutzerklärung zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
+                    </form>
+                  </Flex>
+                </Card>
+
+                <Text ta="center" my="md">- oder -</Text>
+
+                <Card p="md" withBorder mb="xl">
                   <Flex gap="md" direction={{ base: "column", sm: "row" }}>
                     <Image
                       radius="md"
@@ -383,52 +424,9 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </Flex>
                 </Card>
 
-                <Text ta="center" my="md">- oder -</Text>
-
-                <Card p="md" withBorder mb="xl">
-                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
-                    <Image
-                      radius="md"
-                      component={NextImage}
-                      src="/imgs/illustration-email.png"
-                      alt="Illustration Dokument"
-                      height={200}
-                      width={400}
-                      w={{ base: 200, sm: "auto" }}
-                      h={200}
-                      mx="auto"
-                    />
-                    <form onSubmit={handleSubmitReport}>
-                      <Title size="h4" order={3} mb="md">Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
-
-                      <Flex
-                        align={{ base: "flex-start", sm: "center" }}
-                        gap="md"
-                        direction={{ base: "column", sm: "row" }}
-                        mb={{ base: "md", sm: "0" }}
-                      >
-                        <TextInput
-                          required
-                          label="E-Mail Adresse"
-                          placeholder="mustermann@example.com"
-                          mb={{ base: "0", sm: "md" }}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          miw={{ base: "100%", sm: "250px" }}
-                        />
-
-                        <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
-                          {emailSuccess ? <IconCheck /> : "Report zusenden"}
-                        </Button>
-                      </Flex>
-                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer Datenschutzerklärung zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
-                    </form>
-                  </Flex>
-                </Card>
-
                 <Button
                   variant="default" w="30%"
-                  onClick={() => setActive(active - 1)}
+                  onClick={() => goToStep(active - 1)}
                 >Zurück</Button>
               </>}
 
@@ -465,6 +463,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           </Stepper.Completed>
         </Stepper>
       </Card>
-    </Layout>
+    </Layout >
   );
 }

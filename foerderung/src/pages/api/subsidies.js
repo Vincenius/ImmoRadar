@@ -64,7 +64,8 @@ export default async function handler(req, res) {
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
-          const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${req.query.id})`;
+          const { id, ignoreQuestions } = req.query
+          const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
           const { list: [user] } = await fetch(url, {
             method: 'GET',
             headers: {
@@ -89,7 +90,7 @@ export default async function handler(req, res) {
               userData.Type.includes('Kredit') && d.Type.includes('Kredit')
             ) &&
             d.Measures?.some(element => userData.Measures?.includes(element)) &&
-            (userData.SkipQuestions || !userData.Answers || d.Type.includes('Kredit') || d?.Questions?.every(element => {
+            (ignoreQuestions === 'true' || !userData.Answers || d.Type.includes('Kredit') || d?.Questions?.every(element => {
               const userAnswer = userData.Answers[element.Id]
               return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
             }))
@@ -126,7 +127,7 @@ export default async function handler(req, res) {
         res.status(200).json(mappedResult);
       }
     } else if (req.method === 'POST') {
-      const { email, data, answers, skipQuestions } = JSON.parse(req.body)
+      const { email, data, answers } = JSON.parse(req.body)
 
       const id = uuidv4()
       await fetch(`${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records`, {
@@ -144,7 +145,6 @@ export default async function handler(req, res) {
           Type: data.TypZuschuss && data.TypKredit ? 'Zuschuss,Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit',
           Measures: data.Measures.join(','),
           Answers: answers,
-          SkipQuestions: skipQuestions,
           IsDev: process.env.STAGE !== 'prod',
           Variant: 'free',
         })
