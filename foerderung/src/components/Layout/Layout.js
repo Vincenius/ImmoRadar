@@ -62,7 +62,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
             </Flex>
 
             {/* mobile menu */}
-            <Menu shadow="md" display={{ base: "block", xs: "none" }} opened={opened} onChange={setOpened}>
+            {menu.length > 0 && <Menu shadow="md" display={{ base: "block", xs: "none" }} opened={opened} onChange={setOpened}>
               <Menu.Target>
                 <Burger opened={opened} aria-label="Menü" />
               </Menu.Target>
@@ -74,7 +74,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
                   </Menu.Item>
                 )}
               </Menu.Dropdown>
-            </Menu>
+            </Menu>}
           </Flex>
         </Container>
       </Box>

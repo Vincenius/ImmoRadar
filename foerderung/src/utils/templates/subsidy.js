@@ -12,7 +12,7 @@ const subsidyTemplate = () => mjml2html(`<mjml>
     <mj-section>
       <mj-group>
         <mj-column vertical-align="middle">
-          <mj-image href="${process.env.BASE_URL}" width="300px" src="${process.env.BASE_URL}/email-header.png"></mj-image>
+          <mj-image href="${process.env.BASE_URL}" width="300px" src="${process.env.BASE_URL}/imgs/logo.png"></mj-image>
         </mj-column>
       </mj-group>
     </mj-section>
