@@ -74,10 +74,10 @@ const SelectChip = ({ children, data, setData, value, ...props }) => {
 
 const numberFormatElements = ['Postalcode']
 
-const ButtonGroup = ({ active, goToStep, isLoading, hasSubmit, disabled }) => {
+const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
-    {active > 0 && <Button variant="default" onClick={() => goToStep(active - 1)} loading={isLoading}>Zurück</Button>}
+    {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
     {active < 4 && <Flex gap="sm">
       {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>
         {active === 3 ? 'Ergebnis anzeigen' : 'Weiter'}
@@ -91,8 +91,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const hasDefaultData = !!defaultUser?.uuid
 
   const router = useRouter()
-  const currentStep = parseInt(router?.query?.step) || 0;
-  const [active, setActive] = useState(hasDefaultData ? 4 : currentStep);
+  const [active, setActive] = useState(hasDefaultData ? 4 : 0);
   const [isLoading, setIsLoading] = useState(false);
   const [data, setData] = useState({
     TypZuschuss: defaultUser?.Types?.includes('Zuschuss') || true,
@@ -109,24 +108,20 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const [emailSuccess, setEmailSuccess] = useState(false)
 
   useEffect(() => {
-    const newStep = parseInt(router?.query?.step);
-    if (!isNaN(newStep)) {
-      setActive(newStep);
-    } else {
-      setActive(0)
-    }
-  }, [router?.query?.step]);
+    router.beforePopState(() => {
+      const currentPath = router.asPath;
+      if (active > 0) {
+        window.history.pushState(null, "", currentPath);
+        setActive(active - 1)
+        return false
+      }
+      return true;
+    });
 
-  const goToStep = (newStep) => {
-    router.push(
-      {
-        pathname: router.pathname,
-        query: { ...router.query, step: newStep },
-      },
-      undefined,
-      { shallow: true }
-    );
-  };
+    return () => {
+      router.beforePopState(() => true);
+    };
+  }, [active]);
 
   const selectOption = (e) => {
     let elem = e.target
@@ -134,12 +129,12 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
       elem = elem.parentElement
     }
     setData({ ...data, [elem.name]: elem.value })
-    goToStep(active + 1)
+    setActive(active + 1)
   }
 
   const handleSubmitNext = (e) => {
     e.preventDefault();
-    goToStep(active + 1)
+    setActive(active + 1)
   }
 
   const districtData = [...new Set(
@@ -199,7 +194,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     }
 
     setData(newData)
-    goToStep(active + 1)
+    setActive(active + 1)
   }
 
   const handleSubmitReport = (e) => {
@@ -246,7 +241,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
       <Card my="xl" p="0">
         <Stepper
           active={active}
-          onStepClick={goToStep}
+          onStepClick={setActive}
           size="1px"
           styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
           allowNextStepsSelect={false}
@@ -270,7 +265,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 </SelectButton>
               </Flex>
 
-              <ButtonGroup {...{ data, setData, active, goToStep }} />
+              <ButtonGroup {...{ data, setData, active, setActive }} />
             </Box>
           </Stepper.Step>
           <Stepper.Step>
@@ -281,7 +276,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
                   <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, goToStep }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
               </form>
             </Box>
           </Stepper.Step>
@@ -319,7 +314,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </Box>
                 </Flex>
 
-                <ButtonGroup active={active} goToStep={goToStep} hasSubmit disabled={!data.Region} />
+                <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
               </form>
             </Box>
           </Stepper.Step>
@@ -347,7 +342,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     <SelectChip radius="sm" key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
                   ))}
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, goToStep }} hasSubmit disabled={(data.Measures || []).length === 0} />
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
               </form>
             </Box>
           </Stepper.Step>
@@ -426,7 +421,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
 
                 <Button
                   variant="default" w="30%"
-                  onClick={() => goToStep(active - 1)}
+                  onClick={() => setActive(active - 1)}
                 >Zurück</Button>
               </>}
 
