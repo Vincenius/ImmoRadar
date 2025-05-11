@@ -3,6 +3,7 @@ import fs from 'fs'
 import generatePdf from '@/utils/generateSubsidyPdf'
 import { sendEmail } from '@/utils/emails';
 import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
+import { createAccount } from '@/utils/brevo';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -41,6 +42,10 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({ Id: user.Id, Variant: priceMap[price], ...emailUpdate })
         }).then(res => res.json())
+
+        if (!user.Email) {
+          await createAccount(session.customer_details.email)
+        }
 
         const { filename } = await generatePdf(session.client_reference_id)
         await sendEmail({

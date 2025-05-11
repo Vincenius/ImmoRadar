@@ -1,4 +1,5 @@
 import generatePdf from '@/utils/generateSubsidyPdf'
+import { createAccount } from '@/utils/brevo';
 import { sendEmail } from '@/utils/emails';
 import subsidyTemplate from '@/utils/templates/subsidy';
 import { v4 as uuidv4 } from 'uuid';
@@ -152,13 +153,16 @@ export default async function handler(req, res) {
 
       if (email) {
         const { filename } = await generatePdf(id)
-        await sendEmail({
-          to: email,
-          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
-          html: subsidyTemplate(),
-          pdfFilePath: filename,
-          pdfFileName: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Radar Förderung Report.pdf`
-        })
+        await Promise.all([
+          sendEmail({
+            to: email,
+            subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
+            html: subsidyTemplate(),
+            pdfFilePath: filename,
+            pdfFileName: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Radar Förderung Report.pdf`
+          }),
+          createAccount(email)
+        ])
         fs.unlinkSync(filename)
       }
 
