@@ -11,6 +11,7 @@ import trackEvent from '@/utils/trackEvent';
 import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
 import ResultTable from '@/components/ResultTable/ResultTable';
+import WithInfo from '@/components/WithInfo/WithInfo';
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
