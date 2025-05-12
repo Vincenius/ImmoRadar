@@ -8,7 +8,7 @@ function Pricing({ cta1, cta2, onlySubscription = false }) {
       {!onlySubscription && <Card shadow="lg" withBorder w="100%">
         <Card.Section p="xl" className={styles.pattern}>
           <Text ta="center" fw="300" c="white">Einmalige Generierung</Text>
-          <Title ta="center" c="white">0,99€</Title>
+          <Title ta="center" c="white">5,99€</Title>
         </Card.Section>
         <Card.Section p="xl" h="100%">
           <Flex direction="column" justify="space-between" h="100%">
@@ -26,7 +26,7 @@ function Pricing({ cta1, cta2, onlySubscription = false }) {
       <Card shadow="lg" withBorder w="100%">
         <Card.Section p="xl" className={styles.pattern}>
           <Text ta="center" fw="300" c="white">Jahresabo</Text>
-          <Title ta="center" c="white">24,99€ / Jahr</Title>
+          <Title ta="center" c="white">69,99€ / Jahr</Title>
         </Card.Section>
         <Card.Section p="xl">
           <List mb="lg">

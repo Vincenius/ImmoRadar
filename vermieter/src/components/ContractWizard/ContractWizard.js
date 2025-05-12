@@ -857,6 +857,8 @@ function ContractWizard({
 
           {checkoutVariant && <Box my="lg">
             <Checkout variant={checkoutVariant} id={resultId} />
+
+            <Button mt="lg" variant="outline" onClick={() => setCheckoutVariant(null)} w="150px">Zurück</Button>
           </Box>}
         </Stepper.Completed>}
 

@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { id, variant, defaultEmail } = JSON.parse(req.body)
 
-    const price = variant === 'yearly' ? 'price_1R4m6VKQunG297Xz9FYWpwEM' : 'price_1R4m52KQunG297Xz4ljRKhy6'
+    const price = variant === 'yearly' ? 'price_1RO2LzKQunG297XzqnNwgoBm' : 'price_1RO2NWKQunG297Xz9io6wWgv'
     const mode = variant === 'yearly' ? 'subscription' : 'payment'
 
     try {

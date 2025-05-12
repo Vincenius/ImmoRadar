@@ -10,7 +10,6 @@ export default async function handler(req, res) {
     const { token, id } = req.query
     let contractId
 
-    console.log(process.env.NEXT_PUBLIC_DISABLE_STRIPE)
     if (id && process.env.NEXT_PUBLIC_DISABLE_STRIPE !== 'true') {
       // trigered from logged in
       const serverSession = await getServerSession(req, res, authOptions);
@@ -45,7 +44,7 @@ export default async function handler(req, res) {
       // trigered from logged out
       let encryptedId = CryptoJS.AES.encrypt(id || '', process.env.PASSWORD_HASH_SECRET).toString();
       encryptedId = encryptedId.replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '');
-      const useToken = token || process.env.NEXT_PUBLIC_DISABLE_STRIPE === 'true'
+      const useToken = process.env.NEXT_PUBLIC_DISABLE_STRIPE === 'true'
         ? encryptedId
         : token
       const encrypted = useToken.replace(/-/g, '+').replace(/_/g, '/');

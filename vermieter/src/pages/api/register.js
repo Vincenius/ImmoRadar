@@ -27,7 +27,6 @@ export default async function handler(req, res) {
       if (user) {
         return res.status(400).json({ success: false, message: 'UserExists' });
       } else if (stripe_id && stripeUser) {
-        console.log(stripeUser)
         return res.status(400).json({ success: false, message: 'StripeUserExists' });
       } else {
         const passHash = CryptoJS.SHA256(password, process.env.PASSWORD_HASH_SECRET).toString(

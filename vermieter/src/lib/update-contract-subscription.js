@@ -10,8 +10,6 @@ export const updateContractAfterSubscription = async ({ userId, contractId, db }
     { returnDocument: 'after' }
   )
 
-  console.log({ contract, userId })
-
   if (contract) {
     const estateCollection = db.collection('estates');
     await createEstateFromContract({ contract, user_id: userId, collection: estateCollection })
