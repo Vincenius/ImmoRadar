@@ -62,14 +62,14 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       )}
       <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
-    <div style={{ overflow: 'hidden' }}>
+    <Flex direction="column" mih="100vh" h="100%" justify="space-between" style={{ overflow: 'hidden' }}>
       <Box as="header" height={60} className={styles.header}>
         <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
             <Link href={isLoggedIn ? '/app' : '/'} className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
-                <Text weight={700} size="xl">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
+                <Text fw="bold" size="xl" className={styles.headerTitle}>{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>
 
@@ -103,12 +103,12 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
         </Container>
       </Box>
 
-      <Container as="main" size={1060} mih="calc(100vh - 140px)" pos="relative" py={noPadding ? '0' : 'xl'}>
+      <Container as="main" size={1060} w="100%" pos="relative" py={noPadding ? '0' : 'xl'}>
         {children}
       </Container>
 
       <Footer />
-    </div>
+    </Flex>
   </>
 }
 

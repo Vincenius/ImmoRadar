@@ -83,7 +83,7 @@ export default function Register() {
             mb="lg"
             required
             name="DataProtection"
-            label={<Text>Ich habe die <Link href="/datenschutz">Datenschutzbestimmungen</Link> gelesen und stimme ihnen zu.</Text>}
+            label={<Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <Link href="/datenschutz">Datenschutzerklärung</Link> zu und willigst ein, dass wir dir unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>}
           />
 
           <Button size="lg" mb="xl" fullWidth type="submit" loading={isLoading}>Account Erstellen</Button>

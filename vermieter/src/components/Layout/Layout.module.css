@@ -14,6 +14,12 @@
   color: rgb(var(--foreground-rgb));
 }
 
+.headerTitle {
+  background: linear-gradient(90deg, var(--mantine-color-blue-5), var(--mantine-color-blue-9));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
 .footer {
   box-shadow: inset var(--mantine-shadow-sm);
   z-index: 1;

@@ -3,12 +3,13 @@ import Link from "next/link";
 import { useSession } from "next-auth/react"
 import { useRouter } from 'next/router';
 import { useEffect, useState } from "react"
-import { Loader, Flex, Text, Button, Title, Box, Card } from "@mantine/core";
+import { Loader, Flex, Text, Button, Title, Box, Card, ThemeIcon } from "@mantine/core";
 import { notifications } from '@mantine/notifications';
 import Pricing from "@/components/Pricing/Pricing";
 import Checkout from "@/components/Checkout/Checkout";
 import ContractCards from "@/components/ContractCards/ContractCards";
 import EstateCards from "@/components/EstateCards/EstateCards";
+import { IconClipboardText, IconHome } from "@tabler/icons-react";
 
 function App() {
   const router = useRouter();
@@ -69,7 +70,7 @@ function App() {
         </>}
 
         {isCheckout && <Card shadow="lg" withBorder w="100%">
-          <Checkout variant="yearly" defaultEmail={user.email}/>
+          <Checkout variant="yearly" defaultEmail={user.email} />
         </Card>}
       </Layout>
     )
@@ -77,13 +78,24 @@ function App() {
 
   return (
     <Layout title="Deine Verträge">
-      <Title order={1} size="h3" weight={500} mb="md">Deine Verträge</Title>
-      <ContractCards maxContracts={2} />
-      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege" mb="xl">Alle Verträge anzeigen</Button>
+      <Flex align="center" gap="sm" mb="md">
+        <ThemeIcon variant="white">
+          <IconHome style={{ width: '70%', height: '70%' }} />
+        </ThemeIcon>
+        <Title order={2} size="h3" weight={500}>Deine Immobilien</Title>
+      </Flex>
 
-      <Title order={1} size="h3" weight={500} mb="md">Deine Immobilien</Title>
       <EstateCards maxCards={2} />
-      <Button variant="transparent" mt="md" component={Link} href="/app/immobilien">Alle Immobilien anzeigen</Button>
+      <Button variant="transparent" mt="md" component={Link} href="/app/immobilien" mb="xl">Alle Immobilien anzeigen</Button>
+
+      <Flex align="center" gap="sm" mb="md">
+        <ThemeIcon variant="white">
+          <IconClipboardText style={{ width: '70%', height: '70%' }} />
+        </ThemeIcon>
+        <Title order={2} size="h3" weight={500}>Deine Verträge</Title>
+      </Flex>
+      <ContractCards maxContracts={2} />
+      <Button variant="transparent" mt="md" component={Link} href="/app/vertraege">Alle Verträge anzeigen</Button>
     </Layout>
   )
 }

@@ -1,9 +1,26 @@
 import puppeteer from 'puppeteer';
-import { MongoClient } from 'mongodb';
+import { MongoClient, ObjectId } from 'mongodb';
 import fs from 'fs';
 import CryptoJS from 'crypto-js'
 import { getServerSession } from "next-auth";
 import { authOptions } from "./auth/[...nextauth]";
+
+const getFileName = async (contractId) => {
+  const client = new MongoClient(process.env.MONGODB_URI);
+  try {
+    await client.connect();
+    const db = client.db(process.env.MONGODB_DB);
+    const collection = db.collection('contracts');
+
+    const [result] = await collection.find({ _id: new ObjectId(contractId) }).toArray();
+    return `Mietvertrag_${result.street}_${result.tenantName}.pdf`
+  } catch (error) {
+    console.log('error on fetching filename', error)
+    return "Mietvertrag.pdf"
+  } finally {
+    client.close();
+  }
+}
 
 export default async function handler(req, res) {
   if (req.method === 'GET') {
@@ -63,6 +80,8 @@ export default async function handler(req, res) {
     if (process.env.PROTECTION) {
       headers['Authorization'] = `Basic ${process.env.PROTECTION}`;
     }
+
+    const fileName = await getFileName(contractId)
     await page.setExtraHTTPHeaders(headers);
     await page.goto(`${process.env.BASE_URL}/pdf?id=${contractId}`, { waitUntil: 'networkidle0' });
 
@@ -116,7 +135,7 @@ export default async function handler(req, res) {
 
     // Set the response headers to initiate a download
     res.setHeader('Content-Type', 'application/pdf');
-    res.setHeader('Content-Disposition', `attachment; filename="Mietvertrag.pdf"`);
+    res.setHeader('Content-Disposition', `attachment; filename="${fileName}"`);
 
     // Send the PDF as a response
     res.status(200).send(fileBuffer);

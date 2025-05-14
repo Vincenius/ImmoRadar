@@ -50,7 +50,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
-                <Text weight={700} size="xl" className={styles.gradientText} fw="bold">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
+                <Text size="xl" className={styles.gradientText} fw="bold">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>
 

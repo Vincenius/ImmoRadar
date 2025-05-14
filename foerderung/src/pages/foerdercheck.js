@@ -390,7 +390,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                         </Button>
                       </Flex>
                       {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
-                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer Datenschutzerklärung zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
+                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <Link href="/datenschutz">Datenschutzerklärung</Link> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                     </form>
                   </Flex>
                 </Card>

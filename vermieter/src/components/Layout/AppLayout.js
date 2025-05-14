@@ -63,7 +63,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
                 {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
-                <Text weight={700} size="xl">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
+                <Text fw="bold" size="xl" className={styles.headerTitle}>{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>
           </Group>
@@ -72,11 +72,11 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
           <Button fullWidth leftSection={<IconDashboard size={14} />} component={Link} href="/app" mb="md" variant={router.pathname === '/app' ? 'light' : 'white'}>
             Dashboard
           </Button>
-          <Button fullWidth leftSection={<IconClipboardText size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/vertraege" mb="md" variant={router.pathname === '/app/vertraege' ? 'light' : 'white'} disabled={!isAuthenticated}>
-            Mietverträge
-          </Button>
           <Button fullWidth leftSection={<IconHome size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/immobilien" mb="md" variant={router.pathname === '/app/immobilien' ? 'light' : 'white'} disabled={!isAuthenticated}>
             Immobilien
+          </Button>
+          <Button fullWidth leftSection={<IconClipboardText size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/vertraege" mb="md" variant={router.pathname === '/app/vertraege' ? 'light' : 'white'} disabled={!isAuthenticated}>
+            Mietverträge
           </Button>
           <Button fullWidth leftSection={<IconSettings size={14} />} component={isAuthenticated ? Link : 'span'} href="/app/settings" mb="md" variant={router.pathname === '/app/settings' ? 'light' : 'white'} disabled={!isAuthenticated}>
             Einstellungen
