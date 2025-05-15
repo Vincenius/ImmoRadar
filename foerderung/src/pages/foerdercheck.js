@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import NextImage from 'next/image';
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Table, Chip, Select, Card, NumberFormatter, Image } from '@mantine/core';
+import Link from 'next/link';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, Image } from '@mantine/core';
 import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'

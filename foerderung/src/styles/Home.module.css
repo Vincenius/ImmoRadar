@@ -4,6 +4,16 @@
   padding: 6rem 0;
 }
 
+.title {
+  font-size: 4em;
+}
+
+@media (max-width: 48em) {
+  .title {
+    font-size: 2em;
+  }
+}
+
 .background {
   position: absolute;
   width: 100vw;
