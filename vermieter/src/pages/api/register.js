@@ -4,7 +4,6 @@ import { v4 as uuidv4 } from 'uuid';
 import { sendEmail } from '@/utils/emails';
 import confirmTemplate from '@/lib/templates/confirmation';
 import Stripe from 'stripe';
-import { createAccount } from '@/utils/brevo';
 import { updateContractAfterSubscription } from '@/lib/update-contract-subscription';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
@@ -60,8 +59,6 @@ export default async function handler(req, res) {
             subject: `Bitte bestätige deine E-Mail Addresse | ${process.env.NEXT_PUBLIC_WEBSITE_NAME}`,
             html: confirmTemplate({ confirm_url: `${process.env.BASE_URL}/api/confirm?token=${token}` })
           })
-
-          await createAccount(email)
 
           res.status(200).json({ success: true });
         } else {

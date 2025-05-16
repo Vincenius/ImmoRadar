@@ -14,16 +14,6 @@ export default async function handler(req, res) {
       const db = client.db(process.env.MONGODB_DB);
       const collection = db.collection('contracts');
 
-      if (serverSession && serverSession.user && serverSession.user.email) {
-        const userCollection = db.collection('users');
-        const [user] = await userCollection.find({ email: serverSession.user.email }).toArray();
-
-        if (user && user.plan === 'year') {
-          isAuthenticated = true
-          userId = user._id
-        }
-      }
-
       const {
         visited,
         rooms,
@@ -60,6 +50,36 @@ export default async function handler(req, res) {
         additionalRentals,
         rentSteps,
       } = req.body.userData
+
+      if (serverSession && serverSession.user && serverSession.user.email) {
+        const userCollection = db.collection('users');
+        const [user] = await userCollection.find({ email: serverSession.user.email }).toArray();
+
+        if (user && user.plan === 'year') {
+          isAuthenticated = true
+          userId = user._id
+
+          // add initial user data if it is first contract and data has not been set yet
+          if (!user.landlordName && !user.landlordStreet && !user.landlordCity && !user.landlordZip && !user.landlordRepresentedBy && !user.bankAccount) {
+            const contracts = await collection.find({ user_id: user._id }).toArray();
+            if (contracts.length === 0) {
+              await userCollection.findOneAndUpdate(
+                { _id: user._id },
+                {
+                  $set: {
+                    landlordName: landlordName,
+                    landlordStreet: landlordStreet,
+                    landlordCity: landlordCity,
+                    landlordZip: landlordZip,
+                    landlordRepresentedBy: landlordRepresentedBy,
+                    bankAccount: bankAccount
+                  }
+                },
+              )
+            }
+          }
+        }
+      }
 
       const result = await collection.insertOne({
         visited,

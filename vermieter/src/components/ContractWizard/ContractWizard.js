@@ -205,7 +205,7 @@ function ContractWizard({
                 </Flex>
                 <TextInput
                   label="Vertreten durch (optional)"
-                  placeholder="Fertighaus Radar Property GmbH"
+                  placeholder={`${process.env.NEXT_PUBLIC_WEBSITE_NAME} Property GmbH`}
                   mb="sm"
                   name="landlordRepresentedBy"
                   defaultValue={data.landlordRepresentedBy}

@@ -108,7 +108,7 @@ export default async function handler(req, res) {
       //   <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin: 0 1in 30px ; padding: 0 0 15px; font-family: 'Arial'; border-bottom: 1px solid  #dee2e5;">
       //     <div style="display: flex; gap: 12px; align-items: center;">
       //       <img src="${base64Logo}" width="40px" height="40px" style="width: 40px; height: 40px;" alt="alt" />
-      //       <span style="font-size: 16px; font-weight: bold;">Fertighaus Radar</span>
+      //       <span style="font-size: 16px; font-weight: bold;">Vertragsfabrik</span>
       //     </div>
       //     <div>
       //       <p style="font-size: 12px; margin: 0; text-align: right;">Förderungen Report</p>

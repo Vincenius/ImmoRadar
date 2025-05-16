@@ -1,3 +1,4 @@
+import { createAccount } from '@/utils/brevo';
 import { MongoClient } from 'mongodb';
 
 export default async function handler(req, res) {
@@ -20,6 +21,8 @@ export default async function handler(req, res) {
 
         if (!user._id) {
             return res.status(404).json({ message: 'User not found' });
+        } else {
+            await createAccount(user.email)
         }
 
         return res.redirect(`/login?confirmed=true`)

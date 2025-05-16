@@ -250,21 +250,29 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
         >
           <Stepper.Step>
             <Box p="xl">
-              <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
+              {/* <WithInfo infoText="Diese Angabe ist wichtig, da sich Förderprogramme oft gezielt an Neubauten oder Bestandsimmobilien richten."> */}
+                <Title order={2} size="h3" mb="xl" ta="center">
+                  Handelt es sich um eine Bestandsimmobilie oder einen Neubau?
+                </Title>
+              {/* </WithInfo> */}
 
               <Flex gap="md">
-                <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
-                  <Flex direction="column" gap="sm" align="center">
-                    <IconHome size="2em" />
-                    <Text fw="600" size="lg">Bestand</Text>
-                  </Flex>
-                </SelectButton>
-                <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
-                  <Flex direction="column" gap="sm" align="center">
-                    <IconBackhoe size="2em" />
-                    <Text fw="600" size="lg">Neubau</Text>
-                  </Flex>
-                </SelectButton>
+                <WithInfo infoText="Bestand meint ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
+                  <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
+                    <Flex direction="column" gap="sm" align="center">
+                      <IconHome size="2em" />
+                      <Text fw="600" size="lg">Bestand</Text>
+                    </Flex>
+                  </SelectButton>
+                </WithInfo>
+                <WithInfo infoText="Neubau bezeichnet die erstmalige Errichtung eines Gebäudes auf einem Grundstück – z.B. Eigenheim oder Mehrfamilienhaus.">
+                  <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
+                    <Flex direction="column" gap="sm" align="center">
+                      <IconBackhoe size="2em" />
+                      <Text fw="600" size="lg">Neubau</Text>
+                    </Flex>
+                  </SelectButton>
+                </WithInfo>
               </Flex>
 
               <ButtonGroup {...{ data, setData, active, setActive }} />
@@ -391,7 +399,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                         </Button>
                       </Flex>
                       {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
-                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <Link href="/datenschutz">Datenschutzerklärung</Link> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
+                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                     </form>
                   </Flex>
                 </Card>

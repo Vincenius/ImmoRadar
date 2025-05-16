@@ -76,6 +76,9 @@ function Settings() {
           <Text fs="italic" mb="md">Diese Daten wurden deinem ersten Vertrag entnommen und werden bei neuen Verträgen automatisch eingesetzt.</Text>
 
           <form onSubmit={handleSubmit}>
+            <Text fw="500" size="sm">E-Mail</Text>
+            <Text mb="sm">{data.email}</Text>
+
             <Flex gap="sm">
               <TextInput
                 label="Name"
@@ -118,7 +121,7 @@ function Settings() {
             <Flex gap="sm">
               <TextInput
                 label="Vertreten durch"
-                placeholder="Fertighaus Radar Property GmbH"
+                placeholder={`${process.env.NEXT_PUBLIC_WEBSITE_NAME} Property GmbH`}
                 mb="sm"
                 name="landlordRepresentedBy"
                 defaultValue={data.landlordRepresentedBy}
@@ -136,7 +139,7 @@ function Settings() {
             </Flex>
 
 
-            <Button mt="md" type="submit" loading={submitLoading}>Daten aktualisieren</Button>
+            <Button mt="md" type="submit" loading={submitLoading}>Daten speichern</Button>
           </form>
         </Card>
 

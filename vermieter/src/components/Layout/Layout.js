@@ -47,7 +47,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <meta property="og:image" content={ogImage} />
       {/* <meta property="og:url" content="TODO" /> */}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Fertighaus Radar" />
+      <meta property="og:site_name" content={process.env.NEXT_PUBLIC_WEBSITE_NAME} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />

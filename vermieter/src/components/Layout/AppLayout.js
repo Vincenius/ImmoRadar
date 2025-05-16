@@ -2,13 +2,13 @@ import React, { useState } from 'react';
 import Head from "next/head";
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
-import { Text, Flex, Group, Burger, Box, Button, AppShell, Loader } from '@mantine/core'
+import { Text, Flex, Group, Burger, Box, Button, AppShell, Loader, Alert } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
 // import Logo from './logo.svg';
 import styles from './Layout.module.css';
 import { useRouter } from 'next/router';
 import Footer from './Footer';
-import { IconClipboardText, IconDashboard, IconHome, IconLogout, IconSettings } from '@tabler/icons-react';
+import { IconClipboardText, IconDashboard, IconHome, IconInfoCircle, IconLogout, IconSettings } from '@tabler/icons-react';
 
 const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
   const router = useRouter();
@@ -23,6 +23,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
   })
 
   const isAuthenticated = session?.user?.plan === 'year'
+  const isEmailConfirmed = session?.user?.confirmed
 
   return <>
     {/* todo move head to separate file */}
@@ -35,7 +36,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <meta property="og:image" content={ogImage} />
       {/* <meta property="og:url" content="TODO" /> */}
       <meta property="og:type" content="website" />
-      <meta property="og:site_name" content="Fertighaus Radar" />
+      <meta property="og:site_name" content={process.env.NEXT_PUBLIC_WEBSITE_NAME} />
       <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:title" content={title} />
       <meta name="twitter:description" content={description} />
@@ -51,7 +52,6 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
       <meta name="google-adsense-account" content="ca-pub-1087144186006114"></meta>
     </Head>
     <div style={{ overflow: 'hidden' }}>
-
       <AppShell
         header={{ height: 60 }}
         navbar={{ width: 200, breakpoint: 'sm', collapsed: { mobile: !opened } }}
@@ -90,7 +90,10 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
             ? <Flex h="70vh" w="100%" align="center" justify="center">
               <Loader size={30} />
             </Flex>
-            : children
+            : <Box>
+              {!isEmailConfirmed && <Alert variant="light" color="orange" title="Bitte bestätige deine E-Mail Adresse" icon={<IconInfoCircle />} mb="md"></Alert>}
+              {children}
+            </Box>
           }
         </AppShell.Main>
       </AppShell>
