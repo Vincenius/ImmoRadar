@@ -29,10 +29,12 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
             </List>
           </Box>
 
-          {!CtaFree && <Button mt="lg" size="md" component={Link} href="/foerdercheck">Jetzt kostenlos starten!</Button>}
-          {CtaFree}
+          <Box mt="lg">
+            {!CtaFree && <Button size="md" component={Link} href="/foerdercheck" fullWidth>Jetzt kostenlos starten!</Button>}
+            {CtaFree}
 
-          <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die sich einen ersten schnellen Überblick verschaffen wollen.</Text>
+            <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die sich einen ersten schnellen Überblick verschaffen wollen.</Text>
+          </Box>
         </Flex>
       </Card>}
       <Card bg="white" p="md" radius="md" withBorder w="100%" bd="1px solid cyan.9" shadow="md">
@@ -61,9 +63,11 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
             </List>
           </Box>
 
-          {CtaPremium}
+          <Box>
+            {CtaPremium}
 
-          <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen.</Text>
+            <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen.</Text>
+          </Box>
         </Flex>
       </Card>
       <Card bg="white" p="md" radius="md" withBorder w="100%" shadow="md">
@@ -97,9 +101,11 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
             </List>
           </Box>
 
-          {CtaProfessional}
+          <Box>
+            {CtaProfessional}
 
-          <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen, allerdings keine Zeit haben.</Text>
+            <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen, allerdings keine Zeit haben.</Text>
+          </Box>
         </Flex>
       </Card>
     </Flex>

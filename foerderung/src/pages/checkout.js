@@ -58,10 +58,10 @@ function ReportCheckout({ id, email, plan, defaultPlan }) {
       <Title order={1} mt="xl" mb="lg">Checkout</Title>
       {!variant && <Pricing
         plan={plan}
-        CtaPremium={<Button mt="lg" variant="outline" onClick={() => setVariant('premium')} disabled={plan === 'premium'}>
+        CtaPremium={<Button mt="lg" variant="outline" onClick={() => setVariant('premium')} disabled={plan === 'premium'} fullWidth>
           {plan === 'premium' ? <><IconCircleCheck size={16} />&nbsp;Du hast bereits Premium</> : 'Jetzt Kaufen'}
         </Button>}
-        CtaProfessional={<Button mt="lg" onClick={() => setVariant('professional')} disabled={plan === 'professional'}>
+        CtaProfessional={<Button mt="lg" onClick={() => setVariant('professional')} disabled={plan === 'professional'} fullWidth>
           {plan === 'premium' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
       />}

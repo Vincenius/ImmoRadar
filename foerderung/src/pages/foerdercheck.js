@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
 import NextImage from 'next/image';
 import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, Image } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, Image, List, ThemeIcon, Modal } from '@mantine/core';
 import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -13,6 +13,31 @@ import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
 import ResultTable from '@/components/ResultTable/ResultTable';
 import WithInfo from '@/components/WithInfo/WithInfo';
+
+const helperTexts = {
+  "Altersgerechter Umbau": "Umbauten, die die Wohnung oder das Haus barrierefrei machen – z. B. bodengleiche Dusche, breite Türen oder Treppenlifte.",
+  "Batteriespeicher": "Stromspeicher für selbst erzeugten Solarstrom – erhöht die Unabhängigkeit vom Netz und wird oft gefördert.",
+  "Baubegleitung": "Fachliche Unterstützung durch einen Energieeffizienz-Experten – oft Voraussetzung für die Förderung.",
+  "Biomasse": "Heizsysteme, die mit Holz, Pellets oder Hackschnitzeln betrieben werden – klimafreundlich & förderfähig.",
+  "Dämmung": "Energetische Verbesserung von Dach, Fassade, Boden oder Keller – Voraussetzung für viele Förderprogramme.",
+  "Effizienzhaus": "Ein Gebäude mit besonders geringem Energieverbrauch – je besser der Standard, desto höher die Förderung.",
+  "Einbruchschutz": "Sicherheitstechnik wie Fensterverriegelungen, Türsicherungen oder Alarmsysteme – oft durch KfW förderfähig.",
+  "Energieberatung": "Individuelle Analyse des energetischen Zustands durch einen Experten – Grundlage für viele Förderungen und Sanierungsmaßnahmen.",
+  "Erneuerbare Energien": "Allgemeine Kategorie für alle Maßnahmen, die Strom oder Wärme aus Sonne, Wind, Biomasse oder Umweltenergie gewinnen.",
+  "Fenster / Haustür": "Der Austausch von Fenstern oder Haustüren kann Energie sparen – wichtig ist der Wärmeschutzstandard.",
+  "Fernwärme": "Anschluss an ein zentrales Heiznetz – nachhaltig, wenn aus erneuerbaren Quellen oder Abwärme gespeist, und oft förderfähig.",
+  "Heizungsoptimierung": "Austausch alter Heizsysteme durch effiziente oder erneuerbare Varianten – oft mit Zuschuss oder Kredit.",
+  "Holzbau": "Bauen mit dem nachwachsenden Rohstoff Holz – klimafreundlich, oft schneller umzusetzen und förderfähig im Rahmen nachhaltigen Bauens.",
+  "Ladestation": "Wandladestation für E-Autos – in Kombination mit Photovoltaik oder KfW-Förderung interessant.",
+  "Lüftung": "Zentrale oder dezentrale Systeme zur Belüftung von Wohnräumen – oft in Kombination mit energetischer Sanierung gefördert.",
+  "Passivhaus": "Gebäude mit extrem niedrigem Energiebedarf – benötigt kaum Heizwärme und erreicht höchste Förderstufen.",
+  "Photovoltaik": "Solaranlage zur Stromerzeugung auf dem Dach – Basis für Eigenverbrauch und Einspeisevergütung.",
+  "Smart Home": "Intelligente Steuerung von Licht, Heizung, Rollläden oder Alarmanlagen – Komfort und Effizienz in einem.",
+  "Solarthermie": "Solaranlage zur Warmwasserbereitung oder Heizungsunterstützung – besonders bei älteren Gebäuden attraktiv.",
+  "Sonstige Heizungen": "Weitere Heizsysteme, z. B. Hybridanlagen oder Nahwärme – Förderung abhängig von Technik und Effizienz.",
+  "Wärmepumpe": "Nutzt Umweltwärme aus Luft, Erde oder Grundwasser – eine der meistgeförderten Heiztechniken.",
+  "Wärmespeicher": "Systeme zur Zwischenspeicherung von Wärme – erhöhen die Effizienz von Heizungen und Solaranlagen, z. B. Pufferspeicher."
+};
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -104,7 +129,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     Measures: defaultUser?.Measures || []
   })
   const [email, setEmail] = useState(defaultUser?.Email || '')
-  const [showCheckout, setShowCheckout] = useState(false)
+  const [showFreeCheckout, setShowFreeCheckout] = useState(false)
   const [variant, setVariant] = useState()
   const [checkoutId, setCheckoutId] = useState()
   const [emailSuccess, setEmailSuccess] = useState(false)
@@ -156,6 +181,8 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
       )
     ).map(d => d.Measures).flat().filter(Boolean)
   )].sort()
+
+  console.log(measuresData)
 
   const finalData = subsidyData.filter(d =>
     d.HouseType.includes(data.HouseType) &&
@@ -215,11 +242,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
       .finally(() => setIsLoading(false))
   }
 
-  const goToCheckout = () => {
-    trackEvent('foerdercheck-go-to-checkout')
-    setShowCheckout(true)
-  }
-
   const goToPayment = (newVariant) => {
     setVariant(newVariant)
     setIsLoading(true)
@@ -250,11 +272,9 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
         >
           <Stepper.Step>
             <Box p="xl">
-              {/* <WithInfo infoText="Diese Angabe ist wichtig, da sich Förderprogramme oft gezielt an Neubauten oder Bestandsimmobilien richten."> */}
-                <Title order={2} size="h3" mb="xl" ta="center">
-                  Handelt es sich um eine Bestandsimmobilie oder einen Neubau?
-                </Title>
-              {/* </WithInfo> */}
+              <WithInfo infoText="Diese Angabe ist wichtig, da sich Förderprogramme oft gezielt an Neubauten oder Bestandsimmobilien richten." inline>
+                <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
+              </WithInfo>
 
               <Flex gap="md">
                 <WithInfo infoText="Bestand meint ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
@@ -281,10 +301,18 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           <Stepper.Step>
             <Box p="xl">
               <form onSubmit={handleSubmitNext}>
-                <Title order={2} size="h3" mb="xl" ta="center">Welche Art der Förderung suchen Sie?</Title>
+                <WithInfo infoText="Viele Förderprogramme unterscheiden zwischen Zuschüssen und Krediten. Wählen Sie aus, was besser zu Ihrem Vorhaben passt." inline>
+                  <Title order={2} size="h3" mb="xl" ta="center">Welche Art der Förderung suchen Sie?</Title>
+                </WithInfo>
+
                 <Flex gap="md" direction={{ base: 'column', xs: 'row' }}>
-                  <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
-                  <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
+                  <WithInfo infoText="Ein Zuschuss ist eine finanzielle Förderung, die Sie nicht zurückzahlen müssen. Ideal für Sanierung, Energie oder Modernisierung.">
+                    <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
+                  </WithInfo>
+
+                  <WithInfo infoText="Ein Förderkredit ist ein zinsgünstiger Kredit – oft von der KfW –, mit besseren Konditionen als bei normalen Banken.">
+                    <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
+                  </WithInfo>
                 </Flex>
                 <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
               </form>
@@ -292,21 +320,26 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           </Stepper.Step>
           <Stepper.Step>
             <Box p="xl">
-              <Title order={2} size="h3" mb="xl" ta="center">Wo liegt die Immobilie oder wo planen Sie zu bauen?</Title>
+              <WithInfo infoText="Die Auswahl Ihrer Region hilft uns, passgenaue Förderangebote für Sie zu finden – lokal, landesweit und bundesweit." inline>
+                <Title order={2} size="h3" mb="xl" ta="center">Wo liegt die Immobilie oder wo planen Sie zu bauen?</Title>
+              </WithInfo>
 
               <form onSubmit={handleSubmit}>
                 <Flex gap="md" direction={{ base: 'column', xs: 'row' }} align="flex-start">
-                  <Select
-                    label="Bundesland"
-                    data={bundeslaender}
-                    required
-                    mb="sm"
-                    name="Region"
-                    onChange={(value) => setData({ ...data, Region: value, District: null })}
-                    value={data.Region}
-                    size="lg"
-                    w="100%"
-                  />
+                  <Box w="100%">
+                    <Select
+                      label="Bundesland"
+                      data={bundeslaender}
+                      required
+                      mb="sm"
+                      name="Region"
+                      onChange={(value) => setData({ ...data, Region: value, District: null })}
+                      value={data.Region}
+                      size="lg"
+                      w="100%"
+                    />
+                    <Text c="gray.7" size="sm">Ihr Bundesland ist wichtig, weil viele Fördermittel auf Landesebene vergeben werden.</Text>
+                  </Box>
 
                   <Box w="100%">
                     <Select
@@ -320,7 +353,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                       disabled={!districtData || !districtData.length}
                       size="lg"
                     />
-                    <Text c="gray.7" size="sm">Für einige Bundesländer gibt es spezifische Förderungen einzelner Kreise/Landkreise.</Text>
+                    <Text c="gray.7" size="sm">Einige Städte und Landkreise bieten zusätzliche Förderungen – z.B. für Familien, Klimaschutz oder Sanierung.</Text>
                   </Box>
                 </Flex>
 
@@ -349,7 +382,9 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
               <form onSubmit={handleSubmit}>
                 <Flex gap="sm" wrap="wrap">
                   {measuresData.map((m) => (
-                    <SelectChip radius="sm" key={m} value={m} {...{ data, setData }}>{m}</SelectChip>
+                    <WithInfo key={m} infoText={helperTexts[m]} originalWidth offset={0}>
+                      <SelectChip radius="sm" value={m} {...{ data, setData }}>{m}</SelectChip>
+                    </WithInfo>
                   ))}
                 </Flex>
                 <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
@@ -358,76 +393,36 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           </Stepper.Step>
           <Stepper.Completed>
             <Box p="md">
-              {!showCheckout && <>
+              {(!variant || !checkoutId) && <>
                 <ResultTable data={finalData} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
-                <Card p="md" withBorder>
-                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
-                    <Image
-                      radius="md"
-                      component={NextImage}
-                      src="/imgs/illustration-email.png"
-                      alt="Illustration Dokument"
-                      height={200}
-                      width={400}
-                      w={{ base: 200, sm: "auto" }}
-                      h={200}
-                      mx="auto"
-                    />
-                    <form onSubmit={handleSubmitReport}>
-                      <Title size="h4" order={3}>Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
-                      <Text mb="md" fs="sm">Der kostenlose Report enthält die Links zu den gefundenen Fördernungen und weitere hilfreiche Informationen.</Text>
+                <List
+                  spacing="xs"
+                  mb="xl"
+                  center
+                  icon={
+                    <ThemeIcon color="cyan.9" variant="outline" size={24} radius="xl">
+                      <IconCheck size={16} />
+                    </ThemeIcon>
+                  }
+                >
+                  <List.Item>Alle Programme basieren auf tagesaktuellen Daten offizieller Stellen (z.B. KfW, BAFA, Länderportale).</List.Item>
+                  <List.Item>Individuell berechnet nach Region, Maßnahme und Förderart.</List.Item>
+                </List>
 
-                      <Flex
-                        align={{ base: "flex-start", sm: "center" }}
-                        gap="md"
-                        direction={{ base: "column", sm: "row" }}
-                        mb={{ base: "md", sm: "0" }}
-                      >
-                        <TextInput
-                          required
-                          label="E-Mail Adresse"
-                          placeholder="mustermann@example.com"
-                          mb={{ base: "0", sm: "md" }}
-                          value={email}
-                          onChange={(e) => setEmail(e.target.value)}
-                          miw={{ base: "100%", sm: "250px" }}
-                        />
-
-                        <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
-                          {emailSuccess ? <IconCheck /> : "Report zusenden"}
-                        </Button>
-                      </Flex>
-                      {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
-                      <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
-                    </form>
-                  </Flex>
-                </Card>
-
-                <Text ta="center" my="md">- oder -</Text>
-
-                <Card p="md" withBorder mb="xl">
-                  <Flex gap="md" direction={{ base: "column", sm: "row" }}>
-                    <Image
-                      radius="md"
-                      component={NextImage}
-                      src="/imgs/illustration-document.png"
-                      alt="Illustration Dokument"
-                      height={200}
-                      width={400}
-                      w={{ base: 200, sm: "auto" }}
-                      h={200}
-                      mx="auto"
-                    />
-                    <Box>
-                      <Title size="h4" order={3} mb="md">Erspare dir stundenlange Recherche mit unserem Premium-Report</Title>
-                      <Text mb="lg" fs="italic">Im Premium-Report findest du alle wichtigen Details zu Förderungen und kurze Fragebögen, die dir sofort zeigen, ob du für die Förderung berechtigt bist.</Text>
-                      <Button variant="light" onClick={goToCheckout}>
-                        Mehr erfahren
-                      </Button>
-                    </Box>
-                  </Flex>
-                </Card>
+                <Pricing
+                  plan="free"
+                  showFree
+                  CtaFree={<Button mt="lg" variant="outline" onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth>
+                    Kostenlos testen
+                  </Button>}
+                  CtaPremium={<Button mt="lg" onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
+                    Jetzt Kaufen
+                  </Button>}
+                  CtaProfessional={<Button mt="lg" variant="outline" onClick={() => goToPayment('professional')} loading={isLoading} fullWidth>
+                    Jetzt Kaufen
+                  </Button>}
+                />
 
                 <Button
                   variant="default" w="30%"
@@ -435,34 +430,50 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 >Zurück</Button>
               </>}
 
+              <Modal opened={showFreeCheckout} onClose={() => setShowFreeCheckout(false)}>
+                <Flex gap="md" direction={{ base: "column", sm: "row" }}>
+                  <form onSubmit={handleSubmitReport}>
+                    <Title size="h4" order={3} mb="sm">Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
+                    <Text mb="md" fs="sm">Der kostenlose Report enthält die Links zu den gefundenen Fördernungen und weitere hilfreiche Informationen.</Text>
 
-              {showCheckout && <>
+                    <Flex
+                      align={{ base: "flex-start", sm: "center" }}
+                      gap="md"
+                      direction={{ base: "column", sm: "row" }}
+                      mb={{ base: "md", sm: "0" }}
+                    >
+                      <TextInput
+                        required
+                        label="E-Mail Adresse"
+                        placeholder="mustermann@example.com"
+                        mb={{ base: "0", sm: "md" }}
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        miw={{ base: "100%", sm: "250px" }}
+                      />
+
+                      <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
+                        {emailSuccess ? <IconCheck /> : "Report zusenden"}
+                      </Button>
+                    </Flex>
+                    {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
+                    <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
+                  </form>
+                </Flex>
+
+                <Button mt="lg" variant="outline" onClick={() => {setShowFreeCheckout(false)}} w="150px">Zurück</Button>
+              </Modal>
+
+              {(variant && checkoutId) && <>
                 <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
                   Premium Report kaufen
                 </Title>
-                {(!variant || !checkoutId) && <>
-                  <Pricing
-                    plan="free"
-                    CtaPremium={<Button mt="lg" onClick={() => goToPayment('premium')} loading={isLoading}>
-                      Jetzt Kaufen
-                    </Button>}
-                    CtaProfessional={<Button mt="lg" variant="outline" onClick={() => goToPayment('professional')} loading={isLoading}>
-                      Jetzt Kaufen
-                    </Button>}
-                  />
 
-                  <Button
-                    variant="default" w="30%"
-                    onClick={() => setShowCheckout(false)}
-                  >Zurück</Button>
-                </>}
-                {(variant && checkoutId) && <>
-                  <Checkout variant={variant} id={checkoutId} />
-                  <Button mt="lg" variant="outline" onClick={() => {
-                    setVariant(null)
-                    setCheckoutId(null)
-                  }} w="150px">Zurück</Button>
-                </>}
+                <Checkout variant={variant} id={checkoutId} />
+                <Button mt="lg" variant="outline" onClick={() => {
+                  setVariant(null)
+                  setCheckoutId(null)
+                }} w="150px">Zurück</Button>
               </>}
             </Box>
           </Stepper.Completed>
