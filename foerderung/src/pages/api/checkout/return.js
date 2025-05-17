@@ -8,9 +8,9 @@ import { createAccount } from '@/utils/brevo';
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
 const priceMap = {
-  'price_1QutGsKQunG297XzrH9slJ2f': 'premium',
-  'price_1RCwx1KQunG297XzES3V5w8n': 'professional',
-  'price_1RDRqvKQunG297Xzkk2ciXQ0': 'professional' // upgrade from premium
+  'price_1RPju3KQunG297XzcWcM9VJz': 'starter',
+  'price_1RPjyAKQunG297XzPZzO1d6C': 'premium',
+  'price_1RPjyzKQunG297XzNkEXxG4r': 'premium' // upgrade from starter
 }
 
 
@@ -50,7 +50,7 @@ export default async function handler(req, res) {
         const { filename } = await generatePdf(session.client_reference_id)
         await sendEmail({
           to: user.Email || session.customer_details.email,
-          subject: 'Dein Förderungen Report',
+          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
           html: subsidyPaidTemplate(session.client_reference_id),
           pdfFilePath: filename,
           pdfFileName: 'Förderung Report.pdf'

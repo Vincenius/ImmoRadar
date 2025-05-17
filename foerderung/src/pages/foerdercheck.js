@@ -396,6 +396,9 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
               {(!variant || !checkoutId) && <>
                 <ResultTable data={finalData} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
+                <Title order={2} size="h3" mb="lg" ta="center" textWrap="balance">
+                  Erhalte jetzt deinen Förderungen als PDF Report.
+                </Title>
                 <List
                   spacing="xs"
                   mb="xl"
@@ -416,10 +419,10 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   CtaFree={<Button mt="lg" variant="outline" onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth>
                     Kostenlos testen
                   </Button>}
-                  CtaPremium={<Button mt="lg" onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
+                  CtaStarter={<Button mt="lg" onClick={() => goToPayment('starter')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
-                  CtaProfessional={<Button mt="lg" variant="outline" onClick={() => goToPayment('professional')} loading={isLoading} fullWidth>
+                  CtaPremium={<Button mt="lg" variant="outline" onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
                 />
@@ -461,12 +464,12 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </form>
                 </Flex>
 
-                <Button mt="lg" variant="outline" onClick={() => {setShowFreeCheckout(false)}} w="150px">Zurück</Button>
+                <Button mt="lg" variant="outline" onClick={() => { setShowFreeCheckout(false) }} w="150px">Zurück</Button>
               </Modal>
 
               {(variant && checkoutId) && <>
                 <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                  Premium Report kaufen
+                  Förderungen Report kaufen
                 </Title>
 
                 <Checkout variant={variant} id={checkoutId} />

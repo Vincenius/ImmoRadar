@@ -28,7 +28,7 @@ export async function getServerSideProps({ resolvedUrl }) {
     }
   }).then(res => res.json())
 
-  if (data?.user?.Variant === 'professional') {
+  if (data?.user?.Variant === 'premium') {
     return {
       redirect: {
         destination: '/report?id=' + id,
@@ -58,11 +58,11 @@ function ReportCheckout({ id, email, plan, defaultPlan }) {
       <Title order={1} mt="xl" mb="lg">Checkout</Title>
       {!variant && <Pricing
         plan={plan}
-        CtaPremium={<Button mt="lg" variant="outline" onClick={() => setVariant('premium')} disabled={plan === 'premium'} fullWidth>
-          {plan === 'premium' ? <><IconCircleCheck size={16} />&nbsp;Du hast bereits Premium</> : 'Jetzt Kaufen'}
+        CtaStarter={<Button mt="lg" variant="outline" onClick={() => setVariant('starter')} disabled={plan === 'starter'} fullWidth>
+          {plan === 'starter' ? <><IconCircleCheck size={16} />&nbsp;Du hast diese Variante bereits</> : 'Jetzt Kaufen'}
         </Button>}
-        CtaProfessional={<Button mt="lg" onClick={() => setVariant('professional')} disabled={plan === 'professional'} fullWidth>
-          {plan === 'premium' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
+        CtaPremium={<Button mt="lg" onClick={() => setVariant('premium')} disabled={plan === 'premium'} fullWidth>
+          {plan === 'starter' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">

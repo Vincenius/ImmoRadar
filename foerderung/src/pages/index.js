@@ -146,8 +146,8 @@ export default function Foerderung() {
               answer="Direkt nach dem Ausfüllen des FörderCheck siehst du sofort deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
             />
             <FaqItem
-              question="Kann ich die Starter-, Professional- oder Premium-Variante auch nachträglich kaufen?"
-              answer="Ja, ein Upgrade ist jederzeit möglich. Du kannst mit der kostenlosen Version starten und später bequem auf Starter, Professional oder Premium umsteigen."
+              question="Kann ich die Starter- oder Premium-Variante auch nachträglich kaufen?"
+              answer="Ja, ein Upgrade ist jederzeit möglich. Du kannst mit der kostenlosen Version starten und später bequem auf Starter oder Premium umsteigen."
             />
           </Accordion>
         </Box>

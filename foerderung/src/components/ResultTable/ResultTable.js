@@ -9,7 +9,7 @@ function ResultTable({ data, amount, showType, measures }) {
 
     <Text mb="xl">Wir haben Fördermittel gefunden, die genau zu Ihrem Vorhaben passen. In welcher Höhe sie ihre persönliche Förderung beantragen können finden sie mit unserer Premium Variante heraus.</Text>
 
-    <Table mb="xl" striped display={{ base: 'none', md: 'table' }}>
+    <Table mb="xl" striped display={{ base: 'none', md: 'table' }} withTableBorder>
       <Table.Tbody>
         <Table.Tr>
           <Table.Th>Förderung</Table.Th>

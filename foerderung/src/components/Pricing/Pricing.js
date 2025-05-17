@@ -3,7 +3,7 @@ import { Flex, Card, Box, Title, Text, List, ThemeIcon, Button } from '@mantine/
 import { IconCheck, IconPlus } from '@tabler/icons-react';
 import Link from 'next/link';
 
-function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
+function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, plan }) {
   const dir = showFree ? { base: "column", md: "row" } : { base: "column", sm: "row" }
 
   return (
@@ -40,8 +40,8 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
       <Card bg="white" p="md" radius="md" withBorder w="100%" bd="1px solid cyan.9" shadow="md">
         <Flex direction="column" justify="space-between" h="100%">
           <Box>
-            <Title order={2} size="h4" mb="sm" ta="center" fw="300">Premium</Title>
-            <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">49€</Text>
+            <Title order={2} size="h4" mb="sm" ta="center" fw="300">Starter</Title>
+            <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">39€</Text>
 
             <List
               spacing="sm"
@@ -64,7 +64,7 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
           </Box>
 
           <Box>
-            {CtaPremium}
+            {CtaStarter}
 
             <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen.</Text>
           </Box>
@@ -73,11 +73,11 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
       <Card bg="white" p="md" radius="md" withBorder w="100%" shadow="md">
         <Flex direction="column" justify="space-between" h="100%">
           <Box>
-            <Title order={2} size="h4" mb="sm" ta="center" fw="300">Professional</Title>
-            {plan !== 'premium' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">89€</Text>}
-            {plan === 'premium' && <Flex justify="center" gap="md" align="center">
-              <Text size="2em" lh="h1" ta="center" mb="md" c="red.9" td="line-through">89€</Text>
-              <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">40€</Text>
+            <Title order={2} size="h4" mb="sm" ta="center" fw="300">Premium</Title>
+            {plan !== 'starter' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">59€</Text>}
+            {plan === 'starter' && <Flex justify="center" gap="md" align="center">
+              <Text size="2em" lh="h1" ta="center" mb="md" c="red.9" td="line-through">59€</Text>
+              <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">20€</Text>
             </Flex>}
 
             <List
@@ -93,7 +93,7 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
                 <ThemeIcon color="cyan.9" variant="filled" size={24} radius="xl">
                   <IconCheck size={16} />
                 </ThemeIcon>
-              }>Alles aus der Premium Version</List.Item>
+              }>Alles aus der Starter Variante</List.Item>
               <List.Item>Schritt-für-Schritt-Anleitungen zur schnellen Beantragung deiner Förderungen</List.Item>
               <List.Item>Schneller Zugriff auf zertifizierte Energieberater in deiner Region</List.Item>
               <List.Item>Schneller Zugriff auf qualifizierte Finanzierungsberater </List.Item>
@@ -102,7 +102,7 @@ function Pricing({ CtaPremium, CtaProfessional, CtaFree, showFree, plan }) {
           </Box>
 
           <Box>
-            {CtaProfessional}
+            {CtaPremium}
 
             <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen, allerdings keine Zeit haben.</Text>
           </Box>

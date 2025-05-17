@@ -122,7 +122,7 @@ export default function Report({ data, baseUrl, id }) {
       .finally(() => setPdfLoading(false))
   }
 
-  return <Layout title="Fragebogen für Förderungen">
+  return <Layout title="Quickcheck für deine Förderungen">
     <Card my="xl" p="0">
       <Stepper
         active={questionnaireStep}
