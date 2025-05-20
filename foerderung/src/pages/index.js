@@ -23,7 +23,6 @@ export default function Foerderung() {
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box my={{ base: '4em', sm: '8em' }}>
-              {/* https://mantine.dev/core/transition/ */}
               <Title mb="md" fw="lighter" className={styles.title}>Mehr Geld für dein Zuhause - mit nur einem Klick zur passenden Förderung</Title>
               <Title order={2} size="h4" mb="3em" fw="normal" w="70%">
                 Mit dem kostenlosen FörderCheck findest du in weniger als 2 Minuten die besten Förderungen für dein Bauvorhaben - bundesweit, regional & individuell.
