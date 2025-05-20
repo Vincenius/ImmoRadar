@@ -22,7 +22,7 @@ function Home() {
         </Title>
         <Button component={Link} href="/mietvertrag-generator" size="lg">Jetzt Mietvertrag erstellen</Button>
       </Box>
-      <Box py="4em" pos="relative">
+      <Box py="6em" pos="relative">
         <Box className={styles.skewed} />
 
         <Flex gap="4em" direction={{ base: 'column', xs: 'row' }}>
