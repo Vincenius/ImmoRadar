@@ -147,11 +147,11 @@ function Settings() {
           <Title order={2} size="h5">Deine Abo</Title>
           {!data.subscription_end_date && <>
             <Text fs="italic" mb="md">Wird automatisch am {subEndDate.toLocaleDateString('DE-de', { dateStyle: 'long' })} erneuert.</Text>
-            <Button color="red.9" loading={cancelLoading} onClick={() => cancelSubscription('cancel')}>Abo zum Ende der Laufzeit kündigen</Button>
+            <Button color="red.9" loading={cancelLoading} onClick={() => cancelSubscription('cancel')} w={300} variant='outline'>Abo zum Ende der Laufzeit kündigen</Button>
           </>}
           {data.subscription_end_date && <>
             <Text fs="italic" mb="md" c="red.9">Dein Abo endet am {new Date(data.subscription_end_date * 1000).toLocaleDateString('DE-de', { dateStyle: 'long' })}.</Text>
-            <Button variant="outline" loading={cancelLoading} onClick={() => cancelSubscription('revert')}>Abo Kündigung rückgängig machen</Button>
+            <Button variant="outline" loading={cancelLoading} onClick={() => cancelSubscription('revert')} w={300}>Abo Kündigung rückgängig machen</Button>
           </>}
         </Card>}
       </>}
