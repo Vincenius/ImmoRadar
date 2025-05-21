@@ -1,7 +1,6 @@
 import {
   Flex,
   Text,
-  Button,
   Title,
   Box,
   Blockquote,
@@ -25,6 +24,7 @@ import {
   IconAlertTriangle,
   IconQuote,
 } from '@tabler/icons-react';
+import Button from '@/components/Inputs/ButtonMultiLine';
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>

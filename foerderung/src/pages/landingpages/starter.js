@@ -1,7 +1,6 @@
 import {
   Flex,
   Text,
-  Button,
   Title,
   Box,
   Blockquote,
@@ -16,6 +15,7 @@ import Layout from '@/components/Layout/Layout';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
 import { IconCheck, IconQuote, IconDownload, IconSearch, IconShoppingCart, IconAlertTriangle } from '@tabler/icons-react';
+import Button from '@/components/Inputs/ButtonMultiLine';
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>

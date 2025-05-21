@@ -1,8 +1,9 @@
 import Layout from '@/components/Layout/Layout'
-import { Button, Title, Flex, Box, Blockquote, Card, Text, List, ThemeIcon } from '@mantine/core'
+import { Title, Flex, Box, Blockquote, Card, Text, List, ThemeIcon } from '@mantine/core'
 import Link from 'next/link'
 import { IconDownload, IconFileText, IconChecklist, IconArrowRight, IconCheck, IconUser, IconLock, IconCertificate, IconPaperclip, IconQuote } from '@tabler/icons-react'
 import styles from '@/styles/Home.module.css'
+import Button from '@/components/Inputs/ButtonMultiLine';
 
 function Landingpage() {
   return (
