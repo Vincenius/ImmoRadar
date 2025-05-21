@@ -1,10 +1,12 @@
-import { NumberFormatter, Table, Text, Title } from '@mantine/core'
+import { Card, NumberFormatter, Table, Text, Title } from '@mantine/core'
 import React from 'react'
 
-function ResultTable({ data, amount, showType, measures }) {
+function ResultTable({ data, amount, showType, measures, dataLength }) {
+  const subsidyCount = dataLength || data.length
+  console.log(dataLength, data.length)
   return (<>
     <Title order={2} size="h3" mb="md" ta="center" textWrap="balance">
-      Ergebnis: {data.length} {data.length > 1 ? 'Förderprogramme' : 'Förderprogramm'} {amount > 0 && <>im Wert von bis zu <NumberFormatter suffix="€" value={amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> </>}gefunden.
+      Ergebnis: {subsidyCount} {subsidyCount > 1 ? 'Förderprogramme' : 'Förderprogramm'} {amount > 0 && <>im Wert von bis zu <NumberFormatter suffix="€" value={amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> </>}gefunden.
     </Title>
 
     <Text mb="xl">Wir haben Fördermittel gefunden, die genau zu Ihrem Vorhaben passen. In welcher Höhe sie ihre persönliche Förderung beantragen können finden sie mit unserer Premium Variante heraus.</Text>
@@ -23,6 +25,11 @@ function ResultTable({ data, amount, showType, measures }) {
             <Table.Td>{d.Measures.filter(m => measures.includes(m)).join(', ')}</Table.Td>
           </Table.Tr>
         ))}
+        {(dataLength > data.length) && <Table.Tr>
+          <Table.Td fs="italic">...und {dataLength - data.length} weitere Förderungen</Table.Td>
+          {showType && <Table.Td></Table.Td>}
+          <Table.Td></Table.Td>
+        </Table.Tr>}
       </Table.Tbody>
     </Table>
 
@@ -47,6 +54,10 @@ function ResultTable({ data, amount, showType, measures }) {
         </Table.Tr>
       </Table.Tbody>
     </Table>))}
+
+    {(dataLength > data.length) && <Card withBorder p="md" mb="xl" bg="gray.0">
+      <Text fs="italic" size='sm'>...und {dataLength - data.length} weitere Förderungen</Text>
+    </Card>}
   </>
   )
 }

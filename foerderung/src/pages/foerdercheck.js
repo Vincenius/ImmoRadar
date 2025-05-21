@@ -285,7 +285,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     </Flex>
                   </SelectButton>
                 </WithInfo>
-                <WithInfo infoText="Neubau bezeichnet die erstmalige Errichtung eines Gebäudes auf einem Grundstück – z.B. Eigenheim oder Mehrfamilienhaus.">
+                <WithInfo infoText="Die erstmalige Errichtung eines Gebäudes auf einem Grundstück – z.B. Eigenheim oder Mehrfamilienhaus.">
                   <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
                     <Flex direction="column" gap="sm" align="center">
                       <IconBackhoe size="2em" />
@@ -394,10 +394,10 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           <Stepper.Completed>
             <Box p="md">
               {(!variant || !checkoutId) && <>
-                <ResultTable data={finalData} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
+                <ResultTable data={finalData.slice(0, 3)} dataLength={finalData.length} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
                 <Title order={2} size="h3" mb="lg" ta="center" textWrap="balance">
-                  Erhalte jetzt deinen Förderungen als PDF Report.
+                  Erhalte jetzt deinen vollständigen Förderungen Report als PDF.
                 </Title>
                 <List
                   spacing="xs"
