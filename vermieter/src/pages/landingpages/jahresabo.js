@@ -1,7 +1,7 @@
 import Layout from '@/components/Layout/Layout'
 import { Title, Flex, Box, Blockquote, Card, Text, List, ThemeIcon } from '@mantine/core'
 import Link from 'next/link'
-import { IconInfinity, IconUserShield, IconPencil, IconFileText, IconSearch, IconMessage2, IconTools, IconCheck, IconLock, IconCertificate, IconStars, IconFolders, IconArrowRight } from '@tabler/icons-react'
+import { IconInfinity, IconUserShield, IconPencil, IconFileText, IconSearch, IconMessage2, IconTools, IconCheck, IconLock, IconCertificate, IconStars, IconFolders, IconArrowRight, IconMoneybagMinus } from '@tabler/icons-react'
 import styles from '@/styles/Home.module.css'
 import Button from '@/components/Inputs/ButtonMultiLine';
 
@@ -36,6 +36,7 @@ function AboPage() {
             <List.Item icon={<IconSearch size={20} />}>Rechtlich geprüft & regelmäßig aktualisiert</List.Item>
             <List.Item icon={<IconMessage2 size={20} />}>Einfache Sprache & intuitive Bedienung</List.Item>
             <List.Item icon={<IconTools size={20} />}>Zugang zu exklusiven Vorlagen & Zusatzvereinbarungen</List.Item>
+            <List.Item icon={<IconMoneybagMinus size={20} />}>Jederzeit kündbar</List.Item>
           </List>
         </Card>
       </Box>
