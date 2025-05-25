@@ -25,6 +25,7 @@ import {
   IconQuote,
 } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
@@ -101,14 +102,29 @@ export default function FoerdercheckPremium() {
       <Box py="6em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl">Was andere sagen</Title>
-        <Flex direction={{ base: 'column', sm: 'row' }} gap="xl" justify="center">
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Familie Berger, Nürnberg">
-            Dank der Anleitung haben wir den Antrag direkt korrekt gestellt – ohne Rückfragen vom Amt.
-          </Blockquote>
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Marcel G., Eigentümer">
-            Wir haben Förderungen kombiniert, auf die wir nie gekommen wären – die Anleitung war Gold wert.
-          </Blockquote>
-        </Flex>
+        <QuoteSlider quotes={[
+          {
+            text: "„Durch die Anleitung haben wir 12.400 € für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
+            author: "– Miriam S., Neubau"
+          },
+          {
+            text: "„Das PDF war so klar aufgebaut, dass ich den Antrag für unsere Heizungsförderung in einer Stunde fertig hatte – inklusive Fristen und Kontaktstelle.“",
+            author: "– Philipp E., Sanierung"
+          },
+          {
+            text: "„Wir konnten drei Programme kombinieren – zusammen über 17.000 €. Ohne die Premium-Version hätte ich das nie durchblickt.“",
+            author: "– Martina & Jörg B., Neubau"
+          },
+          {
+            text: "„Ich war komplett überfordert mit den ganzen Förderseiten. Das Premium-Paket hat’s für mich entschlüsselt – Konzept, Anleitung, fertig.“",
+            author: "– Daniel K., Sanierung"
+          },
+          {
+            text: "„In weniger als einem Tag hatten wir alles beantragt – Förderliste, Anleitung, Umsetzungsplan. Es war alles dabei.“",
+            author: "– Alina R., Sanierung"
+          }
+        ]} />
+
       </Box>
 
       {/* SO FUNKTIONIERT'S */}

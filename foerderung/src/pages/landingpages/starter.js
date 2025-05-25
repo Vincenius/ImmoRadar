@@ -16,6 +16,7 @@ import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
 import { IconCheck, IconQuote, IconDownload, IconSearch, IconShoppingCart, IconAlertTriangle, IconRocket } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
@@ -88,14 +89,30 @@ export default function FoerdercheckStarter() {
       <Box py="6em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl">Stimmen unserer Nutzer</Title>
-        <Flex direction={{ base: 'column', sm: 'row' }} gap="xl" justify="center">
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Familie Meier, Hannover">
-            Wir hätten fast 12.000 € verpasst – durch den Check wussten wir endlich, was wir beantragen können.
-          </Blockquote>
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Bauherrin Laura, Köln">
-            Super verständlich! In 5 Minuten hatten wir eine klare Liste mit Zuschüssen für unsere Sanierung.
-          </Blockquote>
-        </Flex>
+
+        <QuoteSlider quotes={[
+          {
+            text: "„Wir hätten fast 7.000 € übersehen bei unserer Altbausanierung – der Bericht war mega übersichtlich und kam sofort per Mail.“",
+            author: "– Carsten W., Sanierung"
+          },
+          {
+            text: "„In 10 Minuten hatten wir Klarheit für unseren Neubau: Welche Programme, wie viel Förderung, was kombinierbar ist – das war jeden Cent wert.“",
+            author: "– Nina M., Neubau"
+          },
+          {
+            text: "„Ich hatte vorher schon recherchiert, aber die Struktur hier hat mir bestimmt zwei Tage Arbeit abgenommen.“",
+            author: "– David P., Sanierung"
+          },
+          {
+            text: "„Ohne den Starter-Check hätten wir das 5.000 € Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
+            author: "– Sandra K., Sanierung"
+          },
+          {
+            text: "„Wir wollten es selbst in die Hand nehmen – der Fördercheck Starter hat uns sofort das richtige Fundament gegeben.“",
+            author: "– Jonas H., Neubau"
+          }
+        ]} />
+
       </Box>
 
       {/* SO FUNKTIONIERT'S */}

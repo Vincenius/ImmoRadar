@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/carousel": "^8.0.1",
     "@mantine/core": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
     "@mantine/notifications": "^7.17.1",
@@ -16,6 +17,8 @@
     "@stripe/stripe-js": "^5.4.0",
     "@tabler/icons-react": "^3.31.0",
     "aws-sdk": "^2.1692.0",
+    "embla-carousel-autoplay": "^7.1.0",
+    "embla-carousel-react": "^7.1.0",
     "html-react-parser": "^5.2.3",
     "mjml": "^4.15.3",
     "next": "15.2.1",

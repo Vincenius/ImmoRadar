@@ -24,6 +24,7 @@ import {
   IconRocket
 } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
@@ -88,14 +89,29 @@ export default function FoerdercheckPremiumPlus() {
       {/* STIMMEN */}
       <Box py="6em">
         <Title order={2} ta="center" mb="xl">Stimmen unserer Kund:innen</Title>
-        <Flex direction={{ base: 'column', sm: 'row' }} gap="xl" justify="center">
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Sabine & Tom, Leipzig">
-            Ich hätte nie gedacht, dass wir uns doch ein Eigenheim leisten können – durch die persönliche Beratung hatten wir plötzlich eine klare Perspektive.
-          </Blockquote>
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Michael B., Alleinverdiener & Sanierer">
-            Die Antragstellung wurde für uns übernommen, und bei Fragen hatten wir immer einen Ansprechpartner – das war echte Erleichterung.
-          </Blockquote>
-        </Flex>
+        <QuoteSlider quotes={[
+          {
+            text: "„Die Beratung hat uns 22.000 € gesichert – aber vor allem Klarheit gebracht, was wir uns mit Förderung leisten können. Ohne euch hätten wir’s nie gewagt.“",
+            author: "– Kerstin B., Neubau"
+          },
+          {
+            text: "„Wir haben in 45 Minuten Beratung mehr gelernt als in 3 Wochen Eigenrecherche – und das komplette Konzept bis zur Auszahlung bekommen.“",
+            author: "– Pascal M., Sanierung"
+          },
+          {
+            text: "„Alles aus einer Hand – Förderstrategie, Antrag, Energieberater-Kontakt. 100 % Weiterempfehlung, gerade bei größeren Sanierungen.“",
+            author: "– Tamara D., Sanierung"
+          },
+          {
+            text: "„Durch euch haben wir 19.500 € erhalten, weil wir nichts übersehen haben. Das persönliche Gespräch war der Schlüssel.“",
+            author: "– Jonas T., Neubau"
+          },
+          {
+            text: "„Wir wollten’s richtig machen. Dank Premium Plus hatten wir nicht nur eine Übersicht, sondern ein durchdachtes Förder- & Finanzierungskonzept.“",
+            author: "– Laura & Sven M., Sanierung"
+          }
+        ]} />
+
       </Box>
 
       {/* ABLAUF */}
