@@ -21,7 +21,8 @@ function AboPage() {
           Erstelle so viele Mietverträge, wie du brauchst – jederzeit. Passe bestehende Verträge flexibel an. Alles sicher in deinem persönlichen Account gespeichert.<br /><br />
           Ideal für Vermieter:innen mit mehreren Mietverhältnissen, Eigentümer:innen, Hausverwaltungen oder alle, die regelmäßig Verträge erstellen.
         </Text>
-        <Button component={Link} href="/registrieren" size="lg" mb="md">Jahresabo für 69,99 € starten</Button>
+        <Button component={Link} href="/registrieren" size="lg" mb="xs">Jahresabo für 69,99 € starten</Button>
+        <Text fs="italic" size="sm">Jederzeit kündbar</Text>
       </Box>
 
       <Box py="6em" pos="relative">
@@ -36,7 +37,6 @@ function AboPage() {
             <List.Item icon={<IconSearch size={20} />}>Rechtlich geprüft & regelmäßig aktualisiert</List.Item>
             <List.Item icon={<IconMessage2 size={20} />}>Einfache Sprache & intuitive Bedienung</List.Item>
             <List.Item icon={<IconTools size={20} />}>Zugang zu exklusiven Vorlagen & Zusatzvereinbarungen</List.Item>
-            <List.Item icon={<IconMoneybagMinus size={20} />}>Jederzeit kündbar</List.Item>
           </List>
         </Card>
       </Box>
