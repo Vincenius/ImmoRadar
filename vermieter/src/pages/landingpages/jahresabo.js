@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { IconInfinity, IconUserShield, IconPencil, IconFileText, IconSearch, IconMessage2, IconTools, IconCheck, IconLock, IconCertificate, IconStars, IconFolders, IconArrowRight, IconMoneybagMinus } from '@tabler/icons-react'
 import styles from '@/styles/Home.module.css'
 import Button from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider'
 
 function AboPage() {
   return (
@@ -11,7 +12,7 @@ function AboPage() {
       title="Mietverträge unbegrenzt erstellen – mit dem Jahresabo"
       noPadding
       description="Dein Mietvertragstool für ein ganzes Jahr – für nur 69,99 € jährlich. Ideal für Vermieter:innen, Eigentümer:innen und Hausverwaltungen.">
-      
+
       <Box my={{ base: '4em', sm: '8em' }}>
         <Title mb="md" fw="lighter" className={styles.title}>
           🔁 Mietverträge unbegrenzt erstellen – mit dem Jahresabo
@@ -55,15 +56,29 @@ function AboPage() {
 
       <Box py="6em" pos="relative">
         <Title order={2} ta="center" mb="xl">💬 Stimmen zufriedener Nutzer:innen</Title>
-        <Flex gap="4em" direction={{ base: 'column', xs: 'row' }}>
-          <Blockquote icon={<IconStars />} radius="sm" color="cyan" cite="– Sven T., Immobilienbesitzer" w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
-            „Ich habe drei Mietwohnungen und endlich alles an einem Ort. Kein Nachfragen mehr – einfach erstellen, anpassen, fertig.“
-          </Blockquote>
+        <QuoteSlider quotes={[
+          {
+            text: "„Ich habe drei Wohnungen zur Vermietung – mit dem Abo spare ich nicht nur Zeit, sondern habe alle Verträge immer griffbereit und kann sie flexibel anpassen.“",
+            author: "– Martin F., Jahresabo"
+          },
+          {
+            text: "„Vorher war das ein Chaos mit verschiedenen Word-Dokumenten. Jetzt ist alles an einem Ort, und ich muss keine neue Vorlage mehr suchen.“",
+            author: "– Daniela S., Jahresabo"
+          },
+          {
+            text: "„Rechtssicherheit ist mir wichtig – besonders bei Staffel- oder Indexmieten. Dank des Abos bin ich immer auf dem aktuellen Stand.“",
+            author: "– Uwe T., Jahresabo"
+          },
+          {
+            text: "„Ich nutze den Generator regelmäßig für WG-Verträge – besonders praktisch, dass ich alte Verträge einfach duplizieren und anpassen kann.“",
+            author: "– Sina M., Jahresabo"
+          },
+          {
+            text: "„Jede Vertragsänderung ist mit wenigen Klicks erledigt. Kein Papierchaos mehr, keine Rechtsunsicherheit. Das Abo lohnt sich total.“",
+            author: "– Claudia H., Jahresabo"
+          }
+        ]} />
 
-          <Blockquote icon={<IconStars />} radius="sm" color="cyan" cite="– Mia K., WG-Verwalterin" w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
-            „Für unsere WG-Wechsel ideal. Einloggen, alten Vertrag kopieren, Daten ändern – fertig. Spart so viel Zeit!“
-          </Blockquote>
-        </Flex>
       </Box>
 
       <Box py="6em" pos="relative" mb="4em">

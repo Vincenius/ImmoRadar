@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { IconDownload, IconFileText, IconChecklist, IconArrowRight, IconCheck, IconUser, IconLock, IconCertificate, IconPaperclip, IconQuote } from '@tabler/icons-react'
 import styles from '@/styles/Home.module.css'
 import Button from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider'
 
 function Landingpage() {
   return (
@@ -56,7 +57,30 @@ function Landingpage() {
       <Box py="6em" pos="relative">
         <Title order={2} ta="center" mb="xl">💬 Was unsere Nutzer:innen sagen</Title>
 
-        <Flex gap="4em" direction={{ base: 'column', xs: 'row' }}>
+        <QuoteSlider quotes={[
+          {
+            text: "„Ich hatte keine Ahnung, was alles in einen Mietvertrag muss – aber der Generator hat mich Schritt für Schritt durchgeleitet. In 10 Minuten war alles erledigt.“",
+            author: "– Laura B., Einmalige Generierung"
+          },
+          {
+            text: "„Mir war wichtig, dass der Vertrag rechtssicher ist, gerade bei Untervermietung. Das Tool hat mir super geholfen – einfach, schnell, zuverlässig.“",
+            author: "– Ali M., Einmalige Generierung"
+          },
+          {
+            text: "„Früher habe ich mir Vorlagen aus dem Internet gesucht – heute weiß ich: Das war ein Fehler. Jetzt habe ich endlich einen Vertrag, der wirklich passt.“",
+            author: "– Gabriele R., Einmalige Generierung"
+          },
+          {
+            text: "„Ich war in Zeitnot – abends um 22 Uhr den Vertrag gemacht und am nächsten Morgen direkt gedruckt. Einfach perfekt für spontane Vermietungen.“",
+            author: "– Jonas K., Einmalige Generierung"
+          },
+          {
+            text: "„Das Beste: Ich musste mich nicht mit juristischem Kauderwelsch rumschlagen. Alles war verständlich formuliert und auf meine Situation zugeschnitten.“",
+            author: "– Theresa L., Einmalige Generierung"
+          }
+        ]} />
+
+        {/* <Flex gap="4em" direction={{ base: 'column', xs: 'row' }}>
           <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Michael G., privater Vermieter" w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
             „Endlich kein Rätselraten mehr. In 10 Minuten hatte ich meinen Vertrag – und mein Mieter war direkt zufrieden.“
           </Blockquote>
@@ -64,7 +88,7 @@ function Landingpage() {
           <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Aylin K., Zwischenmieterin in Köln" w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
             „Ich hatte keine Ahnung, was in einen WG-Vertrag gehört. Der Generator hat mir alles super erklärt.“
           </Blockquote>
-        </Flex>
+        </Flex> */}
       </Box>
 
       <Box py="6em" pos="relative" mb="4em">

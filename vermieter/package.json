@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@mantine/carousel": "^8.0.1",
     "@mantine/core": "^7.17.1",
     "@mantine/dates": "^7.17.1",
     "@mantine/hooks": "^7.17.1",
@@ -19,6 +20,8 @@
     "aws-sdk": "^2.1692.0",
     "crypto-js": "^4.2.0",
     "dayjs": "^1.11.13",
+    "embla-carousel-autoplay": "^7.1.0",
+    "embla-carousel-react": "^7.1.0",
     "iban": "^0.0.14",
     "mjml": "^4.15.3",
     "mongodb": "^6.14.2",
