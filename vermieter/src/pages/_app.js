@@ -9,8 +9,8 @@ import { Notifications } from '@mantine/notifications';
 import { SessionProvider } from "next-auth/react"
 
 const theme = createTheme({
-  primaryColor: 'blue',
-  primaryShade: 8,
+  primaryColor: 'cyan',
+  primaryShade: 9,
   components: {
     TagsInput: TagsInput.extend({
       styles: {

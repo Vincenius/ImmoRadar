@@ -3,10 +3,11 @@ import Head from "next/head";
 import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
 import { Container, Text, Flex, Box, Burger, Menu, Button } from '@mantine/core'
-// import Logo from './logo.svg';
+import Logo from './logo.svg';
 import styles from './Layout.module.css';
 import { useRouter } from 'next/router';
 import Footer from './Footer';
+import Image from 'next/image';
 
 const authMenu = [
   {
@@ -68,7 +69,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
           <Flex justify="space-between" component="nav" py="sm">
             <Link href={isLoggedIn ? '/app' : '/'} className={styles.headerLink}>
               <Flex align="center" gap="sm">
-                {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
+                <Image src={Logo} width={40} height={40} alt="Logo" priority />
                 <Text fw="bold" size="xl" className={styles.headerTitle}>{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>

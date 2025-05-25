@@ -45,7 +45,7 @@ function AboPage() {
       <Box py="6em" pos="relative">
         <Card pos="relative" bg="var(--mantine-color-gray-0)" radius="md" maw={800} mx="auto" p="xl" withBorder shadow="md">
           <Title order={2} ta="center" mb="xl">🚀 Für wen ist das Abo gemacht?</Title>
-          <List spacing="lg" icon={<ThemeIcon color="blue" radius="xl"><IconCheck size={16} /></ThemeIcon>}>
+          <List spacing="lg" icon={<ThemeIcon color="cyan" radius="xl"><IconCheck size={16} /></ThemeIcon>}>
             <List.Item>…regelmäßig vermietest oder mehrere Mietverhältnisse betreust</List.Item>
             <List.Item>…Verträge flexibel anpassen und speichern möchtest</List.Item>
             <List.Item>…alle Dokumente zentral & sicher verwalten willst</List.Item>

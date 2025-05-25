@@ -4,11 +4,12 @@ import Link from 'next/link';
 import { useSession, signOut } from "next-auth/react"
 import { Text, Flex, Group, Burger, Box, Button, AppShell, Loader, Alert } from '@mantine/core'
 import { useDisclosure } from '@mantine/hooks';
-// import Logo from './logo.svg';
+import Logo from './logo.svg';
 import styles from './Layout.module.css';
 import { useRouter } from 'next/router';
 import Footer from './Footer';
 import { IconClipboardText, IconDashboard, IconHome, IconInfoCircle, IconLogout, IconSettings } from '@tabler/icons-react';
+import Image from 'next/image';
 
 const Layout = ({ children, title, description, date, noindex, image, noPadding }) => {
   const router = useRouter();
@@ -62,7 +63,7 @@ const Layout = ({ children, title, description, date, noindex, image, noPadding 
             <Burger opened={opened} onClick={toggle} hiddenFrom="sm" size="sm" />
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
-                {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
+                <Image src={Logo} width={40} height={40} alt="Logo" priority />
                 <Text fw="bold" size="xl" className={styles.headerTitle}>{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>

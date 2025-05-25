@@ -58,7 +58,7 @@ export default function FileUpload({ files, setFiles, isFileSizeError, setIsFile
       >
         <Group justify="center" gap="sm" style={{ pointerEvents: 'all', cursor: 'pointer' }} onClick={() => openRef.current?.()}>
           <Dropzone.Accept>
-            <IconUpload size={52} color="var(--mantine-color-blue-6)" stroke={1.5} />
+            <IconUpload size={52} color="var(--mantine-color-cyan-6)" stroke={1.5} />
           </Dropzone.Accept>
           <Dropzone.Reject>
             <IconX size={52} color="var(--mantine-color-red-6)" stroke={1.5} />

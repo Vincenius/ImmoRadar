@@ -3,7 +3,7 @@ import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Text, Flex, Box, Burger, Menu } from '@mantine/core'
-// import Logo from './logo.svg';
+import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
 
@@ -49,7 +49,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
           <Flex justify="space-between" component="nav" py="sm">
             <Link href="/" className={styles.headerLink}>
               <Flex align="center" gap="sm">
-                {/* <Image src={Logo} width={40} height={40} alt="Logo" priority /> */}
+                <Image src={Logo} width={40} height={40} alt="Logo" priority />
                 <Text size="xl" className={styles.gradientText} fw="bold">{process.env.NEXT_PUBLIC_WEBSITE_NAME}</Text>
               </Flex>
             </Link>

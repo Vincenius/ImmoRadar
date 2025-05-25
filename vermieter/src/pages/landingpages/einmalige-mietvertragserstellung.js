@@ -45,7 +45,7 @@ function Landingpage() {
         <Card pos="relative" bg="var(--mantine-color-gray-0)" radius="md" maw={800} mx="auto" p="xl" withBorder shadow="md">
           <Title order={2} ta="center" mb="xl">🧠 Für wen ist diese Variante ideal?</Title>
 
-          <List spacing="lg" icon={<ThemeIcon color="blue" radius="xl"><IconCheck size={16} /></ThemeIcon>}>
+          <List spacing="lg" icon={<ThemeIcon color="cyan" radius="xl"><IconCheck size={16} /></ThemeIcon>}>
             <List.Item>…nur einmalig oder gelegentlich vermietest</List.Item>
             <List.Item>…eine sofort einsetzbare Vertragsvorlage suchst</List.Item>
             <List.Item>…keine Lust auf Abo-Modelle oder unnötige Extras hast</List.Item>
