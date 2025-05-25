@@ -14,7 +14,7 @@ import {
 import Layout from '@/components/Layout/Layout';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
-import { IconCheck, IconQuote, IconDownload, IconSearch, IconShoppingCart, IconAlertTriangle } from '@tabler/icons-react';
+import { IconCheck, IconQuote, IconDownload, IconSearch, IconShoppingCart, IconAlertTriangle, IconRocket } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 
 const FaqItem = ({ question, answer }) => (
@@ -46,7 +46,7 @@ export default function FoerdercheckStarter() {
             <List.Item icon={<IconCheck size={18} />}>Persönlicher Ergebnisbericht</List.Item>
             <List.Item icon={<IconCheck size={18} />}>Für Bau, Sanierung, Heizung, PV & mehr</List.Item>
           </List>
-          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Fördercheck machen</Button>
+          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Fördercheck machen – 39 €</Button>
         </Flex>
       </Box>
 
@@ -165,10 +165,12 @@ export default function FoerdercheckStarter() {
         <div className={styles.background}></div>
         <Title order={2} ta="center" mb="md">Jetzt deinen Vorteil sichern</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
-          Fördermittel sind oft zeitlich oder budgetär begrenzt. Wer zu spät kommt, schaut in die Röhre – also lieber jetzt Klarheit schaffen.
+          📋 Schneller Überblick über passende Förderungen.<br />
+          💡 Ideal für alle, die sich selbst informieren wollen<br />
+          👉 Starte jetzt mit dem Fördercheck Starter für nur 39 €
         </Text>
         <Box ta="center">
-          <Button size="xl" leftSection={<IconAlertTriangle size={24} />} component={Link} href="/foerdercheck">Jetzt mit dem Fördercheck Starter starten</Button>
+          <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt mit dem Fördercheck Starter starten</Button>
         </Box>
       </Box>
     </Layout>

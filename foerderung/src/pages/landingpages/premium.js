@@ -93,7 +93,7 @@ export default function FoerdercheckPremium() {
             Viele Förderprogramme scheitern an Formalitäten. Mit der Anleitung weißt du genau, was du tun musst.
             Sparen ist gut – aber Förderung auch zu bekommen ist besser.
           </Text>
-          <Text ta="center" mb="lg" maw={700} mx="auto" fs="italic" fw="bold">Sparen ist gut – aber Förderung auch zu bekommen ist besser.</Text>
+          <Text ta="center" mb="lg" maw={700} mx="auto" fs="italic" fw="bold">Wer spart, denkt klug. Wer Förderungen nutzt, handelt klüger.</Text>
         </Card>
       </Box>
 
