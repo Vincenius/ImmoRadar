@@ -4,3 +4,7 @@
     cursor: default;
   }
 }
+
+.root {
+  text-align: left;
+}
