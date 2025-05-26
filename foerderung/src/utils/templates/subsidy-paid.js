@@ -23,7 +23,7 @@ const subsidyTemplate = (id) => mjml2html(`<mjml>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Im Anhang findest du alle wichtigen Informationen und maßgeschneiderten Fördermöglichkeiten, die dir helfen werden, dein Projekt erfolgreich umzusetzen.</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Unter folgendem Link kannst du den Quickcheck beantworten, die dir sofort zeigen, ob du für die Förderung berechtigt bist:</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica"><a href="${process.env.BASE_URL}/report?id=${id}">${process.env.BASE_URL}/report</a></mj-text>
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast oder weitere Unterstützung benötigst, stehe ich dir gerne zur Verfügung. Du erreichst mich jederzeit unter <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a>.</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast oder weitere Unterstützung benötigst, stehe ich dir gerne zur Verfügung. Du erreichst mich jederzeit unter <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>.</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Wir wünschen dir viel Erfolg bei deinem Bauvorhaben!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Viele Grüße,<br>Vincent von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}</mj-text>
       </mj-column>

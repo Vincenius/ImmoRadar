@@ -13,7 +13,7 @@ const Contact = () => {
 
         <Text mb="md">Solltest du Fragen, Anregungen oder Probleme haben, zögere nicht, uns zu kontaktieren. Unser Team steht dir gerne zur Verfügung:</Text>
 
-        <Text mb="md"><a href="mailto:support@immoradar.xyz">support@immoradar.xyz</a></Text>
+        <Text mb="md"><a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a></Text>
         
         <Text>Wir bemühen uns, innerhalb von 24 Stunden zu antworten.</Text>
       </Container>

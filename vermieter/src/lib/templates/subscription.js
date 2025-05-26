@@ -20,7 +20,7 @@ const confirmTemplate = ({ register_url }) => mjml2html(`<mjml>
           <mj-text font-size="15px" color="#000" font-family="helvetica">Falls der Link nicht funktioniert, kopiere ihn bitte und füge ihn in die Adressleiste deines Browsers ein.</mj-text>
           <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Vertrauen in ${process.env.NEXT_PUBLIC_WEBSITE_NAME}!</mj-text>
   
-          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:vincent.will@immoradar.xyz">vincent.will@immoradar.xyz</a> kontaktieren.</mj-text>
+          <mj-text font-size="15px" color="#000" font-family="helvetica">Solltest du Fragen oder Verbesserungsvorschläge haben, kannst du mich jederzeit unter <a href="mailto:support@vertragsfabrik.com">support@vertragsfabrik.com</a> kontaktieren.</mj-text>
   
           <mj-text font-size="15px" color="#000" font-family="helvetica">Vincent von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}</mj-text>
         </mj-column>
