@@ -10,6 +10,8 @@ const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
   const url = new URL(subsidy.Website);
   const baseUrl = url.origin;
   const isPaid = user.Variant !== 'free'
+  const isPremium = user.Variant === 'premium' || user.Variant === 'premium_plus'
+
   return (
     <>
       {index > 0 && <Box my="md"></Box>}
@@ -38,7 +40,7 @@ const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
           <Text>{subsidy.Accumulation}</Text>
         </>}
 
-        {user.Variant === 'premium' && subsidy.Guidance && <Box mt="md">
+        {isPremium && subsidy.Guidance && <Box mt="md">
           {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
         </Box>}
       </Card >
@@ -55,6 +57,7 @@ const SectionDivider = ({ isPdf }) => isPdf
 function SubsidyReport({ data, isPdf = false, baseUrl }) {
   const { user, subsidies } = data
   const isPaid = user.Variant !== 'free'
+  const isPremium = user.Variant === 'premium' || user.Variant === 'premium_plus'
   const checkoutLink = isPdf ? `${baseUrl}/checkout?id=${user.uuid}` : `/checkout?id=${user.uuid}`
   const questionnaireLink = isPdf ? `${baseUrl}/quickcheck?id=${user.uuid}` : `/quickcheck?id=${user.uuid}`
   const answeredQuestions = user.Answers && Object.keys(user.Answers).length
@@ -137,7 +140,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       {consultantSubsidies.length > 0 && <>
         <SectionDivider isPdf={isPdf} />
         <Title order={2} size="h2" mt="xl">Förderungen mit Energieberater</Title>
-        {user.Variant === 'premium' && <Text fw="bold"><a href="https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis">Finde jetzt einen qualifizierten Finanzierungsberater</a></Text>}
+        {isPremium && <Text fw="bold"><a href="https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis">Finde jetzt einen qualifizierten Finanzierungsberater</a></Text>}
         <Text mb="xl" fs="italic">Für diese Fördermittel ist die Einbindung eines zertifizierten Energieberaters erforderlich.</Text>
         {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="consultant" />)}
       </>}
@@ -145,7 +148,7 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       {creditSubsidies.length > 0 && <>
         <SectionDivider isPdf={isPdf} />
         <Title order={2} size="h2" mt="xl">Kredite mit Finanzierungspartner</Title>
-        {user.Variant === 'premium' && <Text fw="bold"><a href="#todo">Finde jetzt einen passenden Finanzierungspartner</a></Text>}
+        {isPremium && <Text fw="bold"><a href="#todo">Finde jetzt einen passenden Finanzierungspartner</a></Text>}
         <Text mb="xl" fs="italic">Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank.</Text>
         {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="credit" />)}
       </>}

@@ -5,8 +5,13 @@ const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 const priceMap = {
   'starter': 'price_1RPju3KQunG297XzcWcM9VJz',
   'premium': 'price_1RPjyAKQunG297XzPZzO1d6C',
-  'premium_upgrade': 'price_1RPjyzKQunG297XzNkEXxG4r'
+  'premium_upgrade': 'price_1RPjyzKQunG297XzNkEXxG4r',
+  'premium_plus': 'price_1RT1EtKQunG297XzxXn4Lrma',
+  'premium_plus_upgrade_starter': 'price_1RT2NrKQunG297XzwJWOe8Cm',
+  'premium_plus_upgrade_premium': 'price_1RT2QYKQunG297Xz4p8QI6Cv'
 }
+
+const premiumPlusVariants = ['premium_plus', 'premium_plus_upgrade_starter', 'premium_plus_upgrade_premium']
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
@@ -39,6 +44,15 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
+        custom_fields: [{
+          key: 'phone_number',
+          label: {
+            type: 'custom',
+            custom: 'Telefonnummer',
+          },
+          type: 'text',
+          optional: !premiumPlusVariants.includes(variant),
+        }],
         mode: 'payment',
         return_url: `${process.env.BASE_URL}/return?session_id={CHECKOUT_SESSION_ID}`,
       });

@@ -28,7 +28,7 @@ export async function getServerSideProps({ resolvedUrl }) {
     }
   }).then(res => res.json())
 
-  if (data?.user?.Variant === 'premium') {
+  if (data?.user?.Variant === 'premium_plus') {
     return {
       redirect: {
         destination: '/report?id=' + id,
@@ -40,6 +40,11 @@ export async function getServerSideProps({ resolvedUrl }) {
   return {
     props: { id, email: data?.user?.Email, plan: data?.user?.Variant, defaultPlan: plan },
   };
+}
+
+const upgradeMap = {
+  starter: 'premium_plus_upgrade_starter',
+  premium: 'premium_plus_upgrade_premium'
 }
 
 function ReportCheckout({ id, email, plan, defaultPlan }) {
@@ -58,11 +63,14 @@ function ReportCheckout({ id, email, plan, defaultPlan }) {
       <Title order={1} mt="xl" mb="lg">Checkout</Title>
       {!variant && <Pricing
         plan={plan}
-        CtaStarter={<Button mt="lg" variant="outline" onClick={() => setVariant('starter')} disabled={plan === 'starter'} fullWidth>
+        CtaStarter={<Button mt="lg" variant="outline" onClick={() => setVariant('starter')} disabled={plan === 'starter' || plan === 'premium'} fullWidth>
           {plan === 'starter' ? <><IconCircleCheck size={16} />&nbsp;Du hast diese Variante bereits</> : 'Jetzt Kaufen'}
         </Button>}
-        CtaPremium={<Button mt="lg" onClick={() => setVariant('premium')} disabled={plan === 'premium'} fullWidth>
+        CtaPremium={<Button mt="lg" onClick={() => setVariant(plan === 'starter' ? 'premium_upgrade' : 'premium')} disabled={plan === 'premium'} fullWidth>
           {plan === 'starter' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
+        </Button>}
+        CtaPremiumPlus={<Button mt="lg" variant="outline" onClick={() => setVariant(upgradeMap[plan] || 'premium_plus')} fullWidth>
+          {plan === 'starter' || plan === 'premium' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">

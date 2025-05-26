@@ -55,7 +55,7 @@ function ResultTable({ data, amount, showType, measures, dataLength }) {
       </Table.Tbody>
     </Table>))}
 
-    {(dataLength > data.length) && <Card withBorder p="md" mb="xl" bg="gray.0">
+    {(dataLength > data.length) && <Card withBorder p="md" mb="xl" bg="gray.0" display={{ base: 'block', md: 'none' }}>
       <Text fs="italic" size='sm'>...und {dataLength - data.length} weitere Förderungen</Text>
     </Card>}
   </>
