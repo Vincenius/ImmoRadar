@@ -53,7 +53,7 @@ export default function Report({ data, baseUrl, id }) {
         return acc + q.FundingDetails[curr]
       }, 0)
     }))
-  const filteredSubsidies = allSubsidies.filter(d => d?.Questions?.every(element => {
+  const filteredSubsidies = subsidies.filter(d => d?.Questions?.every(element => {
     const userAnswer = answers[element.Id]
     return d.Type.includes('Kredit') || (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
   }))
@@ -133,7 +133,7 @@ export default function Report({ data, baseUrl, id }) {
       >
         {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
           <Box p="xl">
-            <Text ta="center" fs="italic">Förderung {index + 1}. mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
+            <Text ta="center" fs="italic">Förderung {index + 1} mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
             <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
