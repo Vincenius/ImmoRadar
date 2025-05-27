@@ -113,7 +113,6 @@ export default function Report({ data, baseUrl, id }) {
       body: JSON.stringify({ id })
     })
       .then(() => {
-        // todo show pdf success
         setPdfSuccess(true)
       })
       .catch(error => {
@@ -133,7 +132,7 @@ export default function Report({ data, baseUrl, id }) {
       >
         {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
           <Box p="xl">
-            <Text ta="center" fs="italic">Förderung {index + 1} mit einer Fördersumme von <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
+            <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
             <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
