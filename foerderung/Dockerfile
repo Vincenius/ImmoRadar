@@ -1,5 +1,5 @@
 # Use official Node base image
-FROM node:20-slim
+FROM node:20
 
 # Install Ghostscript
 RUN apt-get update && \
@@ -20,4 +20,4 @@ RUN yarn
 RUN yarn build
 
 # Start the app
-CMD ["npm", "start"]
+CMD ["yarn", "start"]
