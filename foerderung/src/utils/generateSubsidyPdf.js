@@ -1,38 +1,51 @@
 import puppeteer from 'puppeteer';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs'
+import fsPromises from 'fs/promises';
+import { PDFDocument } from 'pdf-lib';
 import base64Logo from './base64Logo.js';
+import path from 'path';
+import { exec } from 'child_process';
+import { promisify } from 'util';
 
-const generatePdf = async (id) => {
-  // if tmp directory doesnt exist create it
-  if (!fs.existsSync('./tmp')) {
-    fs.mkdirSync('./tmp');
-  }
+const execAsync = promisify(exec);
 
-  // PDF mit Puppeteer erstellen
-  const fileName = uuidv4();
+const compressPdf = async (inputPath, outputPath) => {
+  const command = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
+  -dPDFSETTINGS=/screen -dNOPAUSE -dQUIET -dBATCH \
+  -sOutputFile=${outputPath} ${inputPath}`;
+
+  await execAsync(command);
+};
+
+
+const generateSinglePagePdf = async (url, outputPath, noHeaderFooter = false) => {
   const browser = await puppeteer.launch({
     args: ['--disable-gpu', '--full-memory-crash-report', '--unlimited-storage',
       '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
   });
+
   const page = await browser.newPage();
   await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY });
-  await page.goto(`${process.env.BASE_URL}/protected/pdf-report?id=${id}`, { waitUntil: 'networkidle0' });
+  await page.goto(url, { waitUntil: 'networkidle0' });
 
-  // Define PDF options
-  const pdfOptions = {
+  await page.pdf({
+    path: outputPath,
     format: 'A4',
-    margin: {
-      top: '1.2in',
-      right: '1in',
-      bottom: '1in',
-      left: '1in'
-    },
-    path: `./tmp/${fileName}.pdf`,
     printBackground: true,
-    displayHeaderFooter: true,
-    headerTemplate: `
-      <div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin: 0 1in 30px ; padding: 0 0 15px; font-family: 'Arial'; border-bottom: 1px solid  #dee2e5;">
+    displayHeaderFooter: !noHeaderFooter ? true : false,
+    margin: noHeaderFooter
+      ? { top: '0in', right: '0in', bottom: '0in', left: '0in' }
+      : {
+        top: '1in',
+        right: '0',
+        bottom: '1in',
+        left: '0'
+      },
+    footerTemplateHeight: noHeaderFooter ? '0' : '30px',
+    headerTemplateHeight: noHeaderFooter ? '0' : '80px',
+    headerTemplate: !noHeaderFooter
+      ? `<div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin: 0 1in 30px ; padding: 0 0 15px; font-family: 'Arial'; border-bottom: 1px solid  #dee2e5;">
         <div style="display: flex; gap: 12px; align-items: center;">
           <img src="${base64Logo}" width="169px" height="20px" style="width: 169px; height: 20px;" alt="${process.env.NEXT_PUBLIC_WEBSITE_NAME}" />
         </div>
@@ -40,24 +53,64 @@ const generatePdf = async (id) => {
           <p style="font-size: 12px; margin: 0; text-align: right;">FörderCheck Report</p>
           <p style="font-size: 12px; margin: 0; text-align: right;">${new Date().toLocaleDateString('de-DE', { format: 'long' })}</p>
         </div>
-      </div>
-    `,
-    footerTemplate: `
-      <div style="font-size:14px; width:100%; text-align:center; font-family: 'Arial';">
+      </div>` : '<div></div>',
+    footerTemplate: !noHeaderFooter
+      ? `<div style="font-size:14px; width:100%; text-align:center; font-family: 'Arial';">
         Seite <span class="pageNumber"></span> von <span class="totalPages"></span>
-      </div>
-    `,
-    // Adjust the footer and header height
-    footerTemplateHeight: '30px',
-    headerTemplateHeight: '80px',
-  };
+      </div>`
+      : '<div></div>',
+  });
 
-  // Generate the PDF
-  await page.pdf(pdfOptions);
   await browser.close();
+};
 
-  // Return file path
-  return { filename: `./tmp/${fileName}.pdf` };
+const mergePdfs = async (pdfPaths, outputPath) => {
+  const mergedPdf = await PDFDocument.create();
+
+  for (const pdfPath of pdfPaths) {
+    const pdfBytes = await fsPromises.readFile(pdfPath);
+    const pdf = await PDFDocument.load(pdfBytes);
+    const copiedPages = await mergedPdf.copyPages(pdf, pdf.getPageIndices());
+    copiedPages.forEach((page) => mergedPdf.addPage(page));
+  }
+
+  const finalPdfBytes = await mergedPdf.save();
+  await fsPromises.writeFile(outputPath, finalPdfBytes);
+};
+
+const generatePdf = async (id) => {
+  const tmpDir = './tmp';
+
+  // if tmp directory doesnt exist create it
+  if (!fs.existsSync(tmpDir)) {
+    fs.mkdirSync(tmpDir);
+  }
+
+  const uuid = uuidv4();
+  const headerPath = path.join(tmpDir, `${uuid}-header.pdf`);
+  const contentPath = path.join(tmpDir, `${uuid}-content.pdf`);
+  const outputPath = path.join(tmpDir, `${uuid}.pdf`);
+  const compressedPath = path.join(tmpDir, `${uuid}-compressed.pdf`);
+
+  const headerUrl = `${process.env.BASE_URL}/protected/pdf-report-header?id=${id}`;
+  const contentUrl = `${process.env.BASE_URL}/protected/pdf-report?id=${id}`;
+
+  await Promise.all([
+    generateSinglePagePdf(headerUrl, headerPath, true),
+    generateSinglePagePdf(contentUrl, contentPath, false),
+  ])
+
+  await mergePdfs([headerPath, contentPath], outputPath);
+
+  // Optional: Cleanup temporary PDFs
+  fs.unlinkSync(headerPath);
+  fs.unlinkSync(contentPath);
+
+  await compressPdf(outputPath, compressedPath);
+
+  fs.unlinkSync(outputPath);
+
+  return { filename: compressedPath };
 };
 
 export default generatePdf;

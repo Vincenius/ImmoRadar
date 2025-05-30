@@ -21,37 +21,37 @@ export const mapToMantineComponents = (htmlString) => {
             );
           case 'h1':
             return (
-              <Title order={1} my="md">
+              <Title order={1} my="md" size="h5">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h2':
             return (
-              <Title order={2} my="md">
+              <Title order={2} my="md" size="h5">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h3':
             return (
-              <Title order={3} my="md">
+              <Title order={3} my="md" size="h5">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h4':
             return (
-              <Title order={4} my="md">
+              <Title order={4} my="md" size="h5">
                 {domToReact(children, options)}
               </Title>
             );
           case 'h5':
             return (
-              <Title order={5} my="md">
+              <Title order={5} my="md" size="h5">
                 {domToReact(children, options)}
               </Title>
             );
           case 'p':
             return (
-              <Text my={listDepth > 0 ? 0 : 'md'}>
+              <Text my={listDepth > 0 ? 0 : 'md'} size="xs">
                 {domToReact(children, options)}
               </Text>
             );
@@ -75,7 +75,7 @@ export const mapToMantineComponents = (htmlString) => {
           case 'ol':
           case 'ul': {
             listDepth++;
-            const list = <List type={name === 'ol' ? 'ordered' : 'unordered'}>{domToReact(children, options)}</List>;
+            const list = <List type={name === 'ol' ? 'ordered' : 'unordered'} mb="md" size="xs">{domToReact(children, options)}</List>;
             listDepth--;
             return list;
           }

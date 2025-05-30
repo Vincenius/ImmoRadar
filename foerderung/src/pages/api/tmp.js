@@ -1,14 +1,14 @@
-// import generatePdf from '@/utils/generateSubsidyPdf';
+import generatePdf from '@/utils/generateSubsidyPdf';
 
-// export default async function handler(req, res) {
-//   try {
-//     // handle general get vs get with ?id=
-//     if (req.method === 'GET') {
-//       await generatePdf('a4980082-f609-4697-b319-c2b38a4ce810')
-//       res.json({})
-//     }
-//   } catch (error) {
-//     console.log(error)
-//     res.json({})
-//   }
-// }
+export default async function handler(req, res) {
+  try {
+    // handle general get vs get with ?id=
+    if (req.method === 'GET') {
+      await generatePdf('81a84c54-3503-4ec0-9e45-675ec6e9a22d')
+      res.json({})
+    }
+  } catch (error) {
+    console.log(error)
+    res.json({})
+  }
+}
