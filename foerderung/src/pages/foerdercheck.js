@@ -462,6 +462,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                         {emailSuccess ? <IconCheck /> : "Report zusenden"}
                       </Button>
                     </Flex>
+                    {isLoading && <Text mb="md">Bitte einen Moment Geduld – die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
                     {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
                     <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                   </form>
