@@ -162,7 +162,7 @@ const PdfReport = ({ data, baseUrl }) => {
             <Table.Tr>
               <Table.Td>
                 <Flex gap="xs" align="center">
-                  <ThemeIcon size="xs" variant='outline'>
+                  <ThemeIcon size="sm" variant='outline'>
                     <IconTools style={{ width: '70%', height: '70%' }} />
                   </ThemeIcon>
                   <Text fw="bold" size="xs">Zu Fördernde Maßnahmen</Text>
