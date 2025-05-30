@@ -14,10 +14,10 @@ WORKDIR /app
 COPY . .
 
 # Install dependencies
-RUN npm install
+RUN yarn
 
 # Build your app if necessary (e.g., Next.js)
-# RUN npm run build
+RUN yarn build
 
 # Start the app
 CMD ["npm", "start"]
