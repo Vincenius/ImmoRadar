@@ -1,4 +1,4 @@
-import { Flex, Text, Group, Button, Title, Box, Blockquote, Image, Accordion, Divider, List, ThemeIcon } from '@mantine/core';
+import { Flex, Text, Button, Title, Box, Blockquote, Image, Accordion, Divider, List, ThemeIcon } from '@mantine/core';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link';

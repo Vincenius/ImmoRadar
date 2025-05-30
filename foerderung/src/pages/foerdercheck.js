@@ -1,8 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import NextImage from 'next/image';
-import Link from 'next/link';
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, Image, List, ThemeIcon, Modal } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, List, ThemeIcon, Modal } from '@mantine/core';
 import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -13,6 +11,7 @@ import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
 import ResultTable from '@/components/ResultTable/ResultTable';
 import WithInfo from '@/components/WithInfo/WithInfo';
+import styles from '@/styles/Home.module.css'
 
 const helperTexts = {
   "Altersgerechter Umbau": "Umbauten, die die Wohnung oder das Haus barrierefrei machen – z. B. bodengleiche Dusche, breite Türen oder Treppenlifte.",
@@ -260,6 +259,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     <Layout
       title="Dein FörderCheck"
       description="Teile uns ein paar Informationen zu deinem Vorhaben mit und beantworte gezielte Fragen. So stellen wir sicher, dass du nur passende Förderprogramme erhältst."
+      withBackground={true}
     >
       <Card my="xl" p="0">
         <Stepper

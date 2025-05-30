@@ -107,20 +107,20 @@ export default function Report({ data, baseUrl, id }) {
     }
   }
 
-  return <Layout title="Quickcheck für deine Förderungen">
-    <Stepper
-      active={questionnaireStep}
-      onStepClick={setQuestionnaireStep}
-      size="xs"
-      mt="xl"
-      allowNextStepsSelect={false}
-    >
-      {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step
-        key={`questionnaire-${d.Id}`}
-        color={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? 'red' : null}
-        completedIcon={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? <IconX size={18} /> : null}
+  return <Layout title="Quickcheck für deine Förderungen" withBackground={true}>
+    <Card p="md" my="xl">
+      <Stepper
+        active={questionnaireStep}
+        onStepClick={setQuestionnaireStep}
+        size="xs"
+        allowNextStepsSelect={false}
       >
-        <Card p="0">
+        {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step
+          key={`questionnaire-${d.Id}`}
+          color={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? 'red' : null}
+          completedIcon={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? <IconX size={18} /> : null}
+        >
+
           <Box p="xl">
             <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
@@ -184,11 +184,9 @@ export default function Report({ data, baseUrl, id }) {
               </Button>
             </Flex>
           </Box>
-        </Card>
-      </Stepper.Step>)}
+        </Stepper.Step>)}
 
-      <Stepper.Completed>
-        <Card my="xl" p="0">
+        <Stepper.Completed>
           <Box p="xl">
             {filteredSubsidies.length > 0 && <>
               <ResultTable data={filteredSubsidies} showType={user.TypZuschuss && user.TypKredit} measures={user.Measures} />
@@ -207,9 +205,8 @@ export default function Report({ data, baseUrl, id }) {
               <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
             </Flex>
           </Box>
-        </Card>
-      </Stepper.Completed>
-    </Stepper>
-
+        </Stepper.Completed>
+      </Stepper>
+    </Card>
   </Layout>
 }

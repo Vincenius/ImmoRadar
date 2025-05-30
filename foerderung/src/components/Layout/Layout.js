@@ -15,7 +15,7 @@ const menu = [
 ];
 
 
-const Layout = ({ children, title, description, date, noindex, image }) => {
+const Layout = ({ children, title, description, date, noindex, image, withBackground }) => {
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
@@ -43,7 +43,7 @@ const Layout = ({ children, title, description, date, noindex, image }) => {
         <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}></script>
       )}
     </Head>
-    <Flex direction="column" mih="100vh" h="100%" justify="space-between">
+    <Flex direction="column" mih="100vh" h="100%" justify="space-between" className={withBackground ? styles.background : ''}>
       <Box as="header" height={60} className={styles.header}>
         <Container size={1060}>
           <Flex justify="space-between" component="nav" py="sm">
