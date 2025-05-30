@@ -12,7 +12,8 @@ const execAsync = promisify(exec);
 
 const compressPdf = async (inputPath, outputPath) => {
 const command = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
-  -dPDFSETTINGS=/printer -dNOPAUSE -dQUIET -dBATCH \
+  -dPDFSETTINGS=/printer -dPreserveAnnots=true \
+  -dNOPAUSE -dQUIET -dBATCH \
   -sOutputFile="${outputPath}" "${inputPath}"`;
 
   await execAsync(command);

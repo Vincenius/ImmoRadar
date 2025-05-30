@@ -1,17 +1,8 @@
 import Stripe from 'stripe';
-import fs from 'fs'
-import generatePdf from '@/utils/generateSubsidyPdf'
 import { sendEmail } from '@/utils/emails';
-import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 import premiumPlusNotification from '@/utils/templates/premium-plus-notification';
+import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 import { createAccount } from '@/utils/brevo';
-
-const variantTextMap = {
-  'free': 'Kostenfreie',
-  'starter': 'Starter',
-  'premium': 'Premium',
-  'premium_plus': 'Premium',
-}
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
@@ -71,15 +62,11 @@ export default async function handler(req, res) {
           })
         }
 
-        const { filename } = await generatePdf(session.client_reference_id, { ...user, ...phoneUpdate, ...emailUpdate, ...nameUpdate })
         await sendEmail({
           to: user.Email || session.customer_details.email,
-          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
+          subject: 'Vielen Dank für deinen Kauf',
           html: subsidyPaidTemplate(session.client_reference_id),
-          pdfFilePath: filename,
-          pdfFileName: `Dein Förderreport - ${variantTextMap[priceMap[price]]} Variante.pdf`
         })
-        fs.unlinkSync(filename)
 
         res.json({ success: true, id: session.client_reference_id })
       } else {

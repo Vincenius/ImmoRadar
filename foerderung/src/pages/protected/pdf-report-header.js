@@ -96,7 +96,7 @@ const PdfReport = ({ data, baseUrl }) => {
         )}
 
         {isPaid && <>
-          <Text mb="md" size="xs">Starte jetzt den Quickcheck und finde in wenigen Minuten heraus, für welche Förderprogramme du konkret berechtigt bist.</Text>
+          <Text mb="md" size="xs">Falls du es noch nicht getan hast, kannst du jetzt den Quickcheck starten und in wenigen Minuten herausfinden, für welche Förderprogramme du konkret berechtigt bist.</Text>
           <Button size="xs" href={questionnaireLink} component="a" mb="xs">
             Quickcheck starten
           </Button>

@@ -1,16 +1,6 @@
-import generatePdf from '@/utils/generateSubsidyPdf'
-import { createAccount } from '@/utils/brevo';
 import { sendEmail } from '@/utils/emails';
-import subsidyTemplate from '@/utils/templates/subsidy';
+import confirmTemplate from '@/utils/templates/confirmation';
 import { v4 as uuidv4 } from 'uuid';
-import fs from 'fs';
-
-const variantTextMap = {
-  'free': 'Kostenfreie',
-  'starter': 'Starter',
-  'premium': 'Premium',
-  'premium_plus': 'Premium',
-}
 
 export default async function handler(req, res) {
   try {
@@ -147,6 +137,7 @@ export default async function handler(req, res) {
         Type: data.TypZuschuss && data.TypKredit ? 'Zuschuss,Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit',
         Measures: data.Measures.join(','),
         Answers: answers,
+        IsConfirmed: false,
         IsDev: process.env.STAGE !== 'prod',
         Variant: 'free',
       }
@@ -161,18 +152,11 @@ export default async function handler(req, res) {
       }).then(res => res.json())
 
       if (email) {
-        const { filename } = await generatePdf(id, user)
-        await Promise.all([
-          sendEmail({
-            to: email,
-            subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
-            html: subsidyTemplate(),
-            pdfFilePath: filename,
-            pdfFileName: `Dein Förderreport - ${variantTextMap[user.Variant]} Variante.pdf`
-          }),
-          createAccount(email)
-        ])
-        fs.unlinkSync(filename)
+        await sendEmail({
+          to: email,
+          subject: `Bestätige deine E-Mail, um deinen Förderreport zu erhalten`,
+          html: confirmTemplate(id),
+        })
       }
 
       res.status(200).json({ id });

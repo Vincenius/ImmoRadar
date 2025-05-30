@@ -183,8 +183,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     ).map(d => d.Measures).flat().filter(Boolean)
   )].sort()
 
-  console.log(measuresData)
-
   const finalData = subsidyData.filter(d =>
     d.HouseType.includes(data.HouseType) &&
     (d.Region === data.Region || d.Region === 'Bundesweit') &&
@@ -440,7 +438,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
               <Modal opened={showFreeCheckout} onClose={() => setShowFreeCheckout(false)}>
                 <Flex gap="md" direction={{ base: "column", sm: "row" }} p="sm">
                   <form onSubmit={handleSubmitReport}>
-                    <Title size="h4" order={3} mb="sm">Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
+                    <Title size="h4" order={3} mb="sm">Erhalte jetzt deinen kostenlosen Report als PDF</Title>
                     <Text mb="md" fs="sm">Der kostenlose Report enthält die Links zu den gefundenen Fördernungen und weitere hilfreiche Informationen.</Text>
 
                     <TextInput
@@ -467,8 +465,10 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     <Button type="submit" loading={isLoading} mb="md" disabled={emailSuccess}>
                       {emailSuccess ? <IconCheck /> : "Report zusenden"}
                     </Button>
-                    {isLoading && <Text mb="md">Bitte einen Moment Geduld – die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
-                    {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
+                    {emailSuccess && <Text c="green.9" mb="md">
+                      <b>Fast geschafft!</b><br />
+                      Wir haben dir eine E-Mail geschickt, um deine Adresse zu bestätigen. Nach der Bestätigung steht dein PDF-Report zum Download bereit.
+                    </Text>}
                     <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                   </form>
                 </Flex>

@@ -1,19 +1,10 @@
 import fs from "fs";
-import sendEmail from "@/utils/emails";
 import generatePdf from "@/utils/generateSubsidyPdf"
-import subsidyTemplate from "@/utils/templates/subsidy-paid";
-
-const variantTextMap = {
-  'free': 'Kostenfreie',
-  'starter': 'Starter',
-  'premium': 'Premium',
-  'premium_plus': 'Premium',
-}
 
 export default async function handler(req, res) {
   try {
-    if (req.method === 'POST') {
-      const { id } = JSON.parse(req.body)
+    if (req.method === 'GET') {
+      const { id } = req.query;
       const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
       const { list: [user] } = await fetch(url, {
         method: 'GET',
@@ -22,18 +13,20 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
-      if (user.Variant !== 'free') {
-        const { filename } = await generatePdf(id, user)
-        await sendEmail({
-          to: user.Email,
-          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
-          html: subsidyTemplate(),
-          pdfFilePath: filename,
-          pdfFileName: `Dein Förderreport - ${variantTextMap[user.Variant]} Variante.pdf`
-        })
-        fs.unlinkSync(filename)
-      }
-      res.status(200).json({})
+      const { filename } = await generatePdf(id, user);
+
+      const fileStream = fs.createReadStream(filename);
+
+      res.setHeader('Content-Type', 'application/pdf');
+      res.setHeader('Content-Disposition', `attachment; filename="report-${id}.pdf"`);
+
+      fileStream.pipe(res);
+
+      fileStream.on('close', () => {
+        fs.unlinkSync(filename); // lösche Datei nach dem Download
+      });
+
+      return;
     } else {
       res.status(400).json({})
     }

@@ -36,14 +36,11 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
 export default function Report({ data, baseUrl, id }) {
   const router = useRouter();
   const { user, subsidies } = data
-  const variant = user?.Variant
 
   const [questionnaireStep, setQuestionnaireStep] = useState(0)
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [falseAnswer, setFalseAnswer] = useState(null)
   const [answers, setAnswers] = useState({});
-  const [pdfLoading, setPdfLoading] = useState(false);
-  const [pdfSuccess, setPdfSuccess] = useState(false);
 
   const allSubsidies = subsidies
     .filter(q => q.Questions && q.Questions.length > 0 && !q.Type.includes('Kredit'))
@@ -103,79 +100,74 @@ export default function Report({ data, baseUrl, id }) {
       setFalseAnswer(activeQuestion)
     } else {
       setActiveQuestion(activeQuestion + 1)
+      const questionIndex = allSubsidies[questionnaireStep].Questions.findIndex(q => q.Id === id)
+      if (questionIndex === allSubsidies[questionnaireStep].Questions.length - 1) {
+        nextQuestionaireStep()
+      }
     }
   }
 
-  const sendPdf = () => {
-    setPdfLoading(true)
-    fetch('/api/pdf', {
-      method: 'POST',
-      body: JSON.stringify({ id })
-    })
-      .then(() => {
-        setPdfSuccess(true)
-      })
-      .catch(error => {
-        // todo show pdf error
-      })
-      .finally(() => setPdfLoading(false))
-  }
-
   return <Layout title="Quickcheck für deine Förderungen">
-    <Card my="xl" p="0">
-      <Stepper
-        active={questionnaireStep}
-        onStepClick={setQuestionnaireStep}
-        size="1px"
-        styles={{ separator: { marginInline: 0 }, stepIcon: { color: 'transparent' } }}
-        allowNextStepsSelect={false}
+    <Stepper
+      active={questionnaireStep}
+      onStepClick={setQuestionnaireStep}
+      size="xs"
+      mt="xl"
+      allowNextStepsSelect={false}
+    >
+      {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step
+        key={`questionnaire-${d.Id}`}
+        color={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? 'red' : null}
+        completedIcon={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? <IconX size={18} /> : null}
       >
-        {allSubsidies && allSubsidies.map((d, index) => <Stepper.Step key={`questionnaire-${d.Id}`}>
+        <Card p="0">
           <Box p="xl">
             <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
-            <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
 
-            <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
-              {d.Questions.map((q, i) => <Timeline.Item color={falseAnswer === i ? 'red.9' : ''}
-                bullet={i < activeQuestion
-                  ? <IconCheck size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
-                  : falseAnswer === i
-                    ? <IconX size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
-                    : (i + 1)}
-                key={`question-${i}`}
-                lineVariant={i <= activeQuestion ? 'solid' : 'dashed'}
-              >
-                <Text c="dimmed" size="sm">Frage {i + 1} / {d.Questions.length}</Text>
-                {activeQuestion === i && falseAnswer !== i && <>
-                  <Flex gap="md">
-                    <Text mt={4} mb="md">{q.Question}</Text>
-                    {q.Question.Infotext && <Popover width={200} position="bottom" withArrow shadow="md">
-                      <Popover.Target>
-                        <ThemeIcon variant="outline" radius="xl" size="xs" mt="0.45em" style={{ cursor: 'pointer' }}>
-                          <IconQuestionMark style={{ width: '80%', height: '80%' }} />
-                        </ThemeIcon>
-                      </Popover.Target>
-                      <Popover.Dropdown>
-                        <Text size="xs">{q.Question.Infotext}</Text>
-                      </Popover.Dropdown>
-                    </Popover>}
-                  </Flex>
+            <Card withBorder p="md">
+              <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
+              <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
+                {d.Questions.map((q, i) => <Timeline.Item color={falseAnswer === i ? 'red.9' : ''}
+                  bullet={i < activeQuestion
+                    ? <IconCheck size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
+                    : falseAnswer === i
+                      ? <IconX size={24} onClick={() => setActiveQuestion(i)} style={{ cursor: 'pointer' }} />
+                      : (i + 1)}
+                  key={`question-${i}`}
+                  lineVariant={i <= activeQuestion ? 'solid' : 'dashed'}
+                >
+                  <Text c="dimmed" size="sm">Frage {i + 1} / {d.Questions.length}</Text>
+                  {activeQuestion === i && falseAnswer !== i && <>
+                    <Flex gap="md">
+                      <Text mt={4} mb="md">{q.Question}</Text>
+                      {q.Question.Infotext && <Popover width={200} position="bottom" withArrow shadow="md">
+                        <Popover.Target>
+                          <ThemeIcon variant="outline" radius="xl" size="xs" mt="0.45em" style={{ cursor: 'pointer' }}>
+                            <IconQuestionMark style={{ width: '80%', height: '80%' }} />
+                          </ThemeIcon>
+                        </Popover.Target>
+                        <Popover.Dropdown>
+                          <Text size="xs">{q.Question.Infotext}</Text>
+                        </Popover.Dropdown>
+                      </Popover>}
+                    </Flex>
 
-                  <Flex gap="md" direction={{ base: "column", xs: "row" }}>
-                    <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Ja')}>Ja</Button>
-                    <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Nein')}>Nein</Button>
-                    <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Unklar')}>Frage Überspringen</Button>
-                  </Flex>
-                </>}
-                {falseAnswer === i && <>
-                  <Text mb="md">Du erfüllst leider nicht die Voraussetzungen für diese Förderung.</Text>
-                  <Flex gap="md">
-                    <Button variant="default" onClick={() => setFalseAnswer(null)}>Frage erneut beantworten</Button>
-                  </Flex>
-                </>}
-              </Timeline.Item>)}
-            </Timeline>
+                    <Flex gap="md" direction={{ base: "column", xs: "row" }}>
+                      <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Ja')}>Ja</Button>
+                      <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Nein')}>Nein</Button>
+                      <Button variant="outline" onClick={() => answerQuestion(q.Id, 'Unklar')}>Frage Überspringen</Button>
+                    </Flex>
+                  </>}
+                  {falseAnswer === i && <>
+                    <Text mb="md">Du erfüllst leider nicht die Voraussetzungen für diese Förderung.</Text>
+                    <Flex gap="md">
+                      <Button variant="default" onClick={() => setFalseAnswer(null)}>Frage erneut beantworten</Button>
+                    </Flex>
+                  </>}
+                </Timeline.Item>)}
+              </Timeline>
+            </Card>
 
             {activeQuestion === d.Questions.length && falseAnswer === null && <Box mt="md">
               <Text mb="md">Du erfüllst die Voraussetzungen für diese Förderung.</Text>
@@ -192,17 +184,14 @@ export default function Report({ data, baseUrl, id }) {
               </Button>
             </Flex>
           </Box>
-        </Stepper.Step>)}
+        </Card>
+      </Stepper.Step>)}
 
-        <Stepper.Completed>
+      <Stepper.Completed>
+        <Card my="xl" p="0">
           <Box p="xl">
             {filteredSubsidies.length > 0 && <>
               <ResultTable data={filteredSubsidies} showType={user.TypZuschuss && user.TypKredit} measures={user.Measures} />
-              <Flex mb="xl" gap="md">
-                <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
-                <Button variant="outline" onClick={sendPdf} loading={pdfLoading} disabled={pdfSuccess}>PDF erneut per Email senden</Button>
-              </Flex>
-              {pdfSuccess && <Text c="green.9" mb="xl">Die PDF wurde erfolgreich per Email versendet.</Text>}
             </>}
 
             {filteredSubsidies.length === 0 && <Box mb="xl" >
@@ -213,10 +202,14 @@ export default function Report({ data, baseUrl, id }) {
               <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
             </Box>}
 
-            <Button variant="outline" onClick={prevQuestionaireStep}>Zurück</Button>
+            <Flex gap="md">
+              <Button variant="outline" onClick={prevQuestionaireStep}>Zurück</Button>
+              <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
+            </Flex>
           </Box>
-        </Stepper.Completed>
-      </Stepper>
-    </Card>
+        </Card>
+      </Stepper.Completed>
+    </Stepper>
+
   </Layout>
 }

@@ -17,7 +17,7 @@ const SectionHeader = ({ title, text, image }) => {
   </Flex>
 }
 
-const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
+const SubsidyItem = ({ subsidy, index, user, type }) => {
   const url = new URL(subsidy.Website);
   const baseUrl = url.origin;
   const isPaid = user.Variant !== 'free'
@@ -62,15 +62,10 @@ const SubsidyItem = ({ subsidy, isPdf = false, index, user, type }) => {
   )
 }
 
-const SectionDivider = ({ isPdf }) => isPdf
-  ? <div style={{ pageBreakBefore: 'always' }}></div>
-  : <Box my="md"></Box>
-
-function SubsidyReport({ data, isPdf = false, baseUrl }) {
+function SubsidyReport({ data, baseUrl }) {
   const { user, subsidies } = data
 
   const isPremium = user.Variant === 'premium' || user.Variant === 'premium_plus'
-  const checkoutLink = isPdf ? `${baseUrl}/checkout?id=${user.uuid}` : `/checkout?id=${user.uuid}`
   const answeredQuestions = user.Answers && Object.keys(user.Answers).length
   const filteredSubsidies = !answeredQuestions ? subsidies : subsidies.filter(d => d?.Questions?.every(element => {
     const userAnswer = user.Answers[element.Id]
@@ -106,19 +101,19 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
       </Box>
 
       {selfSubsidies.length > 0 && <>
-        <SectionDivider isPdf={isPdf} />
+        <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Direkt beantragbare Förderungen"
           text="Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung."
           image={`${baseUrl}/imgs/pdf/self-header.jpg`}
         />
         <Box px="4em">
-          {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="self" />)}
+          {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="self" />)}
         </Box>
       </>}
 
       {consultantSubsidies.length > 0 && <>
-        <SectionDivider isPdf={isPdf} />
+        <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Förderungen mit Energieberater"
           text="Für diese Fördermittel ist die Einbindung eines zertifizierten Energieberaters erforderlich."
@@ -130,12 +125,12 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
           </Button>
         </Box>}
         <Box px="4em">
-          {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="consultant" />)}
+          {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="consultant" />)}
         </Box>
       </>}
 
       {creditSubsidies.length > 0 && <>
-        <SectionDivider isPdf={isPdf} />
+        <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Kredite mit Finanzierungspartner"
           text="Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank."
@@ -147,14 +142,14 @@ function SubsidyReport({ data, isPdf = false, baseUrl }) {
           </Button>
         </Box>}
         <Box px="4em">
-          {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} isPdf={isPdf} type="credit" />)}
+          {creditSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="credit" />)}
         </Box>
       </>}
 
       {user.Variant === 'starter' && <Card mb="xl" withBorder p="lg" mt="xl" mx="4em">
         <Title order={3} mb="md" id="full-report">Report upgraden</Title>
         <Text mb="md">Hol dir jetzt das Upgade auf Premium, um eine Schritt-für-Schritt-Anleitungen zur schnellen Beantragung deiner Förderungen und vieles mehr zu erhalten.</Text>
-        <Button href={checkoutLink} component={isPdf ? 'a' : Link}>
+        <Button href={`${baseUrl}/checkout?id=${user.uuid}`} component={'a'}>
           Report upgraden
         </Button>
       </Card>}

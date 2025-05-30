@@ -3,7 +3,7 @@ import React from 'react'
 
 function ResultTable({ data, amount, showType, measures, dataLength }) {
   const subsidyCount = dataLength || data.length
-  console.log(dataLength, data.length)
+
   return (<>
     <Title order={2} size="h3" mb="md" ta="center" textWrap="balance">
       Ergebnis: {subsidyCount} {subsidyCount > 1 ? 'Förderprogramme' : 'Förderprogramm'} {amount > 0 && <>im Wert von bis zu <NumberFormatter suffix="€" value={amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> </>}gefunden.
