@@ -15,10 +15,11 @@ const premiumPlusVariants = ['premium_plus', 'premium_plus_upgrade_starter', 'pr
 
 export default async function handler(req, res) {
   if (req.method === 'POST') {
-    const { id, email, variant } = JSON.parse(req.body)
+    const { id, email, name, variant } = JSON.parse(req.body)
     try {
       let isUpgrade = false
 
+      // TODO check this??
       if (variant === 'premium') {
         const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
         const { list: [user] } = await fetch(url, {
@@ -44,7 +45,14 @@ export default async function handler(req, res) {
             quantity: 1,
           },
         ],
-        custom_fields: [{
+        custom_fields: [!name && {
+          key: 'name',
+          label: {
+            type: 'custom',
+            custom: 'Name',
+          },
+          type: 'text',
+        }, {
           key: 'phone_number',
           label: {
             type: 'custom',
@@ -52,7 +60,7 @@ export default async function handler(req, res) {
           },
           type: 'text',
           optional: !premiumPlusVariants.includes(variant),
-        }],
+        }].filter(Boolean),
         mode: 'payment',
         return_url: `${process.env.BASE_URL}/return?session_id={CHECKOUT_SESSION_ID}`,
       });

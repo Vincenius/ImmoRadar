@@ -3,6 +3,13 @@ import sendEmail from "@/utils/emails";
 import generatePdf from "@/utils/generateSubsidyPdf"
 import subsidyTemplate from "@/utils/templates/subsidy-paid";
 
+const variantTextMap = {
+  'free': 'Kostenfreie',
+  'starter': 'Starter',
+  'premium': 'Premium',
+  'premium_plus': 'Premium',
+}
+
 export default async function handler(req, res) {
   try {
     if (req.method === 'POST') {
@@ -16,13 +23,13 @@ export default async function handler(req, res) {
       }).then(res => res.json())
 
       if (user.Variant !== 'free') {
-        const { filename } = await generatePdf(id)
+        const { filename } = await generatePdf(id, user)
         await sendEmail({
           to: user.Email,
           subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
           html: subsidyTemplate(),
           pdfFilePath: filename,
-          pdfFileName: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Radar Förderung Report.pdf`
+          pdfFileName: `Dein Förderreport - ${variantTextMap[user.Variant]} Variante.pdf`
         })
         fs.unlinkSync(filename)
       }

@@ -38,7 +38,7 @@ export async function getServerSideProps({ resolvedUrl }) {
   }
 
   return {
-    props: { id, email: data?.user?.Email, plan: data?.user?.Variant, defaultPlan: plan },
+    props: { id, email: data?.user?.Email, name: data?.user?.Name, plan: data?.user?.Variant, defaultPlan: plan },
   };
 }
 
@@ -47,7 +47,7 @@ const upgradeMap = {
   premium: 'premium_plus_upgrade_premium'
 }
 
-function ReportCheckout({ id, email, plan, defaultPlan }) {
+function ReportCheckout({ id, email, name, plan, defaultPlan }) {
   const router = useRouter()
   const [variant, setVariant] = useState(defaultPlan)
   const goBack = () => {
@@ -74,7 +74,7 @@ function ReportCheckout({ id, email, plan, defaultPlan }) {
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">
-        <Checkout email={email} id={id} variant={variant} />
+        <Checkout email={email} name={name} id={id} variant={variant} />
         <Button mt="lg" variant="outline" onClick={() => goBack()} w="150px">Zurück</Button>
       </Card>}
     </Layout>

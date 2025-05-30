@@ -5,6 +5,13 @@ import subsidyTemplate from '@/utils/templates/subsidy';
 import { v4 as uuidv4 } from 'uuid';
 import fs from 'fs';
 
+const variantTextMap = {
+  'free': 'Kostenfreie',
+  'starter': 'Starter',
+  'premium': 'Premium',
+  'premium_plus': 'Premium',
+}
+
 export default async function handler(req, res) {
   try {
     if (req.method === 'GET') {
@@ -128,38 +135,40 @@ export default async function handler(req, res) {
         res.status(200).json(mappedResult);
       }
     } else if (req.method === 'POST') {
-      const { email, data, answers } = JSON.parse(req.body)
-
+      const { email, name, data, answers } = JSON.parse(req.body)
       const id = uuidv4()
+      const user = {
+        uuid: id,
+        Email: email,
+        Name: name,
+        HouseType: data.HouseType,
+        Region: data.Region,
+        District: data.District,
+        Type: data.TypZuschuss && data.TypKredit ? 'Zuschuss,Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit',
+        Measures: data.Measures.join(','),
+        Answers: answers,
+        IsDev: process.env.STAGE !== 'prod',
+        Variant: 'free',
+      }
+
       await fetch(`${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records`, {
         method: 'POST',
         headers: {
           'xc-token': process.env.NOCODB_KEY,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify({
-          uuid: id,
-          Email: email,
-          HouseType: data.HouseType,
-          Region: data.Region,
-          District: data.District,
-          Type: data.TypZuschuss && data.TypKredit ? 'Zuschuss,Kredit' : data.TypZuschuss ? 'Zuschuss' : 'Kredit',
-          Measures: data.Measures.join(','),
-          Answers: answers,
-          IsDev: process.env.STAGE !== 'prod',
-          Variant: 'free',
-        })
+        body: JSON.stringify(user)
       }).then(res => res.json())
 
       if (email) {
-        const { filename } = await generatePdf(id)
+        const { filename } = await generatePdf(id, user)
         await Promise.all([
           sendEmail({
             to: email,
             subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Förderungen Report`,
             html: subsidyTemplate(),
             pdfFilePath: filename,
-            pdfFileName: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Radar Förderung Report.pdf`
+            pdfFileName: `Dein Förderreport - ${variantTextMap[user.Variant]} Variante.pdf`
           }),
           createAccount(email)
         ])

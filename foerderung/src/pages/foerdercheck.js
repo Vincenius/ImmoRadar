@@ -129,6 +129,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     Measures: defaultUser?.Measures || []
   })
   const [email, setEmail] = useState(defaultUser?.Email || '')
+  const [name, setName] = useState(defaultUser?.Name || '')
   const [showFreeCheckout, setShowFreeCheckout] = useState(false)
   const [variant, setVariant] = useState()
   const [checkoutId, setCheckoutId] = useState()
@@ -232,7 +233,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     setIsLoading(true)
     fetch('/api/subsidies', {
       method: 'POST',
-      body: JSON.stringify({ data, email })
+      body: JSON.stringify({ data, email, name })
     })
       .then(res => res.json())
       .then(res => {
@@ -437,31 +438,35 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
               </>}
 
               <Modal opened={showFreeCheckout} onClose={() => setShowFreeCheckout(false)}>
-                <Flex gap="md" direction={{ base: "column", sm: "row" }}>
+                <Flex gap="md" direction={{ base: "column", sm: "row" }} p="sm">
                   <form onSubmit={handleSubmitReport}>
                     <Title size="h4" order={3} mb="sm">Erhalte jetzt deinen kostenlosen Report als PDF per E-Mail</Title>
                     <Text mb="md" fs="sm">Der kostenlose Report enthält die Links zu den gefundenen Fördernungen und weitere hilfreiche Informationen.</Text>
 
-                    <Flex
-                      align={{ base: "flex-start", sm: "center" }}
-                      gap="md"
-                      direction={{ base: "column", sm: "row" }}
-                      mb={{ base: "md", sm: "0" }}
-                    >
-                      <TextInput
-                        required
-                        label="E-Mail Adresse"
-                        placeholder="mustermann@example.com"
-                        mb={{ base: "0", sm: "md" }}
-                        value={email}
-                        onChange={(e) => setEmail(e.target.value)}
-                        miw={{ base: "100%", sm: "250px" }}
-                      />
+                    <TextInput
+                      required
+                      label="Dein Name"
+                      placeholder="Max Musterman"
+                      mb="xs"
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      miw={{ base: "100%", sm: "250px" }}
+                    />
 
-                      <Button type="submit" loading={isLoading} mt={{ base: "0", sm: "0.6em" }} disabled={emailSuccess}>
-                        {emailSuccess ? <IconCheck /> : "Report zusenden"}
-                      </Button>
-                    </Flex>
+                    <TextInput
+                      required
+                      label="E-Mail Adresse"
+                      placeholder="mustermann@example.com"
+                      type="email"
+                      mb="md"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
+                      miw={{ base: "100%", sm: "250px" }}
+                    />
+
+                    <Button type="submit" loading={isLoading} mb="md" disabled={emailSuccess}>
+                      {emailSuccess ? <IconCheck /> : "Report zusenden"}
+                    </Button>
                     {isLoading && <Text mb="md">Bitte einen Moment Geduld – die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
                     {emailSuccess && <Text c="green.9" mb="md">Dein Report wurde erfolgreich erstellt und dir als PDF per E-Mail zugesendet.</Text>}
                     <Text size="xs" fs="italic">Mit dem Absenden stimmst du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
