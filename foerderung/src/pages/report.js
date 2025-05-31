@@ -70,8 +70,8 @@ export default function Report({ data, baseUrl, id }) {
       noindex={true}
       withBackground={true}
     >
-      <Container size="sm" pb="lg">
-        {user.Variant === 'free' && <Card p="xl" my="xl">
+      <Container size="sm" pb="lg" px="0">
+        {user.Variant === 'free' && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
           <Title order={1} mb="xl">Vielen Dank für deine Bestätigung!</Title>
 
           <Text mb="xl" size="md">
@@ -105,7 +105,7 @@ export default function Report({ data, baseUrl, id }) {
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
 
-        {user.Variant !== 'free' && !answeredQuestions && <Card p="xl" my="xl">
+        {user.Variant !== 'free' && !answeredQuestions && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
           <Title order={1} mb="xl">Vielen Dank für deinen Kauf!</Title>
 
           <Text mb="xl" size="md">
@@ -139,7 +139,7 @@ export default function Report({ data, baseUrl, id }) {
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
 
-        {user.Variant !== 'free' && answeredQuestions && <Card p="xl" my="xl">
+        {user.Variant !== 'free' && answeredQuestions && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
           <Title order={1} mb="xl">Dein persönlicher Fördercheck ist fertig!</Title>
 
           <Text mb="xl" size="md">

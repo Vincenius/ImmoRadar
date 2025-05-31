@@ -63,21 +63,33 @@ export default function Report({ data, baseUrl, id }) {
       method: 'POST',
       body: JSON.stringify({ id, answers })
     })
-    // todo set default ansers from previously filled
+
+    let initQuestion = 0
+    let initFalseAnswer = null
+    if (allSubsidies[nextStep]) {
+      allSubsidies[nextStep].Questions.forEach(q => {
+        if (answers[q.Id] === 'Unklar' || answers[q.Id] === 'Ja' && q.RequiredAnswer || answers[q.Id] === 'Nein' && !q.RequiredAnswer) {
+          initQuestion++
+        } else if (answers[q.Id] === 'Ja' && !q.RequiredAnswer || answers[q.Id] === 'Nein' && q.RequiredAnswer) {
+          initFalseAnswer = initQuestion
+        }
+      })
+    }
 
     setQuestionnaireStep(nextStep)
-    setActiveQuestion(0)
-    setFalseAnswer(null)
+    setActiveQuestion(initQuestion)
+    setFalseAnswer(initFalseAnswer)
   }
 
-  const prevQuestionaireStep = () => {
+  const prevQuestionaireStep = (step) => {
     if (questionnaireStep === 0) {
       router.push(`/report?id=${id}`)
     } else {
       let initQuestion = 0
       let initFalseAnswer = null
+      const prevStep = step !== undefined ? step : questionnaireStep - 1
 
-      allSubsidies[questionnaireStep - 1].Questions.forEach(q => {
+      allSubsidies[prevStep].Questions.forEach(q => {
         if (answers[q.Id] === 'Unklar' || answers[q.Id] === 'Ja' && q.RequiredAnswer || answers[q.Id] === 'Nein' && !q.RequiredAnswer) {
           initQuestion++
         } else if (answers[q.Id] === 'Ja' && !q.RequiredAnswer || answers[q.Id] === 'Nein' && q.RequiredAnswer) {
@@ -85,7 +97,7 @@ export default function Report({ data, baseUrl, id }) {
         }
       })
 
-      setQuestionnaireStep(questionnaireStep - 1)
+      setQuestionnaireStep(prevStep)
       setActiveQuestion(initQuestion)
       setFalseAnswer(initFalseAnswer)
     }
@@ -111,7 +123,7 @@ export default function Report({ data, baseUrl, id }) {
     <Card p="md" my="xl">
       <Stepper
         active={questionnaireStep}
-        onStepClick={setQuestionnaireStep}
+        onStepClick={prevQuestionaireStep}
         size="xs"
         allowNextStepsSelect={false}
       >
@@ -121,11 +133,11 @@ export default function Report({ data, baseUrl, id }) {
           completedIcon={questionnaireStep > index && !filteredSubsidies.find(s => s.Id === d.Id) ? <IconX size={18} /> : null}
         >
 
-          <Box p="xl">
+          <Box p={{ base: 'xs', sm: 'xl' }}>
             <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
 
-            <Card withBorder p="md">
+            <Card withBorder p={{ base: 'xs', sm: 'xl' }}>
               <Text fw="bold" mb="lg">Bitte beantworte folgende Fragen um zu überprüfen ob die Förderung für Dich zulässig ist.</Text>
               <Timeline active={activeQuestion} bulletSize={24} lineWidth={2}>
                 {d.Questions.map((q, i) => <Timeline.Item color={falseAnswer === i ? 'red.9' : ''}
@@ -174,8 +186,8 @@ export default function Report({ data, baseUrl, id }) {
             </Box>}
 
             {/* todo is loading */}
-            <Flex gap="md" mt="xl">
-              <Button variant="outline" onClick={prevQuestionaireStep}>{index === 0 ? 'Zurück' : 'Vorherige Förderung'}</Button>
+            <Flex gap="md" mt="xl" direction={{ base: "column", xs: "row" }}>
+              <Button variant="outline" onClick={() => prevQuestionaireStep()}>{index === 0 ? 'Zurück' : 'Vorherige Förderung'}</Button>
               <Button onClick={nextQuestionaireStep} variant={falseAnswer !== null || activeQuestion === d.Questions.length ? 'filled' : 'outline'}>
                 {(falseAnswer !== null || activeQuestion === d.Questions.length)
                   ? allSubsidies.length === index + 1 ? 'Weiter zum Ergebnis' : 'Weiter zur nächsten Förderung'
@@ -201,7 +213,7 @@ export default function Report({ data, baseUrl, id }) {
             </Box>}
 
             <Flex gap="md">
-              <Button variant="outline" onClick={prevQuestionaireStep}>Zurück</Button>
+              <Button variant="outline" onClick={() => prevQuestionaireStep()}>Zurück</Button>
               <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
             </Flex>
           </Box>

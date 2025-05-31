@@ -23,7 +23,7 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   }
   if (process.env.PROTECTION) {
     headers['Authorization'] = `Basic ${process.env.PROTECTION}`;
-  } // todo check if needed?
+  }
   
   const data = await fetch(`${baseUrl}/api/contract?id=${id}`, {
     method: 'GET',
