@@ -34,7 +34,7 @@ export default function Foerderung() {
           </Flex>
         </Flex>
       </Box>
-      <Box py="6em" pos="relative">
+      <Box pt="6em" pb="10em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="2em" size="h1" textWrap="balance">Fördermittel in 3 einfachen Schritten! So kommst du zu deinem Zuschuss:</Title>
 
@@ -94,13 +94,7 @@ export default function Foerderung() {
         </Flex>
       </Box>
 
-      <Box pt="6em" pb="12em" pos="relative">
-        <Title order={2} ta="center" mb="xl" size="h1">Preise</Title>
-
-        <Pricing showFree plan="free" />
-      </Box>
-
-      <Box py="8em" pos="relative">
+      <Box pt="8em" pb="12em" pos="relative">
         <Flex mt="-14em" mb="6em" gap="4em" direction={{ base: 'column', xs: 'row' }}>
           <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Stefan W." w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
             Dank dem FörderCheck habe ich 20.000 € Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!
@@ -110,6 +104,24 @@ export default function Foerderung() {
             Ich wusste gar nicht, dass es so viele Fördermöglichkeiten gibt! Mit der Premium-Version konnte ich den Antrag schnell und korrekt ausfüllen ohne stundenlang zu recherchieren.
           </Blockquote>
         </Flex>
+        <Title order={2} ta="center" mb="xl" size="h1">Preise</Title>
+
+        <Pricing
+          showFree
+          plan="free"
+          CtaStarter={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+            Jetzt kostenlos starten!
+          </Button>}
+          CtaPremium={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+            Jetzt kostenlos starten!
+          </Button>}
+          CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+            Jetzt kostenlos starten!
+          </Button>}
+        />
+      </Box>
+
+      <Box py="6em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
         <Title order={2} ta="center" mb="xl" size="h1">Häufig gestellte Fragen</Title>
 
@@ -157,7 +169,7 @@ export default function Foerderung() {
         <Box align="center">
           <Title order={2} ta="center" mb="md" size="h1">Unverbindlich Förderungen prüfen – kostenlos & individuell</Title>
           <Text mb="3em" fs="italic">Finde mit dem FörderCheck ganz einfach heraus, welche Zuschüsse, Kredite und Förderprogramme für deinen Bau oder deine Sanierung möglich sind. Kein Risiko – sofort loslegen.</Text>
-          <Button  leftSection={<IconCheckbox size={24} />} size="xl" component={Link} href="/foerdercheck">Jetzt FörderCheck Starten!</Button>
+          <Button leftSection={<IconCheckbox size={24} />} size="xl" component={Link} href="/foerdercheck">Jetzt FörderCheck Starten!</Button>
         </Box>
       </Box>
 

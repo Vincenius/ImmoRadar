@@ -48,7 +48,7 @@ const generateSinglePagePdf = async (url, outputPath, noHeaderFooter = false, us
     headerTemplate: !noHeaderFooter
       ? `<div style="width: 100%; display: flex; justify-content: space-between; align-items: center; font-size: 16px; margin: 0 2.5em 30px ; padding: 0 0 15px; font-family: 'Arial'; border-bottom: 1px solid  #dee2e5;">
         <div style="display: flex; gap: 12px; align-items: center;">
-          <img src="${base64Logo}" width="169px" height="20px" style="width: 169px; height: 20px;" alt="${process.env.NEXT_PUBLIC_WEBSITE_NAME}" />
+          <img src="${base64Logo}" width="169px" height="20px" style="width: 138px; height: 30px;" alt="${process.env.NEXT_PUBLIC_WEBSITE_NAME}" />
         </div>
         <div>
           <p style="font-size: 12px; margin: 0; text-align: right;"><b>Dein Förderreport</b>${user.Name ? ` | ${user.Name}` : ''}</p>
