@@ -42,6 +42,7 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
 export default function Report({ data, baseUrl, id }) {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [error, setError] = useState(false);
   // const { paid_success, confirmed, ...otherQuery } = router.query;
   const { user } = data
@@ -51,16 +52,9 @@ export default function Report({ data, baseUrl, id }) {
     setLoading(true)
     fetch(`/api/pdf?id=${id}`, {
       method: 'GET',
-    }).then(res => res.blob())
-      .then(blob => {
-        const url = window.URL.createObjectURL(blob);
-        const a = document.createElement('a');
-        a.href = url;
-        a.download = `report-${id}.pdf`;
-        document.body.appendChild(a);
-        a.click();
-        a.remove();
-      }).catch(() => setError(true))
+    }).then(() => {
+      setSuccess(true)
+    }).catch(() => setError(true))
       .finally(() => setLoading(false))
   }
 
@@ -85,6 +79,7 @@ export default function Report({ data, baseUrl, id }) {
               size="md"
               onClick={downloadPdf}
               loading={loading}
+              disabled={success}
             >
               PDF herunterladen
             </Button>
@@ -101,7 +96,10 @@ export default function Report({ data, baseUrl, id }) {
             </Button>
           </Group>
 
-          {loading && <Text mb="md" size="sm">Bitte hab einen Moment Geduld<br />Die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
+          {success && <Text mb="md" size="sm" c="green.9">
+            <b>Deine PDF wird erstellt.</b><br />
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+          </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
 
@@ -130,12 +128,16 @@ export default function Report({ data, baseUrl, id }) {
               size="md"
               onClick={downloadPdf}
               loading={loading}
+              disabled={success}
             >
               PDF herunterladen
             </Button>
           </Group>
 
-          {loading && <Text mb="md" size="sm">Bitte hab einen Moment Geduld<br />Die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
+          {success && <Text mb="md" size="sm" c="green.9">
+            <b>Deine PDF wird erstellt.</b><br />
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+          </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
 
@@ -154,6 +156,7 @@ export default function Report({ data, baseUrl, id }) {
               size="md"
               onClick={downloadPdf}
               loading={loading}
+              disabled={success}
             >
               PDF herunterladen
             </Button>
@@ -169,7 +172,10 @@ export default function Report({ data, baseUrl, id }) {
             </Button>
           </Group>
 
-          {loading && <Text mb="md" size="sm">Bitte hab einen Moment Geduld<br />Die PDF wird gerade für dich generiert. Das kann ein paar Sekunden dauern.</Text>}
+          {success && <Text mb="md" size="sm" c="green.9">
+            <b>Deine PDF wird erstellt.</b><br />
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+          </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
       </Container>

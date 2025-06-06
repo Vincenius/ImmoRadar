@@ -18,7 +18,7 @@ const subsidyTemplate = () => mjml2html(`<mjml>
     </mj-section>
     <mj-section background-color="#f3f3f3">
       <mj-column>
-        <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Dein Förderungs-Report ist da!</mj-text>
+        <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Dein Förderreport ist da!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Vertrauen in ${process.env.NEXT_PUBLIC_WEBSITE_NAME}!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Im Anhang findest du deinen personalisierten Report mit allen relevanten Fördermöglichkeiten für dein Bauprojekt.</mj-text>
 

@@ -21,7 +21,7 @@ const subsidyTemplate = (id) => mjml2html(`<mjml>
         <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Bitte bestätige deine E-Mail-Adresse</mj-text>
         
         <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Interesse an ${process.env.NEXT_PUBLIC_WEBSITE_NAME}!</mj-text>
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Um deinen persönlichen Förderungs-Report herunterzuladen, bestätige bitte zuerst deine E-Mail-Adresse. Klicke dazu einfach auf folgenden Bestätigungslink:</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Um deinen persönlichen Förderreport herunterzuladen, bestätige bitte zuerst deine E-Mail-Adresse. Klicke dazu einfach auf folgenden Bestätigungslink:</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica"><a href="${process.env.BASE_URL}/email-bestaetigen?id=${id}">${process.env.BASE_URL}/email-bestaetigen?id=${id}</a></mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Bei Fragen oder Feedback erreichst du mich jederzeit unter <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>.</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Viele Grüße,<br>Vincent von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}</mj-text>
