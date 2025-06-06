@@ -52,7 +52,7 @@ const generateSinglePagePdf = async (url, outputPath, noHeaderFooter = false, us
         </div>
         <div>
           <p style="font-size: 12px; margin: 0; text-align: right;"><b>Dein Förderreport</b>${user.Name ? ` | ${user.Name}` : ''}</p>
-          <p style="font-size: 12px; margin: 0; text-align: right;">${new Date().toLocaleString('de-DE', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
+          <p style="font-size: 12px; margin: 0; text-align: right;">${new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</p>
         </div>
       </div>` : '<div></div>',
     footerTemplate: !noHeaderFooter

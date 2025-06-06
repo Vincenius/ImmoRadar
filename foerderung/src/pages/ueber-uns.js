@@ -35,16 +35,21 @@ const AboutPage = () => {
                         <TeamMember image="olli.jpg" name="Oliver Rausch" title="Experte für Immobilien & Grundstücke" />
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="chris.jpg" name="Christof Scholz" title="Maschinenbauingenieur - Förderungen & Vertragsgestaltung" />
+                        <TeamMember image="felix.jpg" name="Felix Van Huet" title="Experte für Förderungen" />
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
-                        <TeamMember image="vincent.jpg" name="Vincent Will" title="Webentwickler - UI & UX" />
+                        <TeamMember image="chris.jpg" name="Christof Scholz" title="Experte für Förderungen" />
                     </Grid.Col>
                     <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
                         <TeamMember image="michael.jpg" name="Michael Beuthel" title="Experte für Förderungen" />
                     </Grid.Col>
+                    <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                        <TeamMember image="sergey.jpg" name="Sergey Sidorov" title="Experte für Förderungen" />
+                    </Grid.Col>
+                    <Grid.Col span={{ base: 12, xs: 6, sm: 4 }}>
+                        <TeamMember image="vincent.jpg" name="Vincent Will" title="Webentwickler" />
+                    </Grid.Col>
                 </Grid>
-
                 <Title order={2} mb="lg">Kontakt</Title>
                 <Text my="md">
                     <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>

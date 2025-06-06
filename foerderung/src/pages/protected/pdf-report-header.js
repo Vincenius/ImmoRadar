@@ -60,14 +60,12 @@ const PdfReport = ({ data, baseUrl }) => {
   const checkoutLink = `${baseUrl}/checkout?id=${user.uuid}`
 
   return <Box>
-    <Box bg="cyan.9" pt="xl">
+    <Box bg="cyan.9" py="xl">
       <Image component={NextImage} src="/imgs/logo.png" width={150} height={150} w={150} h={150} alt="Logo" mx="auto" mb="md" />
       <Title order={1} size="4em" fw="lighter" c="#fff" align="center">Dein Förderreport</Title>
       <Text ta="center" c="#fff" mb="sm">- {variantTextMap[user.Variant]} Variante -</Text>
-      <Text ta="center" c="#fff">vom {new Date().toLocaleString('de-DE', { year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
+      <Text ta="center" c="#fff">vom {new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
     </Box>
-    {/* https://getwaves.io/ */}
-    <svg className={classes.wave} preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill-opacity="1" d="M0,96L24,80C48,64,96,32,144,16C192,0,240,0,288,5.3C336,11,384,21,432,37.3C480,53,528,75,576,112C624,149,672,203,720,202.7C768,203,816,149,864,160C912,171,960,245,1008,256C1056,267,1104,213,1152,208C1200,203,1248,245,1296,272C1344,299,1392,309,1416,314.7L1440,320L1440,320L1416,320C1392,320,1344,320,1296,320C1248,320,1200,320,1152,320C1104,320,1056,320,1008,320C960,320,912,320,864,320C816,320,768,320,720,320C672,320,624,320,576,320C528,320,480,320,432,320C384,320,336,320,288,320C240,320,192,320,144,320C96,320,48,320,24,320L0,320Z"></path></svg>
 
     <Box px="4em" mt="xl">
       <Box mb="2em">

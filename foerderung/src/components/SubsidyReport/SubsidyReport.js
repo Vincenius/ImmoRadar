@@ -1,6 +1,6 @@
 import React from 'react'
 import Link from 'next/link'
-import { Box, Title, Text, List, Button, Card, Image, Flex } from "@mantine/core";
+import { Box, Title, Text, List, Button, Card, Image, Flex, Divider } from "@mantine/core";
 import showdown from 'showdown';
 import { mapToMantineComponents } from '@/utils/convertHtmlToMantine';
 import classes from './SubsidyReport.module.css'
@@ -25,9 +25,9 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
 
   return (
     <>
-      {index > 0 && <Box my="xl"></Box>}
+      {index > 0 && !isPaid && <Box my="xl"></Box>}
+      {index > 0 && isPaid && <div style={{ pageBreakBefore: 'always' }}></div>}
       <Card withBorder>
-
         <Card.Section p="md" className={classes.pattern} withBorder mb="md">
           <Title order={3} size="h3" id={`headline-${type}-${index}`}>{subsidy.Name}</Title>
         </Card.Section>
@@ -57,6 +57,13 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
           <Title order={3} size="h4" mb="md">Anleitung zur Antragstellung:</Title>
           {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
         </Card.Section>}
+
+        <Card.Section withBorder p="md">
+          <Title order={3} size="h4" mb="md">Notizen:</Title>
+          <Divider my="xl" />
+          <Divider my="xl" />
+          <Divider mt="xl" mb="md" />
+        </Card.Section>
       </Card>
     </>
   )
@@ -78,23 +85,27 @@ function SubsidyReport({ data, baseUrl }) {
 
   return (
     <>
+      <SectionHeader
+        title={`Deine ${filteredSubsidies.length} Förderungen`}
+        image={`${baseUrl}/imgs/pdf/overview-header.jpg`}
+      />
       <Box className={classes.container} px="4em">
         <Card withBorder p="md">
-          <Card.Section p="md" className={classes.pattern} withBorder mb="md">
+          {/* <Card.Section p="md" className={classes.pattern} withBorder mb="md">
             <Title order={3} size="h3" ta="center">Deine {filteredSubsidies.length} Förderungen</Title>
-          </Card.Section>
+          </Card.Section> */}
           <List withPadding size="xs">
             {selfSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold" size="sm">Direkt beantragbare Förderungen</Text></List.Item>}
             {selfSubsidies.map((subsidy, index) => (
-              <List.Item key={subsidy.Name}><a href={`#headline-self-${index}`}>{subsidy.Name}</a></List.Item>
+              <List.Item key={subsidy.Name}>{subsidy.Name}</List.Item>
             ))}
             {consultantSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold" size="sm">Förderungen mit Energieberater</Text></List.Item>}
             {consultantSubsidies.map((subsidy, index) => (
-              <List.Item key={subsidy.Name}><a href={`#headline-consultant-${index}`}>{subsidy.Name}</a></List.Item>
+              <List.Item key={subsidy.Name}>{subsidy.Name}</List.Item>
             ))}
             {creditSubsidies.length > 0 && <List.Item ml="-1em" my="xs" icon={<></>}><Text fw="bold" size="sm">Kredite mit Finanzierungspartner</Text></List.Item>}
             {creditSubsidies.map((subsidy, index) => (
-              <List.Item key={subsidy.Name}><a href={`#headline-credit-${index}`}>{subsidy.Name}</a></List.Item>
+              <List.Item key={subsidy.Name}>{subsidy.Name}</List.Item>
             ))}
           </List>
         </Card>
@@ -120,9 +131,10 @@ function SubsidyReport({ data, baseUrl }) {
           image={`${baseUrl}/imgs/pdf/expert-header.jpg`}
         />
         {isPremium && <Box ta="center">
-          <Button fw="bold" mb="xl" component="a" size="md" href="https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis">
+          <Button mb="xs" fw="bold" component="a" size="md" href="https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis">
             Finde jetzt einen qualifizierten Finanzierungsberater
           </Button>
+          <Text mx="6em" size="xs" fs="italic" mb="xl">Hinweis: Für Inhalt und Aktualität des verlinkten PDFs ist die jeweils angegebene Seite bzw. der Anbieter verantwortlich.</Text>
         </Box>}
         <Box px="4em">
           {consultantSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="consultant" />)}
