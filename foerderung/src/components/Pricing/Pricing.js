@@ -106,7 +106,6 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
                 <List.Item>Schritt-für-Schritt-Anleitungen zur schnellen Beantragung deiner Förderungen</List.Item>
                 <List.Item>Schneller Zugriff auf zertifizierte Energieberater in deiner Region</List.Item>
                 <List.Item>Schneller Zugriff auf qualifizierte Finanzierungsberater </List.Item>
-                <List.Item>Geldzurückgarantie falls deine Fördersumme geringer als 59€ ist</List.Item>
               </List>
             </Box>
 

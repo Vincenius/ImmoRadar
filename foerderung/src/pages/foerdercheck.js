@@ -276,7 +276,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
               </WithInfo>
 
               <Flex gap="md">
-                <WithInfo infoText="Bestand meint ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
+                <WithInfo infoText="Ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
                   <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
                     <Flex direction="column" gap="sm" align="center">
                       <IconHome size="2em" />
@@ -396,7 +396,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 <ResultTable data={finalData.slice(0, 3)} dataLength={finalData.length} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
                 <Title order={2} size="h3" mb="lg" ta="center" textWrap="balance">
-                  Erhalte jetzt deinen vollständigen Förderungen Report als PDF.
+                  Erhalte jetzt deinen vollständigen Förderreport als PDF.
                 </Title>
                 <List
                   spacing="xs"
@@ -478,7 +478,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
 
               {(variant && checkoutId) && <>
                 <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                  Förderungen Report kaufen
+                  Förderreport kaufen
                 </Title>
 
                 <Checkout variant={variant} id={checkoutId} />
