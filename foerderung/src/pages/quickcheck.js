@@ -37,6 +37,7 @@ export default function Report({ data, baseUrl, id }) {
   const router = useRouter();
   const { user, subsidies } = data
 
+  const [startQuickcheck, setStartQuickcheck] = useState(false)
   const [questionnaireStep, setQuestionnaireStep] = useState(0)
   const [activeQuestion, setActiveQuestion] = useState(0)
   const [falseAnswer, setFalseAnswer] = useState(null)
@@ -121,7 +122,14 @@ export default function Report({ data, baseUrl, id }) {
 
   return <Layout title="Quickcheck für deine Förderungen" withBackground={true}>
     <Card p="md" my="xl">
-      <Stepper
+      {!startQuickcheck && <Box ta="center" my="md">
+        <Title order={2} size="h2" mb="sm" ta="center">Jetzt Fördermöglichkeiten prüfen</Title>
+        <Text mb="md" ta="left">
+          Beantworte einige kurze Fragen zu deinem Vorhaben. Der QuickCheck <b>dauert ca. 5 Minuten</b> und liefert dir eine erste Einschätzung zu möglichen Förderungen. Bitte fülle alles sorgfältig aus, damit wir dir ein passendes Ergebnis liefern können.
+        </Text>
+        <Button onClick={() => setStartQuickcheck(true)}>QuickCheck Starten</Button>
+      </Box>}
+      {startQuickcheck && <Stepper
         active={questionnaireStep}
         onStepClick={prevQuestionaireStep}
         size="xs"
@@ -201,7 +209,14 @@ export default function Report({ data, baseUrl, id }) {
         <Stepper.Completed>
           <Box p="xl">
             {filteredSubsidies.length > 0 && <>
-              <ResultTable data={filteredSubsidies} showType={user.TypZuschuss && user.TypKredit} measures={user.Measures} />
+              <Title order={2} size="h3" mb="md" ta="center" textWrap="balance">
+                Anhand deiner Antworten hast du dich für {filteredSubsidies.length} {filteredSubsidies.length > 1 ? 'Förderprogramme' : 'Förderprogramm'} qualifiziert.
+              </Title>
+              <ResultTable
+                data={filteredSubsidies}
+                showType={user.TypZuschuss && user.TypKredit}
+                measures={user.Measures}
+              />
             </>}
 
             {filteredSubsidies.length === 0 && <Box mb="xl" >
@@ -218,7 +233,7 @@ export default function Report({ data, baseUrl, id }) {
             </Flex>
           </Box>
         </Stepper.Completed>
-      </Stepper>
+      </Stepper>}
     </Card>
   </Layout>
 }

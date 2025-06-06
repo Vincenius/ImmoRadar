@@ -393,6 +393,11 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           <Stepper.Completed>
             <Box p="md">
               {(!variant || !checkoutId) && <>
+                <Title order={2} size="h3" mb="md" ta="center" textWrap="balance">
+                  Ergebnis: {finalData.length} {finalData.length > 1 ? 'Förderprogramme' : 'Förderprogramm'} {finalDataAmount > 0 && <>im Wert von bis zu <NumberFormatter suffix="€" value={finalDataAmount} thousandSeparator="." decimalSeparator="," decimalScale={0} /> </>}gefunden.
+                </Title>
+
+                <Text mb="xl">Wir haben Fördermittel gefunden, die genau zu Ihrem Vorhaben passen. In welcher Höhe sie ihre persönliche Förderung beantragen können finden sie mit unserer Premium Variante heraus.</Text>
                 <ResultTable data={finalData.slice(0, 3)} dataLength={finalData.length} amount={finalDataAmount} showType={data.TypZuschuss && data.TypKredit} measures={data.Measures} />
 
                 <Title order={2} size="h3" mb="lg" ta="center" textWrap="balance">
