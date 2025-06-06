@@ -1,11 +1,14 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import Script from 'next/script'
 import Head from "next/head";
 import Image from 'next/image';
 import Link from 'next/link';
 import { Container, Text, Flex, Box, Burger, Menu } from '@mantine/core'
+import * as CookieConsent from "vanilla-cookieconsent";
 import Logo from './logo.svg';
 import GreenEnergyLogo from './green-energy-logo.png';
 import styles from './Layout.module.css';
+
 
 const menu = [
   // {
@@ -19,6 +22,60 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
   const ogImage = image || '/og-image.jpg';
   const [opened, setOpened] = useState(false);
   const setNoIndex = noindex || process.env.NEXT_PUBLIC_NOINDEX === 'true';
+
+  useEffect(() => {
+    CookieConsent.run({
+      categories: {
+        necessary: {
+          enabled: true,  // Diese Kategorie ist standardmäßig aktiviert
+          readOnly: true  // Diese Kategorie kann nicht deaktiviert werden
+        },
+        analytics: {}
+      },
+
+      language: {
+        default: 'de',
+        translations: {
+          de: {
+            consentModal: {
+              title: 'Wir verwenden Cookies',
+              description: 'Klicke auf „Alle akzeptieren“, um Cookies zur Personalisierung und Analyse über den Google Tag Manager zuzulassen. Du kannst deine Einstellungen jederzeit anpassen.',
+              acceptAllBtn: 'Alle akzeptieren',
+              acceptNecessaryBtn: 'Nur notwendige akzeptieren',
+              showPreferencesBtn: 'Individuelle Einstellungen verwalten'
+            },
+            preferencesModal: {
+              title: 'Cookie-Einstellungen verwalten',
+              acceptAllBtn: 'Alle akzeptieren',
+              acceptNecessaryBtn: 'Nur notwendige akzeptieren',
+              savePreferencesBtn: 'Auswahl übernehmen',
+              closeIconLabel: 'Einstellungen schließen',
+              sections: [
+                // {
+                //   title: 'Wer hat „Cookies“ gesagt?',
+                //   description: 'Ich will einen!'
+                // },
+                {
+                  title: 'Unbedingt erforderliche Cookies',
+                  description: 'Diese Cookies sind für die grundlegende Funktion der Website erforderlich und können nicht deaktiviert werden.',
+                  linkedCategory: 'necessary'
+                },
+                {
+                  title: 'Leistung und Analyse (GTM)',
+                  description: 'Diese Cookies erfassen anonymisierte Informationen darüber, wie du unsere Website nutzt. Sie helfen uns dabei, das Angebot über den Google Tag Manager zu verbessern.',
+                  linkedCategory: 'analytics'
+                },
+                {
+                  title: 'Weitere Informationen',
+                  description: 'Bei Fragen zu unserer Cookie-Richtlinie oder deinen Auswahlmöglichkeiten kontaktiere uns bitte über die <a href="#contact-page">Kontaktseite</a>.'
+                }
+              ]
+            }
+          }
+        }
+      }
+    });
+  }, []);
 
   return <>
     <Head>
@@ -42,6 +99,17 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
       {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}></script>
       )}
+      <script
+        type="text/plain"
+        data-category="analytics"
+      >
+        {`(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N3L75KCB');`}
+      </script>
+
     </Head>
     <Flex direction="column" mih="100vh" h="100%" justify="space-between" className={withBackground ? styles.background : ''}>
       <Box as="header" height={60} className={styles.header}>
