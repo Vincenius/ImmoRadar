@@ -23,17 +23,16 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
-      if (user.Variant !== 'free') {
-        const { filename } = await generatePdf(id, user)
-        await sendEmail({
-          to: user.Email,
-          subject: `${subjectTextMap[user.Variant]} Förderreport`,
-          html: subsidyTemplate(),
-          pdfFilePath: filename,
-          pdfFileName: `${subjectTextMap[user.Variant]} Förderreport.pdf`
-        })
-        fs.unlinkSync(filename)
-      }
+      const { filename } = await generatePdf(id, user)
+      await sendEmail({
+        to: user.Email,
+        subject: `${subjectTextMap[user.Variant]} Förderreport`,
+        html: subsidyTemplate(),
+        pdfFilePath: filename,
+        pdfFileName: `${subjectTextMap[user.Variant]} Förderreport.pdf`
+      })
+      fs.unlinkSync(filename)
+
       res.status(200).json({})
     } else {
       res.status(400).json({})

@@ -58,7 +58,7 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
           {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
         </Card.Section>}
 
-        <Card.Section withBorder p="md">
+        <Card.Section withBorder p="md" mt="md">
           <Title order={3} size="h4" mb="md">Notizen:</Title>
           <Divider my="xl" />
           <Divider my="xl" />
