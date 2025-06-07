@@ -3,16 +3,17 @@ import { sendEmail } from '@/utils/emails';
 import premiumPlusNotification from '@/utils/templates/premium-plus-notification';
 import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 import { createAccount } from '@/utils/brevo';
+import prices from '@/utils/stripePrices';
 
 const stripe = Stripe(process.env.STRIPE_SECRET_KEY)
 
 const priceMap = {
-  'price_1RPju3KQunG297XzcWcM9VJz': 'starter',
-  'price_1RPjyAKQunG297XzPZzO1d6C': 'premium',
-  'price_1RPjyzKQunG297XzNkEXxG4r': 'premium', // upgrade from starter
-  'price_1RT1EtKQunG297XzxXn4Lrma': 'premium_plus',
-  'price_1RT2NrKQunG297XzwJWOe8Cm': 'premium_plus', // upgrade from starter to plus
-  'price_1RT2QYKQunG297Xz4p8QI6Cv': 'premium_plus' // upgrade from starter to plus
+  [prices.starter]: 'starter',
+  [prices.premium]: 'premium',
+  [prices.premium_upgrade]: 'premium', // upgrade from starter
+  [prices.premium_plus]: 'premium_plus',
+  [prices.premium_plus_upgrade_starter]: 'premium_plus', // upgrade from starter to plus
+  [prices.premium_plus_upgrade_premium]: 'premium_plus' // upgrade from starter to plus
 }
 
 
@@ -54,7 +55,7 @@ export default async function handler(req, res) {
           await createAccount(session.customer_details.email)
         }
 
-        if (['price_1RT1EtKQunG297XzxXn4Lrma', 'price_1RT2NrKQunG297XzwJWOe8Cm', 'price_1RT2QYKQunG297Xz4p8QI6Cv'].includes(price)) {
+        if ([prices.premium_plus, prices.premium_plus_upgrade_premium, prices.premium_plus_upgrade_starter].includes(price)) {
           await sendEmail({
             to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
             subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus gekauft`,
