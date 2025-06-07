@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { useRouter } from 'next/router'
 import Layout from "@/components/Layout/Layout";
-import { Box, Button, Card, Flex, NumberFormatter, Popover, Stepper, Timeline, Title, Text, Table } from "@mantine/core";
+import { Box, Button, Card, Flex, NumberFormatter, Popover, Stepper, Timeline, Title, Text } from "@mantine/core";
 import { IconCheck, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import ResultTable from "@/components/ResultTable/ResultTable";
