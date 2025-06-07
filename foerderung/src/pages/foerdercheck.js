@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useRouter } from 'next/router'
-import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, List, ThemeIcon, Modal } from '@mantine/core';
+import { Flex, Text, Group, Button, Title, Box, TextInput, Stepper, Chip, Select, Card, List, ThemeIcon, Modal, NumberFormatter } from '@mantine/core';
 import { IconHome, IconBackhoe, IconCheck } from '@tabler/icons-react'
 import SelectButton from '@/components/Inputs/SelectButton';
 import Layout from '@/components/Layout/Layout'
@@ -11,7 +11,6 @@ import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
 import ResultTable from '@/components/ResultTable/ResultTable';
 import WithInfo from '@/components/WithInfo/WithInfo';
-import styles from '@/styles/Home.module.css'
 
 const helperTexts = {
   "Altersgerechter Umbau": "Umbauten, die die Wohnung oder das Haus barrierefrei machen – z. B. bodengleiche Dusche, breite Türen oder Treppenlifte.",
