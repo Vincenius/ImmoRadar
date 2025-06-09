@@ -4,6 +4,7 @@ import Layout from '@/components/Layout/Layout'
 import { Title, Container, Button, Group, Text, Card } from '@mantine/core';
 import { IconDownload, IconListCheck, IconShoppingCart } from '@tabler/icons-react';
 import Link from 'next/link';
+import headers from '@/utils/fetchHeader';
 
 const variantTextMap = {
   'free': 'Kostenfreie',
@@ -29,7 +30,8 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
     method: 'GET',
     headers: {
-      'x-api-key': process.env.API_KEY
+      'x-api-key': process.env.API_KEY,
+      ...headers
     }
   }).then(res => res.json())
 

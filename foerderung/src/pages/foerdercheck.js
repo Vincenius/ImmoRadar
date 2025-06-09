@@ -11,6 +11,7 @@ import Pricing from '@/components/Pricing/Pricing';
 import Checkout from '@/components/Checkout/Checkout';
 import ResultTable from '@/components/ResultTable/ResultTable';
 import WithInfo from '@/components/WithInfo/WithInfo';
+import headers from '@/utils/fetchHeader';
 
 const helperTexts = {
   "Altersgerechter Umbau": "Umbauten, die die Wohnung oder das Haus barrierefrei machen – z. B. bodengleiche Dusche, breite Türen oder Treppenlifte.",
@@ -46,7 +47,8 @@ export async function getServerSideProps({ resolvedUrl }) {
     const subsidyData = await fetch(`${baseUrl}/api/subsidies`, {
       method: 'GET',
       headers: {
-        'x-api-key': process.env.API_KEY
+        'x-api-key': process.env.API_KEY,
+        ...headers
       }
     }).then(res => res.json())
     return {
@@ -58,13 +60,15 @@ export async function getServerSideProps({ resolvedUrl }) {
     fetch(`${baseUrl}/api/subsidies?id=${id}`, {
       method: 'GET',
       headers: {
-        'x-api-key': process.env.API_KEY
+        'x-api-key': process.env.API_KEY,
+        ...headers
       }
     }).then(res => res.json()),
     fetch(`${baseUrl}/api/subsidies`, {
       method: 'GET',
       headers: {
-        'x-api-key': process.env.API_KEY
+        'x-api-key': process.env.API_KEY,
+        ...headers
       }
     }).then(res => res.json()),
   ])

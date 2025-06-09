@@ -5,6 +5,7 @@ import { Box, Button, Card, Flex, NumberFormatter, Popover, Stepper, Timeline, T
 import { IconCheck, IconX } from "@tabler/icons-react";
 import Link from "next/link";
 import ResultTable from "@/components/ResultTable/ResultTable";
+import headers from "@/utils/fetchHeader";
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -23,7 +24,8 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   const data = await fetch(`${baseUrl}/api/subsidies?id=${id}&ignoreQuestions=true`, {
     method: 'GET',
     headers: {
-      'x-api-key': process.env.API_KEY
+      'x-api-key': process.env.API_KEY,
+      ...headers
     }
   }).then(res => res.json())
 

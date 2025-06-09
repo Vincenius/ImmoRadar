@@ -5,6 +5,7 @@ import Checkout from '@/components/Checkout/Checkout';
 import Pricing from '@/components/Pricing/Pricing';
 import { IconCircleCheck } from '@tabler/icons-react';
 import { useRouter } from 'next/router';
+import headers from '@/utils/fetchHeader';
 
 export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -24,7 +25,8 @@ export async function getServerSideProps({ resolvedUrl }) {
   const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
     method: 'GET',
     headers: {
-      'x-api-key': process.env.API_KEY
+      'x-api-key': process.env.API_KEY,
+      ...headers
     }
   }).then(res => res.json())
 

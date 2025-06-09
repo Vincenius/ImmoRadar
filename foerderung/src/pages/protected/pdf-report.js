@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import SubsidyReport from '@/components/SubsidyReport/SubsidyReport';
+import headers from '@/utils/fetchHeader';
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
   const headerValue = req.headers['x-api-key'];
@@ -20,7 +21,8 @@ export async function getServerSideProps({ req, res, resolvedUrl }) {
   const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
     method: 'GET',
     headers: {
-      'x-api-key': process.env.API_KEY
+      'x-api-key': process.env.API_KEY,
+      ...headers
     }
   }).then(res => res.json())
 
