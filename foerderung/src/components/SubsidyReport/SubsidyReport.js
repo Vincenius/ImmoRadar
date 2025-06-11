@@ -25,11 +25,12 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
 
   return (
     <>
-      {index > 0 && !isPaid && <Box my="xl"></Box>}
-      {index > 0 && isPaid && <div style={{ pageBreakBefore: 'always' }}></div>}
+      {!isPaid && index > 0 && index % 2 === 0  && <Box my="xl"></Box>}
+      {!isPaid && index > 0 && index % 2 === 1  && <div style={{ pageBreakBefore: 'always' }}></div>}
+      {isPaid && index > 0 && <div style={{ pageBreakBefore: 'always' }}></div>}
       <Card withBorder>
         <Card.Section p="md" className={classes.pattern} withBorder mb="md">
-          <Title order={3} size="h3" id={`headline-${type}-${index}`}>{subsidy.Name}</Title>
+          <Title order={3} size="h3" id={`headline-${type}-${index}`} c="white">{subsidy.Name}</Title>
         </Card.Section>
 
         {user.Type.length > 1 && <Text size="xs"><strong>Art der Förderung:</strong> {subsidy.Type.join(', ')}</Text>}
@@ -116,7 +117,7 @@ function SubsidyReport({ data, baseUrl }) {
         <SectionHeader
           title="Direkt beantragbare Förderungen"
           text="Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung."
-          image={`${baseUrl}/imgs/pdf/self-header.jpg`}
+          image={`${baseUrl}/imgs/tmp-self.jpg`}
         />
         <Box px="4em">
           {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="self" />)}

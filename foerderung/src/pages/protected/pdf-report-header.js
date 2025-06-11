@@ -62,12 +62,16 @@ const PdfReport = ({ data, baseUrl }) => {
   const checkoutLink = `${baseUrl}/checkout?id=${user.uuid}`
 
   return <Box>
-    <Box bg="cyan.9" py="xl">
-      <Image component={NextImage} src="/imgs/logo.png" width={150} height={150} w={150} h={150} alt="Logo" mx="auto" mb="md" />
-      <Title order={1} size="4em" fw="lighter" c="#fff" align="center">Dein Förderreport</Title>
-      <Text ta="center" c="#fff" mb="sm">- {variantTextMap[user.Variant]} Variante -</Text>
-      <Text ta="center" c="#fff">vom {new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
+    <Box pos="relative" style={{ overflow: 'hidden' }}>
+      <Image pos="absolute" component={NextImage} src="/imgs/logo.png" width={40} height={40} w={40} h={40} alt="Logo" mt="2em" ml="4em" />
+      <Image src="/imgs/tmp-header.jpg" w="100%" h={300} pos="absolute" zIndex={-1} className={classes.sectionHeaderImage} style={{ zIndex: -1, top: 0 }} />
+      <Box px="4em" zIndex={1} py="4em">
+        <Title order={1} size="4em" fw="lighter" c="#000" align="center">Dein Förderreport</Title>
+        <Text ta="center" c="#000" mb="sm">- {variantTextMap[user.Variant]} Variante -</Text>
+        <Text ta="center" c="#000">vom {new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
+      </Box>
     </Box>
+
 
     <Box px="4em" mt="xl">
       <Box mb="2em">
