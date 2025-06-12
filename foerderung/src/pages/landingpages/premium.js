@@ -37,8 +37,8 @@ const FaqItem = ({ question, answer }) => (
 export default function FoerdercheckPremium() {
   return (
     <Layout
-      title="Fördercheck Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
-      description="59 €, einmalig: Mit dem Premium-Fördercheck erhältst du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
+      title="Förderreport Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
+      description="59 €, einmalig: Mit dem Premium-Förderreport erhältst du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -48,7 +48,7 @@ export default function FoerdercheckPremium() {
             Du willst Förderung – aber keine Fehler machen?
           </Title>
           <Title order={2} size="h4" fw="normal" mb="lg">
-            Mit dem Fördercheck Premium bekommst du nicht nur eine Liste aller passenden Zuschüsse – sondern auch eine verständliche Schritt-für-Schritt-Anleitung zur Umsetzung.
+            Mit dem Förderreport Premium bekommst du nicht nur eine Liste aller passenden Zuschüsse – sondern auch eine verständliche Schritt-für-Schritt-Anleitung zur Umsetzung.
           </Title>
           <List spacing="xs">
             <List.Item icon={<IconCheck size={18} />}>Alle Zuschüsse auf einen Blick</List.Item>
@@ -56,7 +56,7 @@ export default function FoerdercheckPremium() {
             <List.Item icon={<IconCheck size={18} />}>Ideal für alle, die nichts übersehen wollen</List.Item>
           </List>
           <Button maw="440px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconRocket size={24} />}>
-            Fördercheck Premium starten – 59 €
+            Förderreport Premium erstellen – 59 €
           </Button>
         </Flex>
       </Box>
@@ -65,7 +65,7 @@ export default function FoerdercheckPremium() {
       <Box py="6em">
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
           <Title order={2} ta="center" mb="md">Was du bekommst</Title>
-          <Text ta="center" mb="xl">Der Fördercheck Premium ist perfekt für dich, wenn du…</Text>
+          <Text ta="center" mb="xl">Der Förderreport Premium ist perfekt für dich, wenn du…</Text>
           <List spacing="lg" center icon={<ThemeIcon color="cyan.9" variant="light" size={24} radius="xl"><IconCheck size={16} /></ThemeIcon>} maw={600} mx="auto">
             <List.Item>…nicht nur wissen willst, was es gibt – sondern wie du es bekommst</List.Item>
             <List.Item>…sicher gehen willst, nichts zu übersehen</List.Item>
@@ -90,7 +90,7 @@ export default function FoerdercheckPremium() {
         <Card radius="md" py="3em" maw={800} mx="auto" bg="cyan.0">
           <Title order={2} ta="center" mb="md">Dein Vorteil gegenüber der Starter-Version</Title>
           <Text ta="center" mb="lg" maw={700} mx="auto" fs="italic">
-            Der Fördercheck Premium gibt dir nicht nur Infos – sondern auch Umsetzungssicherheit.
+            Der Förderreport Premium gibt dir nicht nur Infos – sondern auch Umsetzungssicherheit.
             Viele Förderprogramme scheitern an Formalitäten. Mit der Anleitung weißt du genau, was du tun musst.
             Sparen ist gut – aber Förderung auch zu bekommen ist besser.
           </Text>
@@ -163,7 +163,7 @@ export default function FoerdercheckPremium() {
         <Text ta="center" mt="md">✅ Ideal für alle, die Förderung gezielt nutzen wollen.</Text>
         <Text ta="center" mb="md">💶 Nur 59 € – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
-          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt Fördercheck Premium starten</Button>
+          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Premium erstellen</Button>
         </Box>
       </Box>
 
@@ -196,7 +196,7 @@ export default function FoerdercheckPremium() {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           ⏳ Zuschüsse verfallen oft – und Fehler kosten dich bares Geld. <br />
           🎯 Mit dem Premium-Check gehst du auf Nummer sicher. <br />
-          👉 Starte jetzt mit dem Fördercheck Premium für nur 59 €
+          👉 Starte jetzt mit dem Förderreport Premium für nur 59 €
         </Text>
         <Box ta="center">
           <Button

@@ -5,6 +5,8 @@ import Link from 'next/link';
 import { IconCheck, IconCheckbox, IconQuote } from '@tabler/icons-react';
 import NextImage from 'next/image';
 import Pricing from '@/components/Pricing/Pricing';
+import ButtonMultiLine from '@/components/Inputs/ButtonMultiLine';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
 const FaqItem = ({ question, answer }) => <Accordion.Item value={question}>
   <Accordion.Control><b>{question}</b></Accordion.Control>
@@ -18,18 +20,28 @@ export default function Foerderung() {
       description=" Bekommst kostenlos eine Übersicht aller relevanten Zuschüsse und Förderkredite, individuell abgestimmt auf dein Projekt und deine Region."
     >
       <Box className={styles.header} py="xl">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/family.jpg"
+            alt="Familie unter einem Hausdach"
+            height={800}
+            width={1200}
+            w="100%"
+            h="100%"
+          />
+        </div>
 
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box my={{ base: '4em', sm: '8em' }}>
               <Title mb="md" fw="lighter" className={styles.title}>Jetzt deine Fördermittel sichern - mit nur einem Klick zur passenden Förderung</Title>
               <Title order={2} size="h4" mb="3em" fw="normal" w="70%">
-                Mit dem kostenlosen FörderCheck findest du in weniger als 2 Minuten die besten Förderungen für dein Bauvorhaben - bundesweit, regional & individuell.
+                Mit dem kostenlosen Förderreport findest du in weniger als 2 Minuten die besten Förderungen für dein Bauvorhaben - bundesweit, regional & individuell.
               </Title>
-              <Button component={Link} href="/foerdercheck" size="xl" leftSection={<IconCheckbox size={24} />}>
+              <ButtonMultiLine component={Link} href="/foerdercheck" size="xl" p="md" leftSection={<IconCheckbox size={24} />}>
                 Jetzt Förderprogramme prüfen
-              </Button>
+              </ButtonMultiLine>
             </Box>
           </Flex>
         </Flex>
@@ -94,31 +106,76 @@ export default function Foerderung() {
         </Flex>
       </Box>
 
-      <Box pt="8em" pb="12em" pos="relative">
-        <Flex mt="-14em" mb="6em" gap="4em" direction={{ base: 'column', xs: 'row' }}>
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Stefan W." w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
-            Dank dem FörderCheck habe ich 20.000 € Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!
-          </Blockquote>
+      <Box py="8em" pos="relative">
+        <Box mt="-14em" mb="8em" gap="4em">
+          <QuoteSlider quotes={[
+            {
+              text: "„Dank dem Förderreport habe ich 20.000 € Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!“",
+              author: "– Stefan W., Sanierung"
+            },
+            {
+              text: "„Ich wusste gar nicht, dass es so viele Fördermöglichkeiten gibt! Mit der Premium-Version konnte ich den Antrag schnell und korrekt ausfüllen ohne stundenlang zu recherchieren.“",
+              author: "– Nina M., Neubau"
+            },
+            {
+              text: "„Ich hatte vorher schon recherchiert, aber die Struktur hier hat mir bestimmt zwei Tage Arbeit abgenommen.“",
+              author: "– David P., Sanierung"
+            },
+            {
+              text: "„Ohne den Starter-Check hätten wir das 5.000 € Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
+              author: "– Sandra K., Sanierung"
+            },
+            {
+              text: "„Wir wollten es selbst in die Hand nehmen – der Förderreport Starter hat uns sofort das richtige Fundament gegeben.“",
+              author: "– Jonas H., Neubau"
+            },
+            {
+              text: "„Durch die Anleitung haben wir 12.400 € für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
+              author: "– Miriam S., Neubau"
+            },
+          ]} />
+        </Box>
 
-          <Blockquote icon={<IconQuote />} radius="sm" color="cyan" cite="– Nina M." w="100%" styles={{ root: { backgroundColor: 'var(--mantine-primary-color-0)' } }}>
-            Ich wusste gar nicht, dass es so viele Fördermöglichkeiten gibt! Mit der Premium-Version konnte ich den Antrag schnell und korrekt ausfüllen ohne stundenlang zu recherchieren.
-          </Blockquote>
-        </Flex>
         <Title order={2} ta="center" mb="xl" size="h1">Preise</Title>
-
         <Pricing
           showFree
           plan="free"
           CtaStarter={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
-            Jetzt kostenlos starten!
+            Jetzt starten!
           </Button>}
           CtaPremium={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
-            Jetzt kostenlos starten!
+            Jetzt starten!
           </Button>}
           CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
-            Jetzt kostenlos starten!
+            Jetzt starten!
           </Button>}
         />
+      </Box>
+
+      <Box pb="8em" pos="relative">
+        <Title order={2} ta="center" mb="xl" size="h1">Stimmen vom Team</Title>
+        <QuoteSlider quotes={[
+          {
+            text: '„Förderung muss nicht kompliziert sein – das war mein Anspruch bei der Entwicklung. Der Förderreport vereint technologische Präzision mit intuitivem Design. In wenigen Klicks erhalten Nutzer:innen eine individuelle Übersicht und konkrete Schritte – ohne Fachjargon, aber mit Tiefgang. "So wird aus einem Bürokratie-Monster ein Werkzeug, das wirklich hilft.“',
+            author: "– Vincent, Webentwickler – UI & UX",
+            img: "/imgs/team/vincent.jpg"
+          },
+          {
+            text: "„Wer Förderung beantragen will, muss oft durch einen Paragrafendschungel – und läuft Gefahr, durch Formfehler oder Fristen wichtige Gelder zu verlieren. Der Förderreport vereinfacht diesen Prozess enorm: Er zeigt, was möglich ist, welche Bedingungen gelten und wo Stolpersteine liegen. So werden nicht nur Chancen sichtbar, sondern Risiken reduziert. “Ein wertvolles Werkzeug mit klarem Nutzen.",
+            author: "– Sergey, Rechtsberater",
+            img: "/imgs/team/sergey.jpg"
+          },
+          {
+            text: '„Förderprogramme sind voller Möglichkeiten – und voller Stolperfallen. Ich liebe es, in jedes Detail zu gehen, um das Maximum für ein Projekt herauszuholen. "Wer Förderung clever nutzen will, findet hier den besten Einstieg.“',
+            author: "– Michael, Experte für Förderungen",
+            img: "/imgs/team/michael.jpg"
+          },
+          {
+            text: '„Als Ingenieur weiß ich, dass eine gute Lösung immer strukturiert, logisch und effizient ist – genau das leistet unser Förderreport. Besonders in Kombination mit Finanzfragen bietet er Menschen eine realistische Einschätzung: Was ist machbar? Was ist förderfähig? Und wie wird aus einer Idee ein tragfähiges Projekt? Das Ergebnis: "Sicherheit, Planbarkeit – und oft zehntausende Euro mehr Spielraum.“',
+            author: "– Christof, Maschinenbauingenieur – Förderungen",
+            img: "/imgs/team/chris.jpg"
+          },
+        ]} />
       </Box>
 
       <Box py="6em" pos="relative">
@@ -128,13 +185,13 @@ export default function Foerderung() {
         <Box bg="white" maw="600px" m="0 auto" >
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
-              question="Was kostet der FörderCheck?"
-              answer="Die Nutzung des FörderCheck ist kostenlos. Mit der Starter-Variante (einmalig 39 €) sparst du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu deinem Projekt passen."
+              question="Was kostet der Förderreport?"
+              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 €) sparst du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu deinem Projekt passen."
             />
             <FaqItem
-              question="Welche Förderungen berücksichtigt der FörderCheck?"
+              question="Welche Förderungen berücksichtigt der Förderreport?"
               answer={<Box>
-                <Text mb="sm">Der FörderCheck durchsucht für dich automatisch:</Text>
+                <Text mb="sm">Der Förderreport durchsucht für dich automatisch:</Text>
                 <List
                   spacing="sm"
                   mb="sm"
@@ -154,7 +211,7 @@ export default function Foerderung() {
             />
             <FaqItem
               question="Wie schnell erhalte ich mein Ergebnis?"
-              answer="Direkt nach dem Ausfüllen des FörderCheck siehst du sofort deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
+              answer="Direkt nach dem Ausfüllen des FörderChecks siehst du sofort deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
             />
             <FaqItem
               question="Kann ich die Starter- oder Premium-Variante auch nachträglich kaufen?"
@@ -164,12 +221,22 @@ export default function Foerderung() {
         </Box>
       </Box>
 
-      <Box py="6em" pos="relative">
-        <div className={styles.background}></div>
+      <Box py="8em" pos="relative">
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/couple.jpg"
+            alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
+            height={800}
+            width={1200}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Box align="center">
           <Title order={2} ta="center" mb="md" size="h1">Unverbindlich Förderungen prüfen – kostenlos & individuell</Title>
-          <Text mb="3em" fs="italic">Finde mit dem FörderCheck ganz einfach heraus, welche Zuschüsse, Kredite und Förderprogramme für deinen Bau oder deine Sanierung möglich sind. Kein Risiko – sofort loslegen.</Text>
-          <Button leftSection={<IconCheckbox size={24} />} size="xl" component={Link} href="/foerdercheck">Jetzt FörderCheck Starten!</Button>
+          <Text mb="3em" fs="italic">Finde mit dem Förderreport ganz einfach heraus, welche Zuschüsse, Kredite und Förderprogramme für deinen Bau oder deine Sanierung möglich sind. Kein Risiko – sofort loslegen.</Text>
+          <Button leftSection={<IconCheckbox size={24} />} size="xl" component={Link} href="/foerdercheck">Jetzt Förderreport erstellen!</Button>
         </Box>
       </Box>
 

@@ -28,7 +28,7 @@ const FaqItem = ({ question, answer }) => (
 export default function FoerdercheckStarter() {
   return (
     <Layout
-      title="Fördercheck Starter – Alle Zuschüsse auf einen Blick"
+      title="Förderreport Starter – Alle Zuschüsse auf einen Blick"
       description="Für nur 39 € bekommst du eine individuell sortierte Übersicht deiner Fördermöglichkeiten – sofort als PDF."
     >
       {/* HERO SECTION */}
@@ -39,7 +39,7 @@ export default function FoerdercheckStarter() {
             Du willst bauen, sanieren oder modernisieren – aber keine Förderung verpassen?
           </Title>
           <Title order={2} size="h4" fw="normal" mb="lg">
-            Mit dem Starter-Fördercheck bekommst du in wenigen Minuten Klarheit über alle Zuschüsse, die wirklich zu deinem Projekt passen.
+            Mit dem Starter-Förderreport bekommst du in wenigen Minuten Klarheit über alle Zuschüsse, die wirklich zu deinem Projekt passen.
             Ohne Bürokratie, ohne Vorwissen – einfach starten und sparen.
           </Title>
           <List spacing="xs">
@@ -47,7 +47,7 @@ export default function FoerdercheckStarter() {
             <List.Item icon={<IconCheck size={18} />}>Persönlicher Ergebnisbericht</List.Item>
             <List.Item icon={<IconCheck size={18} />}>Für Bau, Sanierung, Heizung, PV & mehr</List.Item>
           </List>
-          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Fördercheck machen – 39 €</Button>
+          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Förderreport erstellen – 39 €</Button>
         </Flex>
       </Box>
 
@@ -55,7 +55,7 @@ export default function FoerdercheckStarter() {
       <Box py="6em">
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
           <Title order={2} ta="center" mb="md">Was du bekommst</Title>
-          <Text ta="center" mb="xl">Der Fördercheck Starter ist perfekt für dich, wenn du...</Text>
+          <Text ta="center" mb="xl">Der Förderreport Starter ist perfekt für dich, wenn du...</Text>
           <List spacing="lg" center icon={<ThemeIcon color="cyan.9" variant="light" size={24} radius="xl"><IconCheck size={16} /></ThemeIcon>} maw={600} mx="auto">
             <List.Item>…dir einen ersten Überblick verschaffen willst</List.Item>
             <List.Item>…Zuschüsse nicht verpassen möchtest</List.Item>
@@ -80,7 +80,7 @@ export default function FoerdercheckStarter() {
           <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
           <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
             In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-            Mit dem Fördercheck vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+            Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
           </Text>
         </Card>
       </Box>
@@ -108,7 +108,7 @@ export default function FoerdercheckStarter() {
             author: "– Sandra K., Sanierung"
           },
           {
-            text: "„Wir wollten es selbst in die Hand nehmen – der Fördercheck Starter hat uns sofort das richtige Fundament gegeben.“",
+            text: "„Wir wollten es selbst in die Hand nehmen – der Förderreport Starter hat uns sofort das richtige Fundament gegeben.“",
             author: "– Jonas H., Neubau"
           }
         ]} />
@@ -151,7 +151,7 @@ export default function FoerdercheckStarter() {
         <Text ta="center" mt="md">✅ Ideal für alle, die eigenständig handeln möchten.</Text>
         <Text ta="center" mb="md">💶 Nur 39 € – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
-          <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href="/foerdercheck">Jetzt Fördercheck Starter kaufen</Button>
+          <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Starter kaufen</Button>
         </Box>
       </Box>
 
@@ -184,10 +184,10 @@ export default function FoerdercheckStarter() {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           📋 Schneller Überblick über passende Förderungen.<br />
           💡 Ideal für alle, die sich selbst informieren wollen<br />
-          👉 Starte jetzt mit dem Fördercheck Starter für nur 39 €
+          👉 Erstelle jetzt den Förderreport Starter für nur 39 €
         </Text>
         <Box ta="center">
-          <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt mit dem Fördercheck Starter starten</Button>
+          <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt den Förderreport Starter erstellen</Button>
         </Box>
       </Box>
     </Layout>

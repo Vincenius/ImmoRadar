@@ -29,7 +29,7 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
       {!isPaid && index > 0 && index % 2 === 1  && <div style={{ pageBreakBefore: 'always' }}></div>}
       {isPaid && index > 0 && <div style={{ pageBreakBefore: 'always' }}></div>}
       <Card withBorder>
-        <Card.Section p="md" className={classes.pattern} withBorder mb="md">
+        <Card.Section p="md" bg="cyan.9" withBorder mb="md">
           <Title order={3} size="h3" id={`headline-${type}-${index}`} c="white">{subsidy.Name}</Title>
         </Card.Section>
 
@@ -88,7 +88,7 @@ function SubsidyReport({ data, baseUrl }) {
     <>
       <SectionHeader
         title={`Deine ${filteredSubsidies.length} Förderungen`}
-        image={`${baseUrl}/imgs/pdf/overview-header.jpg`}
+        image={`${baseUrl}/imgs/pdf/overview-2-header.jpg`}
       />
       <Box className={classes.container} px="4em">
         <Card withBorder p="md">
@@ -117,7 +117,7 @@ function SubsidyReport({ data, baseUrl }) {
         <SectionHeader
           title="Direkt beantragbare Förderungen"
           text="Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung."
-          image={`${baseUrl}/imgs/tmp-self.jpg`}
+          image={`${baseUrl}/imgs/pdf/self-header.jpg`}
         />
         <Box px="4em">
           {selfSubsidies.map((subsidy, index) => <SubsidyItem key={subsidy.Name} user={user} index={index} subsidy={subsidy} type="self" />)}
@@ -133,7 +133,7 @@ function SubsidyReport({ data, baseUrl }) {
         />
         {isPremium && <Box ta="center">
           <Button mb="xs" fw="bold" component="a" size="md" href="https://www.energie-effizienz-experten.de/fuer-private-bauherren/finden-sie-experten-in-ihrer-naehe/suchergebnis">
-            Finde jetzt einen qualifizierten Finanzierungsberater
+            Finde jetzt einen qualifizierten Energieberater
           </Button>
           <Text mx="6em" size="xs" fs="italic" mb="xl">Hinweis: Für Inhalt und Aktualität des verlinkten PDFs ist die jeweils angegebene Seite bzw. der Anbieter verantwortlich.</Text>
         </Box>}
@@ -146,12 +146,12 @@ function SubsidyReport({ data, baseUrl }) {
         <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Kredite mit Finanzierungspartner"
-          text="Diese Kredite beantragst du über einen Finanzierungsberater oder deine Hausbank."
+          text="Diese Kredite beantragst du über einen Finanzierungsberater."
           image={`${baseUrl}/imgs/pdf/bank-header.jpg`}
         />
         {isPremium && <Box ta="center">
-          <Button fw="bold" mb="xl" component="a" size="md" href="#todo">
-            Finde jetzt einen qualifizierten Finanzierungsberater
+          <Button fw="bold" mb="xl" component="a" size="md" href="https://horn_rozanski_baufinanzierung.finlink.de/rainer-rozanski/start/finance_type?partner=5fd1c7f1-1ad3-4b8d-9870-10080131ab56&partnerCompany=Oliver%20Rausch&primaryColor=000">
+            Jetzt direkt zum Finanzierungsberater!
           </Button>
         </Box>}
         <Box px="4em">

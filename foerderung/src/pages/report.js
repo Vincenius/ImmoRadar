@@ -144,7 +144,7 @@ export default function Report({ data, baseUrl, id }) {
         </Card>}
 
         {user.Variant !== 'free' && answeredQuestions && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
-          <Title order={1} mb="xl">Dein persönlicher Fördercheck ist fertig!</Title>
+          <Title order={1} mb="xl">Dein persönlicher Förderreport ist fertig!</Title>
 
           <Text mb="xl" size="md">
             Basierend auf deinen Angaben haben wir eine individuelle Auswertung für dich erstellt.

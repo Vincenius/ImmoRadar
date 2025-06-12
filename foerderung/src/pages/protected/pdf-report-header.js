@@ -64,8 +64,8 @@ const PdfReport = ({ data, baseUrl }) => {
   return <Box>
     <Box pos="relative" style={{ overflow: 'hidden' }}>
       <Image pos="absolute" component={NextImage} src="/imgs/logo.png" width={40} height={40} w={40} h={40} alt="Logo" mt="2em" ml="4em" />
-      <Image src="/imgs/tmp-header.jpg" w="100%" h={300} pos="absolute" zIndex={-1} className={classes.sectionHeaderImage} style={{ zIndex: -1, top: 0 }} />
-      <Box px="4em" zIndex={1} py="4em">
+      <Image src="/imgs/pdf/overview-header.jpg" w="100%" h={500} pos="absolute" zIndex={-1} className={classes.sectionHeaderImage} style={{ zIndex: -1, top: 0 }} />
+      <Box px="4em" zIndex={1} py="10em">
         <Title order={1} size="4em" fw="lighter" c="#000" align="center">Dein Förderreport</Title>
         <Text ta="center" c="#000" mb="sm">- {variantTextMap[user.Variant]} Variante -</Text>
         <Text ta="center" c="#000">vom {new Date().toLocaleString('de-DE', { timeZone: 'Europe/Berlin', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' })}</Text>
@@ -95,7 +95,7 @@ const PdfReport = ({ data, baseUrl }) => {
         {(user.Variant === 'premium' || user.Variant === 'premium_plus') && (
           <>
             <Text size="xs" mb="xs">Du hältst die umfangreichste Version deines Förderreports in der Hand. Neben allen Inhalten aus der Starter-Variante enthält dieser Report detaillierte <strong>Schritt-für-Schritt-Anleitungen</strong> zur Beantragung deiner Förderungen.</Text>
-            <Text size="xs" mb="xs">Zusätzlich bekommst du direkten Zugang zu <strong>zertifizierten Energieberater*innen</strong> und <strong>qualifizierten Finanzierungspartnern</strong> in deiner Region – damit du deine Förderung schnell, sicher und stressfrei beantragen kannst.</Text>
+            <Text size="xs" mb="xs">Zusätzlich bekommst du direkten Zugang zu <strong>zertifizierten Energieberater*innen</strong> und <strong>qualifizierten Finanzierungspartnern</strong> – damit du deine Förderung schnell, sicher und stressfrei beantragen kannst.</Text>
           </>
         )}
 

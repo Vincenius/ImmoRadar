@@ -36,7 +36,7 @@ const FaqItem = ({ question, answer }) => (
 export default function FoerdercheckPremiumPlus() {
   return (
     <Layout
-      title="Fördercheck Premium Plus – Persönliche Beratung & Förderstrategie"
+      title="Förderreport Premium Plus – Persönliche Beratung & Förderstrategie"
       description="Mit dem Premium Plus Paket erhältst du persönliche Beratung durch Förder- und Finanzexpert:innen."
     >
       {/* HERO SECTION */}
@@ -119,7 +119,7 @@ export default function FoerdercheckPremiumPlus() {
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
           <Title order={2} ta="center" mb="xl">So läuft deine Premium Plus Beratung ab</Title>
           <List spacing="md" center maw={600} mx="auto" icon={<IconCalendar size={20} />}>
-            <List.Item>Fördercheck Premium starten</List.Item>
+            <List.Item>Förderreport Premium erstellen</List.Item>
             <List.Item>Termin vereinbaren für dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
             <List.Item>Analyse deiner Finanzlage & Projektabsicht</List.Item>
             <List.Item>Erstellung deiner individuellen Förderstrategie</List.Item>
@@ -155,7 +155,7 @@ export default function FoerdercheckPremiumPlus() {
 
         <Box ta="center" mt="md">
           <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">
-            Jetzt Fördercheck Premium Plus starten
+            Jetzt Förderreport Premium Plus erstellen
           </Button>
         </Box>
       </Box>
@@ -198,7 +198,7 @@ export default function FoerdercheckPremiumPlus() {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           🏠 Der Weg ins Eigenheim ist oft komplex – aber du musst ihn nicht allein gehen. <br />
           🎯 Lass uns gemeinsam dein Projekt auf sichere Beine stellen – mit Strategie, Struktur und persönlicher Begleitung. <br />
-          👉 Jetzt Fördercheck Premium Plus starten und mit Klarheit loslegen
+          👉 Jetzt Förderreport Premium Plus erstellen und mit Klarheit loslegen
         </Text>
         <Box ta="center">
           <Button
