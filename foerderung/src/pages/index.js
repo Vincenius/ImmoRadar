@@ -25,8 +25,8 @@ export default function Foerderung() {
             component={NextImage}
             src="/imgs/family.jpg"
             alt="Familie unter einem Hausdach"
-            height={800}
-            width={1200}
+            height={300}
+            width={500}
             w="100%"
             h="100%"
           />
@@ -227,8 +227,8 @@ export default function Foerderung() {
             component={NextImage}
             src="/imgs/couple.jpg"
             alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
-            height={800}
-            width={1200}
+            height={300}
+            width={500}
             w="100%"
             h="100%"
           />
