@@ -423,16 +423,16 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 <Pricing
                   plan="free"
                   showFree
-                  CtaFree={<Button mt="lg" variant="outline" onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth>
+                  CtaFree={<Button onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth>
                     Kostenlos testen
                   </Button>}
-                  CtaStarter={<Button mt="lg" onClick={() => goToPayment('starter')} loading={isLoading} fullWidth>
+                  CtaStarter={<Button onClick={() => goToPayment('starter')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
-                  CtaPremium={<Button mt="lg" variant="outline" onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
+                  CtaPremium={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
-                  CtaPremiumPlus={<Button mt="lg" variant="outline" onClick={() => goToPayment('premium_plus')} loading={isLoading} fullWidth>
+                  CtaPremiumPlus={<Button onClick={() => goToPayment('premium_plus')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
                 />

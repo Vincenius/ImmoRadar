@@ -65,19 +65,19 @@ function ReportCheckout({ id, email, name, plan, defaultPlan }) {
       <Title order={1} mt="xl" mb="lg">Checkout</Title>
       {!variant && <Pricing
         plan={plan}
-        CtaStarter={<Button mt="lg" variant="outline" onClick={() => setVariant('starter')} disabled={plan === 'starter' || plan === 'premium'} fullWidth>
+        CtaStarter={<Button variant="outline" onClick={() => setVariant('starter')} disabled={plan === 'starter' || plan === 'premium'} fullWidth>
           {plan === 'starter' ? <><IconCircleCheck size={16} />&nbsp;Du hast diese Variante bereits</> : 'Jetzt Kaufen'}
         </Button>}
-        CtaPremium={<Button mt="lg" onClick={() => setVariant(plan === 'starter' ? 'premium_upgrade' : 'premium')} disabled={plan === 'premium'} fullWidth>
+        CtaPremium={<Button onClick={() => setVariant(plan === 'starter' ? 'premium_upgrade' : 'premium')} disabled={plan === 'premium'} fullWidth>
           {plan === 'starter' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
-        CtaPremiumPlus={<Button mt="lg" variant="outline" onClick={() => setVariant(upgradeMap[plan] || 'premium_plus')} fullWidth>
+        CtaPremiumPlus={<Button variant="outline" onClick={() => setVariant(upgradeMap[plan] || 'premium_plus')} fullWidth>
           {plan === 'starter' || plan === 'premium' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">
         <Checkout email={email} name={name} id={id} variant={variant} />
-        <Button mt="lg" variant="outline" onClick={() => goBack()} w="150px">Zurück</Button>
+        <Button variant="outline" onClick={() => goBack()} w="150px">Zurück</Button>
       </Card>}
     </Layout>
   )

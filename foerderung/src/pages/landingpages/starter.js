@@ -3,18 +3,19 @@ import {
   Text,
   Title,
   Box,
-  Blockquote,
   Accordion,
   Divider,
   List,
   ThemeIcon,
   Table,
-  Card
+  Card,
+  Image
 } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
-import { IconCheck, IconQuote, IconDownload, IconSearch, IconShoppingCart, IconAlertTriangle, IconRocket } from '@tabler/icons-react';
+import NextImage from 'next/image';
+import { IconCheck, IconDownload, IconSearch, IconShoppingCart, IconRocket } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
@@ -33,7 +34,17 @@ export default function FoerdercheckStarter() {
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/family.jpg"
+            alt="Familie unter einem Hausdach"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Flex mih="calc(100vh - 70px - 64px)" direction="column" justify="center">
           <Title fw="lighter" className={styles.title} mb="md">
             Du willst bauen, sanieren oder modernisieren – aber keine Förderung verpassen?
@@ -75,13 +86,27 @@ export default function FoerdercheckStarter() {
       </Box>
 
       {/* WARUM SINNVOLL */}
-      <Box py="6em">
-        <Card bg="cyan.0" radius="md" py="3em">
-          <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
-          <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
-            In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-            Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
-          </Text>
+      <Box pt="3em" pb="8em">
+        <Card radius="md" p="0" withBorder shadow="md">
+          <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
+            <Image
+              component={NextImage}
+              src="/imgs/family-2.jpg"
+              alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
+              height={300}
+              width={500}
+              w={{ base: '100%', md: '500px' }}
+              h={{ base: '200px', md: '100%' }}
+              mah="400px"
+            />
+            <Box p="xl">
+              <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
+              <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
+                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+              </Text>
+            </Box>
+          </Flex>
         </Card>
       </Box>
 
@@ -110,6 +135,10 @@ export default function FoerdercheckStarter() {
           {
             text: "„Wir wollten es selbst in die Hand nehmen – der Förderreport Starter hat uns sofort das richtige Fundament gegeben.“",
             author: "– Jonas H., Neubau"
+          },
+          {
+            text: "„Die Einschätzung kam direkt, war leicht verständlich und hat uns auf ein Programm gebracht, das wir gar nicht auf dem Schirm hatten – 6.300 € gesichert.“",
+            author: "– Elena & Mark T., Sanierung"
           }
         ]} />
 
@@ -117,14 +146,27 @@ export default function FoerdercheckStarter() {
 
       {/* SO FUNKTIONIERT'S */}
       <Box py="6em" bg="gray.0">
-        <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
-          <Title order={2} ta="center" mb="xl">So funktioniert’s</Title>
-          <List mb="lg" spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
-            <List.Item>Fragen beantworten – dein Projekt, deine Region, deine Pläne</List.Item>
-            <List.Item>Check durchführen – mit unserem digitalen Tool</List.Item>
-            <List.Item>Ergebnis erhalten – als PDF-Report direkt per E-Mail</List.Item>
-          </List>
-          <Text mt="lg" ta="center" fs="italic">➡️ Du weißt sofort, welche Förderungen zu dir passen – ohne stundenlange Recherche.</Text>
+        <Card shadow="md" radius="md" withBorder maw={800} mx="auto">
+          <Card.Section p="0">
+            <Image
+              component={NextImage}
+              src="/imgs/haus.jpg"
+              alt="Model von einem Haus"
+              height={300}
+              width={800}
+              w="100%"
+              h="100%"
+            />
+          </Card.Section>
+          <Card.Section p="xl">
+            <Title order={2} ta="center" mb="xl">So funktioniert’s</Title>
+            <List mb="xl" spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
+              <List.Item>Fragen beantworten – dein Projekt, deine Region, deine Pläne</List.Item>
+              <List.Item>Check durchführen – mit unserem digitalen Tool</List.Item>
+              <List.Item>Ergebnis erhalten – als PDF-Report direkt per E-Mail</List.Item>
+            </List>
+            <Text mt="lg" ta="center" fs="italic">➡️ Du weißt sofort, welche Förderungen zu dir passen – ohne stundenlange Recherche.</Text>
+          </Card.Section>
         </Card>
       </Box>
 
@@ -179,7 +221,17 @@ export default function FoerdercheckStarter() {
 
       {/* ABSCHLUSS CTA */}
       <Box py="6em" pos="relative">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/couple.jpg"
+            alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Title order={2} ta="center" mb="md">Jetzt deinen Vorteil sichern</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
           📋 Schneller Überblick über passende Förderungen.<br />

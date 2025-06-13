@@ -3,26 +3,22 @@ import {
   Text,
   Title,
   Box,
-  Blockquote,
   Accordion,
   Divider,
   List,
   ThemeIcon,
   Table,
-  Card
+  Card,
+  Image
 } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import {
   IconCheck,
   IconRocket,
-  IconInfoCircle,
-  IconClipboardText,
   IconDownload,
-  IconSearch,
-  IconAlertTriangle,
-  IconQuote,
 } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
@@ -42,7 +38,17 @@ export default function FoerdercheckPremium() {
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/family.jpg"
+            alt="Familie unter einem Hausdach"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Flex mih="calc(100vh - 70px - 64px)" direction="column" justify="center">
           <Title fw="lighter" className={styles.title} mb="md">
             Du willst Förderung – aber keine Fehler machen?
@@ -85,16 +91,28 @@ export default function FoerdercheckPremium() {
         </Card>
       </Box>
 
-      {/* VORTEILE GEGENÜBER STARTER */}
-      <Box py="6em" bg="gray.0">
-        <Card radius="md" py="3em" maw={800} mx="auto" bg="cyan.0">
-          <Title order={2} ta="center" mb="md">Dein Vorteil gegenüber der Starter-Version</Title>
-          <Text ta="center" mb="lg" maw={700} mx="auto" fs="italic">
-            Der Förderreport Premium gibt dir nicht nur Infos – sondern auch Umsetzungssicherheit.
-            Viele Förderprogramme scheitern an Formalitäten. Mit der Anleitung weißt du genau, was du tun musst.
-            Sparen ist gut – aber Förderung auch zu bekommen ist besser.
-          </Text>
-          <Text ta="center" mb="lg" maw={700} mx="auto" fs="italic" fw="bold">Wer spart, denkt klug. Wer Förderungen nutzt, handelt klüger.</Text>
+      {/* WARUM SINNVOLL */}
+      <Box pt="3em" pb="8em">
+        <Card radius="md" p="0" withBorder shadow="md">
+          <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
+            <Image
+              component={NextImage}
+              src="/imgs/family-2.jpg"
+              alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
+              height={300}
+              width={500}
+              w={{ base: '100%', md: '500px' }}
+              h={{ base: '200px', md: '100%' }}
+              mah="400px"
+            />
+            <Box p="xl">
+              <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
+              <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
+                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+              </Text>
+            </Box>
+          </Flex>
         </Card>
       </Box>
 
@@ -122,6 +140,10 @@ export default function FoerdercheckPremium() {
           {
             text: "„In weniger als einem Tag hatten wir alles beantragt – Förderliste, Anleitung, Umsetzungsplan. Es war alles dabei.“",
             author: "– Alina R., Sanierung"
+          },
+          {
+            text: "„Ich hätte nie gedacht, dass Förderungen so planbar sind. Mit der Premium-Anleitung wussten wir genau, was wann zu tun ist – und haben 14.800 € bekommen.“",
+            author: "– Timo L., Neubau"
           }
         ]} />
 
@@ -129,14 +151,27 @@ export default function FoerdercheckPremium() {
 
       {/* SO FUNKTIONIERT'S */}
       <Box py="6em" bg="gray.0">
-        <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
-          <Title order={2} ta="center" mb="xl">So funktioniert’s</Title>
-          <List mb="lg" spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
-            <List.Item>Projekt eingeben – wenige Klicks, keine Vorkenntnisse</List.Item>
-            <List.Item>Premium-Check durchführen – Analyse durch unsere Datenbank</List.Item>
-            <List.Item>Ergebnis & Anleitung erhalten – beides direkt per E-Mail</List.Item>
-          </List>
-          <Text mt="lg" ta="center" fs="italic">➡️ Danach weißt du genau, welche Förderung passt – und wie du sie richtig beantragst.</Text>
+        <Card shadow="md" radius="md" withBorder maw={800} mx="auto">
+          <Card.Section p="0">
+            <Image
+              component={NextImage}
+              src="/imgs/haus.jpg"
+              alt="Model von einem Haus"
+              height={300}
+              width={800}
+              w="100%"
+              h="100%"
+            />
+          </Card.Section>
+          <Card.Section p="xl">
+            <Title order={2} ta="center" mb="xl">So funktioniert’s</Title>
+            <List mb="lg" spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
+              <List.Item>Projekt eingeben – wenige Klicks, keine Vorkenntnisse</List.Item>
+              <List.Item>Premium-Check durchführen – Analyse durch unsere Datenbank</List.Item>
+              <List.Item>Ergebnis & Anleitung erhalten – beides direkt per E-Mail</List.Item>
+            </List>
+            <Text mt="lg" ta="center" fs="italic">➡️ Danach weißt du genau, welche Förderung passt – und wie du sie richtig beantragst.</Text>
+          </Card.Section>
         </Card>
       </Box>
 
@@ -191,8 +226,18 @@ export default function FoerdercheckPremium() {
 
       {/* ABSCHLUSS CTA */}
       <Box py="6em" pos="relative">
-        <div className={styles.background}></div>
-        <Title order={2} ta="center" mb="md">🔔 JETZT DURCHSTARTEN STATT ZAUDERN</Title>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/couple.jpg"
+            alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
+        <Title order={2} ta="center" mb="md">🔔 JETZT DURCHSTARTEN</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
           ⏳ Zuschüsse verfallen oft – und Fehler kosten dich bares Geld. <br />
           🎯 Mit dem Premium-Check gehst du auf Nummer sicher. <br />
@@ -209,7 +254,6 @@ export default function FoerdercheckPremium() {
           </Button>
         </Box>
       </Box>
-
     </Layout>
   );
 }

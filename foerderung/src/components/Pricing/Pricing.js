@@ -32,7 +32,7 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
               </List>
             </Box>
 
-            <Box mt="lg">
+            <Box mt="xl">
               {!CtaFree && <Button size="md" component={Link} href="/foerdercheck" fullWidth>Jetzt kostenlos starten!</Button>}
               {CtaFree}
 
@@ -69,10 +69,11 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
               </List>
             </Box>
 
-            <Box>
+            <Box mt="xl">
               {CtaStarter}
 
               <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen.</Text>
+              <Text fs="italic" lh="1.2em">&nbsp;</Text>
             </Box>
           </Flex>
         </Card>
@@ -109,7 +110,7 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
               </List>
             </Box>
 
-            <Box>
+            <Box mt="xl">
               {CtaPremium}
 
               <Text fs="italic" lh="1.2em" mt="md">Ideal für alle, die schnelle Ergebnisse wollen, allerdings keine Zeit haben.</Text>
@@ -156,7 +157,7 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
               </List>
             </Box>
 
-            <Box>
+            <Box mt="xl">
               {CtaPremiumPlus}
 
               <Text fs="italic" lh="1.2em" mt="md">„Wieviel Haus kann ich mir leisten?“ – Deine exklusive 1:1-Beratung.</Text>

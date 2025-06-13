@@ -140,13 +140,13 @@ export default function Foerderung() {
         <Pricing
           showFree
           plan="free"
-          CtaStarter={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+          CtaStarter={<Button size="md" component={Link} href="/foerdercheck" fullWidth>
             Jetzt starten!
           </Button>}
-          CtaPremium={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+          CtaPremium={<Button size="md" component={Link} href="/foerdercheck" fullWidth>
             Jetzt starten!
           </Button>}
-          CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth mt="lg">
+          CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth>
             Jetzt starten!
           </Button>}
         />

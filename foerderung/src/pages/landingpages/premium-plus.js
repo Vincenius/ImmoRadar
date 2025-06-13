@@ -3,19 +3,19 @@ import {
   Text,
   Title,
   Box,
-  Blockquote,
   Accordion,
   List,
   ThemeIcon,
   Card,
-  Table
+  Table,
+  Image
 } from '@mantine/core';
 import Layout from '@/components/Layout/Layout';
 import styles from '@/styles/Home.module.css';
 import Link from 'next/link';
+import NextImage from 'next/image';
 import {
   IconCheck,
-  IconQuote,
   IconDownload,
   IconUser,
   IconCalendar,
@@ -41,7 +41,17 @@ export default function FoerdercheckPremiumPlus() {
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/family.jpg"
+            alt="Familie unter einem Hausdach"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Flex mih="calc(100vh - 70px - 64px)" direction="column" justify="center">
           <Title fw="lighter" className={styles.title} mb="md">
             Wieviel Haus kannst du dir wirklich leisten – mit allen Förderungen?
@@ -71,18 +81,28 @@ export default function FoerdercheckPremiumPlus() {
         </Card>
       </Box>
 
-      {/* VORTEILE */}
-      <Box py="6em" bg="gray.0">
-        <Card radius="md" py="3em" bg="cyan.0">
-          <Title order={2} ta="center" mb="md">Dein Premium-Vorteil gegenüber anderen Paketen</Title>
-          <List spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
-            <List.Item>Maßgeschneiderte Förderstrategie</List.Item>
-            <List.Item>Realistische Finanzübersicht – du weißt, was du dir leisten kannst</List.Item>
-            <List.Item>Persönliche Konzepterstellung für dein Projekt</List.Item>
-            <List.Item>Unterstützung bei Antragstellung bis zur Auszahlung</List.Item>
-            <List.Item>Auf Wunsch: Vernetzung mit geprüften Energieberater:innen</List.Item>
-          </List>
-          <Text mt="lg" ta="center" fs="italic">Du bringst das Projekt – wir die Struktur, Klarheit und Umsetzungskraft.</Text>
+      {/* WARUM SINNVOLL */}
+      <Box pt="3em" pb="8em">
+        <Card radius="md" p="0" withBorder shadow="md">
+          <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
+            <Image
+              component={NextImage}
+              src="/imgs/family-2.jpg"
+              alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
+              height={300}
+              width={500}
+              w={{ base: '100%', md: '500px' }}
+              h={{ base: '200px', md: '100%' }}
+              mah="400px"
+            />
+            <Box p="xl">
+              <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
+              <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
+                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+              </Text>
+            </Box>
+          </Flex>
         </Card>
       </Box>
 
@@ -109,6 +129,10 @@ export default function FoerdercheckPremiumPlus() {
           {
             text: "„Wir wollten’s richtig machen. Dank Premium Plus hatten wir nicht nur eine Übersicht, sondern ein durchdachtes Förder- & Finanzierungskonzept.“",
             author: "– Laura & Sven M., Sanierung"
+          },
+          {
+            text: "„Ohne euch hätten wir wichtige Förderungen verpasst. Die individuelle Analyse hat uns nicht nur Geld, sondern auch viele Nerven gespart.“",
+            author: "– Familie H., Neubau"
           }
         ]} />
 
@@ -116,16 +140,29 @@ export default function FoerdercheckPremiumPlus() {
 
       {/* ABLAUF */}
       <Box py="6em" bg="gray.0">
-        <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
-          <Title order={2} ta="center" mb="xl">So läuft deine Premium Plus Beratung ab</Title>
-          <List spacing="md" center maw={600} mx="auto" icon={<IconCalendar size={20} />}>
-            <List.Item>Förderreport Premium erstellen</List.Item>
-            <List.Item>Termin vereinbaren für dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
-            <List.Item>Analyse deiner Finanzlage & Projektabsicht</List.Item>
-            <List.Item>Erstellung deiner individuellen Förderstrategie</List.Item>
-            <List.Item>Antragstellung & Begleitung bis zur Auszahlung</List.Item>
-          </List>
-          <Text mt="lg" ta="center" fs="italic">➡️ Du bekommst Klarheit, Sicherheit und persönliche Unterstützung – statt Formularchaos & Internetrecherche.</Text>
+        <Card shadow="md" radius="md" withBorder maw={800} mx="auto">
+          <Card.Section p="0">
+            <Image
+              component={NextImage}
+              src="/imgs/haus.jpg"
+              alt="Model von einem Haus"
+              height={300}
+              width={800}
+              w="100%"
+              h="100%"
+            />
+          </Card.Section>
+          <Card.Section p="xl">
+            <Title order={2} ta="center" mb="xl">So läuft deine Premium Plus Beratung ab</Title>
+            <List spacing="md" center maw={600} mx="auto" mb="xl" icon={<IconCalendar size={20} />}>
+              <List.Item>Förderreport Premium erstellen</List.Item>
+              <List.Item>Termin vereinbaren für dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
+              <List.Item>Analyse deiner Finanzlage & Projektabsicht</List.Item>
+              <List.Item>Erstellung deiner individuellen Förderstrategie</List.Item>
+              <List.Item>Antragstellung & Begleitung bis zur Auszahlung</List.Item>
+            </List>
+            <Text mt="lg" ta="center" fs="italic">➡️ Du bekommst Klarheit, Sicherheit und persönliche Unterstützung – statt Formularchaos & Internetrecherche.</Text>
+          </Card.Section>
         </Card>
       </Box>
 
@@ -193,7 +230,17 @@ export default function FoerdercheckPremiumPlus() {
 
       {/* ABSCHLUSS CTA */}
       <Box py="6em" pos="relative">
-        <div className={styles.background}></div>
+        <div className={styles.backgroundImage}>
+          <Image
+            component={NextImage}
+            src="/imgs/couple.jpg"
+            alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
+            height={300}
+            width={500}
+            w="100%"
+            h="100%"
+          />
+        </div>
         <Title order={2} ta="center" mb="md">🔔 ES GEHT UM DEINE ZUKUNFT</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
           🏠 Der Weg ins Eigenheim ist oft komplex – aber du musst ihn nicht allein gehen. <br />
