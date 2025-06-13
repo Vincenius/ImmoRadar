@@ -48,7 +48,7 @@ export default function Foerderung() {
       </Box>
       <Box pt="6em" pb="10em" pos="relative">
         <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
-        <Title order={2} ta="center" mb="2em" size="h1" textWrap="balance">Fördermittel in 3 einfachen Schritten! So kommst du zu deinem Zuschuss:</Title>
+        <Title order={2} ta="center" mb="2em" size="h1" textWrap="balance">Fördermittel in 3 einfachen Schritten!</Title>
 
         <Flex align="center" gap="xl" justify="center" mx="auto" maw={800} direction={{ base: "column-reverse", sm: "row" }}>
           <Box>
