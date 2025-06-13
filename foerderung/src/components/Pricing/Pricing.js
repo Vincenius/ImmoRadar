@@ -47,7 +47,10 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
           <Flex direction="column" justify="space-between" h="100%">
             <Box>
               <Title order={2} size="h4" mb="sm" ta="center" fw="300">Starter</Title>
-              <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">39€</Text>
+              <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">
+                <span style={{ fontSize: '0.4em', fontWeight: 'normal' }}>nur &nbsp;</span>
+                39€
+              </Text>
 
               <List
                 spacing="sm"
@@ -84,7 +87,10 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
           <Flex direction="column" justify="space-between" h="100%">
             <Box>
               <Title order={2} size="h4" mb="sm" ta="center" fw="300">Premium</Title>
-              {plan !== 'starter' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">59€</Text>}
+              {plan !== 'starter' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">
+                <span style={{ fontSize: '0.4em', fontWeight: 'normal' }}>nur &nbsp;</span>
+                59€
+              </Text>}
               {plan === 'starter' && <Flex justify="center" gap="md" align="center">
                 <Text size="2em" lh="h1" ta="center" mb="md" c="red.9" td="line-through">59€</Text>
                 <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">20€</Text>
@@ -124,7 +130,10 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
           <Flex direction="column" justify="space-between" h="100%">
             <Box>
               <Title order={2} size="h4" mb="sm" ta="center" fw="300">Premium Plus</Title>
-              {plan !== 'starter' && plan !== 'premium' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">199€</Text>}
+              {plan !== 'starter' && plan !== 'premium' && <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">
+                <span style={{ fontSize: '0.4em', fontWeight: 'normal' }}>nur &nbsp;</span>
+                199€
+              </Text>}
               {plan === 'starter' && <Flex justify="center" gap="md" align="center">
                 <Text size="2em" lh="h1" ta="center" mb="md" c="red.9" td="line-through">199€</Text>
                 <Text size="3em" lh="h1" fw="bold" ta="center" mb="lg">160€</Text>

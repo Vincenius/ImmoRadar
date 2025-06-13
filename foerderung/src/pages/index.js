@@ -1,4 +1,4 @@
-import { Flex, Text, Button, Title, Box, Blockquote, Image, Accordion, Divider, List, ThemeIcon } from '@mantine/core';
+import { Flex, Text, Button, Title, Box, Blockquote, Image, Accordion, Divider, List, ThemeIcon, Card } from '@mantine/core';
 import Layout from '@/components/Layout/Layout'
 import styles from '@/styles/Home.module.css'
 import Link from 'next/link';
@@ -104,6 +104,31 @@ export default function Foerderung() {
             h={200}
           />
         </Flex>
+
+        {/* WARUM SINNVOLL */}
+        <Box pt="8em" pb="8em">
+          <Card radius="md" p="0" withBorder shadow="md">
+            <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
+              <Image
+                component={NextImage}
+                src="/imgs/family-2.jpg"
+                alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
+                height={300}
+                width={500}
+                w={{ base: '100%', md: '500px' }}
+                h={{ base: '200px', md: '100%' }}
+                mah="400px"
+              />
+              <Box p="xl">
+                <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
+                <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                  In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
+                  Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                </Text>
+              </Box>
+            </Flex>
+          </Card>
+        </Box>
       </Box>
 
       <Box py="8em" pos="relative">
