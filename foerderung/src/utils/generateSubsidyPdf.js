@@ -7,6 +7,7 @@ import base64Logo from './base64Logo.js';
 import path from 'path';
 import { exec } from 'child_process';
 import { promisify } from 'util';
+import headers from '@/utils/fetchHeader';
 
 const execAsync = promisify(exec);
 
@@ -27,7 +28,7 @@ const generateSinglePagePdf = async (url, outputPath, noHeaderFooter = false, us
   });
 
   const page = await browser.newPage();
-  await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY });
+  await page.setExtraHTTPHeaders({ 'x-api-key': process.env.API_KEY, ...headers });
   await page.goto(url, { waitUntil: 'networkidle0' });
 
   await page.pdf({
