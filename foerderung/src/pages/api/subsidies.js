@@ -62,50 +62,55 @@ export default async function handler(req, res) {
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
-          const { id, ignoreQuestions } = req.query
-          const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
-          const { list: [user] } = await fetch(url, {
-            method: 'GET',
-            headers: {
-              'xc-token': process.env.NOCODB_KEY,
-            },
-          }).then(res => res.json())
+          if (req.query.id === 'all' && process.env.STAGE !== 'prod') {
+            const allMeasures = [...new Set(subsidiesWithQuestions.map(s => s.Measures).flat())].filter(m => m !== '')
+            return res.status(200).json({ subsidies: subsidiesWithQuestions, user: { name: 'Test', Variant: 'premium', Type: ['Zuschuss', 'Kredit'], Measures: allMeasures } })
+          } else {
+            const { id, ignoreQuestions } = req.query
+            const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
+            const { list: [user] } = await fetch(url, {
+              method: 'GET',
+              headers: {
+                'xc-token': process.env.NOCODB_KEY,
+              },
+            }).then(res => res.json())
 
-          const userData = {
-            ...user,
-            Type: user.Type.split(','),
-            Measures: user.Measures.split(','),
+            const userData = {
+              ...user,
+              Type: user.Type.split(','),
+              Measures: user.Measures.split(','),
+            }
+
+            let count = 0
+            let consultantCount = 0
+            const filteredSubsidies = subsidiesWithQuestions.filter(d =>
+              d.HouseType.includes(userData.HouseType) &&
+              (d.Region === userData.Region || d.Region === 'Bundesweit') &&
+              (d.District === userData.District || !d.District) &&
+              (
+                userData.Type.includes('Zuschuss') && d.Type.includes('Zuschuss') ||
+                userData.Type.includes('Kredit') && d.Type.includes('Kredit')
+              ) &&
+              d.Measures?.some(element => userData.Measures?.includes(element)) &&
+              (ignoreQuestions === 'true' || !userData.Answers || d.Type.includes('Kredit') || d?.Questions?.every(element => {
+                const userAnswer = userData.Answers[element.Id]
+                return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
+              }))
+            )
+
+            const result = user.Variant !== 'free'
+              ? filteredSubsidies
+              : filteredSubsidies.map((subsidy) => ({
+                Id: subsidy.Id,
+                Name: subsidy.Name,
+                Type: subsidy.Type,
+                ConsultantNeeded: subsidy.ConsultantNeeded,
+                ApplicationDeadline: subsidy.ApplicationDeadline,
+                Website: subsidy.Website
+              }))
+
+            return res.status(200).json({ subsidies: result, user: userData, noConsultantCount: count, consultantCount });
           }
-
-          let count = 0
-          let consultantCount = 0
-          const filteredSubsidies = subsidiesWithQuestions.filter(d =>
-            d.HouseType.includes(userData.HouseType) &&
-            (d.Region === userData.Region || d.Region === 'Bundesweit') &&
-            (d.District === userData.District || !d.District) &&
-            (
-              userData.Type.includes('Zuschuss') && d.Type.includes('Zuschuss') ||
-              userData.Type.includes('Kredit') && d.Type.includes('Kredit')
-            ) &&
-            d.Measures?.some(element => userData.Measures?.includes(element)) &&
-            (ignoreQuestions === 'true' || !userData.Answers || d.Type.includes('Kredit') || d?.Questions?.every(element => {
-              const userAnswer = userData.Answers[element.Id]
-              return (userAnswer === 'Unklar' || (userAnswer === 'Ja' && element.RequiredAnswer) || (userAnswer === 'Nein' && !element.RequiredAnswer))
-            }))
-          )
-
-          const result = user.Variant !== 'free'
-            ? filteredSubsidies
-            : filteredSubsidies.map((subsidy) => ({
-              Id: subsidy.Id,
-              Name: subsidy.Name,
-              Type: subsidy.Type,
-              ConsultantNeeded: subsidy.ConsultantNeeded,
-              ApplicationDeadline: subsidy.ApplicationDeadline,
-              Website: subsidy.Website
-            }))
-
-          return res.status(200).json({ subsidies: result, user: userData, noConsultantCount: count, consultantCount });
         } else {
           return res.status(401).json({ message: 'Unauthorized' });
         }
