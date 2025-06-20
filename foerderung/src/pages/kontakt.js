@@ -23,7 +23,7 @@ const Contact = () => {
         />
         <Box>
           <Title order={1} mb="xl" mt="0">Kontakt</Title>
-          <Text mb="md">Solltest du Fragen, Anregungen oder Probleme haben, zögere nicht, uns zu kontaktieren. Unser Team steht dir gerne zur Verfügung:</Text>
+          <Text mb="md">Solltest Du Fragen, Anregungen oder Probleme haben, zögere nicht, uns zu kontaktieren. Unser Team steht Dir gerne zur Verfügung:</Text>
 
           <Text><a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a></Text>
           <Text mb="md"><a href="tel:+4915563286282">+49 155 63286282</a></Text>

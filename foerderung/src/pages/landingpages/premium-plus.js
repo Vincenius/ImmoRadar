@@ -37,7 +37,7 @@ export default function FoerdercheckPremiumPlus() {
   return (
     <Layout
       title="Förderreport Premium Plus – Persönliche Beratung & Förderstrategie"
-      description="Mit dem Premium Plus Paket erhältst du persönliche Beratung durch Förder- und Finanzexpert:innen."
+      description="Mit dem Premium Plus Paket erhältst Du persönliche Beratung durch Förder- und Finanzexpert:innen."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -54,10 +54,10 @@ export default function FoerdercheckPremiumPlus() {
         </div>
         <Flex mih="calc(100vh - 70px - 64px)" direction="column" justify="center">
           <Title fw="lighter" className={styles.title} mb="md">
-            Wieviel Haus kannst du dir wirklich leisten – mit allen Förderungen?
+            Wieviel Haus kannst Du Dir wirklich leisten – mit allen Förderungen?
           </Title>
           <Title order={2} size="h4" fw="normal" mb="lg">
-            Mit dem Premium Plus Paket erhältst du eine persönliche Online-Beratung mit einem unserer Förder- & Finanzexperten. Gemeinsam analysieren wir dein Vorhaben und erstellen eine exklusive Strategie – von der Förderübersicht bis zur Antragstellung.
+            Mit dem Premium Plus Paket erhältst Du eine persönliche Online-Beratung mit einem unserer Förder- & Finanzexperten. Gemeinsam analysieren wir Dein Vorhaben und erstellen eine exklusive Strategie – von der Förderübersicht bis zur Antragstellung.
           </Title>
           <List spacing="xs">
             <List.Item icon={<IconDeviceLaptop size={18} />}>1:1-Beratung via Microsoft Teams</List.Item>
@@ -73,10 +73,10 @@ export default function FoerdercheckPremiumPlus() {
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
           <Title order={2} ta="center" mb="md">Für wen ist die Premium Plus Beratung gedacht?</Title>
           <List spacing="lg" center icon={<ThemeIcon color="green.9" variant="light" size={24} radius="xl"><IconCheck size={16} /></ThemeIcon>} maw={600} mx="auto">
-            <List.Item>…du planst zu bauen, zu kaufen oder umfassend zu sanieren</List.Item>
-            <List.Item>…du willst auf Nummer sicher gehen bei Finanzierung & Förderung</List.Item>
-            <List.Item>…du möchtest von Anfang bis Ende begleitet werden</List.Item>
-            <List.Item>…du willst wissen, was realistisch möglich ist – und was nicht</List.Item>
+            <List.Item>…Du planst zu bauen, zu kaufen oder umfassend zu sanieren</List.Item>
+            <List.Item>…Du willst auf Nummer sicher gehen bei Finanzierung & Förderung</List.Item>
+            <List.Item>…Du möchtest von Anfang bis Ende begleitet werden</List.Item>
+            <List.Item>…Du willst wissen, was realistisch möglich ist – und was nicht</List.Item>
           </List>
         </Card>
       </Box>
@@ -99,7 +99,7 @@ export default function FoerdercheckPremiumPlus() {
               <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
               <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
                 In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                Mit dem Förderreport vermeidest Du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
               </Text>
             </Box>
           </Flex>
@@ -153,12 +153,12 @@ export default function FoerdercheckPremiumPlus() {
             />
           </Card.Section>
           <Card.Section p="xl">
-            <Title order={2} ta="center" mb="xl">So läuft deine Premium Plus Beratung ab</Title>
+            <Title order={2} ta="center" mb="xl">So läuft Deine Premium Plus Beratung ab</Title>
             <List spacing="md" center maw={600} mx="auto" mb="xl" icon={<IconCalendar size={20} />}>
               <List.Item>Förderreport Premium erstellen</List.Item>
-              <List.Item>Termin vereinbaren für dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
-              <List.Item>Analyse deiner Finanzlage & Projektabsicht</List.Item>
-              <List.Item>Erstellung deiner individuellen Förderstrategie</List.Item>
+              <List.Item>Termin vereinbaren für Dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
+              <List.Item>Analyse Deiner Finanzlage & Projektabsicht</List.Item>
+              <List.Item>Erstellung Deiner individuellen Förderstrategie</List.Item>
               <List.Item>Antragstellung & Begleitung bis zur Auszahlung</List.Item>
             </List>
             <Text mt="lg" ta="center" fs="italic">➡️ Du bekommst Klarheit, Sicherheit und persönliche Unterstützung – statt Formularchaos & Internetrecherche.</Text>
@@ -184,7 +184,7 @@ export default function FoerdercheckPremiumPlus() {
             <Table.Tr><Table.Td>Maßgeschneiderte Förderstrategie</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Antragstellung & Begleitung</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Vernetzung mit Energieberater:innen</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
-            <Table.Tr><Table.Td>Individuelle Konzepterstellung für dein Projekt</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
+            <Table.Tr><Table.Td>Individuelle Konzepterstellung für Dein Projekt</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
           </Table.Tbody>
         </Table>
 
@@ -214,15 +214,15 @@ export default function FoerdercheckPremiumPlus() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was passiert im Beratungsgespräch genau?"
-              answer="Du sprichst mit einem erfahrenen Förder- & Finanzexperten. Wir analysieren deine Situation, kalkulieren realistische Möglichkeiten und leiten daraus deine persönliche Förderstrategie ab – inkl. aller nächsten Schritte."
+              answer="Du sprichst mit einem erfahrenen Förder- & Finanzexperten. Wir analysieren Deine Situation, kalkulieren realistische Möglichkeiten und leiten daraus Deine persönliche Förderstrategie ab – inkl. aller nächsten Schritte."
             />
             <FaqItem
               question="Wer übernimmt die Antragstellung?"
-              answer="Unser Team kümmert sich auf Wunsch um alle Formalitäten. Du erhältst zudem Hinweise, wo du unterzeichnen musst oder welche Dokumente du brauchst."
+              answer="Unser Team kümmert sich auf Wunsch um alle Formalitäten. Du erhältst zudem Hinweise, wo Du unterzeichnen musst oder welche Dokumente Du brauchst."
             />
             <FaqItem
               question="Was, wenn ich noch unsicher bin?"
-              answer="Kein Problem – unser Beratungsgespräch ist offen, ehrlich und individuell. Du entscheidest danach, wie du weitergehst."
+              answer="Kein Problem – unser Beratungsgespräch ist offen, ehrlich und individuell. Du entscheidest danach, wie Du weitergehst."
             />
           </Accordion>
         </Box>
@@ -243,8 +243,8 @@ export default function FoerdercheckPremiumPlus() {
         </div>
         <Title order={2} ta="center" mb="md">🔔 ES GEHT UM DEINE ZUKUNFT</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
-          🏠 Der Weg ins Eigenheim ist oft komplex – aber du musst ihn nicht allein gehen. <br />
-          🎯 Lass uns gemeinsam dein Projekt auf sichere Beine stellen – mit Strategie, Struktur und persönlicher Begleitung. <br />
+          🏠 Der Weg ins Eigenheim ist oft komplex – aber Du musst ihn nicht allein gehen. <br />
+          🎯 Lass uns gemeinsam Dein Projekt auf sichere Beine stellen – mit Strategie, Struktur und persönlicher Begleitung. <br />
           👉 Jetzt Förderreport Premium Plus erstellen und mit Klarheit loslegen
         </Text>
         <Box ta="center">

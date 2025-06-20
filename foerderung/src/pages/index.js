@@ -16,8 +16,8 @@ const FaqItem = ({ question, answer }) => <Accordion.Item value={question}>
 export default function Foerderung() {
   return (
     <Layout
-      title="Finde die besten Zuschüsse und Kredite für dein Bau- oder Sanierungsprojekt"
-      description=" Bekommst kostenlos eine Übersicht aller relevanten Zuschüsse und Förderkredite, individuell abgestimmt auf dein Projekt und deine Region."
+      title="Finde die besten Zuschüsse und Kredite für Dein Bau- oder Sanierungsprojekt"
+      description=" Bekommst kostenlos eine Übersicht aller relevanten Zuschüsse und Förderkredite, individuell abgestimmt auf Dein Projekt und Deine Region."
     >
       <Box className={styles.header} py="xl">
         <div className={styles.backgroundImage}>
@@ -35,9 +35,9 @@ export default function Foerderung() {
         <Flex mih="calc(100vh - 70px - 64px)" h="100%" direction="column" justify="space-evenly">
           <Flex gap="xl" direction="column" justify="center" align={{ base: 'center', md: 'start' }}>
             <Box my={{ base: '4em', sm: '8em' }}>
-              <Title mb="md" fw="lighter" className={styles.title}>Jetzt deine Fördermittel sichern - mit nur einem Klick zur passenden Förderung</Title>
+              <Title mb="md" fw="lighter" className={styles.title}>Jetzt Deine Fördermittel sichern - mit nur einem Klick zur passenden Förderung</Title>
               <Title order={2} size="h4" mb="3em" fw="normal" w="70%">
-                Mit dem kostenlosen Förderreport findest du in weniger als 2 Minuten die besten Förderungen für dein Bauvorhaben - bundesweit, regional & individuell.
+                Mit dem kostenlosen Förderreport findest Du in weniger als 2 Minuten die besten Förderungen für Dein Bauvorhaben - bundesweit, regional & individuell.
               </Title>
               <ButtonMultiLine component={Link} href="/foerdercheck" size="xl" p="md" leftSection={<IconCheckbox size={24} />}>
                 Jetzt Förderprogramme prüfen
@@ -53,7 +53,7 @@ export default function Foerderung() {
         <Flex align="center" gap="xl" justify="center" mx="auto" maw={800} direction={{ base: "column-reverse", sm: "row" }}>
           <Box>
             <Title order={3} mb="md">Fragebogen ausfüllen</Title>
-            <Text>Beantworte ein paar Fragen zu deinem Bau- oder Sanierungsvorhaben. So findest du die besten Förderprogramme für dich – regional, aktuell & passend.</Text>
+            <Text>Beantworte ein paar Fragen zu Deinem Bau- oder Sanierungsvorhaben. So findest Du die besten Förderprogramme für dich – regional, aktuell & passend.</Text>
           </Box>
           <Image
             radius="md"
@@ -81,8 +81,8 @@ export default function Foerderung() {
             h={200}
           />
           <Box>
-            <Title order={3} mb="md">Übersicht deiner Förderchancen erhalten</Title>
-            <Text>Du bekommst <b>kostenlos</b> eine Liste mit relevanten Zuschüssen & Krediten – individuell abgestimmt auf dein Projekt.</Text>
+            <Title order={3} mb="md">Übersicht Deiner Förderchancen erhalten</Title>
+            <Text>Du bekommst <b>kostenlos</b> eine Liste mit relevanten Zuschüssen & Krediten – individuell abgestimmt auf Dein Projekt.</Text>
           </Box>
         </Flex>
 
@@ -91,7 +91,7 @@ export default function Foerderung() {
         <Flex align="center" gap="xl" justify="center" mb="xl" mx="auto" maw={800} direction={{ base: "column-reverse", sm: "row" }}>
           <Box>
             <Title order={3} mb="md">Antrag stellen – schnell & ohne Umwege</Title>
-            <Text>Dank der Premium-Variante sparst du dir stundenlange Recherche. Du bekommst eine einfache Anleitung zur Beantragung aller Förderungen, die zu deinem Projekt passen.</Text>
+            <Text>Dank der Premium-Variante sparst Du Dir stundenlange Recherche. Du bekommst eine einfache Anleitung zur Beantragung aller Förderungen, die zu Deinem Projekt passen.</Text>
           </Box>
           <Image
             radius="md"
@@ -123,7 +123,7 @@ export default function Foerderung() {
                 <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
                 <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
                   In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-                  Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                  Mit dem Förderreport vermeidest Du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
                 </Text>
               </Box>
             </Flex>
@@ -211,7 +211,7 @@ export default function Foerderung() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was kostet der Förderreport?"
-              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 €) sparst du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu deinem Projekt passen."
+              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 €) sparst Du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu Deinem Projekt passen."
             />
             <FaqItem
               question="Welche Förderungen berücksichtigt der Förderreport?"
@@ -231,12 +231,12 @@ export default function Foerderung() {
                   <List.Item>Zuschüsse & Kredite</List.Item>
                   <List.Item>Förderungen für Bau, Sanierung & Energieeffizienz</List.Item>
                 </List>
-                <Text>Du bekommst nur die Fördermittel, die zu deinem Projekt passen – aktuell, individuell und verständlich aufbereitet.</Text>
+                <Text>Du bekommst nur die Fördermittel, die zu Deinem Projekt passen – aktuell, individuell und verständlich aufbereitet.</Text>
               </Box>}
             />
             <FaqItem
               question="Wie schnell erhalte ich mein Ergebnis?"
-              answer="Direkt nach dem Ausfüllen des FörderChecks siehst du sofort deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
+              answer="Direkt nach dem Ausfüllen des FörderChecks siehst Du sofort Deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
             />
             <FaqItem
               question="Kann ich die Starter- oder Premium-Variante auch nachträglich kaufen?"
@@ -260,7 +260,7 @@ export default function Foerderung() {
         </div>
         <Box align="center">
           <Title order={2} ta="center" mb="md" size="h1">Unverbindlich Förderungen prüfen – kostenlos & individuell</Title>
-          <Text mb="3em" fs="italic">Finde mit dem Förderreport ganz einfach heraus, welche Zuschüsse, Kredite und Förderprogramme für deinen Bau oder deine Sanierung möglich sind. Kein Risiko – sofort loslegen.</Text>
+          <Text mb="3em" fs="italic">Finde mit dem Förderreport ganz einfach heraus, welche Zuschüsse, Kredite und Förderprogramme für Deinen Bau oder Deine Sanierung möglich sind. Kein Risiko – sofort loslegen.</Text>
           <Button leftSection={<IconCheckbox size={24} />} size="xl" component={Link} href="/foerdercheck">Jetzt Förderreport erstellen!</Button>
         </Box>
       </Box>

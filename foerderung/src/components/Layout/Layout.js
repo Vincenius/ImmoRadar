@@ -11,10 +11,13 @@ import styles from './Layout.module.css';
 
 
 const menu = [
-  // {
-  //   label: 'Home',
-  //   url: '/home'
-  // },
+  {
+    label: 'Kontakt',
+    url: '/kontakt'
+  }, {
+    label: 'Über uns',
+    url: '/ueber-uns'
+  },
 ];
 
 
@@ -39,7 +42,7 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
           de: {
             consentModal: {
               title: 'Wir verwenden Cookies',
-              description: 'Klicke auf „Alle akzeptieren“, um Cookies zur Personalisierung und Analyse über den Google Tag Manager zuzulassen. Du kannst deine Einstellungen jederzeit anpassen.',
+              description: 'Klicke auf „Alle akzeptieren“, um Cookies zur Personalisierung und Analyse über den Google Tag Manager zuzulassen. Du kannst Deine Einstellungen jederzeit anpassen.',
               acceptAllBtn: 'Alle akzeptieren',
               acceptNecessaryBtn: 'Nur notwendige akzeptieren',
               showPreferencesBtn: 'Individuelle Einstellungen verwalten'
@@ -62,12 +65,12 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
                 },
                 {
                   title: 'Leistung und Analyse (GTM)',
-                  description: 'Diese Cookies erfassen anonymisierte Informationen darüber, wie du unsere Website nutzt. Sie helfen uns dabei, das Angebot über den Google Tag Manager zu verbessern.',
+                  description: 'Diese Cookies erfassen anonymisierte Informationen darüber, wie Duunsere Website nutzt. Sie helfen uns dabei, das Angebot über den Google Tag Manager zu verbessern.',
                   linkedCategory: 'analytics'
                 },
                 {
                   title: 'Weitere Informationen',
-                  description: 'Bei Fragen zu unserer Cookie-Richtlinie oder deinen Auswahlmöglichkeiten kontaktiere uns bitte über die <a href="#contact-page">Kontaktseite</a>.'
+                  description: 'Bei Fragen zu unserer Cookie-Richtlinie oder Deinen Auswahlmöglichkeiten kontaktiere uns bitte über die <a href="#contact-page">Kontaktseite</a>.'
                 }
               ]
             }
@@ -95,7 +98,8 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
       {date && <meta property="article:published_time" content={date}></meta>}
       {date && <meta name="author" content="Vincent Will"></meta>}
       {setNoIndex && <meta name="robots" content="noindex" />}
-      <link rel="icon" href="/favicon.svg" />
+      <link rel="icon" href="/favicon.ico" sizes="any" />
+      <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
       {process.env.NEXT_PUBLIC_ANALYTICS_ID && (
         <script defer src="https://analytics.immoradar.xyz/script.js" data-website-id={process.env.NEXT_PUBLIC_ANALYTICS_ID}></script>
       )}
@@ -137,7 +141,7 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
 
               <Menu.Dropdown>
                 {menu.map(menuItem =>
-                  <Menu.Item key={menuItem.label}>
+                  <Menu.Item key={menuItem.label} py="md" px="xl">
                     <Link href={menuItem.url}>{menuItem.label}</Link>
                   </Menu.Item>
                 )}
@@ -166,8 +170,8 @@ const Layout = ({ children, title, description, date, noindex, image, withBackgr
               <Box>
                 <Link href="/impressum"><Text size="sm" c="gray.7" mb="xs">Impressum</Text></Link>
                 <Link href="/datenschutz"><Text size="sm" c="gray.7" mb="xs">Datenschutz</Text></Link>
-                <Link href="/kontakt"><Text size="sm" c="gray.7" mb="xs">Kontakt</Text></Link>
-                <Link href="/ueber-uns"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link>
+                {/* <Link href="/kontakt"><Text size="sm" c="gray.7" mb="xs">Kontakt</Text></Link>
+                <Link href="/ueber-uns"><Text size="sm" c="gray.7" mb="xs">Über uns</Text></Link> */}
               </Box>
             </Flex>
           </Flex>

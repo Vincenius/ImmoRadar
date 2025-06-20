@@ -26,8 +26,8 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
                   </ThemeIcon>
                 }
               >
-                <List.Item>Alle Zuschüsse, die du selbst beantragen kannst</List.Item>
-                <List.Item>Alle Zuschüsse, die du mit Hilfe eines Energieberaters beantragen kannst</List.Item>
+                <List.Item>Alle Zuschüsse, die Du selbst beantragen kannst</List.Item>
+                <List.Item>Alle Zuschüsse, die Du mit Hilfe eines Energieberaters beantragen kannst</List.Item>
                 <List.Item>Alle Kredite, die über Finanzierungspartner beantragt werden können</List.Item>
               </List>
             </Box>
@@ -66,8 +66,8 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
                     <IconCheck size={16} />
                   </ThemeIcon>
                 }>Alle Infos aus der kostenfreien Variante</List.Item>
-                <List.Item>Quickcheck, für welche Förderungen du berechtigt bist</List.Item>
-                <List.Item>Detaillierte Informationen zu deiner persönlichen Förderhöhe</List.Item>
+                <List.Item>Quickcheck, für welche Förderungen Du berechtigt bist</List.Item>
+                <List.Item>Detaillierte Informationen zu Deiner persönlichen Förderhöhe</List.Item>
                 <List.Item>Beantragung durch dich selbst und mit Hilfe von Experten</List.Item>
               </List>
             </Box>
@@ -110,8 +110,8 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
                     <IconCheck size={16} />
                   </ThemeIcon>
                 }>Alles aus der Starter Variante</List.Item>
-                <List.Item>Schritt-für-Schritt-Anleitungen zur schnellen Beantragung deiner Förderungen</List.Item>
-                <List.Item>Schneller Zugriff auf zertifizierte Energieberater in deiner Region</List.Item>
+                <List.Item>Schritt-für-Schritt-Anleitungen zur schnellen Beantragung Deiner Förderungen</List.Item>
+                <List.Item>Schneller Zugriff auf zertifizierte Energieberater in Deiner Region</List.Item>
                 <List.Item>Schneller Zugriff auf qualifizierte Finanzierungsberater </List.Item>
               </List>
             </Box>
@@ -162,7 +162,7 @@ function Pricing({ CtaStarter, CtaPremium, CtaFree, showFree, CtaPremiumPlus, pl
                 <List.Item>Individueller Finanzübersicht: Was ist realistisch möglich?</List.Item>
                 <List.Item>Übernahme der Antragstellung & Begleitung bis zur Auszahlung</List.Item>
                 <List.Item>Vernetzung mit geprüften Energieberater:innen</List.Item>
-                <List.Item>Exklusive Konzepterstellung für dein Projekt</List.Item>
+                <List.Item>Exklusive Konzepterstellung für Dein Projekt</List.Item>
               </List>
             </Box>
 

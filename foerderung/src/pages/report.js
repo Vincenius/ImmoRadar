@@ -68,10 +68,10 @@ export default function Report({ data, baseUrl, id }) {
     >
       <Container size="sm" pb="lg" px="0">
         {user.Variant === 'free' && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
-          <Title order={1} mb="xl">Vielen Dank für deine Bestätigung!</Title>
+          <Title order={1} mb="xl">Vielen Dank für Deine Bestätigung!</Title>
 
           <Text mb="xl" size="md">
-            Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst jetzt deinen kostenlosen Förderreport als PDF herunterladen.
+            Deine E-Mail-Adresse wurde erfolgreich bestätigt. Du kannst jetzt Deinen kostenlosen Förderreport als PDF herunterladen.
           </Text>
 
           <Group spacing="md" mb="xl">
@@ -100,17 +100,17 @@ export default function Report({ data, baseUrl, id }) {
 
           {success && <Text mb="md" size="sm" c="green.9">
             <b>Deine PDF wird erstellt.</b><br />
-            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in Deinem Posteingang.
           </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
 
         {user.Variant !== 'free' && !answeredQuestions && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
-          <Title order={1} mb="xl">Vielen Dank für deinen Kauf!</Title>
+          <Title order={1} mb="xl">Vielen Dank für Deinen Kauf!</Title>
 
           <Text mb="xl" size="md">
             Deine Förderreport <b>{variantTextMap[user.Variant]} Variante</b> ist jetzt freigeschaltet.
-            Du kannst nun den QuickCheck starten und ein paar Fragen beantworten, damit wir passende Fördermittel für dich finden oder deinen Förderreport als PDF herunterladen.
+            Du kannst nun den QuickCheck starten und ein paar Fragen beantworten, damit wir passende Fördermittel für dich finden oder Deinen Förderreport als PDF herunterladen.
           </Text>
 
           <Group spacing="md" mb="md">
@@ -138,7 +138,7 @@ export default function Report({ data, baseUrl, id }) {
 
           {success && <Text mb="md" size="sm" c="green.9">
             <b>Deine PDF wird erstellt.</b><br />
-            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in Deinem Posteingang.
           </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}
@@ -147,8 +147,8 @@ export default function Report({ data, baseUrl, id }) {
           <Title order={1} mb="xl">Dein persönlicher Förderreport ist fertig!</Title>
 
           <Text mb="xl" size="md">
-            Basierend auf deinen Angaben haben wir eine individuelle Auswertung für dich erstellt.
-            Du kannst jetzt deine angepasste PDF mit allen relevanten Förderungen herunterladen oder den QuickCheck erneut starten, falls du etwas ändern oder ein neues Szenario durchspielen möchtest.
+            Basierend auf Deinen Angaben haben wir eine individuelle Auswertung für dich erstellt.
+            Du kannst jetzt Deine angepasste PDF mit allen relevanten Förderungen herunterladen oder den QuickCheck erneut starten, falls Du etwas ändern oder ein neues Szenario durchspielen möchtest.
           </Text>
 
           <Group spacing="md" mb="md">
@@ -176,7 +176,7 @@ export default function Report({ data, baseUrl, id }) {
 
           {success && <Text mb="md" size="sm" c="green.9">
             <b>Deine PDF wird erstellt.</b><br />
-            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in deinem Posteingang.
+            Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in Deinem Posteingang.
           </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
         </Card>}

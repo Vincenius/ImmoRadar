@@ -30,7 +30,7 @@ export default function FoerdercheckStarter() {
   return (
     <Layout
       title="Förderreport Starter – Alle Zuschüsse auf einen Blick"
-      description="Für nur 39 € bekommst du eine individuell sortierte Übersicht deiner Fördermöglichkeiten – sofort als PDF."
+      description="Für nur 39 € bekommst Du eine individuell sortierte Übersicht Deiner Fördermöglichkeiten – sofort als PDF."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -50,7 +50,7 @@ export default function FoerdercheckStarter() {
             Du willst bauen, sanieren oder modernisieren – aber keine Förderung verpassen?
           </Title>
           <Title order={2} size="h4" fw="normal" mb="lg">
-            Mit dem Starter-Förderreport bekommst du in wenigen Minuten Klarheit über alle Zuschüsse, die wirklich zu deinem Projekt passen.
+            Mit dem Starter-Förderreport bekommst Du in wenigen Minuten Klarheit über alle Zuschüsse, die wirklich zu Deinem Projekt passen.
             Ohne Bürokratie, ohne Vorwissen – einfach starten und sparen.
           </Title>
           <List spacing="xs">
@@ -65,12 +65,12 @@ export default function FoerdercheckStarter() {
       {/* WAS DU BEKOMMST */}
       <Box py="6em">
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
-          <Title order={2} ta="center" mb="md">Was du bekommst</Title>
-          <Text ta="center" mb="xl">Der Förderreport Starter ist perfekt für dich, wenn du...</Text>
+          <Title order={2} ta="center" mb="md">Was Du bekommst</Title>
+          <Text ta="center" mb="xl">Der Förderreport Starter ist perfekt für dich, wenn Du...</Text>
           <List spacing="lg" center icon={<ThemeIcon color="cyan.9" variant="light" size={24} radius="xl"><IconCheck size={16} /></ThemeIcon>} maw={600} mx="auto">
             <List.Item>…dir einen ersten Überblick verschaffen willst</List.Item>
             <List.Item>…Zuschüsse nicht verpassen möchtest</List.Item>
-            <List.Item>…einfach & schnell herausfinden willst, was dir zusteht</List.Item>
+            <List.Item>…einfach & schnell herausfinden willst, was Dir zusteht</List.Item>
           </List>
 
           <Divider my="xl" label="Du bekommst" />
@@ -78,7 +78,7 @@ export default function FoerdercheckStarter() {
           <Box ta="center">
             <List spacing="md" center icon={<IconDownload size={18} />} maw={600} mx="auto">
               <List.Item>Eine sortierte Übersicht aller passenden Förderprogramme</List.Item>
-              <List.Item>Individuell auf dein Vorhaben und deine Region abgestimmt</List.Item>
+              <List.Item>Individuell auf Dein Vorhaben und Deine Region abgestimmt</List.Item>
               <List.Item>Sofort zum Download – kein Warten, kein Abo</List.Item>
             </List>
           </Box>
@@ -103,7 +103,7 @@ export default function FoerdercheckStarter() {
               <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
               <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
                 In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                Mit dem Förderreport vermeidest Du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
               </Text>
             </Box>
           </Flex>
@@ -161,11 +161,11 @@ export default function FoerdercheckStarter() {
           <Card.Section p="xl">
             <Title order={2} ta="center" mb="xl">So funktioniert’s</Title>
             <List mb="xl" spacing="md" center maw={600} mx="auto" icon={<IconCheck size={20} />}>
-              <List.Item>Fragen beantworten – dein Projekt, deine Region, deine Pläne</List.Item>
+              <List.Item>Fragen beantworten – Dein Projekt, Deine Region, Deine Pläne</List.Item>
               <List.Item>Check durchführen – mit unserem digitalen Tool</List.Item>
               <List.Item>Ergebnis erhalten – als PDF-Report direkt per E-Mail</List.Item>
             </List>
-            <Text mt="lg" ta="center" fs="italic">➡️ Du weißt sofort, welche Förderungen zu dir passen – ohne stundenlange Recherche.</Text>
+            <Text mt="lg" ta="center" fs="italic">➡️ Du weißt sofort, welche Förderungen zu Dir passen – ohne stundenlange Recherche.</Text>
           </Card.Section>
         </Card>
       </Box>
@@ -205,15 +205,15 @@ export default function FoerdercheckStarter() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was ist, wenn ich keine Förderung finde?"
-              answer="Unser System erkennt über 500 Programme – sollte ausnahmsweise keine passende Förderung vorhanden sein, sagen wir dir das ehrlich."
+              answer="Unser System erkennt über 500 Programme – sollte ausnahmsweise keine passende Förderung vorhanden sein, sagen wir Dir das ehrlich."
             />
             <FaqItem
               question="Wie schnell bekomme ich mein Ergebnis?"
-              answer="Direkt nach dem Check – du erhältst sofort deinen persönlichen Report per E-Mail."
+              answer="Direkt nach dem Check – Du erhältst sofort Deinen persönlichen Report per E-Mail."
             />
             <FaqItem
               question="Was ist, wenn ich später doch Beratung will?"
-              answer="Kein Problem – du kannst jederzeit auf Premium oder Premium Plus upgraden."
+              answer="Kein Problem – Du kannst jederzeit auf Premium oder Premium Plus upgraden."
             />
           </Accordion>
         </Box>
@@ -232,7 +232,7 @@ export default function FoerdercheckStarter() {
             h="100%"
           />
         </div>
-        <Title order={2} ta="center" mb="md">Jetzt deinen Vorteil sichern</Title>
+        <Title order={2} ta="center" mb="md">Jetzt Deinen Vorteil sichern</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
           📋 Schneller Überblick über passende Förderungen.<br />
           💡 Ideal für alle, die sich selbst informieren wollen<br />

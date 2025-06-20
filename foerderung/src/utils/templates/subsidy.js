@@ -19,10 +19,10 @@ const subsidyTemplate = () => mjml2html(`<mjml>
     <mj-section background-color="#f3f3f3">
       <mj-column>
         <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Dein Förderreport ist da!</mj-text>
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für dein Vertrauen in ${process.env.NEXT_PUBLIC_WEBSITE_NAME}!</mj-text>
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Im Anhang findest du deinen personalisierten Report mit allen relevanten Fördermöglichkeiten für dein Bauprojekt.</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Vielen Dank für Dein Vertrauen in ${process.env.NEXT_PUBLIC_WEBSITE_NAME}!</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Im Anhang findest Du Deinen personalisierten Report mit allen relevanten Fördermöglichkeiten für Dein Bauprojekt.</mj-text>
 
-        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls du Fragen hast oder Feedback geben möchtest, erreichst du mich jederzeit unter <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>.</mj-text>
+        <mj-text font-size="15px" color="#000" font-family="helvetica">Falls Du Fragen hast oder Feedback geben möchtest, erreichst Du mich jederzeit unter <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>.</mj-text>
         
         <mj-text font-size="15px" color="#000" font-family="helvetica">Viele Grüße,<br>Vincent von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}</mj-text>
       </mj-column>

@@ -159,7 +159,7 @@ export default async function handler(req, res) {
       if (email) {
         await sendEmail({
           to: email,
-          subject: `Bestätige deine E-Mail, um deinen Förderreport zu erhalten`,
+          subject: `Bestätige Deine E-Mail, um Deinen Förderreport zu erhalten`,
           html: confirmTemplate(id),
         })
       }

@@ -34,7 +34,7 @@ export default function FoerdercheckPremium() {
   return (
     <Layout
       title="Förderreport Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
-      description="59 €, einmalig: Mit dem Premium-Förderreport erhältst du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
+      description="59 €, einmalig: Mit dem Premium-Förderreport erhältst Du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -54,7 +54,7 @@ export default function FoerdercheckPremium() {
             Du willst Förderung – aber keine Fehler machen?
           </Title>
           <Title order={2} size="h4" fw="normal" mb="lg">
-            Mit dem Förderreport Premium bekommst du nicht nur eine Liste aller passenden Zuschüsse – sondern auch eine verständliche Schritt-für-Schritt-Anleitung zur Umsetzung.
+            Mit dem Förderreport Premium bekommst Du nicht nur eine Liste aller passenden Zuschüsse – sondern auch eine verständliche Schritt-für-Schritt-Anleitung zur Umsetzung.
           </Title>
           <List spacing="xs">
             <List.Item icon={<IconCheck size={18} />}>Alle Zuschüsse auf einen Blick</List.Item>
@@ -70,10 +70,10 @@ export default function FoerdercheckPremium() {
       {/* WAS DU BEKOMMST */}
       <Box py="6em">
         <Card shadow="md" radius="md" p="xl" withBorder maw={800} mx="auto">
-          <Title order={2} ta="center" mb="md">Was du bekommst</Title>
-          <Text ta="center" mb="xl">Der Förderreport Premium ist perfekt für dich, wenn du…</Text>
+          <Title order={2} ta="center" mb="md">Was Du bekommst</Title>
+          <Text ta="center" mb="xl">Der Förderreport Premium ist perfekt für dich, wenn Du…</Text>
           <List spacing="lg" center icon={<ThemeIcon color="cyan.9" variant="light" size={24} radius="xl"><IconCheck size={16} /></ThemeIcon>} maw={600} mx="auto">
-            <List.Item>…nicht nur wissen willst, was es gibt – sondern wie du es bekommst</List.Item>
+            <List.Item>…nicht nur wissen willst, was es gibt – sondern wie Du es bekommst</List.Item>
             <List.Item>…sicher gehen willst, nichts zu übersehen</List.Item>
             <List.Item>…Zuschüsse clever nutzen willst, ohne 10 Ämter anrufen zu müssen</List.Item>
           </List>
@@ -109,7 +109,7 @@ export default function FoerdercheckPremium() {
               <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
               <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
                 In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-                Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                Mit dem Förderreport vermeidest Du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
               </Text>
             </Box>
           </Flex>
@@ -170,7 +170,7 @@ export default function FoerdercheckPremium() {
               <List.Item>Premium-Check durchführen – Analyse durch unsere Datenbank</List.Item>
               <List.Item>Ergebnis & Anleitung erhalten – beides direkt per E-Mail</List.Item>
             </List>
-            <Text mt="lg" ta="center" fs="italic">➡️ Danach weißt du genau, welche Förderung passt – und wie du sie richtig beantragst.</Text>
+            <Text mt="lg" ta="center" fs="italic">➡️ Danach weißt Du genau, welche Förderung passt – und wie Du sie richtig beantragst.</Text>
           </Card.Section>
         </Card>
       </Box>
@@ -210,15 +210,15 @@ export default function FoerdercheckPremium() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was bringt mir die Anleitung konkret?"
-              answer="Du erfährst, welche Unterlagen du brauchst, wo du den Antrag stellst, und wie du gängige Fehler vermeidest – auf den Punkt, ohne Paragraphen-Wirrwarr."
+              answer="Du erfährst, welche Unterlagen Du brauchst, wo Du den Antrag stellst, und wie Du gängige Fehler vermeidest – auf den Punkt, ohne Paragraphen-Wirrwarr."
             />
             <FaqItem
               question="Muss ich danach trotzdem noch einen Energieberater beauftragen?"
-              answer="Nur wenn es dein Vorhaben erfordert – das sagen wir dir im Ergebnisbericht."
+              answer="Nur wenn es Dein Vorhaben erfordert – das sagen wir Dir im Ergebnisbericht."
             />
             <FaqItem
               question="Gibt es ein Upgrade zur Beratung?"
-              answer="Ja, du kannst später problemlos zur Premium Plus Variante wechseln."
+              answer="Ja, Du kannst später problemlos zur Premium Plus Variante wechseln."
             />
           </Accordion>
         </Box>
@@ -240,7 +240,7 @@ export default function FoerdercheckPremium() {
         <Title order={2} ta="center" mb="md">🔔 JETZT DURCHSTARTEN</Title>
         <Text ta="center" mb="lg" maw={800} mx="auto">
           ⏳ Zuschüsse verfallen oft – und Fehler kosten dich bares Geld. <br />
-          🎯 Mit dem Premium-Check gehst du auf Nummer sicher. <br />
+          🎯 Mit dem Premium-Check gehst Du auf Nummer sicher. <br />
           👉 Starte jetzt mit dem Förderreport Premium für nur 59 €
         </Text>
         <Box ta="center">

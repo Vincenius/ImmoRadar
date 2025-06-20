@@ -75,32 +75,32 @@ const PdfReport = ({ data, baseUrl }) => {
 
     <Box px="4em" mt="xl">
       <Box mb="2em">
-        <Title order={2} size="h5" mb="sm">Hallo {user.Name}, hier ist dein Förderreport</Title>
+        <Title order={2} size="h5" mb="sm">Hallo {user.Name}, hier ist Dein Förderreport</Title>
         {user.Variant === 'free' && (
           <>
-            <Text size="xs" mb="xs">In dieser kostenlosen Übersicht erhältst du einen kompakten Einblick in die wichtigsten staatlichen Förderprogramme für dein Bau- oder Sanierungsvorhaben.</Text>
-            <Text size="xs" mb="xs">Du findest hier alle Zuschüsse, die du selbst beantragen kannst – sowie solche, für die du einen Energieberater brauchst. Auch Förderkredite, die über Finanzierungspartner verfügbar sind, sind enthalten.</Text>
-            <Text mb="md" size="xs">Wenn du noch mehr rausholen willst, sichere dir jetzt den vollständigen Förderreport mit einer individuellen Förderanalyse, Schritt-für-Schritt-Anleitungen zur Beantragung und einem Quickcheck, der dir sofort zeigt, ob du förderberechtigt bist.</Text>
+            <Text size="xs" mb="xs">In dieser kostenlosen Übersicht erhältst Du einen kompakten Einblick in die wichtigsten staatlichen Förderprogramme für Dein Bau- oder Sanierungsvorhaben.</Text>
+            <Text size="xs" mb="xs">Du findest hier alle Zuschüsse, die Du selbst beantragen kannst – sowie solche, für die Du einen Energieberater brauchst. Auch Förderkredite, die über Finanzierungspartner verfügbar sind, sind enthalten.</Text>
+            <Text mb="md" size="xs">Wenn Du noch mehr rausholen willst, sichere Dir jetzt den vollständigen Förderreport mit einer individuellen Förderanalyse, Schritt-für-Schritt-Anleitungen zur Beantragung und einem Quickcheck, der Dir sofort zeigt, ob Du förderberechtigt bist.</Text>
             <Button size="xs" href={checkoutLink} component="a" mb="xs">Jetzt vollständigen Report freischalten</Button>
           </>
         )}
 
         {user.Variant === 'starter' && (
           <>
-            <Text size="xs" mb="xs">Diese Version deines Förderreports enthält alle Informationen der kostenfreien Variante – und geht noch einen Schritt weiter:</Text>
-            <Text size="xs" mb="xs">Mit dem enthaltenen <strong>Quickcheck</strong> erfährst du auf einen Blick, <strong>für welche Förderungen du persönlich berechtigt bist</strong>. Außerdem zeigen wir dir, wie hoch deine voraussichtliche Fördersumme ist.</Text>
+            <Text size="xs" mb="xs">Diese Version Deines Förderreports enthält alle Informationen der kostenfreien Variante – und geht noch einen Schritt weiter:</Text>
+            <Text size="xs" mb="xs">Mit dem enthaltenen <strong>Quickcheck</strong> erfährst Du auf einen Blick, <strong>für welche Förderungen Du persönlich berechtigt bist</strong>. Außerdem zeigen wir dir, wie hoch Deine voraussichtliche Fördersumme ist.</Text>
           </>
         )}
 
         {(user.Variant === 'premium' || user.Variant === 'premium_plus') && (
           <>
-            <Text size="xs" mb="xs">Du hältst die umfangreichste Version deines Förderreports in der Hand. Neben allen Inhalten aus der Starter-Variante enthält dieser Report detaillierte <strong>Schritt-für-Schritt-Anleitungen</strong> zur Beantragung deiner Förderungen.</Text>
-            <Text size="xs" mb="xs">Zusätzlich bekommst du direkten Zugang zu <strong>zertifizierten Energieberater*innen</strong> und <strong>qualifizierten Finanzierungspartnern</strong> – damit du deine Förderung schnell, sicher und stressfrei beantragen kannst.</Text>
+            <Text size="xs" mb="xs">Du hältst die umfangreichste Version Deines Förderreports in der Hand. Neben allen Inhalten aus der Starter-Variante enthält dieser Report detaillierte <strong>Schritt-für-Schritt-Anleitungen</strong> zur Beantragung Deiner Förderungen.</Text>
+            <Text size="xs" mb="xs">Zusätzlich bekommst Du direkten Zugang zu <strong>zertifizierten Energieberater*innen</strong> und <strong>qualifizierten Finanzierungspartnern</strong> – damit Du Deine Förderung schnell, sicher und stressfrei beantragen kannst.</Text>
           </>
         )}
 
         {isPaid && <>
-          <Text mb="md" size="xs">Falls du es noch nicht getan hast, kannst du jetzt den Quickcheck starten und in wenigen Minuten herausfinden, für welche Förderprogramme du konkret berechtigt bist.</Text>
+          <Text mb="md" size="xs">Falls Du es noch nicht getan hast, kannst Du jetzt den Quickcheck starten und in wenigen Minuten herausfinden, für welche Förderprogramme Du konkret berechtigt bist.</Text>
           <Button size="xs" href={questionnaireLink} component="a" mb="xs">
             Quickcheck starten
           </Button>

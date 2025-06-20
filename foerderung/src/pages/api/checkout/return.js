@@ -65,7 +65,7 @@ export default async function handler(req, res) {
 
         await sendEmail({
           to: user.Email || session.customer_details.email,
-          subject: 'Vielen Dank für deinen Kauf',
+          subject: 'Vielen Dank für Deinen Kauf',
           html: subsidyPaidTemplate(session.client_reference_id),
         })
 

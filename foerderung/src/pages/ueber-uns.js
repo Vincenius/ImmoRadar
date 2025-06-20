@@ -30,7 +30,7 @@ const AboutPage = () => {
             <Container py="xl" size="sm">
                 <Title order={1} mb="lg">Über uns</Title>
                 <Text my="md">
-                    Das Team von Förderhaus24 beschäftigt sich mit den wichtigsten Themen rund um Förderungen und Kredite für dein Bau- oder Sanierungsvorhaben.
+                    Das Team von Förderhaus24 beschäftigt sich mit den wichtigsten Themen rund um Förderungen und Kredite für Dein Bau- oder Sanierungsvorhaben.
                 </Text>
 
                 <Title order={2} mb="1.5em" mt="2em">Unser Team</Title>

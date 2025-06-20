@@ -116,7 +116,7 @@ function SubsidyReport({ data, baseUrl }) {
         <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Direkt beantragbare Förderungen"
-          text="Diese Fördermittel kannst du selbst beantragen, ohne zusätzliche Unterstützung."
+          text="Diese Fördermittel kannst Du selbst beantragen, ohne zusätzliche Unterstützung."
           image={`${baseUrl}/imgs/pdf/self-header.jpg`}
         />
         <Box px="4em">
@@ -146,7 +146,7 @@ function SubsidyReport({ data, baseUrl }) {
         <div style={{ pageBreakBefore: 'always' }}></div>
         <SectionHeader
           title="Kredite mit Finanzierungspartner"
-          text="Diese Kredite beantragst du über einen Finanzierungsberater."
+          text="Diese Kredite beantragst Du über einen Finanzierungsberater."
           image={`${baseUrl}/imgs/pdf/bank-header.jpg`}
         />
         {isPremium && <Box ta="center">
@@ -161,7 +161,7 @@ function SubsidyReport({ data, baseUrl }) {
 
       {user.Variant === 'starter' && <Card mb="xl" withBorder p="lg" mt="xl" mx="4em">
         <Title order={3} mb="md" id="full-report">Report upgraden</Title>
-        <Text mb="md">Hol dir jetzt das Upgade auf Premium, um eine Schritt-für-Schritt-Anleitungen zur schnellen Beantragung deiner Förderungen und vieles mehr zu erhalten.</Text>
+        <Text mb="md">Hol Dir jetzt das Upgade auf Premium, um eine Schritt-für-Schritt-Anleitungen zur schnellen Beantragung Deiner Förderungen und vieles mehr zu erhalten.</Text>
         <Button href={`${baseUrl}/checkout?id=${user.uuid}`} component={'a'}>
           Report upgraden
         </Button>

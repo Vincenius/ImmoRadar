@@ -122,12 +122,12 @@ export default function Report({ data, baseUrl, id }) {
     }
   }
 
-  return <Layout title="Quickcheck für deine Förderungen" withBackground={true}>
+  return <Layout title="Quickcheck für Deine Förderungen" withBackground={true}>
     <Card p="md" my="xl">
       {!startQuickcheck && <Box ta="center" my="md">
         <Title order={2} size="h2" mb="sm" ta="center">Jetzt Fördermöglichkeiten prüfen</Title>
         <Text mb="md" ta="left">
-          Beantworte einige kurze Fragen zu deinem Vorhaben. Der QuickCheck <b>dauert ca. 5 Minuten</b> und liefert dir eine erste Einschätzung zu möglichen Förderungen. Bitte fülle alles sorgfältig aus, damit wir dir ein passendes Ergebnis liefern können.
+          Beantworte einige kurze Fragen zu Deinem Vorhaben. Der QuickCheck <b>dauert ca. 5 Minuten</b> und liefert Dir eine erste Einschätzung zu möglichen Förderungen. Bitte fülle alles sorgfältig aus, damit wir Dir ein passendes Ergebnis liefern können.
         </Text>
         <Button onClick={() => setStartQuickcheck(true)}>QuickCheck Starten</Button>
       </Box>}
@@ -212,7 +212,7 @@ export default function Report({ data, baseUrl, id }) {
           <Box p="xl">
             {filteredSubsidies.length > 0 && <>
               <Title order={2} size="h3" mb="md" ta="center" textWrap="balance">
-                Anhand deiner Antworten hast du dich für {filteredSubsidies.length} {filteredSubsidies.length > 1 ? 'Förderprogramme' : 'Förderprogramm'} qualifiziert.
+                Anhand Deiner Antworten hast Du dich für {filteredSubsidies.length} {filteredSubsidies.length > 1 ? 'Förderprogramme' : 'Förderprogramm'} qualifiziert.
               </Title>
               <ResultTable
                 data={filteredSubsidies}
@@ -223,7 +223,7 @@ export default function Report({ data, baseUrl, id }) {
 
             {filteredSubsidies.length === 0 && <Box mb="xl" >
               <Title order={2} size="h3" mb="xl" ta="center" textWrap="balance">
-                Basierend auf deinen Antworten kannst leider keine Förderungen erhalten.
+                Basierend auf Deinen Antworten kannst leider keine Förderungen erhalten.
               </Title>
 
               <Button component={Link} href={`/report?id=${id}`}>Zum Report</Button>
