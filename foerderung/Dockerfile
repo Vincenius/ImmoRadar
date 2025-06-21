@@ -1,10 +1,12 @@
 # Use official Node base image
 FROM node:20-slim
 
-# Install Puppeteer dependencies
+# Install Puppeteer dependencies + emoji fonts
 RUN apt-get update && apt-get install -y \
     ca-certificates \
     fonts-liberation \
+    fonts-noto-color-emoji \
+    fonts-noto \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
