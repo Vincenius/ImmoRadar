@@ -3,6 +3,8 @@ FROM node:20-slim
 
 # Install Puppeteer dependencies + emoji fonts
 RUN apt-get update && apt-get install -y \
+    fontconfig \
+    locales \
     ca-certificates \
     fonts-liberation \
     fonts-noto-color-emoji \
@@ -30,6 +32,14 @@ RUN apt-get update && apt-get install -y \
     xdg-utils \
     ghostscript \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
+
+RUN locale-gen de_DE.UTF-8
+
+ENV LANG=de_DE.UTF-8
+ENV LANGUAGE=de_DE:de
+ENV LC_ALL=de_DE.UTF-8
+
+RUN fc-cache -f -v
 
 # Create app directory
 WORKDIR /app
