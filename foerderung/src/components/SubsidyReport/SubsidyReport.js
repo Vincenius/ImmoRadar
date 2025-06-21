@@ -25,8 +25,8 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
 
   return (
     <>
-      {!isPaid && index > 0 && index % 2 === 0  && <Box my="xl"></Box>}
-      {!isPaid && index > 0 && index % 2 === 1  && <div style={{ pageBreakBefore: 'always' }}></div>}
+      {!isPaid && index > 0 && index % 2 === 0 && <Box my="xl"></Box>}
+      {!isPaid && index > 0 && index % 2 === 1 && <div style={{ pageBreakBefore: 'always' }}></div>}
       {isPaid && index > 0 && <div style={{ pageBreakBefore: 'always' }}></div>}
       <Card withBorder>
         <Card.Section p="md" bg="cyan.9" withBorder mb="md">
@@ -54,18 +54,21 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
           <Text size="xs">{subsidy.Accumulation}</Text>
         </Card.Section>}
 
-        {isPremium && subsidy.Guidance && <Card.Section withBorder p="md">
-          <Title order={3} size="h4" mb="md">Anleitung zur Antragstellung:</Title>
-          {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
-        </Card.Section>}
-
-        <Card.Section withBorder p="md" mt="md">
+        {!(isPremium && subsidy.Guidance) && <Card.Section withBorder p="md" mt="md">
           <Title order={3} size="h4" mb="md">Notizen:</Title>
           <Divider my="xl" />
           <Divider my="xl" />
           <Divider mt="xl" mb="md" />
-        </Card.Section>
+        </Card.Section>}
       </Card>
+
+      {isPremium && subsidy.Guidance && <>
+        <div style={{ pageBreakBefore: 'always' }}></div>
+        <Card withBorder p="md">
+          <Title order={3} size="h4" mb="md">Anleitung zur Antragstellung:</Title>
+          {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
+        </Card>
+      </>}
     </>
   )
 }

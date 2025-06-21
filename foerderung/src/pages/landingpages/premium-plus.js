@@ -64,7 +64,7 @@ export default function FoerdercheckPremiumPlus() {
             <List.Item icon={<IconTargetArrow size={18} />}>Individuelle Finanzübersicht + Förderstrategie</List.Item>
             <List.Item icon={<IconDownload size={18} />}>Unterstützung bis zur Auszahlung</List.Item>
           </List>
-          <Button maw="500px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 €</Button>
+          <Button maw="500px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 ,-€</Button>
         </Flex>
       </Box>
 
@@ -111,7 +111,7 @@ export default function FoerdercheckPremiumPlus() {
         <Title order={2} ta="center" mb="xl">Stimmen unserer Kund:innen</Title>
         <QuoteSlider quotes={[
           {
-            text: "„Die Beratung hat uns 22.000 € gesichert – aber vor allem Klarheit gebracht, was wir uns mit Förderung leisten können. Ohne euch hätten wir’s nie gewagt.“",
+            text: "„Die Beratung hat uns 22.000 ,-€ gesichert – aber vor allem Klarheit gebracht, was wir uns mit Förderung leisten können. Ohne euch hätten wir’s nie gewagt.“",
             author: "– Kerstin B., Neubau"
           },
           {
@@ -123,7 +123,7 @@ export default function FoerdercheckPremiumPlus() {
             author: "– Tamara D., Sanierung"
           },
           {
-            text: "„Durch euch haben wir 19.500 € erhalten, weil wir nichts übersehen haben. Das persönliche Gespräch war der Schlüssel.“",
+            text: "„Durch euch haben wir 19.500 ,-€ erhalten, weil wir nichts übersehen haben. Das persönliche Gespräch war der Schlüssel.“",
             author: "– Jonas T., Neubau"
           },
           {
@@ -156,10 +156,10 @@ export default function FoerdercheckPremiumPlus() {
             <Title order={2} ta="center" mb="xl">So läuft Deine Premium Plus Beratung ab</Title>
             <List spacing="md" center maw={600} mx="auto" mb="xl" icon={<IconCalendar size={20} />}>
               <List.Item>Förderreport Premium erstellen</List.Item>
-              <List.Item>Termin vereinbaren für Dein 1:1-Beratungsgespräch (per Microsoft Teams)</List.Item>
-              <List.Item>Analyse Deiner Finanzlage & Projektabsicht</List.Item>
-              <List.Item>Erstellung Deiner individuellen Förderstrategie</List.Item>
-              <List.Item>Antragstellung & Begleitung bis zur Auszahlung</List.Item>
+              <List.Item>Hinterlasse Deine Kontaktdaten</List.Item>
+              <List.Item>Wir melden uns telefonisch bei Dir, um einen Termin zu vereinbaren(per Microsoft Teams)</List.Item>
+              <List.Item>Wir besprechen Dein Bauvorhaben und gehen mit Dir die einzelnen Schritte durch</List.Item>
+              <List.Item>Du entscheidest danach, ob aus Deiner Sicht eine Zusammenarbeit Sinn macht</List.Item>
             </List>
             <Text mt="lg" ta="center" fs="italic">➡️ Du bekommst Klarheit, Sicherheit und persönliche Unterstützung – statt Formularchaos & Internetrecherche.</Text>
           </Card.Section>
@@ -182,13 +182,12 @@ export default function FoerdercheckPremiumPlus() {
             <Table.Tr><Table.Td>Persönliche 1:1-Beratung (Microsoft Teams)</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Finanzübersicht: Was ist realistisch möglich?</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Maßgeschneiderte Förderstrategie</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
-            <Table.Tr><Table.Td>Antragstellung & Begleitung</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Vernetzung mit Energieberater:innen</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
             <Table.Tr><Table.Td>Individuelle Konzepterstellung für Dein Projekt</Table.Td><Table.Td>✅ Ja</Table.Td></Table.Tr>
           </Table.Tbody>
         </Table>
 
-        <Text ta="center" mt="md">💶 Jetzt zum Komplettpreis: 199 € (einmalig, kein Abo)</Text>
+        <Text ta="center" mt="md">💶 Jetzt zum Komplettpreis: 199 ,-€ (einmalig, kein Abo)</Text>
 
         <Box ta="center" mt="md">
           <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">
@@ -218,11 +217,11 @@ export default function FoerdercheckPremiumPlus() {
             />
             <FaqItem
               question="Wer übernimmt die Antragstellung?"
-              answer="Unser Team kümmert sich auf Wunsch um alle Formalitäten. Du erhältst zudem Hinweise, wo Du unterzeichnen musst oder welche Dokumente Du brauchst."
+              answer="Die Antragstellung kann nur durch Dich erfolgen. Wir sagen Dir, welche Dokumente gebraucht werden."
             />
             <FaqItem
               question="Was, wenn ich noch unsicher bin?"
-              answer="Kein Problem – unser Beratungsgespräch ist offen, ehrlich und individuell. Du entscheidest danach, wie Du weitergehst."
+              answer="Kein Problem – unser Beratungsgespräch ist offen, ehrlich und individuell. Du entscheidest danach, wie es weitergeht."
             />
           </Accordion>
         </Box>
@@ -254,7 +253,7 @@ export default function FoerdercheckPremiumPlus() {
             leftSection={<IconRocket size={24} />}
             href="/foerdercheck"
           >
-            Beratung starten – 199 € investieren, Tausende sparen
+            Beratung starten – 199 ,-€ investieren, Tausende sparen
           </Button>
         </Box>
       </Box>

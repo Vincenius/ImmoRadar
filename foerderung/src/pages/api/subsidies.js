@@ -38,7 +38,7 @@ export default async function handler(req, res) {
 
       let usedQuestions = []
       const subsidiesWithQuestions = allSubsidies.list
-        .filter(s => s.FirstFinished && s.Done && !(s.Type.includes('Zuschuss') && s.Type.includes('Kredit')))
+        .filter(s => s.FirstFinished && s.Done && s.Status === 'Prüfung Abgeschossen' && !(s.Type.includes('Zuschuss') && s.Type.includes('Kredit')))
         .map((subsidy) => ({
           ...subsidy,
           HouseType: subsidy.HouseType.split(','),
@@ -59,6 +59,12 @@ export default async function handler(req, res) {
           ConsultantNeeded: subsidy.ConsultantNeeded === 'YES',
           FundingDetails: subsidy.FundingDetails,
         }))
+
+      console.log(subsidiesWithQuestions.filter(s => 
+        !s.Type.includes('Kredit') &&
+        !(s.Type.includes('Zuschuss') && s.ConsultantNeeded === true)
+        && s.Website.includes('kfw')
+      ))
 
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {

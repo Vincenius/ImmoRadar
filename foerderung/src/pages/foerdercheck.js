@@ -274,9 +274,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
         >
           <Stepper.Step>
             <Box p="xl">
-              <WithInfo infoText="Diese Angabe ist wichtig, da sich Förderprogramme oft gezielt an Neubauten oder Bestandsimmobilien richten." inline>
-                <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
-              </WithInfo>
+              <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 
               <Flex gap="md">
                 <WithInfo infoText="Ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
@@ -312,7 +310,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     <CheckboxCard handleChange={() => setData({ ...data, TypZuschuss: !data.TypZuschuss })} value={data.TypZuschuss} title="Zuschuss" />
                   </WithInfo>
 
-                  <WithInfo infoText="Ein Förderkredit ist ein zinsgünstiger Kredit – oft von der KfW –, mit besseren Konditionen als bei normalen Banken.">
+                  <WithInfo infoText="Ein Förderkredit ist ein Zinsgünstiger Kredit.">
                     <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
                   </WithInfo>
                 </Flex>
@@ -340,7 +338,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                       size="lg"
                       w="100%"
                     />
-                    <Text c="gray.7" size="sm">Ihr Bundesland ist wichtig, weil viele Fördermittel auf Landesebene vergeben werden.</Text>
+                    <Text c="gray.7" size="sm">Bitte hier Dein Bundesland auswählen.</Text>
                   </Box>
 
                   <Box w="100%">

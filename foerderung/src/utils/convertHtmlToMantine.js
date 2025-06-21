@@ -74,8 +74,32 @@ export const mapToMantineComponents = (htmlString) => {
             );
           case 'ol':
           case 'ul': {
+            const flattenChildren = (nodes) => {
+              let all = [];
+              for (const node of nodes) {
+                all.push(node);
+                if (node.children) {
+                  all = all.concat(flattenChildren(node.children));
+                }
+              }
+              return all;
+            };
+
+            const allDescendants = flattenChildren(children);
+            const hasDot = allDescendants.some(
+              (node) => node.type === 'text' && node.data.trim().startsWith('⬜')
+            );
+
             listDepth++;
-            const list = <List type={name === 'ol' ? 'ordered' : 'unordered'} mb="md" size="xs">{domToReact(children, options)}</List>;
+            const list = <List
+              type={name === 'ol' ? 'ordered' : 'unordered'}
+              mb="md"
+              size="xs"
+              withPadding={!hasDot}
+              listStyleType={hasDot ? 'none' : 'disc'}
+            >
+              {domToReact(children, options)}
+            </List>;
             listDepth--;
             return list;
           }

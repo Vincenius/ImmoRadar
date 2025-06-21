@@ -30,7 +30,7 @@ export default function FoerdercheckStarter() {
   return (
     <Layout
       title="Förderreport Starter – Alle Zuschüsse auf einen Blick"
-      description="Für nur 39 € bekommst Du eine individuell sortierte Übersicht Deiner Fördermöglichkeiten – sofort als PDF."
+      description="Für nur 39 ,-€ bekommst Du eine individuell sortierte Übersicht Deiner Fördermöglichkeiten – sofort als PDF."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -56,9 +56,9 @@ export default function FoerdercheckStarter() {
           <List spacing="xs">
             <List.Item icon={<IconCheck size={18} />}>Fördermittel einfach finden</List.Item>
             <List.Item icon={<IconCheck size={18} />}>Persönlicher Ergebnisbericht</List.Item>
-            <List.Item icon={<IconCheck size={18} />}>Für Bau, Sanierung, Heizung, PV & mehr</List.Item>
+            <List.Item icon={<IconCheck size={18} />}>Für Bau, Sanierung, Heizung, Photovoltaik & mehr</List.Item>
           </List>
-          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Förderreport erstellen – 39 €</Button>
+          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Förderreport erstellen – 39,-€</Button>
         </Flex>
       </Box>
 
@@ -117,7 +117,7 @@ export default function FoerdercheckStarter() {
 
         <QuoteSlider quotes={[
           {
-            text: "„Wir hätten fast 7.000 € übersehen bei unserer Altbausanierung – der Bericht war mega übersichtlich und kam sofort per Mail.“",
+            text: "„Wir hätten fast 7.000 ,-€ übersehen bei unserer Altbausanierung – der Bericht war mega übersichtlich und kam sofort per Mail.“",
             author: "– Carsten W., Sanierung"
           },
           {
@@ -129,7 +129,7 @@ export default function FoerdercheckStarter() {
             author: "– David P., Sanierung"
           },
           {
-            text: "„Ohne den Starter-Check hätten wir das 5.000 € Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
+            text: "„Ohne den Starter-Check hätten wir das 5.000 ,-€ Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
             author: "– Sandra K., Sanierung"
           },
           {
@@ -137,7 +137,7 @@ export default function FoerdercheckStarter() {
             author: "– Jonas H., Neubau"
           },
           {
-            text: "„Die Einschätzung kam direkt, war leicht verständlich und hat uns auf ein Programm gebracht, das wir gar nicht auf dem Schirm hatten – 6.300 € gesichert.“",
+            text: "„Die Einschätzung kam direkt, war leicht verständlich und hat uns auf ein Programm gebracht, das wir gar nicht auf dem Schirm hatten – 6.300 ,-€ gesichert.“",
             author: "– Elena & Mark T., Sanierung"
           }
         ]} />
@@ -191,7 +191,7 @@ export default function FoerdercheckStarter() {
           </Table.Tbody>
         </Table>
         <Text ta="center" mt="md">✅ Ideal für alle, die eigenständig handeln möchten.</Text>
-        <Text ta="center" mb="md">💶 Nur 39 € – einmalig, kein Abo, keine versteckten Kosten</Text>
+        <Text ta="center" mb="md">💶 Nur 39 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
           <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Starter kaufen</Button>
         </Box>
@@ -212,8 +212,8 @@ export default function FoerdercheckStarter() {
               answer="Direkt nach dem Check – Du erhältst sofort Deinen persönlichen Report per E-Mail."
             />
             <FaqItem
-              question="Was ist, wenn ich später doch Beratung will?"
-              answer="Kein Problem – Du kannst jederzeit auf Premium oder Premium Plus upgraden."
+              question="Was ist, wenn ich später doch eine Beratung will?"
+              answer="Ja, ein Upgrade ist jederzeit möglich. Wir freuen uns Dich kennenzulernen."
             />
           </Accordion>
         </Box>
@@ -236,7 +236,7 @@ export default function FoerdercheckStarter() {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           📋 Schneller Überblick über passende Förderungen.<br />
           💡 Ideal für alle, die sich selbst informieren wollen<br />
-          👉 Erstelle jetzt den Förderreport Starter für nur 39 €
+          👉 Erstelle jetzt den Förderreport Starter für nur 39 ,-€
         </Text>
         <Box ta="center">
           <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt den Förderreport Starter erstellen</Button>

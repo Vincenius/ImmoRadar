@@ -135,7 +135,7 @@ export default function Foerderung() {
         <Box mt="-14em" mb="8em" gap="4em">
           <QuoteSlider quotes={[
             {
-              text: "„Dank dem Förderreport habe ich 20.000 € Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!“",
+              text: "„Dank dem Förderreport habe ich 20.000,-€ Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!“",
               author: "– Stefan W., Sanierung"
             },
             {
@@ -147,7 +147,7 @@ export default function Foerderung() {
               author: "– David P., Sanierung"
             },
             {
-              text: "„Ohne den Starter-Check hätten wir das 5.000 € Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
+              text: "„Ohne den Starter-Check hätten wir das 5.000 ,-€ Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
               author: "– Sandra K., Sanierung"
             },
             {
@@ -155,7 +155,7 @@ export default function Foerderung() {
               author: "– Jonas H., Neubau"
             },
             {
-              text: "„Durch die Anleitung haben wir 12.400 € für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
+              text: "„Durch die Anleitung haben wir 12.400 ,-€ für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
               author: "– Miriam S., Neubau"
             },
           ]} />
@@ -211,7 +211,7 @@ export default function Foerderung() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was kostet der Förderreport?"
-              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 €) sparst Du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu Deinem Projekt passen."
+              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 ,-€) sparst Du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu Deinem Projekt passen."
             />
             <FaqItem
               question="Welche Förderungen berücksichtigt der Förderreport?"
@@ -236,11 +236,11 @@ export default function Foerderung() {
             />
             <FaqItem
               question="Wie schnell erhalte ich mein Ergebnis?"
-              answer="Direkt nach dem Ausfüllen des FörderChecks siehst Du sofort Deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
+              answer="Direkt nach Ausfüllen des FörderChecks siehst Du sofort Deine persönlichen Fördermöglichkeiten – schnell, kostenlos und ohne Anmeldung."
             />
             <FaqItem
               question="Kann ich die Starter- oder Premium-Variante auch nachträglich kaufen?"
-              answer="Ja, ein Upgrade ist jederzeit möglich. Du kannst mit der kostenlosen Version starten und später bequem auf Starter oder Premium umsteigen."
+              answer="Ja, ein Upgrade ist jederzeit möglich. Du kannst mit der kostenlosen Version starten und später bequem auf eine der Upgrade Varianten umsteigen."
             />
           </Accordion>
         </Box>

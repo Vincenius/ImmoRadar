@@ -34,7 +34,7 @@ export default function FoerdercheckPremium() {
   return (
     <Layout
       title="Förderreport Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
-      description="59 €, einmalig: Mit dem Premium-Förderreport erhältst Du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
+      description="59 ,-€, einmalig: Mit dem Premium-Förderreport erhältst Du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -62,7 +62,7 @@ export default function FoerdercheckPremium() {
             <List.Item icon={<IconCheck size={18} />}>Ideal für alle, die nichts übersehen wollen</List.Item>
           </List>
           <Button maw="440px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconRocket size={24} />}>
-            Förderreport Premium erstellen – 59 €
+            Förderreport Premium erstellen – 59,-€
           </Button>
         </Flex>
       </Box>
@@ -122,7 +122,7 @@ export default function FoerdercheckPremium() {
         <Title order={2} ta="center" mb="xl">Was andere sagen</Title>
         <QuoteSlider quotes={[
           {
-            text: "„Durch die Anleitung haben wir 12.400 € für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
+            text: "„Durch die Anleitung haben wir 12.400 ,-€ für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
             author: "– Miriam S., Neubau"
           },
           {
@@ -130,7 +130,7 @@ export default function FoerdercheckPremium() {
             author: "– Philipp E., Sanierung"
           },
           {
-            text: "„Wir konnten drei Programme kombinieren – zusammen über 17.000 €. Ohne die Premium-Version hätte ich das nie durchblickt.“",
+            text: "„Wir konnten drei Programme kombinieren – zusammen über 17.000 ,-€. Ohne die Premium-Version hätte ich das nie durchblickt.“",
             author: "– Martina & Jörg B., Neubau"
           },
           {
@@ -142,7 +142,7 @@ export default function FoerdercheckPremium() {
             author: "– Alina R., Sanierung"
           },
           {
-            text: "„Ich hätte nie gedacht, dass Förderungen so planbar sind. Mit der Premium-Anleitung wussten wir genau, was wann zu tun ist – und haben 14.800 € bekommen.“",
+            text: "„Ich hätte nie gedacht, dass Förderungen so planbar sind. Mit der Premium-Anleitung wussten wir genau, was wann zu tun ist – und haben 14.800 ,-€ bekommen.“",
             author: "– Timo L., Neubau"
           }
         ]} />
@@ -196,7 +196,7 @@ export default function FoerdercheckPremium() {
           </Table.Tbody>
         </Table>
         <Text ta="center" mt="md">✅ Ideal für alle, die Förderung gezielt nutzen wollen.</Text>
-        <Text ta="center" mb="md">💶 Nur 59 € – einmalig, kein Abo, keine versteckten Kosten</Text>
+        <Text ta="center" mb="md">💶 Nur 59 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
           <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Premium erstellen</Button>
         </Box>
@@ -241,7 +241,7 @@ export default function FoerdercheckPremium() {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           ⏳ Zuschüsse verfallen oft – und Fehler kosten dich bares Geld. <br />
           🎯 Mit dem Premium-Check gehst Du auf Nummer sicher. <br />
-          👉 Starte jetzt mit dem Förderreport Premium für nur 59 €
+          👉 Starte jetzt mit dem Förderreport Premium für nur 59 ,-€
         </Text>
         <Box ta="center">
           <Button
