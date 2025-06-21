@@ -12,7 +12,7 @@ import headers from '@/utils/fetchHeader';
 const execAsync = promisify(exec);
 
 const compressPdf = async (inputPath, outputPath) => {
-const command = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
+  const command = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
   -dPDFSETTINGS=/printer -dPreserveAnnots=true \
   -dNOPAUSE -dQUIET -dBATCH \
   -sOutputFile="${outputPath}" "${inputPath}"`;
@@ -24,7 +24,9 @@ const command = `gs -sDEVICE=pdfwrite -dCompatibilityLevel=1.4 \
 const generateSinglePagePdf = async (url, outputPath, noHeaderFooter = false, user) => {
   const browser = await puppeteer.launch({
     args: ['--disable-gpu', '--full-memory-crash-report', '--unlimited-storage',
-      '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage'],
+      '--no-sandbox', '--disable-setuid-sandbox', '--disable-dev-shm-usage', '--font-render-hinting=none',
+      '--enable-font-antialiasing',
+      '--disable-font-subpixel-positioning'],
   });
 
   const page = await browser.newPage();

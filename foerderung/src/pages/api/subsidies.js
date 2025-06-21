@@ -60,12 +60,6 @@ export default async function handler(req, res) {
           FundingDetails: subsidy.FundingDetails,
         }))
 
-      console.log(subsidiesWithQuestions.filter(s => 
-        !s.Type.includes('Kredit') &&
-        !(s.Type.includes('Zuschuss') && s.ConsultantNeeded === true)
-        && s.Website.includes('kfw')
-      ))
-
       if (req.query.id) {
         if (req.headers['x-api-key'] === process.env.API_KEY) {
           if (req.query.id === 'all' && process.env.STAGE !== 'prod') {
