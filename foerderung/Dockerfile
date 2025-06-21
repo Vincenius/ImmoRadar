@@ -1,14 +1,17 @@
 # Use official Node base image
 FROM node:20-slim
 
-# Install Puppeteer dependencies + emoji fonts
+# Install system dependencies including emoji-compatible fonts
 RUN apt-get update && apt-get install -y \
     fontconfig \
     locales \
     ca-certificates \
     fonts-liberation \
-    fonts-noto-color-emoji \
     fonts-noto \
+    fonts-noto-color-emoji \
+    fonts-symbola \
+    fonts-emojione \
+    fonts-twemoji \
     libasound2 \
     libatk-bridge2.0-0 \
     libatk1.0-0 \
@@ -33,24 +36,26 @@ RUN apt-get update && apt-get install -y \
     ghostscript \
     && apt-get clean && rm -rf /var/lib/apt/lists/*
 
+# Set locale to German
 RUN locale-gen de_DE.UTF-8
 
 ENV LANG=de_DE.UTF-8
 ENV LANGUAGE=de_DE:de
 ENV LC_ALL=de_DE.UTF-8
 
+# Rebuild font cache
 RUN fc-cache -f -v
 
-# Create app directory
+# Set working directory
 WORKDIR /app
 
-# Copy files
+# Copy app source
 COPY . .
 
 # Install dependencies
 RUN yarn
 
-# Build your app if necessary (e.g., Next.js)
+# Build app (if required)
 RUN yarn build
 
 # Start the app
