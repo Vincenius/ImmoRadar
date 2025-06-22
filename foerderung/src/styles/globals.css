@@ -74,3 +74,9 @@ a:hover {
       pointer-events: auto !important;
   }
 }
+
+img.twemoji {
+  height: 1em;
+  width: auto;
+  display: inline-block;
+}

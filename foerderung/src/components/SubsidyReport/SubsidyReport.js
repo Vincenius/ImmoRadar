@@ -4,6 +4,7 @@ import { Box, Title, Text, List, Button, Card, Image, Flex, Divider } from "@man
 import showdown from 'showdown';
 import { mapToMantineComponents } from '@/utils/convertHtmlToMantine';
 import classes from './SubsidyReport.module.css'
+import Twemoji from 'react-twemoji';
 
 const converter = new showdown.Converter();
 
@@ -41,7 +42,9 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
 
         {isPaid && subsidy.Requirements && <Card.Section mt="md" withBorder p="md">
           <Title order={3} size="h4" mb="md">Voraussetzungen:</Title>
-          {mapToMantineComponents(converter.makeHtml(subsidy.Requirements))}
+          <Twemoji options={{ className: 'twemoji' }}>
+            {mapToMantineComponents(converter.makeHtml(subsidy.Requirements))}
+          </Twemoji>
         </Card.Section>}
 
         {isPaid && subsidy.Measures && <Card.Section withBorder p="md">
@@ -66,7 +69,10 @@ const SubsidyItem = ({ subsidy, index, user, type }) => {
         <div style={{ pageBreakBefore: 'always' }}></div>
         <Card withBorder p="md">
           <Title order={3} size="h4" mb="md">Anleitung zur Antragstellung:</Title>
-          {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
+
+          <Twemoji options={{ className: 'twemoji' }}>
+            {mapToMantineComponents(converter.makeHtml(subsidy.Guidance))}
+          </Twemoji>
         </Card>
       </>}
     </>
