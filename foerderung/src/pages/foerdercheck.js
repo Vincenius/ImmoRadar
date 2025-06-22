@@ -430,8 +430,8 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   CtaPremium={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
                     Jetzt Kaufen
                   </Button>}
-                  CtaPremiumPlus={<Button onClick={() => goToPayment('premium_plus')} loading={isLoading} fullWidth>
-                    Jetzt Kaufen
+                  CtaPremiumPlus={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth disabled>
+                    Mit Premium verfügbar
                   </Button>}
                 />
 

@@ -1,6 +1,6 @@
 import mjml2html from 'mjml'
 
-const subsidyTemplate = (id) => mjml2html(`<mjml>
+const subsidyTemplate = (id, variant) => mjml2html(`<mjml>
   <mj-head>
     <mj-style>
       a {
@@ -20,6 +20,7 @@ const subsidyTemplate = (id) => mjml2html(`<mjml>
       <mj-column>
         <mj-text font-weight="bold" font-size="24px" color="#000" font-family="helvetica">Vielen Dank für Deinen Kauf!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Wir freuen uns, Dir den vollständigen Förderreport zu Deinem Bauprojekt überreichen zu können.</mj-text>
+        ${variant === 'premium' ? `<mj-text font-size="15px" color="#000" font-family="helvetica">Du willst noch mehr?<br/> Im Premium Plus-Paket ist zusätzlich ein kostenloses Erstgespräch enthalten: Lerne uns kennen – ganz unverbindlich – und entscheide danach, ob dir die Zusammenarbeit das Geld wert ist.<br/><br/>👉 <a href="${process.env.BASE_URL}/premium-plus-termin?id=${id}" target="_blank">Kostenloses Beratungsgespräch vereinbaren</a></mj-text>` : ''}
         <mj-text font-size="15px" color="#000" font-family="helvetica">Falls Du Fragen hast oder weitere Unterstützung benötigst, stehe ich Dir gerne zur Verfügung. Du erreichst mich jederzeit unter <a href="mailto:support@foerderhaus24.de">support@foerderhaus24.de</a>.</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Wir wünschen Dir viel Erfolg bei Deinem Bauvorhaben!</mj-text>
         <mj-text font-size="15px" color="#000" font-family="helvetica">Viele Grüße,<br>Vincent von ${process.env.NEXT_PUBLIC_WEBSITE_NAME}</mj-text>

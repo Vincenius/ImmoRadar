@@ -141,6 +141,13 @@ export default function Report({ data, baseUrl, id }) {
             Der Versand per E-Mail wurde erfolgreich gestartet. Du erhältst das Dokument in Kürze in Deinem Posteingang.
           </Text>}
           {error && <Text size="md" c="red.9">PDF konnte nicht heruntergeladen werden. Bitte versuche es erneut. Falls der Fehler weiterhin besteht, kontaktiere uns per E-Mail.</Text>}
+
+          {user.Variant === 'premium' && <Text mb="xl" size="md">
+            <b>Du willst noch mehr?</b><br />
+            Im Premium Plus-Paket ist zusätzlich ein kostenloses Erstgespräch enthalten:
+            Lerne uns kennen – ganz unverbindlich – und entscheide danach, ob dir die Zusammenarbeit das Geld wert ist.<br /><br />
+            👉 <a href={`${baseUrl}/premium-plus-termin?id=${id}`} target="_blank">Jetzt kostenloses Erstgespräch im Premium Plus buchen</a>
+          </Text>}
         </Card>}
 
         {user.Variant !== 'free' && answeredQuestions && <Card p={{ base: 'sm', xs: 'xl' }} my="xl">

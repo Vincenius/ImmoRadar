@@ -71,8 +71,8 @@ function ReportCheckout({ id, email, name, plan, defaultPlan }) {
         CtaPremium={<Button onClick={() => setVariant(plan === 'starter' ? 'premium_upgrade' : 'premium')} disabled={plan === 'premium'} fullWidth>
           {plan === 'starter' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
         </Button>}
-        CtaPremiumPlus={<Button variant="outline" onClick={() => setVariant(upgradeMap[plan] || 'premium_plus')} fullWidth>
-          {plan === 'starter' || plan === 'premium' ? 'Jetzt Upgraden' : 'Jetzt Kaufen'}
+        CtaPremiumPlus={<Button variant="outline" onClick={() => setVariant(upgradeMap[plan] || 'premium_plus')} fullWidth disabled={plan !== 'premium'}>
+          {plan === 'premium' ? 'Jetzt Upgraden' : 'Mit Premium Verfügbar'}
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">

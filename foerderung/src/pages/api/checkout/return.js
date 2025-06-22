@@ -1,6 +1,6 @@
 import Stripe from 'stripe';
 import { sendEmail } from '@/utils/emails';
-import premiumPlusNotification from '@/utils/templates/premium-plus-notification';
+// import premiumPlusNotification from '@/utils/templates/premium-plus-notification';
 import subsidyPaidTemplate from '@/utils/templates/subsidy-paid';
 import { createAccount } from '@/utils/brevo';
 import prices from '@/utils/stripePrices';
@@ -55,18 +55,18 @@ export default async function handler(req, res) {
           await createAccount(session.customer_details.email)
         }
 
-        if ([prices.premium_plus, prices.premium_plus_upgrade_premium, prices.premium_plus_upgrade_starter].includes(price)) {
-          await sendEmail({
-            to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
-            subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus gekauft`,
-            html: premiumPlusNotification({ ...user, ...phoneUpdate, ...emailUpdate, ...nameUpdate })
-          })
-        }
+        // if ([prices.premium_plus, prices.premium_plus_upgrade_premium, prices.premium_plus_upgrade_starter].includes(price)) {
+        //   await sendEmail({
+        //     to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
+        //     subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus gekauft`,
+        //     html: premiumPlusNotification({ ...user, ...phoneUpdate, ...emailUpdate, ...nameUpdate })
+        //   })
+        // }
 
         await sendEmail({
           to: user.Email || session.customer_details.email,
           subject: 'Vielen Dank für Deinen Kauf',
-          html: subsidyPaidTemplate(session.client_reference_id),
+          html: subsidyPaidTemplate(session.client_reference_id, priceMap[price]),
         })
 
         res.json({ success: true, id: session.client_reference_id })

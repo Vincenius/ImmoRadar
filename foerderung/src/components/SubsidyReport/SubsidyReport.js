@@ -1,5 +1,4 @@
 import React from 'react'
-import Link from 'next/link'
 import { Box, Title, Text, List, Button, Card, Image, Flex, Divider } from "@mantine/core";
 import showdown from 'showdown';
 import { mapToMantineComponents } from '@/utils/convertHtmlToMantine';
