@@ -69,7 +69,7 @@ const Appointment = ({ id }) => {
         <Stack>
           <Title order={2}>Termin vereinbaren</Title>
           <Text>
-            Gib deine Telefonnummer ein und wir melden uns zeitnah bei dir, um
+            Gib deine Telefonnummer ein und wir melden uns zeitnah bei Dir, um
             einen passenden Gesprächstermin zu vereinbaren – natürlich
             kostenlos und unverbindlich.
           </Text>
@@ -92,7 +92,7 @@ const Appointment = ({ id }) => {
 
           {success && (
             <Text mt="md" c="green.9">
-              Termin erfolgreich angefragt! Wir melden uns bald bei dir.
+              Termin erfolgreich angefragt! Wir melden uns bald bei Dir.
             </Text>
           )}
 
