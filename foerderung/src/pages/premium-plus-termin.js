@@ -65,7 +65,7 @@ const Appointment = ({ id }) => {
       noindex="true"
       withBackground={true}
     >
-      <Card p={{ base: 'sm', xs: 'xl' }} my="xl">
+      <Card p={{ base: 'sm', xs: 'xl' }} my="xl" maw={500} mx="auto">
         <Stack>
           <Title order={2}>Termin vereinbaren</Title>
           <Text>
