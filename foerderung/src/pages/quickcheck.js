@@ -144,7 +144,7 @@ export default function Report({ data, baseUrl, id }) {
         >
 
           <Box p={{ base: 'xs', sm: 'xl' }}>
-            <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix="€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
+            <Text ta="center" fs="italic">{index + 1}. Förderung mit einer maximalen Fördersumme bis zu <NumberFormatter suffix=",-€" value={d.Amount} thousandSeparator="." decimalSeparator="," decimalScale={0} /></Text>
             <Title order={2} size="h3" mb="xl" ta="center">{d.Name}</Title>
 
             <Card withBorder p={{ base: 'xs', sm: 'xl' }}>

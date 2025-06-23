@@ -65,6 +65,7 @@ export default function FoerdercheckPremiumPlus() {
             <List.Item icon={<IconDownload size={18} />}>Unterstützung bis zur Auszahlung</List.Item>
           </List>
           <Button maw="500px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 ,-€</Button>
+          <Text fs="italic" mt="md">Kostenloses Erstgespräch, Entscheide später ob Dir die Zusammenarbeit das Geld wert ist.</Text>
         </Flex>
       </Box>
 
