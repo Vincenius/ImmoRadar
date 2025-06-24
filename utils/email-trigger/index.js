@@ -1,5 +1,4 @@
 require('dotenv').config()
-const fs = require('fs');
 
 const getOptions = () => ({
   method: 'GET',
@@ -11,7 +10,7 @@ const getOptions = () => ({
 
 const main = async () => {
   console.log('run cron', new Date().toISOString())
-  await fetch(`${process.env.BASE_URL}/api/send-emails`, getOptions())
+  await fetch(`${process.env.BASE_URL}/api/send-emails`, getOptions()).catch(err => console.log('err', err))
 }
 
 module.exports = main
