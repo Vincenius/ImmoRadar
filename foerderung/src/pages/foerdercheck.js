@@ -188,13 +188,15 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const finalData = subsidyData.filter(d =>
     d.HouseType.includes(data.HouseType) &&
     (d.Region === data.Region || d.Region === 'Bundesweit') &&
-    (d.District === data.District || !d.District) &&
+    (d.District === data.District || !data.District || !d.District) &&
     (
       data.TypZuschuss && d.Type.includes('Zuschuss') ||
       data.TypKredit && d.Type.includes('Kredit')
     ) &&
     d.Measures?.some(element => data.Measures?.includes(element))
   )
+
+  console.log(subsidyData, finalData)
 
   const finalDataAmount = finalData.reduce((acc, curr) => {
     const subAmount = data.Measures.reduce((subAcc, subCurr) => {

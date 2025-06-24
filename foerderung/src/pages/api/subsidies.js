@@ -86,7 +86,7 @@ export default async function handler(req, res) {
             const filteredSubsidies = subsidiesWithQuestions.filter(d =>
               d.HouseType.includes(userData.HouseType) &&
               (d.Region === userData.Region || d.Region === 'Bundesweit') &&
-              (d.District === userData.District || !d.District) &&
+              (d.District === userData.District || !userData.District || !d.District) &&
               (
                 userData.Type.includes('Zuschuss') && d.Type.includes('Zuschuss') ||
                 userData.Type.includes('Kredit') && d.Type.includes('Kredit')
@@ -150,7 +150,7 @@ export default async function handler(req, res) {
       const filteredSubsidies = subsidiesWithQuestions.filter(d =>
         d.HouseType.includes(userData.HouseType) &&
         (d.Region === userData.Region || d.Region === 'Bundesweit') &&
-        (d.District === userData.District || !d.District) &&
+        (d.District === userData.District || !userData.District || !d.District) &&
         (
           userData.Type.includes('Zuschuss') && d.Type.includes('Zuschuss') ||
           userData.Type.includes('Kredit') && d.Type.includes('Kredit')
