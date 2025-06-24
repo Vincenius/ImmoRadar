@@ -183,7 +183,7 @@ export default async function handler(req, res) {
           html: confirmTemplate.htmlContent
             .replace('[Name Anmeldung]', name)
             .replace('#top', `${process.env.BASE_URL}/email-bestaetigen?id=${id}`)
-            .replace('{{foerdersumme}}', finalDataAmount.toFixed('2').replace(/(.)(?=(\d{3})+$)/g, '$1.'))
+            .replace('{{foerdersumme}}', finalDataAmount.toFixed(0).replace(/(.)(?=(\d{3})+$)/g, '$1.'))
             .replace('https://www.abmeldung-newsletter', `${process.env.BASE_URL}/api/unsubscribe?id=${id}`),
         })
       }
