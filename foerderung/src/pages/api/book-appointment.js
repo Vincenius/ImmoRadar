@@ -5,7 +5,6 @@ export default async function handler(req, res) {
   try {
     if (req.method === 'POST') {
       const { id, phone } = JSON.parse(req.body)
-      console.log(id)
       const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
       const { list: [user] } = await fetch(url, {
         method: 'GET',

@@ -38,7 +38,8 @@ export default async function handler(req, res) {
           },
         }).then(res => res.json())
 
-        const emailUpdate = user.Email ? {} : { Email: session.customer_details.email }
+        // if user already had email, he was upgraded from another plan
+        const emailUpdate = user.Email ? { IsUpgrade: true } : { Email: session.customer_details.email, IsUpgrade: false }
         const phoneUpdate = user.Phone ? {} : { Phone: phone }
         const nameUpdate = user.Name ? {} : { Name: name }
 
@@ -48,26 +49,37 @@ export default async function handler(req, res) {
             'xc-token': process.env.NOCODB_KEY,
             'Content-Type': 'application/json'
           },
-          body: JSON.stringify({ Id: user.Id, Variant: priceMap[price], ...emailUpdate, ...phoneUpdate, ...nameUpdate })
+          body: JSON.stringify({
+            Id: user.Id,
+            Variant: priceMap[price],
+            ...emailUpdate,
+            ...phoneUpdate,
+            ...nameUpdate
+          })
         }).then(res => res.json())
+
+        const followUpDate = new Date()
+        followUpDate.setDate(followUpDate.getDate() + 5);
+        const yyyy = followUpDate.getFullYear();
+        const mm = String(followUpDate.getMonth() + 1).padStart(2, '0');
+        const dd = String(followUpDate.getDate()).padStart(2, '0');
+        const formattedDate = `${yyyy}-${mm}-${dd}`;
+        
+        await fetch(`${process.env.NOCODB_URI}/api/v2/tables/mfgjv8c6rwrarjl/records`, {
+          method: 'POST',
+          headers: {
+            'xc-token': process.env.NOCODB_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ UserId: user.Id, Date: formattedDate, Variant: user.Variant })
+        })
 
         if (!user.Email) {
           await createAccount(session.customer_details.email)
+          // todo confirm email??
+        } else {
+
         }
-
-        // if ([prices.premium_plus, prices.premium_plus_upgrade_premium, prices.premium_plus_upgrade_starter].includes(price)) {
-        //   await sendEmail({
-        //     to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
-        //     subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus gekauft`,
-        //     html: premiumPlusNotification({ ...user, ...phoneUpdate, ...emailUpdate, ...nameUpdate })
-        //   })
-        // }
-
-        await sendEmail({
-          to: user.Email || session.customer_details.email,
-          subject: 'Vielen Dank für Deinen Kauf',
-          html: subsidyPaidTemplate(session.client_reference_id, priceMap[price]),
-        })
 
         res.json({ success: true, id: session.client_reference_id })
       } else {

@@ -20,7 +20,7 @@ export const sendEmail = async ({ to, subject, html, pdfFilePath, pdfFileName })
     }] : [];
 
     const result = await transporter.sendMail({
-        from: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} <noreply@immoradar.xyz>`,
+        from: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} <${process.env.SENDER_EMAIL}>`,
         to: `${to} <${to}>`,
         subject,
         html,

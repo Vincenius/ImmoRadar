@@ -9,22 +9,6 @@ export default async function handler(req, res) {
   if (req.method === 'POST') {
     const { id, email, name, variant } = JSON.parse(req.body)
     try {
-      let isUpgrade = false
-
-      // TODO check this??
-      if (variant === 'premium') {
-        const url = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(uuid,eq,${id})`;
-        const { list: [user] } = await fetch(url, {
-          method: 'GET',
-          headers: {
-            'xc-token': process.env.NOCODB_KEY,
-          },
-        }).then(res => res.json())
-        if (user.Variant === 'starter') {
-          isUpgrade = true
-        }
-      }
-
       const price = variant === 'premium_plus' ? prices['premium'] : prices[variant]
       const optionalParams = email ? { customer_email: email } : {}
       const session = await stripe.checkout.sessions.create({

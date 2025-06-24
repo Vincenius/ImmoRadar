@@ -22,3 +22,26 @@ export const createAccount = email => {
     console.log(error)
   }
 }
+
+export const getTemplate = async (id) => {
+  try {
+    const template = await fetch(`https://api.brevo.com/v3/smtp/templates/${id}`, {
+      method: "GET",
+      headers: {
+        "accept": "application/json",
+        "api-key": process.env.BREVO_API_KEY
+      }
+    })
+      .then(response => {
+        if (!response.ok) {
+          throw new Error("Network response was not ok " + response.statusText);
+        }
+        return response.json();
+      })
+      .catch(error => console.error("Fetch error:", error));
+
+    return template;
+  } catch (error) {
+    console.log(error)
+  }
+}

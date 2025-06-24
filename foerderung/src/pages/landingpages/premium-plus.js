@@ -25,6 +25,28 @@ import {
 } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
+import headers from '@/utils/fetchHeader';
+
+export async function getServerSideProps({ resolvedUrl }) {
+  const params = new URLSearchParams(resolvedUrl.split('?')[1]);
+  const id = params.get('id');
+  const baseUrl = process.env.BASE_URL
+
+  const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
+    method: 'GET',
+    headers: {
+      'x-api-key': process.env.API_KEY,
+      ...headers
+    }
+  }).then(res => res.json())
+
+  const plan = data?.user?.Variant
+
+  return {
+    // only pass id if plan is premium
+    props: { id: plan === 'premium' ? id : null },
+  };
+}
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
@@ -33,7 +55,9 @@ const FaqItem = ({ question, answer }) => (
   </Accordion.Item>
 );
 
-export default function FoerdercheckPremiumPlus() {
+export default function FoerdercheckPremiumPlus({ id }) {
+  const ctaLink = id ? `/premium-plus-termin?id=${id}` : '/foerdercheck';
+
   return (
     <Layout
       title="Förderreport Premium Plus – Persönliche Beratung & Förderstrategie"
@@ -64,7 +88,7 @@ export default function FoerdercheckPremiumPlus() {
             <List.Item icon={<IconTargetArrow size={18} />}>Individuelle Finanzübersicht + Förderstrategie</List.Item>
             <List.Item icon={<IconDownload size={18} />}>Unterstützung bis zur Auszahlung</List.Item>
           </List>
-          <Button maw="500px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 ,-€</Button>
+          <Button maw="500px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 ,-€</Button>
           <Text fs="italic" mt="md">Kostenloses Erstgespräch, Entscheide später ob Dir die Zusammenarbeit das Geld wert ist.</Text>
         </Flex>
       </Box>
@@ -191,7 +215,7 @@ export default function FoerdercheckPremiumPlus() {
         <Text ta="center" mt="md">💶 Jetzt zum Komplettpreis: 199 ,-€ (einmalig, kein Abo)</Text>
 
         <Box ta="center" mt="md">
-          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">
+          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>
             Jetzt Förderreport Premium Plus erstellen
           </Button>
         </Box>
@@ -252,7 +276,7 @@ export default function FoerdercheckPremiumPlus() {
             size="xl"
             component={Link}
             leftSection={<IconRocket size={24} />}
-            href="/foerdercheck"
+            href={ctaLink}
           >
             Beratung starten – 199 ,-€ investieren, Tausende sparen
           </Button>

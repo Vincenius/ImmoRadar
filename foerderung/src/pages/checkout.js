@@ -76,8 +76,7 @@ function ReportCheckout({ id, email, name, plan, defaultPlan }) {
         </Button>}
       />}
       {variant && <Card bg="white" px="md" py="xl" radius="md" withBorder mb="xl" shadow="md">
-        <Checkout email={email} name={name} id={id} variant={variant} />
-        <Button variant="outline" onClick={() => goBack()} w="150px">Zurück</Button>
+        <Checkout email={email} name={name} id={id} variant={variant} goBack={goBack} />
       </Card>}
     </Layout>
   )

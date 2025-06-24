@@ -22,6 +22,27 @@ import {
 } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
+import headers from '@/utils/fetchHeader';
+
+export async function getServerSideProps({ req, res, resolvedUrl }) {
+  const params = new URLSearchParams(resolvedUrl.split('?')[1]);
+  const id = params.get('id');
+  const baseUrl = process.env.BASE_URL
+
+  const data = await fetch(`${baseUrl}/api/subsidies?id=${id}`, {
+    method: 'GET',
+    headers: {
+      'x-api-key': process.env.API_KEY,
+      ...headers
+    }
+  }).then(res => res.json())
+
+  const variant = data?.user?.Variant
+
+  return {
+    props: { id, variant },
+  };
+}
 
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
@@ -30,7 +51,10 @@ const FaqItem = ({ question, answer }) => (
   </Accordion.Item>
 );
 
-export default function FoerdercheckPremium() {
+export default function FoerdercheckPremium({ id, variant }) {
+  const plan = variant === 'starter' ? 'premium_upgrade' : 'premium'
+  const ctaLink = id ? `/checkout?id=${id}&plan=${plan}` : '/foerdercheck';
+
   return (
     <Layout
       title="Förderreport Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
@@ -61,7 +85,7 @@ export default function FoerdercheckPremium() {
             <List.Item icon={<IconCheck size={18} />}>Klare Anleitung für die nächsten Schritte</List.Item>
             <List.Item icon={<IconCheck size={18} />}>Ideal für alle, die nichts übersehen wollen</List.Item>
           </List>
-          <Button maw="440px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconRocket size={24} />}>
+          <Button maw="440px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconRocket size={24} />}>
             Förderreport Premium erstellen – 59,-€
           </Button>
         </Flex>
@@ -198,7 +222,7 @@ export default function FoerdercheckPremium() {
         <Text ta="center" mt="md">✅ Ideal für alle, die Förderung gezielt nutzen wollen.</Text>
         <Text ta="center" mb="md">💶 Nur 59 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
-          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Premium erstellen</Button>
+          <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>Jetzt Förderreport Premium erstellen</Button>
         </Box>
       </Box>
 
@@ -248,7 +272,7 @@ export default function FoerdercheckPremium() {
             size="xl"
             leftSection={<IconRocket size={24} />}
             component={Link}
-            href="/foerdercheck"
+            href={ctaLink}
           >
             Förderung prüfen & sicher beantragen
           </Button>

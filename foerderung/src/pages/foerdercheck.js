@@ -487,11 +487,10 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   Förderreport kaufen
                 </Title>
 
-                <Checkout variant={variant} id={checkoutId} />
-                <Button mt="lg" variant="outline" onClick={() => {
+                <Checkout variant={variant} id={checkoutId} goBack={() => {
                   setVariant(null)
                   setCheckoutId(null)
-                }} w="150px">Zurück</Button>
+                }} />
               </>}
             </Box>
           </Stepper.Completed>

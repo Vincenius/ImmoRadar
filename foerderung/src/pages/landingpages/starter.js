@@ -19,6 +19,15 @@ import { IconCheck, IconDownload, IconSearch, IconShoppingCart, IconRocket } fro
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
+export async function getServerSideProps({ req, res, resolvedUrl }) {
+  const params = new URLSearchParams(resolvedUrl.split('?')[1]);
+  const id = params.get('id');
+
+  return {
+    props: { id },
+  };
+}
+
 const FaqItem = ({ question, answer }) => (
   <Accordion.Item value={question}>
     <Accordion.Control><b>{question}</b></Accordion.Control>
@@ -26,7 +35,9 @@ const FaqItem = ({ question, answer }) => (
   </Accordion.Item>
 );
 
-export default function FoerdercheckStarter() {
+export default function FoerdercheckStarter({ id }) {
+  const ctaLink = id ? `/checkout?id=${id}&plan=starter` : '/foerdercheck';
+
   return (
     <Layout
       title="Förderreport Starter – Alle Zuschüsse auf einen Blick"
@@ -58,7 +69,7 @@ export default function FoerdercheckStarter() {
             <List.Item icon={<IconCheck size={18} />}>Persönlicher Ergebnisbericht</List.Item>
             <List.Item icon={<IconCheck size={18} />}>Für Bau, Sanierung, Heizung, Photovoltaik & mehr</List.Item>
           </List>
-          <Button maw="400px" mt="xl" size="xl" component={Link} href="/foerdercheck" leftSection={<IconSearch size={24} />}>Jetzt Förderreport erstellen – 39,-€</Button>
+          <Button maw="400px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconSearch size={24} />}>Jetzt Förderreport erstellen – 39,-€</Button>
         </Flex>
       </Box>
 
@@ -193,7 +204,7 @@ export default function FoerdercheckStarter() {
         <Text ta="center" mt="md">✅ Ideal für alle, die eigenständig handeln möchten.</Text>
         <Text ta="center" mb="md">💶 Nur 39 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
-          <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href="/foerdercheck">Jetzt Förderreport Starter kaufen</Button>
+          <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href={ctaLink}>Jetzt Förderreport Starter kaufen</Button>
         </Box>
       </Box>
 
@@ -239,7 +250,7 @@ export default function FoerdercheckStarter() {
           👉 Erstelle jetzt den Förderreport Starter für nur 39 ,-€
         </Text>
         <Box ta="center">
-          <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href="/foerdercheck">Jetzt den Förderreport Starter erstellen</Button>
+          <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>Jetzt den Förderreport Starter erstellen</Button>
         </Box>
       </Box>
     </Layout>

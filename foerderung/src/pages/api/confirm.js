@@ -14,6 +14,13 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
+      const followUpDate = new Date()
+      followUpDate.setDate(followUpDate.getDate() + 5);
+      const yyyy = followUpDate.getFullYear();
+      const mm = String(followUpDate.getMonth() + 1).padStart(2, '0');
+      const dd = String(followUpDate.getDate()).padStart(2, '0');
+      const formattedDate = `${yyyy}-${mm}-${dd}`;
+
       await Promise.all([
         fetch(url, {
           method: 'PATCH',
@@ -23,7 +30,15 @@ export default async function handler(req, res) {
           },
           body: JSON.stringify({ Id: user.Id, IsConfirmed: true })
         }).then(res => res.json()),
-        createAccount(user.Email)
+        createAccount(user.Email),
+        fetch(`${process.env.NOCODB_URI}/api/v2/tables/mfgjv8c6rwrarjl/records`, {
+          method: 'POST',
+          headers: {
+            'xc-token': process.env.NOCODB_KEY,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({ UserId: user.Id, Date: formattedDate, Variant: user.Variant })
+        })
       ])
 
       res.json({ success: true })

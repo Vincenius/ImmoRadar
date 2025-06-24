@@ -2,6 +2,7 @@ import fs from "fs";
 import sendEmail from "@/utils/emails";
 import generatePdf from "@/utils/generateSubsidyPdf"
 import subsidyTemplate from "@/utils/templates/subsidy-paid";
+import { getTemplate } from "@/utils/brevo";
 
 const subjectTextMap = {
   'free': 'Kostenloser',
@@ -23,11 +24,31 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
+      const templateMap = user.IsUpgrade ? {
+        'starter': '20',
+        'premium': '21',
+      } : {
+        'free': '9',
+        'starter': '10',
+        'premium': '11',
+      }
+
+      const lpMap = {
+        'free': 'starter',
+        'starter': 'premium',
+        'premium': 'premium-plus',
+      }
+
+      const template = await getTemplate(templateMap[user.Variant])
       const { filename } = await generatePdf(id, user)
+
       await sendEmail({
         to: user.Email,
-        subject: `${subjectTextMap[user.Variant]} Förderreport`,
-        html: subsidyTemplate(),
+        subject: template.subject,
+        html: template.htmlContent
+          .replace('[Name Anmeldung]', user.Name)
+          .replace('#top', `${process.env.BASE_URL}/landingpages/${lpMap[user.Variant]}?id=${id}`)
+          .replace('https://www.abmeldung-newsletter', `${process.env.BASE_URL}/api/unsubscribe?id=${id}`),
         pdfFilePath: filename,
         pdfFileName: `${subjectTextMap[user.Variant]} Förderreport.pdf`
       })
