@@ -36,7 +36,7 @@ export default async function handler(req, res) {
         const formattedDate = `${yyyy}-${mm}-${dd}`;
 
         list.forEach(async email => {
-          if (email.Date !== formattedDate) {
+          if (email.Date === formattedDate) {
             const userUrl = `${process.env.NOCODB_URI}/api/v2/tables/magkf3njbkwa8yw/records?where=(Id,eq,${email.UserId})`;
             const { list: [user] } = await fetch(userUrl, {
               method: 'GET',
