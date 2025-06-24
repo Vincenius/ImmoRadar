@@ -20,6 +20,7 @@ export default async function handler(req, res) {
 
     try {
       if (req.method === 'GET') {
+        console.log('Email cron triggered', new Date().toISOString())
         const url = `${process.env.NOCODB_URI}/api/v2/tables/mfgjv8c6rwrarjl/records?limit=1000`
         const { list } = await fetch(url, {
           method: 'GET',

@@ -1,0 +1,17 @@
+{
+  "name": "db-backups",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "cron": "node cron.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.4.7",
+    "json-2-csv": "^5.5.9",
+    "node-cron": "^3.0.3"
+  }
+}

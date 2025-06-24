@@ -1,0 +1,12 @@
+{
+    "apps": [
+        {
+            "name": "immoradar-emails",
+            "script": "npm",
+            "args": "run cron",
+            "env": {
+                "NODE_ENV": "production"
+            }
+        }
+    ]
+}
