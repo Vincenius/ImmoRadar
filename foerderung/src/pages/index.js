@@ -170,8 +170,8 @@ export default function Foerderung() {
           CtaPremium={<Button size="md" component={Link} href="/foerdercheck" fullWidth>
             Jetzt starten!
           </Button>}
-          CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth>
-            Jetzt starten!
+          CtaPremiumPlus={<Button size="md" component={Link} href="/foerdercheck" fullWidth disabled>
+            Mit Premium Verfügbar
           </Button>}
         />
       </Box>
