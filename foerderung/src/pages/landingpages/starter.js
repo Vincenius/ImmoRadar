@@ -113,8 +113,7 @@ export default function FoerdercheckStarter({ id }) {
             <Box p="xl">
               <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
               <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
-                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, was davon zu ihrem Projekt passt – und verschenken so tausende Euro.
-                Mit dem Förderreport vermeidest Du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
+                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, welche davon zu ihrem Projekt passen – und verschenken so tausende Euros. Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
               </Text>
             </Box>
           </Flex>
