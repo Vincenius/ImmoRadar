@@ -1,3 +1,4 @@
+import { getTemplate } from "@/utils/brevo";
 import sendEmail from "@/utils/emails";
 import premiumPlusNotification from '@/utils/templates/premium-plus-notification';
 
@@ -13,11 +14,23 @@ export default async function handler(req, res) {
         },
       }).then(res => res.json())
 
-      await sendEmail({
-        to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
-        subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus angefragt`,
-        html: premiumPlusNotification({ ...user, phone })
-      })
+      const template = await getTemplate('22')
+
+      await Promise.all([
+        sendEmail({
+          to: process.env.PREMIUM_PLUS_NOTIFICATION_EMAIL,
+          subject: `${process.env.NEXT_PUBLIC_WEBSITE_NAME} Kunde hat Premium Plus angefragt`,
+          html: premiumPlusNotification({ ...user, phone })
+        }),
+        sendEmail({
+          to: user.Email,
+          subject: template.subject,
+          html: template.htmlContent
+            .replace('[Name Anmeldung]', (user.Name || ''))
+            // .replace('#top', `${process.env.BASE_URL}/email-bestaetigen?id=${user.uuid}`)
+            .replace('https://www.abmeldung-newsletter', `${process.env.BASE_URL}/api/unsubscribe?id=${user.uuid}`),
+        })
+      ])
 
       res.status(200).json({})
     } else {
