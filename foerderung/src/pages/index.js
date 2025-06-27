@@ -17,7 +17,7 @@ export default function Foerderung() {
   return (
     <Layout
       title="Finde die besten Zuschüsse und Kredite für Dein Bau- oder Sanierungsprojekt"
-      description=" Bekommst kostenlos eine Übersicht aller relevanten Zuschüsse und Förderkredite, individuell abgestimmt auf Dein Projekt und Deine Region."
+      description=" Mit dem kostenlosen Förderreport findest Du in weniger als 2 Minuten die besten Förderungen für Dein Bauvorhaben - bundesweit, regional & individuell."
     >
       <Box className={styles.header} py="xl">
         <div className={styles.backgroundImage}>
