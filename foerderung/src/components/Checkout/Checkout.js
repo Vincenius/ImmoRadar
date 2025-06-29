@@ -38,8 +38,7 @@ export default function Checkout({ id, email, name, variant, goBack }) {
 
         <Box>
           <form onSubmit={handleSubmit}>
-            <Checkbox required mb="md" label="Ich stimme ausdrücklich zu, dass mit der Erfüllung des Vertrages (z. B. durch Bereitstellung des Downloads) vor Ablauf der Widerrufsfrist begonnen wird." />
-            <Checkbox required mb="md" label="Mir ist bekannt, dass ich mit dieser Zustimmung mein gesetzliches Widerrufsrecht verliere." />
+            <Checkbox required mb="md" label="Ich stimme ausdrücklich zu, dass mit der Erfüllung des Vertrages (z. B. durch Bereitstellung des Downloads) vor Ablauf der Widerrufsfrist begonnen wird. Mir ist bekannt, dass ich mit dieser Zustimmung mein gesetzliches Widerrufsrecht verliere." />
             <Checkbox required mb="xl" label={<>Ich habe die <Link href="/agbs" target="_blank">Allgemeinen Geschäftsbedingungen</Link> gelesen und akzeptiere sie.</>} />
 
             <Flex justify="space-between">
