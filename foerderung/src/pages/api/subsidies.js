@@ -1,5 +1,5 @@
 import { getTemplate } from '@/utils/brevo';
-import { sendEmail } from '@/utils/emails';
+import { sendEmail } from "@/utils/brevo";
 import { v4 as uuidv4 } from 'uuid';
 
 export default async function handler(req, res) {

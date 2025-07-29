@@ -196,8 +196,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     d.Measures?.some(element => data.Measures?.includes(element))
   )
 
-  console.log(subsidyData, finalData)
-
   const finalDataAmount = finalData.reduce((acc, curr) => {
     const subAmount = data.Measures.reduce((subAcc, subCurr) => {
       return subAcc + curr.FundingDetails[subCurr]

@@ -1,5 +1,5 @@
 import Stripe from 'stripe';
-import { sendEmail } from '@/utils/emails';
+import { sendEmail } from "@/utils/brevo";
 import { createAccount, getTemplate } from '@/utils/brevo';
 import prices from '@/utils/stripePrices';
 

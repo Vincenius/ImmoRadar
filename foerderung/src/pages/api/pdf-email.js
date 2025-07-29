@@ -1,5 +1,5 @@
 import fs from "fs";
-import sendEmail from "@/utils/emails";
+import { sendEmail } from "@/utils/brevo";
 import generatePdf from "@/utils/generateSubsidyPdf"
 import subsidyTemplate from "@/utils/templates/subsidy-paid";
 import { getTemplate } from "@/utils/brevo";

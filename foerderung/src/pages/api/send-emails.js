@@ -1,5 +1,5 @@
 import { getTemplate } from '@/utils/brevo';
-import sendEmail from '@/utils/emails';
+import { sendEmail } from "@/utils/brevo";
 
 export default async function handler(req, res) {
   const headerValue = req.headers['x-api-key'];
