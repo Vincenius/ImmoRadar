@@ -18,6 +18,7 @@ import NextImage from 'next/image';
 import { IconCheck, IconDownload, IconSearch, IconShoppingCart, IconRocket } from '@tabler/icons-react';
 import Button from '@/components/Inputs/ButtonMultiLine';
 import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
+import ButtonMultiLine from '@/components/Inputs/ButtonMultiLine';
 
 export async function getServerSideProps({ req, res, resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
@@ -96,28 +97,65 @@ export default function FoerdercheckStarter({ id }) {
         </Card>
       </Box>
 
-      {/* WARUM SINNVOLL */}
-      <Box pt="3em" pb="8em">
-        <Card radius="md" p="0" withBorder shadow="md">
-          <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
-            <Image
-              component={NextImage}
-              src="/imgs/family-2.jpg"
-              alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
-              height={300}
-              width={500}
-              w={{ base: '100%', md: '500px' }}
-              h={{ base: '200px', md: '100%' }}
-              mah="400px"
-            />
-            <Box p="xl">
-              <Title order={2} ta="center" mb="md">Warum das sinnvoll ist</Title>
-              <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
-                In Deutschland gibt es über 5.000 Förderprogramme. Viele Bauherren und Sanierer wissen nicht, welche davon zu ihrem Projekt passen – und verschenken so tausende Euros. Mit dem Förderreport vermeidest du teure Fehler und erkennst alle relevanten Förderungen auf einen Blick.
-              </Text>
-            </Box>
-          </Flex>
-        </Card>
+      <Box py="4em" pos="relative">
+        <Box pos="absolute" w="100vw" h="100%" bg="white" left="50%" top="0" style={{ transform: 'translateX(-50%)', zIndex: -1 }}></Box>
+
+        <Box my="4em">
+          <Card radius="md" p="0" withBorder shadow="md">
+            <Flex gap="lg" align="center" direction={{ base: 'column', md: 'row' }} >
+              <Image
+                component={NextImage}
+                src="/imgs/family-2.jpg"
+                alt="Mutter und Vater schieben Kind in einer Umzugskiste durch das Haus"
+                height={300}
+                width={500}
+                w={{ base: '100%', md: '500px' }}
+                h={{ base: '200px', md: '100%' }}
+                mah="400px"
+              />
+              <Box p="lg">
+                <Title order={2} ta="center" mb="md">Sanieren & sparen – verpasse keine Förderung mehr!</Title>
+                <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                  Als Sanierer kannst Du von Tausenden Förderprogrammen profitieren – doch viele
+                  nutzen sie nicht und verschenken bares Geld. Der Förderreport zeigt Dir auf einen
+                  Blick, welche Fördermittel genau zu Deinem Sanierungsprojekt passen.
+                </Text>
+                <ButtonMultiLine component={Link} href="/preise" size="md" fullWidth>
+                  Jetzt direkt prüfen und Sanierungskosten drastisch senken!
+                </ButtonMultiLine>
+              </Box>
+            </Flex>
+          </Card>
+        </Box>
+
+        <Box py="4em">
+          <Card radius="md" p="0" withBorder shadow="md">
+            <Flex gap="lg" align="center" direction={{ base: 'column-reverse', md: 'row' }} >
+              <Box p="lg">
+                <Title order={2} ta="center" mb="md">Neubau geplant? Dann sichere Dir jetzt Deine Fördergelder!</Title>
+                <Text ta="center" mb="lg" maw={800} mx="auto" fs="italic">
+                  Beim Hausbau stehen Dir über 5.000 Förderprogramme zur Verfügung – doch viele
+                  Bauherren wissen nicht, welche sie nutzen können, und lassen tausende Euro
+                  liegen. Der Förderreport zeigt dir sofort, welche Zuschüsse und Förderungen genau
+                  zu deinem Bauvorhaben passen.
+                </Text>
+                <ButtonMultiLine component={Link} href="/preise" size="md" fullWidth>
+                  Jetzt direkt prüfen und Baukosten clever senken!
+                </ButtonMultiLine>
+              </Box>
+              <Image
+                component={NextImage}
+                src="/imgs/couple.jpg"
+                alt="Zwei Personen die sich fröhlich Papiere über ihren kopf halten"
+                height={300}
+                width={500}
+                w={{ base: '100%', md: '500px' }}
+                h={{ base: '200px', md: '100%' }}
+                mah="400px"
+              />
+            </Flex>
+          </Card>
+        </Box>
       </Box>
 
       {/* STIMMEN */}

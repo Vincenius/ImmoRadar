@@ -17,6 +17,9 @@ const menu = [
   }, {
     label: 'Über uns',
     url: '/ueber-uns'
+  }, {
+    label: 'Preise',
+    url: '/preise'
   },
 ];
 

@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Title, Text, Grid, Image, Flex, Box, Divider } from '@mantine/core';
 import NextImage from 'next/image';
 import Layout from '@/components/Layout/Layout';
+import QuoteSlider from '@/components/QuoteSlider/QuoteSlider';
 
 const TeamMember = ({ image, name, title, quote }) => {
     return (<Flex gap={{ base: 'md', xs: 'xl' }} direction={{ base: 'column', xs: 'row' }}>
@@ -49,6 +50,36 @@ const AboutPage = () => {
                     <Divider />
                     <TeamMember image="felix.jpg" name="Felix Van Huet" title="Bauingenieur – Nachhaltigkeit & Werkstoffe" quote='Nachhaltig zu bauen bedeutet nicht nur ökologisch zu denken, sondern auch wirtschaftlich. Genau hier setzen Förderprogramme an. Doch viele Bauherr:innen scheitern an der Komplexität oder wissen schlichtweg nicht, was gefördert wird. Der Förderreport schließt diese Lücke. Er zeigt auf einen Blick, welche Förderungen für energieeffiziente Bauweisen, ökologische Materialien oder smarte Sanierungslösungen bereitstehen. Eine echte Entscheidungshilfe gerade für zukunftsfähiges Bauen.' />
                 </Flex>
+
+                <Box my="8em" gap="4em">
+                    <Title order={2} mb="md">Das sagen unsere Kunden</Title>
+                    <QuoteSlider quotes={[
+                        {
+                            text: "„Dank dem Förderreport habe ich 20.000,-€ Fördermittel für meine Haussanierung gefunden - das hätte ich sonst nie entdeckt. Einfach zu bedienen, kostenlos und richtig wertvoll!“",
+                            author: "– Stefan W., Sanierung"
+                        },
+                        {
+                            text: "„Ich wusste gar nicht, dass es so viele Fördermöglichkeiten gibt! Mit der Premium-Version konnte ich den Antrag schnell und korrekt ausfüllen ohne stundenlang zu recherchieren.“",
+                            author: "– Nina M., Neubau"
+                        },
+                        {
+                            text: "„Ich hatte vorher schon recherchiert, aber die Struktur hier hat mir bestimmt zwei Tage Arbeit abgenommen.“",
+                            author: "– David P., Sanierung"
+                        },
+                        {
+                            text: "„Ohne den Starter-Check hätten wir das 5.000 ,-€ Zuschussprogramm der Stadt total verpasst. Jetzt ist’s fix beantragt.“",
+                            author: "– Sandra K., Sanierung"
+                        },
+                        {
+                            text: "„Wir wollten es selbst in die Hand nehmen – der Förderreport Starter hat uns sofort das richtige Fundament gegeben.“",
+                            author: "– Jonas H., Neubau"
+                        },
+                        {
+                            text: "„Durch die Anleitung haben wir 12.400 ,-€ für unseren Neubau erhalten – ohne Berater, einfach Schritt für Schritt umgesetzt.“",
+                            author: "– Miriam S., Neubau"
+                        },
+                    ]} />
+                </Box>
             </Container>
         </Layout>
     );
