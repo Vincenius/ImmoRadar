@@ -135,7 +135,6 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
   const [showFreeCheckout, setShowFreeCheckout] = useState(false)
   const [variant, setVariant] = useState()
   const [checkoutId, setCheckoutId] = useState()
-  const [emailSuccess, setEmailSuccess] = useState(false)
 
   useEffect(() => {
     router.beforePopState(() => {
@@ -237,7 +236,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
     })
       .then(res => res.json())
       .then(res => {
-        setEmailSuccess(true)
+        router.push(`/foerdercheck/danke`)
       })
       .catch(() => console.log('error')) // todo error handling
       .finally(() => setIsLoading(false))
@@ -468,13 +467,9 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                       miw={{ base: "100%", sm: "250px" }}
                     />
 
-                    <Button type="submit" loading={isLoading} mb="md" disabled={emailSuccess}>
-                      {emailSuccess ? <IconCheck /> : "Report zusenden"}
+                    <Button type="submit" loading={isLoading} mb="md">
+                      Report zusenden
                     </Button>
-                    {emailSuccess && <Text c="green.9" mb="md">
-                      <b>Fast geschafft!</b><br />
-                      Wir haben Dir eine E-Mail geschickt, um Deine Adresse zu bestätigen. Nach der Bestätigung steht Dein PDF-Report zum Download bereit.
-                    </Text>}
                     <Text size="xs" fs="italic">Mit dem Absenden stimmst Du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir Dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst Deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
                   </form>
                 </Flex>
