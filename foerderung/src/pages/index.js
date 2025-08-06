@@ -199,7 +199,7 @@ export default function Foerderung() {
           <Accordion bg="gray.0" radius="md" withBorder>
             <FaqItem
               question="Was kostet der Förderreport?"
-              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 39 ,-€) sparst Du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu Deinem Projekt passen."
+              answer="Die Erstellung des Förderreports ist kostenlos. Mit der Starter-Variante (einmalig 69 ,-€) sparst Du Zeit und erhältst eine maßgeschneiderte Übersicht aller Fördermittel, die zu Deinem Projekt passen."
             />
             <FaqItem
               question="Welche Förderungen berücksichtigt der Förderreport?"

@@ -89,7 +89,7 @@ export default function FoerdercheckPremiumPlus({ id }) {
             <List.Item icon={<IconTargetArrow size={18} />}>Individuelle Finanzübersicht + Förderstrategie</List.Item>
             <List.Item icon={<IconDownload size={18} />}>Unterstützung bis zur Auszahlung</List.Item>
           </List>
-          <Button maw="500px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 199 ,-€</Button>
+          <Button maw="500px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconUser size={24} />}>Persönliche Förderberatung buchen – 299 ,-€</Button>
           <Text fs="italic" mt="md">Kostenloses Erstgespräch, Entscheide später ob Dir die Zusammenarbeit das Geld wert ist.</Text>
         </Flex>
       </Box>
@@ -249,7 +249,7 @@ export default function FoerdercheckPremiumPlus({ id }) {
           </Table.Tbody>
         </Table>
 
-        <Text ta="center" mt="md">💶 Jetzt zum Komplettpreis: 199 ,-€ (einmalig, kein Abo)</Text>
+        <Text ta="center" mt="md">💶 Jetzt zum Komplettpreis: 299 ,-€ (einmalig, kein Abo)</Text>
 
         <Box ta="center" mt="md">
           <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>
@@ -315,7 +315,7 @@ export default function FoerdercheckPremiumPlus({ id }) {
             leftSection={<IconRocket size={24} />}
             href={ctaLink}
           >
-            Beratung starten – 199 ,-€ investieren, Tausende sparen
+            Beratung starten – 299 ,-€ investieren, Tausende sparen
           </Button>
         </Box>
       </Box>

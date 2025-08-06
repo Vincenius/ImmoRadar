@@ -59,7 +59,7 @@ export default function FoerdercheckPremium({ id, variant }) {
   return (
     <Layout
       title="Förderreport Premium – Mit Schritt-für-Schritt-Anleitung zur Förderung"
-      description="59 ,-€, einmalig: Mit dem Premium-Förderreport erhältst Du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
+      description="99 ,-€, einmalig: Mit dem Premium-Förderreport erhältst Du nicht nur alle passenden Zuschüsse – sondern auch eine Anleitung zur erfolgreichen Antragstellung."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -87,7 +87,7 @@ export default function FoerdercheckPremium({ id, variant }) {
             <List.Item icon={<IconCheck size={18} />}>Ideal für alle, die nichts übersehen wollen</List.Item>
           </List>
           <Button maw="440px" mt="xl" size="xl" component={Link} href={ctaLink} leftSection={<IconRocket size={24} />}>
-            Förderreport Premium erstellen – 59,-€
+            Förderreport Premium erstellen – 99,-€
           </Button>
         </Flex>
       </Box>
@@ -257,7 +257,7 @@ export default function FoerdercheckPremium({ id, variant }) {
           </Table.Tbody>
         </Table>
         <Text ta="center" mt="md">✅ Ideal für alle, die Förderung gezielt nutzen wollen.</Text>
-        <Text ta="center" mb="md">💶 Nur 59 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
+        <Text ta="center" mb="md">💶 Nur 99 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
           <Button size="lg" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>Jetzt Förderreport Premium erstellen</Button>
         </Box>
@@ -302,7 +302,7 @@ export default function FoerdercheckPremium({ id, variant }) {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           ⏳ Zuschüsse verfallen oft – und Fehler kosten dich bares Geld. <br />
           🎯 Mit dem Premium-Check gehst Du auf Nummer sicher. <br />
-          👉 Starte jetzt mit dem Förderreport Premium für nur 59 ,-€
+          👉 Starte jetzt mit dem Förderreport Premium für nur 99 ,-€
         </Text>
         <Box ta="center">
           <Button

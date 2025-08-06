@@ -42,7 +42,7 @@ export default function FoerdercheckStarter({ id }) {
   return (
     <Layout
       title="Förderreport Starter – Alle Zuschüsse auf einen Blick"
-      description="Für nur 39 ,-€ bekommst Du eine individuell sortierte Übersicht Deiner Fördermöglichkeiten – sofort als PDF."
+      description="Für nur 69 ,-€ bekommst Du eine individuell sortierte Übersicht Deiner Fördermöglichkeiten – sofort als PDF."
     >
       {/* HERO SECTION */}
       <Box className={styles.header} py="xl">
@@ -239,7 +239,7 @@ export default function FoerdercheckStarter({ id }) {
           </Table.Tbody>
         </Table>
         <Text ta="center" mt="md">✅ Ideal für alle, die eigenständig handeln möchten.</Text>
-        <Text ta="center" mb="md">💶 Nur 39 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
+        <Text ta="center" mb="md">💶 Nur 69 ,-€ – einmalig, kein Abo, keine versteckten Kosten</Text>
         <Box ta="center">
           <Button size="lg" leftSection={<IconShoppingCart size={24} />} component={Link} href={ctaLink}>Jetzt Förderreport Starter kaufen</Button>
         </Box>
@@ -284,7 +284,7 @@ export default function FoerdercheckStarter({ id }) {
         <Text ta="center" mb="lg" maw={800} mx="auto">
           📋 Schneller Überblick über passende Förderungen.<br />
           💡 Ideal für alle, die sich selbst informieren wollen<br />
-          👉 Erstelle jetzt den Förderreport Starter für nur 39 ,-€
+          👉 Erstelle jetzt den Förderreport Starter für nur 69 ,-€
         </Text>
         <Box ta="center">
           <Button size="xl" leftSection={<IconRocket size={24} />} component={Link} href={ctaLink}>Jetzt den Förderreport Starter erstellen</Button>
