@@ -8,10 +8,10 @@ const devPrices = {
 }
 
 const prodPrices = {
-  'starter': 'price_1RXQb0KQunG297XzJPloxUr5',
-  'premium': 'price_1RXQazKQunG297Xz2h26cYiu',
-  'premium_upgrade': 'price_1RXQayKQunG297XzF3Tklr1K',
-  'premium_plus': 'price_1RXQaxKQunG297XzcyuRojkb',
+  'starter': 'price_1Rt255KQunG297XzMR3If91U',
+  'premium': 'price_1Rt25lKQunG297XzlhLmvz6O',
+  'premium_upgrade': 'price_1Rt27HKQunG297XzO6M6eokH',
+  'premium_plus': 'price_1Rt26SKQunG297Xz3rB2BmIv',
   'premium_plus_upgrade_starter': 'price_1RXQawKQunG297XzhWgDF3Nn',
   'premium_plus_upgrade_premium': 'price_1RXQawKQunG297XzhONtpdad'
 }
