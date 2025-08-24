@@ -5,6 +5,8 @@ export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
   const session_id = params.get('session_id');
 
+  // todo
+
   return {
     props: { session_id },
   };

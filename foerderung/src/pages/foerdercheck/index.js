@@ -103,12 +103,12 @@ const SelectChip = ({ children, data, setData, value, ...props }) => {
 
 const numberFormatElements = ['Postalcode']
 
-const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled }) => {
+const ButtonGroup = ({ active, setActive, isLoading, hasSubmit, disabled, id }) => {
   return <Group justify="space-between" mt="xl">
     {active === 0 && <div></div>}
     {active > 0 && <Button variant="default" onClick={() => setActive(active - 1)} loading={isLoading}>Zurück</Button>}
     {active < 4 && <Flex gap="sm">
-      {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled}>
+      {hasSubmit && <Button type="submit" loading={isLoading} disabled={disabled} id={id}>
         {active === 3 ? 'Ergebnis anzeigen' : 'Weiter'}
       </Button>}
     </Flex>}
@@ -277,7 +277,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
 
               <Flex gap="md">
                 <WithInfo infoText="Ein bereits gebautes Haus oder eine Wohnung, die modernisiert oder saniert werden soll.">
-                  <SelectButton name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
+                  <SelectButton id="btn-bestand" name="HouseType" value="Bestand" onClick={selectOption} fullWidth isMultiLine={true}>
                     <Flex direction="column" gap="sm" align="center">
                       <IconHome size="2em" />
                       <Text fw="600" size="lg">Bestand</Text>
@@ -285,7 +285,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </SelectButton>
                 </WithInfo>
                 <WithInfo infoText="Die erstmalige Errichtung eines Gebäudes auf einem Grundstück – z.B. Eigenheim oder Mehrfamilienhaus.">
-                  <SelectButton name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
+                  <SelectButton id="btn-neubau" name="HouseType" value="Neubau" onClick={selectOption} fullWidth isMultiLine={true}>
                     <Flex direction="column" gap="sm" align="center">
                       <IconBackhoe size="2em" />
                       <Text fw="600" size="lg">Neubau</Text>
@@ -313,7 +313,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     <CheckboxCard handleChange={() => setData({ ...data, TypKredit: !data.TypKredit })} value={data.TypKredit} title="Kredit" />
                   </WithInfo>
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} />
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={!data.TypZuschuss && !data.TypKredit} id="btn-type" />
               </form>
             </Box>
           </Stepper.Step>
@@ -356,7 +356,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                   </Box>
                 </Flex>
 
-                <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} />
+                <ButtonGroup active={active} setActive={setActive} hasSubmit disabled={!data.Region} id="btn-region" />
               </form>
             </Box>
           </Stepper.Step>
@@ -386,7 +386,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                     </WithInfo>
                   ))}
                 </Flex>
-                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} />
+                <ButtonGroup {...{ data, setData, active, setActive }} hasSubmit disabled={(data.Measures || []).length === 0} id="btn-measures" />
               </form>
             </Box>
           </Stepper.Step>
@@ -420,13 +420,13 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                 <Pricing
                   plan="free"
                   showFree
-                  CtaFree={<Button onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth>
+                  CtaFree={<Button onClick={() => setShowFreeCheckout(true)} loading={isLoading} fullWidth id="btn-free">
                     Kostenlos testen
                   </Button>}
-                  CtaStarter={<Button onClick={() => goToPayment('starter')} loading={isLoading} fullWidth>
+                  CtaStarter={<Button onClick={() => goToPayment('starter')} loading={isLoading} fullWidth id="btn-starter">
                     Jetzt Kaufen
                   </Button>}
-                  CtaPremium={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth>
+                  CtaPremium={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth id="btn-premium">
                     Jetzt Kaufen
                   </Button>}
                   CtaPremiumPlus={<Button onClick={() => goToPayment('premium')} loading={isLoading} fullWidth disabled>
@@ -467,7 +467,7 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
                       miw={{ base: "100%", sm: "250px" }}
                     />
 
-                    <Button type="submit" loading={isLoading} mb="md">
+                    <Button type="submit" loading={isLoading} mb="md" id="btn-send-report">
                       Report zusenden
                     </Button>
                     <Text size="xs" fs="italic">Mit dem Absenden stimmst Du unserer <a href="/datenschutz" target="_blank">Datenschutzerklärung</a> zu und willigst ein, dass wir Dir das angeforderte PDF sowie unseren Newsletter per E-Mail zusenden. Du kannst Deine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen.</Text>
