@@ -132,7 +132,7 @@ export default async function handler(req, res) {
 
         }
 
-        res.json({ success: true, id: session.client_reference_id, isConfirm })
+        res.json({ success: true, id: session.client_reference_id, isConfirm, variant: priceMap[price] })
       } else {
         console.log('STATUS ERROR', session.status)
         res.json({ success: false, id: session.client_reference_id })

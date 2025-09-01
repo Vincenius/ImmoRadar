@@ -5,8 +5,6 @@ export async function getServerSideProps({ resolvedUrl }) {
   const params = new URLSearchParams(resolvedUrl.split('?')[1]);
   const session_id = params.get('session_id');
 
-  // todo
-
   return {
     props: { session_id },
   };
@@ -18,13 +16,13 @@ function CheckoutReturn({ session_id }) {
       method: 'POST',
       body: JSON.stringify({ session_id })
     }).then(res => res.json())
-    .then(res => window.location.href = res.isConfirm ? '/danke' : `/report?id=${res.id}&paid_success=${res.success}`)
+      .then(res => window.location.href = res.isConfirm ? `/danke?variant=${res.variant}` : `/report?id=${res.id}&paid_success=${res.success}`)
   })
 
   return (
-     <div>
+    <div>
       <LoadingOverlay visible={true} />
-     </div>
+    </div>
   )
 }
 
