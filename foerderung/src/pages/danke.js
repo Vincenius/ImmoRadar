@@ -23,7 +23,7 @@ function ThankYouPage({ variant }) {
     <Layout title="Danke für den Kauf" noindex={true} withBackground={true}>
       <Container size="sm">
         <Card shadow="md" padding="lg" radius="md">
-          <Title order={2} mb="sm">Vielen Dank für deinen Kauf{variant ? ` der ${variantMap[variant]} Variante` : ''}!</Title>
+          <Title order={2} mb="sm">Vielen Dank für deinen Kauf{(variant && variantMap[variant]) ? ` der ${variantMap[variant]} Variante` : ''}!</Title>
           <Text mb="xs">
             Wir haben deine Bestellung erhalten.
           </Text>
