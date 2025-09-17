@@ -272,19 +272,17 @@ export default function Foerderung({ defaultData = {}, subsidyData, baseUrl }) {
           allowNextStepsSelect={false}
         >
           <Stepper.Step>
-            <Box p={{ base: 'md', sm: 'xl'  }}>
-              <Blockquote mb={{ base: 'md', sm: 'xl'  }}>
-                <Text mb="xs">Viele Hausbesitzer fragen sich, wie sie ihre geplante Sanierung finanzierbar machen können.</Text>
-
+            <Box p={{ base: 'md', sm: 'xl' }}>
+              <Blockquote mb={{ base: 'md', sm: 'xl' }}>
+                <Text mb="xs">Viele Hausbesitzer fragen sich, wie sie ihre geplante Sanierung oder ihren Neubau finanzierbar machen können.</Text>
                 <Text mb="xs">Was viele nicht wissen: Es gibt attraktive <b>staatliche Förderungen und Zuschüsse</b>, die genau dabei helfen.</Text>
-
                 <Text mb="xs">Mit den richtigen <b>Fördermitteln für die Haussanierung</b> lassen sich nicht nur Kosten sparen, sondern auch langfristig Energieeffizienz und Wohnkomfort steigern.</Text>
-
-                <Text mb="xs">Das Problem: Die Vielzahl an Programmen ist unübersichtlich – und ohne Expertenhilfe gehen schnell wertvolle Vorteile verloren.</Text>
+                <Text mb="xs"><b>Staatliche Förderungen und Zuschüsse</b> machen den geplanten Neubau wesentlich leichter finanzierbar.</Text>
+                <Text mb="xs">Ihre Herausforderung: Die Vielzahl an Programmen ist unübersichtlich – und ohne Expertenhilfe gehen schnell wertvolle Vorteile verloren.</Text>
 
                 <Text mb="xs">Genau hier setzen wir an: Wir prüfen für Sie, welche <b>Zuschüsse und Förderungen</b> zu Ihrem Haus und Ihrem Sanierungsprojekt passen. So sichern Sie sich die maximale Unterstützung für Ihr Vorhaben.</Text>
 
-                <Text>👉 Nutzen Sie jetzt unseren kostenlosen Förder-Check und finden Sie in wenigen Minuten heraus, welche Fördermittel für Ihre Sanierung infrage kommen.</Text>
+                <Text> 👉 Nutzen Sie jetzt unseren kostenlosen Förder-Check und finden Sie in wenigen Sekunden heraus, welche Fördermittel für Ihre Sanierung oder Ihren Neubau infrage kommen.</Text>
               </Blockquote>
               <Title order={2} size="h3" mb="xl" ta="center">Handelt es sich um eine Bestandsimmobilie oder einen Neubau?</Title>
 
