@@ -9,14 +9,6 @@ const Imprint = () => {
 
             <Title order={2} my="md">Angaben gem. § 5 TMG:</Title>
             <p>
-                Vincent Will<br />
-                Landsberger Allee 171D<br />
-                10369 Berlin<br />
-                <b>Kontaktaufnahme:</b><br />
-                E-Mail: vincent.will@immoradar.xyz<br />
-            </p><br/>
-
-            <p>
                 Oliver Rausch<br />
                 Sprengelstrasse 1<br />
                 50735 Köln<br />

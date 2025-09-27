@@ -15,8 +15,13 @@ const Privacy = () => {
             <Title order={1} my="xl">Datenschutzerklärung</Title>
 
             <Text ta="justify" mt="md" fw={700} >Name und Kontaktdaten der für Datenschutz verantwortlichen Person:</Text>
-            <Text ta="justify" mt="xs">Vincent Will<br />Landsberger Allee 171D<br />10369 Berlin<br />E-Mail: <a href="mailto:info@foerderhaus24.de">info@foerderhaus24.de</a></Text>
-            <Text ta="justify" mt="md">Katja Wegener<br />Friedrichstrasse 9<br />50321 Brühl<br />E-Mail: <a href="mailto:info@foerderhaus24.de">info@foerderhaus24.de</a></Text>
+            <Text mb="md" ta="justify" mt="md">
+                Oliver Rausch<br />
+                Sprengelstrasse 1<br />
+                50735 Köln<br />
+                <b>Kontaktaufnahme:</b><br />
+                E-Mail: info@foerderhaus24.de<br />
+            </Text>
 
             <Title order={2} mt="xl">A <Spacer />Umfang der Verarbeitung personenbezogener Daten</Title>
             <Text ta="justify" mt="md">

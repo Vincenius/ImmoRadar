@@ -12,20 +12,13 @@ const Imprint = () => {
             <Title order={1} my="xl">Impressum</Title>
             <Text my="md">Angaben gem. § 5 TMG:</Text>
             <Text mb="md">
-                Vincent Will<br />
-                Landsberger Allee 171D<br />
-                10369 Berlin<br />
+                Oliver Rausch<br />
+                Sprengelstrasse 1<br />
+                50735 Köln<br />
                 <b>Kontaktaufnahme:</b><br />
-                E-Mail: <a href="mailto:info@foerderhaus24.de">info@foerderhaus24.de</a>
+                E-Mail: info@foerderhaus24.de<br />
             </Text>
 
-            <Text mb="md">
-                Katja Wegener<br />
-                Friedrichstrasse 9<br />
-                50321 Brühl<br />
-                <b>Kontaktaufnahme:</b><br />
-                E-Mail: <a href="mailto:info@foerderhaus24.de">info@foerderhaus24.de</a>
-            </Text>
 
             <Title order={2} my="md">Haftung für Inhalte</Title>
 
